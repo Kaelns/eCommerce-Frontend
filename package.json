@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc && vite build",
     "test": "vitest",
     "lint": "eslint . --ext .tsx,.ts",
+    "lint:fix": "eslint --fix --ext .ts,.tsx .",
     "format": "prettier --config .prettierrc src/**/*.tsx --write",
     "ci:format": "prettier --config .prettierrc src/**/*.tsx --check",
     "preview": "vite preview",
@@ -20,7 +21,8 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.76.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",

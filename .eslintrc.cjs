@@ -86,6 +86,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "error",
 
     "curly": ["error", "all"],
+    'import/extensions': [0, { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
     "prettier/prettier": 2,
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
   },
