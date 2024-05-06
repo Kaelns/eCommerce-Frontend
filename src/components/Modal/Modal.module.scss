@@ -1,0 +1,44 @@
+@import '@styles/abstracts/placeholders';
+
+.modal {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @extend %animation;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+}
+
+.modal__content {
+  position: relative;
+  z-index: 100;
+  width: 40%;
+  padding: 2rem;
+  background-color: white;
+
+  @extend %border-radius;
+  @extend %animation;
+
+  transform: scale(0.4);
+
+  &.active {
+    transform: scale(1);
+  }
+}

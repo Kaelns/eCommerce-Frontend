@@ -1,0 +1,7 @@
+{
+  "Dog": { "id": 1, "animal": "Dog", "isSleeping": true },
+  "Bird": { "id": 2, "animal": "Bird", "isSleeping": false },
+  "Cat": { "id": 3, "animal": "Cat", "isSleeping": false },
+  "Mouse": { "id": 4, "animal": "Mouse", "isSleeping": true },
+  "Horse": { "id": 5, "animal": "Horse", "isSleeping": false }
+}

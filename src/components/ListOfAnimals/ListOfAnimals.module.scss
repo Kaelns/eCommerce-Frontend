@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.list__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.sleeping {
+  opacity: 0.3;
+}

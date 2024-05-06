@@ -1,0 +1,27 @@
+$tablet-width: 756px;
+
+:root {
+  --font-size-sm: 0.75rem; /* 12px */
+  --font-size-base: 1rem; /* 16px, base */
+
+  --color-background-body: #eef6fd;
+  --color-background-popup: #f3b562;
+  --color-background-popup-alert: #f06060;
+  --color-background-table: rgb(171, 199, 231);
+
+  --color-buttons: #bbdefb;
+  --color-buttons-hover: #a1d5ff;
+  --color-buttons-border: #74bffd;
+  --color-buttons-input: rgb(214, 230, 243);
+
+  --color-text-dark: black;
+  --color-text-light: #fff;
+
+  --color-title-underline: #c50000;
+
+  --color-table-border-solid: black;
+  --color-table-border-dotted: #aaa;
+  --color-table-background-th: #fff0e4;
+  --color-table-background-th-highlight: #ffd4b1;
+  --color-table-background-td-hover: #f9ae74;
+}

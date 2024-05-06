@@ -17,79 +17,80 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
-    "project": ["**/tsconfig.json"],
+    project: ['**/tsconfig.json'],
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   rules: {
-    "vitest/max-nested-describe": [
-      "error",
+    'vitest/max-nested-describe': [
+      'error',
       {
-        "max": 3
+        max: 3
       }
     ],
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off",
-    "react/jsx-props-no-spreading": "off",
-    "import/prefer-default-export": "off",
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+
+    'import/prefer-default-export': 'off',
     'no-console': 0,
-    "@typescript-eslint/naming-convention": [
-      "error",
+    '@typescript-eslint/naming-convention': [
+      'error',
       {
-        "selector": "typeLike",
-        "format": ["PascalCase"]
+        selector: 'typeLike',
+        format: ['PascalCase']
       },
       {
-        "selector": "interface",
-        "format": ["PascalCase"],
-        "prefix": ["I"]
+        selector: 'interface',
+        format: ['PascalCase'],
+        prefix: ['I']
       },
       {
-        "selector": "variable",
-        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
-        "leadingUnderscore": "allow"
+        selector: 'variable',
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+        leadingUnderscore: 'allow'
       },
       {
-        "selector": "function",
-        "format": ["camelCase", "PascalCase"]
+        selector: 'function',
+        format: ['camelCase', 'PascalCase']
       },
       {
-        "selector": "parameter",
-        "format": ["camelCase"]
+        selector: 'parameter',
+        format: ['camelCase']
       },
       {
-        "selector": "method",
-        "format": ["camelCase"],
-        "leadingUnderscore": "allow"
+        selector: 'method',
+        format: ['camelCase'],
+        leadingUnderscore: 'allow'
       },
       {
-        "selector": "enumMember",
-        "format": ["UPPER_CASE"]
+        selector: 'enumMember',
+        format: ['UPPER_CASE']
       },
       {
-        "selector": "property",
-        "format": ["camelCase"],
-        "leadingUnderscore": "allow"
+        selector: 'property',
+        format: ['camelCase'],
+        leadingUnderscore: 'allow'
       }
     ],
 
-    "@typescript-eslint/no-unused-vars": ["off", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-inferrable-types": "error",
-    "@typescript-eslint/prefer-nullish-coalescing": "error",
-    "@typescript-eslint/consistent-type-definitions": "error",
-    "@typescript-eslint/explicit-function-return-type": "error",
+    '@typescript-eslint/no-unused-vars': ['off', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-inferrable-types': 'error',
+    '@typescript-eslint/prefer-nullish-coalescing': 'error',
+    '@typescript-eslint/consistent-type-definitions': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
 
-    "curly": ["error", "all"],
+    curly: ['error', 'all'],
     'import/extensions': [0, { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
-    "prettier/prettier": 2,
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+    'prettier/prettier': 2,
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }]
   },
 
-  "noInlineConfig": true
-}
+  noInlineConfig: true
+};

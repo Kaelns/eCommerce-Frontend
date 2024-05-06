@@ -1,0 +1,38 @@
+@mixin flex($justify: flex-start, $align: stretch, $flex-direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $flex-direction;
+}
+
+@mixin animation($time: 0.5s, $prop: all) {
+  transition: $prop $time ease-out;
+}
+
+@mixin content-before($width, $height) {
+  content: '';
+  position: absolute;
+  width: $width;
+  height: $height;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin mediaHover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+@mixin media($breakpoint) {
+  @media (max-width: ($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: ($tablet-width - 1)) {
+    @content;
+  }
+}
