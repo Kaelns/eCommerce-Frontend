@@ -1,10 +1,7 @@
-import { ReactNode } from 'react';
+import { ComponentPropsWithChildren } from '@/data/types/ComponentPropsWithChildren';
 
-interface IProps<T> {
-  items: T[];
-  className?: string;
-  renderItem: (item: T) => ReactNode;
-}
-export function List<T>({ items, className = '', renderItem }: IProps<T>): JSX.Element {
-  return <ul className={className}>{items.map(renderItem)}</ul>;
+interface IProps extends React.HTMLAttributes<HTMLUListElement> {}
+
+export function List({ className = '', children }: ComponentPropsWithChildren<IProps>): JSX.Element {
+  return <ul className={className}>{children}</ul>;
 }

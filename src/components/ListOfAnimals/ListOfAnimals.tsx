@@ -26,7 +26,7 @@ const ListOfAnimals = memo(({ animalsObj, onClickSelectAnimal }: IListOfAnimalsP
     [onClickSelectAnimal]
   );
 
-  return <List items={animalsKeys} renderItem={renderItem} className={styles.list} />;
+  return <List className={styles.list}>{animalsKeys.map(renderItem)}</List>;
 });
 
 ListOfAnimals.displayName = 'ListOfAnimals';

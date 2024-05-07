@@ -1,0 +1,12 @@
+@import '@styles/abstracts/placeholders';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  color: var(--color-text-dark);
+
+  background-color: var(--color-background-body);
+  @extend %border-radius;
+}
