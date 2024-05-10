@@ -1,0 +1,23 @@
+@import '@styles/abstracts/mixins';
+@import '@styles/abstracts/placeholders';
+
+.navlink {
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem;
+
+  @extend %animation;
+
+  &::before {
+    @extend %animation;
+    @include underline-before();
+    background-color: var(--color-underline);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.active::before {
+    visibility: visible;
+    opacity: 1;
+  }
+}

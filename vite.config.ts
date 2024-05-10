@@ -1,13 +1,15 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 import path from 'path';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr()],
+  base: '',
   test: {
     globals: true,
     include: ['./src/**/*.test.{js, jsx, ts,tsx}', './tests/**/*.test.{js, jsx, ts,tsx}'],
@@ -16,8 +18,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src/'),
-      components: `${path.resolve(__dirname, './src/components/')}`,
       pages: path.resolve(__dirname, './src/pages'),
+      components: `${path.resolve(__dirname, './src/components/')}`,
       events: 'rollup-plugin-node-polyfills/polyfills/events',
       stream: 'rollup-plugin-node-polyfills/polyfills/stream',
       path: 'rollup-plugin-node-polyfills/polyfills/path',
