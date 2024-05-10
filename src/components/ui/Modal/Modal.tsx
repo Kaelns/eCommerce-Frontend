@@ -5,12 +5,12 @@ import styles from './Modal.module.scss';
 
 interface IProps {
   show: boolean;
-  onClick: MouseEventHandler<HTMLDivElement>;
+  toggleShow: MouseEventHandler<HTMLDivElement>;
 }
 
 const portalDiv = document.getElementById('modal') as HTMLElement;
 
-export function Modal({ children, show, onClick }: ComponentPropsWithChildren<IProps>): React.ReactPortal {
+export function Modal({ children, show, toggleShow }: ComponentPropsWithChildren<IProps>): React.ReactPortal {
   const classNameOnShow = show ? styles.active : '';
 
   const handlePropagation = (event: MouseEvent<HTMLDivElement>): void => {
@@ -18,7 +18,7 @@ export function Modal({ children, show, onClick }: ComponentPropsWithChildren<IP
   };
 
   return createPortal(
-    <div className={`${styles.modal} ${classNameOnShow}`} onClick={onClick}>
+    <div className={`${styles.modal} ${classNameOnShow}`} onClick={toggleShow}>
       <div className={`${styles.modal__content} ${classNameOnShow}`} onClick={handlePropagation}>
         {children}
       </div>
