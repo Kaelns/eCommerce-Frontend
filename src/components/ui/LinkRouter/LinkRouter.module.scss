@@ -1,0 +1,15 @@
+@use '@styles/abstracts/placeholders';
+@use '@styles/abstracts/mixins';
+
+.link {
+  display: inline-block;
+  position: relative;
+
+  @extend %animation;
+
+  @include mixins.mediaHover {
+    &:hover {
+      @include mixins.highlight;
+    }
+  }
+}

@@ -3,7 +3,7 @@ export enum ROUTES {
   USER = '/user',
   ERROR = '/error',
   LOGIN = '/login',
-  BASKET = '/basket ',
+  BASKET = '/basket',
   CATALOG = '/catalog',
   ABOUT_US = '/about-us',
   REGISTRATION = '/registration',

@@ -1,4 +1,4 @@
-$tablet-width: 756px;
+@use 'constants';
 
 @mixin flex($justify: flex-start, $align: stretch, $flex-direction: row) {
   display: flex;
@@ -22,6 +22,14 @@ $tablet-width: 756px;
   bottom: 0;
 }
 
+@mixin highlight {
+  text-shadow:
+    0.1rem 0.1rem 0.25rem var(--color-text-highlighted),
+    -0.1rem 0.1rem 0.25rem var(--color-text-highlighted),
+    -0.1rem -0.1rem 0.25rem var(--color-text-highlighted),
+    0.1rem -0.1rem 0.25rem var(--color-text-highlighted);
+}
+
 @mixin mediaHover {
   @media (hover: hover) {
     @content;
@@ -35,7 +43,7 @@ $tablet-width: 756px;
 }
 
 @mixin media-tablet {
-  @media (max-width: ($tablet-width - 1)) {
+  @media (max-width: (constants.$width-tablet - 1)) {
     @content;
   }
 }

@@ -17,6 +17,12 @@ export function Navbar(): JSX.Element {
         <ListItem>
           <NavLinkRouter to={ROUTES.ABOUT_US}>About Us</NavLinkRouter>
         </ListItem>
+        <ListItem>
+          <NavLinkRouter to={ROUTES.LOGIN}>Login</NavLinkRouter>
+        </ListItem>
+        <ListItem>
+          <NavLinkRouter to={ROUTES.REGISTRATION}>Register</NavLinkRouter>
+        </ListItem>
       </List>
     </nav>
   );
