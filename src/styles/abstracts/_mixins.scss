@@ -1,0 +1,41 @@
+$tablet-width: 756px;
+
+@mixin flex($justify: flex-start, $align: stretch, $flex-direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $flex-direction;
+}
+
+@mixin animation($time: 0.5s, $prop: all) {
+  transition: $prop $time ease-out;
+}
+
+@mixin underline-before($width: 100%, $height: 2px, $color: var(--color-underline)) {
+  content: '';
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $color;
+  border-radius: 2px;
+  left: 0;
+  bottom: 0;
+}
+
+@mixin mediaHover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+@mixin media($breakpoint) {
+  @media (max-width: ($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: ($tablet-width - 1)) {
+    @content;
+  }
+}

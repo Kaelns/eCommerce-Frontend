@@ -1,4 +1,4 @@
-import styles from './Navbar.module.scss';
+import styles from './SectionContainer.module.scss';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {}

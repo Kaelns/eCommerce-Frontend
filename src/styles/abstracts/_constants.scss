@@ -1,0 +1,29 @@
+:root {
+  --font-size-sm: 0.75rem; /* 12px */
+  --font-size-base: 1rem; /* 16px, base */
+
+  --color-background-body: #eef6fd;
+
+  --color-buttons: #bbdefb;
+
+  --color-text-dark: black;
+  --color-text-light: #fff;
+  --color-text-colorized: #61dafb;
+
+  --color-underline: #c50000;
+}
+
+.dark {
+  --font-size-sm: 0.75rem; /* 12px */
+  --font-size-base: 1rem; /* 16px, base */
+
+  --color-background-body: #eef6fd;
+
+  --color-buttons: #bbdefb;
+
+  --color-text-dark: black;
+  --color-text-light: #c22222;
+  --color-text-colorized: #61dafb;
+
+  --color-underline: #c50000;
+}
