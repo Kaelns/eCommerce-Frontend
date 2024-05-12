@@ -1,14 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { ROUTES } from '@/data/enum/routes.enum';
+import ILinkRouter from '@/data/interface/ILinkRouter.interface';
 import styles from './NavLinkRouter.module.scss';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
-interface IProps {
-  to: ROUTES;
-  className?: string;
-}
-
-export function NavLinkRouter({ to, className = '', children }: PropsWithChildren<IProps>): JSX.Element {
+export function NavLinkRouter({ to, className = '', children }: PropsWithChildren<ILinkRouter>): JSX.Element {
   const classOnActive = ({ isActive }: { isActive: boolean }): string =>
     isActive ? `${styles.navlink} ${styles.active} ${className}` : `${styles.navlink} ${className}`;
 
