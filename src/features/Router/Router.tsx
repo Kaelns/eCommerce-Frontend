@@ -22,13 +22,13 @@ export function Router(): JSX.Element {
           <Route path={ROUTES.CATALOG} element={<CatalogPage />} />
           <Route path={ROUTES.ABOUT_US} element={<AboutUsPage />} />
           <Route path={ROUTES.DETAILED_PRODUCT} element={<DetailedProductPage />}>
-            <Route path=":product" />
+            <Route path={ROUTES.DETAILED_PRODUCT_ID} />
           </Route>
           <Route path={ROUTES.USER} element={<UserPage />} />
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
           <Route path={ROUTES.BASKET} element={<BasketPage />} />
           <Route path={ROUTES.REGISTRATION} element={<RegistrationPage />} />
-          <Route path="*" element={<Navigate replace to={ROUTES.ERROR} />} />
+          <Route path={ROUTES.NONEXISTENT} element={<Navigate replace to={ROUTES.ERROR} />} />
           <Route path={ROUTES.ERROR} element={<ErrorPage />} />
         </Route>
       </Routes>

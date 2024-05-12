@@ -2,8 +2,8 @@ import LoaderSVG from '@/assets/spin.svg?react';
 import LogoSVG from '@/assets/react.svg?react';
 import UserSVG from '@/assets/user.svg?react';
 import BasketSVG from '@/assets/basket.svg?react';
-import styles from './Icon.module.scss';
-import { ICONS } from '@/components/ui/Icon/Icon.enum';
+import styles from './Icons.module.scss';
+import { ICONS } from '@/components/Icons/Icons.enum';
 
 const SIZE = 4;
 
@@ -12,7 +12,7 @@ interface IProps {
   rem?: number;
 }
 
-export function Icon({ icon = ICONS.LOGO, rem = SIZE }: IProps): JSX.Element {
+export function Icons({ icon = ICONS.LOGO, rem = SIZE }: IProps): JSX.Element {
   const size = `${rem}rem`;
   const props = { width: size, height: size };
 
