@@ -1,0 +1,29 @@
+@use '@styles/abstracts/placeholders';
+@use '@styles/abstracts/mixins';
+
+.navlink {
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem;
+
+  @extend %animation;
+
+  &::before {
+    @extend %animation;
+    @include mixins.underline-before();
+    background-color: var(--color-underline);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.active::before {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @include mixins.mediaHover {
+    &:hover {
+      @include mixins.highlight;
+    }
+  }
+}
