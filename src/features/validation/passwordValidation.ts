@@ -5,9 +5,10 @@ import {
   checkSpecialChar,
   checkWhiteSpace
 } from './validationRules';
+import { PASSWORD_LENGTH } from '@/features/validation/validation.constants';
 
 export default function checkPassword(value: string): string {
-  if (value.length < 8) {
+  if (value.length < PASSWORD_LENGTH) {
     return 'Password must be at least 8 characters long';
   }
   if (checkUppercaseLetter(value) || checkLowercaseLetter(value) || checkDigit(value) || checkSpecialChar(value)) {

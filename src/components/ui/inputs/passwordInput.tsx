@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { InputLabel } from '@mui/material';
-import checkPassword from '@/features/Router/validation/passwordValidation';
+import checkPassword from '@/features/validation/passwordValidation';
 import ShowPasswordIcon from '@/components/Icons/showPasswordIcon';
 import styles from '@/components/ui/inputs/inputs.module.scss';
 

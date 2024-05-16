@@ -1,3 +1,6 @@
+import GetAge from '@/utils/getAge';
+import { MAX_AGE, MIN_AGE } from '@/features/validation/validation.constants';
+
 export function checkWhiteSpace(value: string): boolean {
   const whiteSpace = /^\s|\s$/gm;
   return !!value.match(whiteSpace);
@@ -11,7 +14,7 @@ export function checkDomainPart(value: string): boolean {
   return !value.match(domainPart);
 }
 export function checkMainPart(value: string): boolean {
-  const mainPart = /^[a-zA-Z0-9]+@/gm;
+  const mainPart = /^[a-zA-Z0-9!#$%^&*\-+_=,./\\<>?{}[\]():;"'|`~]+@/gm;
   return !value.match(mainPart);
 }
 export function checkUppercaseLetter(value: string): boolean {
@@ -29,4 +32,12 @@ export function checkDigit(value: string): boolean {
 export function checkSpecialChar(value: string): boolean {
   const specialChar = /[!@#$%^&*\-+_=,./\\<>?{}[\]():;"'|`~]{1,}/gm;
   return !value.match(specialChar);
+}
+export function checkJustLetter(value: string): boolean {
+  const justLetter = /^[a-zA-Z]+$/gm;
+  return !value.match(justLetter);
+}
+export function checkAge(value: string): boolean {
+  const age = GetAge(new Date(value));
+  return age < MIN_AGE || age > MAX_AGE || Object.is(age, NaN);
 }

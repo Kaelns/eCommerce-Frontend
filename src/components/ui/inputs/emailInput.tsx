@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { InputLabel } from '@mui/material';
-import checkEmail from '@/features/Router/validation/emailValidation';
+import checkEmail from '@/features/validation/emailValidation';
 import styles from '@/components/ui/inputs/inputs.module.scss';
 
 export default function EmailInput({ setValue }: { setValue: React.Dispatch<SetStateAction<string>> }): JSX.Element {
