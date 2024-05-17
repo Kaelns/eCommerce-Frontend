@@ -14,27 +14,28 @@ export default function Form(): JSX.Element {
   const onClick = useCallback(
     (event: { preventDefault: () => void }) => {
       event.preventDefault();
-      // console.log(`${email} ${password}`);
-      returnCustomerByEmail(email)
-        .then(({ body }) => {
-          if (body!.results.length === 0) {
-            console.log('This email address has not been registered.');
-            setWrongEmail(true);
-          } else {
-            authenticateCustomer(email, password)
-              .then((result) => {
-                console.log(result.body);
-                console.log('login ok');
-              })
-              .catch((error) => {
-                console.log(error.message);
-                setWrongPassword(true);
-                console.log('wrong password');
-              });
-          }
+
+      console.log(`${email} ${password}`);
+      authenticateCustomer(email, password)
+        .then((result) => {
+          console.log(result.body);
+          console.log('login ok');
         })
         .catch((error) => {
           console.log(error.message);
+          returnCustomerByEmail(email)
+            .then(({ body }) => {
+              if (body!.results.length === 0) {
+                console.log('This email address has not been registered.');
+                setWrongEmail(true);
+              } else {
+                setWrongPassword(true);
+                console.log('wrong password');
+              }
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
         });
     },
     [email, password]

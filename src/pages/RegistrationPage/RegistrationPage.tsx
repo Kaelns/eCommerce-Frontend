@@ -1,5 +1,5 @@
 import styles from './RegistrationPage.module.scss';
-import Form from '@/components/ui/forms/registrForm';
+import Form from '@/components/ui/forms/loginForm';
 
 // interface IProps {}
 

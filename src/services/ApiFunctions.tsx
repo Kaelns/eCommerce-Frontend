@@ -15,8 +15,13 @@ export const createCustomer = (email: string, password: string): Promise<ClientR
     })
     .execute() as Promise<ClientResponse<CustomerSignInResult>>;
 
-export const authenticateCustomer = (email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> =>
-  apiRoot
+export const authenticateCustomer = (
+  email: string,
+  password: string
+): Promise<ClientResponse<CustomerSignInResult>> => {
+  const apiRootSec = new ApiClient(email, password).getApiRoot();
+  return apiRootSec
+    .me()
     .login()
     .post({
       body: {
@@ -25,6 +30,7 @@ export const authenticateCustomer = (email: string, password: string): Promise<C
       }
     })
     .execute() as Promise<ClientResponse<CustomerSignInResult>>;
+};
 
 export const returnCustomerByEmail = (customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> =>
   apiRoot
