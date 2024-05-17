@@ -1,7 +1,8 @@
-import { checkJustLetter } from './validationRules';
+import { checkJustLetter, checkLength } from './validationRules';
+import { GENERAL_LENGTH } from './validation.constants';
 
 export default function checkGeneralRule(value: string): string {
-  if (value.length < 1) {
+  if (checkLength(GENERAL_LENGTH, value)) {
     return 'Field must contain at least one latin letter';
   }
 
