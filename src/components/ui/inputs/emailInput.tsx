@@ -4,8 +4,29 @@ import { InputLabel } from '@mui/material';
 import checkEmail from '@/features/Router/validation/emailValidation';
 import styles from '@/components/ui/inputs/inputs.module.scss';
 
-export default function EmailInput({ setValue }: { setValue: React.Dispatch<SetStateAction<string>> }): JSX.Element {
+export default function EmailInput({
+  setValue,
+  error,
+  setError
+}: {
+  setValue: React.Dispatch<SetStateAction<string>>;
+  error?: boolean;
+  setError?: React.Dispatch<SetStateAction<boolean>>;
+}): JSX.Element {
   const [emailMatch, setEmailMatch] = useState('');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const result = checkEmail(e.target.value);
+    setEmailMatch(result);
+
+    if (setError) {
+      if (!result) {
+        setError(false);
+        setValue(e.target.value);
+      } else {
+        setError(true);
+      }
+    }
+  };
   return (
     <>
       <InputLabel className={styles.label}>Enter your email: </InputLabel>
@@ -13,16 +34,12 @@ export default function EmailInput({ setValue }: { setValue: React.Dispatch<SetS
         type="text"
         className={styles.input}
         required
-        error={!!emailMatch}
-        onChange={(e) => {
-          const result = checkEmail(e.target.value);
-          setEmailMatch(result);
-          if (!result) {
-            setValue(e.target.value);
-          }
-        }}
+        error={error ?? !!emailMatch}
+        onChange={handleChange}
       />
-      {emailMatch && <p className={styles.error}>{emailMatch}</p>}
+      {(error ?? emailMatch) && (
+        <p className={styles.error}>{emailMatch || 'This email address has not been registered.'}</p>
+      )}
     </>
   );
 }
