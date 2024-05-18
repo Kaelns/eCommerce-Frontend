@@ -1,5 +1,11 @@
+import { ThemeProvider } from '@emotion/react';
 import { Router } from '@/features/Router/Router';
+import { lightTheme } from '@/data/theme/lightTheme';
 
 export function App(): JSX.Element {
-  return <Router />;
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <Router />
+    </ThemeProvider>
+  );
 }
