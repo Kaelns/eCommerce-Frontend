@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 
-import ButtonCustom from '@/components/ui/button/button';
-import styles from '@/features/forms/loginForm/loginForm.module.scss';
-import CredentialBlock from '@/features/forms/credentialBlock/credentialBlock';
-import { checkCredentialInputs } from '@/features/forms/forms.helper';
+import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
+import styles from './loginForm.module.scss';
+import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
+import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
 
 export default function LoginForm(): JSX.Element {
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
@@ -12,7 +12,7 @@ export default function LoginForm(): JSX.Element {
   const onClick = useCallback(() => {
     console.log(inputs);
     alert(`${inputs.email} ${inputs.password}`);
-  }, [inputs.email, inputs.password]);
+  }, [inputs]);
 
   const handleOnChangeInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, checkFunction: (value: string) => string) => {
@@ -26,7 +26,7 @@ export default function LoginForm(): JSX.Element {
 
   return (
     <form className={styles.form}>
-      <CredentialBlock onChangeFunction={handleOnChangeInput} inputsError={inputsError} />
+      <CredentialBlock onChangeFunction={handleOnChangeInput} inputsErrors={inputsError} />
       <ButtonCustom disabled={!checkCredentialInputs(inputs, inputsError)} onClick={onClick}>
         Login
       </ButtonCustom>

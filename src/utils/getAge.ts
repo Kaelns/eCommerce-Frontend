@@ -1,4 +1,4 @@
-export default function GetAge(birthday: Date): number {
+export default function getAge(birthday: Date): number {
   const today = new Date();
   let age = today.getFullYear() - birthday.getFullYear();
   const month = today.getMonth() - birthday.getMonth();

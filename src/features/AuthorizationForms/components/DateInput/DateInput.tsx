@@ -5,14 +5,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { InputLabel } from '@mui/material';
 import { DatePicker, DatePickerProps } from '@mui/x-date-pickers/DatePicker';
 
-import styles from '@/components/ui/inputs/inputs.module.scss';
-import { FORMAT, OPEN_TO } from '@/components/ui/inputs/dateInput/dateInput.constants';
+import styles from '../../forms.module.scss';
+import { FORMAT, OPEN_TO } from '@/features/AuthorizationForms/components/DateInput/dateInput.constants';
+import { IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 
 interface IProps extends DatePickerProps<dayjs.Dayjs> {
   label: string;
   name: string;
   validationChecks: (value: string) => string;
-  setInputs: React.Dispatch<SetStateAction<{ [key: string]: string }>>;
+  setInputs: React.Dispatch<SetStateAction<IInputsValues>>;
 }
 
 export default function DateInput({ label, name, validationChecks, setInputs, ...props }: IProps): JSX.Element {

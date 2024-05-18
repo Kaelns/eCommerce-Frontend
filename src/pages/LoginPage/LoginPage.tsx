@@ -1,5 +1,5 @@
 import styles from './LoginPage.module.scss';
-import LoginForm from '@/features/forms/loginForm/loginForm';
+import LoginForm from '@/features/AuthorizationForms/LoginForm/LoginForm';
 
 // interface IProps {}
 

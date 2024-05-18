@@ -1,9 +1,9 @@
-import OnChangeComboBox from '@/data/types/ComboBoxFunction';
+import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 
 export interface IOptions {
-  ['label']: string;
-  ['code']: string;
-  ['postalCodePattern']: RegExp;
+  label: string;
+  code: string;
+  postalCodePattern: RegExp;
 }
 
 export interface IProps {
