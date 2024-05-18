@@ -1,11 +1,18 @@
-export const INPUTS = {
+import { AddressPrefix } from '@/data/enum/addressPrefix.enum';
+import { IInputs } from '@/data/interface/IRegistration.interface';
+import { getAddressProperty } from '@/utils/getAddressProperty';
+
+export const INPUTS: IInputs = {
   email: { label: 'Enter your email', name: 'email' },
   password: { label: 'Enter your password', name: 'password' },
   lastName: { label: 'Last name', name: 'lastName' },
   firstName: { label: 'First name', name: 'firstName' },
   birthday: { label: 'Birthday', name: 'birthday' },
-  country: { label: 'Country', name: 'country' },
-  city: { label: 'City', name: 'city' },
-  street: { label: 'Street', name: 'street' },
-  postalCode: { label: 'Postal code', name: 'postalCode' }
+  shipping: getAddressProperty(AddressPrefix.SHIPPING),
+  billing: getAddressProperty(AddressPrefix.BILLING)
 } as const;
+
+export const PROPERTY = {
+  iItem: 'label',
+  iAddresses: 'country'
+};

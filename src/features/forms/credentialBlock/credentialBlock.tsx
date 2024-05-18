@@ -4,7 +4,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Input from '@/components/ui/inputs/input';
 import { INPUTS } from '@/features/forms/forms.constants';
-import { InputType } from '@/components/ui/inputs/input.constants';
+import { InputType } from '@/data/enum/input.enum';
 import ShowPasswordButton from '@/features/forms/showPasswordButton';
 import checkEmail from '@/features/validation/emailValidation';
 import checkPassword from '@/features/validation/passwordValidation';

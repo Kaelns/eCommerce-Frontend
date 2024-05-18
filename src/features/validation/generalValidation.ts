@@ -1,13 +1,14 @@
-import { checkJustLetter, checkLength } from './validationRules';
-import { GENERAL_LENGTH } from './validation.constants';
+import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { checkJustLetter, checkLength } from '@/features/validation/validationRules';
+import { GENERAL_LENGTH } from '@/features/validation/validation.constants';
 
 export default function checkGeneralRule(value: string): string {
   if (checkLength(GENERAL_LENGTH, value)) {
-    return 'Field must contain at least one latin letter';
+    return ValidationErrors.LENGTH_GENERAL;
   }
 
   if (checkJustLetter(value)) {
-    return 'Field must contain just latin letter';
+    return ValidationErrors.JUST_LETTER;
   }
   return '';
 }

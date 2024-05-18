@@ -1,5 +1,3 @@
-import { SyntheticEvent, useCallback } from 'react';
-import { TextField } from '@mui/material';
 import Input from '@/components/ui/inputs/input';
 import styles from '@/features/forms/forms.module.scss';
 import checkGeneralRule from '@/features/validation/generalValidation';
@@ -7,8 +5,9 @@ import streetValidation from '@/features/validation/streetValidation';
 import { countryList } from '@/features/forms/addressBlock/addressBlock.constants';
 import ComboBox from '@/components/ui/comboBox/comboBox';
 import { INPUTS } from '@/features/forms/forms.constants';
-import { IOptions } from '@/data/interface/IComboBox.interface';
 import OnChangeComboBox from '@/data/types/ComboBoxFunction';
+import { AddressPrefix } from '@/data/enum/addressPrefix.enum';
+import checkPostalCode from '@/features/validation/postalCodeValidation';
 
 interface IProps {
   onChangeFunction: (
@@ -17,37 +16,45 @@ interface IProps {
   ) => void;
   onChangeComboBox: OnChangeComboBox;
   inputsError: { [key: string]: string };
+  prefix: AddressPrefix;
 }
-export default function AddressBlock({ onChangeFunction, onChangeComboBox, inputsError }: IProps): JSX.Element {
+export default function AddressBlock({ onChangeFunction, onChangeComboBox, inputsError, prefix }: IProps): JSX.Element {
   return (
     <>
       <ComboBox
-        label={INPUTS.country.label}
-        name={INPUTS.country.name}
+        label={INPUTS[prefix].country.label}
+        name={INPUTS[prefix].country.name}
+        id={prefix}
         options={countryList}
         onChangeComboBox={onChangeComboBox}
       />
 
       <Input
-        label={INPUTS.postalCode.label}
-        name={INPUTS.postalCode.name}
-        onChange={(event) => onChangeFunction(event, checkGeneralRule)}
+        label={INPUTS[prefix].postalCode.label}
+        name={INPUTS[prefix].postalCode.name}
+        onChange={(event) => onChangeFunction(event, checkPostalCode)}
       >
-        {inputsError[INPUTS.postalCode.name] && <p className={styles.error}>{inputsError[INPUTS.postalCode.name]}</p>}
+        {inputsError[INPUTS[prefix].postalCode.name] && (
+          <p className={styles.error}>{inputsError[INPUTS[prefix].postalCode.name]}</p>
+        )}
       </Input>
       <Input
-        label={INPUTS.city.label}
-        name={INPUTS.city.name}
+        label={INPUTS[prefix].city.label}
+        name={INPUTS[prefix].city.name}
         onChange={(event) => onChangeFunction(event, checkGeneralRule)}
       >
-        {inputsError[INPUTS.city.name] && <p className={styles.error}>{inputsError[INPUTS.city.name]}</p>}
+        {inputsError[INPUTS[prefix].city.name] && (
+          <p className={styles.error}>{inputsError[INPUTS[prefix].city.name]}</p>
+        )}
       </Input>
       <Input
-        label={INPUTS.street.label}
-        name={INPUTS.street.name}
+        label={INPUTS[prefix].street.label}
+        name={INPUTS[prefix].street.name}
         onChange={(event) => onChangeFunction(event, streetValidation)}
       >
-        {inputsError[INPUTS.street.name] && <p className={styles.error}>{inputsError[INPUTS.street.name]}</p>}
+        {inputsError[INPUTS[prefix].street.name] && (
+          <p className={styles.error}>{inputsError[INPUTS[prefix].street.name]}</p>
+        )}
       </Input>
     </>
   );

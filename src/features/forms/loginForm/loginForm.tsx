@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import Button from '@mui/material/Button';
 
+import ButtonCustom from '@/components/ui/button/button';
 import styles from '@/features/forms/loginForm/loginForm.module.scss';
 import CredentialBlock from '@/features/forms/credentialBlock/credentialBlock';
 import { checkCredentialInputs } from '@/features/forms/forms.helper';
@@ -27,14 +27,9 @@ export default function LoginForm(): JSX.Element {
   return (
     <form className={styles.form}>
       <CredentialBlock onChangeFunction={handleOnChangeInput} inputsError={inputsError} />
-      <Button
-        variant="contained"
-        type="submit"
-        disabled={!checkCredentialInputs(inputs, inputsError)}
-        onClick={onClick}
-      >
+      <ButtonCustom disabled={!checkCredentialInputs(inputs, inputsError)} onClick={onClick}>
         Login
-      </Button>
+      </ButtonCustom>
     </form>
   );
 }

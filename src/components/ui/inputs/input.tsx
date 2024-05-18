@@ -1,7 +1,7 @@
 import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import { InputLabel } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
-import { InputType } from '@/components/ui/inputs/input.constants';
+import { InputType } from '@/data/enum/input.enum';
 
 interface IProps extends OutlinedInputProps {
   label: string;
