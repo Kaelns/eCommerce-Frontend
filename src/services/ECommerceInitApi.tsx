@@ -5,8 +5,8 @@ import {
   type HttpMiddlewareOptions,
   type PasswordAuthMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
-
 import { ByProjectKeyRequestBuilder, createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
+import { PROJECT_KEY, CLIENT_ID, CLIENT_SECRET, AUTH_HOST, API_HOST, SCOPES } from './ECommerceInitApi.constants';
 
 class ECommerceInitApi {
   private authMiddlewareOptions: AuthMiddlewareOptions;
@@ -19,47 +19,43 @@ class ECommerceInitApi {
 
   private projectKey: string;
 
-  private email;
+  private email?: string;
 
-  private password;
+  private password?: string;
 
   constructor(email?: string, password?: string) {
-    this.projectKey = 'radioreactiveecomapp';
+    this.projectKey = PROJECT_KEY;
     if (email && password) {
       this.email = email;
       this.password = password;
       this.passwordAuthMiddlewareOptions = {
-        host: 'https://auth.europe-west1.gcp.commercetools.com',
-        projectKey: 'radioreactiveecomapp',
+        host: AUTH_HOST,
+        projectKey: PROJECT_KEY,
         credentials: {
-          clientId: 'a-i4goMEIaGWWNkzXrrkc4_G',
-          clientSecret: 'zODzfkzBmfaH7Vp9tiukg3kabhgIbFWq',
+          clientId: CLIENT_ID,
+          clientSecret: CLIENT_SECRET,
           user: {
             username: this.email,
             password: this.password
           }
         },
-        scopes: [
-          'manage_project:radioreactiveecomapp view_audit_log:radioreactiveecomapp view_api_clients:radioreactiveecomapp manage_api_clients:radioreactiveecomapp'
-        ],
+        scopes: SCOPES,
         fetch
       };
     }
     this.authMiddlewareOptions = {
-      host: 'https://auth.europe-west1.gcp.commercetools.com',
-      projectKey: 'radioreactiveecomapp',
+      host: AUTH_HOST,
+      projectKey: PROJECT_KEY,
       credentials: {
-        clientId: 'a-i4goMEIaGWWNkzXrrkc4_G',
-        clientSecret: 'zODzfkzBmfaH7Vp9tiukg3kabhgIbFWq'
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET
       },
-      scopes: [
-        'manage_project:radioreactiveecomapp view_audit_log:radioreactiveecomapp view_api_clients:radioreactiveecomapp manage_api_clients:radioreactiveecomapp'
-      ],
+      scopes: SCOPES,
       fetch
     };
 
     this.httpMiddlewareOptions = {
-      host: 'https://api.europe-west1.gcp.commercetools.com',
+      host: API_HOST,
       fetch
     };
 

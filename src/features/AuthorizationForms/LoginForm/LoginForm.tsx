@@ -3,7 +3,7 @@ import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button
 import styles from './loginForm.module.scss';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
-import { eCommerceAPI } from '@/services/ApiFunctions';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 export default function LoginForm(): JSX.Element {
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
