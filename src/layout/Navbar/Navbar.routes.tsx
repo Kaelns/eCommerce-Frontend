@@ -1,3 +1,4 @@
+import { UserAvatarPopover } from '@/components/UserAvatarPopover/UserAvatarPopover';
 import { ROUTES } from '@/data/enum/routes.enum';
 
 export const navbarRoutes = {
@@ -7,11 +8,10 @@ export const navbarRoutes = {
 };
 
 export const nonAuthorizedRoutes = {
-  [ROUTES.USER]: 'User',
   [ROUTES.LOGIN]: 'Login',
   [ROUTES.REGISTRATION]: 'Register'
 };
 
 export const authorizedRoutes = {
-  [ROUTES.USER]: 'User'
+  [ROUTES.USER]: <UserAvatarPopover />
 };

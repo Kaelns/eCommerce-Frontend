@@ -11,10 +11,11 @@ import { MainContainer } from '@/layout/MainContainer/MainContainer';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
 import { UserPage } from '@/pages/UserPage/UserPage';
-import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export function Router(): JSX.Element {
-  const { authUserToken } = useAuthContext();
+  const { authUserToken } = useLocalStorage();
+
   return (
     <BrowserRouter>
       <Header />

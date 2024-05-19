@@ -18,6 +18,7 @@ export function Header(): JSX.Element {
           <Box sx={styles.columnContainer}>
             <TollIcon color="primary" fontSize="large" />
             <Navbar />
+            {/* TODO delete this. Added for testing */}
             <Button onClick={() => (authUserToken ? setAuthUserToken('') : setAuthUserToken('asdfadsf'))}>
               Toggle login
             </Button>

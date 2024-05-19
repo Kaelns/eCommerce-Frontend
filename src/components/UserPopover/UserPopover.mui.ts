@@ -1,3 +1,6 @@
 export const popover = {
-  padding: 2
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 1,
+  padding: 3
 };
