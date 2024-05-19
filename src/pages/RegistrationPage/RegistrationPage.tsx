@@ -1,13 +1,12 @@
 import styles from './RegistrationPage.module.scss';
-import Form from '@/components/ui/forms/loginForm';
-
+import RegistrationForm from '@/features/AuthorizationForms/RegistrationForm/RegistrationForm';
 // interface IProps {}
 
 export function RegistrationPage(/* props: IProps */): JSX.Element {
   return (
-    <div className={styles.login}>
-      <h2>Register Page</h2>
-      <Form />
+    <div className={styles.registration}>
+      <h2>Registration Page</h2>
+      <RegistrationForm />
     </div>
   );
 }

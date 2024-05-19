@@ -1,3 +1,4 @@
+import { ValidationErrors } from '@/data/enum/validationError.enum';
 import {
   checkUppercaseLetter,
   checkLowercaseLetter,
@@ -5,16 +6,17 @@ import {
   checkSpecialChar,
   checkWhiteSpace
 } from './validationRules';
+import { PASSWORD_LENGTH } from '@/features/validation/validation.constants';
 
 export default function checkPassword(value: string): string {
-  if (value.length < 8) {
-    return 'Password must be at least 8 characters long';
+  if (value.length < PASSWORD_LENGTH) {
+    return ValidationErrors.LENGTH_PASSWORD;
   }
   if (checkUppercaseLetter(value) || checkLowercaseLetter(value) || checkDigit(value) || checkSpecialChar(value)) {
-    return 'Password must contain one uppercase(A-Z), one lowercase(a-z) letter, digit (0-9) and special character (e.g., !@#$%^&*).';
+    return ValidationErrors.PASSWORD;
   }
   if (checkWhiteSpace(value)) {
-    return 'Password must not contain leading or trailing whitespace.';
+    return ValidationErrors.WHITESPACE;
   }
   return '';
 }

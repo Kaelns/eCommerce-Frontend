@@ -8,7 +8,7 @@ import {
 
 import { ByProjectKeyRequestBuilder, createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 
-class ApiClient {
+class ECommerceInitApi {
   private authMiddlewareOptions: AuthMiddlewareOptions;
 
   private httpMiddlewareOptions: HttpMiddlewareOptions;
@@ -88,4 +88,4 @@ class ApiClient {
   }
 }
 
-export default ApiClient;
+export default ECommerceInitApi;
