@@ -1,17 +1,18 @@
+import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { checkWhiteSpace, checkAtSymbol, checkMainPart, checkDomainPart } from './validationRules';
 
 export default function checkEmail(value: string): string {
   if (checkWhiteSpace(value)) {
-    return 'Please delete whitespace.';
+    return ValidationErrors.WHITESPACE;
   }
   if (checkAtSymbol(value)) {
-    return 'Email should contain one @ symbol.';
+    return ValidationErrors.AT_SYMBOL;
   }
   if (checkMainPart(value)) {
-    return 'Please enter a valid email address(can contain just latin letters and digits).';
+    return ValidationErrors.MAIN_PART;
   }
   if (checkDomainPart(value)) {
-    return 'Incorrect domain name.';
+    return ValidationErrors.DOMAIN_PART;
   }
   return '';
 }
