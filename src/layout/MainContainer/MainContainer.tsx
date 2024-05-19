@@ -1,15 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import styles from './MainContainer.module.scss';
+import { Box } from '@mui/material';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
 
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export function MainContainer({ className = '' }: IProps): JSX.Element {
+export function MainContainer(): JSX.Element {
   return (
-    <main className={[styles.main, className].join(' ')}>
-      <SectionContainer>
+    <Box component="main" sx={{ flex: 1 }}>
+      <SectionContainer sx={{ paddingBlock: 4 }}>
         <Outlet />
       </SectionContainer>
-    </main>
+    </Box>
   );
 }

@@ -1,23 +1,23 @@
 import React, { useState, useCallback } from 'react';
 import dayjs from 'dayjs';
-
-import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
-import styles from './registrationForm.module.scss';
-import checkGeneralRule from '@/features/validation/generalValidation';
-import DateInput from '@/features/AuthorizationForms/components/DateInput/DateInput';
-import checkBirthday from '@/features/validation/birthdayValidation';
-import getMinDate from '@/utils/getMinDate';
-import getMaxDate from '@/utils/getMaxDate';
-import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
+import { FormHelperText } from '@mui/material';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressBlock/AddressBlock';
+import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
+import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
+import DateInput from '@/features/AuthorizationForms/components/DateInput/DateInput';
+import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
+import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
+import checkBirthday from '@/features/validation/birthdayValidation';
+import checkGeneralRule from '@/features/validation/generalValidation';
+import checkPostalCode from '@/features/validation/postalCodeValidation';
+import getMaxDate from '@/utils/getMaxDate';
+import getMinDate from '@/utils/getMinDate';
+import styles from './registrationForm.module.scss';
+import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
+import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
+import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
-import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
-import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
-import checkPostalCode from '@/features/validation/postalCodeValidation';
-import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
-import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
-import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
 
 export default function RegistrationForm(): JSX.Element {
   const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).toString() });
@@ -69,10 +69,14 @@ export default function RegistrationForm(): JSX.Element {
     [inputsValues]
   );
 
-  const onClick = useCallback(() => {
-    console.log(inputsValues);
-    alert(`${inputsValues.email} ${inputsValues.password}`);
-  }, [inputsValues]);
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.preventDefault();
+      console.log(inputsValues);
+      alert(`${inputsValues.email} ${inputsValues.password}`);
+    },
+    [inputsValues]
+  );
 
   return (
     <form className={styles.form}>
@@ -83,7 +87,9 @@ export default function RegistrationForm(): JSX.Element {
           handleOnChangeInput(event, checkGeneralRule)
         }
       >
-        {inputsErrors[INPUTS.firstName.name] && <p className={styles.error}>{inputsErrors[INPUTS.firstName.name]}</p>}
+        <FormHelperText error>
+          {inputsErrors[INPUTS.firstName.name] && inputsErrors[INPUTS.firstName.name]}
+        </FormHelperText>
       </Input>
       <Input
         label={INPUTS.lastName.label}
@@ -92,7 +98,9 @@ export default function RegistrationForm(): JSX.Element {
           handleOnChangeInput(event, checkGeneralRule)
         }
       >
-        {inputsErrors[INPUTS.lastName.name] && <p className={styles.error}>{inputsErrors[INPUTS.lastName.name]}</p>}
+        <FormHelperText error>
+          {inputsErrors[INPUTS.lastName.name] && inputsErrors[INPUTS.lastName.name]}
+        </FormHelperText>
       </Input>
       <DateInput
         label="Birthday"

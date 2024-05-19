@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
-import styles from './loginForm.module.scss';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
+import styles from './loginForm.module.scss';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 

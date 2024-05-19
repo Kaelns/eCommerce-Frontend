@@ -1,29 +1,50 @@
-import styles from './Navbar.module.scss';
-import { List } from '@/components/ui/List/List';
-import { ListItem } from '@/components/ui/ListItem/ListItem';
-import { NavLinkRouter } from '@/components/ui/NavLinkRouter/NavLinkRouter';
-import { ROUTES } from '@/data/enum/routes.enum';
+import { Box, Tab, Tabs } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavbar } from '@/layout/Navbar/useNavbar';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
-export function Navbar(): JSX.Element {
+interface IProps {
+  navbarType: Navbars;
+}
+
+export function Navbar({ navbarType }: IProps): JSX.Element {
+  const navigate = useNavigate();
+  const { navRoutes, orientation, styles } = useNavbar(navbarType);
+  const { pathname } = useLocation();
+  const [activeLink, setActiveLink] = useState<number | false>(false);
+
+  const navRoutesKeys = Object.keys(navRoutes);
+
+  useEffect(() => {
+    if (!(pathname in navRoutes)) {
+      setActiveLink(false);
+    }
+    if (pathname in navRoutes) {
+      setActiveLink(navRoutesKeys.indexOf(pathname));
+    }
+  }, [navRoutes, navRoutesKeys, pathname]);
+
   return (
-    <nav className={styles.navbar}>
-      <List className={styles.navbar__list}>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.MAIN}>Main</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.CATALOG}>Catalog</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.ABOUT_US}>About Us</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.LOGIN}>Login</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.REGISTRATION}>Register</NavLinkRouter>
-        </ListItem>
-      </List>
-    </nav>
+    <Box component="nav">
+      <Tabs
+        value={activeLink}
+        orientation={orientation}
+        TabIndicatorProps={{
+          sx: {
+            left: 0
+          }
+        }}
+      >
+        {navRoutesKeys.map((route) => (
+          <Tab
+            key={route}
+            sx={{ textTransform: 'none', ...styles }}
+            label={navRoutes[route as keyof typeof navRoutes]}
+            onClick={() => navigate(route)}
+          />
+        ))}
+      </Tabs>
+    </Box>
   );
 }

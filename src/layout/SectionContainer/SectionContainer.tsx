@@ -1,8 +1,12 @@
-import styles from './SectionContainer.module.scss';
+import { Container, ContainerProps } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface IProps extends ContainerProps {}
 
-export function SectionContainer({ className = '', children }: PropsWithChildren<IProps>): JSX.Element {
-  return <div className={[styles.container, className].join(' ')}>{children}</div>;
+export function SectionContainer({ sx, children }: PropsWithChildren<IProps>): JSX.Element {
+  return (
+    <Container maxWidth="lg" sx={sx}>
+      {children}
+    </Container>
+  );
 }

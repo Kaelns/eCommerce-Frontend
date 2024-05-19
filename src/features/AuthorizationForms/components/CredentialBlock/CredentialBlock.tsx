@@ -1,15 +1,14 @@
-import { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { FormHelperText } from '@mui/material';
+import { useState } from 'react';
+import ICredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/ICredentialBlock.interface';
 import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
-import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
-import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/validationInput.enum';
 import ShowPasswordButton from '@/features/AuthorizationForms/components/showPasswordButton';
 import checkEmail from '@/features/validation/emailValidation';
 import checkPassword from '@/features/validation/passwordValidation';
-import ICredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/ICredentialBlock.interface';
-import styles from '../../forms.module.scss';
+import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
+import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/validationInput.enum';
 
 export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICredentialBlock): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +21,7 @@ export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICre
         onChange={(event) => onChangeFunction(event, checkEmail)}
         error={!!inputsErrors[INPUTS.email.name]}
       >
-        {inputsErrors[INPUTS.email.name] && <p className={styles.error}>{inputsErrors[INPUTS.email.name]}</p>}
+        <FormHelperText error>{inputsErrors[INPUTS.email.name] && inputsErrors[INPUTS.email.name]}</FormHelperText>
       </Input>
       <Input
         type={showPassword ? InputType.TEXT : InputType.PASSWORD}
@@ -36,7 +35,9 @@ export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICre
           </ShowPasswordButton>
         }
       >
-        {inputsErrors[INPUTS.password.name] && <p className={styles.error}>{inputsErrors[INPUTS.password.name]}</p>}
+        <FormHelperText error>
+          {inputsErrors[INPUTS.password.name] && inputsErrors[INPUTS.password.name]}
+        </FormHelperText>
       </Input>
     </>
   );

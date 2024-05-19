@@ -11,8 +11,11 @@ import { MainContainer } from '@/layout/MainContainer/MainContainer';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
 import { UserPage } from '@/pages/UserPage/UserPage';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export function Router(): JSX.Element {
+  const { authUserToken } = useLocalStorage();
+
   return (
     <BrowserRouter>
       <Header />
@@ -25,10 +28,13 @@ export function Router(): JSX.Element {
             <Route path={ROUTES.DETAILED_PRODUCT_ID} />
           </Route>
           <Route path={ROUTES.USER} element={<UserPage />} />
-          <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path={ROUTES.LOGIN} element={authUserToken ? <Navigate to={ROUTES.MAIN} /> : <LoginPage />} />
           <Route path={ROUTES.BASKET} element={<BasketPage />} />
-          <Route path={ROUTES.REGISTRATION} element={<RegistrationPage />} />
-          <Route path={ROUTES.NONEXISTENT} element={<Navigate replace to={ROUTES.ERROR} />} />
+          <Route
+            path={ROUTES.REGISTRATION}
+            element={authUserToken ? <Navigate to={ROUTES.MAIN} /> : <RegistrationPage />}
+          />
+          <Route path={ROUTES.NONEXISTENT} element={<Navigate to={ROUTES.ERROR} />} />
           <Route path={ROUTES.ERROR} element={<ErrorPage />} />
         </Route>
       </Routes>

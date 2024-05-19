@@ -26,7 +26,7 @@
     "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
-    "@mui/x-date-pickers": "^7.4.0",
+    "@mui/x-date-pickers": "^7.5.0",
     "dayjs": "^1.11.11",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-plugin-import": "^2.29.1",

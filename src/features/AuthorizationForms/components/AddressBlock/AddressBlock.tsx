@@ -1,16 +1,16 @@
+import { FormHelperText } from '@mui/material';
+import ComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox';
 import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
-import styles from '../../forms.module.scss';
+import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import {
   ADDRESSES_INPUT_KEYS,
   ADDRESS_INPUTS,
   COUNTRY_LIST
 } from '@/features/AuthorizationForms/components/AddressBlock/addressBlock.constants';
-import ComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox';
-import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
-import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
-import { IInputsErrors } from '@/features/AuthorizationForms/data/InputTypes';
 import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
+import { IInputsErrors } from '@/features/AuthorizationForms/data/InputTypes';
+import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 
 interface IProps {
   onChangeFunction: (
@@ -47,9 +47,9 @@ export default function AddressBlock({
             onChangeFunction(event, ADDRESS_INPUTS[inputName])
           }
         >
-          {inputsErrors[INPUTS[`${prefix}${inputName}`].name] && (
-            <p className={styles.error}>{inputsErrors[INPUTS[`${prefix}${inputName}`].name]}</p>
-          )}
+          <FormHelperText error>
+            {inputsErrors[INPUTS[`${prefix}${inputName}`].name] && inputsErrors[INPUTS[`${prefix}${inputName}`].name]}
+          </FormHelperText>
         </Input>
       ))}
     </>
