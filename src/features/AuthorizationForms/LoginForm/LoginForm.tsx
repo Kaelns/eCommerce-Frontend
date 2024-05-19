@@ -1,18 +1,21 @@
 import { useState, useCallback } from 'react';
-
 import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
-import styles from './loginForm.module.scss';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
+import styles from './loginForm.module.scss';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
 
 export default function LoginForm(): JSX.Element {
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
   const [inputsError, setInputsError] = useState<{ [key: string]: string }>({});
 
-  const onClick = useCallback(() => {
-    console.log(inputs);
-    alert(`${inputs.email} ${inputs.password}`);
-  }, [inputs]);
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.preventDefault();
+      console.log(inputs);
+      alert(`${inputs.email} ${inputs.password}`);
+    },
+    [inputs]
+  );
 
   const handleOnChangeInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, checkFunction: (value: string) => string) => {

@@ -1,13 +1,11 @@
-import { useState, SetStateAction } from 'react';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { InputLabel } from '@mui/material';
 import { DatePicker, DatePickerProps } from '@mui/x-date-pickers/DatePicker';
-
-import styles from '../../forms.module.scss';
-import { FORMAT, OPEN_TO } from '@/features/AuthorizationForms/components/DateInput/dateInput.constants';
+import { FormHelperText, InputLabel } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { useState, SetStateAction } from 'react';
 import { IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
+import { FORMAT, OPEN_TO } from '@/features/AuthorizationForms/components/DateInput/dateInput.constants';
 
 interface IProps extends DatePickerProps<dayjs.Dayjs> {
   label: string;
@@ -30,7 +28,7 @@ export default function DateInput({ label, name, validationChecks, setInputs, ..
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <InputLabel>{label}: </InputLabel>
       <DatePicker format={FORMAT} openTo={OPEN_TO} onChange={onChange} {...props} />
-      {valueMatch && <p className={styles.error}>{valueMatch}</p>}
+      <FormHelperText error>{valueMatch && valueMatch}</FormHelperText>
     </LocalizationProvider>
   );
 }
