@@ -3,24 +3,20 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  background-color: var(--color-background-body);
-
   font-size: 1.6rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  @extend %animation;
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 img {
   display: block;
   user-select: none;
-}
-
-a {
-  text-decoration: none;
-  background-color: transparent;
 }
