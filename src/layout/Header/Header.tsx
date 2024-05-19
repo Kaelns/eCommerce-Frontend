@@ -1,16 +1,17 @@
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import TollIcon from '@mui/icons-material/Toll';
 import { AppBar, Badge, Box, IconButton } from '@mui/material';
-import { Outlet } from 'react-router-dom';
-import { LinkRouter } from '@/components/ui/LinkRouter/LinkRouter';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
 
 import * as styles from './Header.mui';
+import { UserPopover } from '@/components/UserPopover/UserPopover';
 
 export function Header(): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <>
       <AppBar position="static" color="default" elevation={2} sx={styles.header}>
@@ -18,18 +19,12 @@ export function Header(): JSX.Element {
           <TollIcon color="primary" fontSize="large" />
           <Navbar />
           <Box>
-            <LinkRouter to={ROUTES.BASKET}>
-              <IconButton>
-                <Badge badgeContent={4} color="primary">
-                  <ShoppingCartOutlinedIcon />
-                </Badge>
-              </IconButton>
-            </LinkRouter>
-            <LinkRouter to={ROUTES.USER}>
-              <IconButton>
-                <AccountCircleOutlinedIcon />
-              </IconButton>
-            </LinkRouter>
+            <IconButton onClick={() => navigate(ROUTES.BASKET)}>
+              <Badge badgeContent={4} color="primary">
+                <ShoppingCartOutlinedIcon />
+              </Badge>
+            </IconButton>
+            <UserPopover />
           </Box>
         </SectionContainer>
       </AppBar>

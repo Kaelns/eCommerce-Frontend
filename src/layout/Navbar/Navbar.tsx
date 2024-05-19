@@ -1,38 +1,45 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ROUTES } from '@/data/enum/routes.enum';
+import { authorizedRoutes, navbarRoutes, nonAuthorizedRoutes } from '@/layout/Navbar/Navbar.routes';
+import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
-const navRoutes = {
-  [ROUTES.MAIN]: 'Main',
-  [ROUTES.CATALOG]: 'Catalog',
-  [ROUTES.ABOUT_US]: 'About Us',
-  [ROUTES.LOGIN]: 'Login',
-  [ROUTES.REGISTRATION]: 'Register'
-};
+interface IProps {
+  isUserPopover?: boolean;
+}
 
-const navRoutesKeys = Object.keys(navRoutes);
-
-export function Navbar(): JSX.Element {
+export function Navbar({ isUserPopover = false }: IProps): JSX.Element {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [activeLink, setActiveLink] = useState<number | false>(
-    pathname in navRoutes ? navRoutesKeys.indexOf(pathname) : false
-  );
+  const { authUserToken } = useAuthContext();
+  const [activeLink, setActiveLink] = useState<number | false>(false);
+
+  const userPopoverRoutes = (): typeof authorizedRoutes | typeof nonAuthorizedRoutes =>
+    authUserToken ? authorizedRoutes : nonAuthorizedRoutes;
+
+  const navRoutes = isUserPopover ? userPopoverRoutes() : navbarRoutes;
+  const navRoutesKeys = Object.keys(navRoutes);
 
   useEffect(() => {
     if (!(pathname in navRoutes)) {
       setActiveLink(false);
     }
-  }, [pathname]);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number): void => {
-    setActiveLink(newValue);
-  };
+    if (pathname in navRoutes) {
+      setActiveLink(navRoutesKeys.indexOf(pathname));
+    }
+  }, [navRoutes, navRoutesKeys, pathname]);
 
   return (
     <Box component="nav">
-      <Tabs value={activeLink} onChange={handleChange}>
+      <Tabs
+        value={activeLink}
+        orientation={isUserPopover ? 'vertical' : 'horizontal'}
+        TabIndicatorProps={{
+          sx: {
+            left: 0
+          }
+        }}
+      >
         {navRoutesKeys.map((route) => (
           <Tab
             key={route}
