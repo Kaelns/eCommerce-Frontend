@@ -12,7 +12,6 @@ export function useLocalStorage(): IReturnType {
 
   useEffect(() => {
     setAuthUserToken(localStorage.getItem(key) ?? '');
-    console.log('effect');
   }, []);
 
   useEffect(() => {

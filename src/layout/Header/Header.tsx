@@ -8,6 +8,7 @@ import * as styles from './Header.mui';
 import { UserPopover } from '@/components/UserPopover/UserPopover';
 import { BasketLink } from '@/components/BasketLink';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
 export function Header(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
@@ -17,7 +18,7 @@ export function Header(): JSX.Element {
         <SectionContainer sx={styles.headerContainer}>
           <Box sx={styles.columnContainer}>
             <TollIcon color="primary" fontSize="large" />
-            <Navbar />
+            <Navbar navbarType={Navbars.HEADER} />
             {/* TODO delete this. Added for testing */}
             <Button onClick={() => (authUserToken ? setAuthUserToken('') : setAuthUserToken('asdfadsf'))}>
               Toggle login

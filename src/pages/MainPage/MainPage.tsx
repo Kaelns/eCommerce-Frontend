@@ -1,7 +1,6 @@
-import styles from './MainPage.module.scss';
+import { Navbar } from '@/layout/Navbar/Navbar';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
-// interface IProps {}
-
-export function MainPage(/* props: IProps */): JSX.Element {
-  return <h2 className={styles.main}>Main Page</h2>;
+export function MainPage(): JSX.Element {
+  return <Navbar navbarType={Navbars.MAIN} />;
 }

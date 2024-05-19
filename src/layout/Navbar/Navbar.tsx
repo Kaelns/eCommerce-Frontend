@@ -1,23 +1,19 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { authorizedRoutes, navbarRoutes, nonAuthorizedRoutes } from '@/layout/Navbar/Navbar.routes';
-import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { useNavbar } from '@/layout/Navbar/useNavbar';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
 interface IProps {
-  isUserPopover?: boolean;
+  navbarType: Navbars;
 }
 
-export function Navbar({ isUserPopover = false }: IProps): JSX.Element {
+export function Navbar({ navbarType }: IProps): JSX.Element {
   const navigate = useNavigate();
+  const { navRoutes, orientation, styles } = useNavbar(navbarType);
   const { pathname } = useLocation();
-  const { authUserToken } = useAuthContext();
   const [activeLink, setActiveLink] = useState<number | false>(false);
 
-  const userPopoverRoutes = (): typeof authorizedRoutes | typeof nonAuthorizedRoutes =>
-    authUserToken ? authorizedRoutes : nonAuthorizedRoutes;
-
-  const navRoutes = isUserPopover ? userPopoverRoutes() : navbarRoutes;
   const navRoutesKeys = Object.keys(navRoutes);
 
   useEffect(() => {
@@ -33,7 +29,7 @@ export function Navbar({ isUserPopover = false }: IProps): JSX.Element {
     <Box component="nav">
       <Tabs
         value={activeLink}
-        orientation={isUserPopover ? 'vertical' : 'horizontal'}
+        orientation={orientation}
         TabIndicatorProps={{
           sx: {
             left: 0
@@ -43,7 +39,7 @@ export function Navbar({ isUserPopover = false }: IProps): JSX.Element {
         {navRoutesKeys.map((route) => (
           <Tab
             key={route}
-            sx={{ textTransform: 'none' }}
+            sx={{ textTransform: 'none', ...styles }}
             label={navRoutes[route as keyof typeof navRoutes]}
             onClick={() => navigate(route)}
           />

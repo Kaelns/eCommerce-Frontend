@@ -5,6 +5,7 @@ import { Navbar } from '@/layout/Navbar/Navbar';
 
 import * as styles from './UserPopover.mui';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
 export function UserPopover(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
@@ -41,7 +42,7 @@ export function UserPopover(): JSX.Element {
         }}
       >
         <Box sx={styles.popover}>
-          <Navbar isUserPopover />
+          <Navbar navbarType={Navbars.POPOVER} />
           {authUserToken && (
             <Button variant="contained" size="small" onClick={() => setAuthUserToken('')}>
               Log out
