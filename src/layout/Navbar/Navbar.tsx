@@ -1,29 +1,47 @@
-import styles from './Navbar.module.scss';
-import { List } from '@/components/ui/List/List';
-import { ListItem } from '@/components/ui/ListItem/ListItem';
-import { NavLinkRouter } from '@/components/ui/NavLinkRouter/NavLinkRouter';
+import { Box, Tab, Tabs } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/data/enum/routes.enum';
 
+const navRoutes = {
+  [ROUTES.MAIN]: 'Main',
+  [ROUTES.CATALOG]: 'Catalog',
+  [ROUTES.ABOUT_US]: 'About Us',
+  [ROUTES.LOGIN]: 'Login',
+  [ROUTES.REGISTRATION]: 'Register'
+};
+
+const navRoutesKeys = Object.keys(navRoutes);
+
 export function Navbar(): JSX.Element {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [activeLink, setActiveLink] = useState<number | false>(
+    pathname in navRoutes ? navRoutesKeys.indexOf(pathname) : false
+  );
+
+  useEffect(() => {
+    if (!(pathname in navRoutes)) {
+      setActiveLink(false);
+    }
+  }, [pathname]);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number): void => {
+    setActiveLink(newValue);
+  };
+
   return (
-    <nav className={styles.navbar}>
-      <List className={styles.navbar__list}>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.MAIN}>Main</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.CATALOG}>Catalog</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.ABOUT_US}>About Us</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.LOGIN}>Login</NavLinkRouter>
-        </ListItem>
-        <ListItem>
-          <NavLinkRouter to={ROUTES.REGISTRATION}>Register</NavLinkRouter>
-        </ListItem>
-      </List>
-    </nav>
+    <Box component="nav">
+      <Tabs value={activeLink} onChange={handleChange}>
+        {navRoutesKeys.map((route) => (
+          <Tab
+            key={route}
+            sx={{ textTransform: 'none' }}
+            label={navRoutes[route as keyof typeof navRoutes]}
+            onClick={() => navigate(route)}
+          />
+        ))}
+      </Tabs>
+    </Box>
   );
 }
