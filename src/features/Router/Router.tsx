@@ -14,7 +14,9 @@ import { UserPage } from '@/pages/UserPage/UserPage';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export function Router(): JSX.Element {
-  const { authUserToken } = useLocalStorage();
+  const { authUserToken, isLoading } = useLocalStorage();
+
+  console.log(authUserToken, isLoading);
 
   return (
     <BrowserRouter>

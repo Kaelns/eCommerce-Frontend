@@ -1,11 +1,12 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import LoginForm from '@/features/AuthorizationForms/LoginForm/LoginForm';
 import styles from './LoginPage.module.scss';
+import { Title } from '@/components/ui/Title';
 
 export function LoginPage(): JSX.Element {
   return (
     <Box className={styles.loginContainer}>
-      <Typography variant="h5">Login page</Typography>
+      <Title>Login page</Title>
       <LoginForm />
     </Box>
   );

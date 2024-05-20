@@ -1,9 +1,10 @@
-import { Box, Button, Chip, Divider, Typography } from '@mui/material';
+import { Box, Button, Chip, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import RegistrationForm from '@/features/AuthorizationForms/RegistrationForm/RegistrationForm';
 import { ROUTES } from '@/data/enum/routes.enum';
 
 import styles from './RegistrationPage.module.scss';
+import { Title } from '@/components/ui/Title';
 
 export function RegistrationPage(): JSX.Element {
   const navigate = useNavigate();
@@ -11,9 +12,7 @@ export function RegistrationPage(): JSX.Element {
   return (
     <Box className={styles.pageContainer}>
       <Box className={styles.titleContainer}>
-        <Typography variant="h5" sx={{ textAlign: 'center' }}>
-          Registration Page
-        </Typography>
+        <Title className={styles.title}>Registration Page</Title>
         <Divider>
           <Chip label="Or if you are already registered:" />
         </Divider>

@@ -11,8 +11,10 @@ export function UserPopover(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const isOpenPopover = Boolean(anchorEl);
+  const id = isOpenPopover ? 'popover' : undefined;
+
+  const showBadgeIfNonAuthorized = authUserToken ? 0 : 'Login';
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -26,7 +28,7 @@ export function UserPopover(): JSX.Element {
     <>
       <IconButton aria-describedby={id} onClick={handleClick}>
         <Badge
-          badgeContent={authUserToken ? 0 : 'Login'}
+          badgeContent={showBadgeIfNonAuthorized}
           color="primary"
           className={styles.badge}
           slotProps={{ badge: { className: styles.badgeIcon } }}
@@ -36,7 +38,7 @@ export function UserPopover(): JSX.Element {
       </IconButton>
       <Popover
         id={id}
-        open={open}
+        open={isOpenPopover}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{

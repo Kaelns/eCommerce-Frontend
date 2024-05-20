@@ -3,7 +3,7 @@ import { AppBar, Box, Button } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
-import { BasketLink } from '@/components/BasketLink';
+import { BasketLink } from '@/components/ui/BasketLink';
 import { UserPopover } from '@/components/UserPopover/UserPopover';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
@@ -14,7 +14,7 @@ export function Header(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
   return (
     <>
-      <AppBar position="static" color="default" elevation={2} sx={{ boxShadow: 0.5 }}>
+      <AppBar position="static" color="default" elevation={2}>
         <SectionContainer className={styles.headerContainer}>
           <Box className={styles.columnContainer}>
             <TollIcon color="primary" fontSize="large" />

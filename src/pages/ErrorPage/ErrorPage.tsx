@@ -5,31 +5,33 @@ import { Box, Button, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import animation404 from '@/assets/animation/animation404.json';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { TextWithBeforeOrAfter } from '@/components/TextWithBeforeOrAfter';
+import { TextWithElBeforeOrAfter } from '@/components/ui/TextWithElBeforeOrAfter/TextWithElBeforeOrAfter';
 
 import styles from './ErrorPage.module.scss';
 
 export function ErrorPage(): JSX.Element {
   const navigate = useNavigate();
+  const navigateBack = -1;
+  const animationSize = 500;
 
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animation404,
-    renderer: 'svg'
+    renderer: 'svg',
+    animationData: animation404
   };
 
   return (
-    <Box minHeight="80vh" className={styles.container}>
-      <Lottie options={defaultOptions} height={500} width={500} />
+    <Box className={styles.container}>
+      <Lottie options={defaultOptions} height={animationSize} width={animationSize} />
       <ButtonGroup variant="contained">
-        <Button className={styles.button} onClick={() => navigate(-1)}>
-          <TextWithBeforeOrAfter icon={<ArrowBackIosIcon fontSize="small" />}>Go back</TextWithBeforeOrAfter>
+        <Button className={styles.button} onClick={() => navigate(navigateBack)}>
+          <TextWithElBeforeOrAfter icon={<ArrowBackIosIcon fontSize="small" />}>Go back</TextWithElBeforeOrAfter>
         </Button>
         <Button className={styles.button} onClick={() => navigate(ROUTES.MAIN)}>
-          <TextWithBeforeOrAfter isAfter icon={<ArrowForwardIosIcon fontSize="small" />}>
+          <TextWithElBeforeOrAfter isAfter icon={<ArrowForwardIosIcon fontSize="small" />}>
             Go main
-          </TextWithBeforeOrAfter>
+          </TextWithElBeforeOrAfter>
         </Button>
       </ButtonGroup>
     </Box>
