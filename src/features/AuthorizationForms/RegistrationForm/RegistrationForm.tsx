@@ -26,6 +26,7 @@ import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { ICreateCustomerParams } from '@/services/interface';
+import { createCustomer } from '@/utils/createCustomerApi';
 
 export default function RegistrationForm(): JSX.Element {
   const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });
@@ -37,31 +38,6 @@ export default function RegistrationForm(): JSX.Element {
     textAlert: AlertsText.ERROR_EMAIL_TEXT
   });
   const { authUserToken, setAuthUserToken } = useAuthContext();
-
-  const BILLING_ADDRES_INDEX = 0;
-  const SHIPPING_ADDRES_INDEX = 1;
-
-  const createCustomerDate: ICreateCustomerParams = {
-    firstName: inputsValues.firstName!,
-    lastName: inputsValues.lastName!,
-    email: inputsValues.email!,
-    password: inputsValues.password!,
-    dateOfBirth: inputsValues.birthday!,
-    addresses: [
-      {
-        country: inputsValues.billingCountry!,
-        postalCode: inputsValues.billingPostalCode!,
-        city: inputsValues.billingCity!
-      },
-      {
-        country: inputsValues.shippingCountry!,
-        postalCode: inputsValues.shippingPostalCode!,
-        city: inputsValues.shippingCity!
-      }
-    ],
-    billingAddresses: [BILLING_ADDRES_INDEX],
-    shippingAddresses: [SHIPPING_ADDRES_INDEX]
-  };
 
   const [postalCodePattern, setPostalCodePattern] = useState<{ [key in AddressPrefix]: RegExp | undefined }>({
     shipping: undefined,
@@ -112,38 +88,14 @@ export default function RegistrationForm(): JSX.Element {
   const onClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      isShowAlert(true);
-
-      try {
-        const result = await eCommerceAPI.createCustomer(createCustomerDate);
-        const authCustomer = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
-        setTimeout(() => {
-          setAuthUserToken('login_is_ok');
-        }, 1000);
-        isShowCircleProgress(false);
-        setAlertData({
-          typeAlert: Alerts.SUCCESS,
-          textAlert: AlertsText.SUCCESS_TEXT
-        });
-      } catch (error) {
-        console.log(error);
-        if (error instanceof Error) {
-          if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
-            setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
-            isShowCircleProgress(false);
-            setAlertData({
-              typeAlert: Alerts.ERROR,
-              textAlert: AlertsText.ERROR_EMAIL_TEXT
-            });
-          } else {
-            isShowCircleProgress(false);
-            setAlertData({
-              typeAlert: Alerts.ERROR,
-              textAlert: AlertsText.ERROR_CONNECTION_TEXT
-            });
-          }
-        }
-      }
+      await createCustomer(
+        inputsValues,
+        setAuthUserToken,
+        setInputsError,
+        isShowAlert,
+        isShowCircleProgress,
+        setAlertData
+      );
     },
     [inputsValues]
   );
