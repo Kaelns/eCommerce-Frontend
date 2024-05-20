@@ -13,6 +13,7 @@ class ECommerceAPI {
   async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
     const { firstName, lastName, email, password, dateOfBirth, addresses, billingAddresses, shippingAddresses } =
       params;
+    this.apiRoot = new ApiClient().getApiRoot();
     return this.apiRoot
       .customers()
       .post({
@@ -45,6 +46,7 @@ class ECommerceAPI {
   }
 
   async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
+    this.apiRoot = new ApiClient().getApiRoot();
     return this.apiRoot
       .customers()
       .get({

@@ -40,8 +40,8 @@ export async function createCustomer(
   isShowAlert(true);
 
   try {
-    const result = await eCommerceAPI.createCustomer(createCustomerDate);
-    const authCustomer = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
+    await eCommerceAPI.createCustomer(createCustomerDate);
+    await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
     setTimeout(() => {
       setAuthUserToken('login_is_ok');
     }, 1000);

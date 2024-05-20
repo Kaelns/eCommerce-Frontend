@@ -21,11 +21,8 @@ import { AddressProperty } from '@/features/AuthorizationForms/data/addressPrope
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
-import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { ICreateCustomerParams } from '@/services/interface';
 import { createCustomer } from '@/utils/createCustomerApi';
 
 export default function RegistrationForm(): JSX.Element {
@@ -37,7 +34,7 @@ export default function RegistrationForm(): JSX.Element {
     typeAlert: Alerts.ERROR,
     textAlert: AlertsText.ERROR_EMAIL_TEXT
   });
-  const { authUserToken, setAuthUserToken } = useAuthContext();
+  const { setAuthUserToken } = useAuthContext();
 
   const [postalCodePattern, setPostalCodePattern] = useState<{ [key in AddressPrefix]: RegExp | undefined }>({
     shipping: undefined,
