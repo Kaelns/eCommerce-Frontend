@@ -10,5 +10,6 @@ export enum ValidationErrors {
   JUST_LETTER = 'Field must contain just latin letter',
   LENGTH_PASSWORD = `Password must be at least ${PASSWORD_LENGTH} characters long`,
   PASSWORD = 'Password must contain one uppercase(A-Z), one lowercase(a-z) letter, digit (0-9) and special character (e.g., !@#$%^&*).',
-  POSTAL_CODE = 'Postal code does not match the country'
+  POSTAL_CODE = 'Postal code does not match the country',
+  API = 'There is already an existing customer with the provided email.'
 }
