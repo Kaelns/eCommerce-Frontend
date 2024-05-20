@@ -1,13 +1,13 @@
-import styles from './LoginPage.module.scss';
+import { Box } from '@mui/material';
 import LoginForm from '@/features/AuthorizationForms/LoginForm/LoginForm';
+import styles from './LoginPage.module.scss';
+import { Title } from '@/components/ui/Title';
 
-// interface IProps {}
-
-export function LoginPage(/* props: IProps */): JSX.Element {
+export function LoginPage(): JSX.Element {
   return (
-    <div className={styles.login}>
-      <h2>Login Page</h2>
+    <Box className={styles.loginContainer}>
+      <Title>Login page</Title>
       <LoginForm />
-    </div>
+    </Box>
   );
 }

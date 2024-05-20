@@ -1,0 +1,15 @@
+@use '@styles/abstracts/placeholders';
+
+.horizontalButton {
+  align-items: flex-start;
+}
+
+.buttons {
+  @extend %no-text-transform;
+  @extend %animation;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity));
+  }
+}

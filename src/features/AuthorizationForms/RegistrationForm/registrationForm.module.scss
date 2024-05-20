@@ -1,11 +1,10 @@
 .form {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
+  gap: 1rem;
 }
-.error {
-  font-size: 0.8rem;
-  color: var(--color-underline);
+
+.title {
+  padding-block: 1.5rem;
 }

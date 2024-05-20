@@ -1,0 +1,21 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  text-transform: none;
+  background-color: var(--mui-palette-info-light);
+}
+
+.animation {
+  width: 500px;
+  height: 500px;
+}
+
+.image {
+  min-width: 400px;
+}

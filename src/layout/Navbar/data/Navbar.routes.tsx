@@ -1,8 +1,8 @@
-import KeyIcon from '@mui/icons-material/Key';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import { UserAvatarPopover } from '@/components/UserAvatarPopover/UserAvatarPopover';
+import KeyIcon from '@mui/icons-material/Key';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { TextWithIcon } from '@/components/TextWithIcon';
+import { UserAvatarPopover } from '@/components/UserAvatarPopover/UserAvatarPopover';
+import { TextWithElBeforeOrAfter } from '@/components/ui/TextWithElBeforeOrAfter/TextWithElBeforeOrAfter';
 
 export const mainRoutes = {
   [ROUTES.MAIN]: 'Main',
@@ -23,8 +23,10 @@ export const navbarRoutes = {
 };
 
 export const nonAuthorizedRoutes = {
-  [ROUTES.LOGIN]: <TextWithIcon icon={<KeyIcon fontSize="small" />}>Login</TextWithIcon>,
-  [ROUTES.REGISTRATION]: <TextWithIcon icon={<HowToRegIcon fontSize="small" />}>Register</TextWithIcon>
+  [ROUTES.LOGIN]: <TextWithElBeforeOrAfter icon={<KeyIcon fontSize="small" />}>Login</TextWithElBeforeOrAfter>,
+  [ROUTES.REGISTRATION]: (
+    <TextWithElBeforeOrAfter icon={<HowToRegIcon fontSize="small" />}>Register</TextWithElBeforeOrAfter>
+  )
 };
 
 export const authorizedRoutes = {
