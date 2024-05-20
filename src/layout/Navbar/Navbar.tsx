@@ -1,4 +1,4 @@
-import { Box, Button, Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useNavbar } from '@/layout/Navbar/hooks/useNavbar';
