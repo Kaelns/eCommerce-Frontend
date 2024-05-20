@@ -25,7 +25,7 @@ import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { createCustomer } from '@/utils/createCustomerApi';
 
-import styles from './RegistrationForm.module.scss';
+import styles from './Registration.module.scss';
 
 export default function RegistrationForm(): JSX.Element {
   const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });

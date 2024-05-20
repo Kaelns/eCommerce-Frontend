@@ -9,7 +9,7 @@ import { handleAuthentication } from '@/utils/createAuthApi';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 
-import styles from './LoginForm.module.scss';
+import styles from './Login.module.scss';
 
 export default function LoginForm(): JSX.Element {
   const navigate = useNavigate();
