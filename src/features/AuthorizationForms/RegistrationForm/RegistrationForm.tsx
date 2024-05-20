@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import dayjs from 'dayjs';
-import { FormHelperText } from '@mui/material';
+import { Box, FormHelperText } from '@mui/material';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressBlock/AddressBlock';
 import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
@@ -12,12 +12,13 @@ import checkGeneralRule from '@/features/validation/generalValidation';
 import checkPostalCode from '@/features/validation/postalCodeValidation';
 import getMaxDate from '@/utils/getMaxDate';
 import getMinDate from '@/utils/getMinDate';
-import styles from './registrationForm.module.scss';
 import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
 import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
+
+import styles from './RegistrationForm.module.scss';
 
 export default function RegistrationForm(): JSX.Element {
   const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).toString() });
@@ -34,9 +35,7 @@ export default function RegistrationForm(): JSX.Element {
       checkFunction: (value: string, pattern?: RegExp) => string
     ) => {
       const newValue = e.target.value;
-
       const prefix = e.target.name.match(AddressPrefix.BILLING) ?? e.target.name.match(AddressPrefix.SHIPPING);
-
       const error = prefix
         ? checkFunction(newValue, postalCodePattern[prefix[0] as AddressPrefix])
         : checkFunction(newValue);
@@ -79,7 +78,7 @@ export default function RegistrationForm(): JSX.Element {
   );
 
   return (
-    <form className={styles.form}>
+    <Box component="form" className={styles.form}>
       <Input
         label={INPUTS.firstName.label}
         name={INPUTS.firstName.name}
@@ -129,6 +128,6 @@ export default function RegistrationForm(): JSX.Element {
       <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors)} onClick={onClick}>
         Register
       </ButtonCustom>
-    </form>
+    </Box>
   );
 }

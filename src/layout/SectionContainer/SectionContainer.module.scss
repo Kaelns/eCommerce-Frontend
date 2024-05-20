@@ -1,7 +1,0 @@
-@use '@styles/abstracts/constants';
-
-.container {
-  width: min(constants.$width-laptop, 100%);
-  padding: 2rem 1rem;
-  margin: 0 auto;
-}

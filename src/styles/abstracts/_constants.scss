@@ -1,28 +1,3 @@
 $width-laptop: 1024px;
 $width-tablet: 768px;
 $width-mobile: 375px;
-
-:root {
-  --color-background-body: #eef6fd;
-
-  --color-buttons: #bbdefb;
-
-  --color-text-dark: black;
-  --color-text-light: #fff;
-  --color-text-colorized: #61dafb;
-  --color-text-highlighted: rgba(216, 197, 197, 0.452);
-
-  --color-underline: #c50000;
-}
-
-.dark {
-  --color-background-body: #eef6fd;
-
-  --color-buttons: #bbdefb;
-
-  --color-text-dark: black;
-  --color-text-light: #c22222;
-  --color-text-colorized: #61dafb;
-
-  --color-underline: #c50000;
-}

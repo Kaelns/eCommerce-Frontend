@@ -1,14 +1,16 @@
-import { ThemeProvider } from '@emotion/react';
+import { Experimental_CssVarsProvider as CssVarsProvider, StyledEngineProvider } from '@mui/material/styles';
 import { Router } from '@/features/Router/Router';
-import { lightTheme } from '@/data/theme/lightTheme';
 import { AuthContextProvider } from '@/context/AuthContext/AuthContext';
+import { theme } from '@/data/theme/theme';
 
 export function App(): JSX.Element {
   return (
-    <ThemeProvider theme={lightTheme}>
-      <AuthContextProvider>
-        <Router />
-      </AuthContextProvider>
-    </ThemeProvider>
+    <CssVarsProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        <AuthContextProvider>
+          <Router />
+        </AuthContextProvider>
+      </StyledEngineProvider>
+    </CssVarsProvider>
   );
 }

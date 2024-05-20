@@ -6,8 +6,8 @@ import { DetailedProductPage } from '@/pages/DetailedProductPage/DetailedProduct
 import { ErrorPage } from '@/pages/ErrorPage/ErrorPage';
 import { Header } from '@/layout/Header/Header';
 import { LoginPage } from '@/pages/LoginPage/LoginPage';
-import { MainPage } from '@/pages/MainPage/MainPage';
 import { MainContainer } from '@/layout/MainContainer/MainContainer';
+import { MainPage } from '@/pages/MainPage/MainPage';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
 import { UserPage } from '@/pages/UserPage/UserPage';
@@ -27,7 +27,7 @@ export function Router(): JSX.Element {
           <Route path={ROUTES.DETAILED_PRODUCT} element={<DetailedProductPage />}>
             <Route path={ROUTES.DETAILED_PRODUCT_ID} />
           </Route>
-          <Route path={ROUTES.USER} element={<UserPage />} />
+          <Route path={ROUTES.USER} element={authUserToken ? <UserPage /> : <Navigate to={ROUTES.MAIN} />} />
           <Route path={ROUTES.LOGIN} element={authUserToken ? <Navigate to={ROUTES.MAIN} /> : <LoginPage />} />
           <Route path={ROUTES.BASKET} element={<BasketPage />} />
           <Route

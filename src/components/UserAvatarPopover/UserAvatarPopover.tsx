@@ -1,11 +1,11 @@
 import { Box, Avatar, Typography } from '@mui/material';
 
-import * as styles from './UserAvatarPopover.mui';
+import styles from './UserAvatarPopover.module.scss';
 
 export function UserAvatarPopover(): JSX.Element {
   return (
-    <Box sx={styles.userAvatarContainer}>
-      <Avatar sx={styles.userAvatar}>U</Avatar>
+    <Box className={styles.userAvatarContainer}>
+      <Avatar className={styles.userAvatar}>U</Avatar>
       <Typography>User</Typography>
     </Box>
   );

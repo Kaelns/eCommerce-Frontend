@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useNavbar } from '@/layout/Navbar/hooks/useNavbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 
-import * as styles from './Navbar.mui';
+import styles from './Navbar.module.scss';
 
 interface IProps {
   navbarType: Navbars;
@@ -29,19 +29,11 @@ export function Navbar({ navbarType }: IProps): JSX.Element {
 
   return (
     <Box component="nav">
-      <Tabs
-        value={activeLink}
-        orientation={orientation}
-        TabIndicatorProps={{
-          sx: {
-            left: 0
-          }
-        }}
-      >
+      <Tabs value={activeLink} orientation={orientation} TabIndicatorProps={{ sx: { left: 0 } }}>
         {navRoutesKeys.map((route) => (
           <Tab
             key={route}
-            sx={{ ...styles.buttonClasses, ...additionalStyles }}
+            className={`${styles.buttons} ${additionalStyles}`}
             label={navRoutes[route as keyof typeof navRoutes]}
             onClick={() => navigate(route)}
           />

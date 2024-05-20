@@ -2,10 +2,10 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import { Badge, Box, Button, IconButton, Popover } from '@mui/material';
 import { useState } from 'react';
 import { Navbar } from '@/layout/Navbar/Navbar';
-import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
+import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
-import * as styles from './UserPopover.mui';
+import styles from './UserPopover.module.scss';
 
 export function UserPopover(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
@@ -25,7 +25,12 @@ export function UserPopover(): JSX.Element {
   return (
     <>
       <IconButton aria-describedby={id} onClick={handleClick}>
-        <Badge badgeContent={authUserToken ? 0 : 'Login'} color="primary" sx={styles.badge}>
+        <Badge
+          badgeContent={authUserToken ? 0 : 'Login'}
+          color="primary"
+          className={styles.badge}
+          slotProps={{ badge: { className: styles.badgeIcon } }}
+        >
           <AccountCircleOutlinedIcon />
         </Badge>
       </IconButton>
@@ -43,7 +48,7 @@ export function UserPopover(): JSX.Element {
           horizontal: 'center'
         }}
       >
-        <Box sx={styles.popover}>
+        <Box className={styles.popover}>
           <Navbar navbarType={Navbars.POPOVER} />
           {authUserToken && (
             <Button variant="contained" size="small" onClick={() => setAuthUserToken('')}>

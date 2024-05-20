@@ -5,8 +5,8 @@ import { ROUTES } from '@/data/enum/routes.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
 export function BasketLink(): JSX.Element {
-  const { authUserToken } = useAuthContext();
   const navigate = useNavigate();
+  const { authUserToken } = useAuthContext();
 
   return (
     <IconButton onClick={() => navigate(authUserToken ? ROUTES.BASKET : ROUTES.LOGIN)}>

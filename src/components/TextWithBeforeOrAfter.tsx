@@ -6,7 +6,7 @@ interface IProps {
   isAfter?: boolean;
 }
 
-export function TextWithIcon({ icon, children, isAfter = false }: PropsWithChildren<IProps>): JSX.Element {
+export function TextWithBeforeOrAfter({ icon, children, isAfter = false }: PropsWithChildren<IProps>): JSX.Element {
   return (
     <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
       {!isAfter && icon}

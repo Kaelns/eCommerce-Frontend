@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
 
 export function MainContainer(): JSX.Element {

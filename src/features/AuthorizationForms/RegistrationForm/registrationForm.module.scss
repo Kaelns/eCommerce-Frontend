@@ -1,11 +1,6 @@
 .form {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
-}
-.error {
-  font-size: 0.8rem;
-  color: var(--color-underline);
+  gap: 1rem;
 }
