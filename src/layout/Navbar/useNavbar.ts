@@ -1,7 +1,7 @@
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { horizontalButton } from '@/layout/Navbar/Navbar.mui';
-import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
-import { mainRoutes, authorizedRoutes, nonAuthorizedRoutes, navbarRoutes } from '@/layout/Navbar/data/Navbar.routes';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
+import { navbarButton } from '@/layout/Navbar/Navbar.mui';
+import { authorizedRoutes, nonAuthorizedRoutes, navbarRoutes, mainRoutes } from '@/layout/Navbar/Navbar.routes';
 
 type ReturnNavbarType = typeof mainRoutes | typeof authorizedRoutes | typeof nonAuthorizedRoutes | typeof navbarRoutes;
 
@@ -10,13 +10,13 @@ type TabsOrientation = 'vertical' | 'horizontal';
 interface IReturnUseNavbarType {
   navRoutes: ReturnNavbarType;
   orientation: TabsOrientation;
-  additionalStyles?: Record<string, string>;
+  styles?: Record<string, string>;
 }
 
 export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
   const { authUserToken } = useAuthContext();
 
-  let additionalStyles;
+  let styles;
   let navRoutes = null;
   let orientation: TabsOrientation = 'horizontal';
 
@@ -25,7 +25,7 @@ export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
 
   switch (typeOfNavbar) {
     case Navbars.MAIN:
-      additionalStyles = horizontalButton;
+      styles = navbarButton;
       navRoutes = mainRoutes;
       orientation = 'vertical';
       break;
@@ -33,7 +33,6 @@ export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
       navRoutes = navbarRoutes;
       break;
     case Navbars.POPOVER:
-      additionalStyles = horizontalButton;
       navRoutes = userPopoverRoutes();
       orientation = 'vertical';
       break;
@@ -41,5 +40,5 @@ export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
       navRoutes = navbarRoutes;
   }
 
-  return { navRoutes, orientation, additionalStyles };
+  return { navRoutes, orientation, styles };
 }

@@ -6,8 +6,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

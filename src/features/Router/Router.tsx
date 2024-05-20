@@ -34,7 +34,8 @@ export function Router(): JSX.Element {
             path={ROUTES.REGISTRATION}
             element={authUserToken ? <Navigate to={ROUTES.MAIN} /> : <RegistrationPage />}
           />
-          <Route path={ROUTES.NONEXISTENT} element={<ErrorPage />} />
+          <Route path={ROUTES.NONEXISTENT} element={<Navigate to={ROUTES.ERROR} />} />
+          <Route path={ROUTES.ERROR} element={<ErrorPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

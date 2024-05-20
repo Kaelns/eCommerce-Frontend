@@ -1,10 +1,8 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useNavbar } from '@/layout/Navbar/hooks/useNavbar';
-import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
-
-import * as styles from './Navbar.mui';
+import { useNavbar } from '@/layout/Navbar/useNavbar';
+import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
 interface IProps {
   navbarType: Navbars;
@@ -12,7 +10,7 @@ interface IProps {
 
 export function Navbar({ navbarType }: IProps): JSX.Element {
   const navigate = useNavigate();
-  const { navRoutes, orientation, additionalStyles } = useNavbar(navbarType);
+  const { navRoutes, orientation, styles } = useNavbar(navbarType);
   const { pathname } = useLocation();
   const [activeLink, setActiveLink] = useState<number | false>(false);
 
@@ -41,7 +39,7 @@ export function Navbar({ navbarType }: IProps): JSX.Element {
         {navRoutesKeys.map((route) => (
           <Tab
             key={route}
-            sx={{ ...styles.buttonClasses, ...additionalStyles }}
+            sx={{ textTransform: 'none', ...styles }}
             label={navRoutes[route as keyof typeof navRoutes]}
             onClick={() => navigate(route)}
           />
