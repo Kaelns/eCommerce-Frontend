@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import Alert from '@mui/material/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Box, FormHelperText } from '@mui/material';
+import { Box, FormHelperText, Checkbox, FormControlLabel } from '@mui/material';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressBlock/AddressBlock';
 import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
@@ -137,6 +137,16 @@ export default function RegistrationForm(): JSX.Element {
       <Title variant="h6" className={styles.title}>
         Shipping Address
       </Title>
+      <FormControlLabel
+        control={
+          <Checkbox
+            onChange={(e) => {
+              console.log(e.target.checked);
+            }}
+          />
+        }
+        label="Set as default address"
+      />
       <AddressBlock
         onChangeComboBox={handleOnChangeComboBox}
         onChangeFunction={handleOnChangeInput}

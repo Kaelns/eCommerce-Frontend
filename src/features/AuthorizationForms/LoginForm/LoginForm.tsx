@@ -7,7 +7,6 @@ import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helpe
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { handleAuthentication } from '@/utils/createAuthApi';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 import styles from './LoginForm.module.scss';
 
