@@ -1,13 +1,12 @@
 import { useState, useCallback } from 'react';
 import { Divider, Chip, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
+import ButtonCustom from '@/features/AuthorizationForms/components/ButtonCustom/ButtonCustom';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { handleAuthentication } from '@/utils/createAuthApi';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 import styles from './LoginForm.module.scss';
 

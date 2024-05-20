@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { ButtonProps } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
-import { ButtonType, ButtonVariant } from '@/features/AuthorizationForms/components/Button/button.enum';
+import { ButtonType, ButtonVariant } from '@/features/AuthorizationForms/components/ButtonCustom/ButtonCustom.enum';
 
 interface IProps extends ButtonProps {}
 

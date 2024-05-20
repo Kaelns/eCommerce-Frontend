@@ -1,3 +1,5 @@
+@use '@styles/abstracts/mixins';
+
 .pageContainer,
 .titleContainer {
   display: flex;
@@ -9,6 +11,10 @@
   gap: 1.5rem;
   width: 400px;
   align-self: center;
+
+  @include mixins.media(500px) {
+    width: 100%;
+  }
 }
 
 .title {

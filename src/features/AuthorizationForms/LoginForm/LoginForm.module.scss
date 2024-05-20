@@ -1,9 +1,15 @@
+@use '@styles/abstracts/mixins';
+
 .form {
   width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+
+  @include mixins.media-tablet {
+    width: 100%;
+  }
 }
 
 .btnContainer {

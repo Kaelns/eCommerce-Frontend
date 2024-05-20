@@ -1,12 +1,12 @@
 import { FormHelperText } from '@mui/material';
 import ComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox';
-import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
+import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import {
   ADDRESSES_INPUT_KEYS,
   ADDRESS_INPUTS,
   COUNTRY_LIST
-} from '@/features/AuthorizationForms/components/AddressBlock/addressBlock.constants';
+} from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
 import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
 import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
 import { IInputsErrors } from '@/features/AuthorizationForms/data/InputTypes';
@@ -22,7 +22,7 @@ interface IProps {
   prefix: AddressPrefix;
 }
 
-export default function AddressBlock({
+export default function AddressSection({
   onChangeFunction,
   onChangeComboBox,
   inputsErrors,
@@ -39,7 +39,7 @@ export default function AddressBlock({
       />
 
       {ADDRESSES_INPUT_KEYS.map((inputName) => (
-        <Input
+        <ValidationInput
           key={inputName}
           label={INPUTS[`${prefix}${inputName}`].label}
           name={INPUTS[`${prefix}${inputName}`].name}
@@ -50,7 +50,7 @@ export default function AddressBlock({
           <FormHelperText error>
             {inputsErrors[INPUTS[`${prefix}${inputName}`].name] && inputsErrors[INPUTS[`${prefix}${inputName}`].name]}
           </FormHelperText>
-        </Input>
+        </ValidationInput>
       ))}
     </>
   );

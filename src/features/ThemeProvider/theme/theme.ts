@@ -5,3 +5,7 @@ export const theme = extendTheme({
     fontSize: 32
   }
 });
+
+// theme.typography.h5 {
+
+// }

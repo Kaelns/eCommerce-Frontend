@@ -2,7 +2,7 @@ import { InputLabel } from '@mui/material';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { IProps } from '@/features/AuthorizationForms/components/ComboBox/IComboBox.interface';
+import { IProps } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.interface';
 
 export default function ComboBox({ label, name, id, options, onChangeComboBox }: IProps): JSX.Element {
   return (
