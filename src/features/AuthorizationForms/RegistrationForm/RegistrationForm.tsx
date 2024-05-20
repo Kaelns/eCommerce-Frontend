@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import dayjs from 'dayjs';
+import Alert from '@mui/material/Alert';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import { Box, FormHelperText } from '@mui/material';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressBlock/AddressBlock';
 import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
@@ -18,12 +21,22 @@ import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { Title } from '@/components/ui/Title';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
+import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
+import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { createCustomer } from '@/utils/createCustomerApi';
 
 import styles from './RegistrationForm.module.scss';
 
 export default function RegistrationForm(): JSX.Element {
-  const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).toString() });
+  const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });
   const [inputsErrors, setInputsError] = useState<IInputsErrors>({});
+  const [showAlert, isShowAlert] = useState(false);
+  const [showCircleProgress, isShowCircleProgress] = useState(true);
+  const [alertData, setAlertData] = useState({
+    typeAlert: Alerts.ERROR,
+    textAlert: AlertsText.ERROR_EMAIL_TEXT
+  });
+  const { setAuthUserToken } = useAuthContext();
 
   const [postalCodePattern, setPostalCodePattern] = useState<{ [key in AddressPrefix]: RegExp | undefined }>({
     shipping: undefined,
@@ -70,10 +83,16 @@ export default function RegistrationForm(): JSX.Element {
   );
 
   const onClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      console.log(inputsValues);
-      alert(`${inputsValues.email} ${inputsValues.password}`);
+      await createCustomer(
+        inputsValues,
+        setAuthUserToken,
+        setInputsError,
+        isShowAlert,
+        isShowCircleProgress,
+        setAlertData
+      );
     },
     [inputsValues]
   );
@@ -136,6 +155,19 @@ export default function RegistrationForm(): JSX.Element {
       <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors)} onClick={onClick}>
         Register
       </ButtonCustom>
+      <Backdrop
+        open={showAlert}
+        onClick={() => {
+          isShowAlert(false);
+          isShowCircleProgress(true);
+        }}
+      >
+        {showCircleProgress ? (
+          <CircularProgress color="primary" />
+        ) : (
+          <Alert severity={alertData.typeAlert}>{alertData.textAlert}</Alert>
+        )}
+      </Backdrop>
     </Box>
   );
 }

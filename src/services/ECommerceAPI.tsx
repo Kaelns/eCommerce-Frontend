@@ -1,6 +1,7 @@
 import { ClientResponse } from '@commercetools/sdk-client-v2';
 import { CustomerPagedQueryResponse, CustomerSignInResult } from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
+import { ICreateCustomerParams } from '@/services/interface';
 
 class ECommerceAPI {
   private apiRoot: ReturnType<ApiClient['getApiRoot']>;
@@ -9,13 +10,22 @@ class ECommerceAPI {
     this.apiRoot = new ApiClient().getApiRoot();
   }
 
-  async createCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
+  async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
+    const { firstName, lastName, email, password, dateOfBirth, addresses, billingAddresses, shippingAddresses } =
+      params;
+    this.apiRoot = new ApiClient().getApiRoot();
     return this.apiRoot
       .customers()
       .post({
         body: {
+          firstName,
+          lastName,
           email,
-          password
+          password,
+          dateOfBirth,
+          addresses,
+          billingAddresses,
+          shippingAddresses
         }
       })
       .execute() as Promise<ClientResponse<CustomerSignInResult>>;
@@ -36,6 +46,7 @@ class ECommerceAPI {
   }
 
   async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
+    this.apiRoot = new ApiClient().getApiRoot();
     return this.apiRoot
       .customers()
       .get({

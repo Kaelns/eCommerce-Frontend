@@ -20,7 +20,7 @@ export default function DateInput({ label, name, validationChecks, setInputs, ..
   const onChange = (date: dayjs.Dayjs | null): void => {
     if (date) {
       setValueMatch(validationChecks(date.toString()));
-      setInputs((values) => ({ ...values, [name]: date.toString() }));
+      setInputs((values) => ({ ...values, [name]: date.format('YYYY-MM-DD') }));
     }
   };
 
