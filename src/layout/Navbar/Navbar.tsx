@@ -8,9 +8,10 @@ import styles from './Navbar.module.scss';
 
 interface IProps {
   navbarType: Navbars;
+  customOrientation?: 'vertical' | 'horizontal';
 }
 
-export function Navbar({ navbarType }: IProps): JSX.Element {
+export function Navbar({ navbarType, customOrientation }: IProps): JSX.Element {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { navRoutes, orientation, additionalStyles } = useNavbar(navbarType);
@@ -18,6 +19,7 @@ export function Navbar({ navbarType }: IProps): JSX.Element {
 
   const navRoutesKeys = Object.keys(navRoutes);
   const styleLeftOnVerticalTabs = { sx: { left: 0 } };
+  const resultOrientation = customOrientation ?? orientation;
 
   useEffect(() => {
     if (!(pathname in navRoutes)) {
@@ -30,7 +32,7 @@ export function Navbar({ navbarType }: IProps): JSX.Element {
 
   return (
     <Box component="nav">
-      <Tabs value={activeLink} orientation={orientation} TabIndicatorProps={styleLeftOnVerticalTabs}>
+      <Tabs value={activeLink} orientation={resultOrientation} TabIndicatorProps={styleLeftOnVerticalTabs}>
         {navRoutesKeys.map((route) => (
           <Tab
             key={route}

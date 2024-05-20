@@ -19,7 +19,7 @@ import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { Title } from '@/components/ui/Title';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
 
-import styles from './RegistrationForm.module.scss';
+import styles from './Registration.module.scss';
 
 export default function RegistrationForm(): JSX.Element {
   const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).toString() });
