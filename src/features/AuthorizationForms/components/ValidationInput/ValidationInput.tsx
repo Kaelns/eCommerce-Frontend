@@ -7,7 +7,7 @@ interface IProps extends OutlinedInputProps {
   label: string;
 }
 
-export default function Input({
+export function ValidationInput({
   label,
   children,
   type = InputType.TEXT,
