@@ -3,12 +3,12 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { FormHelperText } from '@mui/material';
 import { useState } from 'react';
 import ICredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/ICredentialBlock.interface';
-import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
+import ShowPasswordButton from '@/features/AuthorizationForms/components/ShowPasswordButton';
 import checkEmail from '@/features/validation/emailValidation';
 import checkPassword from '@/features/validation/passwordValidation';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/validationInput.enum';
-import ShowPasswordButton from '@/features/AuthorizationForms/components/ShowPasswordButton';
+import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 
 export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICredentialBlock): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
