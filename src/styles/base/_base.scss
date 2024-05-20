@@ -1,7 +1,9 @@
 html {
   font-size: 10px;
   // To fix jumps when the scrollbar is displayed
-  padding-left: calc(100vw - 100%);
+  @media screen and (min-width: $width-laptop) {
+    padding-left: calc(100vw - 100%);
+  }
 }
 
 body {

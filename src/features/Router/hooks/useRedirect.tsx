@@ -17,8 +17,6 @@ interface IReturnUseRedirect {
 export function useRedirect(): IReturnUseRedirect {
   const { authUserToken, isLoading } = useLocalStorage();
 
-  console.log(authUserToken, isLoading);
-
   const pageOnAuthorized = (onRegistered: JSX.Element, onNonRegistered: JSX.Element): JSX.Element =>
     authUserToken ? onRegistered : onNonRegistered;
 
