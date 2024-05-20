@@ -1,2 +1,16 @@
-.registration {
+.pageContainer,
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.titleContainer {
+  gap: 1.5rem;
+  width: 400px;
+  align-self: center;
+}
+
+.title {
+  text-align: center;
 }

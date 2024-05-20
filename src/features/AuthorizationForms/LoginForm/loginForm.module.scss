@@ -1,8 +1,13 @@
 .form {
-  margin-top: 50px;
   width: 70%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
+  gap: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }

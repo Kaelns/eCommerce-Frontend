@@ -1,33 +1,7 @@
 @use 'constants';
 
-@mixin flex($justify: flex-start, $align: stretch, $flex-direction: row) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $align;
-  flex-direction: $flex-direction;
-}
-
 @mixin animation($time: 0.5s, $prop: all) {
   transition: $prop $time ease-out;
-}
-
-@mixin underline-before($width: 100%, $height: 2px, $color: var(--color-underline)) {
-  content: '';
-  position: absolute;
-  width: $width;
-  height: $height;
-  background-color: $color;
-  border-radius: 2px;
-  left: 0;
-  bottom: 0;
-}
-
-@mixin highlight {
-  text-shadow:
-    0.1rem 0.1rem 0.25rem var(--color-text-highlighted),
-    -0.1rem 0.1rem 0.25rem var(--color-text-highlighted),
-    -0.1rem -0.1rem 0.25rem var(--color-text-highlighted),
-    0.1rem -0.1rem 0.25rem var(--color-text-highlighted);
 }
 
 @mixin mediaHover {
@@ -44,6 +18,12 @@
 
 @mixin media-tablet {
   @media (max-width: (constants.$width-tablet - 1)) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: (constants.$width-mobile - 1)) {
     @content;
   }
 }

@@ -1,12 +1,26 @@
-import styles from './RegistrationPage.module.scss';
+import { Box, Button, Chip, Divider } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import RegistrationForm from '@/features/AuthorizationForms/RegistrationForm/RegistrationForm';
-// interface IProps {}
+import { ROUTES } from '@/data/enum/routes.enum';
 
-export function RegistrationPage(/* props: IProps */): JSX.Element {
+import styles from './RegistrationPage.module.scss';
+import { Title } from '@/components/ui/Title';
+
+export function RegistrationPage(): JSX.Element {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.registration}>
-      <h2>Registration Page</h2>
+    <Box className={styles.pageContainer}>
+      <Box className={styles.titleContainer}>
+        <Title className={styles.title}>Registration Page</Title>
+        <Divider>
+          <Chip label="Or if you are already registered:" />
+        </Divider>
+        <Button variant="contained" onClick={() => navigate(ROUTES.LOGIN)}>
+          Login
+        </Button>
+      </Box>
       <RegistrationForm />
-    </div>
+    </Box>
   );
 }
