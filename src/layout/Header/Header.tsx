@@ -8,7 +8,7 @@ import * as styles from './Header.mui';
 import { UserPopover } from '@/components/UserPopover/UserPopover';
 import { BasketLink } from '@/components/BasketLink';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { Navbars } from '@/layout/Navbar/Navbar.enum';
+import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 
 export function Header(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
