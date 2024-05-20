@@ -1,15 +1,18 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { Box, Button, IconButton, Popover } from '@mui/material';
+import { Badge, Box, Button, IconButton, Popover } from '@mui/material';
 import { useState } from 'react';
 import { Navbar } from '@/layout/Navbar/Navbar';
+import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 
 import * as styles from './UserPopover.mui';
-import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { Navbars } from '@/layout/Navbar/Navbar.enum';
 
 export function UserPopover(): JSX.Element {
   const { authUserToken, setAuthUserToken } = useAuthContext();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -19,13 +22,12 @@ export function UserPopover(): JSX.Element {
     setAnchorEl(null);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
-
   return (
     <>
       <IconButton aria-describedby={id} onClick={handleClick}>
-        <AccountCircleOutlinedIcon />
+        <Badge badgeContent={authUserToken ? 0 : 'Login'} color="primary" sx={styles.badge}>
+          <AccountCircleOutlinedIcon />
+        </Badge>
       </IconButton>
       <Popover
         id={id}
