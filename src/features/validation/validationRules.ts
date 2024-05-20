@@ -14,7 +14,7 @@ export function checkDomainPart(value: string): boolean {
   return !value.match(domainPart);
 }
 export function checkMainPart(value: string): boolean {
-  const mainPart = /^[a-zA-Z0-9!#$%^&*\-+_=,./\\<>?{}[\]():;"'|`~]+@/gm;
+  const mainPart = /^[a-zA-Z0-9\-_.]+@/gm;
   return !value.match(mainPart);
 }
 export function checkUppercaseLetter(value: string): boolean {
