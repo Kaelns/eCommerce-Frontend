@@ -28,9 +28,14 @@ import { createCustomer } from '@/utils/createCustomerApi';
 import styles from './RegistrationForm.module.scss';
 
 export default function RegistrationForm(): JSX.Element {
-  const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });
-  const [inputsErrors, setInputsError] = useState<IInputsErrors>({});
+  const [inputsValues, setInputsValues] = useState<IInputsValues>({
+    birthday: dayjs(getMaxDate()).format('YYYY-MM-DD')
+  });
+  const [inputsErrors, setInputsErrors] = useState<IInputsErrors>({});
   const [showAlert, isShowAlert] = useState(false);
+  const [sameAddress, isSameAddress] = useState(false);
+  const [defaultShippingAddress, isDefaultShippingAddress] = useState(false);
+  const [defaultBillingAddress, isDefaultBillingAddress] = useState(false);
   const [showCircleProgress, isShowCircleProgress] = useState(true);
   const [alertData, setAlertData] = useState({
     typeAlert: Alerts.ERROR,
@@ -53,8 +58,9 @@ export default function RegistrationForm(): JSX.Element {
       const error = prefix
         ? checkFunction(newValue, postalCodePattern[prefix[0] as AddressPrefix])
         : checkFunction(newValue);
-      setInputsError((values) => ({ ...values, [e.target.name]: error }));
-      setInputs((values) => ({ ...values, [e.target.name]: newValue }));
+      setInputsErrors((values) => ({ ...values, [e.target.name]: error }));
+      setInputsValues((values) => ({ ...values, [e.target.name]: newValue }));
+      console.log(inputsValues);
     },
     [postalCodePattern]
   );
@@ -71,8 +77,8 @@ export default function RegistrationForm(): JSX.Element {
             inputsValues[INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name] ?? '',
             value?.postalCodePattern
           );
-          setInputsError((values) => ({ ...values, [INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name]: error }));
-          setInputs((values) => ({
+          setInputsErrors((values) => ({ ...values, [INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name]: error }));
+          setInputsValues((values) => ({
             ...values,
             [INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name]: value?.code ?? ''
           }));
@@ -88,7 +94,7 @@ export default function RegistrationForm(): JSX.Element {
       await createCustomer(
         inputsValues,
         setAuthUserToken,
-        setInputsError,
+        setInputsErrors,
         isShowAlert,
         isShowCircleProgress,
         setAlertData
@@ -131,38 +137,46 @@ export default function RegistrationForm(): JSX.Element {
         defaultValue={dayjs(getMaxDate())}
         maxDate={dayjs(getMaxDate())}
         minDate={dayjs(getMinDate())}
-        setInputs={setInputs}
+        setInputs={setInputsValues}
       />
       <CredentialBlock onChangeFunction={handleOnChangeInput} inputsErrors={inputsErrors} />
       <Title variant="h6" className={styles.title}>
         Shipping Address
       </Title>
-      <FormControlLabel
-        control={
-          <Checkbox
-            onChange={(e) => {
-              console.log(e.target.checked);
-            }}
-          />
-        }
-        label="Set as default address"
-      />
       <AddressBlock
         onChangeComboBox={handleOnChangeComboBox}
         onChangeFunction={handleOnChangeInput}
         inputsErrors={inputsErrors}
+        inputsValues={inputsValues}
         prefix={AddressPrefix.SHIPPING}
       />
-      <Title variant="h6" className={styles.title}>
-        Billing Address
-      </Title>
-      <AddressBlock
-        onChangeComboBox={handleOnChangeComboBox}
-        onChangeFunction={handleOnChangeInput}
-        inputsErrors={inputsErrors}
-        prefix={AddressPrefix.BILLING}
+      <FormControlLabel
+        control={<Checkbox onChange={() => isSameAddress((value) => !value)} />}
+        label="Set as billing address"
       />
-      <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors)} onClick={onClick}>
+      <FormControlLabel
+        control={<Checkbox onChange={() => isDefaultShippingAddress((value) => !value)} />}
+        label="Set as default shipping address"
+      />
+      {!sameAddress && (
+        <>
+          <Title variant="h6" className={styles.title}>
+            Billing Address
+          </Title>
+          <AddressBlock
+            onChangeComboBox={handleOnChangeComboBox}
+            onChangeFunction={handleOnChangeInput}
+            inputsErrors={inputsErrors}
+            inputsValues={inputsValues}
+            prefix={AddressPrefix.BILLING}
+          />
+        </>
+      )}
+      <FormControlLabel
+        control={<Checkbox onChange={() => isDefaultBillingAddress((value) => !value)} />}
+        label="Set as default shipping address"
+      />
+      <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors, sameAddress)} onClick={onClick}>
         Register
       </ButtonCustom>
       <Backdrop

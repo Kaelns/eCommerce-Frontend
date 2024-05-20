@@ -1,3 +1,4 @@
+import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 
@@ -7,11 +8,17 @@ export function checkCredentialInputs(inputsValues: IInputsValues, inputsErrors:
   return isValidEmail && isValidPassword;
 }
 
-export function checkAllInputs(inputsValues: IInputsValues, inputsErrors: IInputsErrors): boolean {
+export function checkAllInputs(
+  inputsValues: IInputsValues,
+  inputsErrors: IInputsErrors,
+  isSameAddress: boolean
+): boolean {
   const values = Object.values(INPUTS);
   for (const i of values) {
     if (!inputsValues[i.name] || inputsErrors[i.name]) {
-      return false;
+      if (!(isSameAddress && i.name.indexOf(AddressPrefix.BILLING) >= 0)) {
+        return false;
+      }
     }
   }
   return true;
