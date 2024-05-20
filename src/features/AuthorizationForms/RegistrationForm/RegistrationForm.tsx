@@ -25,6 +25,7 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { ICreateCustomerParams } from '@/services/interface';
 
 export default function RegistrationForm(): JSX.Element {
   const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });
@@ -36,6 +37,31 @@ export default function RegistrationForm(): JSX.Element {
     textAlert: AlertsText.ERROR_EMAIL_TEXT
   });
   const { authUserToken, setAuthUserToken } = useAuthContext();
+
+  const BILLING_ADDRES_INDEX = 0;
+  const SHIPPING_ADDRES_INDEX = 1;
+
+  const createCustomerDate: ICreateCustomerParams = {
+    firstName: inputsValues.firstName!,
+    lastName: inputsValues.lastName!,
+    email: inputsValues.email!,
+    password: inputsValues.password!,
+    dateOfBirth: inputsValues.birthday!,
+    addresses: [
+      {
+        country: inputsValues.billingCountry!,
+        postalCode: inputsValues.billingPostalCode!,
+        city: inputsValues.billingCity!
+      },
+      {
+        country: inputsValues.shippingCountry!,
+        postalCode: inputsValues.shippingPostalCode!,
+        city: inputsValues.shippingCity!
+      }
+    ],
+    billingAddresses: [BILLING_ADDRES_INDEX],
+    shippingAddresses: [SHIPPING_ADDRES_INDEX]
+  };
 
   const [postalCodePattern, setPostalCodePattern] = useState<{ [key in AddressPrefix]: RegExp | undefined }>({
     shipping: undefined,
@@ -86,33 +112,11 @@ export default function RegistrationForm(): JSX.Element {
   const onClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      const BILLING_ADDRES_INDEX = 0;
-      const SHIPPING_ADDRES_INDEX = 1;
       isShowAlert(true);
 
       try {
-        const result = await eCommerceAPI.createCustomer(
-          inputsValues.firstName!,
-          inputsValues.lastName!,
-          inputsValues.email!,
-          inputsValues.password!,
-          inputsValues.birthday!,
-          [
-            {
-              country: inputsValues.billingCountry!,
-              postalCode: inputsValues.billingPostalCode!,
-              city: inputsValues.billingCity!
-            },
-            {
-              country: inputsValues.shippingCountry!,
-              postalCode: inputsValues.shippingPostalCode!,
-              city: inputsValues.shippingCity!
-            }
-          ],
-          [BILLING_ADDRES_INDEX],
-          [SHIPPING_ADDRES_INDEX]
-        );
-        // console.log('create', result);
+        const result = await eCommerceAPI.createCustomer(createCustomerDate);
+        const authCustomer = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
         setTimeout(() => {
           setAuthUserToken('login_is_ok');
         }, 1000);
@@ -140,7 +144,6 @@ export default function RegistrationForm(): JSX.Element {
           }
         }
       }
-      console.log(`${inputsValues.email} ${inputsValues.password}`);
     },
     [inputsValues]
   );
