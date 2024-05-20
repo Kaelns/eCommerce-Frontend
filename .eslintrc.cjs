@@ -72,6 +72,11 @@ module.exports = {
       {
         selector: 'enumMember',
         format: ['UPPER_CASE']
+      },
+      {
+        selector: 'property',
+        format: ['camelCase'],
+        leadingUnderscore: 'allow'
       }
     ],
 
