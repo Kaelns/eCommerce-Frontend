@@ -1,11 +1,10 @@
-import { ThemeProvider } from '@emotion/react';
 import { Router } from '@/features/Router/Router';
-import { lightTheme } from '@/data/theme/lightTheme';
 import { AuthContextProvider } from '@/context/AuthContext/AuthContext';
+import { ThemeProvider } from '@/features/ThemeProvider/ThemeProvider';
 
 export function App(): JSX.Element {
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider>
       <AuthContextProvider>
         <Router />
       </AuthContextProvider>

@@ -1,0 +1,12 @@
+.userAvatarContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userAvatar {
+  background-color: var(--mui-palette-warning-light);
+  font-size: 2.5rem;
+  height: 3.7rem;
+  width: 3.7rem;
+}
