@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import dayjs from 'dayjs';
 import { FormHelperText } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressBlock/AddressBlock';
 import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
@@ -18,10 +21,21 @@ import { AddressProperty } from '@/features/AuthorizationForms/data/addressPrope
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
+import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
 export default function RegistrationForm(): JSX.Element {
-  const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).toString() });
+  const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });
   const [inputsErrors, setInputsError] = useState<IInputsErrors>({});
+  const [showAlert, isShowAlert] = useState(false);
+  const [showCircleProgress, isShowCircleProgress] = useState(true);
+  const [alertData, setAlertData] = useState({
+    typeAlert: Alerts.ERROR,
+    textAlert: AlertsText.ERROR_EMAIL_TEXT
+  });
+  const { authUserToken, setAuthUserToken } = useAuthContext();
 
   const [postalCodePattern, setPostalCodePattern] = useState<{ [key in AddressPrefix]: RegExp | undefined }>({
     shipping: undefined,
@@ -70,10 +84,63 @@ export default function RegistrationForm(): JSX.Element {
   );
 
   const onClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      console.log(inputsValues);
-      alert(`${inputsValues.email} ${inputsValues.password}`);
+      const BILLING_ADDRES_INDEX = 0;
+      const SHIPPING_ADDRES_INDEX = 1;
+      isShowAlert(true);
+
+      try {
+        const result = await eCommerceAPI.createCustomer(
+          inputsValues.firstName!,
+          inputsValues.lastName!,
+          inputsValues.email!,
+          inputsValues.password!,
+          inputsValues.birthday!,
+          [
+            {
+              country: inputsValues.billingCountry!,
+              postalCode: inputsValues.billingPostalCode!,
+              city: inputsValues.billingCity!
+            },
+            {
+              country: inputsValues.shippingCountry!,
+              postalCode: inputsValues.shippingPostalCode!,
+              city: inputsValues.shippingCity!
+            }
+          ],
+          [BILLING_ADDRES_INDEX],
+          [SHIPPING_ADDRES_INDEX]
+        );
+        // console.log('create', result);
+        setTimeout(() => {
+          setAuthUserToken('login_is_ok');
+        }, 1000);
+        isShowCircleProgress(false);
+        setAlertData({
+          typeAlert: Alerts.SUCCESS,
+          textAlert: AlertsText.SUCCESS_TEXT
+        });
+      } catch (error) {
+        console.log(error);
+        if (error instanceof Error) {
+          if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
+            setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
+            isShowCircleProgress(false);
+            setAlertData({
+              typeAlert: Alerts.ERROR,
+              textAlert: AlertsText.ERROR_EMAIL_TEXT
+            });
+          } else {
+            isShowCircleProgress(false);
+            setAlertData({
+              typeAlert: Alerts.ERROR,
+              textAlert: AlertsText.ERROR_CONNECTION_TEXT
+            });
+          }
+        }
+      }
+      console.log(`${inputsValues.email} ${inputsValues.password}`);
     },
     [inputsValues]
   );
@@ -129,6 +196,20 @@ export default function RegistrationForm(): JSX.Element {
       <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors)} onClick={onClick}>
         Register
       </ButtonCustom>
+
+      <Backdrop
+        open={showAlert}
+        onClick={() => {
+          isShowAlert(false);
+          isShowCircleProgress(true);
+        }}
+      >
+        {showCircleProgress ? (
+          <CircularProgress color="primary" />
+        ) : (
+          <Alert severity={alertData.typeAlert}>{alertData.textAlert}</Alert>
+        )}
+      </Backdrop>
     </form>
   );
 }

@@ -4,10 +4,12 @@ import CredentialBlock from '@/features/AuthorizationForms/components/Credential
 import styles from './loginForm.module.scss';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
 export default function LoginForm(): JSX.Element {
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
   const [inputsError, setInputsError] = useState<{ [key: string]: string }>({});
+  const { authUserToken, setAuthUserToken } = useAuthContext();
 
   const onClick = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,7 +21,7 @@ export default function LoginForm(): JSX.Element {
       try {
         const result = await eCommerceAPI.authenticateCustomer(email, password);
         console.log(result.body);
-        console.log('login ok');
+        setAuthUserToken('auth_is_ok');
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);

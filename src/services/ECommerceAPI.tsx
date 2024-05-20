@@ -9,13 +9,32 @@ class ECommerceAPI {
     this.apiRoot = new ApiClient().getApiRoot();
   }
 
-  async createCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
+  async createCustomer(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    dateOfBirth: string,
+    addresses: {
+      country: string;
+      postalCode: string;
+      city: string;
+    }[],
+    billingAddresses: number[],
+    shippingAddresses: number[]
+  ): Promise<ClientResponse<CustomerSignInResult>> {
     return this.apiRoot
       .customers()
       .post({
         body: {
+          firstName,
+          lastName,
           email,
-          password
+          password,
+          dateOfBirth,
+          addresses,
+          billingAddresses,
+          shippingAddresses
         }
       })
       .execute() as Promise<ClientResponse<CustomerSignInResult>>;
