@@ -16,6 +16,7 @@ import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.
 import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
+import { Title } from '@/components/ui/Title';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
 
 import styles from './RegistrationForm.module.scss';
@@ -79,6 +80,9 @@ export default function RegistrationForm(): JSX.Element {
 
   return (
     <Box component="form" className={styles.form}>
+      <Title variant="h6" className={styles.title}>
+        User credentials
+      </Title>
       <Input
         label={INPUTS.firstName.label}
         name={INPUTS.firstName.name}
@@ -111,14 +115,18 @@ export default function RegistrationForm(): JSX.Element {
         setInputs={setInputs}
       />
       <CredentialBlock onChangeFunction={handleOnChangeInput} inputsErrors={inputsErrors} />
-      <h3>Shipping Address</h3>
+      <Title variant="h6" className={styles.title}>
+        Shipping Address
+      </Title>
       <AddressBlock
         onChangeComboBox={handleOnChangeComboBox}
         onChangeFunction={handleOnChangeInput}
         inputsErrors={inputsErrors}
         prefix={AddressPrefix.SHIPPING}
       />
-      <h3>Billing Address</h3>
+      <Title variant="h6" className={styles.title}>
+        Billing Address
+      </Title>
       <AddressBlock
         onChangeComboBox={handleOnChangeComboBox}
         onChangeFunction={handleOnChangeInput}

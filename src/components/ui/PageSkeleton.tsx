@@ -1,30 +1,17 @@
-import { Skeleton } from '@mui/material';
-import { useMemo } from 'react';
+import { Box, Skeleton } from '@mui/material';
 
-interface IProps {
-  amount?: number;
-}
-export function PageSkeleton({ amount = 5 }: IProps): JSX.Element {
-  const roundedSize = 40;
-  // const generatedArray = useMemo(() => Array(amount).fill(new Date().getTime()), [amount]);
+export function PageSkeleton(): JSX.Element {
+  const skeletonHeightBefore = '10vh';
+  const skeletonHeightAfter = '15vh';
 
   return (
-    <>
-      <Skeleton animation="wave" />
-      <Skeleton variant="circular" width={roundedSize} height={roundedSize} animation="wave" />
-      {/* {generatedArray.map((el) => ( */}
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      <Skeleton /* key={el} */ animation="wave" />
-      {/* ))} */}
-    </>
+    <Box>
+      <Skeleton animation="wave" height={skeletonHeightBefore} />
+      <Skeleton variant="circular" width={skeletonHeightBefore} height={skeletonHeightBefore} animation="wave" />
+      <Skeleton animation="wave" height={skeletonHeightAfter} />
+      <Skeleton animation="wave" height={skeletonHeightAfter} />
+      <Skeleton animation="wave" height={skeletonHeightAfter} />
+      <Skeleton animation="wave" height={skeletonHeightAfter} />
+    </Box>
   );
 }
