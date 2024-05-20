@@ -6,7 +6,7 @@ export function MainPage(): JSX.Element {
   return (
     <>
       <Title>Main page</Title>
-      <Navbar navbarType={Navbars.MAIN} />;
+      <Navbar navbarType={Navbars.MAIN} />
     </>
   );
 }

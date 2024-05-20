@@ -3,10 +3,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Lottie from 'react-lottie';
 import { Box, Button, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import animation404 from '@/assets/animation/animation404.json';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { TextWithElBeforeOrAfter } from '@/components/ui/TextWithElBeforeOrAfter/TextWithElBeforeOrAfter';
 
+import animation404 from '@/assets/animation/animation404.json';
 import styles from './ErrorPage.module.scss';
 
 export function ErrorPage(): JSX.Element {

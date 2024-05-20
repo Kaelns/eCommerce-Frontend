@@ -1,22 +1,16 @@
-import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { AboutUsPage } from '@/pages/AboutUsPage/AboutUsPage';
-import { BasketPage } from '@/pages/BasketPage/BasketPage';
 import { CatalogPage } from '@/pages/CatalogPage/CatalogPage';
 import { DetailedProductPage } from '@/pages/DetailedProductPage/DetailedProductPage';
 import { ErrorPage } from '@/pages/ErrorPage/ErrorPage';
 import { Header } from '@/layout/Header/Header';
-import { LoginPage } from '@/pages/LoginPage/LoginPage';
 import { MainContainer } from '@/layout/MainContainer/MainContainer';
 import { MainPage } from '@/pages/MainPage/MainPage';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
-import { UserPage } from '@/pages/UserPage/UserPage';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useRedirect } from '@/features/Router/hooks/useRedirect';
 
 export function Router(): JSX.Element {
-  const { authUserToken, isLoading } = useLocalStorage();
-
-  console.log(authUserToken, isLoading);
+  const redirect = useRedirect();
 
   return (
     <BrowserRouter>
@@ -29,13 +23,10 @@ export function Router(): JSX.Element {
           <Route path={ROUTES.DETAILED_PRODUCT} element={<DetailedProductPage />}>
             <Route path={ROUTES.DETAILED_PRODUCT_ID} />
           </Route>
-          <Route path={ROUTES.USER} element={authUserToken ? <UserPage /> : <Navigate to={ROUTES.MAIN} />} />
-          <Route path={ROUTES.LOGIN} element={authUserToken ? <Navigate to={ROUTES.MAIN} /> : <LoginPage />} />
-          <Route path={ROUTES.BASKET} element={<BasketPage />} />
-          <Route
-            path={ROUTES.REGISTRATION}
-            element={authUserToken ? <Navigate to={ROUTES.MAIN} /> : <RegistrationPage />}
-          />
+          <Route path={ROUTES.USER} element={redirect[ROUTES.USER]} />
+          <Route path={ROUTES.LOGIN} element={redirect[ROUTES.LOGIN]} />
+          <Route path={ROUTES.BASKET} element={redirect[ROUTES.BASKET]} />
+          <Route path={ROUTES.REGISTRATION} element={redirect[ROUTES.REGISTRATION]} />
           <Route path={ROUTES.NONEXISTENT} element={<ErrorPage />} />
         </Route>
       </Routes>

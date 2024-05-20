@@ -13,8 +13,8 @@ export function useLocalStorage(): IReturnType {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(false);
     setAuthUserToken(localStorage.getItem(key) ?? '');
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
