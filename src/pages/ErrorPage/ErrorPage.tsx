@@ -13,7 +13,7 @@ export function ErrorPage(): JSX.Element {
 
   return (
     <Box className={styles.container}>
-      <Box component="img" src="notFound.png" alt="404" className={styles.image} />
+      <Box component="img" src="not-found.png" alt="404" className={styles.image} />
       <ButtonGroup variant="contained">
         <Button className={styles.button} onClick={() => navigate(navigateBack)}>
           <TextWithElBeforeOrAfter icon={<ArrowBackIosIcon fontSize="small" />}>Go back</TextWithElBeforeOrAfter>
