@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
 
 .button {
@@ -11,11 +12,8 @@
   background-color: var(--mui-palette-info-light);
 }
 
-.animation {
-  width: 500px;
-  height: 500px;
-}
-
 .image {
-  min-width: 400px;
+  display: block;
+  width: 100%;
+  max-width: 500px;
 }
