@@ -4,11 +4,11 @@ import Alert from '@mui/material/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Box, FormHelperText, Checkbox, FormControlLabel } from '@mui/material';
-import AddressBlock from '@/features/AuthorizationForms/components/AddressBlock/AddressBlock';
-import ButtonCustom from '@/features/AuthorizationForms/components/Button/Button';
+import AddressBlock from '@/features/AuthorizationForms/components/AddressSection/AddressSection';
+import ButtonCustom from '@/features/AuthorizationForms/components/ButtonCustom/ButtonCustom';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
-import DateInput from '@/features/AuthorizationForms/components/DateInput/DateInput';
-import Input from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
+import { DateInput } from '@/features/AuthorizationForms/components/DateInput/DateInput';
+import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import checkBirthday from '@/features/validation/birthdayValidation';
 import checkGeneralRule from '@/features/validation/generalValidation';
@@ -110,7 +110,7 @@ export default function RegistrationForm(): JSX.Element {
       <Title variant="h6" className={styles.title}>
         User credentials
       </Title>
-      <Input
+      <ValidationInput
         label={INPUTS.firstName.label}
         name={INPUTS.firstName.name}
         onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -120,8 +120,8 @@ export default function RegistrationForm(): JSX.Element {
         <FormHelperText error>
           {inputsErrors[INPUTS.firstName.name] && inputsErrors[INPUTS.firstName.name]}
         </FormHelperText>
-      </Input>
-      <Input
+      </ValidationInput>
+      <ValidationInput
         label={INPUTS.lastName.label}
         name={INPUTS.lastName.name}
         onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -131,7 +131,7 @@ export default function RegistrationForm(): JSX.Element {
         <FormHelperText error>
           {inputsErrors[INPUTS.lastName.name] && inputsErrors[INPUTS.lastName.name]}
         </FormHelperText>
-      </Input>
+      </ValidationInput>
       <DateInput
         label="Birthday"
         name="birthday"
