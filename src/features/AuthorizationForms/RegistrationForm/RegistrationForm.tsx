@@ -87,6 +87,17 @@ export default function RegistrationForm(): JSX.Element {
     [inputsValues]
   );
 
+  const handleOnChangeCheckbox = useCallback(() => {
+    if (!sameAddress) {
+      const addressProperty = Object.values(AddressProperty);
+      for (const value of addressProperty) {
+        setInputsValues((values) => ({ ...values, [INPUTS[`${AddressPrefix.BILLING}${value}`].name]: '' }));
+        setInputsErrors((values) => ({ ...values, [INPUTS[`${AddressPrefix.BILLING}${value}`].name]: '' }));
+      }
+    }
+    isSameAddress((value) => !value);
+  }, [sameAddress]);
+
   const onClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
@@ -153,7 +164,7 @@ export default function RegistrationForm(): JSX.Element {
         prefix={AddressPrefix.SHIPPING}
       />
       <FormControlLabel
-        control={<Checkbox checked={sameAddress} onChange={() => isSameAddress((value) => !value)} />}
+        control={<Checkbox checked={sameAddress} onChange={handleOnChangeCheckbox} />}
         label="Set as billing address"
       />
       <FormControlLabel
