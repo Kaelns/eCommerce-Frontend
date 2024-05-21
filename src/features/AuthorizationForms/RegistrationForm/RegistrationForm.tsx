@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import Alert from '@mui/material/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Box, FormHelperText } from '@mui/material';
+import { Box, FormHelperText, Checkbox, FormControlLabel } from '@mui/material';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressSection/AddressSection';
 import ButtonCustom from '@/features/AuthorizationForms/components/ButtonCustom/ButtonCustom';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
@@ -28,9 +28,14 @@ import { createCustomer } from '@/utils/createCustomerApi';
 import styles from './RegistrationForm.module.scss';
 
 export default function RegistrationForm(): JSX.Element {
-  const [inputsValues, setInputs] = useState<IInputsValues>({ birthday: dayjs(getMaxDate()).format('YYYY-MM-DD') });
-  const [inputsErrors, setInputsError] = useState<IInputsErrors>({});
+  const [inputsValues, setInputsValues] = useState<IInputsValues>({
+    birthday: dayjs(getMaxDate()).format('YYYY-MM-DD')
+  });
+  const [inputsErrors, setInputsErrors] = useState<IInputsErrors>({});
   const [showAlert, isShowAlert] = useState(false);
+  const [sameAddress, isSameAddress] = useState(false);
+  const [defaultShippingAddress, isDefaultShippingAddress] = useState(false);
+  const [defaultBillingAddress, isDefaultBillingAddress] = useState(false);
   const [showCircleProgress, isShowCircleProgress] = useState(true);
   const [alertData, setAlertData] = useState({
     typeAlert: Alerts.ERROR,
@@ -53,8 +58,8 @@ export default function RegistrationForm(): JSX.Element {
       const error = prefix
         ? checkFunction(newValue, postalCodePattern[prefix[0] as AddressPrefix])
         : checkFunction(newValue);
-      setInputsError((values) => ({ ...values, [e.target.name]: error }));
-      setInputs((values) => ({ ...values, [e.target.name]: newValue }));
+      setInputsErrors((values) => ({ ...values, [e.target.name]: error }));
+      setInputsValues((values) => ({ ...values, [e.target.name]: newValue }));
     },
     [postalCodePattern]
   );
@@ -71,8 +76,8 @@ export default function RegistrationForm(): JSX.Element {
             inputsValues[INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name] ?? '',
             value?.postalCodePattern
           );
-          setInputsError((values) => ({ ...values, [INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name]: error }));
-          setInputs((values) => ({
+          setInputsErrors((values) => ({ ...values, [INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name]: error }));
+          setInputsValues((values) => ({
             ...values,
             [INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name]: value?.code ?? ''
           }));
@@ -82,19 +87,33 @@ export default function RegistrationForm(): JSX.Element {
     [inputsValues]
   );
 
+  const handleOnChangeCheckbox = useCallback(() => {
+    if (!sameAddress) {
+      const addressProperty = Object.values(AddressProperty);
+      for (const value of addressProperty) {
+        setInputsValues((values) => ({ ...values, [INPUTS[`${AddressPrefix.BILLING}${value}`].name]: '' }));
+        setInputsErrors((values) => ({ ...values, [INPUTS[`${AddressPrefix.BILLING}${value}`].name]: '' }));
+      }
+    }
+    isSameAddress((value) => !value);
+  }, [sameAddress]);
+
   const onClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
       await createCustomer(
         inputsValues,
         setAuthUserToken,
-        setInputsError,
+        setInputsErrors,
         isShowAlert,
         isShowCircleProgress,
-        setAlertData
+        setAlertData,
+        sameAddress,
+        defaultShippingAddress,
+        defaultBillingAddress
       );
     },
-    [inputsValues]
+    [inputsValues, sameAddress, defaultBillingAddress, defaultShippingAddress]
   );
 
   return (
@@ -131,7 +150,7 @@ export default function RegistrationForm(): JSX.Element {
         defaultValue={dayjs(getMaxDate())}
         maxDate={dayjs(getMaxDate())}
         minDate={dayjs(getMinDate())}
-        setInputs={setInputs}
+        setInputs={setInputsValues}
       />
       <CredentialBlock onChangeFunction={handleOnChangeInput} inputsErrors={inputsErrors} />
       <Title variant="h6" className={styles.title}>
@@ -141,18 +160,40 @@ export default function RegistrationForm(): JSX.Element {
         onChangeComboBox={handleOnChangeComboBox}
         onChangeFunction={handleOnChangeInput}
         inputsErrors={inputsErrors}
+        // inputsValues={inputsValues}
         prefix={AddressPrefix.SHIPPING}
       />
-      <Title variant="h6" className={styles.title}>
-        Billing Address
-      </Title>
-      <AddressBlock
-        onChangeComboBox={handleOnChangeComboBox}
-        onChangeFunction={handleOnChangeInput}
-        inputsErrors={inputsErrors}
-        prefix={AddressPrefix.BILLING}
+      <FormControlLabel
+        control={<Checkbox checked={sameAddress} onChange={handleOnChangeCheckbox} />}
+        label="Set as billing address"
       />
-      <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors)} onClick={onClick}>
+      <FormControlLabel
+        control={
+          <Checkbox checked={defaultShippingAddress} onChange={() => isDefaultShippingAddress((value) => !value)} />
+        }
+        label="Set as default shipping address"
+      />
+      {!sameAddress && (
+        <>
+          <Title variant="h6" className={styles.title}>
+            Billing Address
+          </Title>
+          <AddressBlock
+            onChangeComboBox={handleOnChangeComboBox}
+            onChangeFunction={handleOnChangeInput}
+            inputsErrors={inputsErrors}
+            // inputsValues={inputsValues}
+            prefix={AddressPrefix.BILLING}
+          />
+        </>
+      )}
+      <FormControlLabel
+        control={
+          <Checkbox checked={defaultBillingAddress} onChange={() => isDefaultBillingAddress((value) => !value)} />
+        }
+        label="Set as default billing address"
+      />
+      <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors, sameAddress)} onClick={onClick}>
         Register
       </ButtonCustom>
       <Backdrop
