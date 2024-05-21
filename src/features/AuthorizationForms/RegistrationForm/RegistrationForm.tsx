@@ -90,6 +90,7 @@ export default function RegistrationForm(): JSX.Element {
   const onClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
+      console.log(sameAddress, defaultBillingAddress, defaultShippingAddress);
       await createCustomer(
         inputsValues,
         setAuthUserToken,
@@ -102,7 +103,7 @@ export default function RegistrationForm(): JSX.Element {
         defaultBillingAddress
       );
     },
-    [inputsValues]
+    [inputsValues, sameAddress, defaultBillingAddress, defaultShippingAddress]
   );
 
   return (
@@ -153,11 +154,13 @@ export default function RegistrationForm(): JSX.Element {
         prefix={AddressPrefix.SHIPPING}
       />
       <FormControlLabel
-        control={<Checkbox onChange={() => isSameAddress((value) => !value)} />}
+        control={<Checkbox checked={sameAddress} onChange={() => isSameAddress((value) => !value)} />}
         label="Set as billing address"
       />
       <FormControlLabel
-        control={<Checkbox onChange={() => isDefaultShippingAddress((value) => !value)} />}
+        control={
+          <Checkbox checked={defaultShippingAddress} onChange={() => isDefaultShippingAddress((value) => !value)} />
+        }
         label="Set as default shipping address"
       />
       {!sameAddress && (
@@ -175,7 +178,9 @@ export default function RegistrationForm(): JSX.Element {
         </>
       )}
       <FormControlLabel
-        control={<Checkbox onChange={() => isDefaultBillingAddress((value) => !value)} />}
+        control={
+          <Checkbox checked={defaultBillingAddress} onChange={() => isDefaultBillingAddress((value) => !value)} />
+        }
         label="Set as default billing address"
       />
       <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors, sameAddress)} onClick={onClick}>
