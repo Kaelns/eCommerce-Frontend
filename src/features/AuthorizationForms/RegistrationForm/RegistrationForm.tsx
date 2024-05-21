@@ -60,7 +60,6 @@ export default function RegistrationForm(): JSX.Element {
         : checkFunction(newValue);
       setInputsErrors((values) => ({ ...values, [e.target.name]: error }));
       setInputsValues((values) => ({ ...values, [e.target.name]: newValue }));
-      console.log(inputsValues);
     },
     [postalCodePattern]
   );
@@ -97,7 +96,10 @@ export default function RegistrationForm(): JSX.Element {
         setInputsErrors,
         isShowAlert,
         isShowCircleProgress,
-        setAlertData
+        setAlertData,
+        sameAddress,
+        defaultShippingAddress,
+        defaultBillingAddress
       );
     },
     [inputsValues]
@@ -147,7 +149,7 @@ export default function RegistrationForm(): JSX.Element {
         onChangeComboBox={handleOnChangeComboBox}
         onChangeFunction={handleOnChangeInput}
         inputsErrors={inputsErrors}
-        inputsValues={inputsValues}
+        // inputsValues={inputsValues}
         prefix={AddressPrefix.SHIPPING}
       />
       <FormControlLabel
@@ -167,14 +169,14 @@ export default function RegistrationForm(): JSX.Element {
             onChangeComboBox={handleOnChangeComboBox}
             onChangeFunction={handleOnChangeInput}
             inputsErrors={inputsErrors}
-            inputsValues={inputsValues}
+            // inputsValues={inputsValues}
             prefix={AddressPrefix.BILLING}
           />
         </>
       )}
       <FormControlLabel
         control={<Checkbox onChange={() => isDefaultBillingAddress((value) => !value)} />}
-        label="Set as default shipping address"
+        label="Set as default billing address"
       />
       <ButtonCustom disabled={!checkAllInputs(inputsValues, inputsErrors, sameAddress)} onClick={onClick}>
         Register

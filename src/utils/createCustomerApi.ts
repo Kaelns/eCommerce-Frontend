@@ -1,7 +1,7 @@
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { ICreateCustomerParams } from '@/services/interface';
+import { IAddress, ICreateCustomerParams } from '@/services/interface';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 
@@ -11,10 +11,34 @@ export async function createCustomer(
   setInputsError: React.Dispatch<React.SetStateAction<IInputsErrors>>,
   isShowAlert: React.Dispatch<React.SetStateAction<boolean>>,
   isShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>,
-  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>
+  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>,
+  sameAddress: boolean,
+  defaultShippingAddress: boolean,
+  defaultBillingAddress: boolean
 ): Promise<void> {
-  const BILLING_ADDRES_INDEX = 0;
-  const SHIPPING_ADDRES_INDEX = 1;
+  const SHIPPING_ADDRES_INDEX = 0;
+  const BILLING_ADDRES_INDEX = sameAddress ? 0 : 1;
+
+  const addresses: IAddress[] = sameAddress
+    ? [
+        {
+          country: inputsValues.shippingCountry!,
+          postalCode: inputsValues.shippingPostalCode!,
+          city: inputsValues.shippingCity!
+        }
+      ]
+    : [
+        {
+          country: inputsValues.shippingCountry!,
+          postalCode: inputsValues.shippingPostalCode!,
+          city: inputsValues.shippingCity!
+        },
+        {
+          country: inputsValues.billingCountry!,
+          postalCode: inputsValues.billingPostalCode!,
+          city: inputsValues.billingCity!
+        }
+      ];
 
   const createCustomerDate: ICreateCustomerParams = {
     firstName: inputsValues.firstName!,
@@ -22,21 +46,18 @@ export async function createCustomer(
     email: inputsValues.email!,
     password: inputsValues.password!,
     dateOfBirth: inputsValues.birthday!,
-    addresses: [
-      {
-        country: inputsValues.billingCountry!,
-        postalCode: inputsValues.billingPostalCode!,
-        city: inputsValues.billingCity!
-      },
-      {
-        country: inputsValues.shippingCountry!,
-        postalCode: inputsValues.shippingPostalCode!,
-        city: inputsValues.shippingCity!
-      }
-    ],
+    addresses,
     billingAddresses: [BILLING_ADDRES_INDEX],
     shippingAddresses: [SHIPPING_ADDRES_INDEX]
   };
+
+  if (defaultBillingAddress) {
+    createCustomerDate.defaultBillingAddress = BILLING_ADDRES_INDEX;
+  }
+  if (defaultShippingAddress) {
+    createCustomerDate.defaultShippingAddress = SHIPPING_ADDRES_INDEX;
+  }
+
   isShowAlert(true);
 
   try {

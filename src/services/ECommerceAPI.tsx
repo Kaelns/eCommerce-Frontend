@@ -11,22 +11,42 @@ class ECommerceAPI {
   }
 
   async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
-    const { firstName, lastName, email, password, dateOfBirth, addresses, billingAddresses, shippingAddresses } =
-      params;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      dateOfBirth,
+      addresses,
+      shippingAddresses,
+      billingAddresses,
+      defaultBillingAddress,
+      defaultShippingAddress
+    } = params;
     this.apiRoot = new ApiClient().getApiRoot();
+    const customerData: ICreateCustomerParams = {
+      firstName,
+      lastName,
+      email,
+      password,
+      dateOfBirth,
+      addresses,
+      shippingAddresses
+    };
+
+    if (billingAddresses !== undefined) {
+      customerData.billingAddresses = billingAddresses;
+    }
+    if (defaultBillingAddress !== undefined) {
+      customerData.defaultBillingAddress = defaultBillingAddress;
+    }
+    if (defaultShippingAddress !== undefined) {
+      customerData.defaultShippingAddress = defaultShippingAddress;
+    }
     return this.apiRoot
       .customers()
       .post({
-        body: {
-          firstName,
-          lastName,
-          email,
-          password,
-          dateOfBirth,
-          addresses,
-          billingAddresses,
-          shippingAddresses
-        }
+        body: customerData
       })
       .execute() as Promise<ClientResponse<CustomerSignInResult>>;
   }
