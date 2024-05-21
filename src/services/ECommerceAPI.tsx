@@ -1,7 +1,7 @@
 import { ClientResponse } from '@commercetools/sdk-client-v2';
 import { CustomerPagedQueryResponse, CustomerSignInResult } from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
-import { ICreateCustomerParams } from '@/services/interface';
+import { ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 
 class ECommerceAPI {
   private apiRoot: ReturnType<ApiClient['getApiRoot']>;

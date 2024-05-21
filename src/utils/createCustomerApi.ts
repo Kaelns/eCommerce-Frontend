@@ -1,7 +1,7 @@
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IAddress, ICreateCustomerParams } from '@/services/interface';
+import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
 

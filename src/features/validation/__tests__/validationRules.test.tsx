@@ -1,5 +1,4 @@
 import { describe, test, expect } from 'vitest';
-import { ValidationErrors } from '@/data/enum/validationError.enum';
 import { checkAge, checkLength } from '@/features/validation/validationRules';
 
 describe('Given checkAge function', () => {
