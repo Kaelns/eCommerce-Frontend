@@ -90,7 +90,6 @@ export default function RegistrationForm(): JSX.Element {
   const onClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      console.log(sameAddress, defaultBillingAddress, defaultShippingAddress);
       await createCustomer(
         inputsValues,
         setAuthUserToken,
