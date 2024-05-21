@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import checkEmail from './emailValidation';
+import checkEmail from '../emailValidation';
 import { ValidationErrors } from '@/data/enum/validationError.enum';
 
 describe('Given checkEmail function', () => {

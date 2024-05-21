@@ -74,6 +74,8 @@ describe('Given checkCredentialInputs function', () => {
 
 describe('Given checkAllInputs function', () => {
   test("When inputsValues doesn't have at least one record by keys in INPUTS, should return false", () => {
+    const isSameAddress = false;
+
     const inputsValues = {
       [INPUTS.password.name]: '1',
       [INPUTS.email.name]: '1',
@@ -89,12 +91,14 @@ describe('Given checkAllInputs function', () => {
       [INPUTS.shippingPostalCode.name]: '1'
     };
     const inputsErrors = {};
-    const result = checkAllInputs(inputsValues, inputsErrors);
+    const result = checkAllInputs(inputsValues, inputsErrors, isSameAddress);
 
     expect(result).toBe(false);
   });
 
   test('When inputsErrors has at least one non empty record by key in INPUTS, should return false', () => {
+    const isSameAddress = false;
+
     const inputsValues = {
       [INPUTS.password.name]: '1',
       [INPUTS.email.name]: '1',
@@ -113,12 +117,14 @@ describe('Given checkAllInputs function', () => {
     const inputsErrors = {
       [INPUTS.shippingStreet.name]: '1'
     };
-    const result = checkAllInputs(inputsValues, inputsErrors);
+    const result = checkAllInputs(inputsValues, inputsErrors, isSameAddress);
 
     expect(result).toBe(false);
   });
 
   test("When inputsValues has record by each key in INPUTS and inputsErrors doesn't have non empty records by key in INPUTS, should return true", () => {
+    const isSameAddress = false;
+
     const inputsValues = {
       [INPUTS.password.name]: '1',
       [INPUTS.email.name]: '1',
@@ -135,7 +141,7 @@ describe('Given checkAllInputs function', () => {
       [INPUTS.shippingStreet.name]: '1'
     };
     const inputsErrors = {};
-    const result = checkAllInputs(inputsValues, inputsErrors);
+    const result = checkAllInputs(inputsValues, inputsErrors, isSameAddress);
 
     expect(result).toBe(true);
   });
