@@ -33,8 +33,8 @@ export function checkSpecialChar(value: string): boolean {
   const specialChar = /[!@#$%^&*\-+_=,./\\<>?{}[\]():;"'|`~]{1,}/gm;
   return !value.match(specialChar);
 }
-export function checkJustLetter(value: string): boolean {
-  const justLetter = /^[a-zA-Z]+$/gm;
+export function checkJustLetterAndSpace(value: string): boolean {
+  const justLetter = /^[a-zA-Z ]+$/gm;
   return !value.match(justLetter);
 }
 export function checkAge(value: string): boolean {

@@ -1,5 +1,5 @@
 import { ValidationErrors } from '@/data/enum/validationError.enum';
-import { checkJustLetter, checkLength } from '@/features/validation/validationRules';
+import { checkJustLetterAndSpace, checkLength } from '@/features/validation/validationRules';
 import { GENERAL_LENGTH } from '@/features/validation/validation.constants';
 
 export default function checkGeneralRule(value: string): string {
@@ -7,7 +7,7 @@ export default function checkGeneralRule(value: string): string {
     return ValidationErrors.LENGTH_GENERAL;
   }
 
-  if (checkJustLetter(value)) {
+  if (checkJustLetterAndSpace(value)) {
     return ValidationErrors.JUST_LETTER;
   }
   return '';

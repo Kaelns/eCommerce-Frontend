@@ -9,10 +9,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: '',
   test: {
     globals: true,
-    include: ["./src/**/*.test.tsx"],
+    include: ['./src/**/*.test.tsx'],
     environment: 'jsdom'
   },
   resolve: {
