@@ -10,7 +10,7 @@ export function checkAtSymbol(value: string): boolean {
   return !value.match(atSymbol);
 }
 export function checkDomainPart(value: string): boolean {
-  const domainPart = /@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/gm;
+  const domainPart = /@(?:[a-zA-Z0-9]+\.)+[A-Za-z]{2,}$/gm;
   return !value.match(domainPart);
 }
 export function checkMainPart(value: string): boolean {

@@ -1,14 +1,14 @@
 import { Box, Typography, TypographyProps } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
-import styles from './TextWithElBeforeOrAfter.module.scss';
+import styles from './TextWithElem.module.scss';
 
 interface IProps extends TypographyProps {
   icon: JSX.Element;
   isAfter?: boolean;
 }
 
-export function TextWithElBeforeOrAfter({
+export function TextWithElem({
   icon,
   children,
   className = '',

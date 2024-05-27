@@ -1,5 +1,6 @@
 export enum Navbars {
   MAIN,
   HEADER,
-  POPOVER
+  POPOVER,
+  HEADER_BURGER
 }

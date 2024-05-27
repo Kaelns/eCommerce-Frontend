@@ -3,7 +3,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Button, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { TextWithElBeforeOrAfter } from '@/components/ui/TextWithElBeforeOrAfter/TextWithElBeforeOrAfter';
+import { TextWithElem } from '@/components/ui/TextWithElem/TextWithElem';
 import image from '@/assets/not-found.png';
 
 import styles from './ErrorPage.module.scss';
@@ -17,12 +17,12 @@ export function ErrorPage(): JSX.Element {
       <Box component="img" src={image} alt="404" className={styles.image} />
       <ButtonGroup variant="contained">
         <Button className={styles.button} onClick={() => navigate(navigateBack)}>
-          <TextWithElBeforeOrAfter icon={<ArrowBackIosIcon fontSize="small" />}>Go back</TextWithElBeforeOrAfter>
+          <TextWithElem icon={<ArrowBackIosIcon fontSize="small" />}>Go back</TextWithElem>
         </Button>
         <Button className={styles.button} onClick={() => navigate(ROUTES.MAIN)}>
-          <TextWithElBeforeOrAfter isAfter icon={<ArrowForwardIosIcon fontSize="small" />}>
+          <TextWithElem isAfter icon={<ArrowForwardIosIcon fontSize="small" />}>
             Go main
-          </TextWithElBeforeOrAfter>
+          </TextWithElem>
         </Button>
       </ButtonGroup>
     </Box>

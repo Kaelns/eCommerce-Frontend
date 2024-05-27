@@ -1,32 +1,30 @@
-import { Box, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Box, Tab, Tabs } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { styleLeftOnVerticalTabs } from '@/layout/Navbar/data/Navbar.constants';
+import { INavbarProps } from '@/layout/Navbar/data/Navbar.interface';
 import { useNavbar } from '@/layout/Navbar/hooks/useNavbar';
-import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 
 import styles from './Navbar.module.scss';
 
-interface IProps {
-  navbarType: Navbars;
-  customOrientation?: 'vertical' | 'horizontal';
-}
-
-export function Navbar({ navbarType, customOrientation }: IProps): JSX.Element {
+export function Navbar({ navbarType, customOrientation }: INavbarProps): JSX.Element {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { navRoutes, orientation, additionalStyles } = useNavbar(navbarType);
   const [activeLink, setActiveLink] = useState<number | false>(false);
 
   const navRoutesKeys = Object.keys(navRoutes);
-  const styleLeftOnVerticalTabs = { sx: { left: 0 } };
   const resultOrientation = customOrientation ?? orientation;
 
+  function navigateTo(route: string) {
+    return (): void => navigate(route);
+  }
+
   useEffect(() => {
-    if (!(pathname in navRoutes)) {
-      setActiveLink(false);
-    }
     if (pathname in navRoutes) {
       setActiveLink(navRoutesKeys.indexOf(pathname));
+    } else {
+      setActiveLink(false);
     }
   }, [navRoutes, navRoutesKeys, pathname]);
 
@@ -38,7 +36,7 @@ export function Navbar({ navbarType, customOrientation }: IProps): JSX.Element {
             key={route}
             className={`${styles.buttons} ${additionalStyles}`}
             label={navRoutes[route as keyof typeof navRoutes]}
-            onClick={() => navigate(route)}
+            onClick={navigateTo(route)}
           />
         ))}
       </Tabs>

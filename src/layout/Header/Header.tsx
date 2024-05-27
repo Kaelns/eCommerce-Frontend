@@ -34,7 +34,7 @@ export function Header(): JSX.Element {
             {!isMatches && <Burger onClick={toggleDrawer(true)} />}
             <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
               <Box className={styles.burgerMenu}>
-                <Navbar customOrientation="vertical" navbarType={Navbars.HEADER} />
+                <Navbar customOrientation="vertical" navbarType={Navbars.HEADER_BURGER} />
               </Box>
             </Drawer>
           </Box>
