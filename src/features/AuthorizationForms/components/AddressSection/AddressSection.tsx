@@ -27,7 +27,7 @@ export default function AddressSection({
   onChangeComboBox,
   inputsErrors,
   prefix
-}: IProps): JSX.Element {
+}: IProps): React.ReactNode {
   return (
     <>
       <ComboBox

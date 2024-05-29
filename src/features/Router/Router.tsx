@@ -9,7 +9,7 @@ import { MainPage } from '@/pages/MainPage/MainPage';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { useRedirect } from '@/features/Router/hooks/useRedirect';
 
-export function Router(): JSX.Element {
+export function Router(): React.ReactNode {
   const redirect = useRedirect();
 
   return (

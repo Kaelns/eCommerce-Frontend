@@ -4,12 +4,12 @@ import { ReturnNavbarType, TabsOrientation } from '@/layout/Navbar/data/Navbar.t
 interface INavbarProps {
   navbarType: Navbars;
   customOrientation?: TabsOrientation;
+  onLinkClick?: () => void;
 }
 
 interface IReturnUseNavbarType {
   navRoutes: ReturnNavbarType;
   orientation: TabsOrientation;
-  additionalStyles?: string;
 }
 
 export type { INavbarProps, IReturnUseNavbarType };

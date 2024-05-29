@@ -13,7 +13,7 @@ export function ValidationInput({
   type = InputType.TEXT,
   required = true,
   ...props
-}: PropsWithChildren<IProps>): JSX.Element {
+}: PropsWithChildren<IProps>): React.ReactNode {
   return (
     <>
       <InputLabel required>{label}</InputLabel>

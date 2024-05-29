@@ -7,7 +7,7 @@ interface IProps {
   setShowPassword: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export function ShowPasswordBtn({ setShowPassword, children }: PropsWithChildren<IProps>): JSX.Element {
+export function ShowPasswordBtn({ setShowPassword, children }: PropsWithChildren<IProps>): React.ReactNode {
   return (
     <InputAdornment position="end">
       <IconButton onClick={() => setShowPassword((value) => !value)} edge="end">

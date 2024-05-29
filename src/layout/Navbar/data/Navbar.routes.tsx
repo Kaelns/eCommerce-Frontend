@@ -5,7 +5,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CategoryIcon from '@mui/icons-material/Category';
 import { ROUTES } from '@/data/enum/routes.enum';
 import { UserAvatarPopover } from '@/components/UserAvatarPopover/UserAvatarPopover';
-import { TextWithElem } from '@/components/ui/TextWithElem/TextWithElem';
+import { TextWithElem } from '@/components/TextWithElem/TextWithElem';
 
 export const mainRoutes = {
   [ROUTES.MAIN]: 'Main',

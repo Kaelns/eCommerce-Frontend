@@ -1,13 +1,13 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Badge, Box, Button, IconButton, Popover } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
 import styles from './UserPopover.module.scss';
 
-export function UserPopover(): JSX.Element {
+export function UserPopover(): React.ReactNode {
   const { authUserToken, setAuthUserToken } = useAuthContext();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -16,12 +16,16 @@ export function UserPopover(): JSX.Element {
 
   const showBadgeIfNonAuthorized = authUserToken ? 0 : 'Login';
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleClose = (): void => {
+  const handleClose = useCallback((): void => {
     setAnchorEl(null);
+  }, []);
+
+  const logOut = (): void => {
+    setAuthUserToken('');
   };
 
   return (
@@ -53,7 +57,7 @@ export function UserPopover(): JSX.Element {
         <Box className={styles.popover}>
           <Navbar navbarType={Navbars.POPOVER} />
           {authUserToken && (
-            <Button variant="contained" size="small" onClick={() => setAuthUserToken('')}>
+            <Button variant="contained" size="small" onClick={logOut}>
               Log out
             </Button>
           )}

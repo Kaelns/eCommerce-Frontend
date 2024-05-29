@@ -1,26 +1,26 @@
 import { Navigate } from 'react-router-dom';
-import { PageSkeleton } from '@/components/ui/PageSkeleton';
+import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { ROUTES } from '@/data/enum/routes.enum';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useAuthStorage } from '@/hooks/useAuthStorage/useAuthStorage';
 import { BasketPage } from '@/pages/BasketPage/BasketPage';
 import { LoginPage } from '@/pages/LoginPage/LoginPage';
 import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
 import { UserPage } from '@/pages/UserPage/UserPage';
 
 interface IReturnUseRedirect {
-  [ROUTES.USER]: JSX.Element;
-  [ROUTES.LOGIN]: JSX.Element;
-  [ROUTES.BASKET]: JSX.Element;
-  [ROUTES.REGISTRATION]: JSX.Element;
+  [ROUTES.USER]: React.ReactNode;
+  [ROUTES.LOGIN]: React.ReactNode;
+  [ROUTES.BASKET]: React.ReactNode;
+  [ROUTES.REGISTRATION]: React.ReactNode;
 }
 
 export function useRedirect(): IReturnUseRedirect {
-  const { authUserToken, isLoading } = useLocalStorage();
+  const { authUserToken, isLoading } = useAuthStorage();
 
-  const pageOnAuthorized = (onRegistered: JSX.Element, onNonRegistered: JSX.Element): JSX.Element =>
+  const pageOnAuthorized = (onRegistered: React.ReactNode, onNonRegistered: React.ReactNode): React.ReactNode =>
     authUserToken ? onRegistered : onNonRegistered;
 
-  const pageOnLoaded = (component: JSX.Element): JSX.Element => (isLoading ? <PageSkeleton /> : component);
+  const pageOnLoaded = (component: React.ReactNode): React.ReactNode => (isLoading ? <PageSkeleton /> : component);
 
   return {
     [ROUTES.USER]: pageOnLoaded(pageOnAuthorized(<UserPage />, <Navigate to={ROUTES.MAIN} />)),

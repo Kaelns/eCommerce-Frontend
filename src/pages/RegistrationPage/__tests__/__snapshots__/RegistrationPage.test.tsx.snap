@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given MainPage component > When rendered, should match snapshot of AboutUsPage 1`] = `
+<DocumentFragment>
+  <h5
+    class="MuiTypography-root MuiTypography-h5 _about-us_3b65ea css-bezmlo-MuiTypography-root"
+  >
+    About Us Page
+  </h5>
+</DocumentFragment>
+`;

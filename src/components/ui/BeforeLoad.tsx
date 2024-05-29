@@ -1,9 +1,10 @@
-import { PageSkeleton } from '@/components/ui/PageSkeleton';
+import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
+import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
 interface IProps {
   isLoading: boolean;
-  children: JSX.Element;
 }
-export function BeforeLoad({ isLoading, children }: IProps): JSX.Element {
+
+export function BeforeLoad({ isLoading, children }: PropsWithChildren<IProps>): React.ReactNode {
   return isLoading ? <PageSkeleton /> : children;
 }

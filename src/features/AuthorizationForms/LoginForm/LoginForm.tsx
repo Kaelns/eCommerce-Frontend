@@ -10,7 +10,7 @@ import { ROUTES } from '@/data/enum/routes.enum';
 
 import styles from './LoginForm.module.scss';
 
-export default function LoginForm(): JSX.Element {
+export default function LoginForm(): React.ReactNode {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
   const [inputsError, setInputsError] = useState<{ [key: string]: string }>({});
@@ -25,7 +25,7 @@ export default function LoginForm(): JSX.Element {
 
       await handleAuthentication(email, password, setAuthUserToken, setInputsError);
     },
-    [inputs]
+    [inputs, setAuthUserToken]
   );
 
   const handleOnChangeInput = useCallback(

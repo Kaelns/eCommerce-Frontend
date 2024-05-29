@@ -1,9 +1,7 @@
 import { Box, Skeleton } from '@mui/material';
+import { skeletonHeightBefore, skeletonHeightAfter } from '@/components/PageSkeleton/PageSkeleton.constants';
 
-export function PageSkeleton(): JSX.Element {
-  const skeletonHeightBefore = '10vh';
-  const skeletonHeightAfter = '15vh';
-
+export function PageSkeleton(): React.ReactNode {
   return (
     <Box>
       <Skeleton animation="wave" height={skeletonHeightBefore} />

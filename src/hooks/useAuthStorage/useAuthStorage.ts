@@ -1,31 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { keyAuthUserToken } from '@/hooks/useAuthStorage/useAuthStorage.constants';
+import { IUseAuthStorageReturn } from '@/hooks/useAuthStorage/useAuthStorage.interface';
 
-const key = 'AUTH_USER_TOKEN';
-
-interface IReturnType {
-  authUserToken: string;
-  isLoading: boolean;
-}
-
-export function useLocalStorage(): IReturnType {
+export function useAuthStorage(): IUseAuthStorageReturn {
   const { authUserToken, setAuthUserToken } = useAuthContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setAuthUserToken(localStorage.getItem(key) ?? '');
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
     const handleBeforeUnload = (): void => {
-      localStorage.setItem(key, authUserToken);
+      localStorage.setItem(keyAuthUserToken, authUserToken);
     };
+
+    if (isLoading) {
+      setAuthUserToken(localStorage.getItem(keyAuthUserToken) ?? '');
+      setIsLoading(false);
+    }
+
     window.addEventListener('beforeunload', handleBeforeUnload);
     return (): void => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [authUserToken, setAuthUserToken]);
+  }, [authUserToken, isLoading, setAuthUserToken]);
 
   return { authUserToken, isLoading };
 }

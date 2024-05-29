@@ -10,7 +10,7 @@ import { InputType } from '@/features/AuthorizationForms/components/ValidationIn
 import { ShowPasswordBtn } from '@/features/AuthorizationForms/components/ShowPasswordBtn';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 
-export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICredentialBlock): JSX.Element {
+export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICredentialBlock): React.ReactNode {
   const [showPassword, setShowPassword] = useState(false);
 
   return (

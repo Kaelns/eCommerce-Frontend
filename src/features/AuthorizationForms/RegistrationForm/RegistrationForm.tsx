@@ -27,7 +27,7 @@ import { createCustomer } from '@/utils/createCustomerApi';
 
 import styles from './RegistrationForm.module.scss';
 
-export default function RegistrationForm(): JSX.Element {
+export default function RegistrationForm(): React.ReactNode {
   const [inputsValues, setInputsValues] = useState<IInputsValues>({
     birthday: dayjs(getMaxDate()).format('YYYY-MM-DD')
   });
@@ -113,7 +113,7 @@ export default function RegistrationForm(): JSX.Element {
         defaultBillingAddress
       );
     },
-    [inputsValues, sameAddress, defaultBillingAddress, defaultShippingAddress]
+    [inputsValues, setAuthUserToken, sameAddress, defaultShippingAddress, defaultBillingAddress]
   );
 
   return (

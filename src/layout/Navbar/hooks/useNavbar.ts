@@ -36,11 +36,10 @@ export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
     case Navbars.POPOVER:
       navRoutes = userPopoverRoutes();
       orientation = 'vertical';
-      additionalStyles = styles.horizontalButton;
       break;
     default:
       navRoutes = headerRoutes;
   }
 
-  return { navRoutes, orientation, additionalStyles };
+  return { navRoutes, orientation };
 }

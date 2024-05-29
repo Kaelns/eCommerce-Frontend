@@ -7,17 +7,23 @@ import { useNavbar } from '@/layout/Navbar/hooks/useNavbar';
 
 import styles from './Navbar.module.scss';
 
-export function Navbar({ navbarType, customOrientation }: INavbarProps): JSX.Element {
+export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarProps): React.ReactNode {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { navRoutes, orientation, additionalStyles } = useNavbar(navbarType);
+  const { navRoutes, orientation } = useNavbar(navbarType);
   const [activeLink, setActiveLink] = useState<number | false>(false);
 
   const navRoutesKeys = Object.keys(navRoutes);
   const resultOrientation = customOrientation ?? orientation;
+  const additionalStyles = resultOrientation === 'vertical' ? styles.verticalButton : '';
 
   function navigateTo(route: string) {
-    return (): void => navigate(route);
+    return (): void => {
+      if (onLinkClick) {
+        onLinkClick();
+      }
+      navigate(route);
+    };
   }
 
   useEffect(() => {

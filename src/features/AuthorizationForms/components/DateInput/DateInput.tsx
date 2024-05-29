@@ -14,7 +14,7 @@ interface IProps extends DatePickerProps<dayjs.Dayjs> {
   setInputs: React.Dispatch<SetStateAction<IInputsValues>>;
 }
 
-export function DateInput({ label, name, validationChecks, setInputs, ...props }: IProps): JSX.Element {
+export function DateInput({ label, name, validationChecks, setInputs, ...props }: IProps): React.ReactNode {
   const [valueMatch, setValueMatch] = useState('');
 
   const onChange = (date: dayjs.Dayjs | null): void => {

@@ -4,7 +4,7 @@ import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 import styles from './TextWithElem.module.scss';
 
 interface IProps extends TypographyProps {
-  icon: JSX.Element;
+  icon: React.ReactNode;
   isAfter?: boolean;
 }
 
@@ -13,7 +13,7 @@ export function TextWithElem({
   children,
   className = '',
   isAfter = false
-}: PropsWithChildren<IProps>): JSX.Element {
+}: PropsWithChildren<IProps>): React.ReactNode {
   return (
     <Box className={styles.container}>
       {!isAfter && icon}

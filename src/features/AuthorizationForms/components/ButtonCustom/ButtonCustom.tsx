@@ -10,7 +10,7 @@ export default function ButtonCustom({
   variant = ButtonVariant.CONTAINED,
   type = ButtonType.SUBMIT,
   ...props
-}: PropsWithChildren<IProps>): JSX.Element {
+}: PropsWithChildren<IProps>): React.ReactNode {
   return (
     <Button variant={variant} type={type} {...props}>
       {children}

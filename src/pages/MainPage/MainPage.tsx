@@ -2,7 +2,7 @@ import { Title } from '@/components/ui/Title';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 
-export function MainPage(): JSX.Element {
+export function MainPage(): React.ReactNode {
   return (
     <>
       <Title>Main page</Title>

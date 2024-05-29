@@ -6,7 +6,7 @@ import { ROUTES } from '@/data/enum/routes.enum';
 import styles from './RegistrationPage.module.scss';
 import { Title } from '@/components/ui/Title';
 
-export function RegistrationPage(): JSX.Element {
+export function RegistrationPage(): React.ReactNode {
   const navigate = useNavigate();
 
   return (
