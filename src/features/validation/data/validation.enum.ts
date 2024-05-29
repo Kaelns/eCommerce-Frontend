@@ -1,4 +1,4 @@
-import { MAX_AGE, MIN_AGE, GENERAL_LENGTH, PASSWORD_LENGTH } from '@/features/validation/validation.constants';
+import { MAX_AGE, MIN_AGE, GENERAL_LENGTH, PASSWORD_LENGTH } from '@/features/validation/data/validation.constants';
 
 export enum ValidationErrors {
   AGE = `You should be older ${MIN_AGE} and younger ${MAX_AGE} years`,

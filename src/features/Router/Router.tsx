@@ -6,7 +6,7 @@ import { ErrorPage } from '@/pages/ErrorPage/ErrorPage';
 import { Header } from '@/layout/Header/Header';
 import { MainContainer } from '@/layout/MainContainer/MainContainer';
 import { MainPage } from '@/pages/MainPage/MainPage';
-import { ROUTES } from '@/data/enum/routes.enum';
+import { ROUTES } from '@/features/Router/data/Router.enum';
 import { useRedirect } from '@/features/Router/hooks/useRedirect';
 
 export function Router(): React.ReactNode {

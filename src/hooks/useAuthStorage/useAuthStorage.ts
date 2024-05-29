@@ -16,8 +16,8 @@ export function useAuthStorage(): IUseAuthStorageReturn {
       setAuthUserToken(localStorage.getItem(keyAuthUserToken) ?? '');
       setIsLoading(false);
     }
-
     window.addEventListener('beforeunload', handleBeforeUnload);
+
     return (): void => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };

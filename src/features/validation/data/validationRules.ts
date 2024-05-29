@@ -1,5 +1,5 @@
+import { MIN_AGE, MAX_AGE } from '@/features/validation/data/validation.constants';
 import GetAge from '@/utils/getAge';
-import { MAX_AGE, MIN_AGE } from '@/features/validation/validation.constants';
 
 export function checkWhiteSpace(value: string): boolean {
   const whiteSpace = /^\s|\s$/gm;

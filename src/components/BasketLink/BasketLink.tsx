@@ -1,7 +1,7 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { IconButton, Badge } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@/data/enum/routes.enum';
+import { ROUTES } from '@/features/Router/data/Router.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 
 export function BasketLink(): React.ReactNode {

@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
-import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
-import { checkAllInputs, checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
+import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { checkAllInputs, checkCredentialInputs } from '@/features/AuthorizationForms/data/AuthorizationForms.helpers';
 
 describe('Given checkCredentialInputs function', () => {
   test("When inputsValues doesn't have email record, should return false", () => {

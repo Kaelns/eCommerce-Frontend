@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import LoginForm from '@/features/AuthorizationForms/LoginForm/LoginForm';
-import { Title } from '@/components/ui/Title';
+import { Title } from '@/components/Title/Title';
 
 import styles from './LoginPage.module.scss';
 

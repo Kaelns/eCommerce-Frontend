@@ -2,7 +2,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Button, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@/data/enum/routes.enum';
+import { ROUTES } from '@/features/Router/data/Router.enum';
 import { TextWithElem } from '@/components/TextWithElem/TextWithElem';
 import imageNotFound from '@/assets/not-found.png';
 

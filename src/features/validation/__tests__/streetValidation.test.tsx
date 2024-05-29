@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import checkStreet from '@/features/validation/streetValidation';
 
 describe('Given checkStreet function', () => {

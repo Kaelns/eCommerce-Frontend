@@ -4,3 +4,8 @@ export enum AddressProperty {
   STREET = 'Street',
   POSTAL_CODE = 'PostalCode'
 }
+
+export enum AddressPrefix {
+  SHIPPING = 'shipping',
+  BILLING = 'billing'
+}

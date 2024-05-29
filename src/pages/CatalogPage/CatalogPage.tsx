@@ -1,4 +1,4 @@
-import { Title } from '@/components/ui/Title';
+import { Title } from '@/components/Title/Title';
 import styles from './CatalogPage.module.scss';
 
 // interface IProps {}

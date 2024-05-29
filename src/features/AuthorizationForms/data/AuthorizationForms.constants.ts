@@ -1,5 +1,4 @@
-import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
-import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
+import { AddressPrefix, AddressProperty } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
 
 export const INPUTS = {
   email: { label: 'Enter your email', name: 'email' },
@@ -24,4 +23,4 @@ export const INPUTS = {
     label: 'Postal code',
     name: `${AddressPrefix.SHIPPING}PostalCode`
   }
-} as const;
+};

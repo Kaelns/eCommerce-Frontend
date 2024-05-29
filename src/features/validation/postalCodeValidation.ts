@@ -1,4 +1,4 @@
-import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
 
 export default function checkPostalCode(value: string, pattern?: RegExp): string {
   if (pattern) {

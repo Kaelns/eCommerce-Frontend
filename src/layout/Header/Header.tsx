@@ -4,12 +4,12 @@ import { Outlet } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
-import { BasketLink } from '@/components/ui/BasketLink';
+import { BasketLink } from '@/components/BasketLink/BasketLink';
 import { UserPopover } from '@/components/UserPopover/UserPopover';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
 
 import styles from './Header.module.scss';
-import { Burger } from '@/components/ui/Burger';
+import { Burger } from '@/components/Burger/Burger';
 
 export function Header(): React.ReactNode {
   const theme = useTheme();

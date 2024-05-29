@@ -1,13 +1,12 @@
-import { SetStateAction } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
+import { IShowPasswordBtnProps } from '@/features/AuthorizationForms/components/ShowPasswordBtn/ShowPasswordBtn.interface';
 
-interface IProps {
-  setShowPassword: React.Dispatch<SetStateAction<boolean>>;
-}
-
-export function ShowPasswordBtn({ setShowPassword, children }: PropsWithChildren<IProps>): React.ReactNode {
+export function ShowPasswordBtn({
+  setShowPassword,
+  children
+}: PropsWithChildren<IShowPasswordBtnProps>): React.ReactNode {
   return (
     <InputAdornment position="end">
       <IconButton onClick={() => setShowPassword((value) => !value)} edge="end">

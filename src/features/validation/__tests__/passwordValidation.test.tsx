@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import checkPassword from '@/features/validation/passwordValidation';
 
 describe('Given checkPassword function', () => {

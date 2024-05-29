@@ -5,9 +5,9 @@ import { useState } from 'react';
 import ICredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock.interface';
 import checkEmail from '@/features/validation/emailValidation';
 import checkPassword from '@/features/validation/passwordValidation';
-import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
-import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/validationInput.enum';
-import { ShowPasswordBtn } from '@/features/AuthorizationForms/components/ShowPasswordBtn';
+import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput.enums';
+import { ShowPasswordBtn } from '@/features/AuthorizationForms/components/ShowPasswordBtn/ShowPasswordBtn';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 
 export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICredentialBlock): React.ReactNode {
@@ -18,7 +18,7 @@ export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICre
       <ValidationInput
         label={INPUTS.email.label}
         name={INPUTS.email.name}
-        onChange={(event) => onChangeFunction(event, checkEmail)}
+        onChange={onChangeFunction(checkEmail)}
         error={!!inputsErrors[INPUTS.email.name]}
       >
         <FormHelperText error>{inputsErrors[INPUTS.email.name] && inputsErrors[INPUTS.email.name]}</FormHelperText>
@@ -27,7 +27,7 @@ export default function CredentialBlock({ onChangeFunction, inputsErrors }: ICre
         type={showPassword ? InputType.TEXT : InputType.PASSWORD}
         label={INPUTS.password.label}
         name={INPUTS.password.name}
-        onChange={(event) => onChangeFunction(event, checkPassword)}
+        onChange={onChangeFunction(checkPassword)}
         error={!!inputsErrors[INPUTS.password.name]}
         endAdornment={
           <ShowPasswordBtn setShowPassword={setShowPassword}>
