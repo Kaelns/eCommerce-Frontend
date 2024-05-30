@@ -23,7 +23,7 @@ import { Title } from '@/components/ui/Title';
 import { checkAllInputs } from '@/features/AuthorizationForms/forms.helper';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { createCustomer } from '@/utils/createCustomerApi';
+import { createCustomer } from '@/services/createCustomerApi';
 
 import styles from './RegistrationForm.module.scss';
 

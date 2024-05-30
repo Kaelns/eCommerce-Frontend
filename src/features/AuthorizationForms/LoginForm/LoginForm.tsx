@@ -5,7 +5,7 @@ import ButtonCustom from '@/features/AuthorizationForms/components/ButtonCustom/
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/forms.helper';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { handleAuthentication } from '@/utils/createAuthApi';
+import { handleAuthentication } from '@/services/createAuthApi';
 import { ROUTES } from '@/data/enum/routes.enum';
 
 import styles from './LoginForm.module.scss';

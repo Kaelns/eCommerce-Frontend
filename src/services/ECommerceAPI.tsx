@@ -2,12 +2,13 @@ import { ClientResponse } from '@commercetools/sdk-client-v2';
 import { CustomerPagedQueryResponse, CustomerSignInResult } from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
 import { ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
+import { checkUndefined } from '@/utils/checkUndefined';
 
 class ECommerceAPI {
-  private apiRoot: ReturnType<ApiClient['getApiRoot']>;
+  private api: ApiClient;
 
   constructor() {
-    this.apiRoot = new ApiClient().getApiRoot();
+    this.api = new ApiClient();
   }
 
   async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -23,7 +24,6 @@ class ECommerceAPI {
       defaultBillingAddress,
       defaultShippingAddress
     } = params;
-    this.apiRoot = new ApiClient().getApiRoot();
     const customerData: ICreateCustomerParams = {
       firstName,
       lastName,
@@ -34,26 +34,31 @@ class ECommerceAPI {
       shippingAddresses
     };
 
-    if (billingAddresses !== undefined) {
+    if (checkUndefined(billingAddresses)) {
       customerData.billingAddresses = billingAddresses;
     }
-    if (defaultBillingAddress !== undefined) {
+    if (checkUndefined(defaultBillingAddress)) {
       customerData.defaultBillingAddress = defaultBillingAddress;
     }
-    if (defaultShippingAddress !== undefined) {
+    if (checkUndefined(defaultShippingAddress)) {
       customerData.defaultShippingAddress = defaultShippingAddress;
     }
-    return this.apiRoot
+    return this.api
+      .getApiRoot()
       .customers()
       .post({
         body: customerData
       })
-      .execute() as Promise<ClientResponse<CustomerSignInResult>>;
+      .execute()
+      .then((response) => {
+        this.api.getTokenCache();
+        return response;
+      }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
   async authenticateCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
-    this.apiRoot = new ApiClient(email, password).getApiRoot();
-    return this.apiRoot
+    return this.api
+      .getApiRootWithPassword(email, password)
       .me()
       .login()
       .post({
@@ -62,12 +67,16 @@ class ECommerceAPI {
           password
         }
       })
-      .execute() as Promise<ClientResponse<CustomerSignInResult>>;
+      .execute()
+      .then((response) => {
+        this.api.getTokenCache();
+        return response;
+      }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
   async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
-    this.apiRoot = new ApiClient().getApiRoot();
-    return this.apiRoot
+    return this.api
+      .getApiRoot()
       .customers()
       .get({
         queryArgs: {
