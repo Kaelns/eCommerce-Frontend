@@ -1,0 +1,13 @@
+@use 'constants';
+
+%animation {
+  transition: all 0.3s ease-out;
+}
+
+%border-radius {
+  border-radius: 40px;
+}
+
+%no-text-transform {
+  text-transform: none;
+}

@@ -6,6 +6,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -21,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "vite-plugin-svgr/client"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*", "./dist/*", ""],

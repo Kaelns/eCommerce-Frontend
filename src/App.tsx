@@ -1,14 +1,13 @@
-import { ReactElement } from 'react';
-import classes from './App.module.css';
-import reactLogo from '@/assets/react.svg';
+import { Router } from '@/features/Router/Router';
+import { AuthContextProvider } from '@/context/AuthContext/AuthContext';
+import { ThemeProvider } from '@/features/ThemeProvider/ThemeProvider';
 
-function App(): ReactElement {
+export function App(): React.ReactNode {
   return (
-    <h1 className={classes.title}>
-      Welcome to eCommerce Application
-      <img src={reactLogo} className="logo" alt="react logo" />
-    </h1>
+    <ThemeProvider>
+      <AuthContextProvider>
+        <Router />
+      </AuthContextProvider>
+    </ThemeProvider>
   );
 }
-
-export default App;

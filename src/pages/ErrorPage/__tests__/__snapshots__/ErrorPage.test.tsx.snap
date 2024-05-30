@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_4d13f2 MuiBox-root css-0"
+  >
+    <img
+      alt="404"
+      class="_image_4d13f2 MuiBox-root css-0"
+      src="/src/assets/not-found.png"
+    />
+    <div
+      class="MuiButtonGroup-root MuiButtonGroup-contained css-1d9bq45-MuiButtonGroup-root"
+      role="group"
+    >
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_4d13f2 MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="_container_4d0afd MuiBox-root css-0"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="ArrowBackIosIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+            />
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 _text_4d0afd  css-ahj2mt-MuiTypography-root"
+          >
+            Go back
+          </p>
+        </div>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_4d13f2 MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="_container_4d0afd MuiBox-root css-0"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 _text_4d0afd  css-ahj2mt-MuiTypography-root"
+          >
+            Go main
+          </p>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="ArrowForwardIosIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+            />
+          </svg>
+        </div>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given CatalogPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <h5
+    class="MuiTypography-root MuiTypography-h5 _catalog_b2ca2b css-bezmlo-MuiTypography-root"
+  >
+    Catalog Page
+  </h5>
+</DocumentFragment>
+`;

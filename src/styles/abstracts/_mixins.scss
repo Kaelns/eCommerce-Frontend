@@ -1,0 +1,29 @@
+@use 'constants';
+
+@mixin animation($time: 0.5s, $prop: all) {
+  transition: $prop $time ease-out;
+}
+
+@mixin mediaHover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+@mixin media($breakpoint) {
+  @media (max-width: ($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: (constants.$width-tablet - 1)) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: (constants.$width-mobile - 1)) {
+    @content;
+  }
+}
