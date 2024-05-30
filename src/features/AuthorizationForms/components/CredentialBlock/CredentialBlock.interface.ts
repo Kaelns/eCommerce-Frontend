@@ -1,9 +1,7 @@
-import { IInputsErrors } from '@/features/AuthorizationForms/data/InputTypes';
+import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
+import { IInputsErrors } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 
 export default interface ICredentialBlock {
-  onChangeFunction: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    checkFunction: (value: string) => string
-  ) => void;
+  onChangeFunction: HandleOnChangeInput;
   inputsErrors: IInputsErrors;
 }

@@ -1,5 +1,5 @@
-import { ValidationErrors } from '@/data/enum/validationError.enum';
-import { checkWhiteSpace, checkAtSymbol, checkMainPart, checkDomainPart } from './validationRules';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
+import { checkWhiteSpace, checkAtSymbol, checkMainPart, checkDomainPart } from './data/validationRules';
 
 export default function checkEmail(value: string): string {
   if (checkWhiteSpace(value)) {

@@ -1,4 +1,4 @@
-import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
+import { OnChangeComboBox } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 
 export interface IOptions {
   label: string;
@@ -6,7 +6,7 @@ export interface IOptions {
   postalCodePattern: RegExp;
 }
 
-export interface IProps {
+export interface IComboBoxProps {
   id: string;
   label: string;
   name: string;

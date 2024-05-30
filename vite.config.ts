@@ -12,7 +12,8 @@ export default defineConfig({
   test: {
     globals: true,
     include: ['./src/**/*.test.tsx'],
-    environment: 'jsdom'
+    environment: 'jsdom',
+    setupFiles: ['./src/__tests__/setup.tsx']
   },
   resolve: {
     alias: {
@@ -48,7 +49,7 @@ export default defineConfig({
   optimizeDeps: {
     esbuildOptions: {
       define: {
-        global: 'globalThis'
+        global: 'window'
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({

@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given BasketPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <h5
+    class="MuiTypography-root MuiTypography-h5 _basket_01fa68 css-bezmlo-MuiTypography-root"
+  >
+    Basket Page
+  </h5>
+</DocumentFragment>
+`;

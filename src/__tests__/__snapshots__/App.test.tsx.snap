@@ -137,8 +137,8 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               role="tablist"
             >
               <button
-                aria-selected="true"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                aria-selected="false"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="0"
                 type="button"
@@ -150,7 +150,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -162,7 +162,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -174,7 +174,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -186,7 +186,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -198,7 +198,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -210,7 +210,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -222,7 +222,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -234,7 +234,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _horizontalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"

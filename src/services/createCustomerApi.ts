@@ -1,9 +1,9 @@
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
-import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
-import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
-import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
+import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 
 export async function createCustomer(
   inputsValues: IInputsValues,
@@ -72,7 +72,7 @@ export async function createCustomer(
       textAlert: AlertsText.SUCCESS_TEXT
     });
   } catch (error) {
-    console.log(error);
+    console.warn(error);
     if (error instanceof Error) {
       if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
         setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));

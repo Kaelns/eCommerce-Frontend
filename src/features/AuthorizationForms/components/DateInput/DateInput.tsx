@@ -1,20 +1,13 @@
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker, DatePickerProps } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { FormHelperText, InputLabel } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { useState, SetStateAction } from 'react';
-import { IInputsValues } from '@/features/AuthorizationForms/data/InputTypes';
-import { FORMAT, OPEN_TO } from '@/features/AuthorizationForms/components/DateInput/dateInput.constants';
+import { useState } from 'react';
+import { FORMAT, OPEN_TO } from '@/features/AuthorizationForms/components/DateInput/DateInput.constant';
+import { IDateInputProps } from '@/features/AuthorizationForms/components/DateInput/DateInput.interface';
 
-interface IProps extends DatePickerProps<dayjs.Dayjs> {
-  label: string;
-  name: string;
-  validationChecks: (value: string) => string;
-  setInputs: React.Dispatch<SetStateAction<IInputsValues>>;
-}
-
-export function DateInput({ label, name, validationChecks, setInputs, ...props }: IProps): JSX.Element {
+export function DateInput({ label, name, validationChecks, setInputs, ...props }: IDateInputProps): React.ReactNode {
   const [valueMatch, setValueMatch] = useState('');
 
   const onChange = (date: dayjs.Dayjs | null): void => {

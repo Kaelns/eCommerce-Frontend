@@ -1,11 +1,8 @@
-import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import { InputLabel } from '@mui/material';
+import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput.enums';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
-import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/validationInput.enum';
-
-interface IProps extends OutlinedInputProps {
-  label: string;
-}
+import { IValidationInputProps } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput.interface';
 
 export function ValidationInput({
   label,
@@ -13,7 +10,7 @@ export function ValidationInput({
   type = InputType.TEXT,
   required = true,
   ...props
-}: PropsWithChildren<IProps>): JSX.Element {
+}: PropsWithChildren<IValidationInputProps>): React.ReactNode {
   return (
     <>
       <InputLabel required>{label}</InputLabel>

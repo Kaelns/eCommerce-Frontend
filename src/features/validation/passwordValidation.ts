@@ -1,12 +1,12 @@
-import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import {
   checkUppercaseLetter,
   checkLowercaseLetter,
   checkDigit,
   checkSpecialChar,
   checkWhiteSpace
-} from './validationRules';
-import { PASSWORD_LENGTH } from '@/features/validation/validation.constants';
+} from './data/validationRules';
+import { PASSWORD_LENGTH } from '@/features/validation/data/validation.constants';
 
 export default function checkPassword(value: string): string {
   if (value.length < PASSWORD_LENGTH) {
