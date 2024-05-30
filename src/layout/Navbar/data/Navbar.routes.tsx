@@ -1,8 +1,11 @@
-import HowToRegIcon from '@mui/icons-material/HowToReg';
 import KeyIcon from '@mui/icons-material/Key';
-import { ROUTES } from '@/data/enum/routes.enum';
+import InfoIcon from '@mui/icons-material/Info';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import CategoryIcon from '@mui/icons-material/Category';
+import { ROUTES } from '@/features/Router/data/Router.enum';
 import { UserAvatarPopover } from '@/components/UserAvatarPopover/UserAvatarPopover';
-import { TextWithElBeforeOrAfter } from '@/components/ui/TextWithElBeforeOrAfter/TextWithElBeforeOrAfter';
+import { TextWithElem } from '@/components/TextWithElem/TextWithElem';
 
 export const mainRoutes = {
   [ROUTES.MAIN]: 'Main',
@@ -16,19 +19,23 @@ export const mainRoutes = {
   [ROUTES.DETAILED_PRODUCT]: 'Detailed Product'
 };
 
-export const navbarRoutes = {
+export const headerRoutes = {
   [ROUTES.MAIN]: 'Main',
   [ROUTES.CATALOG]: 'Catalog',
   [ROUTES.ABOUT_US]: 'About Us'
 };
 
-export const nonAuthorizedRoutes = {
-  [ROUTES.LOGIN]: <TextWithElBeforeOrAfter icon={<KeyIcon fontSize="small" />}>Login</TextWithElBeforeOrAfter>,
-  [ROUTES.REGISTRATION]: (
-    <TextWithElBeforeOrAfter icon={<HowToRegIcon fontSize="small" />}>Register</TextWithElBeforeOrAfter>
-  )
+export const headerBurgerRoutes = {
+  [ROUTES.MAIN]: <TextWithElem icon={<MenuBookIcon fontSize="small" />}>Main</TextWithElem>,
+  [ROUTES.CATALOG]: <TextWithElem icon={<CategoryIcon fontSize="small" />}>Catalog</TextWithElem>,
+  [ROUTES.ABOUT_US]: <TextWithElem icon={<InfoIcon fontSize="small" />}>About Us</TextWithElem>
 };
 
-export const authorizedRoutes = {
+export const nonAuthorizedUserRoutes = {
+  [ROUTES.LOGIN]: <TextWithElem icon={<KeyIcon fontSize="small" />}>Login</TextWithElem>,
+  [ROUTES.REGISTRATION]: <TextWithElem icon={<HowToRegIcon fontSize="small" />}>Register</TextWithElem>
+};
+
+export const authorizedUserRoutes = {
   [ROUTES.USER]: <UserAvatarPopover />
 };

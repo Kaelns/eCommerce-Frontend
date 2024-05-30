@@ -10,7 +10,7 @@ export const AuthContext = createContext<IAuthState | null>(null);
 
 interface IProps {}
 
-export function AuthContextProvider({ children }: PropsWithChildren<IProps>): JSX.Element {
+export function AuthContextProvider({ children }: PropsWithChildren<IProps>): React.ReactNode {
   const [authUserToken, setAuthUserToken] = useState('');
 
   const value = useMemo(

@@ -1,6 +1,6 @@
-import { ValidationErrors } from '@/data/enum/validationError.enum';
-import { checkJustLetterAndSpace, checkLength } from '@/features/validation/validationRules';
-import { GENERAL_LENGTH } from '@/features/validation/validation.constants';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
+import { checkJustLetterAndSpace, checkLength } from '@/features/validation/data/validationRules';
+import { GENERAL_LENGTH } from '@/features/validation/data/validation.constants';
 
 export default function checkGeneralRule(value: string): string {
   if (checkLength(GENERAL_LENGTH, value)) {

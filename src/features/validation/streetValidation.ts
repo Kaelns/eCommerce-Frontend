@@ -1,6 +1,6 @@
-import { ValidationErrors } from '@/data/enum/validationError.enum';
-import { checkLength } from './validationRules';
-import { GENERAL_LENGTH } from './validation.constants';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
+import { checkLength } from './data/validationRules';
+import { GENERAL_LENGTH } from './data/validation.constants';
 
 export default function checkStreet(value: string): string {
   if (checkLength(GENERAL_LENGTH, value)) {

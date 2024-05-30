@@ -1,0 +1,142 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given MainPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <h5
+    class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+  >
+    Main page
+  </h5>
+  <nav
+    class="MuiBox-root css-0"
+  >
+    <div
+      class="MuiTabs-root MuiTabs-vertical css-1g4ac1o-MuiTabs-root"
+    >
+      <div
+        class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+        style="overflow: hidden; margin-right: 0px;"
+      >
+        <div
+          aria-orientation="vertical"
+          class="MuiTabs-flexContainer MuiTabs-flexContainerVertical css-lfwcke-MuiTabs-flexContainer"
+          role="tablist"
+        >
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            Main
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            User
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Error
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Login
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Basket
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Catalog
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            About Us
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Register
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Detailed Product
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+        <span
+          class="MuiTabs-indicator css-107nzro-MuiTabs-indicator"
+          style="top: 0px; height: 0px;"
+        />
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

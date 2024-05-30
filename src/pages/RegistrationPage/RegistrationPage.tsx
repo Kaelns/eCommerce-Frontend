@@ -1,12 +1,12 @@
 import { Box, Button, Chip, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import RegistrationForm from '@/features/AuthorizationForms/RegistrationForm/RegistrationForm';
-import { ROUTES } from '@/data/enum/routes.enum';
+import { ROUTES } from '@/features/Router/data/Router.enum';
 
 import styles from './RegistrationPage.module.scss';
-import { Title } from '@/components/ui/Title';
+import { Title } from '@/components/Title/Title';
 
-export function RegistrationPage(): JSX.Element {
+export function RegistrationPage(): React.ReactNode {
   const navigate = useNavigate();
 
   return (

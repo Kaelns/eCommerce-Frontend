@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { checkAge, checkLength } from '@/features/validation/validationRules';
+import { checkAge, checkLength } from '@/features/validation/data/validationRules';
 
 describe('Given checkAge function', () => {
   test('When birthday less than 13 years ago, should return true', () => {

@@ -1,3 +1,5 @@
+// TODO Move to a separate component Alert
+
 export enum Alerts {
   SUCCESS = 'success',
   ERROR = 'error'

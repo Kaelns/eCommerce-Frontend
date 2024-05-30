@@ -29,6 +29,7 @@ module.exports = {
         max: 3
       }
     ],
+    'react-hooks/exhaustive-deps': 'error',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
     'react/react-in-jsx-scope': 'off',

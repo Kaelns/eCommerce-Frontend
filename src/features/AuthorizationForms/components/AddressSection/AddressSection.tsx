@@ -1,22 +1,19 @@
 import { FormHelperText } from '@mui/material';
 import ComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
-import OnChangeComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
+import { OnChangeComboBox } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import {
   ADDRESSES_INPUT_KEYS,
   ADDRESS_INPUTS,
   COUNTRY_LIST
 } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
-import { AddressPrefix } from '@/features/AuthorizationForms/data/addressPrefix.enum';
-import { AddressProperty } from '@/features/AuthorizationForms/data/addressProperty.enum';
-import { IInputsErrors } from '@/features/AuthorizationForms/data/InputTypes';
-import { INPUTS } from '@/features/AuthorizationForms/data/forms.constants';
+import { IInputsErrors } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
+import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
+import { AddressPrefix, AddressProperty } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
 
 interface IProps {
-  onChangeFunction: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    checkFunction: (value: string) => string
-  ) => void;
+  onChangeFunction: HandleOnChangeInput;
   onChangeComboBox: OnChangeComboBox;
   inputsErrors: IInputsErrors;
   prefix: AddressPrefix;
@@ -27,7 +24,7 @@ export default function AddressSection({
   onChangeComboBox,
   inputsErrors,
   prefix
-}: IProps): JSX.Element {
+}: IProps): React.ReactNode {
   return (
     <>
       <ComboBox
@@ -43,9 +40,7 @@ export default function AddressSection({
           key={inputName}
           label={INPUTS[`${prefix}${inputName}`].label}
           name={INPUTS[`${prefix}${inputName}`].name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-            onChangeFunction(event, ADDRESS_INPUTS[inputName])
-          }
+          onChange={onChangeFunction(ADDRESS_INPUTS[inputName])}
         >
           <FormHelperText error>
             {inputsErrors[INPUTS[`${prefix}${inputName}`].name] && inputsErrors[INPUTS[`${prefix}${inputName}`].name]}

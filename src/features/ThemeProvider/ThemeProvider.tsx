@@ -3,8 +3,7 @@ import { CssBaseline } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 import { theme } from '@/features/ThemeProvider/theme/theme';
 
-interface IProps {}
-export function ThemeProvider({ children }: PropsWithChildren<IProps>): JSX.Element {
+export function ThemeProvider({ children }: PropsWithChildren): React.ReactNode {
   return (
     <CssVarsProvider theme={theme}>
       <StyledEngineProvider injectFirst>

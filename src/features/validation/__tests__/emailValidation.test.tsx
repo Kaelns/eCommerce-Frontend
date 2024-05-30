@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import checkEmail from '../emailValidation';
-import { ValidationErrors } from '@/data/enum/validationError.enum';
+import { ValidationErrors } from '@/features/validation/data/validation.enum';
 
 describe('Given checkEmail function', () => {
   test('When string start with whitespace, should return correct error', () => {
