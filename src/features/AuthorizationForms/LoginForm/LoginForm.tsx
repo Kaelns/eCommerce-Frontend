@@ -5,9 +5,8 @@ import ButtonCustom from '@/components/ButtonCustom/ButtonCustom';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/data/AuthorizationForms.helpers';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
-import { handleAuthentication } from '@/utils/createAuthApi';
+import { handleAuthentication } from '@/services/createAuthApi';
 import { ROUTES } from '@/features/Router/data/Router.enum';
-
 import styles from './LoginForm.module.scss';
 import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
 

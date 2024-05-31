@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import checkPostalCode from '@/features/validation/postalCodeValidation';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
-import { createCustomer } from '@/utils/createCustomerApi';
+import { createCustomer } from '@/services/createCustomerApi';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { OnChangeComboBox } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import { IInputsValues, IInputsErrors } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
