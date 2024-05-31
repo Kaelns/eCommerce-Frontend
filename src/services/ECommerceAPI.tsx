@@ -85,6 +85,19 @@ class ECommerceAPI {
       })
       .execute() as Promise<ClientResponse<CustomerPagedQueryResponse>>;
   }
+
+  async getProductsAll(): Promise<ClientResponse> {
+    return this.api
+      .getApiRoot()
+      .productProjections()
+      .search()
+      .get({ queryArgs: { limit: 5, 'filter.query': 'variants.attributes.color-filter.key:"#000"' } })
+      .execute() as Promise<ClientResponse>;
+  }
+
+  async getCategoryAll(): Promise<ClientResponse> {
+    return this.api.getApiRoot().categories().get().execute() as Promise<ClientResponse>;
+  }
 }
 
 export const eCommerceAPI = new ECommerceAPI();

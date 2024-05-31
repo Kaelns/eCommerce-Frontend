@@ -6,6 +6,18 @@ import { INavbarProps } from '@/layout/Navbar/data/Navbar.interface';
 import { useNavbar } from '@/layout/Navbar/hooks/useNavbar';
 
 import styles from './Navbar.module.scss';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
+
+async function fetchProducts(): Promise<void> {
+  try {
+    const response = await eCommerceAPI.getCategoryAll();
+    console.log(response.body.results);
+    const response2 = await eCommerceAPI.getProductsAll();
+    console.log(response2.body.results);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+}
 
 export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarProps): React.ReactNode {
   const navigate = useNavigate();
@@ -21,6 +33,10 @@ export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarPr
     return (): void => {
       if (onLinkClick) {
         onLinkClick();
+      }
+      console.log(route);
+      if (route === '/catalog') {
+        fetchProducts();
       }
       navigate(route);
     };
