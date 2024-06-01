@@ -3,6 +3,9 @@
 }
 
 .productsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   margin-top: 1rem;
 }
 
@@ -12,9 +15,9 @@
 }
 
 .filterForm {
-  flex: 2;
+  flex: 2.2;
 }
 
 .products {
-  flex: 8;
+  flex: 7.8;
 }

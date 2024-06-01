@@ -2,6 +2,8 @@ import { Box } from '@mui/material';
 import { Search } from '@/components/Search/Search';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { arrayCategories } from '@/pages/CatalogPage/mock';
+import { FilterForm } from '@/features/FilterForm/FilterForm';
+import { Products } from '@/pages/CatalogPage/components/Products/Products';
 
 import styles from './CatalogPage.module.scss';
 
@@ -12,8 +14,8 @@ export function CatalogPage(): React.ReactNode {
       <Box className={styles.productsContainer}>
         <Search />
         <Box className={styles.catalogContainer}>
-          {/* <FilterForm className={styles.filterForm} /> */}
-          {/* <Products className={styles.products} /> */}
+          <FilterForm className={styles.filterForm} />
+          <Products className={styles.products} />
         </Box>
         {/* <PageSelector /> */}
       </Box>

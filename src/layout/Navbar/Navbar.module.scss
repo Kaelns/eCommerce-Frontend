@@ -7,7 +7,7 @@
 .buttons {
   @extend %no-text-transform;
   @extend %animation;
-  border-radius: 0.5rem;
+  border-radius: var(--mui-shape-borderRadius);
 
   &:hover {
     background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity));

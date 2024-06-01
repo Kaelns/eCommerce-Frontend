@@ -4,13 +4,13 @@
   width: 100%;
   position: relative;
   margin-left: 0;
-  border-radius: 0.4rem;
-  background-color: var(--color-primary-transparent);
+  border-radius: var(--mui-shape-borderRadius);
+  box-shadow: var(--mui-shadows-1);
 
   @extend %animation;
 
   &:hover {
-    background-color: var(--color-primary-transparent-hover);
+    background-color: var(--color-primary-transparent);
   }
 }
 

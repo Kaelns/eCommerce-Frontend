@@ -9,6 +9,7 @@ import { handleAuthentication } from '@/services/createAuthApi';
 import { ROUTES } from '@/features/Router/data/Router.enum';
 import styles from './LoginForm.module.scss';
 import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
+import { InputReactEvent } from '@/data/types/InputReactEvent';
 
 export default function LoginForm(): React.ReactNode {
   const navigate = useNavigate();
@@ -19,11 +20,7 @@ export default function LoginForm(): React.ReactNode {
   const onSubmit = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-
       const { email, password } = inputs;
-      //  TODO remove console
-      // console.log(`${email} ${password}`);
-
       await handleAuthentication(email, password, setAuthUserToken, setInputsError);
     },
     [inputs, setAuthUserToken]
@@ -31,7 +28,7 @@ export default function LoginForm(): React.ReactNode {
 
   const handleOnChangeInput: HandleOnChangeInput = useCallback(
     (checkFunction: (value: string, pattern?: RegExp) => string) =>
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+      (e: InputReactEvent): void => {
         const newValue = e.target.value;
         const error = checkFunction(newValue);
         setInputsError((values) => ({ ...values, [e.target.name]: error }));
