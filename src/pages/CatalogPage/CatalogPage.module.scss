@@ -1,3 +1,20 @@
+.pageContainer {
+  margin-top: -2rem;
+}
+
+.productsContainer {
+  margin-top: 1rem;
+}
+
 .catalogContainer {
-  margin-top: -3rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.filterForm {
+  flex: 2;
+}
+
+.products {
+  flex: 8;
 }
