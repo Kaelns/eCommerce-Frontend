@@ -1,8 +1,15 @@
+import { Box } from '@mui/material';
 import { Title } from '@/components/Title/Title';
+import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
+import { arrayCategories } from '@/pages/CatalogPage/mock';
+
 import styles from './CatalogPage.module.scss';
 
-// interface IProps {}
-
-export function CatalogPage(/* props: IProps */): React.ReactNode {
-  return <Title className={styles.catalog}>Catalog Page</Title>;
+export function CatalogPage(): React.ReactNode {
+  return (
+    <Box className={styles.catalogContainer}>
+      <Breadcrumb category={arrayCategories[10]} />
+      <Title className={styles.catalog}>Catalog Page</Title>;
+    </Box>
+  );
 }
