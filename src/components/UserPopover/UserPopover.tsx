@@ -1,6 +1,7 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Badge, Box, Button, IconButton, Popover } from '@mui/material';
 import { useCallback, useState } from 'react';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
@@ -26,6 +27,7 @@ export function UserPopover(): React.ReactNode {
 
   const logOut = (): void => {
     setAuthUserToken('');
+    eCommerceAPI.logoutCustomer();
   };
 
   return (
