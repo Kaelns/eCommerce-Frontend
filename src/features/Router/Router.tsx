@@ -18,7 +18,9 @@ export function Router(): React.ReactNode {
       <Routes>
         <Route element={<MainContainer />}>
           <Route path={ROUTES.MAIN} element={<MainPage />} />
-          <Route path={ROUTES.CATALOG} element={<CatalogPage />} />
+          <Route path={ROUTES.CATALOG} element={<CatalogPage />}>
+            <Route path={ROUTES.CATALOG_CATEGORY} />
+          </Route>
           <Route path={ROUTES.ABOUT_US} element={<AboutUsPage />} />
           <Route path={ROUTES.DETAILED_PRODUCT} element={<DetailedProductPage />}>
             <Route path={ROUTES.DETAILED_PRODUCT_ID} />

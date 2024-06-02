@@ -1,0 +1,22 @@
+.subAccordionWrapper {
+  padding-left: 0.2rem;
+}
+
+.pointerEventsOn {
+  pointer-events: all;
+}
+
+.pointerEventsOff {
+  pointer-events: none;
+}
+
+.btn {
+  width: 100%;
+  text-transform: none;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.accordionActive {
+  background-color: var(--color-primary-transparent);
+}

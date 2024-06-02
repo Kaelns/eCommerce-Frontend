@@ -1,11 +1,8 @@
-import { Category } from '@commercetools/platform-sdk';
 import { BreadcrumbsProps } from '@mui/material';
-
-export interface ICategory {
-  id: string;
-  name: string;
-}
+import { ITreeNode } from '@/data/interface/ITreeNode';
 
 export interface IBreadcrumbProps extends BreadcrumbsProps {
-  category: Category;
+  categoryKey: string;
+  categoryTree: ITreeNode[];
+  setCategoryKey: React.Dispatch<React.SetStateAction<string>>;
 }

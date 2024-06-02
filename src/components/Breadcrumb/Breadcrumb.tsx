@@ -1,36 +1,36 @@
 import { Breadcrumbs, Button } from '@mui/material';
 import { useCallback } from 'react';
 import { IBreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb.interface';
-import { arrayCategories } from '@/pages/CatalogPage/mock';
-import { convertToBreadcrumb } from '@/components/Breadcrumb/Breadcrumb.helpers';
+import { convertToBreadcrumb } from '@/components/Breadcrumb/helpers/convertToBreadcrumb';
 import { LinkBtn } from '@/components/LinkBtn/LinkBtn';
 
 import styles from './Breadcrumb.module.scss';
+import { fromKeyToName } from '@/utils/fromKeyToName';
 
-export function Breadcrumb({ category }: IBreadcrumbProps): React.ReactNode {
-  const arrToRender = convertToBreadcrumb(category, arrayCategories);
+export function Breadcrumb({ categoryKey, categoryTree, setCategoryKey }: IBreadcrumbProps): React.ReactNode {
+  const categoriesToRender = categoryKey ? convertToBreadcrumb(categoryKey, categoryTree) : 'no-category';
+  const arrToRender = categoriesToRender.trim().split(' ');
 
-  // TODO navigate to category
-  const navigateTo = useCallback(
-    (data: string) => (): void => {
-      console.log(data);
+  const setCategory = useCallback(
+    (key: string) => (): void => {
+      setCategoryKey(key);
     },
-    []
+    [setCategoryKey]
   );
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      {arrToRender.map((categoryData, index) => {
+      {arrToRender.map((key, index) => {
         if (index !== arrToRender.length - 1) {
           return (
-            <LinkBtn key={categoryData.id} navigateTo={navigateTo(categoryData.id)}>
-              {categoryData.name}
+            <LinkBtn key={key} navigateTo={setCategory(key)}>
+              {fromKeyToName(key)}
             </LinkBtn>
           );
         }
         return (
-          <Button disabled key={categoryData.id} className={styles.btn}>
-            {categoryData.name}
+          <Button disabled key={key} className={styles.btn}>
+            {fromKeyToName(key)}
           </Button>
         );
       })}
