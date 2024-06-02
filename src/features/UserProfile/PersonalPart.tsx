@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button, FormHelperText } from '@mui/material';
 import dayjs from 'dayjs';
 
-import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 import { Title } from '@/components/Title/Title';

@@ -16,6 +16,7 @@ import { CURRENT_PASSWORD, EMAIL_LABEL, NEW_PASSWORD } from '@/features/UserProf
 export default function CredentialPart({ data }: { data: IUseRegistrationFormReturn }): React.ReactNode {
   const [isChangeMode, setChangeMode] = useState(false);
   const [isChangePasswordMode, setChangePasswordMode] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
 
@@ -48,6 +49,12 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
 
   const handleClickSavePasswordBtn = useCallback(() => {
     //  TODO save changes;
+    console.log(currentPassword);
+    console.log(data.inputsValues[INPUTS.password.name]);
+  }, [currentPassword, data.inputsValues]);
+
+  const handleChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    setCurrentPassword(e.target.value);
   }, []);
 
   return (
@@ -93,6 +100,7 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
           <ValidationInput
             type={showPassword ? InputType.TEXT : InputType.PASSWORD}
             label={CURRENT_PASSWORD}
+            onChange={handleChangePassword}
             endAdornment={
               <ShowPasswordBtn setShowPassword={setShowPassword}>
                 {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -119,7 +127,7 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
           </ValidationInput>
           <Button
             variant="outlined"
-            disabled={!!data.inputsErrors[INPUTS.email.name]}
+            disabled={currentPassword === '' ? true : !!data.inputsErrors[INPUTS.password.name]}
             onClick={handleClickSavePasswordBtn}
           >
             Save
