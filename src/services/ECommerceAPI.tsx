@@ -1,5 +1,9 @@
 import { ClientResponse } from '@commercetools/sdk-client-v2';
-import { CustomerPagedQueryResponse, CustomerSignInResult } from '@commercetools/platform-sdk';
+import {
+  CustomerPagedQueryResponse,
+  CustomerSignInResult,
+  ProductProjectionPagedSearchResponse
+} from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
 import { ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { checkUndefined } from '@/utils/checkUndefined';
@@ -52,6 +56,7 @@ class ECommerceAPI {
       .execute()
       .then((response) => {
         this.api.getTokenCache();
+        this.api.getApiRootWithPassword(email, password);
         return response;
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
@@ -84,6 +89,34 @@ class ECommerceAPI {
         }
       })
       .execute() as Promise<ClientResponse<CustomerPagedQueryResponse>>;
+  }
+
+  async getProductsAll(): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
+    return this.api
+      .getApiRoot()
+      .productProjections()
+      .search()
+      .get({ queryArgs: { sort: 'price desc' } })
+      .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
+  }
+
+  // .get({ queryArgs: { limit: 5, 'filter.query': 'variants.attributes.color-filter.key:"#000"' } })
+
+  async getCategoryAll(): Promise<ClientResponse> {
+    return this.api.getApiRoot().categories().get().execute() as Promise<ClientResponse>;
+  }
+
+  async getUser(): Promise<ClientResponse> {
+    return this.api
+      .getApiRootWithAccesToken(this.api.getTokenCache().get().token)
+      .me()
+      .get()
+      .execute() as Promise<ClientResponse>;
+  }
+
+  public logoutCustomer(): void {
+    this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
+    localStorage.removeItem('tokenCache');
   }
 }
 
