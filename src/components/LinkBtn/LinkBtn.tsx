@@ -4,9 +4,9 @@ import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
 import styles from './LinkBtn.module.scss';
 
-export function LinkBtn({ navigateTo, children }: PropsWithChildren<ILinkProps>): React.ReactNode {
+export function LinkBtn({ navigateTo, children, className }: PropsWithChildren<ILinkProps>): React.ReactNode {
   return (
-    <Button variant="text" onClick={navigateTo} className={styles.link}>
+    <Button variant="text" onClick={navigateTo} className={`${className} ${styles.link}`}>
       {children}
     </Button>
   );

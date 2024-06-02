@@ -8,6 +8,7 @@ import { Price } from '@/features/FilterForm/data/FilterForm.type';
 import { RangePriceSlider } from '@/features/FilterForm/components/RangePriceSlider/RangePriceSlider';
 import { TextBold } from '@/components/TextBold/TextBold';
 import { filtersOrder } from '@/features/FilterForm/data/FilterForm.constants';
+import { ColorFilter } from '@/features/FilterForm/components/ColorFilter/ColorFilter';
 
 // todo get max price
 const MIN = 0;
@@ -23,7 +24,7 @@ export function FilterForm({
 
   const filters = {
     [Filters.PRICE]: <RangePriceSlider price={price} setPrice={setPrice} min={MIN} max={MAX} />,
-    [Filters.COLOR]: <Typography>KEsf</Typography>,
+    [Filters.COLOR]: <ColorFilter />,
     [Filters.CATEGORY]: (
       <AccordionTree treeData={categoryTree} categoryKey={categoryKey} setCategoryKey={setCategoryKey} />
     )

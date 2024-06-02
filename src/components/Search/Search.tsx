@@ -1,15 +1,30 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, InputBase, InputBaseProps } from '@mui/material';
+import { Box, InputBase } from '@mui/material';
+import { ISearchProps } from '@/components/Search/Search.interface';
 
 import styles from './Search.module.scss';
 
-export function Search(props: InputBaseProps): React.ReactNode {
+export function Search({ className, setIsSearchInFocus, ...props }: ISearchProps): React.ReactNode {
+  const handleOnFocus = (): void => {
+    setIsSearchInFocus(true);
+  };
+
+  const handleBlur = (): void => {
+    setIsSearchInFocus(false);
+  };
+
   return (
-    <Box className={styles.search}>
+    <Box className={`${className} ${styles.search}`}>
       <Box className={styles.iconWrapper}>
         <SearchIcon fontSize="small" />
       </Box>
-      <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} {...props} className={styles.input} />
+      <InputBase
+        placeholder="Search…"
+        onFocus={handleOnFocus}
+        onBlur={handleBlur}
+        className={styles.input}
+        {...props}
+      />
     </Box>
   );
 }

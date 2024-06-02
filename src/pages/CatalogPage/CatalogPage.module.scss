@@ -1,3 +1,5 @@
+@use '@styles/abstracts/mixins';
+
 .pageContainer {
   margin-top: -2rem;
 }
@@ -20,4 +22,39 @@
 
 .products {
   flex: 7.8;
+}
+
+.breadcrumbBtn {
+  @include mixins.media-tablet {
+    font-size: 1.5rem;
+    padding-inline: 0;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn1 {
+  flex: 1;
+
+  &.active {
+    flex: 10;
+  }
+}
+
+.btn2 {
+  color: var(--mui-palette-text-secondary);
+  text-transform: none;
+  box-shadow: var(--mui-shadows-1);
+  flex: 1;
+}
+
+.drawerContainer {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem;
 }
