@@ -26,6 +26,7 @@ interface IUseRegistrationFormReturn {
   handleToggleDefaultBilling: () => void;
   handleToggleDefaultShipping: () => void;
   setInputsValues: React.Dispatch<SetStateAction<IInputsValues>>;
+  setInputsErrors: React.Dispatch<SetStateAction<IInputsErrors>>;
 }
 
 export type { IAlertData, IUseRegistrationFormReturn };

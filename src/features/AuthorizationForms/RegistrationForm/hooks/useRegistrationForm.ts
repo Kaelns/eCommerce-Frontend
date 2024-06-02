@@ -126,6 +126,7 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
     handleOnChangeComboBox,
     handleToggleDefaultBilling,
     handleToggleDefaultShipping,
-    setInputsValues
+    setInputsValues,
+    setInputsErrors
   };
 };
