@@ -14,56 +14,81 @@ import { InputType } from '@/features/AuthorizationForms/components/ValidationIn
 import checkPassword from '@/features/validation/passwordValidation';
 import { CURRENT_PASSWORD, EMAIL_LABEL, NEW_PASSWORD } from '@/features/UserProfile/UserProfile.constants';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
 
-export default function CredentialPart({ data }: { data: IUseRegistrationFormReturn }): React.ReactNode {
-  const [isChangeMode, setChangeMode] = useState(false);
-  const [isChangePasswordMode, setChangePasswordMode] = useState(false);
+export default function CredentialPart({
+  data,
+  initialValues,
+  setIsActualData
+}: {
+  data: IUseRegistrationFormReturn;
+  initialValues: IResponseUserData;
+  setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
+}): React.ReactNode {
+  const [isChangeMode, setIsChangeMode] = useState(false);
+  const [isChangePasswordMode, setIsChangePasswordMode] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
 
   const handleEditMode = useCallback(() => {
-    setChangeMode((value) => !value);
-  }, []);
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.email.name]: initialValues.email
+    }));
+    setIsChangeMode((value) => !value);
+  }, [initialValues, data]);
 
   const handleClickSaveBtn = useCallback(async () => {
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
         const userData: MyCustomerUpdate = {
-          version: 24,
+          version: initialValues.version,
           actions: [
             {
               action: 'changeEmail',
-              email: '123@22.by'
+              email: data.inputsValues[INPUTS.email.name]!
             }
           ]
         };
         const response = await eCommerceAPI.updateUser(localToken as string, userData);
+        setIsChangeMode(false);
+        setIsActualData(false);
         console.log(response);
       }
     } catch (error) {
       console.error('Error update user email:', error);
     }
-  }, []);
+  }, [data.inputsValues, initialValues.version, setIsActualData]);
 
   const handleClickCancelBtn = useCallback(() => {
     data.setInputsErrors((values) => ({
       ...values,
       [INPUTS.email.name]: ''
     }));
-    setChangeMode((value) => !value);
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.email.name]: undefined
+    }));
+    setIsChangeMode((value) => !value);
   }, [data]);
 
   const handleChangePasswordMode = useCallback(() => {
-    setChangePasswordMode((value) => !value);
+    setIsChangePasswordMode((value) => !value);
   }, []);
+
   const handleCancelPasswordChange = useCallback(() => {
     data.setInputsErrors((values) => ({
       ...values,
       [INPUTS.password.name]: ''
     }));
-    setChangePasswordMode((value) => !value);
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.password.name]: undefined
+    }));
+    setCurrentPassword('');
+    setIsChangePasswordMode((value) => !value);
   }, [data]);
 
   const handleClickSavePasswordBtn = useCallback(async () => {
@@ -72,16 +97,18 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
         const userData: MyCustomerChangePassword = {
-          version: 26,
-          currentPassword: '@q)$+-#)n5O"XzO[',
-          newPassword: '@q)$+-#)n5O"XzO[2'
+          version: initialValues.version,
+          currentPassword,
+          newPassword: data.inputsValues[INPUTS.password.name]!
         };
         const response = await eCommerceAPI.updateUserPassword(
           localToken as string,
           userData,
-          '123@22.by',
+          initialValues.email,
           userData.newPassword
         );
+        setIsChangePasswordMode(false);
+        setIsActualData(false);
         console.log(response);
       }
     } catch (error) {
@@ -89,7 +116,7 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
     }
     console.log(currentPassword);
     console.log(data.inputsValues[INPUTS.password.name]);
-  }, [currentPassword, data.inputsValues]);
+  }, [currentPassword, data.inputsValues, initialValues, setIsActualData]);
 
   const handleChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setCurrentPassword(e.target.value);
@@ -111,7 +138,7 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
         onChange={data.handleOnChangeInput(checkEmail)}
         disabled={!isChangeMode}
         error={!!data.inputsErrors[INPUTS.email.name]}
-        value={data.inputsValues[INPUTS.email.name] ?? ''}
+        value={data.inputsValues[INPUTS.email.name] ?? initialValues.email}
       >
         <FormHelperText error>
           {data.inputsErrors[INPUTS.email.name] && data.inputsErrors[INPUTS.email.name]}

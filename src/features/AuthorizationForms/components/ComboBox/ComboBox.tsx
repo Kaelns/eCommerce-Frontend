@@ -9,7 +9,7 @@ export default function ComboBox({
   name,
   id,
   options,
-  defaultValue,
+  value,
   onChangeComboBox
 }: IComboBoxProps): React.ReactNode {
   return (
@@ -19,6 +19,7 @@ export default function ComboBox({
         id={id}
         onChange={onChangeComboBox}
         options={options}
+        value={value || null}
         renderInput={(params) => <TextField {...params} name={name} />}
       />
     </>

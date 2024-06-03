@@ -10,7 +10,7 @@ export interface IComboBoxProps {
   id: string;
   label: string;
   name: string;
-  defaultValue: string;
+  value: IOptions;
   options: Array<IOptions>;
   onChangeComboBox: OnChangeComboBox;
 }

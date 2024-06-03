@@ -34,7 +34,11 @@ export default function AddressSection({
         name={INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name}
         id={prefix}
         options={COUNTRY_LIST}
-        defaultValue="RU"
+        value={
+          COUNTRY_LIST.filter(
+            (value) => value.code === inputsValues[INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name]
+          )[0] ?? COUNTRY_LIST[0]
+        }
         onChangeComboBox={onChangeComboBox}
       />
 

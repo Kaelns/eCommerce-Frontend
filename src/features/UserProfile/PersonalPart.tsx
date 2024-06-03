@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { Button, FormHelperText } from '@mui/material';
 import dayjs from 'dayjs';
 
-import { version } from 'os';
 import { MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
@@ -15,42 +14,60 @@ import getMinDate from '@/utils/getMinDate';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import checkGeneralRule from '@/features/validation/generalValidation';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
 
-export default function PersonalPart({ data }: { data: IUseRegistrationFormReturn }): React.ReactNode {
-  const [isChangeMode, setChangeMode] = useState(false);
+export default function PersonalPart({
+  data,
+  initialValues,
+  setIsActualData
+}: {
+  data: IUseRegistrationFormReturn;
+  initialValues: IResponseUserData;
+  setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
+}): React.ReactNode {
+  const [isChangeMode, setIsChangeMode] = useState(false);
 
   const handleEditMode = useCallback(() => {
-    setChangeMode((value) => !value);
-  }, []);
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.firstName.name]: initialValues.firstName,
+      [INPUTS.lastName.name]: initialValues.lastName,
+      [INPUTS.birthday.name]: initialValues.birthday
+    }));
+    setIsChangeMode((value) => !value);
+  }, [initialValues, data]);
 
   const handleClickSaveBtn = useCallback(async () => {
+    console.log(initialValues);
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
         const userData: MyCustomerUpdate = {
-          version: 19,
+          version: initialValues.version,
           actions: [
             {
               action: 'setFirstName',
-              firstName: 'Volodya'
+              firstName: data.inputsValues[INPUTS.firstName.name]
             },
             {
               action: 'setLastName',
-              lastName: 'Volikov'
+              lastName: data.inputsValues[INPUTS.lastName.name]
             },
             {
               action: 'setDateOfBirth',
-              dateOfBirth: '1992-03-25'
+              dateOfBirth: data.inputsValues[INPUTS.birthday.name]
             }
           ]
         };
         const response = await eCommerceAPI.updateUser(localToken as string, userData);
         console.log(response);
+        setIsChangeMode(false);
+        setIsActualData(false);
       }
     } catch (error) {
       console.error('Error update user data:', error);
     }
-  }, []);
+  }, [data.inputsValues, initialValues, setIsActualData]);
 
   const handleClickCancelBtn = useCallback(() => {
     data.setInputsErrors((values) => ({
@@ -59,8 +76,14 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
       [INPUTS.lastName.name]: '',
       [INPUTS.birthday.name]: ''
     }));
-    setChangeMode((value) => !value);
-  }, [data]);
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.firstName.name]: undefined,
+      [INPUTS.lastName.name]: undefined,
+      [INPUTS.birthday.name]: initialValues.birthday
+    }));
+    setIsChangeMode((value) => !value);
+  }, [initialValues, data]);
 
   return (
     <>
@@ -76,7 +99,7 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
         label={INPUTS.firstName.label}
         name={INPUTS.firstName.name}
         disabled={!isChangeMode}
-        value={data.inputsValues[INPUTS.firstName.name] ?? ''}
+        value={data.inputsValues[INPUTS.firstName.name] ?? initialValues.firstName}
         onChange={data.handleOnChangeInput(checkGeneralRule)}
       >
         <FormHelperText error>
@@ -87,7 +110,7 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
         label={INPUTS.lastName.label}
         name={INPUTS.lastName.name}
         disabled={!isChangeMode}
-        value={data.inputsValues[INPUTS.lastName.name] ?? ''}
+        value={data.inputsValues[INPUTS.lastName.name] ?? initialValues.lastName}
         onChange={data.handleOnChangeInput(checkGeneralRule)}
       >
         <FormHelperText error>
