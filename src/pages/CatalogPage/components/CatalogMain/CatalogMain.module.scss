@@ -1,0 +1,15 @@
+.filterForm {
+  max-width: 400px;
+}
+
+.products {
+  flex: 7.8;
+}
+
+.drawerContainer {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem;
+}

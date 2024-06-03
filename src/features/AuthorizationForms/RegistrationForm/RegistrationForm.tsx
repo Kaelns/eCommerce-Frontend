@@ -7,7 +7,7 @@ import { Box, FormHelperText, Checkbox, FormControlLabel } from '@mui/material';
 import getMaxDate from '@/utils/getMaxDate';
 import getMinDate from '@/utils/getMinDate';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressSection/AddressSection';
-import ButtonCustom from '@/components/ButtonCustom/ButtonCustom';
+import ButtonCustom from '@/components/buttons/ButtonCustom/ButtonCustom';
 import checkBirthday from '@/features/validation/birthdayValidation';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import checkGeneralRule from '@/features/validation/generalValidation';

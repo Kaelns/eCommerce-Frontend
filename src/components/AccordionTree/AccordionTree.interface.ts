@@ -1,7 +1,7 @@
 import { ITreeNode } from '@/data/interface/ITreeNode';
+import { IFilterState, IAction } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
 
 export interface IAccordionTreeProps {
   treeData: ITreeNode[];
-  categoryKey: string;
-  setCategoryKey: React.Dispatch<React.SetStateAction<string>>;
+  filterReducerHook: [IFilterState, React.Dispatch<IAction>];
 }

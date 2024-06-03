@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Divider, Chip, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import ButtonCustom from '@/components/ButtonCustom/ButtonCustom';
+import ButtonCustom from '@/components/buttons/ButtonCustom/ButtonCustom';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import { checkCredentialInputs } from '@/features/AuthorizationForms/data/AuthorizationForms.helpers';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';

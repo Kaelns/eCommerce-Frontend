@@ -18,6 +18,7 @@ export function Search({ className, setIsSearchInFocus, ...props }: ISearchProps
       <Box className={styles.iconWrapper}>
         <SearchIcon fontSize="small" />
       </Box>
+      {/* TODO value change */}
       <InputBase
         placeholder="Search…"
         onFocus={handleOnFocus}

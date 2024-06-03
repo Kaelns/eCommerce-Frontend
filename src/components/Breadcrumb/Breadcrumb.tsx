@@ -2,25 +2,22 @@ import { Breadcrumbs, Button } from '@mui/material';
 import { useCallback } from 'react';
 import { IBreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb.interface';
 import { convertToBreadcrumb } from '@/components/Breadcrumb/helpers/convertToBreadcrumb';
-import { LinkBtn } from '@/components/LinkBtn/LinkBtn';
+import { LinkBtn } from '@/components/buttons/LinkBtn/LinkBtn';
+import { fromKeyToName } from '@/utils/fromKeyToName';
+import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 
 import styles from './Breadcrumb.module.scss';
-import { fromKeyToName } from '@/utils/fromKeyToName';
 
-export function Breadcrumb({
-  categoryKey,
-  categoryTree,
-  setCategoryKey,
-  className
-}: IBreadcrumbProps): React.ReactNode {
-  const categoriesToRender = categoryKey ? convertToBreadcrumb(categoryKey, categoryTree) : 'no-category';
+export function Breadcrumb({ filterReducerHook, categoryTree, className }: IBreadcrumbProps): React.ReactNode {
+  const [state, dispatch] = filterReducerHook;
+  const categoriesToRender = state.categoryKey ? convertToBreadcrumb(state.categoryKey, categoryTree) : 'no-category';
   const arrToRender = categoriesToRender.trim().split(' ');
 
   const setCategory = useCallback(
     (key: string) => (): void => {
-      setCategoryKey(key);
+      dispatch({ type: FilterState.CATEGORY, payload: key });
     },
-    [setCategoryKey]
+    [dispatch]
   );
 
   return (

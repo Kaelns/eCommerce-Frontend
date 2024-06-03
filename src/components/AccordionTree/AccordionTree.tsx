@@ -4,20 +4,22 @@ import { fromKeyToName } from '@/utils/fromKeyToName';
 import { IAccordionTreeProps } from '@/components/AccordionTree/AccordionTree.interface';
 
 import styles from './AccordionTree.module.scss';
+import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 
-export function AccordionTree({ treeData, categoryKey, setCategoryKey }: IAccordionTreeProps): React.ReactNode {
+export function AccordionTree({ treeData, filterReducerHook }: IAccordionTreeProps): React.ReactNode {
+  const [state, dispatch] = filterReducerHook;
   return (
     <>
       {treeData.map(({ id, key, children }) => {
         const isHasChildren = Boolean(children.length);
         const btnClasses = `${styles.btn} ${!isHasChildren ? styles.pointerEventsOn : ''}`;
-        const accordionClasses = `${categoryKey === key ? styles.accordionActive : ''} ${!isHasChildren ? styles.pointerEventsOff : ''}`;
+        const accordionClasses = `${state.categoryKey === key ? styles.accordionActive : ''} ${!isHasChildren ? styles.pointerEventsOff : ''}`;
 
         const handleClickedCategory =
           (keyOfCategory: string) =>
           (e: React.MouseEvent<HTMLButtonElement>): void => {
             e.stopPropagation();
-            setCategoryKey((prevKey) => (prevKey === keyOfCategory ? '' : keyOfCategory));
+            dispatch({ type: FilterState.CATEGORY_TOGGLE, payload: keyOfCategory });
           };
 
         return (
@@ -30,7 +32,7 @@ export function AccordionTree({ treeData, categoryKey, setCategoryKey }: IAccord
             {isHasChildren ? (
               <AccordionDetails>
                 <Box className={styles.subAccordionWrapper}>
-                  <AccordionTree treeData={children} categoryKey={categoryKey} setCategoryKey={setCategoryKey} />
+                  <AccordionTree treeData={children} filterReducerHook={filterReducerHook} />
                 </Box>
               </AccordionDetails>
             ) : (

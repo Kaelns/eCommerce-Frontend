@@ -1,5 +1,5 @@
 import { Category, ProductProjection } from '@commercetools/platform-sdk';
-
+// TODO Delete this
 export const arrayCategories: Category[] = [
   {
     id: '940377c6-fb2f-4815-8254-1e383878c14f',

@@ -1,0 +1,23 @@
+.gridItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.colorBtn {
+  border: 3px solid white;
+  border-radius: 100%;
+  padding: 2.2rem;
+  outline: 2px solid transparent;
+
+  &.active {
+    outline: 2px solid gray;
+  }
+}
+
+.text {
+  font-size: 1.5rem;
+  font-weight: 500;
+}

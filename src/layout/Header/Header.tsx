@@ -4,18 +4,19 @@ import { Outlet } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import { Navbar } from '@/layout/Navbar/Navbar';
 import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
-import { BasketLink } from '@/components/BasketLink/BasketLink';
+import { BasketLink } from '@/components/buttons/BasketLink/BasketLink';
 import { UserPopover } from '@/components/UserPopover/UserPopover';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
 
 import styles from './Header.module.scss';
-import { Burger } from '@/components/Burger/Burger';
+import { Burger } from '@/components/buttons/Burger/Burger';
 
 export function Header(): React.ReactNode {
   const theme = useTheme();
   const isMatches = useMediaQuery(theme.breakpoints.up('sm'));
   const [isOpen, setIsOpen] = useState(false);
 
+  // TODO change drawer
   const openDrawer = (): void => {
     setIsOpen(true);
   };
