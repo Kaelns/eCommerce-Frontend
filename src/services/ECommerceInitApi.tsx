@@ -73,7 +73,7 @@ class ECommerceInitApi {
       .build();
   }
 
-  private createClientWithAccesToken(token: string): Client {
+  private createClientWithAccessToken(token: string): Client {
     const options: ExistingTokenMiddlewareOptions = {
       force: true
     };
@@ -92,8 +92,8 @@ class ECommerceInitApi {
     return createApiBuilderFromCtpClient(this.createClient()).withProjectKey({ projectKey: this.projectKey });
   }
 
-  public getApiRootWithAccesToken(token: string): ByProjectKeyRequestBuilder {
-    return createApiBuilderFromCtpClient(this.createClientWithAccesToken(token)).withProjectKey({
+  public getApiRootWithAccessToken(token: string): ByProjectKeyRequestBuilder {
+    return createApiBuilderFromCtpClient(this.createClientWithAccessToken(token)).withProjectKey({
       projectKey: this.projectKey
     });
   }

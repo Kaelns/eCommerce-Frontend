@@ -5,7 +5,7 @@ import AddressesPart from '@/features/UserProfile/AddressesPart';
 import CredentialPart from '@/features/UserProfile/CredentialPart';
 import PersonalPart from '@/features/UserProfile/PersonalPart';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IAddresses } from '@/features/UserProfile/UserProfile.interface';
+import { IAddresses, IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
 
 export default function UserProfile(): React.ReactNode {
   const data = useRegistrationForm();
@@ -23,30 +23,41 @@ export default function UserProfile(): React.ReactNode {
           [INPUTS.birthday.name]: response.body.dateOfBirth,
           [INPUTS.email.name]: response.body.email
         }));
-        response.body.addresses.forEach((item) => {
-          let address: IAddresses;
-          address.id = item.id;
-          address.addressData.city = item.city;
-          address.addressData.country = item.country;
-          address.addressData.postalCode = item.postalCode;
-          address.addressData.street = item.streetName;
+        console.log(response.body.addresses);
+        const addressList: IAddresses[] = [];
+        response.body.addresses.forEach((item: IResponseAddressData) => {
+          const addressData = {
+            city: item.city,
+            country: item.country,
+            postalCode: item.postalCode,
+            streetName: item.streetName
+          };
+          const address: IAddresses = {
+            id: item.id,
+            addressData,
+            isBilling: response.body.billingAddressIds.includes(item.id),
+            isShipping: response.body.shippingAddressIds.includes(item.id),
+            isDefaultBilling: response.body.defaultBillingAddress === item.id,
+            isDefaultShipping: response.body.defaultShippingAddress === item.id
+          };
+          addressList.push(address);
         });
-        console.log(data.inputsValues);
+        setAddresses(addressList);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching user:', error);
       }
     }
     if (isDataLoaded === false) {
       getUserData();
       setIsDataLoaded(true);
     }
-  }, [data, isDataLoaded]);
+  }, [data, isDataLoaded, addresses]);
 
   return (
     <>
       <PersonalPart data={data} />
       <CredentialPart data={data} />
-      <AddressesPart />
+      <AddressesPart data={data} addresses={addresses} />
     </>
   );
 }

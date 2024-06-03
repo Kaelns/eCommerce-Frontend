@@ -108,7 +108,7 @@ class ECommerceAPI {
 
   async getUser(): Promise<ClientResponse> {
     return this.api
-      .getApiRootWithAccesToken(this.api.getTokenCache().get().token)
+      .getApiRootWithAccessToken(this.api.getTokenCache().get().token)
       .me()
       .get()
       .execute() as Promise<ClientResponse>;

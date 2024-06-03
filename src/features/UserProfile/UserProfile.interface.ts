@@ -8,3 +8,7 @@ export interface IAddresses {
   isDefaultBilling: boolean;
   isDefaultShipping: boolean;
 }
+
+export interface IResponseAddressData extends IAddress {
+  id: string;
+}
