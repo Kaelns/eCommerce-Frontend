@@ -1,6 +1,6 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
-import { AccordionTree } from '@/components/AccordionTree/AccordionTree';
+import { AccordionTree } from '@/features/FilterForm/components/AccordionTree/AccordionTree';
 import { Filters } from '@/features/FilterForm/data/FilterForm.enum';
 import { IFilterFormProps } from '@/features/FilterForm/data/FilterForm.interface';
 import { RangePriceSlider } from '@/features/FilterForm/components/RangePriceSlider/RangePriceSlider';
@@ -9,11 +9,11 @@ import { filtersOrder } from '@/features/FilterForm/data/FilterForm.constants';
 import { ColorFilter } from '@/features/FilterForm/components/ColorFilter/ColorFilter';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 
-export function FilterForm({ className, filterReducerHook }: IFilterFormProps): React.ReactNode {
+export function FilterForm({ className }: IFilterFormProps): React.ReactNode {
   const filters = {
-    [Filters.PRICE]: <RangePriceSlider filterReducerHook={filterReducerHook} />,
-    [Filters.COLOR]: <ColorFilter filterReducerHook={filterReducerHook} />,
-    [Filters.CATEGORY]: <AccordionTree treeData={eCommerceAPI.categoriesTree} filterReducerHook={filterReducerHook} />
+    [Filters.PRICE]: <RangePriceSlider />,
+    [Filters.COLOR]: <ColorFilter />,
+    [Filters.CATEGORY]: <AccordionTree treeData={eCommerceAPI.categoriesTree} />
   };
 
   return (

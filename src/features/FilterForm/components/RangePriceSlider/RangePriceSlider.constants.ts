@@ -1,2 +1,2 @@
-export const MIN_DISTANCE = 500;
-export const STEP = 100;
+export const MIN_DISTANCE = 100;
+export const STEP = 50;

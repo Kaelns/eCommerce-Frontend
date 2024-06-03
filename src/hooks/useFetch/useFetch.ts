@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IReturnUseFetch } from '@/hooks/useFetch/useFetch.interface';
 
-export function useFetch<T>(func: () => T): IReturnUseFetch<T> {
+export function useFetch<T, P>(func: (parameters?: P) => T, parameters?: P): IReturnUseFetch<T> {
   const [data, setData] = useState<T>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -9,7 +9,7 @@ export function useFetch<T>(func: () => T): IReturnUseFetch<T> {
   useEffect(() => {
     const load = async (): Promise<void> => {
       try {
-        const dataResp = await func();
+        const dataResp = await func(parameters);
         setData(dataResp);
         setIsLoading(false);
       } catch (e) {
@@ -20,7 +20,7 @@ export function useFetch<T>(func: () => T): IReturnUseFetch<T> {
     };
 
     load();
-  }, [func]);
+  }, [func, parameters]);
 
   return { data, error, isLoading };
 }

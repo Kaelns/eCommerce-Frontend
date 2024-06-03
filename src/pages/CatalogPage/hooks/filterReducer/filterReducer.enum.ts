@@ -3,5 +3,12 @@ export enum FilterState {
   CATEGORY_TOGGLE = 'CATEGORY_TOGGLE',
   COLOR = 'COLOR',
   PRICE = 'PRICE',
-  SEARCH = 'SEARCH'
+  SEARCH = 'SEARCH',
+  SORT = 'SORT'
+}
+
+export enum Sort {
+  ALPHABETICALLY = 'Alphabetically',
+  PRICE_ASCENDING = 'Ascending price',
+  PRICE_DESCENDING = 'Descending price'
 }

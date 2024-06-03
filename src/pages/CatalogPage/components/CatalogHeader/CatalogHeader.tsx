@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Button, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
-import { Search } from '@/components/Search/Search';
+import { Search } from '@/pages/CatalogPage/components/Search/Search';
 import { theme } from '@/features/ThemeProvider/theme/theme';
 import { ICatalogHeaderProps } from '@/pages/CatalogPage/components/CatalogHeader/CatalogHeader.interface';
 
