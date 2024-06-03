@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { IReturnUseFetch } from '@/hooks/useFetch/useFetch.interface';
 
-export function useFetch<T, P>(func: (parameters?: P) => T, parameters?: P): IReturnUseFetch<T> {
-  const [data, setData] = useState<T>();
+export function useFetch<T, P>(func: (parameters?: P) => T, parameters?: P): IReturnUseFetch<Awaited<T>> {
+  const [data, setData] = useState<Awaited<T>>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 

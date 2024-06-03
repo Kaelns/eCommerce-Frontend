@@ -4,7 +4,6 @@ import { useSideDrawer } from '@/components/SideDrawer/useSideDrawer';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { CatalogHeader } from '@/pages/CatalogPage/components/CatalogHeader/CatalogHeader';
 import { CatalogMain } from '@/pages/CatalogPage/components/CatalogMain/CatalogMain';
-import { FilterReducerContextProvider } from '@/context/FilterReducerContext/FilterReducerContext';
 
 import styles from './CatalogPage.module.scss';
 
@@ -12,14 +11,12 @@ export function CatalogPage(): React.ReactNode {
   const sideDriverHook = useSideDrawer();
 
   return (
-    <FilterReducerContextProvider>
-      <Box className={styles.pageContainer}>
-        <Breadcrumb categoryTree={eCommerceAPI.categoriesTree} className={styles.breadcrumbBtn} />
-        <Box className={styles.bodyContainer}>
-          <CatalogHeader openDrawer={sideDriverHook.openDrawer} />
-          <CatalogMain sideDriverHook={sideDriverHook} />
-        </Box>
+    <Box className={styles.pageContainer}>
+      <Breadcrumb categoryTree={eCommerceAPI.categoriesTree} className={styles.breadcrumbBtn} />
+      <Box className={styles.bodyContainer}>
+        <CatalogHeader openDrawer={sideDriverHook.openDrawer} />
+        <CatalogMain sideDriverHook={sideDriverHook} />
       </Box>
-    </FilterReducerContextProvider>
+    </Box>
   );
 }

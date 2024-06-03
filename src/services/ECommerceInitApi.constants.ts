@@ -4,6 +4,8 @@ export const CLIENT_SECRET = 'zODzfkzBmfaH7Vp9tiukg3kabhgIbFWq';
 export const AUTH_HOST = 'https://auth.europe-west1.gcp.commercetools.com';
 export const API_HOST = 'https://api.europe-west1.gcp.commercetools.com';
 export const LANGUAGE = 'en-US';
+export const COUNTRY = 'US';
+export const MONEY_SYMBOL = '$';
 export const SCOPES = [
   'manage_project:radioreactiveecomapp',
   'view_audit_log:radioreactiveecomapp',

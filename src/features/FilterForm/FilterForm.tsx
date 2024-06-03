@@ -4,7 +4,7 @@ import { AccordionTree } from '@/features/FilterForm/components/AccordionTree/Ac
 import { Filters } from '@/features/FilterForm/data/FilterForm.enum';
 import { IFilterFormProps } from '@/features/FilterForm/data/FilterForm.interface';
 import { RangePriceSlider } from '@/features/FilterForm/components/RangePriceSlider/RangePriceSlider';
-import { TextBold } from '@/components/TextBold/TextBold';
+import { TextBold } from '@/components/typography/TextBold/TextBold';
 import { filtersOrder } from '@/features/FilterForm/data/FilterForm.constants';
 import { ColorFilter } from '@/features/FilterForm/components/ColorFilter/ColorFilter';
 import { eCommerceAPI } from '@/services/ECommerceAPI';

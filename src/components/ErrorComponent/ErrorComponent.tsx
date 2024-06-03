@@ -3,9 +3,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Button, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/features/Router/data/Router.enum';
-import { TextWithElem } from '@/components/TextWithElem/TextWithElem';
+import { TextWithElem } from '@/components/typography/TextWithElem/TextWithElem';
 import { IErrorProps } from '@/components/ErrorComponent/ErrorComponent.interface';
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 
 import styles from './ErrorComponent.module.scss';
 

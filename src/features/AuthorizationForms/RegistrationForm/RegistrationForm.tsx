@@ -11,7 +11,7 @@ import ButtonCustom from '@/components/buttons/ButtonCustom/ButtonCustom';
 import checkBirthday from '@/features/validation/birthdayValidation';
 import CredentialBlock from '@/features/AuthorizationForms/components/CredentialBlock/CredentialBlock';
 import checkGeneralRule from '@/features/validation/generalValidation';
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { DateInput } from '@/features/AuthorizationForms/components/DateInput/DateInput';
 import { AddressPrefix } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
