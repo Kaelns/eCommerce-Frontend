@@ -1,0 +1,28 @@
+.inputsContainer,
+.sliderContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.sliderContainer {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.input {
+  flex: 1;
+
+  & > input {
+    padding-block: 0.7rem;
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+}
+
+.slider {
+  width: 85%;
+}

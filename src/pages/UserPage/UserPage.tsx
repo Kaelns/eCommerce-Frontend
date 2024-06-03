@@ -1,4 +1,4 @@
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 import styles from './UserPage.module.scss';
 
 // interface IProps {}

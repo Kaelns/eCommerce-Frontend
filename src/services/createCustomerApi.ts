@@ -24,19 +24,22 @@ export async function createCustomer(
         {
           country: inputsValues.shippingCountry!,
           postalCode: inputsValues.shippingPostalCode!,
-          city: inputsValues.shippingCity!
+          city: inputsValues.shippingCity!,
+          streetName: inputsValues.shippingStreet!
         }
       ]
     : [
         {
           country: inputsValues.shippingCountry!,
           postalCode: inputsValues.shippingPostalCode!,
-          city: inputsValues.shippingCity!
+          city: inputsValues.shippingCity!,
+          streetName: inputsValues.shippingStreet!
         },
         {
           country: inputsValues.billingCountry!,
           postalCode: inputsValues.billingPostalCode!,
-          city: inputsValues.billingCity!
+          city: inputsValues.billingCity!,
+          streetName: inputsValues.billingStreet!
         }
       ];
 
@@ -60,34 +63,38 @@ export async function createCustomer(
 
   setIsShowAlert(true);
 
-  try {
-    await eCommerceAPI.createCustomer(createCustomerDate);
-    await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
-    setTimeout(() => {
-      setAuthUserToken('login_is_ok');
-    }, 1000);
-    setIsShowCircleProgress(false);
-    setAlertData({
-      typeAlert: Alerts.SUCCESS,
-      textAlert: AlertsText.SUCCESS_TEXT
-    });
-  } catch (error) {
-    console.warn(error);
-    if (error instanceof Error) {
-      if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
-        setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
-        setIsShowCircleProgress(false);
-        setAlertData({
-          typeAlert: Alerts.ERROR,
-          textAlert: AlertsText.ERROR_EMAIL_TEXT
-        });
-      } else {
-        setIsShowCircleProgress(false);
-        setAlertData({
-          typeAlert: Alerts.ERROR,
-          textAlert: AlertsText.ERROR_CONNECTION_TEXT
-        });
+  await eCommerceAPI
+    .createCustomer(createCustomerDate)
+    .then(async () => {
+      setTimeout(() => {
+        setAuthUserToken('login_is_ok');
+      }, 1000);
+      setIsShowCircleProgress(false);
+      setAlertData({
+        typeAlert: Alerts.SUCCESS,
+        textAlert: AlertsText.SUCCESS_TEXT
+      });
+      eCommerceAPI.logoutCustomer();
+      const authResponse = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
+      console.log('Customer authenticated successfully', authResponse);
+    })
+    .catch((error) => {
+      console.warn(error);
+      if (error instanceof Error) {
+        if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
+          setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
+          setIsShowCircleProgress(false);
+          setAlertData({
+            typeAlert: Alerts.ERROR,
+            textAlert: AlertsText.ERROR_EMAIL_TEXT
+          });
+        } else {
+          setIsShowCircleProgress(false);
+          setAlertData({
+            typeAlert: Alerts.ERROR,
+            textAlert: AlertsText.ERROR_CONNECTION_TEXT
+          });
+        }
       }
-    }
-  }
+    });
 }

@@ -1,4 +1,4 @@
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 import styles from './BasketPage.module.scss';
 
 // interface IProps {}

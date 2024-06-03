@@ -1,0 +1,86 @@
+@use '@styles/abstracts/placeholders';
+
+.cardContainer {
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-block: 2rem;
+  padding-inline: 1rem;
+  cursor: pointer;
+  @extend %animation;
+  box-shadow: var(--mui-shadows-1);
+  border-radius: var(--mui-shape-borderRadius);
+
+  &:hover .img {
+    transform: scale(1.2);
+  }
+}
+
+.discount {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+  top: -1rem;
+  right: -1rem;
+  border-radius: 100%;
+  z-index: 100;
+}
+
+.discounted,
+.discount {
+  background-color: var(--mui-palette-error-light);
+}
+
+.discounted {
+  border-radius: var(--mui-shape-borderRadius);
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--mui-shape-borderRadius);
+  height: 200px;
+}
+
+.img {
+  @extend %animation;
+  height: 100%;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1rem;
+}
+
+.discounted,
+.price {
+  padding-inline: 0.3rem;
+}
+
+.price {
+  &Disabled {
+    text-decoration: line-through;
+  }
+}
+
+.priceContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.description {
+  font-size: 1.9rem;
+}

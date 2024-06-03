@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
 import styles from './TextWithElem.module.scss';
-import { ITextWithElemProps } from '@/components/TextWithElem/TextWithElem.interface';
+import { ITextWithElemProps } from '@/components/typography/TextWithElem/TextWithElem.interface';
 
 export function TextWithElem({
   icon,

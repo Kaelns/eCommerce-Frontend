@@ -1,16 +1,11 @@
-import { Dispatch, createContext, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
+import { IAuthState } from '@/context/AuthContext/AuthContext.interface';
+import { INITIAL_AUTH_CONTEXT } from '@/context/AuthContext/AuthContext.constants';
 
-export interface IAuthState {
-  authUserToken: string;
-  setAuthUserToken: Dispatch<React.SetStateAction<string>>;
-}
+export const AuthContext = createContext<IAuthState>(INITIAL_AUTH_CONTEXT);
 
-export const AuthContext = createContext<IAuthState | null>(null);
-
-interface IProps {}
-
-export function AuthContextProvider({ children }: PropsWithChildren<IProps>): React.ReactNode {
+export function AuthContextProvider({ children }: PropsWithChildren): React.ReactNode {
   const [authUserToken, setAuthUserToken] = useState('');
 
   const value = useMemo(

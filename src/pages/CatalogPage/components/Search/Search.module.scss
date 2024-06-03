@@ -1,0 +1,31 @@
+@use '@styles/abstracts/placeholders';
+
+.search {
+  width: 100%;
+  position: relative;
+  margin-left: 0;
+  border-radius: var(--mui-shape-borderRadius);
+  box-shadow: var(--mui-shadows-1);
+
+  @extend %animation;
+
+  &:hover {
+    background-color: var(--color-primary-transparent);
+  }
+}
+
+.iconWrapper {
+  height: 100%;
+  padding: 0.5rem;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  width: 100%;
+  padding: 0.3rem;
+  padding-left: 5rem;
+}

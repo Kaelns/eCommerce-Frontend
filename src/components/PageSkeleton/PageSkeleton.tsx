@@ -3,7 +3,7 @@ import { skeletonHeightBefore, skeletonHeightAfter } from '@/components/PageSkel
 
 export function PageSkeleton(): React.ReactNode {
   return (
-    <Box>
+    <Box sx={{ width: '1' }}>
       <Skeleton animation="wave" height={skeletonHeightBefore} />
       <Skeleton variant="circular" width={skeletonHeightBefore} height={skeletonHeightBefore} animation="wave" />
       <Skeleton animation="wave" height={skeletonHeightAfter} />

@@ -1,0 +1,14 @@
+.sortContainer {
+  min-width: 250px;
+}
+
+.componentContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+}
