@@ -2,6 +2,8 @@ import { useCallback, useState } from 'react';
 import { Button, FormHelperText } from '@mui/material';
 import dayjs from 'dayjs';
 
+import { version } from 'os';
+import { MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 import { Title } from '@/components/Title/Title';
@@ -12,6 +14,7 @@ import getMaxDate from '@/utils/getMaxDate';
 import getMinDate from '@/utils/getMinDate';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import checkGeneralRule from '@/features/validation/generalValidation';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 export default function PersonalPart({ data }: { data: IUseRegistrationFormReturn }): React.ReactNode {
   const [isChangeMode, setChangeMode] = useState(false);
@@ -20,8 +23,33 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
     setChangeMode((value) => !value);
   }, []);
 
-  const handleClickSaveBtn = useCallback(() => {
-    //  TODO save changes;
+  const handleClickSaveBtn = useCallback(async () => {
+    try {
+      const localToken = localStorage.getItem('Token');
+      if (localToken !== '') {
+        const userData: MyCustomerUpdate = {
+          version: 19,
+          actions: [
+            {
+              action: 'setFirstName',
+              firstName: 'Volodya'
+            },
+            {
+              action: 'setLastName',
+              lastName: 'Volikov'
+            },
+            {
+              action: 'setDateOfBirth',
+              dateOfBirth: '1992-03-25'
+            }
+          ]
+        };
+        const response = await eCommerceAPI.updateUser(localToken as string, userData);
+        console.log(response);
+      }
+    } catch (error) {
+      console.error('Error update user data:', error);
+    }
   }, []);
 
   const handleClickCancelBtn = useCallback(() => {

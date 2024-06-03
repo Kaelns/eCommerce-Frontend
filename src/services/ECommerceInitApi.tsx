@@ -1,6 +1,7 @@
 import {
   Client,
   ClientBuilder,
+  ExistingTokenMiddlewareOptions,
   type AuthMiddlewareOptions,
   type HttpMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
@@ -29,8 +30,7 @@ class ECommerceInitApi {
         clientSecret: CLIENT_SECRET
       },
       scopes: SCOPES,
-      fetch,
-      tokenCache: this.tokenCache
+      fetch
     };
 
     this.httpMiddlewareOptions = {
@@ -66,10 +66,9 @@ class ECommerceInitApi {
     };
     return new ClientBuilder()
       .withProjectKey(this.projectKey)
-      .withClientCredentialsFlow(this.authMiddlewareOptions)
+      .withPasswordFlow(passwordAuthMiddlewareOptions)
       .withHttpMiddleware(this.httpMiddlewareOptions)
       .withLoggerMiddleware()
-      .withPasswordFlow(passwordAuthMiddlewareOptions)
       .build();
   }
 
@@ -86,6 +85,25 @@ class ECommerceInitApi {
   public getTokenCache(): MyTokenCache {
     console.log(this.tokenCache.get().token);
     return this.tokenCache;
+  }
+
+  private createClientWithWithToken(token: string): Client {
+    const authorization = `Bearer ${token}`;
+    const options: ExistingTokenMiddlewareOptions = {
+      force: true
+    };
+    return new ClientBuilder()
+      .withExistingTokenFlow(authorization, options)
+      .withProjectKey(this.projectKey)
+      .withHttpMiddleware(this.httpMiddlewareOptions)
+      .withLoggerMiddleware()
+      .build();
+  }
+
+  public getApiRootWithToken(token: string): ByProjectKeyRequestBuilder {
+    return createApiBuilderFromCtpClient(this.createClientWithWithToken(token)).withProjectKey({
+      projectKey: this.projectKey
+    });
   }
 }
 

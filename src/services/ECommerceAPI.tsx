@@ -2,6 +2,8 @@ import { ClientResponse } from '@commercetools/sdk-client-v2';
 import {
   CustomerPagedQueryResponse,
   CustomerSignInResult,
+  MyCustomerChangePassword,
+  MyCustomerUpdate,
   ProductProjectionPagedSearchResponse
 } from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
@@ -15,7 +17,7 @@ class ECommerceAPI {
     this.api = new ApiClient();
   }
 
-  async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
+  public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
     const {
       firstName,
       lastName,
@@ -60,7 +62,7 @@ class ECommerceAPI {
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
-  async authenticateCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
+  public async authenticateCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
     return this.api
       .getApiRootWithPassword(email, password)
       .me()
@@ -74,11 +76,12 @@ class ECommerceAPI {
       .execute()
       .then((response) => {
         this.api.getTokenCache();
+        localStorage.setItem('Token', this.api.getTokenCache().get().token);
         return response;
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
-  async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
+  public async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
     return this.api
       .getApiRoot()
       .customers()
@@ -95,21 +98,45 @@ class ECommerceAPI {
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { limit: 5, 'filter.query': 'variants.attributes.color-filter.key:"#000"' } })
+      .get({ queryArgs: { filter: 'variants.attributes.color-filter.key:"#000", "#FFF"', offset: 0, limit: 10 } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
-  async getCategoryAll(): Promise<ClientResponse> {
+  public async getCategoryAll(): Promise<ClientResponse> {
     return this.api.getApiRoot().categories().get().execute() as Promise<ClientResponse>;
   }
 
-  async getUser(): Promise<ClientResponse> {
-    return this.api.getApiRoot().me().get().execute() as Promise<ClientResponse>;
+  public async getUser(token: string): Promise<ClientResponse> {
+    return this.api.getApiRootWithToken(token).me().get().execute() as Promise<ClientResponse>;
+  }
+
+  // this responce for update user data
+  public async updateUser(token: string, body: MyCustomerUpdate): Promise<ClientResponse> {
+    return this.api.getApiRootWithToken(token).me().post({ body }).execute() as Promise<ClientResponse>;
+  }
+
+  // this responce for update user passwword
+  public async updateUserPassword(
+    token: string,
+    body: MyCustomerChangePassword,
+    email: string,
+    newPassword: string
+  ): Promise<ClientResponse> {
+    return this.api
+      .getApiRootWithToken(token)
+      .me()
+      .password()
+      .post({ body })
+      .execute()
+      .then(() => {
+        this.logoutCustomer();
+        this.authenticateCustomer(email, newPassword);
+      }) as Promise<ClientResponse>;
   }
 
   public logoutCustomer(): void {
     this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
-    localStorage.removeItem('tokenCache');
+    localStorage.removeItem('Token');
   }
 }
 
