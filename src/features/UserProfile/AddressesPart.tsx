@@ -32,9 +32,16 @@ export default function AddressesPart({
   const handleUpdate = useCallback(
     (index: number) => (): void => {
       setUpdateId(index);
+      data.setInputsValues((values) => ({
+        ...values,
+        [INPUTS.shippingCity.name]: addresses[index].addressData.city,
+        [INPUTS.shippingCountry.name]: addresses[index].addressData.country,
+        [INPUTS.shippingPostalCode.name]: addresses[index].addressData.postalCode,
+        [INPUTS.shippingStreet.name]: addresses[index].addressData.streetName
+      }));
       setIsAddMode(false);
     },
-    []
+    [data, addresses]
   );
   const handleDelete = useCallback(
     (index: number) => (): void => {

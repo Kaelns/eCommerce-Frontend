@@ -4,7 +4,14 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { IComboBoxProps } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.interface';
 
-export default function ComboBox({ label, name, id, options, onChangeComboBox }: IComboBoxProps): React.ReactNode {
+export default function ComboBox({
+  label,
+  name,
+  id,
+  options,
+  defaultValue,
+  onChangeComboBox
+}: IComboBoxProps): React.ReactNode {
   return (
     <>
       <InputLabel>{label}: </InputLabel>

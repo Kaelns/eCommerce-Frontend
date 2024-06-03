@@ -28,10 +28,12 @@ export default function Address({
         onChangeComboBox={data.handleOnChangeComboBox}
         onChangeFunction={data.handleOnChangeInput}
         inputsErrors={data.inputsErrors}
+        inputsValues={data.inputsValues}
         prefix={AddressPrefix.SHIPPING}
       />
       <CheckboxBlock
         address={address}
+        disabled={false}
         data={data}
         handleToggleBilling={handleToggleBilling}
         handleToggleShipping={handleToggleShipping}
