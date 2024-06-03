@@ -24,7 +24,7 @@ async function fetchUser(): Promise<void> {
     const response = await eCommerceAPI.getUser();
     console.log(response.body);
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error fetching user:', error);
   }
 }
 
