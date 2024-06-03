@@ -19,15 +19,6 @@ async function fetchProducts(): Promise<void> {
   }
 }
 
-async function fetchUser(): Promise<void> {
-  try {
-    const response = await eCommerceAPI.getUser();
-    console.log(response.body);
-  } catch (error) {
-    console.error('Error fetching user:', error);
-  }
-}
-
 export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarProps): React.ReactNode {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -46,9 +37,6 @@ export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarPr
       console.log(route);
       if (route === '/catalog') {
         fetchProducts();
-      }
-      if (route === '/user') {
-        fetchUser();
       }
       navigate(route);
     };

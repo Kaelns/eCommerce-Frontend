@@ -14,35 +14,38 @@ export default function UserProfile(): React.ReactNode {
   useEffect(() => {
     async function getUserData(): Promise<void> {
       try {
-        const response = await eCommerceAPI.getUser();
-        console.log(response.body);
-        data.setInputsValues((values) => ({
-          ...values,
-          [INPUTS.firstName.name]: response.body.firstName,
-          [INPUTS.lastName.name]: response.body.lastName,
-          [INPUTS.birthday.name]: response.body.dateOfBirth,
-          [INPUTS.email.name]: response.body.email
-        }));
-        console.log(response.body.addresses);
-        const addressList: IAddresses[] = [];
-        response.body.addresses.forEach((item: IResponseAddressData) => {
-          const addressData = {
-            city: item.city,
-            country: item.country,
-            postalCode: item.postalCode,
-            streetName: item.streetName
-          };
-          const address: IAddresses = {
-            id: item.id,
-            addressData,
-            isBilling: response.body.billingAddressIds.includes(item.id),
-            isShipping: response.body.shippingAddressIds.includes(item.id),
-            isDefaultBilling: response.body.defaultBillingAddress === item.id,
-            isDefaultShipping: response.body.defaultShippingAddress === item.id
-          };
-          addressList.push(address);
-        });
-        setAddresses(addressList);
+        const localToken = localStorage.getItem('Token');
+        if (localToken !== '') {
+          const response = await eCommerceAPI.getUser(localToken as string);
+          console.log(response.body);
+          data.setInputsValues((values) => ({
+            ...values,
+            [INPUTS.firstName.name]: response.body.firstName,
+            [INPUTS.lastName.name]: response.body.lastName,
+            [INPUTS.birthday.name]: response.body.dateOfBirth,
+            [INPUTS.email.name]: response.body.email
+          }));
+          console.log(response.body.addresses);
+          const addressList: IAddresses[] = [];
+          response.body.addresses.forEach((item: IResponseAddressData) => {
+            const addressData = {
+              city: item.city,
+              country: item.country,
+              postalCode: item.postalCode,
+              streetName: item.streetName
+            };
+            const address: IAddresses = {
+              id: item.id,
+              addressData,
+              isBilling: response.body.billingAddressIds.includes(item.id),
+              isShipping: response.body.shippingAddressIds.includes(item.id),
+              isDefaultBilling: response.body.defaultBillingAddress === item.id,
+              isDefaultShipping: response.body.defaultShippingAddress === item.id
+            };
+            addressList.push(address);
+          });
+          setAddresses(addressList);
+        }
       } catch (error) {
         console.error('Error fetching user:', error);
       }

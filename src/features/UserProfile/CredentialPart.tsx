@@ -2,6 +2,7 @@ import { Button, FormHelperText } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 
+import { MyCustomerChangePassword, MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
@@ -12,6 +13,7 @@ import { ShowPasswordBtn } from '@/features/AuthorizationForms/components/ShowPa
 import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput.enums';
 import checkPassword from '@/features/validation/passwordValidation';
 import { CURRENT_PASSWORD, EMAIL_LABEL, NEW_PASSWORD } from '@/features/UserProfile/UserProfile.constants';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 export default function CredentialPart({ data }: { data: IUseRegistrationFormReturn }): React.ReactNode {
   const [isChangeMode, setChangeMode] = useState(false);
@@ -24,8 +26,25 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
     setChangeMode((value) => !value);
   }, []);
 
-  const handleClickSaveBtn = useCallback(() => {
-    //  TODO save changes;
+  const handleClickSaveBtn = useCallback(async () => {
+    try {
+      const localToken = localStorage.getItem('Token');
+      if (localToken !== '') {
+        const userData: MyCustomerUpdate = {
+          version: 24,
+          actions: [
+            {
+              action: 'changeEmail',
+              email: '123@22.by'
+            }
+          ]
+        };
+        const response = await eCommerceAPI.updateUser(localToken as string, userData);
+        console.log(response);
+      }
+    } catch (error) {
+      console.error('Error update user email:', error);
+    }
   }, []);
 
   const handleClickCancelBtn = useCallback(() => {
@@ -47,8 +66,27 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
     setChangePasswordMode((value) => !value);
   }, [data]);
 
-  const handleClickSavePasswordBtn = useCallback(() => {
+  const handleClickSavePasswordBtn = useCallback(async () => {
     //  TODO save changes;
+    try {
+      const localToken = localStorage.getItem('Token');
+      if (localToken !== '') {
+        const userData: MyCustomerChangePassword = {
+          version: 26,
+          currentPassword: '@q)$+-#)n5O"XzO[',
+          newPassword: '@q)$+-#)n5O"XzO[2'
+        };
+        const response = await eCommerceAPI.updateUserPassword(
+          localToken as string,
+          userData,
+          '123@22.by',
+          userData.newPassword
+        );
+        console.log(response);
+      }
+    } catch (error) {
+      console.error('Error update user password:', error);
+    }
     console.log(currentPassword);
     console.log(data.inputsValues[INPUTS.password.name]);
   }, [currentPassword, data.inputsValues]);
