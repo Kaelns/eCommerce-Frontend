@@ -2,6 +2,7 @@ export interface IAddress {
   country: string;
   postalCode: string;
   city: string;
+  streetName: string;
 }
 
 export interface ICreateCustomerParams {

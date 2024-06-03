@@ -58,6 +58,7 @@ class ECommerceAPI {
       .execute()
       .then((response) => {
         this.api.getTokenCache();
+        this.api.getApiRootWithPassword(email, password);
         return response;
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
@@ -98,9 +99,24 @@ class ECommerceAPI {
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { filter: 'variants.attributes.color-filter.key:"#000", "#FFF"', offset: 0, limit: 10 } })
+      .get({ queryArgs: { sort: 'price desc' } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
+
+  async getProductsByKey(productKey: string): Promise<ClientResponse> {
+    return this.api
+      .getApiRoot()
+      .productProjections()
+      .withKey({ key: productKey })
+      .get()
+      .execute() as Promise<ClientResponse>;
+  }
+
+  async getProductsById(id: string): Promise<ClientResponse> {
+    return this.api.getApiRoot().productProjections().withId({ ID: id }).get().execute() as Promise<ClientResponse>;
+  }
+
+  // .get({ queryArgs: { filter: 'variants.attributes.color-filter.key:"#000", "#FFF"', offset: 0, limit: 10 } })
 
   public async getCategoryAll(): Promise<ClientResponse> {
     return this.api.getApiRoot().categories().get().execute() as Promise<ClientResponse>;

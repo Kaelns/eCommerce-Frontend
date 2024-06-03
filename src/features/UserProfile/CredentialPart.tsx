@@ -111,7 +111,7 @@ export default function CredentialPart({ data }: { data: IUseRegistrationFormRet
         onChange={data.handleOnChangeInput(checkEmail)}
         disabled={!isChangeMode}
         error={!!data.inputsErrors[INPUTS.email.name]}
-        value={isChangeMode ? undefined : data.inputsValues[INPUTS.email.name]}
+        value={data.inputsValues[INPUTS.email.name] ?? ''}
       >
         <FormHelperText error>
           {data.inputsErrors[INPUTS.email.name] && data.inputsErrors[INPUTS.email.name]}

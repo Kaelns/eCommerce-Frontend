@@ -76,7 +76,7 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
         label={INPUTS.firstName.label}
         name={INPUTS.firstName.name}
         disabled={!isChangeMode}
-        value={isChangeMode ? undefined : data.inputsValues[INPUTS.firstName.name]}
+        value={data.inputsValues[INPUTS.firstName.name] ?? ''}
         onChange={data.handleOnChangeInput(checkGeneralRule)}
       >
         <FormHelperText error>
@@ -87,7 +87,7 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
         label={INPUTS.lastName.label}
         name={INPUTS.lastName.name}
         disabled={!isChangeMode}
-        value={isChangeMode ? undefined : data.inputsValues[INPUTS.lastName.name]}
+        value={data.inputsValues[INPUTS.lastName.name] ?? ''}
         onChange={data.handleOnChangeInput(checkGeneralRule)}
       >
         <FormHelperText error>
@@ -99,7 +99,7 @@ export default function PersonalPart({ data }: { data: IUseRegistrationFormRetur
         name="birthday"
         disabled={!isChangeMode}
         validationChecks={checkBirthday}
-        defaultValue={dayjs(data.inputsValues[INPUTS.birthday.name])}
+        value={dayjs(data.inputsValues[INPUTS.birthday.name]) ?? dayjs(getMaxDate())}
         maxDate={dayjs(getMaxDate())}
         minDate={dayjs(getMinDate())}
         setInputs={data.setInputsValues}

@@ -72,8 +72,29 @@ class ECommerceInitApi {
       .build();
   }
 
+  private createClientWithAccessToken(token: string): Client {
+    const options: ExistingTokenMiddlewareOptions = {
+      force: true
+    };
+    const authorization = `Bearer ${token}`;
+    console.log(authorization);
+    return new ClientBuilder()
+      .withProjectKey(this.projectKey)
+      .withClientCredentialsFlow(this.authMiddlewareOptions)
+      .withHttpMiddleware(this.httpMiddlewareOptions)
+      .withLoggerMiddleware()
+      .withExistingTokenFlow(authorization, options)
+      .build();
+  }
+
   public getApiRoot(): ByProjectKeyRequestBuilder {
     return createApiBuilderFromCtpClient(this.createClient()).withProjectKey({ projectKey: this.projectKey });
+  }
+
+  public getApiRootWithAccessToken(token: string): ByProjectKeyRequestBuilder {
+    return createApiBuilderFromCtpClient(this.createClientWithAccessToken(token)).withProjectKey({
+      projectKey: this.projectKey
+    });
   }
 
   public getApiRootWithPassword(email: string, password: string): ByProjectKeyRequestBuilder {
