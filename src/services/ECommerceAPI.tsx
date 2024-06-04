@@ -4,6 +4,8 @@ import {
   CategoryPagedQueryResponse,
   CustomerPagedQueryResponse,
   CustomerSignInResult,
+  MyCustomerChangePassword,
+  MyCustomerUpdate,
   ProductProjectionPagedSearchResponse
 } from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
@@ -24,7 +26,7 @@ class ECommerceAPI {
     this.getCategoryAll();
   }
 
-  async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
+  public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
     const {
       firstName,
       lastName,
@@ -70,7 +72,7 @@ class ECommerceAPI {
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
-  async authenticateCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
+  public async authenticateCustomer(email: string, password: string): Promise<ClientResponse<CustomerSignInResult>> {
     return this.api
       .getApiRootWithPassword(email, password)
       .me()
@@ -84,11 +86,12 @@ class ECommerceAPI {
       .execute()
       .then((response) => {
         this.api.getTokenCache();
+        localStorage.setItem('Token', this.api.getTokenCache().get().token);
         return response;
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
-  async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
+  public async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
     return this.api
       .getApiRoot()
       .customers()
@@ -109,27 +112,63 @@ class ECommerceAPI {
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
-  // .get({ queryArgs: { limit: 5, 'filter.query': 'variants.attributes.color-filter.key:"#000"' } })
-
   async getCategoryAll(): Promise<void> {
-    const responce = await (this.api.getApiRoot().categories().get().execute() as Promise<
+    const response = await (this.api.getApiRoot().categories().get().execute() as Promise<
       ClientResponse<CategoryPagedQueryResponse>
     >);
-    this.categories = responce.body!.results;
+    this.categories = response.body!.results;
     this.categoriesTree = buildCategoryTree(this.categories);
   }
 
-  async getUser(): Promise<ClientResponse> {
+  public async getUser(token: string): Promise<ClientResponse> {
+    return this.api.getApiRootWithToken(token).me().get().execute() as Promise<ClientResponse>;
+  }
+
+  public async getSearch(text: string): Promise<ClientResponse> {
     return this.api
-      .getApiRootWithAccesToken(this.api.getTokenCache().get().token)
-      .me()
-      .get()
+      .getApiRoot()
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          fuzzy: true,
+          'text.en-US': text,
+          fuzzyLevel: 2
+        }
+      })
       .execute() as Promise<ClientResponse>;
+  }
+
+  // this Request for update user data
+  public async updateUser(token: string, body: MyCustomerUpdate): Promise<ClientResponse> {
+    return this.api.getApiRootWithToken(token).me().post({ body }).execute() as Promise<ClientResponse>;
+  }
+
+  // this Request for update user passwword
+  public async updateUserPassword(
+    token: string,
+    body: MyCustomerChangePassword,
+    email: string,
+    newPassword: string,
+    setIsActualData: React.Dispatch<React.SetStateAction<boolean>>
+  ): Promise<ClientResponse> {
+    return this.api
+      .getApiRootWithToken(token)
+      .me()
+      .password()
+      .post({ body })
+      .execute()
+      .then(() => {
+        this.logoutCustomer();
+        this.authenticateCustomer(email, newPassword).then(() => {
+          setIsActualData(false);
+        });
+      }) as Promise<ClientResponse>;
   }
 
   public logoutCustomer(): void {
     this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
-    localStorage.removeItem('tokenCache');
+    localStorage.removeItem('Token');
   }
 }
 

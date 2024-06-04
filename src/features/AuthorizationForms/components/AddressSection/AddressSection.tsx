@@ -7,7 +7,7 @@ import {
   ADDRESS_INPUTS,
   COUNTRY_LIST
 } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
-import { IInputsErrors } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
+import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
 import { AddressPrefix, AddressProperty } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
@@ -16,6 +16,7 @@ interface IProps {
   onChangeFunction: HandleOnChangeInput;
   onChangeComboBox: OnChangeComboBox;
   inputsErrors: IInputsErrors;
+  inputsValues: IInputsValues;
   prefix: AddressPrefix;
 }
 
@@ -23,6 +24,7 @@ export default function AddressSection({
   onChangeFunction,
   onChangeComboBox,
   inputsErrors,
+  inputsValues,
   prefix
 }: IProps): React.ReactNode {
   return (
@@ -32,6 +34,11 @@ export default function AddressSection({
         name={INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name}
         id={prefix}
         options={COUNTRY_LIST}
+        value={
+          COUNTRY_LIST.filter(
+            (value) => value.code === inputsValues[INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name]
+          )[0] ?? COUNTRY_LIST[0]
+        }
         onChangeComboBox={onChangeComboBox}
       />
 
@@ -40,6 +47,7 @@ export default function AddressSection({
           key={inputName}
           label={INPUTS[`${prefix}${inputName}`].label}
           name={INPUTS[`${prefix}${inputName}`].name}
+          value={inputsValues[INPUTS[`${prefix}${inputName}`].name] ?? ''}
           onChange={onChangeFunction(ADDRESS_INPUTS[inputName])}
         >
           <FormHelperText error>

@@ -64,6 +64,7 @@ export default function RegistrationForm(): React.ReactNode {
         onChangeComboBox={data.handleOnChangeComboBox}
         onChangeFunction={data.handleOnChangeInput}
         inputsErrors={data.inputsErrors}
+        inputsValues={data.inputsValues}
         prefix={AddressPrefix.SHIPPING}
       />
       <FormControlLabel
@@ -83,6 +84,7 @@ export default function RegistrationForm(): React.ReactNode {
             onChangeComboBox={data.handleOnChangeComboBox}
             onChangeFunction={data.handleOnChangeInput}
             inputsErrors={data.inputsErrors}
+            inputsValues={data.inputsValues}
             prefix={AddressPrefix.BILLING}
           />
         </>

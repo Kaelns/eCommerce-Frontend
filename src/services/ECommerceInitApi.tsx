@@ -30,8 +30,7 @@ class ECommerceInitApi {
         clientSecret: CLIENT_SECRET
       },
       scopes: SCOPES,
-      fetch,
-      tokenCache: this.tokenCache
+      fetch
     };
 
     this.httpMiddlewareOptions = {
@@ -67,13 +66,13 @@ class ECommerceInitApi {
     };
     return new ClientBuilder()
       .withProjectKey(this.projectKey)
+      .withPasswordFlow(passwordAuthMiddlewareOptions)
       .withHttpMiddleware(this.httpMiddlewareOptions)
       .withLoggerMiddleware()
-      .withPasswordFlow(passwordAuthMiddlewareOptions)
       .build();
   }
 
-  private createClientWithAccesToken(token: string): Client {
+  private createClientWithAccessToken(token: string): Client {
     const options: ExistingTokenMiddlewareOptions = {
       force: true
     };
@@ -92,8 +91,8 @@ class ECommerceInitApi {
     return createApiBuilderFromCtpClient(this.createClient()).withProjectKey({ projectKey: this.projectKey });
   }
 
-  public getApiRootWithAccesToken(token: string): ByProjectKeyRequestBuilder {
-    return createApiBuilderFromCtpClient(this.createClientWithAccesToken(token)).withProjectKey({
+  public getApiRootWithAccessToken(token: string): ByProjectKeyRequestBuilder {
+    return createApiBuilderFromCtpClient(this.createClientWithAccessToken(token)).withProjectKey({
       projectKey: this.projectKey
     });
   }
@@ -107,6 +106,25 @@ class ECommerceInitApi {
   public getTokenCache(): MyTokenCache {
     console.log(this.tokenCache.get().token);
     return this.tokenCache;
+  }
+
+  private createClientWithWithToken(token: string): Client {
+    const authorization = `Bearer ${token}`;
+    const options: ExistingTokenMiddlewareOptions = {
+      force: true
+    };
+    return new ClientBuilder()
+      .withExistingTokenFlow(authorization, options)
+      .withProjectKey(this.projectKey)
+      .withHttpMiddleware(this.httpMiddlewareOptions)
+      .withLoggerMiddleware()
+      .build();
+  }
+
+  public getApiRootWithToken(token: string): ByProjectKeyRequestBuilder {
+    return createApiBuilderFromCtpClient(this.createClientWithWithToken(token)).withProjectKey({
+      projectKey: this.projectKey
+    });
   }
 }
 
