@@ -35,7 +35,7 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
 
   const handleOnChangeInput: HandleOnChangeInput = useCallback(
     (checkFunction: (value: string, pattern?: RegExp) => string) =>
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+      (e: InputReactEvent): void => {
         const newValue = e.target.value;
         const prefix = e.target.name.match(AddressPrefix.BILLING) ?? e.target.name.match(AddressPrefix.SHIPPING);
         const error = checkFunction(newValue, prefix ? postalCodePattern[prefix[0] as AddressPrefix] : undefined);

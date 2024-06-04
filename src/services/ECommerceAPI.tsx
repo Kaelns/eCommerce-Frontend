@@ -1,5 +1,7 @@
 import { ClientResponse } from '@commercetools/sdk-client-v2';
 import {
+  Category,
+  CategoryPagedQueryResponse,
   CustomerPagedQueryResponse,
   CustomerSignInResult,
   MyCustomerChangePassword,
@@ -9,12 +11,19 @@ import {
 import ApiClient from '@/services/ECommerceInitApi';
 import { ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { checkUndefined } from '@/utils/checkUndefined';
+import { buildCategoryTree } from '@/services/helpers/buildCategoryTree/buildCategoryTree';
+import { ITreeNode } from '@/data/interface/ITreeNode';
 
 class ECommerceAPI {
   private api: ApiClient;
 
+  public categories: Category[] = [];
+
+  public categoriesTree: ITreeNode[] = [];
+
   constructor() {
     this.api = new ApiClient();
+    this.getCategoryAll();
   }
 
   public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -99,28 +108,16 @@ class ECommerceAPI {
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { 'filter.query': 'variants.attributes.color-filter.key:"black"' } })
+      .get({ queryArgs: { sort: 'price desc' } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
-  async getProductsByKey(productKey: string): Promise<ClientResponse> {
-    return this.api
-      .getApiRoot()
-      .productProjections()
-      .withKey({ key: productKey })
-      .get()
-      .execute() as Promise<ClientResponse>;
-  }
-
-  async getProductsById(id: string): Promise<ClientResponse> {
-    return this.api.getApiRoot().productProjections().withId({ ID: id }).get().execute() as Promise<ClientResponse>;
-  }
-
-  // .get({ queryArgs: { filter: 'variants.attributes.color-filter.key:"#000", "#FFF"', offset: 0, limit: 10 } })
-  // .get({ queryArgs: { sort: 'price desc' } })
-
-  public async getCategoryAll(): Promise<ClientResponse> {
-    return this.api.getApiRoot().categories().get().execute() as Promise<ClientResponse>;
+  async getCategoryAll(): Promise<void> {
+    const response = await (this.api.getApiRoot().categories().get().execute() as Promise<
+      ClientResponse<CategoryPagedQueryResponse>
+    >);
+    this.categories = response.body!.results;
+    this.categoriesTree = buildCategoryTree(this.categories);
   }
 
   public async getUser(token: string): Promise<ClientResponse> {

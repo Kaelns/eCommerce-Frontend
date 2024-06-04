@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { ButtonProps } from '@mui/material';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
-import { ButtonType, ButtonVariant } from '@/components/ButtonCustom/ButtonCustom.enum';
+import { ButtonType, ButtonVariant } from '@/components/buttons/ButtonCustom/ButtonCustom.enum';
 
 export default function ButtonCustom({
   children,

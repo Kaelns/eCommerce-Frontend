@@ -10,7 +10,7 @@ import {
   MyCustomerRemoveBillingAddressIdAction,
   MyCustomerRemoveShippingAddressIdAction
 } from '@commercetools/platform-sdk';
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import { IAddresses, IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
 import styles from './UserProfile.module.scss';
@@ -52,10 +52,6 @@ export default function AddressesPart({
 
   const processCheckbox = useCallback(
     (userData: MyCustomerUpdate, id: string, isUpdate: boolean) => (): void => {
-      console.log(isBillingAddress);
-      console.log(data.isDefaultBillingAddress);
-      console.log(userData);
-      console.log('gdfgdfgdfg');
       if (isBillingAddress) {
         const action: MyCustomerAddBillingAddressIdAction = {
           action: 'addBillingAddressId',
@@ -69,7 +65,6 @@ export default function AddressesPart({
         };
         userData.actions.push(action);
       }
-      console.log(userData);
       if (data.isDefaultBillingAddress) {
         const action: MyCustomerSetDefaultBillingAddressAction = {
           action: 'setDefaultBillingAddress',
@@ -217,7 +212,6 @@ export default function AddressesPart({
   }, [clearValues]);
 
   const handleSaveAdd = useCallback(async () => {
-    // TODO save new address
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -245,10 +239,7 @@ export default function AddressesPart({
           const newAddress = response.body.addresses.filter(
             (address: IResponseAddressData) => !addresses.map((oldAddress) => oldAddress.id).includes(address.id)
           );
-          console.log(response.body.addresses);
-          console.log(addresses);
           processCheckbox(newUserData, newAddress[0].id, false)();
-          console.log(newUserData);
           const newResponse = await eCommerceAPI.updateUser(localToken as string, newUserData);
           console.log(newResponse);
           setIsActualData(false);
@@ -278,8 +269,11 @@ export default function AddressesPart({
         <>
           {!(updateId === index) && (
             <div key={address.id}>
-              <p>{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
+              <p
+                key={`Title ${address.id}`}
+              >{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
               <CheckboxBlock
+                key={`Checkbox ${address.id}`}
                 address={address}
                 disabled={!(updateId === index)}
                 isBilling={isBillingAddress}

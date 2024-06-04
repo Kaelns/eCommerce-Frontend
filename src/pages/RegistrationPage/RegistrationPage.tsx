@@ -4,7 +4,7 @@ import RegistrationForm from '@/features/AuthorizationForms/RegistrationForm/Reg
 import { ROUTES } from '@/features/Router/data/Router.enum';
 
 import styles from './RegistrationPage.module.scss';
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 
 export function RegistrationPage(): React.ReactNode {
   const navigate = useNavigate();

@@ -22,8 +22,10 @@ export default function CheckboxBlock({
   return (
     <>
       <FormControlLabel
+        key={`isBilling ${address?.id}`}
         control={
           <Checkbox
+            key={`isBilling1 ${address?.id}`}
             disabled={disabled}
             checked={disabled ? address?.isBilling : isBilling}
             onChange={handleToggleBilling}
@@ -32,8 +34,10 @@ export default function CheckboxBlock({
         label="Billing address"
       />
       <FormControlLabel
+        key={`isShipping ${address?.id}`}
         control={
           <Checkbox
+            key={`isShipping1 ${address?.id}`}
             disabled={disabled}
             checked={disabled ? address?.isShipping : isShipping}
             onChange={handleToggleShipping}
@@ -42,8 +46,10 @@ export default function CheckboxBlock({
         label="Shipping address"
       />
       <FormControlLabel
+        key={`isDefaultBilling ${address?.id}`}
         control={
           <Checkbox
+            key={`isDefaultBilling1 ${address?.id}`}
             disabled={disabled}
             checked={disabled ? address?.isDefaultBilling : data.isDefaultBillingAddress}
             onChange={data.handleToggleDefaultBilling}
@@ -52,8 +58,10 @@ export default function CheckboxBlock({
         label="Default billing address"
       />
       <FormControlLabel
+        key={`isDefaultShipping ${address?.id}`}
         control={
           <Checkbox
+            key={`isDefaultShipping1 ${address?.id}`}
             disabled={disabled}
             checked={disabled ? address?.isDefaultShipping : data.isDefaultShippingAddress}
             onChange={data.handleToggleDefaultShipping}

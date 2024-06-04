@@ -8,13 +8,13 @@ import { ValidationInput } from '@/features/AuthorizationForms/components/Valida
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import checkEmail from '@/features/validation/emailValidation';
 import styles from './UserProfile.module.scss';
-import { Title } from '@/components/Title/Title';
 import { ShowPasswordBtn } from '@/features/AuthorizationForms/components/ShowPasswordBtn/ShowPasswordBtn';
 import { InputType } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput.enums';
 import checkPassword from '@/features/validation/passwordValidation';
 import { CURRENT_PASSWORD, EMAIL_LABEL, NEW_PASSWORD } from '@/features/UserProfile/UserProfile.constants';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
+import { Title } from '@/components/typography/Title/Title';
 
 export default function CredentialPart({
   data,

@@ -30,6 +30,7 @@ export default function AddressSection({
   return (
     <>
       <ComboBox
+        key="ComboBox"
         label={INPUTS[`${prefix}${AddressProperty.COUNTRY}`].label}
         name={INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name}
         id={prefix}

@@ -1,0 +1,19 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.button {
+  text-transform: none;
+  background-color: var(--mui-palette-info-light);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+}

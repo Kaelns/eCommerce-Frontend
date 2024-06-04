@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
-import { Title } from '@/components/Title/Title';
+import { Title } from '@/components/typography/Title/Title';
 import styles from './UserProfile.module.scss';
 import { DateInput } from '@/features/AuthorizationForms/components/DateInput/DateInput';
 import checkBirthday from '@/features/validation/birthdayValidation';
