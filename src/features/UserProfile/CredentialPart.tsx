@@ -15,15 +15,22 @@ import { CURRENT_PASSWORD, EMAIL_LABEL, NEW_PASSWORD } from '@/features/UserProf
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
 import { Title } from '@/components/typography/Title/Title';
+import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 
 export default function CredentialPart({
   data,
   initialValues,
-  setIsActualData
+  setIsActualData,
+  setIsShowAlert,
+  setIsShowCircleProgress,
+  setAlertData
 }: {
   data: IUseRegistrationFormReturn;
   initialValues: IResponseUserData;
   setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>;
 }): React.ReactNode {
   const [isChangeMode, setIsChangeMode] = useState(false);
   const [isChangePasswordMode, setIsChangePasswordMode] = useState(false);
@@ -40,6 +47,7 @@ export default function CredentialPart({
   }, [initialValues, data]);
 
   const handleClickSaveBtn = useCallback(async () => {
+    setIsShowAlert(true);
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -52,15 +60,32 @@ export default function CredentialPart({
             }
           ]
         };
-        const response = await eCommerceAPI.updateUser(localToken as string, userData);
-        setIsChangeMode(false);
-        setIsActualData(false);
-        console.log(response);
+        await eCommerceAPI.updateUser(localToken as string, userData).then(() => {
+          setIsShowCircleProgress(false);
+          setAlertData({
+            typeAlert: Alerts.SUCCESS,
+            textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+          });
+          setIsChangeMode(false);
+          setIsActualData(false);
+        });
       }
     } catch (error) {
+      setIsShowCircleProgress(false);
+      setAlertData({
+        typeAlert: Alerts.ERROR,
+        textAlert: AlertsText.ERROR_UPDATE_USER
+      });
       console.error('Error update user email:', error);
     }
-  }, [data.inputsValues, initialValues.version, setIsActualData]);
+  }, [
+    data.inputsValues,
+    initialValues.version,
+    setAlertData,
+    setIsActualData,
+    setIsShowAlert,
+    setIsShowCircleProgress
+  ]);
 
   const handleClickCancelBtn = useCallback(() => {
     data.setInputsErrors((values) => ({
@@ -92,6 +117,7 @@ export default function CredentialPart({
   }, [data]);
 
   const handleClickSavePasswordBtn = useCallback(async () => {
+    setIsShowAlert(true);
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -100,20 +126,42 @@ export default function CredentialPart({
           currentPassword,
           newPassword: data.inputsValues[INPUTS.password.name]!
         };
-        const response = await eCommerceAPI.updateUserPassword(
-          localToken as string,
-          userData,
-          initialValues.email,
-          userData.newPassword
-        );
-        setIsChangePasswordMode(false);
-        setIsActualData(false);
-        console.log(response);
+        await eCommerceAPI
+          .updateUserPassword(
+            localToken as string,
+            userData,
+            initialValues.email,
+            userData.newPassword,
+            setIsActualData
+          )
+          .then(() => {
+            setIsShowCircleProgress(false);
+            setAlertData({
+              typeAlert: Alerts.SUCCESS,
+              textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+            });
+            setIsChangePasswordMode(false);
+            // setIsActualData(false);
+          });
       }
     } catch (error) {
+      setIsShowCircleProgress(false);
+      setAlertData({
+        typeAlert: Alerts.ERROR,
+        textAlert: AlertsText.ERROR_UPDATE_USER
+      });
       console.error('Error update user password:', error);
     }
-  }, [currentPassword, data.inputsValues, initialValues, setIsActualData]);
+  }, [
+    currentPassword,
+    data.inputsValues,
+    initialValues.email,
+    initialValues.version,
+    setAlertData,
+    setIsActualData,
+    setIsShowAlert,
+    setIsShowCircleProgress
+  ]);
 
   const handleChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setCurrentPassword(e.target.value);

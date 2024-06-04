@@ -19,17 +19,24 @@ import Address from '@/features/UserProfile/Address';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { COUNTRY_LIST } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 
 export default function AddressesPart({
   data,
   addresses,
   version,
-  setIsActualData
+  setIsActualData,
+  setIsShowAlert,
+  setIsShowCircleProgress,
+  setAlertData
 }: {
   data: IUseRegistrationFormReturn;
   addresses: IAddresses[];
   version: number;
   setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>;
 }): React.ReactNode {
   const [isBillingAddress, setIsBillingAddress] = useState(false);
   const [isShippingAddress, setIsShippingAddress] = useState(false);
@@ -126,6 +133,7 @@ export default function AddressesPart({
   };
 
   const handleSaveUpdate = useCallback(async () => {
+    setIsShowAlert(true);
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -145,19 +153,41 @@ export default function AddressesPart({
           ]
         };
         processCheckbox(userData, addresses[updateId].id, true)();
-        const response = await eCommerceAPI.updateUser(localToken as string, userData);
+        await eCommerceAPI.updateUser(localToken as string, userData).then(() => {
+          setIsShowCircleProgress(false);
+          setAlertData({
+            typeAlert: Alerts.SUCCESS,
+            textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+          });
+        });
         clearValues();
         setUpdateId(-1);
         setIsActualData(false);
-        console.log(response);
       }
     } catch (error) {
+      setIsShowCircleProgress(false);
+      setAlertData({
+        typeAlert: Alerts.ERROR,
+        textAlert: AlertsText.ERROR_UPDATE_USER
+      });
       console.error('Error update user data:', error);
     }
-  }, [version, addresses, updateId, data.inputsValues, processCheckbox, clearValues, setIsActualData]);
+  }, [
+    setIsShowAlert,
+    version,
+    addresses,
+    updateId,
+    data.inputsValues,
+    processCheckbox,
+    clearValues,
+    setIsActualData,
+    setIsShowCircleProgress,
+    setAlertData
+  ]);
 
   const handleDelete = useCallback(
     (index: number) => async (): Promise<void> => {
+      setIsShowAlert(true);
       try {
         const localToken = localStorage.getItem('Token');
         if (localToken !== '') {
@@ -170,15 +200,25 @@ export default function AddressesPart({
               }
             ]
           };
-          const response = await eCommerceAPI.updateUser(localToken as string, userData);
+          await eCommerceAPI.updateUser(localToken as string, userData).then(() => {
+            setIsShowCircleProgress(false);
+            setAlertData({
+              typeAlert: Alerts.SUCCESS,
+              textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+            });
+          });
           setIsActualData(false);
-          console.log(response);
         }
       } catch (error) {
+        setIsShowCircleProgress(false);
+        setAlertData({
+          typeAlert: Alerts.ERROR,
+          textAlert: AlertsText.ERROR_UPDATE_USER
+        });
         console.error('Error update user data:', error);
       }
     },
-    [addresses, setIsActualData, version]
+    [addresses, setAlertData, setIsActualData, setIsShowAlert, setIsShowCircleProgress, version]
   );
 
   const handleAddNew = useCallback(() => {
@@ -212,6 +252,7 @@ export default function AddressesPart({
   }, [clearValues]);
 
   const handleSaveAdd = useCallback(async () => {
+    setIsShowAlert(true);
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -229,9 +270,7 @@ export default function AddressesPart({
             }
           ]
         };
-        const response = await eCommerceAPI.updateUser(localToken as string, userData);
-        console.log(response);
-        try {
+        await eCommerceAPI.updateUser(localToken as string, userData).then(async (response) => {
           const newUserData: MyCustomerUpdate = {
             version: response.body.version,
             actions: []
@@ -240,20 +279,38 @@ export default function AddressesPart({
             (address: IResponseAddressData) => !addresses.map((oldAddress) => oldAddress.id).includes(address.id)
           );
           processCheckbox(newUserData, newAddress[0].id, false)();
-          const newResponse = await eCommerceAPI.updateUser(localToken as string, newUserData);
-          console.log(newResponse);
+          await eCommerceAPI.updateUser(localToken as string, newUserData).then(() => {
+            setIsShowCircleProgress(false);
+            setAlertData({
+              typeAlert: Alerts.SUCCESS,
+              textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+            });
+          });
           setIsActualData(false);
           clearValues();
           setIsAddMode(false);
-        } catch (error) {
-          console.error('Error update user data:', error);
-        }
+        });
       }
     } catch (error) {
+      setIsShowCircleProgress(false);
+      setAlertData({
+        typeAlert: Alerts.ERROR,
+        textAlert: AlertsText.ERROR_UPDATE_USER
+      });
       console.error('Error update user data:', error);
     }
     setIsAddMode(false);
-  }, [addresses, clearValues, data.inputsValues, processCheckbox, setIsActualData, version]);
+  }, [
+    addresses,
+    clearValues,
+    data.inputsValues,
+    processCheckbox,
+    setAlertData,
+    setIsActualData,
+    setIsShowAlert,
+    setIsShowCircleProgress,
+    version
+  ]);
 
   const handleCancelAdd = useCallback(() => {
     clearValues();

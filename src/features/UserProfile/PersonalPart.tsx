@@ -15,15 +15,22 @@ import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/Regist
 import checkGeneralRule from '@/features/validation/generalValidation';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
+import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 
 export default function PersonalPart({
   data,
   initialValues,
-  setIsActualData
+  setIsActualData,
+  setIsShowAlert,
+  setIsShowCircleProgress,
+  setAlertData
 }: {
   data: IUseRegistrationFormReturn;
   initialValues: IResponseUserData;
   setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>;
 }): React.ReactNode {
   const [isChangeMode, setIsChangeMode] = useState(false);
 
@@ -38,7 +45,7 @@ export default function PersonalPart({
   }, [initialValues, data]);
 
   const handleClickSaveBtn = useCallback(async () => {
-    console.log(initialValues);
+    setIsShowAlert(true);
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -59,15 +66,25 @@ export default function PersonalPart({
             }
           ]
         };
-        const response = await eCommerceAPI.updateUser(localToken as string, userData);
-        console.log(response);
+        await eCommerceAPI.updateUser(localToken as string, userData).then(() => {
+          setIsShowCircleProgress(false);
+          setAlertData({
+            typeAlert: Alerts.SUCCESS,
+            textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+          });
+        });
         setIsChangeMode(false);
         setIsActualData(false);
       }
     } catch (error) {
+      setIsShowCircleProgress(false);
+      setAlertData({
+        typeAlert: Alerts.ERROR,
+        textAlert: AlertsText.ERROR_UPDATE_USER
+      });
       console.error('Error update user data:', error);
     }
-  }, [data.inputsValues, initialValues, setIsActualData]);
+  }, [data.inputsValues, initialValues, setAlertData, setIsActualData, setIsShowAlert, setIsShowCircleProgress]);
 
   const handleClickCancelBtn = useCallback(() => {
     data.setInputsErrors((values) => ({

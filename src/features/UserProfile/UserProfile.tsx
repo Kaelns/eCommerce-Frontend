@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
+import { Backdrop, CircularProgress, Alert } from '@mui/material';
 import { useRegistrationForm } from '@/features/AuthorizationForms/RegistrationForm/hooks/useRegistrationForm';
 import AddressesPart from '@/features/UserProfile/AddressesPart';
 import CredentialPart from '@/features/UserProfile/CredentialPart';
@@ -8,9 +9,18 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IAddresses, IResponseAddressData, IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
 import getMaxDate from '@/utils/getMaxDate';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { IAlertData } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
+import { INIT_ALERT_DATA } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.constants';
 
 export default function UserProfile(): React.ReactNode {
   const data = useRegistrationForm();
+  const [isShowAlert, setIsShowAlert] = useState(false);
+  const [isShowCircleProgress, setIsShowCircleProgress] = useState(true);
+  const handleBackdrop = (): void => {
+    setIsShowAlert(false);
+    setIsShowCircleProgress(true);
+  };
+  const [alertData, setAlertData] = useState<IAlertData>(INIT_ALERT_DATA);
 
   const [initialValues, setInitialValues] = useState<IResponseUserData>({
     birthday: dayjs(getMaxDate()).format('YYYY-MM-DD'),
@@ -71,14 +81,38 @@ export default function UserProfile(): React.ReactNode {
 
   return (
     <>
-      <PersonalPart data={data} initialValues={initialValues} setIsActualData={setIsDataLoaded} />
-      <CredentialPart data={data} initialValues={initialValues} setIsActualData={setIsDataLoaded} />
+      <PersonalPart
+        data={data}
+        initialValues={initialValues}
+        setIsActualData={setIsDataLoaded}
+        setIsShowAlert={setIsShowAlert}
+        setIsShowCircleProgress={setIsShowCircleProgress}
+        setAlertData={setAlertData}
+      />
+      <CredentialPart
+        data={data}
+        initialValues={initialValues}
+        setIsActualData={setIsDataLoaded}
+        setIsShowAlert={setIsShowAlert}
+        setIsShowCircleProgress={setIsShowCircleProgress}
+        setAlertData={setAlertData}
+      />
       <AddressesPart
         data={data}
         addresses={addresses}
         version={initialValues.version}
         setIsActualData={setIsDataLoaded}
+        setIsShowAlert={setIsShowAlert}
+        setIsShowCircleProgress={setIsShowCircleProgress}
+        setAlertData={setAlertData}
       />
+      <Backdrop open={isShowAlert} onClick={handleBackdrop}>
+        {isShowCircleProgress ? (
+          <CircularProgress color="primary" />
+        ) : (
+          <Alert severity={alertData.typeAlert}>{alertData.textAlert}</Alert>
+        )}
+      </Backdrop>
     </>
   );
 }

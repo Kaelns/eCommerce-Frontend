@@ -149,7 +149,8 @@ class ECommerceAPI {
     token: string,
     body: MyCustomerChangePassword,
     email: string,
-    newPassword: string
+    newPassword: string,
+    setIsActualData: React.Dispatch<React.SetStateAction<boolean>>
   ): Promise<ClientResponse> {
     return this.api
       .getApiRootWithToken(token)
@@ -159,7 +160,9 @@ class ECommerceAPI {
       .execute()
       .then(() => {
         this.logoutCustomer();
-        this.authenticateCustomer(email, newPassword);
+        this.authenticateCustomer(email, newPassword).then(() => {
+          setIsActualData(false);
+        });
       }) as Promise<ClientResponse>;
   }
 
