@@ -119,6 +119,8 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
     isShowCircleProgress,
     isDefaultBillingAddress,
     isDefaultShippingAddress,
+    setIsDefaultBillingAddress,
+    setIsDefaultShippingAddress,
     handleSubmit,
     handleBackdrop,
     handleOnChangeInput,

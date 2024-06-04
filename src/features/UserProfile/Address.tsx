@@ -9,12 +9,16 @@ import CheckboxBlock from '@/features/UserProfile/CheckboxBlock';
 export default function Address({
   data,
   address,
+  isShipping,
+  isBilling,
   handleSave,
   handleCancel,
   handleToggleBilling,
   handleToggleShipping
 }: {
   data: IUseRegistrationFormReturn;
+  isShipping: boolean;
+  isBilling: boolean;
   handleSave: () => void;
   handleCancel: () => void;
   handleToggleBilling: () => void;
@@ -32,6 +36,8 @@ export default function Address({
       />
       <CheckboxBlock
         address={address}
+        isBilling={isBilling}
+        isShipping={isShipping}
         disabled={false}
         data={data}
         handleToggleBilling={handleToggleBilling}

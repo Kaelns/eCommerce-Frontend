@@ -52,8 +52,8 @@ export default function UserProfile(): React.ReactNode {
               addressData,
               isBilling: response.body.billingAddressIds.includes(item.id),
               isShipping: response.body.shippingAddressIds.includes(item.id),
-              isDefaultBilling: response.body.defaultBillingAddress === item.id,
-              isDefaultShipping: response.body.defaultShippingAddress === item.id
+              isDefaultBilling: response.body.defaultBillingAddressId === item.id,
+              isDefaultShipping: response.body.defaultShippingAddressId === item.id
             };
             addressList.push(address);
           });
@@ -73,7 +73,12 @@ export default function UserProfile(): React.ReactNode {
     <>
       <PersonalPart data={data} initialValues={initialValues} setIsActualData={setIsDataLoaded} />
       <CredentialPart data={data} initialValues={initialValues} setIsActualData={setIsDataLoaded} />
-      <AddressesPart data={data} addresses={addresses} version={initialValues.version} />
+      <AddressesPart
+        data={data}
+        addresses={addresses}
+        version={initialValues.version}
+        setIsActualData={setIsDataLoaded}
+      />
     </>
   );
 }

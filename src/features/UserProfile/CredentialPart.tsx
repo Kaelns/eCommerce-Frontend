@@ -92,7 +92,6 @@ export default function CredentialPart({
   }, [data]);
 
   const handleClickSavePasswordBtn = useCallback(async () => {
-    //  TODO save changes;
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -114,8 +113,6 @@ export default function CredentialPart({
     } catch (error) {
       console.error('Error update user password:', error);
     }
-    console.log(currentPassword);
-    console.log(data.inputsValues[INPUTS.password.name]);
   }, [currentPassword, data.inputsValues, initialValues, setIsActualData]);
 
   const handleChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {

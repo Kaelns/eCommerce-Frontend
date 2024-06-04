@@ -1,10 +1,18 @@
 import { useCallback, useState } from 'react';
 
 import { Button } from '@mui/material';
-import { MyCustomerUpdate } from '@commercetools/platform-sdk';
+import {
+  MyCustomerAddBillingAddressIdAction,
+  MyCustomerAddShippingAddressIdAction,
+  MyCustomerUpdate,
+  MyCustomerSetDefaultBillingAddressAction,
+  MyCustomerSetDefaultShippingAddressAction,
+  MyCustomerRemoveBillingAddressIdAction,
+  MyCustomerRemoveShippingAddressIdAction
+} from '@commercetools/platform-sdk';
 import { Title } from '@/components/Title/Title';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
-import { IAddresses } from '@/features/UserProfile/UserProfile.interface';
+import { IAddresses, IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
 import styles from './UserProfile.module.scss';
 import CheckboxBlock from '@/features/UserProfile/CheckboxBlock';
 import Address from '@/features/UserProfile/Address';
@@ -15,16 +23,104 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 export default function AddressesPart({
   data,
   addresses,
-  version
+  version,
+  setIsActualData
 }: {
   data: IUseRegistrationFormReturn;
   addresses: IAddresses[];
   version: number;
+  setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
 }): React.ReactNode {
   const [isBillingAddress, setIsBillingAddress] = useState(false);
   const [isShippingAddress, setIsShippingAddress] = useState(false);
   const [updateId, setUpdateId] = useState(-1);
   const [isAddMode, setIsAddMode] = useState(false);
+
+  const clearValues = useCallback(() => {
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.shippingCity.name]: undefined,
+      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
+      [INPUTS.shippingPostalCode.name]: undefined,
+      [INPUTS.shippingStreet.name]: undefined
+    }));
+    data.setIsDefaultBillingAddress(false);
+    data.setIsDefaultShippingAddress(false);
+    setIsShippingAddress(false);
+    setIsBillingAddress(false);
+  }, [data]);
+
+  const processCheckbox = useCallback(
+    (userData: MyCustomerUpdate, id: string, isUpdate: boolean) => (): void => {
+      console.log(isBillingAddress);
+      console.log(data.isDefaultBillingAddress);
+      console.log(userData);
+      console.log('gdfgdfgdfg');
+      if (isBillingAddress) {
+        const action: MyCustomerAddBillingAddressIdAction = {
+          action: 'addBillingAddressId',
+          addressId: id
+        };
+        userData.actions.push(action);
+      } else if (isUpdate && addresses[updateId].isBilling) {
+        const action: MyCustomerRemoveBillingAddressIdAction = {
+          action: 'removeBillingAddressId',
+          addressId: id
+        };
+        userData.actions.push(action);
+      }
+      console.log(userData);
+      if (data.isDefaultBillingAddress) {
+        const action: MyCustomerSetDefaultBillingAddressAction = {
+          action: 'setDefaultBillingAddress',
+          addressId: id
+        };
+        userData.actions.push(action);
+      } else if (isUpdate && addresses[updateId].isDefaultBilling) {
+        const action: MyCustomerSetDefaultBillingAddressAction = {
+          action: 'setDefaultBillingAddress',
+          addressId: undefined
+        };
+        userData.actions.push(action);
+      }
+
+      if (isShippingAddress) {
+        const action: MyCustomerAddShippingAddressIdAction = {
+          action: 'addShippingAddressId',
+          addressId: id
+        };
+        userData.actions.push(action);
+      } else if (isUpdate && addresses[updateId].isShipping) {
+        const action: MyCustomerRemoveShippingAddressIdAction = {
+          action: 'removeShippingAddressId',
+          addressId: id
+        };
+        userData.actions.push(action);
+      }
+
+      if (data.isDefaultShippingAddress) {
+        const action: MyCustomerSetDefaultShippingAddressAction = {
+          action: 'setDefaultShippingAddress',
+          addressId: id
+        };
+        userData.actions.push(action);
+      } else if (isUpdate && addresses[updateId].isDefaultShipping) {
+        const action: MyCustomerSetDefaultShippingAddressAction = {
+          action: 'setDefaultShippingAddress',
+          addressId: undefined
+        };
+        userData.actions.push(action);
+      }
+    },
+    [
+      addresses,
+      data.isDefaultBillingAddress,
+      data.isDefaultShippingAddress,
+      isBillingAddress,
+      isShippingAddress,
+      updateId
+    ]
+  );
 
   const handleToggleBilling = (): void => {
     setIsBillingAddress((value) => !value);
@@ -34,76 +130,37 @@ export default function AddressesPart({
     setIsShippingAddress((value) => !value);
   };
 
-  const handleUpdate = useCallback(
-    (index: number) => async (): Promise<void> => {
-      setUpdateId(index);
-      try {
-        const localToken = localStorage.getItem('Token');
-        if (localToken !== '') {
-          const userData: MyCustomerUpdate = {
-            version,
-            actions: [
-              {
-                action: 'changeAddress',
-                addressId: addresses[index].id,
-                address: {
-                  country: '',
-                  postalCode: '',
-                  city: '',
-                  streetName: ''
-                }
+  const handleSaveUpdate = useCallback(async () => {
+    try {
+      const localToken = localStorage.getItem('Token');
+      if (localToken !== '') {
+        const userData: MyCustomerUpdate = {
+          version,
+          actions: [
+            {
+              action: 'changeAddress',
+              addressId: addresses[updateId].id,
+              address: {
+                country: data.inputsValues[INPUTS.shippingCountry.name]!,
+                postalCode: data.inputsValues[INPUTS.shippingPostalCode.name],
+                city: data.inputsValues[INPUTS.shippingCity.name],
+                streetName: data.inputsValues[INPUTS.shippingStreet.name]
               }
-            ]
-          };
-
-          // if (isBillingAddress) {
-          //   const action = {
-          //     action: 'addBillingAddressId',
-          //     addressId: addresses[index].id
-          //   };
-          //   userData.actions.push(action);
-          // }
-
-          // if (isDeafultBilling) {
-          //   const action = {
-          //     action: 'setDefaultBillingAddress',
-          //     addressId: addresses[index].id
-          //   };
-          //   userData.actions.push(action);
-          // }
-
-          // if (isShippingAddress) {
-          //   const action = {
-          //     action: 'addShippingAddressId',
-          //     addressId: addresses[index].id
-          //   };
-          //   userData.actions.push(action);
-          // }
-
-          // if (isDeafultShippingAddress) {
-          //   const action = {
-          //     action: 'setDefaultShippingAddress',
-          //     addressId: addresses[index].id
-          //   };
-          //   userData.actions.push(action);
-          // }
-          const response = await eCommerceAPI.updateUser(localToken as string, userData);
-          console.log(response);
-        }
-      } catch (error) {
-        console.error('Error update user data:', error);
+            }
+          ]
+        };
+        processCheckbox(userData, addresses[updateId].id, true)();
+        const response = await eCommerceAPI.updateUser(localToken as string, userData);
+        clearValues();
+        setUpdateId(-1);
+        setIsActualData(false);
+        console.log(response);
       }
-      data.setInputsValues((values) => ({
-        ...values,
-        [INPUTS.shippingCity.name]: addresses[index].addressData.city,
-        [INPUTS.shippingCountry.name]: addresses[index].addressData.country,
-        [INPUTS.shippingPostalCode.name]: addresses[index].addressData.postalCode,
-        [INPUTS.shippingStreet.name]: addresses[index].addressData.streetName
-      }));
-      setIsAddMode(false);
-    },
-    [data, version, addresses]
-  );
+    } catch (error) {
+      console.error('Error update user data:', error);
+    }
+  }, [version, addresses, updateId, data.inputsValues, processCheckbox, clearValues, setIsActualData]);
+
   const handleDelete = useCallback(
     (index: number) => async (): Promise<void> => {
       try {
@@ -119,52 +176,48 @@ export default function AddressesPart({
             ]
           };
           const response = await eCommerceAPI.updateUser(localToken as string, userData);
+          setIsActualData(false);
           console.log(response);
         }
       } catch (error) {
         console.error('Error update user data:', error);
       }
     },
-    [addresses, version]
+    [addresses, setIsActualData, version]
   );
 
-  const handleAddNew = (): void => {
-    data.setInputsValues((values) => ({
-      ...values,
-      [INPUTS.shippingCity.name]: undefined,
-      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
-      [INPUTS.shippingPostalCode.name]: undefined,
-      [INPUTS.shippingStreet.name]: undefined
-    }));
+  const handleAddNew = useCallback(() => {
+    clearValues();
     setUpdateId(-1);
     setIsAddMode(true);
-  };
+  }, [clearValues]);
 
-  const handleSaveUpdate = (): void => {
-    setIsAddMode(true);
-  };
+  const handleUpdate = useCallback(
+    (index: number) => (): void => {
+      data.setInputsValues((values) => ({
+        ...values,
+        [INPUTS.shippingCity.name]: addresses[index].addressData.city,
+        [INPUTS.shippingCountry.name]: addresses[index].addressData.country,
+        [INPUTS.shippingPostalCode.name]: addresses[index].addressData.postalCode,
+        [INPUTS.shippingStreet.name]: addresses[index].addressData.streetName
+      }));
+      data.setIsDefaultBillingAddress(addresses[index].isDefaultBilling);
+      data.setIsDefaultShippingAddress(addresses[index].isDefaultShipping);
+      setIsShippingAddress(addresses[index].isShipping);
+      setIsBillingAddress(addresses[index].isBilling);
+      setIsAddMode(false);
+      setUpdateId(index);
+    },
+    [addresses, data]
+  );
 
-  const handleCancelUpdate = (): void => {
-    data.setInputsValues((values) => ({
-      ...values,
-      [INPUTS.shippingCity.name]: undefined,
-      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
-      [INPUTS.shippingPostalCode.name]: undefined,
-      [INPUTS.shippingStreet.name]: undefined
-    }));
+  const handleCancelUpdate = useCallback(() => {
+    clearValues();
     setUpdateId(-1);
-  };
+  }, [clearValues]);
 
-  const handleSaveAdd = async (): Promise<void> => {
+  const handleSaveAdd = useCallback(async () => {
     // TODO save new address
-    /*  console.log(data.inputsValues[INPUTS.shippingCountry.name]);
-    console.log(data.inputsValues[INPUTS.shippingCity.name]);
-    console.log(data.inputsValues[INPUTS.shippingPostalCode.name]);
-    console.log(data.inputsValues[INPUTS.shippingStreet.name]);
-    console.log(isBillingAddress);
-    console.log(isShippingAddress);
-    console.log(data.isDefaultBillingAddress);
-    console.log(data.isDefaultShippingAddress); */
     try {
       const localToken = localStorage.getItem('Token');
       if (localToken !== '') {
@@ -174,66 +227,47 @@ export default function AddressesPart({
             {
               action: 'addAddress',
               address: {
-                key: '', // тут нужно задать свой ключ, чтобы потом по нему снизу изменить на те адреса,
-                country: '', // на шипинг билинг или дефолтные
-                postalCode: '',
-                city: '',
-                streetName: ''
+                country: data.inputsValues[INPUTS.shippingCountry.name]!,
+                postalCode: data.inputsValues[INPUTS.shippingPostalCode.name],
+                city: data.inputsValues[INPUTS.shippingCity.name],
+                streetName: data.inputsValues[INPUTS.shippingStreet.name]
               }
             }
           ]
         };
-
-        // if (isBillingAddress) {
-        //   const action = {
-        //     action: 'addBillingAddressId',
-        //     addressKey: ''
-        //   };
-        //   userData.actions.push(action);
-        // }
-
-        // if (isDeafultBilling) {
-        //   const action = {
-        //     action: 'setDefaultBillingAddress',
-        //     addressKey: ''
-        //   };
-        //   userData.actions.push(action);
-        // }
-
-        // if (isShippingAddress) {
-        //   const action = {
-        //     action: 'addShippingAddressId',
-        //     addressKey: ''
-        //   };
-        //   userData.actions.push(action);
-        // }
-
-        // if (isDeafultShippingAddress) {
-        //   const action = {
-        //     action: 'setDefaultShippingAddress',
-        //     addressKey: ''
-        //   };
-        //   userData.actions.push(action);
-        // }
         const response = await eCommerceAPI.updateUser(localToken as string, userData);
         console.log(response);
+        try {
+          const newUserData: MyCustomerUpdate = {
+            version: response.body.version,
+            actions: []
+          };
+          const newAddress = response.body.addresses.filter(
+            (address: IResponseAddressData) => !addresses.map((oldAddress) => oldAddress.id).includes(address.id)
+          );
+          console.log(response.body.addresses);
+          console.log(addresses);
+          processCheckbox(newUserData, newAddress[0].id, false)();
+          console.log(newUserData);
+          const newResponse = await eCommerceAPI.updateUser(localToken as string, newUserData);
+          console.log(newResponse);
+          setIsActualData(false);
+          clearValues();
+          setIsAddMode(false);
+        } catch (error) {
+          console.error('Error update user data:', error);
+        }
       }
     } catch (error) {
       console.error('Error update user data:', error);
     }
     setIsAddMode(false);
-  };
+  }, [addresses, clearValues, data.inputsValues, processCheckbox, setIsActualData, version]);
 
-  const handleCancelAdd = (): void => {
-    data.setInputsValues((values) => ({
-      ...values,
-      [INPUTS.shippingCity.name]: undefined,
-      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
-      [INPUTS.shippingPostalCode.name]: undefined,
-      [INPUTS.shippingStreet.name]: undefined
-    }));
+  const handleCancelAdd = useCallback(() => {
+    clearValues();
     setIsAddMode(false);
-  };
+  }, [clearValues]);
 
   return (
     <>
@@ -248,6 +282,8 @@ export default function AddressesPart({
               <CheckboxBlock
                 address={address}
                 disabled={!(updateId === index)}
+                isBilling={isBillingAddress}
+                isShipping={isShippingAddress}
                 data={data}
                 handleToggleBilling={handleToggleBilling}
                 handleToggleShipping={handleToggleShipping}
@@ -263,6 +299,8 @@ export default function AddressesPart({
             <Address
               address={address}
               data={data}
+              isBilling={isBillingAddress}
+              isShipping={isShippingAddress}
               handleCancel={handleCancelUpdate}
               handleSave={handleSaveUpdate}
               handleToggleBilling={handleToggleBilling}
@@ -286,6 +324,8 @@ export default function AddressesPart({
           </Title>
           <Address
             data={data}
+            isBilling={isBillingAddress}
+            isShipping={isShippingAddress}
             handleCancel={handleCancelAdd}
             handleSave={handleSaveAdd}
             handleToggleBilling={handleToggleBilling}

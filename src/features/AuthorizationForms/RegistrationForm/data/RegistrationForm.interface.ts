@@ -18,6 +18,8 @@ interface IUseRegistrationFormReturn {
   isShowCircleProgress: boolean;
   isDefaultBillingAddress: boolean;
   isDefaultShippingAddress: boolean;
+  setIsDefaultBillingAddress: React.Dispatch<SetStateAction<boolean>>;
+  setIsDefaultShippingAddress: React.Dispatch<SetStateAction<boolean>>;
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
   handleBackdrop: () => void;
   handleOnChangeInput: HandleOnChangeInput;
