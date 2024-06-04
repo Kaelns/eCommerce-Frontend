@@ -291,12 +291,13 @@ export default function AddressesPart({
             </div>
           )}
           {!(updateId === index) && (
-            <Button variant="outlined" onClick={handleUpdate(index)}>
+            <Button key={`Update ${address.id}`} variant="outlined" onClick={handleUpdate(index)}>
               Update
             </Button>
           )}
           {updateId === index && (
             <Address
+              key={`Data ${address.id}`}
               address={address}
               data={data}
               isBilling={isBillingAddress}
@@ -307,7 +308,7 @@ export default function AddressesPart({
               handleToggleShipping={handleToggleShipping}
             />
           )}
-          <Button variant="outlined" onClick={handleDelete(index)}>
+          <Button key={`Delete ${address.id}`} variant="outlined" onClick={handleDelete(index)}>
             Delete
           </Button>
         </>
