@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import { Button } from '@mui/material';
+import { MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { Title } from '@/components/Title/Title';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import { IAddresses } from '@/features/UserProfile/UserProfile.interface';
@@ -9,6 +10,7 @@ import CheckboxBlock from '@/features/UserProfile/CheckboxBlock';
 import Address from '@/features/UserProfile/Address';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { COUNTRY_LIST } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 export default function AddressesPart({
   data,
@@ -33,8 +35,64 @@ export default function AddressesPart({
   };
 
   const handleUpdate = useCallback(
-    (index: number) => (): void => {
+    (index: number) => async (): Promise<void> => {
       setUpdateId(index);
+      try {
+        const localToken = localStorage.getItem('Token');
+        if (localToken !== '') {
+          const userData: MyCustomerUpdate = {
+            version,
+            actions: [
+              {
+                action: 'changeAddress',
+                addressId: addresses[index].id,
+                address: {
+                  country: '',
+                  postalCode: '',
+                  city: '',
+                  streetName: ''
+                }
+              }
+            ]
+          };
+
+          // if (isBillingAddress) {
+          //   const action = {
+          //     action: 'addBillingAddressId',
+          //     addressId: addresses[index].id
+          //   };
+          //   userData.actions.push(action);
+          // }
+
+          // if (isDeafultBilling) {
+          //   const action = {
+          //     action: 'setDefaultBillingAddress',
+          //     addressId: addresses[index].id
+          //   };
+          //   userData.actions.push(action);
+          // }
+
+          // if (isShippingAddress) {
+          //   const action = {
+          //     action: 'addShippingAddressId',
+          //     addressId: addresses[index].id
+          //   };
+          //   userData.actions.push(action);
+          // }
+
+          // if (isDeafultShippingAddress) {
+          //   const action = {
+          //     action: 'setDefaultShippingAddress',
+          //     addressId: addresses[index].id
+          //   };
+          //   userData.actions.push(action);
+          // }
+          const response = await eCommerceAPI.updateUser(localToken as string, userData);
+          console.log(response);
+        }
+      } catch (error) {
+        console.error('Error update user data:', error);
+      }
       data.setInputsValues((values) => ({
         ...values,
         [INPUTS.shippingCity.name]: addresses[index].addressData.city,
@@ -44,14 +102,30 @@ export default function AddressesPart({
       }));
       setIsAddMode(false);
     },
-    [data, addresses]
+    [data, version, addresses]
   );
   const handleDelete = useCallback(
-    (index: number) => (): void => {
-      // TODO delete this address
-      // console.log(addresses[index]);
+    (index: number) => async (): Promise<void> => {
+      try {
+        const localToken = localStorage.getItem('Token');
+        if (localToken !== '') {
+          const userData: MyCustomerUpdate = {
+            version,
+            actions: [
+              {
+                action: 'removeAddress',
+                addressId: addresses[index].id
+              }
+            ]
+          };
+          const response = await eCommerceAPI.updateUser(localToken as string, userData);
+          console.log(response);
+        }
+      } catch (error) {
+        console.error('Error update user data:', error);
+      }
     },
-    []
+    [addresses, version]
   );
 
   const handleAddNew = (): void => {
@@ -81,7 +155,7 @@ export default function AddressesPart({
     setUpdateId(-1);
   };
 
-  const handleSaveAdd = (): void => {
+  const handleSaveAdd = async (): Promise<void> => {
     // TODO save new address
     /*  console.log(data.inputsValues[INPUTS.shippingCountry.name]);
     console.log(data.inputsValues[INPUTS.shippingCity.name]);
@@ -91,6 +165,62 @@ export default function AddressesPart({
     console.log(isShippingAddress);
     console.log(data.isDefaultBillingAddress);
     console.log(data.isDefaultShippingAddress); */
+    try {
+      const localToken = localStorage.getItem('Token');
+      if (localToken !== '') {
+        const userData: MyCustomerUpdate = {
+          version,
+          actions: [
+            {
+              action: 'addAddress',
+              address: {
+                key: '', // тут нужно задать свой ключ, чтобы потом по нему снизу изменить на те адреса,
+                country: '', // на шипинг билинг или дефолтные
+                postalCode: '',
+                city: '',
+                streetName: ''
+              }
+            }
+          ]
+        };
+
+        // if (isBillingAddress) {
+        //   const action = {
+        //     action: 'addBillingAddressId',
+        //     addressKey: ''
+        //   };
+        //   userData.actions.push(action);
+        // }
+
+        // if (isDeafultBilling) {
+        //   const action = {
+        //     action: 'setDefaultBillingAddress',
+        //     addressKey: ''
+        //   };
+        //   userData.actions.push(action);
+        // }
+
+        // if (isShippingAddress) {
+        //   const action = {
+        //     action: 'addShippingAddressId',
+        //     addressKey: ''
+        //   };
+        //   userData.actions.push(action);
+        // }
+
+        // if (isDeafultShippingAddress) {
+        //   const action = {
+        //     action: 'setDefaultShippingAddress',
+        //     addressKey: ''
+        //   };
+        //   userData.actions.push(action);
+        // }
+        const response = await eCommerceAPI.updateUser(localToken as string, userData);
+        console.log(response);
+      }
+    } catch (error) {
+      console.error('Error update user data:', error);
+    }
     setIsAddMode(false);
   };
 
