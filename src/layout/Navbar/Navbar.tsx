@@ -10,10 +10,8 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 async function fetchProducts(): Promise<void> {
   try {
-    const response = await eCommerceAPI.getCategoryAll();
-    console.log(response.body.results);
-    const response2 = await eCommerceAPI.getProductsAll();
-    console.log(response2.body!.results);
+    const response2 = await eCommerceAPI.getSearch('Glass');
+    console.log(response2.body.results);
   } catch (error) {
     console.error('Error fetching products:', error);
   }

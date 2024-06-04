@@ -99,7 +99,7 @@ class ECommerceAPI {
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { sort: 'price desc' } })
+      .get({ queryArgs: { 'filter.query': 'variants.attributes.color-filter.key:"black"' } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
@@ -117,6 +117,7 @@ class ECommerceAPI {
   }
 
   // .get({ queryArgs: { filter: 'variants.attributes.color-filter.key:"#000", "#FFF"', offset: 0, limit: 10 } })
+  // .get({ queryArgs: { sort: 'price desc' } })
 
   public async getCategoryAll(): Promise<ClientResponse> {
     return this.api.getApiRoot().categories().get().execute() as Promise<ClientResponse>;
@@ -126,12 +127,27 @@ class ECommerceAPI {
     return this.api.getApiRootWithToken(token).me().get().execute() as Promise<ClientResponse>;
   }
 
-  // this responce for update user data
+  public async getSearch(text: string): Promise<ClientResponse> {
+    return this.api
+      .getApiRoot()
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          fuzzy: true,
+          'text.en-US': text,
+          fuzzyLevel: 2
+        }
+      })
+      .execute() as Promise<ClientResponse>;
+  }
+
+  // this Request for update user data
   public async updateUser(token: string, body: MyCustomerUpdate): Promise<ClientResponse> {
     return this.api.getApiRootWithToken(token).me().post({ body }).execute() as Promise<ClientResponse>;
   }
 
-  // this responce for update user passwword
+  // this Request for update user passwword
   public async updateUserPassword(
     token: string,
     body: MyCustomerChangePassword,

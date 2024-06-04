@@ -1,8 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Button, FormHelperText } from '@mui/material';
 import dayjs from 'dayjs';
-
-import { version } from 'os';
 import { MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
