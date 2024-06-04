@@ -28,7 +28,6 @@ export default function Address({
   return (
     <>
       <AddressSection
-        key={`AddressSection ${address?.id}`}
         onChangeComboBox={data.handleOnChangeComboBox}
         onChangeFunction={data.handleOnChangeInput}
         inputsErrors={data.inputsErrors}
@@ -36,7 +35,6 @@ export default function Address({
         prefix={AddressPrefix.SHIPPING}
       />
       <CheckboxBlock
-        key={`CheckboxBlock ${address?.id}`}
         address={address}
         isBilling={isBilling}
         isShipping={isShipping}
@@ -47,14 +45,13 @@ export default function Address({
       />
 
       <Button
-        key={`Save ${address?.id}`}
         variant="outlined"
         disabled={!checkAddressInputs(data.inputsValues, data.inputsErrors)}
         onClick={handleSave}
       >
         Save
       </Button>
-      <Button key={`Cancel ${address?.id}`} variant="outlined" onClick={handleCancel}>
+      <Button variant="outlined" onClick={handleCancel}>
         Cancel
       </Button>
     </>

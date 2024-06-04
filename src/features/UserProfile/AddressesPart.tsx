@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Button } from '@mui/material';
 import {
@@ -266,14 +266,11 @@ export default function AddressesPart({
         Addresses
       </Title>
       {addresses.map((address, index) => (
-        <>
+        <React.Fragment key={address.id}>
           {!(updateId === index) && (
-            <div key={address.id}>
-              <p
-                key={`Title ${address.id}`}
-              >{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
+            <div>
+              <p>{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
               <CheckboxBlock
-                key={`Checkbox ${address.id}`}
                 address={address}
                 disabled={!(updateId === index)}
                 isBilling={isBillingAddress}
@@ -285,13 +282,12 @@ export default function AddressesPart({
             </div>
           )}
           {!(updateId === index) && (
-            <Button key={`Update ${address.id}`} variant="outlined" onClick={handleUpdate(index)}>
+            <Button variant="outlined" onClick={handleUpdate(index)}>
               Update
             </Button>
           )}
           {updateId === index && (
             <Address
-              key={`Data ${address.id}`}
               address={address}
               data={data}
               isBilling={isBillingAddress}
@@ -302,10 +298,10 @@ export default function AddressesPart({
               handleToggleShipping={handleToggleShipping}
             />
           )}
-          <Button key={`Delete ${address.id}`} variant="outlined" onClick={handleDelete(index)}>
+          <Button variant="outlined" onClick={handleDelete(index)}>
             Delete
           </Button>
-        </>
+        </React.Fragment>
       ))}
       {!isAddMode && (
         <Button variant="outlined" onClick={handleAddNew}>
