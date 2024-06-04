@@ -1,9 +1,12 @@
 import dayjs from 'dayjs';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import getMaxDate from '@/utils/getMaxDate';
+import { COUNTRY_LIST } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
 
 export const INIT_INPUTS_DATA = {
-  birthday: dayjs(getMaxDate()).format('YYYY-MM-DD')
+  birthday: dayjs(getMaxDate()).format('YYYY-MM-DD'),
+  shippingCountry: COUNTRY_LIST[0].code,
+  billingCountry: COUNTRY_LIST[0].code
 };
 
 export const INIT_POSTAL_PATTERN = {

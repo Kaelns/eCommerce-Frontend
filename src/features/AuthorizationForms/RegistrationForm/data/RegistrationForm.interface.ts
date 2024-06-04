@@ -18,6 +18,8 @@ interface IUseRegistrationFormReturn {
   isShowCircleProgress: boolean;
   isDefaultBillingAddress: boolean;
   isDefaultShippingAddress: boolean;
+  setIsDefaultBillingAddress: React.Dispatch<SetStateAction<boolean>>;
+  setIsDefaultShippingAddress: React.Dispatch<SetStateAction<boolean>>;
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
   handleBackdrop: () => void;
   handleOnChangeInput: HandleOnChangeInput;
@@ -26,6 +28,7 @@ interface IUseRegistrationFormReturn {
   handleToggleDefaultBilling: () => void;
   handleToggleDefaultShipping: () => void;
   setInputsValues: React.Dispatch<SetStateAction<IInputsValues>>;
+  setInputsErrors: React.Dispatch<SetStateAction<IInputsErrors>>;
 }
 
 export type { IAlertData, IUseRegistrationFormReturn };
