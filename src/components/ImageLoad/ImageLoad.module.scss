@@ -1,0 +1,21 @@
+@use '@styles/abstracts/placeholders';
+
+.img,
+.imgWrapper {
+  height: 100%;
+}
+
+.imgWrapper {
+  position: relative;
+  overflow: hidden;
+  @extend %animation;
+  border-radius: var(--mui-shape-borderRadius);
+}
+
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

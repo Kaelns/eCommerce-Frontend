@@ -13,3 +13,5 @@ export interface IAction {
   type: FilterState;
   payload?: IFilterState[keyof IFilterState];
 }
+
+export type IFilterFormState = Pick<IFilterState, 'categoryKey' | 'price' | 'color'>;

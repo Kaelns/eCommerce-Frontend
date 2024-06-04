@@ -60,11 +60,6 @@
   bottom: 0;
 }
 
-.img {
-  @extend %animation;
-  height: 100%;
-}
-
 .title {
   white-space: nowrap;
   overflow: hidden;
