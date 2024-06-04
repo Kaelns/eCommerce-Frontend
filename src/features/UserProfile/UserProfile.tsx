@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import { useRegistrationForm } from '@/features/AuthorizationForms/RegistrationForm/hooks/useRegistrationForm';
-import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import AddressesPart from '@/features/UserProfile/AddressesPart';
 import CredentialPart from '@/features/UserProfile/CredentialPart';
 import PersonalPart from '@/features/UserProfile/PersonalPart';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IAddresses, IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
+import { IAddresses, IResponseAddressData, IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
+import getMaxDate from '@/utils/getMaxDate';
+import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 
 export default function UserProfile(): React.ReactNode {
   const data = useRegistrationForm();
+
+  const [initialValues, setInitialValues] = useState<IResponseUserData>({
+    birthday: dayjs(getMaxDate()).format('YYYY-MM-DD'),
+    lastName: '',
+    firstName: '',
+    email: '',
+    version: -1
+  });
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [addresses, setAddresses] = useState<IAddresses[]>([]);
   useEffect(() => {
@@ -18,14 +28,17 @@ export default function UserProfile(): React.ReactNode {
         if (localToken !== '') {
           const response = await eCommerceAPI.getUser(localToken as string);
           console.log(response.body);
+          setInitialValues({
+            birthday: response.body.dateOfBirth,
+            lastName: response.body.lastName,
+            firstName: response.body.firstName,
+            email: response.body.email,
+            version: response.body.version
+          });
           data.setInputsValues((values) => ({
             ...values,
-            [INPUTS.firstName.name]: response.body.firstName,
-            [INPUTS.lastName.name]: response.body.lastName,
-            [INPUTS.birthday.name]: response.body.dateOfBirth,
-            [INPUTS.email.name]: response.body.email
+            [INPUTS.birthday.name]: response.body.dateOfBirth
           }));
-          console.log(response.body.addresses);
           const addressList: IAddresses[] = [];
           response.body.addresses.forEach((item: IResponseAddressData) => {
             const addressData = {
@@ -54,13 +67,13 @@ export default function UserProfile(): React.ReactNode {
       getUserData();
       setIsDataLoaded(true);
     }
-  }, [data, isDataLoaded, addresses]);
+  }, [isDataLoaded, addresses, data]);
 
   return (
     <>
-      <PersonalPart data={data} />
-      <CredentialPart data={data} />
-      <AddressesPart data={data} addresses={addresses} />
+      <PersonalPart data={data} initialValues={initialValues} setIsActualData={setIsDataLoaded} />
+      <CredentialPart data={data} initialValues={initialValues} setIsActualData={setIsDataLoaded} />
+      <AddressesPart data={data} addresses={addresses} version={initialValues.version} />
     </>
   );
 }

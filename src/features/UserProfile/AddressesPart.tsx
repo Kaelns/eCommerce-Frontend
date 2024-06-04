@@ -8,13 +8,16 @@ import styles from './UserProfile.module.scss';
 import CheckboxBlock from '@/features/UserProfile/CheckboxBlock';
 import Address from '@/features/UserProfile/Address';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { COUNTRY_LIST } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
 
 export default function AddressesPart({
   data,
-  addresses
+  addresses,
+  version
 }: {
   data: IUseRegistrationFormReturn;
   addresses: IAddresses[];
+  version: number;
 }): React.ReactNode {
   const [isBillingAddress, setIsBillingAddress] = useState(false);
   const [isShippingAddress, setIsShippingAddress] = useState(false);
@@ -32,9 +35,16 @@ export default function AddressesPart({
   const handleUpdate = useCallback(
     (index: number) => (): void => {
       setUpdateId(index);
+      data.setInputsValues((values) => ({
+        ...values,
+        [INPUTS.shippingCity.name]: addresses[index].addressData.city,
+        [INPUTS.shippingCountry.name]: addresses[index].addressData.country,
+        [INPUTS.shippingPostalCode.name]: addresses[index].addressData.postalCode,
+        [INPUTS.shippingStreet.name]: addresses[index].addressData.streetName
+      }));
       setIsAddMode(false);
     },
-    []
+    [data, addresses]
   );
   const handleDelete = useCallback(
     (index: number) => (): void => {
@@ -45,6 +55,13 @@ export default function AddressesPart({
   );
 
   const handleAddNew = (): void => {
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.shippingCity.name]: undefined,
+      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
+      [INPUTS.shippingPostalCode.name]: undefined,
+      [INPUTS.shippingStreet.name]: undefined
+    }));
     setUpdateId(-1);
     setIsAddMode(true);
   };
@@ -54,6 +71,13 @@ export default function AddressesPart({
   };
 
   const handleCancelUpdate = (): void => {
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.shippingCity.name]: undefined,
+      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
+      [INPUTS.shippingPostalCode.name]: undefined,
+      [INPUTS.shippingStreet.name]: undefined
+    }));
     setUpdateId(-1);
   };
 
@@ -71,6 +95,13 @@ export default function AddressesPart({
   };
 
   const handleCancelAdd = (): void => {
+    data.setInputsValues((values) => ({
+      ...values,
+      [INPUTS.shippingCity.name]: undefined,
+      [INPUTS.shippingCountry.name]: COUNTRY_LIST[0].code,
+      [INPUTS.shippingPostalCode.name]: undefined,
+      [INPUTS.shippingStreet.name]: undefined
+    }));
     setIsAddMode(false);
   };
 
@@ -82,10 +113,8 @@ export default function AddressesPart({
       {addresses.map((address, index) => (
         <>
           {!(updateId === index) && (
-            <>
-              <p
-                key={address.id}
-              >{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
+            <div key={address.id}>
+              <p>{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
               <CheckboxBlock
                 address={address}
                 disabled={!(updateId === index)}
@@ -93,10 +122,12 @@ export default function AddressesPart({
                 handleToggleBilling={handleToggleBilling}
                 handleToggleShipping={handleToggleShipping}
               />
-              <Button variant="outlined" onClick={handleUpdate(index)}>
-                Update
-              </Button>
-            </>
+            </div>
+          )}
+          {!(updateId === index) && (
+            <Button variant="outlined" onClick={handleUpdate(index)}>
+              Update
+            </Button>
           )}
           {updateId === index && (
             <Address

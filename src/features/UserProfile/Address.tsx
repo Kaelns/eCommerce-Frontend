@@ -1,7 +1,6 @@
 import { Button } from '@mui/material';
 import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import AddressSection from '@/features/AuthorizationForms/components/AddressSection/AddressSection';
-import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { AddressPrefix } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
 import { checkAddressInputs } from '@/features/UserProfile/UserProfile.helpers';
 import { IAddresses } from '@/features/UserProfile/UserProfile.interface';
@@ -28,10 +27,12 @@ export default function Address({
         onChangeComboBox={data.handleOnChangeComboBox}
         onChangeFunction={data.handleOnChangeInput}
         inputsErrors={data.inputsErrors}
+        inputsValues={data.inputsValues}
         prefix={AddressPrefix.SHIPPING}
       />
       <CheckboxBlock
         address={address}
+        disabled={false}
         data={data}
         handleToggleBilling={handleToggleBilling}
         handleToggleShipping={handleToggleShipping}

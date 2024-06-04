@@ -18,18 +18,18 @@ export default function CheckboxBlock({
   return (
     <>
       <FormControlLabel
-        control={<Checkbox disabled={disabled} checked={address?.isBilling} onChange={handleToggleBilling} />}
+        control={<Checkbox disabled={disabled} defaultChecked={address?.isBilling} onChange={handleToggleBilling} />}
         label="Billing address"
       />
       <FormControlLabel
-        control={<Checkbox disabled={disabled} checked={address?.isShipping} onChange={handleToggleShipping} />}
+        control={<Checkbox disabled={disabled} defaultChecked={address?.isShipping} onChange={handleToggleShipping} />}
         label="Shipping address"
       />
       <FormControlLabel
         control={
           <Checkbox
             disabled={disabled}
-            checked={address?.isDefaultBilling}
+            defaultChecked={address?.isDefaultBilling}
             onChange={data.handleToggleDefaultBilling}
           />
         }
@@ -39,7 +39,7 @@ export default function CheckboxBlock({
         control={
           <Checkbox
             disabled={disabled}
-            checked={address?.isDefaultShipping}
+            defaultChecked={address?.isDefaultShipping}
             onChange={data.handleToggleDefaultShipping}
           />
         }

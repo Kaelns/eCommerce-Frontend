@@ -12,3 +12,11 @@ export interface IAddresses {
 export interface IResponseAddressData extends IAddress {
   id: string;
 }
+
+export interface IResponseUserData {
+  version: number;
+  birthday: string;
+  email: string;
+  lastName: string;
+  firstName: string;
+}
