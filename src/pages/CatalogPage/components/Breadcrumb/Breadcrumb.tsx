@@ -1,19 +1,25 @@
-import { Breadcrumbs, Button } from '@mui/material';
+import { Breadcrumbs, BreadcrumbsProps, Button } from '@mui/material';
 import { useCallback, useContext } from 'react';
-import { IBreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb.interface';
-import { convertToBreadcrumb } from '@/components/Breadcrumb/helpers/convertToBreadcrumb';
 import { LinkBtn } from '@/components/buttons/LinkBtn/LinkBtn';
-import { fromKeyToName } from '@/utils/fromKeyToName';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
+import { fromKeyToName } from '@/utils/fromKeyToName';
+import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
+import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/helpers/convertToBreadcrumb';
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 
 import styles from './Breadcrumb.module.scss';
 
-export function Breadcrumb({ categoryTree, className }: IBreadcrumbProps): React.ReactNode {
+export function Breadcrumb({ className }: BreadcrumbsProps): React.ReactNode {
+  const { categoriesTree } = useContext(ECommerceContext);
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
-  const categoriesToRender =
-    filterState.categoryKey !== NO_CATEGORY ? convertToBreadcrumb(filterState.categoryKey, categoryTree) : NO_CATEGORY;
+
+  let categoriesToRender = NO_CATEGORY;
+  if (filterState.categoryKey !== NO_CATEGORY) {
+    categoriesToRender = convertToBreadcrumb(filterState.categoryKey, categoriesTree);
+  } else {
+    categoriesToRender = NO_CATEGORY;
+  }
   const arrToRender = categoriesToRender.trim().split(' ');
 
   const setCategory = useCallback(

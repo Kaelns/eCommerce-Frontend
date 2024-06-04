@@ -19,7 +19,10 @@ export const convertToBreadcrumb = (categoryKey: string, categories: ITreeNode[]
 
       if (!breadcrumbsFinal && i >= categoriesRecursive.length) {
         breadcrumbs = breadcrumbs.slice(0, breadcrumbs.lastIndexOf(' '));
-        i = 0;
+        i = -1;
+      }
+
+      if (breadcrumbsFinal) {
         return;
       }
 

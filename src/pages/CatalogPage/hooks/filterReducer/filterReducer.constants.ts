@@ -12,5 +12,5 @@ export const INITIAL_FILTER_VALUE: IFilterState = {
   price: [MIN_MONEY, MAX_MONEY],
   color: ColorsState,
   search: '',
-  sort: Sort.ALPHABETICALLY
+  sort: Sort.NAME_ASC
 };

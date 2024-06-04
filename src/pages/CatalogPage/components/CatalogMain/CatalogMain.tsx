@@ -1,9 +1,9 @@
 import { Box, Grid, useMediaQuery } from '@mui/material';
 import { FilterForm } from '@/features/FilterForm/FilterForm';
 import { Products } from '@/pages/CatalogPage/components/Products/Products';
-import { ICatalogMainProps } from '@/pages/CatalogPage/components/CatalogMain/CatalogMain.interface';
 import { theme } from '@/features/ThemeProvider/theme/theme';
 import { SideDrawer } from '@/components/SideDrawer/SideDrawer';
+import { ICatalogMainProps } from '@/pages/CatalogPage/components/CatalogMain/CatalogMain.interface';
 import ButtonCustom from '@/components/buttons/ButtonCustom/ButtonCustom';
 
 import styles from './CatalogMain.module.scss';
@@ -20,7 +20,7 @@ export function CatalogMain({ sideDriverHook }: ICatalogMainProps): React.ReactN
           </Grid>
         )}
         <Grid item container lg={9.6} alignContent="flex-start">
-          <Products className={styles.products} />
+          <Products />
         </Grid>
       </Grid>
       <SideDrawer data={sideDriverHook}>

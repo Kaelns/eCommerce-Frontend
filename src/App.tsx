@@ -1,16 +1,13 @@
 import { Router } from '@/features/Router/Router';
-import { AuthContextProvider } from '@/context/AuthContext/AuthContext';
 import { ThemeProvider } from '@/features/ThemeProvider/ThemeProvider';
-import { FilterReducerContextProvider } from '@/context/FilterReducerContext/FilterReducerContext';
+import { ContextsProvider } from '@/context/ContextsProvider';
 
 export function App(): React.ReactNode {
   return (
     <ThemeProvider>
-      <AuthContextProvider>
-        <FilterReducerContextProvider>
-          <Router />
-        </FilterReducerContextProvider>
-      </AuthContextProvider>
+      <ContextsProvider>
+        <Router />
+      </ContextsProvider>
     </ThemeProvider>
   );
 }

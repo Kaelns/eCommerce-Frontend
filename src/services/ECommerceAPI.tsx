@@ -10,18 +10,16 @@ import ApiClient from '@/services/ECommerceInitApi';
 import { ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { checkUndefined } from '@/utils/checkUndefined';
 import { buildCategoryTree } from '@/services/helpers/buildCategoryTree/buildCategoryTree';
-import { ITreeNode } from '@/data/interface/ITreeNode';
+import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
+import { ICategoriesObj } from '@/context/ECommerceContext/ECommerceContext.interface';
 
 class ECommerceAPI {
   private api: ApiClient;
 
   public categories: Category[] = [];
 
-  public categoriesTree: ITreeNode[] = [];
-
   constructor() {
     this.api = new ApiClient();
-    this.getCategoryAll();
   }
 
   async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -100,23 +98,25 @@ class ECommerceAPI {
       .execute() as Promise<ClientResponse<CustomerPagedQueryResponse>>;
   }
 
-  async getProductsAll(): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
+  async getProductsAll(
+    parameters: IConvertToFilterParamsReturn
+  ): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
     return this.api
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { sort: 'price desc' } })
+      .get({ queryArgs: { limit: 18, ...parameters } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
-  // .get({ queryArgs: { limit: 5, 'filter.query': 'variants.attributes.color-filter.key:"#000"' } })
-
-  async getCategoryAll(): Promise<void> {
+  async getCategoryAll(): Promise<ICategoriesObj> {
     const responce = await (this.api.getApiRoot().categories().get().execute() as Promise<
       ClientResponse<CategoryPagedQueryResponse>
     >);
-    this.categories = responce.body!.results;
-    this.categoriesTree = buildCategoryTree(this.categories);
+    const categories = responce.body!.results;
+    const categoriesTree = buildCategoryTree(categories);
+    this.categories = categories;
+    return { categories, categoriesTree };
   }
 
   async getUser(): Promise<ClientResponse> {

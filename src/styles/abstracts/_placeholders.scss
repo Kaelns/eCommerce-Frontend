@@ -4,10 +4,23 @@
   transition: all 0.3s ease-out;
 }
 
+%fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
 %border-radius {
   border-radius: 40px;
 }
 
 %no-text-transform {
   text-transform: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

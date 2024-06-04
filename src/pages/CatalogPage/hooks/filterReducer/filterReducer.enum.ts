@@ -8,7 +8,8 @@ export enum FilterState {
 }
 
 export enum Sort {
-  ALPHABETICALLY = 'Alphabetically',
-  PRICE_ASCENDING = 'Ascending price',
-  PRICE_DESCENDING = 'Descending price'
+  NAME_ASC = 'Ascending by name',
+  NAME_DESC = 'Descending by name',
+  PRICE_ASC = 'Ascending price',
+  PRICE_DESC = 'Descending price'
 }
