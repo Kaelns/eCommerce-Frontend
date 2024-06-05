@@ -75,7 +75,8 @@ export async function createCustomer(
         textAlert: AlertsText.SUCCESS_TEXT
       });
       eCommerceAPI.logoutCustomer();
-      const authResponse = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
+      // TODO
+      /* const authResponse = */ await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
     })
     .catch((error) => {
       console.warn(error);

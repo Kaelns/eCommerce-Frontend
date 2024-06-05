@@ -10,8 +10,6 @@ import {
   nonAuthorizedUserRoutes
 } from '@/layout/Navbar/data/Navbar.routes';
 
-import styles from '../Navbar.module.scss';
-
 export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
   const { authUserToken } = useAuthContext();
 
