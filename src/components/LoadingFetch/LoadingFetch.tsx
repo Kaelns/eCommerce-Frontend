@@ -2,7 +2,7 @@ import { ILoadingFetchProps } from '@/components/LoadingFetch/LoadingFetch.inter
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
-import imageError from '@/assets/error.png';
+import imageError from '@/assets/error2.png';
 
 export function LoadingFetch({
   children,

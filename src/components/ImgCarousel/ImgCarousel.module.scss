@@ -1,0 +1,30 @@
+.carousel {
+  position: relative;
+}
+
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, 50%);
+  z-index: 1000;
+}
+
+.leftArrow {
+  right: 0;
+}
+
+.rightArrow {
+  left: 0;
+}
+
+.dotsContainer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+
+  & li {
+    text-decoration: none;
+    list-style: none;
+  }
+}

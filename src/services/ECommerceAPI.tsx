@@ -1,11 +1,12 @@
-import { ClientResponse } from '@commercetools/sdk-client-v2';
 import {
   Category,
   CategoryPagedQueryResponse,
+  ClientResponse,
   CustomerPagedQueryResponse,
   CustomerSignInResult,
   MyCustomerChangePassword,
   MyCustomerUpdate,
+  ProductProjection,
   ProductProjectionPagedSearchResponse
 } from '@commercetools/platform-sdk';
 import ApiClient from '@/services/ECommerceInitApi';
@@ -112,6 +113,12 @@ class ECommerceAPI {
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
+  public async getProduct(key: string): Promise<ClientResponse<ProductProjection>> {
+    return this.api.getApiRoot().productProjections().withKey({ key }).get().execute() as Promise<
+      ClientResponse<ProductProjection>
+    >;
+  }
+
   async getCategoryAll(): Promise<ICategoriesObj> {
     const responce = await (this.api.getApiRoot().categories().get().execute() as Promise<
       ClientResponse<CategoryPagedQueryResponse>
@@ -124,21 +131,6 @@ class ECommerceAPI {
 
   public async getUser(token: string): Promise<ClientResponse> {
     return this.api.getApiRootWithToken(token).me().get().execute() as Promise<ClientResponse>;
-  }
-
-  public async getSearch(text: string): Promise<ClientResponse> {
-    return this.api
-      .getApiRoot()
-      .productProjections()
-      .search()
-      .get({
-        queryArgs: {
-          fuzzy: true,
-          'text.en-US': text,
-          fuzzyLevel: 2
-        }
-      })
-      .execute() as Promise<ClientResponse>;
   }
 
   // this Request for update user data

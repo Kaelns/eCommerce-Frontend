@@ -3,12 +3,12 @@
 .img,
 .imgWrapper {
   height: 100%;
+  @extend %animation;
 }
 
 .imgWrapper {
   position: relative;
   overflow: hidden;
-  @extend %animation;
   border-radius: var(--mui-shape-borderRadius);
 }
 

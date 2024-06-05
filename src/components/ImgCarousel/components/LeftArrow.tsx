@@ -1,0 +1,11 @@
+import { IconButton } from '@mui/material';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { IArrows } from '@/components/ImgCarousel/data/ImgCarousel.interface';
+
+export function LeftArrow({ onClick, classes = '' }: IArrows): React.ReactNode {
+  return (
+    <IconButton onClick={onClick} className={classes}>
+      <ArrowForwardIosIcon fontSize="small" />
+    </IconButton>
+  );
+}

@@ -20,26 +20,8 @@
 }
 
 .discount {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 4rem;
-  height: 4rem;
   top: -1rem;
   right: -1rem;
-  border-radius: 100%;
-  z-index: 100;
-}
-
-.discounted,
-.discount {
-  background-color: var(--mui-palette-error-light);
-}
-
-.discounted {
-  border-radius: var(--mui-shape-borderRadius);
 }
 
 .imgContainer {
@@ -52,37 +34,11 @@
   height: 200px;
 }
 
-.skeleton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 1rem;
-}
-
-.discounted,
-.price {
-  padding-inline: 0.3rem;
-}
-
-.price {
-  &Disabled {
-    text-decoration: line-through;
-  }
-}
-
-.priceContainer {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 0.6rem;
 }
 
 .description {

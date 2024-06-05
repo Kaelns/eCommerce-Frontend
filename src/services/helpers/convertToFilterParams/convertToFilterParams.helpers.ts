@@ -8,6 +8,7 @@ import {
   IConvertSearchReturn,
   PROPERTY
 } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
+import { findInCategories } from '@/services/helpers/findInCategories';
 
 export function convertSort(typeOfSort: Sort): string {
   switch (typeOfSort) {
@@ -65,6 +66,6 @@ export function convertColors(colors: IColorsState): string {
 }
 
 export function convertCategories(categoryKey: string): string {
-  const category = categoryKey !== NO_CATEGORY ? eCommerceAPI.categories.find((obj) => obj.key === categoryKey) : '';
+  const category = categoryKey !== NO_CATEGORY ? findInCategories(eCommerceAPI.categories, [categoryKey])[0] : '';
   return category ? `categories.id: "${category.id}"` : '';
 }

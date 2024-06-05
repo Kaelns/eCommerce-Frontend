@@ -22,8 +22,8 @@ export function Router(): React.ReactNode {
             <Route path={ROUTES.CATALOG_CATEGORY} />
           </Route>
           <Route path={ROUTES.ABOUT_US} element={<AboutUsPage />} />
-          <Route path={ROUTES.DETAILED_PRODUCT} element={<DetailedProductPage />}>
-            <Route path={ROUTES.DETAILED_PRODUCT_ID} />
+          <Route path={ROUTES.DETAILED_PRODUCT}>
+            <Route path={ROUTES.DETAILED_PRODUCT_ID} element={<DetailedProductPage />} />
           </Route>
           <Route path={ROUTES.USER} element={redirect[ROUTES.USER]} />
           <Route path={ROUTES.LOGIN} element={redirect[ROUTES.LOGIN]} />

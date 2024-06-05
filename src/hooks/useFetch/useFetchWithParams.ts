@@ -17,6 +17,8 @@ export function useFetchWithParams<T, P>(func: (parameters: P) => T, parameters:
         if (e instanceof Error) {
           setError(e.message);
         }
+        setError('Uncaught error');
+        console.warn(e);
       }
     };
 
