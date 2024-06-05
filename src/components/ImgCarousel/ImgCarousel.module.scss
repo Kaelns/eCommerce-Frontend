@@ -6,16 +6,17 @@
 .rightArrow {
   position: absolute;
   top: 50%;
-  transform: translate(50%, 50%);
   z-index: 1000;
 }
 
 .leftArrow {
   right: 0;
+  transform: translate(10%, 50%);
 }
 
 .rightArrow {
   left: 0;
+  transform: translate(-10%, 50%);
 }
 
 .dotsContainer {

@@ -5,7 +5,7 @@ import { IArrows } from '@/components/ImgCarousel/data/ImgCarousel.interface';
 export function LeftArrow({ onClick, classes = '' }: IArrows): React.ReactNode {
   return (
     <IconButton onClick={onClick} className={classes}>
-      <ArrowForwardIosIcon fontSize="small" />
+      <ArrowForwardIosIcon fontSize="large" />
     </IconButton>
   );
 }

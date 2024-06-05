@@ -4,6 +4,7 @@ export interface IImgCarousel {
   className?: string;
   customDots?: React.ReactNode[];
   arrows?: boolean;
+  openModalImg?: number;
 }
 
 export interface IArrows extends ButtonProps {

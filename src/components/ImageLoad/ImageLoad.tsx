@@ -5,7 +5,7 @@ import { IImageLoadProps } from '@/components/ImageLoad/ImageLoad.interface';
 
 import styles from './ImageLoad.module.scss';
 
-export function ImageLoad({ src, alt, className = '', imgStyles = '' }: IImageLoadProps): React.ReactNode {
+export function ImageLoad({ src, alt, className = '', imgStyles = '', onClick }: IImageLoadProps): React.ReactNode {
   const [isImgLoading, setIsImgLoading] = useState(true);
   const ref = useRef<HTMLImageElement>();
 
@@ -28,6 +28,7 @@ export function ImageLoad({ src, alt, className = '', imgStyles = '' }: IImageLo
         alt={alt}
         className={`${imgStyles} ${styles.img}`}
         onLoad={handleOnImgLoad}
+        onClick={onClick}
       />
     </Box>
   );

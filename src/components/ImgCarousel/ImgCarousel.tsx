@@ -11,7 +11,6 @@ import { appendDots, customDot } from '@/components/ImgCarousel/data/ImgCarousel
 import styles from './ImgCarousel.module.scss';
 
 const settings = {
-  dots: true,
   infinite: false,
   draggable: false,
   speed: 1000,
@@ -25,13 +24,11 @@ export function ImgCarousel({
   children,
   customDots = [],
   className = '',
-  arrows = false
+  arrows = false,
+  openModalImg = 0
 }: PropsWithChildren<IImgCarousel>): React.ReactNode {
   const sliderRef = useRef<Slider>(null);
-  const additionalSettings: IAdditionalSettings = {
-    customPaging: undefined,
-    appendDots: undefined
-  };
+  const additionalSettings: IAdditionalSettings = {};
 
   if (customDots.length) {
     additionalSettings.customPaging = customDot(customDots, sliderRef);
@@ -42,8 +39,10 @@ export function ImgCarousel({
     <Slider
       ref={sliderRef}
       arrows={arrows}
+      dots={!arrows}
       {...settings}
       {...additionalSettings}
+      initialSlide={openModalImg}
       className={`${className} ${styles.carousel}`}
     >
       {children}

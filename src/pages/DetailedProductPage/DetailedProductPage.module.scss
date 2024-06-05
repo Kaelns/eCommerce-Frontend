@@ -1,3 +1,5 @@
+@use '@styles/abstracts/mixins';
+
 .imgContainer {
   position: relative;
   display: flex;
@@ -9,11 +11,20 @@
   cursor: pointer;
 
   &:hover .img {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   &Large {
-    height: 500px;
+    height: 80vh;
+    @include mixins.media(1100px) {
+      height: 60vh;
+    }
+    @include mixins.media-tablet {
+      height: 40vh;
+    }
+    @include mixins.media(500px) {
+      height: 30vh;
+    }
   }
   &Medium {
     height: 300px;
@@ -26,9 +37,14 @@
 
 .carousel {
   &Large {
+    width: 100%;
   }
   &Medium {
     width: 65%;
+
+    @include mixins.media-tablet {
+      width: 100%;
+    }
   }
   &Small {
     width: 130px;
@@ -39,6 +55,10 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @include mixins.media-tablet {
+    flex-direction: column-reverse;
+  }
 }
 
 .headerContainer {
@@ -50,9 +70,62 @@
 .productData {
   position: relative;
   width: 32.5%;
+
+  @include mixins.media-tablet {
+    padding-bottom: 1.5rem;
+    padding-right: 1.5rem;
+    float: left;
+    width: 45%;
+  }
+
+  @include mixins.media(500px) {
+    padding-right: 0;
+    float: none;
+    width: 100%;
+  }
 }
 
 .discount {
   top: -1rem;
   right: -1rem;
+}
+
+.modalContainer,
+.modalBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBody {
+  background-color: var(--mui-palette-common-background);
+  position: relative;
+  width: 90%;
+  height: 90%;
+  padding: 1rem;
+  border-radius: var(--mui-shape-borderRadius);
+
+  @include mixins.media(1100px) {
+    height: 70%;
+  }
+  @include mixins.media-tablet {
+    height: 50%;
+  }
+  @include mixins.media(500) {
+    height: 30vh;
+  }
+}
+
+.modalClose {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  background-color: var(--mui-palette-primary-main);
+
+  &:hover {
+    background-color: var(--mui-palette-primary-light);
+  }
 }
