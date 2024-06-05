@@ -37,7 +37,6 @@ export default function UserProfile(): React.ReactNode {
         const localToken = localStorage.getItem('Token');
         if (localToken !== '') {
           const response = await eCommerceAPI.getUser(localToken as string);
-          console.log(response.body);
           setInitialValues({
             birthday: response.body.dateOfBirth,
             lastName: response.body.lastName,

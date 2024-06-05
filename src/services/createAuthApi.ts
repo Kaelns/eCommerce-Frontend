@@ -8,8 +8,6 @@ export async function handleAuthentication(
 ): Promise<void> {
   try {
     const result = await eCommerceAPI.authenticateCustomer(email, password);
-    //  TODO remove console
-    // console.log(result.body);
     setAuthUserToken('auth_is_ok');
   } catch (error) {
     if (error instanceof Error) {

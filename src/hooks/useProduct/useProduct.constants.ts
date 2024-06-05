@@ -7,5 +7,5 @@ export const MOCK_PRODUCT = {
   discount: 0,
   imageUrl: '',
   images: [],
-  categories: []
+  categoriesIdArr: []
 };

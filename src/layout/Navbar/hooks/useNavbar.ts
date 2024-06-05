@@ -16,14 +16,12 @@ export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
   const { authUserToken } = useAuthContext();
 
   let navRoutes = null;
-  let additionalStyles = '';
   let orientation: TabsOrientation = 'horizontal';
 
   const userPopoverRoutes = (): ReturnUserRoutes => (authUserToken ? authorizedUserRoutes : nonAuthorizedUserRoutes);
 
   switch (typeOfNavbar) {
     case Navbars.MAIN:
-      additionalStyles = styles.horizontalButton;
       navRoutes = mainRoutes;
       orientation = 'vertical';
       break;

@@ -67,29 +67,6 @@
   gap: 1.5rem;
 }
 
-.productData {
-  position: relative;
-  width: 32.5%;
-
-  @include mixins.media-tablet {
-    padding-bottom: 1.5rem;
-    padding-right: 1.5rem;
-    float: left;
-    width: 45%;
-  }
-
-  @include mixins.media(500px) {
-    padding-right: 0;
-    float: none;
-    width: 100%;
-  }
-}
-
-.discount {
-  top: -1rem;
-  right: -1rem;
-}
-
 .modalContainer,
 .modalBody {
   display: flex;

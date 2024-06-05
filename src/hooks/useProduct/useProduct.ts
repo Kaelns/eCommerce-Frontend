@@ -18,11 +18,12 @@ export function useProduct(product: ProductProjection | undefined): IUseProductR
   ];
   const [image, prices] = [product.masterVariant?.images?.[0], product.masterVariant.prices];
 
+  const categoriesIdArr = categories.map((obj) => obj.id);
   const pricesObjUSD = prices ? prices.find((obj) => obj.country === COUNTRY) : null;
   const imageUrl = image ? image.url : imageNotAvailable;
   const images = product.masterVariant?.images ? product.masterVariant?.images : [];
 
   const { price, discounted, discount } = getPrices(pricesObjUSD);
 
-  return { key, name, description, categories, price, discounted, discount, imageUrl, images };
+  return { key, name, description, categoriesIdArr, price, discounted, discount, imageUrl, images };
 }

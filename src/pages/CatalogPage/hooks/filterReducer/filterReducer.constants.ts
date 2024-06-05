@@ -12,7 +12,7 @@ export const INITIAL_FILTER_VALUE: IFilterState = {
   price: [MIN_MONEY, MAX_MONEY],
   color: ColorsState,
   search: '',
-  sort: Sort.NAME_ASC
+  sort: Sort.NO_SORT
 };
 
 export const INITIAL_FORM_VALUE: IFilterFormState = {

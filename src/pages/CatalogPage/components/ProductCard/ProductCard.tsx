@@ -6,9 +6,9 @@ import { useProduct } from '@/hooks/useProduct/useProduct';
 import { ROUTES } from '@/features/Router/data/Router.enum';
 import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
+import { Discount } from '@/components/Discount/Discount';
 
 import styles from './ProductCard.module.scss';
-import { Discount } from '@/components/Discount/Discount';
 
 export function ProductCard({ product }: IProductCardProps): React.ReactNode {
   const data = useProduct(product);

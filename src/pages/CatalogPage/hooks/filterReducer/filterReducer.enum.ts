@@ -9,6 +9,7 @@ export enum FilterState {
 }
 
 export enum Sort {
+  NO_SORT = 'No sort',
   NAME_ASC = 'Ascending by name',
   NAME_DESC = 'Descending by name',
   PRICE_ASC = 'Ascending price',

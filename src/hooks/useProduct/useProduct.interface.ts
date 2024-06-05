@@ -1,4 +1,4 @@
-import { CategoryReference, Image } from '@commercetools/platform-sdk';
+import { Image } from '@commercetools/platform-sdk';
 
 export interface IGetPricesReturn {
   price: number;
@@ -14,6 +14,6 @@ export interface IUseProductReturn {
   discounted: number;
   discount: number;
   imageUrl: string;
-  categories: CategoryReference[];
+  categoriesIdArr: string[];
   images: Image[];
 }

@@ -11,18 +11,20 @@
 
 .leftArrow {
   right: 0;
-  transform: translate(10%, 50%);
+  transform: translate(10%, 0);
 }
 
 .rightArrow {
   left: 0;
-  transform: translate(-10%, 50%);
+  transform: translate(-10%, 0);
 }
 
 .dotsContainer {
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
+  // Todo draggable
+  overflow-y: auto;
 
   & li {
     text-decoration: none;
