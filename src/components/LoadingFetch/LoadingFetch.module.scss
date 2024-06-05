@@ -1,24 +1,18 @@
 @use '@styles/abstracts/mixins';
-@use '@styles/abstracts/placeholders';
 
-.img,
-.imgWrapper {
-  height: 100%;
-  @extend %animation;
-}
-
-.imgWrapper {
+.container {
   position: relative;
-  border-radius: var(--mui-shape-borderRadius);
 }
 
 .skeleton {
   position: absolute;
-  background-color: var(--mui-palette-grey-200);
+  background-color: var(--mui-palette-common-background);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1000;
+
   @include mixins.animation($time: 0.1s);
 
   &.disabled {

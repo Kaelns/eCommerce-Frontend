@@ -1,11 +1,11 @@
 import { IconButton } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { IArrows } from '@/components/ImgCarousel/data/ImgCarousel.interface';
 
 export function RightArrow({ onClick, classes = '' }: IArrows): React.ReactNode {
   return (
     <IconButton onClick={onClick} className={classes}>
-      <ArrowBackIosIcon fontSize="large" />
+      <ArrowForwardIosIcon fontSize="large" />
     </IconButton>
   );
 }

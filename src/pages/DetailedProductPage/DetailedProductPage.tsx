@@ -3,7 +3,6 @@ import { Box, IconButton, Modal, Typography, useMediaQuery } from '@mui/material
 import { useCallback, useContext, useMemo, useState } from 'react';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
-import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { useDetailedProduct } from '@/pages/DetailedProductPage/useDetailedProduct.ts/useDetailedProduct';
 import { ImgCarousel } from '@/components/ImgCarousel/ImgCarousel';
 import { MEDIA_TABLET } from '@/data/constants';
@@ -13,6 +12,7 @@ import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead/
 import { LANGUAGE } from '@/services/ECommerceInitApi.constants';
 
 import styles from './DetailedProductPage.module.scss';
+import { usePageSkeleton } from '@/components/PageSkeleton/usePageSkeleton';
 
 export function DetailedProductPage(): React.ReactNode {
   const { categories } = useContext(ECommerceContext);
@@ -20,10 +20,11 @@ export function DetailedProductPage(): React.ReactNode {
   const { productData, isLoading, error } = useDetailedProduct();
   const [open, setOpen] = useState(false);
   const [imgNum, setImgNum] = useState(0);
+  const pageSkeleton = usePageSkeleton();
 
   const categoriesNames = useMemo(
-    () => findInCategories(categories, productData.categoriesIdArr).map((obj) => obj.name[LANGUAGE]),
-    []
+    () => findInCategories(categories, productData.categoriesIdArr, true).map((obj) => obj.name[LANGUAGE]),
+    [categories, productData.categoriesIdArr]
   );
 
   const handleOpen = useCallback(
@@ -48,7 +49,7 @@ export function DetailedProductPage(): React.ReactNode {
     ));
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} skeleton={<PageSkeleton />}>
+    <LoadingFetch error={error} isLoading={isLoading} skeleton={pageSkeleton}>
       <Box className={styles.pageContainer}>
         <Box className={styles.headerContainer}>
           <ImgCarousel className={styles.carouselMedium} customDots={createImages(styles.imgContainerSmall)}>

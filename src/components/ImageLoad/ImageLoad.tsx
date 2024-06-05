@@ -18,9 +18,10 @@ export function ImageLoad({ src, alt, className = '', imgStyles = '', onClick }:
       handleOnImgLoad();
     }
   });
+
   return (
     <Box className={`${className} ${styles.imgWrapper}`}>
-      {isImgLoading && <ImgSkeleton className={styles.skeleton} />}
+      <ImgSkeleton className={`${styles.skeleton} ${isImgLoading ? '' : styles.disabled}`} />
       <Box
         ref={ref}
         component="img"
@@ -29,6 +30,7 @@ export function ImageLoad({ src, alt, className = '', imgStyles = '', onClick }:
         className={`${imgStyles} ${styles.img}`}
         onLoad={handleOnImgLoad}
         onClick={onClick}
+        loading="lazy"
       />
     </Box>
   );

@@ -12,12 +12,11 @@ import styles from './ImgCarousel.module.scss';
 
 const settings = {
   infinite: false,
-  draggable: false,
   speed: 1000,
   slidesToShow: 1,
   slidesToScroll: 1,
-  nextArrow: <LeftArrow classes={styles.leftArrow} />,
-  prevArrow: <RightArrow classes={styles.rightArrow} />
+  nextArrow: <RightArrow classes={styles.rightArrow} />,
+  prevArrow: <LeftArrow classes={styles.leftArrow} />
 };
 
 export function ImgCarousel({
@@ -40,6 +39,7 @@ export function ImgCarousel({
       ref={sliderRef}
       arrows={arrows}
       dots={!arrows}
+      draggable={!arrows}
       {...settings}
       {...additionalSettings}
       initialSlide={openModalImg}

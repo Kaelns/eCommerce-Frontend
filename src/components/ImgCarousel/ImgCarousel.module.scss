@@ -10,13 +10,13 @@
 }
 
 .leftArrow {
-  right: 0;
-  transform: translate(10%, 0);
+  left: 0;
+  transform: translate(-15%, 0);
 }
 
 .rightArrow {
-  left: 0;
-  transform: translate(-10%, 0);
+  right: 0;
+  transform: translate(15%, 0);
 }
 
 .dotsContainer {

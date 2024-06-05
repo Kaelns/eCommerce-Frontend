@@ -14,6 +14,7 @@ export function convertToFilterParams(filterState: IFilterState): IConvertToFilt
   const search = convertSearch(filterState.search);
   const colors = convertColors(filterState.color);
   const category = convertCategories(filterState.categoryKey);
+  console.log(category);
 
   const sortObj = sort ? { sort } : {};
   const filters = [colors, category, price].filter((el) => el);
