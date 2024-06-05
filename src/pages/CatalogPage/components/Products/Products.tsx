@@ -24,7 +24,7 @@ export function Products(): React.ReactNode {
   useEffect(() => console.log(filterStateDebounce), [filterStateDebounce]);
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} skeleton={pageSkeleton}>
+    <LoadingFetch error={error} isLoading={isLoading} skeleton={pageSkeleton} className={styles.productsContainer}>
       {products.length ? (
         <>
           <Box className={styles.productsHeader}>

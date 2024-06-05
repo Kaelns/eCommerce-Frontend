@@ -10,7 +10,8 @@ export function LoadingFetch({
   children,
   error,
   isLoading,
-  skeleton
+  skeleton,
+  className = ''
 }: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {
   const elementToReturn = (): React.ReactNode => {
     if (error) {
@@ -18,7 +19,7 @@ export function LoadingFetch({
     }
 
     return (
-      <Box className={styles.container}>
+      <Box className={`${className} ${styles.container}`}>
         {skeleton({ className: `${styles.skeleton} ${!isLoading ? styles.disabled : ''}` })}
         {children}
       </Box>
