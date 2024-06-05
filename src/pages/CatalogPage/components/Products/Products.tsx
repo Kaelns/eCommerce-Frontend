@@ -1,28 +1,28 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useContext } from 'react';
-import { useFetch } from '@/hooks/useFetch/useFetch';
-import { fetchProducts } from '@/services/helpers/fetchProducts/fetchProducts';
+import { Title } from '@/components/typography/Title/Title';
+import { SortBy } from '@/pages/CatalogPage/components/SortBy/SortBy';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
-import { Title } from '@/components/typography/Title/Title';
-import { IProductsProps } from '@/pages/CatalogPage/components/Products/Products.interface';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { fromKeyToName } from '@/utils/fromKeyToName';
+import { fetchProducts } from '@/services/helpers/fetchProducts/fetchProducts';
 import { EMPTY_DATA_PRODUCTS } from '@/services/helpers/fetchProducts/fetchProducts.constants';
-import { SortBy } from '@/pages/CatalogPage/components/SortBy/SortBy';
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+import { useFetchWithParams } from '@/hooks/useFetch/useFetchWithParams';
+import { ProductCard } from '@/pages/CatalogPage/components/ProductCard/ProductCard';
+import { useDebounce } from '@/hooks/useDebounce/useDebounce';
 
 import styles from './Products.module.scss';
-import { ProductCard } from '@/pages/CatalogPage/components/ProductCard/ProductCard';
 
-export function Products({ className }: IProductsProps): React.ReactNode {
-  const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
-
-  const { data, isLoading, error } = useFetch(fetchProducts);
+export function Products(): React.ReactNode {
+  const { filterState } = useContext(FilterReducerContext);
+  const filterStateDebounce = useDebounce(filterState);
+  const { data, isLoading, error } = useFetchWithParams(fetchProducts, filterStateDebounce);
   const { products, amount } = data ?? EMPTY_DATA_PRODUCTS;
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} skeleton={<PageSkeleton />}>
-      {data ? (
+      {products.length ? (
         <>
           <Box className={styles.productsHeader}>
             <Box>

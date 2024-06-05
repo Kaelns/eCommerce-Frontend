@@ -1,5 +1,11 @@
+@use '@styles/abstracts/mixins';
+
 .sortContainer {
   min-width: 250px;
+
+  @include mixins.media-tablet {
+    min-width: 180px;
+  }
 }
 
 .componentContainer {
@@ -9,6 +15,13 @@
 }
 
 .title {
-  padding-bottom: 0.5rem;
   font-weight: bold;
+}
+
+.menuItem,
+.title,
+.sortContainer {
+  @include mixins.media-tablet {
+    font-size: 1.8rem;
+  }
 }

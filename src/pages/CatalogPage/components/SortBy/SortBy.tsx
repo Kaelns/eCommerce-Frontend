@@ -1,12 +1,11 @@
 import { Select, MenuItem, SelectChangeEvent, Box, Typography } from '@mui/material';
 import { useContext } from 'react';
-import { ISortByProps } from '@/pages/CatalogPage/components/SortBy/SortBy.interface';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 
 import styles from './SortBy.module.scss';
 
-export function SortBy(props: ISortByProps): React.ReactNode {
+export function SortBy(): React.ReactNode {
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
   const sortKeys = Object.keys(Sort);
 
@@ -21,7 +20,7 @@ export function SortBy(props: ISortByProps): React.ReactNode {
         {sortKeys.map((key) => {
           const sortValue = Sort[key as keyof typeof Sort];
           return (
-            <MenuItem key={key} value={sortValue}>
+            <MenuItem key={key} value={sortValue} className={styles.menuItem}>
               {sortValue}
             </MenuItem>
           );

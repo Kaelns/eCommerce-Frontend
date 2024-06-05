@@ -1,3 +1,5 @@
+@use '@styles/abstracts/mixins';
+
 .productsContainer {
   width: 100%;
 }
@@ -8,6 +10,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+
+  @include mixins.media-tablet {
+    flex-direction: column;
+    justify-content: initial;
+    align-items: flex-start;
+  }
 }
 
 .productWrapper {

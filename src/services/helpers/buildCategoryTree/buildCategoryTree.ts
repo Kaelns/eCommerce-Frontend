@@ -7,6 +7,10 @@ export function buildCategoryTree(categories: Category[]): ITreeNode[] {
   const finalArr: ITreeNode[] = [];
   let workArr = finalArr;
 
+  if (!categories.length) {
+    return finalArr;
+  }
+
   categories.forEach((category) => {
     const [id, key] = [category.id, category.key!];
     const parentsCount = category.ancestors.length;

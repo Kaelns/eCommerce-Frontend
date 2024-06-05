@@ -1,7 +1,8 @@
 import { Price } from '@commercetools/platform-sdk';
 import { IGetPricesReturn } from '@/hooks/useProduct/useProduct.interface';
+import { FRACTION_DIGITS } from '@/services/ECommerceInitApi.constants';
 
-const calculatePrice = (centAmount: number, fractionDigits: number): number => centAmount / (fractionDigits * 10);
+const calculatePrice = (centAmount: number): number => centAmount / FRACTION_DIGITS;
 
 export function getPrices(priceObj: Price | null | undefined): IGetPricesReturn {
   if (!priceObj) {
@@ -14,18 +15,16 @@ export function getPrices(priceObj: Price | null | undefined): IGetPricesReturn 
 
   const { value, discounted: discountedObj } = priceObj;
 
-  const { centAmount, fractionDigits } = value;
-  const { centAmount: centAmountDis, fractionDigits: fractionDigitsDis } = discountedObj
-    ? discountedObj.value
-    : { centAmount: 0, fractionDigits: 0 };
+  const { centAmount } = value;
+  const { centAmount: centAmountDis } = discountedObj ? discountedObj.value : { centAmount: 0 };
 
-  const price = calculatePrice(centAmount, fractionDigits);
-  const discounted = centAmountDis && fractionDigitsDis ? calculatePrice(centAmountDis, fractionDigitsDis) : 0;
-  const discount = centAmountDis ? 100 - (centAmountDis / centAmount) * 100 : 0;
+  const price = calculatePrice(centAmount);
+  const discounted = centAmountDis ? calculatePrice(centAmountDis) : 0;
+  const discount = centAmountDis ? Math.round(100 - (centAmountDis / centAmount) * 100) : 0;
 
   return {
     price,
-    discounted,
-    discount
+    discount,
+    discounted
   };
 }
