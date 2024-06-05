@@ -30,7 +30,7 @@ export function useRedirect(): IReturnUseRedirect {
   );
 
   return {
-    [ROUTES.USER]: pageOnLoaded(pageOnAuthorized(<UserPage />, <Navigate to={ROUTES.MAIN} />)),
+    [ROUTES.USER]: pageOnLoaded(pageOnAuthorized(<UserPage />, <Navigate to={ROUTES.LOGIN} />)),
     [ROUTES.LOGIN]: pageOnLoaded(pageOnAuthorized(<Navigate to={ROUTES.MAIN} />, <LoginPage />)),
     [ROUTES.BASKET]: pageOnLoaded(pageOnAuthorized(<BasketPage />, <Navigate to={ROUTES.MAIN} />)),
     [ROUTES.REGISTRATION]: pageOnLoaded(pageOnAuthorized(<Navigate to={ROUTES.MAIN} />, <RegistrationPage />))
