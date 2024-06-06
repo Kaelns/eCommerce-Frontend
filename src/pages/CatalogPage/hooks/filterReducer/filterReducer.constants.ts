@@ -4,7 +4,7 @@ import { IFilterFormState, IFilterState } from '@/pages/CatalogPage/hooks/filter
 
 //  TODO fetch max price
 export const MIN_MONEY = 0;
-export const MAX_MONEY = 10000;
+export const MAX_MONEY = 5000;
 export const NO_CATEGORY = 'no-category';
 
 export const INITIAL_FILTER_VALUE: IFilterState = {
