@@ -19,6 +19,7 @@ import {
   PostalCodePattern,
   HandleOnChangeInput
 } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
+import { InputReactEvent } from '@/data/types/InputReactEvent';
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   const { setAuthUserToken } = useAuthContext();

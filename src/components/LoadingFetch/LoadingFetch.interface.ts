@@ -1,5 +1,6 @@
 export interface ILoadingFetchProps {
   error: string;
   isLoading: boolean;
-  skeleton: React.ReactNode;
+  skeleton: (props: { className: string }) => React.ReactNode;
+  className?: string;
 }

@@ -12,7 +12,7 @@ import styles from './RangePriceSlider.module.scss';
 export function RangePriceSlider(): React.ReactNode {
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
 
-  const handleChange = (event: Event | InputReactEvent, newValue: number | Price, activeThumb: number): void => {
+  const handleChange = (_event: Event | InputReactEvent, newValue: number | Price, activeThumb: number): void => {
     if (!Array.isArray(newValue)) {
       return;
     }

@@ -10,7 +10,7 @@ export interface IConvertSearchReturn {
 }
 
 export type IConvertToFilterParamsReturn = IConvertSearchReturn & {
-  sort: string;
+  sort?: string;
   'filter.query': string[];
 };
 

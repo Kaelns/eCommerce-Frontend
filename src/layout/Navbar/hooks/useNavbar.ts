@@ -10,20 +10,16 @@ import {
   nonAuthorizedUserRoutes
 } from '@/layout/Navbar/data/Navbar.routes';
 
-import styles from '../Navbar.module.scss';
-
 export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
   const { authUserToken } = useAuthContext();
 
   let navRoutes = null;
-  let additionalStyles = '';
   let orientation: TabsOrientation = 'horizontal';
 
   const userPopoverRoutes = (): ReturnUserRoutes => (authUserToken ? authorizedUserRoutes : nonAuthorizedUserRoutes);
 
   switch (typeOfNavbar) {
     case Navbars.MAIN:
-      additionalStyles = styles.horizontalButton;
       navRoutes = mainRoutes;
       orientation = 'vertical';
       break;

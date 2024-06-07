@@ -1,0 +1,33 @@
+@use '@styles/abstracts/mixins';
+
+.productData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  width: 32.5%;
+
+  @include mixins.media-tablet {
+    padding-bottom: 1.5rem;
+    padding-right: 1.5rem;
+    float: left;
+    width: 45%;
+  }
+
+  @include mixins.media(500px) {
+    padding-right: 0;
+    float: none;
+    width: 100%;
+  }
+}
+
+.discount {
+  top: -1rem;
+  right: -1rem;
+}
+
+.chipContainer {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}

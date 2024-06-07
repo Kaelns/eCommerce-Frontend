@@ -1,21 +1,28 @@
+@use '@styles/abstracts/mixins';
 @use '@styles/abstracts/placeholders';
 
 .img,
 .imgWrapper {
   height: 100%;
+  @extend %animation;
 }
 
 .imgWrapper {
   position: relative;
-  overflow: hidden;
-  @extend %animation;
   border-radius: var(--mui-shape-borderRadius);
 }
 
 .skeleton {
   position: absolute;
+  background-color: var(--mui-palette-grey-200);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  @include mixins.animation($time: 0.1s);
+
+  &.disabled {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

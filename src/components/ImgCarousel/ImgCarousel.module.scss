@@ -1,0 +1,33 @@
+.carousel {
+  position: relative;
+}
+
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1000;
+}
+
+.leftArrow {
+  left: 0;
+  transform: translate(-15%, 0);
+}
+
+.rightArrow {
+  right: 0;
+  transform: translate(15%, 0);
+}
+
+.dotsContainer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  // Todo draggable
+  overflow-y: auto;
+
+  & li {
+    text-decoration: none;
+    list-style: none;
+  }
+}

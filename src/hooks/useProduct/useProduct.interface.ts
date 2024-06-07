@@ -1,3 +1,5 @@
+import { Image } from '@commercetools/platform-sdk';
+
 export interface IGetPricesReturn {
   price: number;
   discount: number;
@@ -12,4 +14,6 @@ export interface IUseProductReturn {
   discounted: number;
   discount: number;
   imageUrl: string;
+  categoriesIdArr: string[];
+  images: Image[];
 }

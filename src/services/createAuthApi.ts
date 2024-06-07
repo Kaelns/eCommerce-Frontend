@@ -7,9 +7,8 @@ export async function handleAuthentication(
   setInputsError: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>
 ): Promise<void> {
   try {
-    const result = await eCommerceAPI.authenticateCustomer(email, password);
-    //  TODO remove console
-    // console.log(result.body);
+    // TODO
+    /* const result =  */ await eCommerceAPI.authenticateCustomer(email, password);
     setAuthUserToken('auth_is_ok');
   } catch (error) {
     if (error instanceof Error) {

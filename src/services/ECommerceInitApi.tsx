@@ -77,7 +77,6 @@ class ECommerceInitApi {
       force: true
     };
     const authorization = `Bearer ${token}`;
-    console.log(authorization);
     return new ClientBuilder()
       .withProjectKey(this.projectKey)
       .withClientCredentialsFlow(this.authMiddlewareOptions)
@@ -104,7 +103,6 @@ class ECommerceInitApi {
   }
 
   public getTokenCache(): MyTokenCache {
-    console.log(this.tokenCache.get().token);
     return this.tokenCache;
   }
 
