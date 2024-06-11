@@ -1,4 +1,5 @@
 import { SetStateAction } from 'react';
+import { Dayjs } from 'dayjs';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
 import { OnChangeComboBox } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
@@ -10,6 +11,8 @@ interface IAlertData {
 }
 
 interface IUseRegistrationFormReturn {
+  maxDate: Dayjs;
+  minDate: Dayjs;
   alertData: IAlertData;
   inputsValues: IInputsValues;
   inputsErrors: IInputsErrors;

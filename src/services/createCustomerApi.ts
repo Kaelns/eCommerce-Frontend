@@ -16,8 +16,8 @@ export async function createCustomer(
   isDefaultShippingAddress: boolean,
   isDefaultBillingAddress: boolean
 ): Promise<void> {
-  const SHIPPING_ADDRES_INDEX = 0;
-  const BILLING_ADDRES_INDEX = isSameAddress ? 0 : 1;
+  const SHIPPING_ADDRESS_INDEX = 0;
+  const BILLING_ADDRESS_INDEX = isSameAddress ? 0 : 1;
 
   const addresses: IAddress[] = isSameAddress
     ? [
@@ -50,15 +50,15 @@ export async function createCustomer(
     password: inputsValues.password!,
     dateOfBirth: inputsValues.birthday!,
     addresses,
-    billingAddresses: [BILLING_ADDRES_INDEX],
-    shippingAddresses: [SHIPPING_ADDRES_INDEX]
+    billingAddresses: [BILLING_ADDRESS_INDEX],
+    shippingAddresses: [SHIPPING_ADDRESS_INDEX]
   };
 
   if (isDefaultBillingAddress) {
-    createCustomerDate.defaultBillingAddress = BILLING_ADDRES_INDEX;
+    createCustomerDate.defaultBillingAddress = BILLING_ADDRESS_INDEX;
   }
   if (isDefaultShippingAddress) {
-    createCustomerDate.defaultShippingAddress = SHIPPING_ADDRES_INDEX;
+    createCustomerDate.defaultShippingAddress = SHIPPING_ADDRESS_INDEX;
   }
 
   setIsShowAlert(true);

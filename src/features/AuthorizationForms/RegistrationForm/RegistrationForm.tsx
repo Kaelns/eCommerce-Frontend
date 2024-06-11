@@ -1,11 +1,8 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import Alert from '@mui/material/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Box, FormHelperText, Checkbox, FormControlLabel } from '@mui/material';
-import getMaxDate from '@/utils/getMaxDate';
-import getMinDate from '@/utils/getMinDate';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressSection/AddressSection';
 import ButtonCustom from '@/components/buttons/ButtonCustom/ButtonCustom';
 import checkBirthday from '@/features/validation/birthdayValidation';
@@ -51,9 +48,9 @@ export default function RegistrationForm(): React.ReactNode {
         label="Birthday"
         name="birthday"
         validationChecks={checkBirthday}
-        defaultValue={dayjs(getMaxDate())}
-        maxDate={dayjs(getMaxDate())}
-        minDate={dayjs(getMinDate())}
+        defaultValue={data.maxDate}
+        maxDate={data.maxDate}
+        minDate={data.minDate}
         setInputs={data.setInputsValues}
       />
       <CredentialBlock onChangeFunction={data.handleOnChangeInput} inputsErrors={data.inputsErrors} />

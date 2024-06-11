@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 
 import { MyCustomerChangePassword, MyCustomerUpdate } from '@commercetools/platform-sdk';
-import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import checkEmail from '@/features/validation/emailValidation';
@@ -13,7 +12,7 @@ import { InputType } from '@/features/AuthorizationForms/components/ValidationIn
 import checkPassword from '@/features/validation/passwordValidation';
 import { CURRENT_PASSWORD, EMAIL_LABEL, NEW_PASSWORD } from '@/features/UserProfile/UserProfile.constants';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
+import { IUserProfilePartWithInitial } from '@/features/UserProfile/UserProfile.interface';
 import { Title } from '@/components/typography/Title/Title';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 
@@ -24,14 +23,7 @@ export default function CredentialPart({
   setIsShowAlert,
   setIsShowCircleProgress,
   setAlertData
-}: {
-  data: IUseRegistrationFormReturn;
-  initialValues: IResponseUserData;
-  setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>;
-  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>;
-}): React.ReactNode {
+}: IUserProfilePartWithInitial): React.ReactNode {
   const [isChangeMode, setIsChangeMode] = useState(false);
   const [isChangePasswordMode, setIsChangePasswordMode] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
