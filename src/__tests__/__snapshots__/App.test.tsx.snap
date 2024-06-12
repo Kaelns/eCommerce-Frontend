@@ -13,7 +13,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeLarge css-kxf97k-MuiSvgIcon-root"
+          class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeLarge css-1w8iwcg-MuiSvgIcon-root"
           data-testid="TollIcon"
           focusable="false"
           viewBox="0 0 24 24"
@@ -27,7 +27,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
         class="MuiBox-root css-0"
       >
         <button
-          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-9c2k02-MuiButtonBase-root-MuiIconButton-root"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-16v8dyw-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
         >
@@ -36,7 +36,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-19zg5yn-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-hnmzsu-MuiSvgIcon-root"
               data-testid="ShoppingCartOutlinedIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               />
             </svg>
             <span
-              class="MuiBadge-badge MuiBadge-standard MuiBadge-invisible MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorPrimary css-1fx6c1z-MuiBadge-badge"
+              class="MuiBadge-badge MuiBadge-standard MuiBadge-invisible MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorPrimary css-yxkse8-MuiBadge-badge"
             >
               0
             </span>
@@ -56,7 +56,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
           />
         </button>
         <button
-          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-9c2k02-MuiButtonBase-root-MuiIconButton-root"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-16v8dyw-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
         >
@@ -65,7 +65,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-19zg5yn-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-hnmzsu-MuiSvgIcon-root"
               data-testid="AccountCircleOutlinedIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -78,7 +78,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               />
             </svg>
             <span
-              class="MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorPrimary _badgeIcon_2e3992 _badgeIcon_2e3992 css-1i43is6-MuiBadge-badge"
+              class="MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorPrimary _badgeIcon_2e3992 _badgeIcon_2e3992 css-g18jcg-MuiBadge-badge"
             >
               Login
             </span>
@@ -88,13 +88,13 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
           />
         </button>
         <button
-          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-9c2k02-MuiButtonBase-root-MuiIconButton-root"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-16v8dyw-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-19zg5yn-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-hnmzsu-MuiSvgIcon-root"
             data-testid="MenuIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -117,7 +117,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
       class="MuiContainer-root MuiContainer-maxWidthLg _sectionContainer_b162ba _sectionContainer_2da750 css-1oqqzyl-MuiContainer-root"
     >
       <h5
-        class="MuiTypography-root MuiTypography-h5 css-1mx4yc8-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-h5 css-pwu026-MuiTypography-root"
       >
         Main page
       </h5>
@@ -138,7 +138,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
             >
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="0"
                 type="button"
@@ -150,7 +150,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -162,7 +162,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -174,7 +174,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -186,7 +186,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -198,7 +198,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -210,7 +210,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -222,7 +222,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -234,7 +234,7 @@ exports[`Given App component > When rendered, should match snapshot 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-mtjpl7-MuiButtonBase-root-MuiTab-root"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-dkmkwt-MuiButtonBase-root-MuiTab-root"
                 role="tab"
                 tabindex="-1"
                 type="button"

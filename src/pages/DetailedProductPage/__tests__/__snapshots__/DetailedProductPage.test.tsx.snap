@@ -2,10 +2,93 @@
 
 exports[`Given DetailedProductPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
-  <h5
-    class="MuiTypography-root MuiTypography-h5 _detailed-product_0feb98 css-bezmlo-MuiTypography-root"
+  <div
+    class=" _container_7db3c6 MuiBox-root css-0"
   >
-    Detailed Product Page
-  </h5>
+    <div
+      class="_skeleton_7db3c6  MuiBox-root css-8atqhb"
+    >
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-ayl0v9-MuiSkeleton-root"
+        style="height: 10vh;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
+        style="width: 10vh; height: 10vh;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-ayl0v9-MuiSkeleton-root"
+        style="height: 15vh;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-ayl0v9-MuiSkeleton-root"
+        style="height: 15vh;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-ayl0v9-MuiSkeleton-root"
+        style="height: 15vh;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-ayl0v9-MuiSkeleton-root"
+        style="height: 15vh;"
+      />
+    </div>
+    <div
+      class="_pageContainer_0feb98 MuiBox-root css-0"
+    >
+      <div
+        class="_headerContainer_0feb98 MuiBox-root css-0"
+      >
+        <div
+          class="slick-slider _carouselMedium_0feb98 _carousel_95e9a0 slick-initialized"
+          dir="ltr"
+        >
+          <div
+            class="slick-list"
+          >
+            <div
+              class="slick-track"
+              style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            />
+          </div>
+        </div>
+        <div
+          class="_productData_5be6a8 MuiBox-root css-0"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+          />
+          <div
+            class="_priceContainer_92edd5 MuiBox-root css-0"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 css-zdy50j-MuiTypography-root"
+            >
+              Price: 
+            </h6>
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 _price_92edd5 css-ati914-MuiTypography-root"
+            >
+              0 $
+            </h6>
+          </div>
+          <div
+            class="_chipContainer_5be6a8 MuiBox-root css-0"
+          />
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-0"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        >
+          <b>
+              Description: 
+          </b>
+        </p>
+      </div>
+    </div>
+  </div>
 </DocumentFragment>
 `;
