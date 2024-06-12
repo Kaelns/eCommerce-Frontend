@@ -10,8 +10,10 @@
   height: 300px;
   cursor: pointer;
 
-  &:hover .img {
-    transform: scale(1.05);
+  @include mixins.mediaHover {
+    &:hover .img {
+      transform: scale(1.05);
+    }
   }
 
   &Large {
@@ -102,7 +104,9 @@
   transform: translate(50%, -50%);
   background-color: var(--mui-palette-primary-main);
 
-  &:hover {
-    background-color: var(--mui-palette-primary-light);
+  @include mixins.mediaHover {
+    &:hover {
+      background-color: var(--mui-palette-primary-light);
+    }
   }
 }

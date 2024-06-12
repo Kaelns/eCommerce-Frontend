@@ -42,7 +42,7 @@ export function DetailedProductPage(): React.ReactNode {
         key={imageData.url}
         src={imageData.url}
         alt={productData.name}
-        className={`${classObj} ${styles.imgContainer}`}
+        containerStyles={`${classObj} ${styles.imgContainer}`}
         imgStyles={styles.img}
         onClick={onClick ? onClick(index) : (): void => {}}
       />

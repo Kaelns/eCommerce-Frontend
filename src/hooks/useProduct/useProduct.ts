@@ -23,7 +23,7 @@ export function useProduct(product: ProductProjection | undefined): IUseProductR
   const imageUrl = image ? image.url : imageNotAvailable;
   const images = product.masterVariant?.images ? product.masterVariant?.images : [];
 
-  const { price, discounted, discount } = getPrices(pricesObjUSD);
+  const { price, discountedPrice, discount } = getPrices(pricesObjUSD);
 
-  return { key, name, description, categoriesIdArr, price, discounted, discount, imageUrl, images };
+  return { key, name, description, categoriesIdArr, price, discountedPrice, discount, imageUrl, images };
 }

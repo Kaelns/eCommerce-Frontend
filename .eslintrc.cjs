@@ -31,11 +31,14 @@ module.exports = {
     ],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
+    'react/jsx-uses-vars': 'error',
+    'react/jsx-uses-react': 'error',
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-uses-react': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'import/prefer-default-export': 'off',
+    'react-hooks/exhaustive-deps': 'error',
     'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
+
+    'import/prefer-default-export': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
 
