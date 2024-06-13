@@ -1,22 +1,15 @@
 import Slider from 'react-slick';
-import { Box } from '@mui/material';
-import { CustomBox } from '@/components/ImgCarousel/components/CustomBox';
-import { sxCustomBox } from '@/components/ImgCarousel/data/ImgCarousel.constants';
-
-import styles from '../ImgCarousel.module.scss';
+import { CustomDotWrapper } from '@/components/ImgCarousel/components/CustomDot/CustomDotWrapper';
+import { AppendDots } from '@/components/ImgCarousel/components/AppendDots/AppendDots';
 
 export function customDot(customDots: React.ReactNode[], sliderRef: React.RefObject<Slider>) {
   return function CustomDot(index: number): JSX.Element {
     return (
-      <Box onClick={() => sliderRef.current?.slickGoTo(index)} className={`${styles.slickDot} slick__dot`}>
+      <CustomDotWrapper index={index} sliderRef={sliderRef}>
         {customDots[index]}
-      </Box>
+      </CustomDotWrapper>
     );
   };
 }
 
-export const appendDots = (dots: React.ReactNode): JSX.Element => (
-  <CustomBox classes={styles.dotsContainer} sx={sxCustomBox}>
-    {dots}
-  </CustomBox>
-);
+export const appendDots = (dots: React.ReactNode): JSX.Element => <AppendDots>{dots}</AppendDots>;

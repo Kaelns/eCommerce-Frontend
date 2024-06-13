@@ -1,4 +1,5 @@
-const skeletonHeightBefore = '10vh';
-const skeletonHeightAfter = '15vh';
+const SKELETON_HEIGHT_BEFORE = '10vh';
+const SKELETON_HEIGHT_AFTER = '15vh';
+const WIDTH100 = { width: '1' };
 
-export { skeletonHeightBefore, skeletonHeightAfter };
+export { SKELETON_HEIGHT_BEFORE, SKELETON_HEIGHT_AFTER, WIDTH100 };

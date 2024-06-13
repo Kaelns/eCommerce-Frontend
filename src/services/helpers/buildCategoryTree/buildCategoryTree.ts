@@ -27,9 +27,7 @@ export function buildCategoryTree(categories: Category[]): ITreeNode[] {
           workArr = foundCategory.children;
           return;
         }
-        // todo key can be not for this category
         workArr.push(newObjCategory);
-
         if (parentsCount === count + 1) {
           workArr = finalArr;
         }

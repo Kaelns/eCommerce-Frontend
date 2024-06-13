@@ -65,12 +65,12 @@ module.exports = {
       },
       {
         selector: 'parameter',
-        format: ['camelCase'],
+        format: ['camelCase', 'PascalCase'],
         leadingUnderscore: 'allow'
       },
       {
         selector: 'method',
-        format: ['camelCase'],
+        format: ['camelCase', 'PascalCase'],
         leadingUnderscore: 'allow'
       },
       {

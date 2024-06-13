@@ -10,7 +10,7 @@ import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReduc
 import { useFetchWithParams } from '@/hooks/useFetch/useFetchWithParams';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce/useDebounce';
-import { usePageSkeleton } from '@/components/PageSkeleton/usePageSkeleton';
+import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 
 import styles from './Products.module.scss';
 
@@ -19,12 +19,11 @@ export function Products(): React.ReactNode {
   const filterStateDebounce = useDebounce(filterState);
   const { data, isLoading, error } = useFetchWithParams(fetchProducts, filterStateDebounce);
   const { products, amount } = data ?? EMPTY_DATA_PRODUCTS;
-  const pageSkeleton = usePageSkeleton();
 
   useEffect(() => console.log(filterStateDebounce), [filterStateDebounce]);
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} skeleton={pageSkeleton} className={styles.productsContainer}>
+    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
       {products.length ? (
         <>
           <Box className={styles.productsHeader}>

@@ -17,15 +17,15 @@
   }
 
   &Large {
-    height: 80vh;
+    height: 85vh;
     @include mixins.media(1100px) {
-      height: 60vh;
+      height: 65vh;
     }
     @include mixins.media-tablet {
-      height: 40vh;
+      height: 50vh;
     }
     @include mixins.media(500px) {
-      height: 30vh;
+      height: 40vh;
     }
   }
   &Medium {
@@ -85,10 +85,10 @@
   border-radius: var(--mui-shape-borderRadius);
 
   @include mixins.media(1100px) {
-    height: 70%;
+    height: 80%;
   }
   @include mixins.media-tablet {
-    height: 50%;
+    height: 60%;
   }
   @include mixins.media(500) {
     height: 30vh;
