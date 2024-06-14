@@ -16,7 +16,6 @@ export function Header(): React.ReactNode {
   const isMatches = useMediaQuery(theme.breakpoints.up('sm'));
   const [isOpen, setIsOpen] = useState(false);
 
-  // TODO change drawer
   const openDrawer = (): void => {
     setIsOpen(true);
   };
