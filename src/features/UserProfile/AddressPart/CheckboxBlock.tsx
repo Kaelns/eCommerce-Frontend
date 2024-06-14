@@ -1,6 +1,5 @@
 import { FormControlLabel, Checkbox } from '@mui/material';
-import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
-import { IAddresses } from '@/features/UserProfile/UserProfile.interface';
+import { IAddressWithDisabled } from '@/features/UserProfile/AddressPart/AddressesPart.interface';
 
 export default function CheckboxBlock({
   data,
@@ -10,15 +9,7 @@ export default function CheckboxBlock({
   isBilling,
   handleToggleBilling,
   handleToggleShipping
-}: {
-  data: IUseRegistrationFormReturn;
-  disabled: boolean;
-  isShipping: boolean;
-  isBilling: boolean;
-  handleToggleBilling: () => void;
-  handleToggleShipping: () => void;
-  address?: IAddresses;
-}): React.ReactNode {
+}: IAddressWithDisabled): React.ReactNode {
   return (
     <>
       <FormControlLabel

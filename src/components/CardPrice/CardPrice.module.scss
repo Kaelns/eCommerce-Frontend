@@ -1,26 +1,14 @@
 @use '@styles/abstracts/placeholders';
 
-.discounted {
-  background-color: var(--mui-palette-error-light);
-  border-radius: var(--mui-shape-borderRadius);
-}
-
-.discounted,
-.price {
-  padding-inline: 0.3rem;
-}
-
-.price {
-  &Disabled {
-    text-decoration: line-through;
-  }
-}
-
 .priceContainer {
   display: flex;
   gap: 1rem;
   align-items: center;
   margin-bottom: 0.6rem;
+}
+
+.priceCrossed {
+  text-decoration: line-through;
 }
 
 .description {

@@ -1,5 +1,5 @@
 import { Box, Grid, SxProps, Theme, Typography } from '@mui/material';
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
 import { Colors } from '@/features/FilterForm/components/ColorFilter/ColorFilter.constants';
 import { IColorsState } from '@/features/FilterForm/components/ColorFilter/ColorFilter.interface';
@@ -17,12 +17,15 @@ export function ColorFilter(): React.ReactNode {
     dispatchFilterState({ type: FilterState.COLOR, payload: colorKey });
   };
 
-  const sxProp = (colorKey: keyof typeof Colors): SxProps<Theme> => ({
-    backgroundColor: Colors[colorKey as keyof typeof Colors],
-    '&:hover': {
-      backgroundColor: Colors[colorKey as keyof typeof Colors]
-    }
-  });
+  const sxProp = useCallback(
+    (colorKey: keyof typeof Colors): SxProps<Theme> => ({
+      backgroundColor: Colors[colorKey],
+      '&:hover': {
+        backgroundColor: Colors[colorKey]
+      }
+    }),
+    []
+  );
 
   return (
     <Box>

@@ -1,7 +1,7 @@
 import { Category } from '@commercetools/platform-sdk';
 import { ITreeNode } from '@/data/interface/ITreeNode';
 
-// * It is assumed that the array of categories is sorted by the number of ancestors
+// * It is assumed that the array of categories is sorted by the number of ancestors and has key
 
 export function buildCategoryTree(categories: Category[]): ITreeNode[] {
   const finalArr: ITreeNode[] = [];
@@ -27,9 +27,7 @@ export function buildCategoryTree(categories: Category[]): ITreeNode[] {
           workArr = foundCategory.children;
           return;
         }
-        // todo key can be not for this category
         workArr.push(newObjCategory);
-
         if (parentsCount === count + 1) {
           workArr = finalArr;
         }

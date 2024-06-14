@@ -1,13 +1,13 @@
 import Slider from 'react-slick';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 import { IAdditionalSettings, IImgCarousel } from '@/components/ImgCarousel/data/ImgCarousel.interface';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { LeftArrow } from '@/components/ImgCarousel/components/LeftArrow';
 import { RightArrow } from '@/components/ImgCarousel/components/RightArrow';
 import { appendDots, customDot } from '@/components/ImgCarousel/data/ImgCarousel.helpers';
 
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import styles from './ImgCarousel.module.scss';
 
 const settings = {
@@ -27,12 +27,15 @@ export function ImgCarousel({
   openModalImg = 0
 }: PropsWithChildren<IImgCarousel>): React.ReactNode {
   const sliderRef = useRef<Slider>(null);
-  const additionalSettings: IAdditionalSettings = {};
 
-  if (customDots.length) {
-    additionalSettings.customPaging = customDot(customDots, sliderRef);
-    additionalSettings.appendDots = appendDots;
-  }
+  const additionalSettings: IAdditionalSettings = useMemo(() => {
+    const settingsObj: IAdditionalSettings = {};
+    if (customDots.length) {
+      settingsObj.customPaging = customDot(customDots, sliderRef);
+      settingsObj.appendDots = appendDots;
+    }
+    return settingsObj;
+  }, [customDots]);
 
   return (
     <Slider

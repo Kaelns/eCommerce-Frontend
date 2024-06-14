@@ -1,24 +1,15 @@
+import { useMemo } from 'react';
 import { FormHelperText } from '@mui/material';
 import ComboBox from '@/features/AuthorizationForms/components/ComboBox/ComboBox';
 import { ValidationInput } from '@/features/AuthorizationForms/components/ValidationInput/ValidationInput';
-import { OnChangeComboBox } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import {
   ADDRESSES_INPUT_KEYS,
   ADDRESS_INPUTS,
   COUNTRY_LIST
 } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
-import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
-import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
-import { AddressPrefix, AddressProperty } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
-
-interface IProps {
-  onChangeFunction: HandleOnChangeInput;
-  onChangeComboBox: OnChangeComboBox;
-  inputsErrors: IInputsErrors;
-  inputsValues: IInputsValues;
-  prefix: AddressPrefix;
-}
+import { AddressProperty } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
+import { IProps } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.interface';
 
 export default function AddressSection({
   onChangeFunction,
@@ -27,6 +18,13 @@ export default function AddressSection({
   inputsValues,
   prefix
 }: IProps): React.ReactNode {
+  const currentCountry = useMemo(
+    () =>
+      COUNTRY_LIST.filter(
+        (value) => value.code === inputsValues[INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name]
+      )[0] ?? COUNTRY_LIST[0],
+    [inputsValues, prefix]
+  );
   return (
     <>
       <ComboBox
@@ -34,11 +32,7 @@ export default function AddressSection({
         name={INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name}
         id={prefix}
         options={COUNTRY_LIST}
-        value={
-          COUNTRY_LIST.filter(
-            (value) => value.code === inputsValues[INPUTS[`${prefix}${AddressProperty.COUNTRY}`].name]
-          )[0] ?? COUNTRY_LIST[0]
-        }
+        value={currentCountry}
         onChangeComboBox={onChangeComboBox}
       />
 

@@ -1,15 +1,22 @@
 @use '@styles/abstracts/mixins';
 @use '@styles/abstracts/placeholders';
 
+.img {
+  height: 100%;
+}
+
 .img,
 .imgWrapper {
-  height: 100%;
   @extend %animation;
+  border-radius: var(--mui-shape-borderRadius);
 }
 
 .imgWrapper {
   position: relative;
-  border-radius: var(--mui-shape-borderRadius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .skeleton {

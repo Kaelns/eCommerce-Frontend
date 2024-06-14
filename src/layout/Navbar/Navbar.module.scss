@@ -1,4 +1,5 @@
 @use '@styles/abstracts/placeholders';
+@use '@styles/abstracts/mixins';
 
 .verticalButton {
   align-items: flex-start;
@@ -9,7 +10,9 @@
   @extend %animation;
   border-radius: var(--mui-shape-borderRadius);
 
-  &:hover {
-    background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity));
+  @include mixins.mediaHover {
+    &:hover {
+      background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity));
+    }
   }
 }

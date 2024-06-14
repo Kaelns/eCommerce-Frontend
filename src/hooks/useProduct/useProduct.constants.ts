@@ -3,7 +3,7 @@ export const MOCK_PRODUCT = {
   name: '',
   description: '',
   price: 0,
-  discounted: 0,
+  discountedPrice: 0,
   discount: 0,
   imageUrl: '',
   images: [],

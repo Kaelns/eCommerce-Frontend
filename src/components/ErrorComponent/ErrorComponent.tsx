@@ -12,6 +12,7 @@ import styles from './ErrorComponent.module.scss';
 export function ErrorComponent({ src, alt, message }: IErrorProps): React.ReactNode {
   const navigate = useNavigate();
   const navigateBack = (): void => navigate(-1);
+  const navigateMain = (): void => navigate(ROUTES.MAIN);
 
   return (
     <Box className={styles.container}>
@@ -22,7 +23,7 @@ export function ErrorComponent({ src, alt, message }: IErrorProps): React.ReactN
         <Button className={styles.button} onClick={navigateBack}>
           <TextWithElem icon={<ArrowBackIosIcon fontSize="small" />}>Go back</TextWithElem>
         </Button>
-        <Button className={styles.button} onClick={() => navigate(ROUTES.MAIN)}>
+        <Button className={styles.button} onClick={navigateMain}>
           <TextWithElem isAfter icon={<ArrowForwardIosIcon fontSize="small" />}>
             Go main
           </TextWithElem>
