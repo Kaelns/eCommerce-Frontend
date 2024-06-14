@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
+import dayjs from 'dayjs';
 import checkPostalCode from '@/features/validation/postalCodeValidation';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { createCustomer } from '@/services/createCustomerApi';
@@ -20,9 +21,14 @@ import {
   HandleOnChangeInput
 } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
 import { InputReactEvent } from '@/data/types/InputReactEvent';
+import { handlePrefix } from '@/utils/handlePrefix';
+import getMaxDate from '@/utils/getMaxDate';
+import getMinDate from '@/utils/getMinDate';
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   const { setAuthUserToken } = useAuthContext();
+  const maxDate = useMemo(() => dayjs(getMaxDate()), []);
+  const minDate = useMemo(() => dayjs(getMinDate()), []);
 
   const [inputsValues, setInputsValues] = useState<IInputsValues>(INIT_INPUTS_DATA);
   const [inputsErrors, setInputsErrors] = useState<IInputsErrors>({});
@@ -38,8 +44,8 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
     (checkFunction: (value: string, pattern?: RegExp) => string) =>
       (e: InputReactEvent): void => {
         const newValue = e.target.value;
-        const prefix = e.target.name.match(AddressPrefix.BILLING) ?? e.target.name.match(AddressPrefix.SHIPPING);
-        const error = checkFunction(newValue, prefix ? postalCodePattern[prefix[0] as AddressPrefix] : undefined);
+        const prefix = handlePrefix(e.target.name);
+        const error = checkFunction(newValue, prefix ? postalCodePattern[prefix] : undefined);
         setInputsErrors((values) => ({ ...values, [e.target.name]: error }));
         setInputsValues((values) => ({ ...values, [e.target.name]: newValue }));
       },
@@ -50,9 +56,8 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
     (event, value) => {
       if (event.currentTarget.parentNode instanceof HTMLElement) {
         const id = event.currentTarget.parentNode?.id;
-        const matchPrefix = id.match(AddressPrefix.BILLING) ?? id.match(AddressPrefix.SHIPPING);
-        if (matchPrefix) {
-          const prefix = matchPrefix[0] as AddressPrefix;
+        const prefix = handlePrefix(id);
+        if (prefix) {
           setPostalCodePattern((values) => ({ ...values, [prefix]: value?.postalCodePattern }));
           const error = checkPostalCode(
             inputsValues[INPUTS[`${prefix}${AddressProperty.POSTAL_CODE}`].name] ?? '',
@@ -112,6 +117,8 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   );
 
   return {
+    maxDate,
+    minDate,
     alertData,
     isShowAlert,
     inputsValues,

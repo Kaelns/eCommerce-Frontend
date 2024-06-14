@@ -1,6 +1,9 @@
+import { BoxProps } from '@mui/material';
+import { ReactNode } from 'react';
+
 export interface ILoadingFetchProps {
   error: string;
   isLoading: boolean;
-  skeleton: (props: { className: string }) => React.ReactNode;
+  Skeleton: (props: BoxProps) => ReactNode;
   className?: string;
 }

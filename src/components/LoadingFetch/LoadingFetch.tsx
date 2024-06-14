@@ -10,21 +10,15 @@ export function LoadingFetch({
   children,
   error,
   isLoading,
-  skeleton,
+  Skeleton,
   className = ''
 }: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {
-  const elementToReturn = (): React.ReactNode => {
-    if (error) {
-      return <ErrorComponent message={error} src={imageError} alt="error" />;
-    }
-
-    return (
-      <Box className={`${className} ${styles.container}`}>
-        {skeleton({ className: `${styles.skeleton} ${!isLoading ? styles.disabled : ''}` })}
-        {children}
-      </Box>
-    );
-  };
-
-  return elementToReturn();
+  return error ? (
+    <ErrorComponent message={error} src={imageError} alt="error" />
+  ) : (
+    <Box className={`${className} ${styles.container}`}>
+      <Skeleton className={`${styles.skeleton} ${!isLoading ? styles.disabled : ''}`} />
+      {children}
+    </Box>
+  );
 }

@@ -1,27 +1,22 @@
-import React, { useCallback, useState } from 'react';
-
-import { Button } from '@mui/material';
+import { useCallback, useState } from 'react';
 import {
-  MyCustomerAddBillingAddressIdAction,
-  MyCustomerAddShippingAddressIdAction,
   MyCustomerUpdate,
-  MyCustomerSetDefaultBillingAddressAction,
-  MyCustomerSetDefaultShippingAddressAction,
+  MyCustomerAddBillingAddressIdAction,
   MyCustomerRemoveBillingAddressIdAction,
-  MyCustomerRemoveShippingAddressIdAction
+  MyCustomerSetDefaultBillingAddressAction,
+  MyCustomerAddShippingAddressIdAction,
+  MyCustomerRemoveShippingAddressIdAction,
+  MyCustomerSetDefaultShippingAddressAction
 } from '@commercetools/platform-sdk';
-import { Title } from '@/components/typography/Title/Title';
-import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
-import { IAddresses, IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
-import styles from './UserProfile.module.scss';
-import CheckboxBlock from '@/features/UserProfile/CheckboxBlock';
-import Address from '@/features/UserProfile/Address';
-import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
-import { COUNTRY_LIST } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
-import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 
-export default function AddressesPart({
+import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
+import { COUNTRY_LIST } from '@/features/AuthorizationForms/components/AddressSection/AddressSection.constants';
+import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
+import { IAddressPart, IUseAddressPartReturn } from '@/features/UserProfile/AddressPart/AddressesPart.interface';
+import { IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
+import { eCommerceAPI } from '@/services/ECommerceAPI';
+
+export const useAddressPart = ({
   data,
   addresses,
   version,
@@ -29,15 +24,7 @@ export default function AddressesPart({
   setIsShowAlert,
   setIsShowCircleProgress,
   setAlertData
-}: {
-  data: IUseRegistrationFormReturn;
-  addresses: IAddresses[];
-  version: number;
-  setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>;
-  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>;
-}): React.ReactNode {
+}: IAddressPart): IUseAddressPartReturn => {
   const [isBillingAddress, setIsBillingAddress] = useState(false);
   const [isShippingAddress, setIsShippingAddress] = useState(false);
   const [updateId, setUpdateId] = useState(-1);
@@ -317,70 +304,19 @@ export default function AddressesPart({
     setIsAddMode(false);
   }, [clearValues]);
 
-  return (
-    <>
-      <Title variant="h6" className={styles.title}>
-        Addresses
-      </Title>
-      {addresses.map((address, index) => (
-        <React.Fragment key={address.id}>
-          {!(updateId === index) && (
-            <div>
-              <p>{`${index + 1} ${address.addressData.country} ${address.addressData.city} ${address.addressData.streetName} ${address.addressData.postalCode}`}</p>
-              <CheckboxBlock
-                address={address}
-                disabled={!(updateId === index)}
-                isBilling={isBillingAddress}
-                isShipping={isShippingAddress}
-                data={data}
-                handleToggleBilling={handleToggleBilling}
-                handleToggleShipping={handleToggleShipping}
-              />
-            </div>
-          )}
-          {!(updateId === index) && (
-            <Button variant="outlined" onClick={handleUpdate(index)}>
-              Update
-            </Button>
-          )}
-          {updateId === index && (
-            <Address
-              address={address}
-              data={data}
-              isBilling={isBillingAddress}
-              isShipping={isShippingAddress}
-              handleCancel={handleCancelUpdate}
-              handleSave={handleSaveUpdate}
-              handleToggleBilling={handleToggleBilling}
-              handleToggleShipping={handleToggleShipping}
-            />
-          )}
-          <Button variant="outlined" onClick={handleDelete(index)}>
-            Delete
-          </Button>
-        </React.Fragment>
-      ))}
-      {!isAddMode && (
-        <Button variant="outlined" onClick={handleAddNew}>
-          Add new
-        </Button>
-      )}
-      {isAddMode && (
-        <>
-          <Title variant="h6" className={styles.title}>
-            Add new address
-          </Title>
-          <Address
-            data={data}
-            isBilling={isBillingAddress}
-            isShipping={isShippingAddress}
-            handleCancel={handleCancelAdd}
-            handleSave={handleSaveAdd}
-            handleToggleBilling={handleToggleBilling}
-            handleToggleShipping={handleToggleShipping}
-          />
-        </>
-      )}
-    </>
-  );
-}
+  return {
+    updateId,
+    isShippingAddress,
+    isBillingAddress,
+    isAddMode,
+    handleToggleBilling,
+    handleToggleShipping,
+    handleSaveUpdate,
+    handleCancelUpdate,
+    handleUpdate,
+    handleSaveAdd,
+    handleCancelAdd,
+    handleAddNew,
+    handleDelete
+  };
+};

@@ -1,11 +1,18 @@
 import { Box } from '@mui/material';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { ImgSkeleton } from '@/components/ImgSkeleton/ImgSkeleton';
 import { IImageLoadProps } from '@/components/ImageLoad/ImageLoad.interface';
 
 import styles from './ImageLoad.module.scss';
 
-export function ImageLoad({ src, alt, className = '', imgStyles = '', onClick }: IImageLoadProps): React.ReactNode {
+export function ImageLoad({
+  src,
+  alt,
+  height,
+  imgStyles = '',
+  containerStyles = '',
+  onClick
+}: IImageLoadProps): React.ReactNode {
   const [isImgLoading, setIsImgLoading] = useState(true);
   const ref = useRef<HTMLImageElement>();
 
@@ -13,14 +20,8 @@ export function ImageLoad({ src, alt, className = '', imgStyles = '', onClick }:
     setIsImgLoading(false);
   };
 
-  useEffect(() => {
-    if (ref.current && ref.current.complete) {
-      handleOnImgLoad();
-    }
-  });
-
   return (
-    <Box className={`${className} ${styles.imgWrapper}`}>
+    <Box className={`${containerStyles} ${styles.imgWrapper}`} height={height} onClick={onClick}>
       <ImgSkeleton className={`${styles.skeleton} ${isImgLoading ? '' : styles.disabled}`} />
       <Box
         ref={ref}
@@ -29,7 +30,6 @@ export function ImageLoad({ src, alt, className = '', imgStyles = '', onClick }:
         alt={alt}
         className={`${imgStyles} ${styles.img}`}
         onLoad={handleOnImgLoad}
-        onClick={onClick}
         loading="lazy"
       />
     </Box>

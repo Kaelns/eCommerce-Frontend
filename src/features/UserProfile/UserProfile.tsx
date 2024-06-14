@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Backdrop, CircularProgress, Alert } from '@mui/material';
 import { useRegistrationForm } from '@/features/AuthorizationForms/RegistrationForm/hooks/useRegistrationForm';
-import AddressesPart from '@/features/UserProfile/AddressesPart';
+import AddressesPart from '@/features/UserProfile/AddressPart/AddressesPart';
 import CredentialPart from '@/features/UserProfile/CredentialPart';
 import PersonalPart from '@/features/UserProfile/PersonalPart';
 import { eCommerceAPI } from '@/services/ECommerceAPI';

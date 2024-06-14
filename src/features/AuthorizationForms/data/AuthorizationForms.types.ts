@@ -2,7 +2,7 @@ import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.co
 
 type InputKeys = keyof typeof INPUTS;
 
-type InputsNames = (typeof INPUTS)[InputKeys]['name'];
+export type InputsNames = (typeof INPUTS)[InputKeys]['name'];
 
 export type IInputsValues = Partial<{
   [key in InputsNames]: string;

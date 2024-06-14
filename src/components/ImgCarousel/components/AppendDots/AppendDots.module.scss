@@ -1,0 +1,11 @@
+.dotsContainer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  overflow-y: auto;
+
+  & li {
+    text-decoration: none;
+    list-style: none;
+  }
+}

@@ -16,7 +16,7 @@ export function SortBy(): React.ReactNode {
   return (
     <Box className={styles.componentContainer}>
       <Typography className={styles.title}>Sort: </Typography>
-      <Select value={filterState.sort} onChange={handleChange} variant="standard" className={styles.sortContainer}>
+      <Select value={filterState.sort} onChange={handleChange} className={styles.sortContainer}>
         {sortKeys.map((key) => {
           const sortValue = Sort[key as keyof typeof Sort];
           return (
