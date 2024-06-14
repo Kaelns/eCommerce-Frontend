@@ -20,8 +20,6 @@ export function Products(): React.ReactNode {
   const { data, isLoading, error } = useFetchWithParams(fetchProducts, filterStateDebounce);
   const { products, amount } = data ?? EMPTY_DATA_PRODUCTS;
 
-  useEffect(() => console.log(filterStateDebounce), [filterStateDebounce]);
-
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
       {products.length ? (

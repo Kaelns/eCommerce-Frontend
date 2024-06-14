@@ -1,7 +1,7 @@
 import { Category } from '@commercetools/platform-sdk';
 import { ITreeNode } from '@/data/interface/ITreeNode';
 
-// * It is assumed that the array of categories is sorted by the number of ancestors
+// * It is assumed that the array of categories is sorted by the number of ancestors and has key
 
 export function buildCategoryTree(categories: Category[]): ITreeNode[] {
   const finalArr: ITreeNode[] = [];
