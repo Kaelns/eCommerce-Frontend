@@ -67,7 +67,7 @@ exports[`Given DetailedProductPage component:  > when rendered, should match sna
               Price: 
             </h6>
             <h6
-              class="MuiTypography-root MuiTypography-subtitle2 _price_92edd5 css-ati914-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-subtitle2 _price_c0cdf9  false css-ati914-MuiTypography-root"
             >
               0 $
             </h6>
