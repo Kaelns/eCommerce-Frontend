@@ -3,11 +3,11 @@
 exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="_container_4d13f2 MuiBox-root css-0"
+    class="_container_e09756 MuiBox-root css-0"
   >
     <img
       alt="404"
-      class="_image_4d13f2 MuiBox-root css-0"
+      class="_image_e09756 MuiBox-root css-0"
       src="/src/assets/not-found.png"
     />
     <div
@@ -15,12 +15,12 @@ exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] 
       role="group"
     >
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_4d13f2 MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
         <div
-          class="_container_4d0afd MuiBox-root css-0"
+          class="_container_26cd85 MuiBox-root css-0"
         >
           <svg
             aria-hidden="true"
@@ -34,7 +34,7 @@ exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] 
             />
           </svg>
           <p
-            class="MuiTypography-root MuiTypography-body1 _text_4d0afd  css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
           >
             Go back
           </p>
@@ -44,15 +44,15 @@ exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] 
         />
       </button>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_4d13f2 MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
         <div
-          class="_container_4d0afd MuiBox-root css-0"
+          class="_container_26cd85 MuiBox-root css-0"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 _text_4d0afd  css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
           >
             Go main
           </p>
