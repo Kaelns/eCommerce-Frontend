@@ -5,7 +5,8 @@ export enum FilterState {
   PRICE = 'PRICE',
   SEARCH = 'SEARCH',
   SORT = 'SORT',
-  CLEAR_FORM = 'CLEAR_FORM'
+  CLEAR_FORM = 'CLEAR_FORM',
+  PAGE = 'PAGE'
 }
 
 export enum Sort {
