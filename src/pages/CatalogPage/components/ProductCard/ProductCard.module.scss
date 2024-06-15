@@ -30,6 +30,11 @@
 .discount {
   top: -1rem;
   right: -1rem;
+
+  @include mixins.media-tablet {
+    right: auto;
+    left: -1rem;
+  }
 }
 
 .title {

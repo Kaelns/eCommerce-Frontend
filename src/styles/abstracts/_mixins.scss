@@ -17,13 +17,13 @@
 }
 
 @mixin media-tablet {
-  @media (max-width: (constants.$width-tablet - 1)) {
+  @media (max-width: (constants.$width-tablet)) {
     @content;
   }
 }
 
 @mixin media-mobile {
-  @media (max-width: (constants.$width-mobile - 1)) {
+  @media (max-width: (constants.$width-mobile)) {
     @content;
   }
 }
