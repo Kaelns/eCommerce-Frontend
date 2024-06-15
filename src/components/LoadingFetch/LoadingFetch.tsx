@@ -13,12 +13,16 @@ export function LoadingFetch({
   Skeleton,
   className = ''
 }: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {
+  const containerStyles = `${className} ${styles.container} ${isLoading ? styles.overflowHidden : ''}`;
+  const childrenContainerStyles = `${styles.childrenContainer} ${isLoading ? styles.hidden : ''}`;
+  const skeletonClasses = `${styles.skeleton} ${isLoading ? '' : styles.disabled}`;
+
   return error ? (
     <ErrorComponent message={error} src={imageError} alt="error" />
   ) : (
-    <Box className={`${className} ${styles.container}`}>
-      <Skeleton className={`${styles.skeleton} ${!isLoading ? styles.disabled : ''}`} />
-      {children}
+    <Box className={containerStyles}>
+      <Skeleton className={skeletonClasses} />
+      <Box className={childrenContainerStyles}>{children}</Box>
     </Box>
   );
 }

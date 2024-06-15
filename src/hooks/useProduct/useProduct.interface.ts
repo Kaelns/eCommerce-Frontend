@@ -7,6 +7,7 @@ export interface IGetPricesReturn {
 }
 
 export interface IUseProductReturn {
+  id: string;
   key: string;
   name: string;
   description: string;

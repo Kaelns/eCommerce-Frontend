@@ -1,16 +1,17 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { LANGUAGE, COUNTRY } from '@/services/ECommerceInitApi.constants';
-import imageNotAvailable from '@/assets/image_not_available.png';
 import { getPrices } from '@/hooks/useProduct/useProduct.helpers';
 import { IUseProductReturn } from '@/hooks/useProduct/useProduct.interface';
 import { MOCK_PRODUCT } from '@/hooks/useProduct/useProduct.constants';
+import imageNotAvailable from '@/assets/image_not_available.png';
 
 export function useProduct(product: ProductProjection | undefined): IUseProductReturn {
   if (!product) {
     return MOCK_PRODUCT;
   }
 
-  const [key, name, description, categories] = [
+  const [id, key, name, description, categories] = [
+    product.id,
     product.key!,
     product.name[LANGUAGE],
     product.description ? product.description[LANGUAGE] : '',
@@ -25,5 +26,5 @@ export function useProduct(product: ProductProjection | undefined): IUseProductR
 
   const { price, discountedPrice, discount } = getPrices(pricesObjUSD);
 
-  return { key, name, description, categoriesIdArr, price, discountedPrice, discount, imageUrl, images };
+  return { id, key, name, description, categoriesIdArr, price, discountedPrice, discount, imageUrl, images };
 }

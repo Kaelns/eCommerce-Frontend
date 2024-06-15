@@ -7,6 +7,7 @@ import { fromKeyToName } from '@/utils/fromKeyToName';
 import { fetchProducts } from '@/services/helpers/fetchProducts/fetchProducts';
 import { EMPTY_DATA_PRODUCTS } from '@/services/helpers/fetchProducts/fetchProducts.constants';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+import { ProductPagination } from '@/pages/CatalogPage/components/ProductPagination/ProductPagination';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce/useDebounce';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
@@ -38,6 +39,7 @@ export function Products(): React.ReactNode {
               </Grid>
             ))}
           </Grid>
+          <ProductPagination amount={amount} />
         </>
       ) : (
         <Title>There is no products</Title>
