@@ -13,10 +13,14 @@
   bottom: 0;
   z-index: 1000;
 
-  @include mixins.animation($time: 0.1s);
+  @include mixins.animation($time: 0.15s);
 
   &.disabled {
     opacity: 0;
     visibility: hidden;
   }
+}
+
+.overflowHidden {
+  overflow-x: hidden;
 }

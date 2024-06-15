@@ -16,8 +16,8 @@ export function LoadingFetch({
   return error ? (
     <ErrorComponent message={error} src={imageError} alt="error" />
   ) : (
-    <Box className={`${className} ${styles.container}`}>
-      <Skeleton className={`${styles.skeleton} ${!isLoading ? styles.disabled : ''}`} />
+    <Box className={`${className} ${styles.container} ${isLoading ? styles.overflowHidden : ''}`}>
+      <Skeleton className={`${styles.skeleton} ${isLoading ? '' : styles.disabled}`} />
       {children}
     </Box>
   );
