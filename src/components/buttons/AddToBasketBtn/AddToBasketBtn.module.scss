@@ -1,0 +1,42 @@
+@use '@styles/abstracts/mixins';
+@use '@styles/abstracts/placeholders';
+
+.basketBtn {
+  cursor: copy;
+  backdrop-filter: blur(5px);
+  @extend %animation;
+
+  @include mixins.mediaHover {
+    &:hover > .basketIcon {
+      opacity: 1;
+    }
+  }
+
+  &.activeIcon {
+    background-color: var(--mui-palette-Switch-primaryDisabledColor);
+
+    & .basketIcon {
+      opacity: 1;
+    }
+  }
+}
+
+.basketIcon {
+  opacity: 0.5;
+  @extend %animation;
+}
+
+.progress {
+  position: absolute;
+  opacity: 0;
+  @extend %animation;
+
+  &.activeProgress {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}

@@ -1,6 +1,10 @@
 @use '@styles/abstracts/placeholders';
 @use '@styles/abstracts/mixins';
 
+$iconWidth: 2.2rem;
+$iconWidthTablet: 2.8rem;
+$borderRadius: 1.5rem;
+
 .cardContainer {
   position: relative;
   width: 100%;
@@ -46,4 +50,43 @@
 
 .description {
   font-size: 1.9rem;
+}
+
+.basketBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  z-index: 50;
+  border-top-left-radius: var(--mui-shape-borderRadius);
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: $borderRadius;
+
+  @include mixins.media-tablet {
+    left: auto;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: $borderRadius;
+    border-bottom-right-radius: var(--mui-shape-borderRadius);
+    padding: 1rem;
+  }
+}
+
+.basketIcon {
+  font-size: $iconWidth;
+  @include mixins.media-tablet {
+    font-size: $iconWidthTablet;
+  }
+}
+
+.basketProgress {
+  width: $iconWidth !important;
+  height: $iconWidth !important;
+
+  @include mixins.media-tablet {
+    width: $iconWidthTablet !important;
+    height: $iconWidthTablet !important;
+  }
 }
