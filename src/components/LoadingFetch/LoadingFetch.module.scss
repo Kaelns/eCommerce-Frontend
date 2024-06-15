@@ -1,4 +1,5 @@
 @use '@styles/abstracts/mixins';
+@use '@styles/abstracts/placeholders';
 
 .container {
   position: relative;
@@ -20,7 +21,11 @@
     visibility: hidden;
   }
 }
+.childrenContainer {
+  @extend %animation;
+}
 
-.overflowHidden {
-  overflow-x: hidden;
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }

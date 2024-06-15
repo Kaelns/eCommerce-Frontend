@@ -112,11 +112,15 @@ exports[`Given CatalogPage component:  > when rendered, should match snapshot 1`
                 class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
               />
             </div>
-            <h5
-              class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+            <div
+              class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
             >
-              There is no products
-            </h5>
+              <h5
+                class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+              >
+                There is no products
+              </h5>
+            </div>
           </div>
         </div>
       </div>

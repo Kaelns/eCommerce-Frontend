@@ -38,59 +38,63 @@ exports[`Given DetailedProductPage component:  > when rendered, should match sna
       />
     </div>
     <div
-      class="_pageContainer_0feb98 MuiBox-root css-0"
+      class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
     >
       <div
-        class="_headerContainer_0feb98 MuiBox-root css-0"
+        class="_pageContainer_0feb98 MuiBox-root css-0"
       >
         <div
-          class="slick-slider _carouselMedium_0feb98 _carousel_95e9a0 slick-initialized"
-          dir="ltr"
+          class="_headerContainer_0feb98 MuiBox-root css-0"
         >
           <div
-            class="slick-list"
+            class="slick-slider _carouselMedium_0feb98 _carousel_95e9a0 slick-initialized"
+            dir="ltr"
           >
             <div
-              class="slick-track"
-              style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              class="slick-list"
+            >
+              <div
+                class="slick-track"
+                style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              />
+            </div>
+          </div>
+          <div
+            class="_productData_5be6a8 MuiBox-root css-0"
+          >
+            <h5
+              class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+            />
+            <div
+              class="_priceContainer_92edd5 MuiBox-root css-0"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-zdy50j-MuiTypography-root"
+              >
+                Price: 
+              </h6>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 _price_c0cdf9  false css-ati914-MuiTypography-root"
+              >
+                0 $
+              </h6>
+            </div>
+            <div
+              class="_chipContainer_5be6a8 MuiBox-root css-0"
             />
           </div>
         </div>
         <div
-          class="_productData_5be6a8 MuiBox-root css-0"
+          class="MuiBox-root css-0"
         >
-          <h5
-            class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
-          />
-          <div
-            class="_priceContainer_92edd5 MuiBox-root css-0"
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
           >
-            <h6
-              class="MuiTypography-root MuiTypography-subtitle2 css-zdy50j-MuiTypography-root"
-            >
-              Price: 
-            </h6>
-            <h6
-              class="MuiTypography-root MuiTypography-subtitle2 _price_c0cdf9  false css-ati914-MuiTypography-root"
-            >
-              0 $
-            </h6>
-          </div>
-          <div
-            class="_chipContainer_5be6a8 MuiBox-root css-0"
-          />
+            <b>
+                Description: 
+            </b>
+          </p>
         </div>
-      </div>
-      <div
-        class="MuiBox-root css-0"
-      >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-        >
-          <b>
-              Description: 
-          </b>
-        </p>
       </div>
     </div>
   </div>
