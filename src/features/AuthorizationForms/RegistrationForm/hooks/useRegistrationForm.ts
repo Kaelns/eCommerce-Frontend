@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useContext } from 'react';
 import dayjs from 'dayjs';
 import checkPostalCode from '@/features/validation/postalCodeValidation';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
@@ -7,13 +7,9 @@ import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { OnChangeComboBox } from '@/features/AuthorizationForms/components/ComboBox/ComboBox.type';
 import { IInputsValues, IInputsErrors } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 import { AddressPrefix, AddressProperty } from '@/features/AuthorizationForms/data/AuthorizationForms.enum';
-import {
-  IAlertData,
-  IUseRegistrationFormReturn
-} from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
+import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import {
   INIT_INPUTS_DATA,
-  INIT_ALERT_DATA,
   INIT_POSTAL_PATTERN
 } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.constants';
 import {
@@ -24,20 +20,20 @@ import { InputReactEvent } from '@/data/types/InputReactEvent';
 import { handlePrefix } from '@/utils/handlePrefix';
 import getMaxDate from '@/utils/getMaxDate';
 import getMinDate from '@/utils/getMinDate';
+import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   const { setAuthUserToken } = useAuthContext();
   const maxDate = useMemo(() => dayjs(getMaxDate()), []);
   const minDate = useMemo(() => dayjs(getMinDate()), []);
 
+  const { handleOpenAlert } = useContext(AlertTextContext);
   const [inputsValues, setInputsValues] = useState<IInputsValues>(INIT_INPUTS_DATA);
   const [inputsErrors, setInputsErrors] = useState<IInputsErrors>({});
-  const [isShowAlert, setIsShowAlert] = useState(false);
   const [isSameAddress, setIsSameAddress] = useState(false);
-  const [isShowCircleProgress, setIsShowCircleProgress] = useState(true);
+  const [isShowCircleProgress, setIsShowCircleProgress] = useState(false);
   const [isDefaultBillingAddress, setIsDefaultBillingAddress] = useState(false);
   const [isDefaultShippingAddress, setIsDefaultShippingAddress] = useState(false);
-  const [alertData, setAlertData] = useState<IAlertData>(INIT_ALERT_DATA);
   const [postalCodePattern, setPostalCodePattern] = useState<PostalCodePattern>(INIT_POSTAL_PATTERN);
 
   const handleOnChangeInput: HandleOnChangeInput = useCallback(
@@ -93,11 +89,6 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
     setIsDefaultShippingAddress((value) => !value);
   };
 
-  const handleBackdrop = (): void => {
-    setIsShowAlert(false);
-    setIsShowCircleProgress(true);
-  };
-
   const handleSubmit = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
@@ -105,22 +96,19 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
         inputsValues,
         setAuthUserToken,
         setInputsErrors,
-        setIsShowAlert,
         setIsShowCircleProgress,
-        setAlertData,
+        handleOpenAlert,
         isSameAddress,
         isDefaultShippingAddress,
         isDefaultBillingAddress
       );
     },
-    [inputsValues, setAuthUserToken, isSameAddress, isDefaultShippingAddress, isDefaultBillingAddress]
+    [inputsValues, setAuthUserToken, handleOpenAlert, isSameAddress, isDefaultShippingAddress, isDefaultBillingAddress]
   );
 
   return {
     maxDate,
     minDate,
-    alertData,
-    isShowAlert,
     inputsValues,
     inputsErrors,
     isSameAddress,
@@ -130,7 +118,6 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
     setIsDefaultBillingAddress,
     setIsDefaultShippingAddress,
     handleSubmit,
-    handleBackdrop,
     handleOnChangeInput,
     handleToggleAsBilling,
     handleOnChangeComboBox,

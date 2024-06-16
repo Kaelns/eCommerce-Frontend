@@ -1,17 +1,17 @@
-import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
+import { AlertsText } from '@/data/enum/alerts.enum';
 import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
+import { Severity } from '@/components/AlertText/AlertText.interface';
 
 export async function createCustomer(
   inputsValues: IInputsValues,
   setAuthUserToken: (token: string) => void,
   setInputsError: React.Dispatch<React.SetStateAction<IInputsErrors>>,
-  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>,
   setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>,
-  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>,
+  handleOpenAlert: (message: string, severity: Severity) => void,
   isSameAddress: boolean,
   isDefaultShippingAddress: boolean,
   isDefaultBillingAddress: boolean
@@ -61,7 +61,7 @@ export async function createCustomer(
     createCustomerDate.defaultShippingAddress = SHIPPING_ADDRESS_INDEX;
   }
 
-  setIsShowAlert(true);
+  setIsShowCircleProgress(true);
 
   await eCommerceAPI
     .createCustomer(createCustomerDate)
@@ -69,11 +69,7 @@ export async function createCustomer(
       setTimeout(() => {
         setAuthUserToken('login_is_ok');
       }, 1000);
-      setIsShowCircleProgress(false);
-      setAlertData({
-        typeAlert: Alerts.SUCCESS,
-        textAlert: AlertsText.SUCCESS_TEXT
-      });
+      handleOpenAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
       eCommerceAPI.logoutCustomer();
       // TODO
       /* const authResponse = */ await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
@@ -83,18 +79,13 @@ export async function createCustomer(
       if (error instanceof Error) {
         if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
           setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
-          setIsShowCircleProgress(false);
-          setAlertData({
-            typeAlert: Alerts.ERROR,
-            textAlert: AlertsText.ERROR_EMAIL_TEXT
-          });
+          handleOpenAlert(AlertsText.ERROR_EMAIL_TEXT, Severity.ERROR);
         } else {
-          setIsShowCircleProgress(false);
-          setAlertData({
-            typeAlert: Alerts.ERROR,
-            textAlert: AlertsText.ERROR_CONNECTION_TEXT
-          });
+          handleOpenAlert(AlertsText.ERROR_CONNECTION_TEXT, Severity.ERROR);
         }
       }
+    })
+    .finally(() => {
+      setIsShowCircleProgress(false);
     });
 }

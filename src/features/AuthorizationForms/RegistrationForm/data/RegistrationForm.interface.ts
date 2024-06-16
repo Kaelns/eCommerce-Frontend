@@ -13,10 +13,8 @@ interface IAlertData {
 interface IUseRegistrationFormReturn {
   maxDate: Dayjs;
   minDate: Dayjs;
-  alertData: IAlertData;
   inputsValues: IInputsValues;
   inputsErrors: IInputsErrors;
-  isShowAlert: boolean;
   isSameAddress: boolean;
   isShowCircleProgress: boolean;
   isDefaultBillingAddress: boolean;
@@ -24,7 +22,6 @@ interface IUseRegistrationFormReturn {
   setIsDefaultBillingAddress: React.Dispatch<SetStateAction<boolean>>;
   setIsDefaultShippingAddress: React.Dispatch<SetStateAction<boolean>>;
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
-  handleBackdrop: () => void;
   handleOnChangeInput: HandleOnChangeInput;
   handleToggleAsBilling: () => void;
   handleOnChangeComboBox: OnChangeComboBox;
