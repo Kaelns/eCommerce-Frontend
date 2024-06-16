@@ -23,6 +23,7 @@ class ECommerceAPI {
 
   constructor() {
     this.api = new ApiClient();
+    this.createAnonymousCart();
   }
 
   public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -138,6 +139,23 @@ class ECommerceAPI {
     return this.api.getApiRootWithToken(token).me().post({ body }).execute() as Promise<ClientResponse>;
   }
 
+  // this request for create anonymousCart
+  public async createAnonymousCart(): Promise<ClientResponse> {
+    const cartDraft = {
+      currency: 'USD',
+      country: 'US'
+    };
+
+    return this.api
+      .getApiRootWithAnonymousSession(false)
+      .carts()
+      .post({ body: cartDraft })
+      .execute()
+      .then((res) => {
+        console.log(res.body.id);
+      }) as Promise<ClientResponse>;
+  }
+
   // this Request for update user passwword
   public async updateUserPassword(
     token: string,
@@ -163,6 +181,7 @@ class ECommerceAPI {
   public logoutCustomer(): void {
     this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
     localStorage.removeItem('Token');
+    this.api.getApiRootWithAnonymousSession(false);
   }
 }
 
