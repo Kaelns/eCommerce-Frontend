@@ -1,9 +1,9 @@
-import { AboutUsPage } from '@/pages/AboutUsPage/AboutUsPage';
+import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
 import { render } from '@testing-library/react';
 
-describe('Given MainPage component', () => {
-  it('When rendered, should match snapshot of AboutUsPage', () => {
-    const { asFragment } = render(<AboutUsPage />);
+describe('Given RegistrationPage component', () => {
+  it('When rendered, should match snapshot', () => {
+    const { asFragment } = render(<RegistrationPage />);
     expect(asFragment()).toMatchSnapshot();
   });
 });
