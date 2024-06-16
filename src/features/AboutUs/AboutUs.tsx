@@ -2,7 +2,7 @@ import React from 'react';
 
 import { List, Card, CardContent, CardMedia, Link, Icon, Stack } from '@mui/material';
 import { TextBold } from '@/components/typography/TextBold/TextBold';
-import { ABOUT_US } from '@/features/AboutUs/AboutUs.constants';
+import { ABOUT_US } from '@/features/AboutUs/AboutUs.constant';
 import { Title } from '@/components/typography/Title/Title';
 import schoolLogo from '@/assets/rs_school.svg';
 

@@ -1,0 +1,92 @@
+@use '@styles/abstracts/placeholders';
+@use '@styles/abstracts/mixins';
+
+$iconWidth: 2.2rem;
+$iconWidthTablet: 2.8rem;
+$borderRadius: 1.5rem;
+
+.cardContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  padding-block: 2rem;
+  padding-inline: 1rem;
+  cursor: pointer;
+  box-shadow: var(--mui-shadows-1);
+  border-radius: var(--mui-shape-borderRadius);
+  @extend %animation;
+
+  @include mixins.mediaHover {
+    &:hover {
+      box-shadow: var(--mui-shadows-5);
+
+      .img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.discount {
+  top: -1rem;
+  right: -1rem;
+
+  @include mixins.media-tablet {
+    right: auto;
+    left: -1rem;
+  }
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.9rem;
+}
+
+.basketBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  z-index: 50;
+  border-top-left-radius: var(--mui-shape-borderRadius);
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: $borderRadius;
+
+  @include mixins.media-tablet {
+    left: auto;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: $borderRadius;
+    border-bottom-right-radius: var(--mui-shape-borderRadius);
+    padding: 1rem;
+  }
+}
+
+.basketIcon {
+  font-size: $iconWidth;
+  @include mixins.media-tablet {
+    font-size: $iconWidthTablet;
+  }
+}
+
+.basketProgress {
+  width: $iconWidth !important;
+  height: $iconWidth !important;
+
+  @include mixins.media-tablet {
+    width: $iconWidthTablet !important;
+    height: $iconWidthTablet !important;
+  }
+}

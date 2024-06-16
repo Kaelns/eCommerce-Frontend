@@ -114,6 +114,16 @@ class ECommerceAPI {
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
+  // Todo: delete when basket
+  async getProductsBasket(): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
+    return this.api
+      .getApiRoot()
+      .productProjections()
+      .search()
+      .get({ queryArgs: { limit: 4 } })
+      .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
+  }
+
   public async getProduct(key: string): Promise<ClientResponse<ProductProjection>> {
     return this.api.getApiRoot().productProjections().withKey({ key }).get().execute() as Promise<
       ClientResponse<ProductProjection>
