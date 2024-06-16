@@ -1,15 +1,17 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CircularProgress, IconButton, LinearProgress, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { IAddToBasketProps } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn.interface';
+import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
+import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
+import { Severity } from '@/components/AlertText/AlertText.interface';
 
 import styles from './AddToBasketBtn.module.scss';
-import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
 
 // Todo: delete  promise
-const wait = async (): Promise<unknown> =>
+const wait = async (): Promise<{ error: string }> =>
   new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    setTimeout(() => resolve({ error: 'Error' }), 1000);
   });
 
 export function AddToBasketBtn({
@@ -22,6 +24,7 @@ export function AddToBasketBtn({
   // Todo: get isInCart from the product itself
   const [isInCart, setIsInCart] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const { handleOpenAlert } = useContext(AlertTextContext);
 
   const btnStyles = `${className} ${styles.basketBtn} ${isInCart ? styles.activeIcon : ''}`;
   const progressStyles = `${progressIconStyles} ${styles.progress} ${isDisabled ? styles.activeProgress : ''} `;
@@ -36,11 +39,15 @@ export function AddToBasketBtn({
       if (!isDisabled) {
         setIsDisabled(true);
         // Todo: addToBasket and wait
-        await wait();
+        const responce = await wait();
         console.log(key);
         // Todo: increment basket counter
+        if (responce.error) {
+          handleOpenAlert(responce.error, Severity.ERROR);
+        } else {
+          setIsInCart((prev) => !prev);
+        }
         setIsDisabled(false);
-        setIsInCart((prev) => !prev);
       }
     };
 
