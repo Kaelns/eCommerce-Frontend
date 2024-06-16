@@ -1,6 +1,7 @@
 import { Box, Chip } from '@mui/material';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { IProductHeaderProps } from '@/pages/DetailedProductPage/components/ProductHead/ProductHead.interface';
+import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
 import { Discount } from '@/components/typography/Discount/Discount';
 import { Title } from '@/components/typography/Title/Title';
 
@@ -21,6 +22,7 @@ export function ProductHead({ productData, categoriesNames }: IProductHeaderProp
           <Chip key={category} label={category} />
         ))}
       </Box>
+      <AddToBasketBtn productKey={productData.key} className={styles.addToBasketBtn} />
     </Box>
   );
 }

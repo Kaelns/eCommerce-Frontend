@@ -7,7 +7,7 @@ import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { useProduct } from '@/hooks/useProduct/useProduct';
 import { LinkRouter } from '@/components/LinkRouter/LinkRouter';
-import { AddToBasket } from '@/pages/CatalogPage/components/AddToBasket/AddToBasket';
+import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
 
 import styles from './ProductCard.module.scss';
 
@@ -21,7 +21,13 @@ export function ProductCard({ product }: IProductCardProps): React.ReactNode {
   return (
     <LinkRouter to={`${ROUTES.DETAILED_PRODUCT}/${data.key}`}>
       <Box className={styles.cardContainer}>
-        <AddToBasket productKey={data.key} />
+        <AddToBasketBtn
+          isIconBtn
+          productKey={data.key}
+          className={styles.basketBtn}
+          basketIconStyles={styles.basketIcon}
+          progressIconStyles={styles.basketProgress}
+        />
         <Discount discount={data.discount} className={styles.discount} />
         <ImageLoad height={200} src={data.imageUrl} alt={data.name} imgStyles={styles.img} />
         <Box>

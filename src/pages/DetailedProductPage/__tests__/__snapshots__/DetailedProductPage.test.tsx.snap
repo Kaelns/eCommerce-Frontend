@@ -82,6 +82,42 @@ exports[`Given DetailedProductPage component:  > when rendered, should match sna
             <div
               class="_chipContainer_5be6a8 MuiBox-root css-0"
             />
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary _btnCasual_0b5bfe _addToBasketBtn_5be6a8 _basketBtn_0b5bfe  _btn_d6e307 css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate undefined _progress_0b5bfe   _progressLinear_0b5bfe css-eglki6-MuiLinearProgress-root"
+                role="progressbar"
+              >
+                <span
+                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-5ir5xx-MuiLinearProgress-bar1"
+                />
+                <span
+                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-1r8wrcl-MuiLinearProgress-bar2"
+                />
+              </span>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+              >
+                Add to
+              </h6>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium undefined _basketIcon_0b5bfe  _iconCasual_0b5bfe css-i4bv87-MuiSvgIcon-root"
+                data-testid="AddShoppingCartIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2m-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
         </div>
         <div

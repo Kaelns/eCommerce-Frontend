@@ -2,7 +2,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, IconButton, Modal, Typography, useMediaQuery } from '@mui/material';
 import { useCallback, useContext, useMemo, useState } from 'react';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
-import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
 import { useDetailedProduct } from '@/pages/DetailedProductPage/useDetailedProduct.ts/useDetailedProduct';
 import { ImgCarousel } from '@/components/ImgCarousel/ImgCarousel';
 import { MEDIA_TABLET } from '@/data/constants';
@@ -11,6 +10,7 @@ import { findInCategories } from '@/services/helpers/findInCategories';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead/ProductHead';
 import { LANGUAGE } from '@/services/ECommerceInitApi.constants';
+import { createImagesCallback } from '@/pages/DetailedProductPage/helpers/createImages';
 
 import styles from './DetailedProductPage.module.scss';
 
@@ -35,17 +35,11 @@ export function DetailedProductPage(): React.ReactNode {
   );
   const handleClose = (): void => setOpen(false);
 
-  const createImages = (classObj: string, onClick?: (num: number) => () => void): React.ReactNode[] =>
-    productData.images.map((imageData, index) => (
-      <ImageLoad
-        key={imageData.url}
-        src={imageData.url}
-        alt={productData.name}
-        containerStyles={`${classObj} ${styles.imgContainer}`}
-        imgStyles={styles.img}
-        onClick={onClick ? onClick(index) : (): void => {}}
-      />
-    ));
+  const createImages = useCallback(
+    (classObj: string, onClick?: (num: number) => () => void) =>
+      createImagesCallback(productData, styles.imgContainer, styles.img)(classObj, onClick),
+    [productData]
+  );
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>

@@ -1,6 +1,4 @@
 import React from 'react';
-import Alert from '@mui/material/Alert';
-import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Box, FormHelperText, Checkbox, FormControlLabel } from '@mui/material';
 import AddressBlock from '@/features/AuthorizationForms/components/AddressSection/AddressSection';
@@ -94,15 +92,8 @@ export default function RegistrationForm(): React.ReactNode {
         disabled={!checkAllInputs(data.inputsValues, data.inputsErrors, data.isSameAddress)}
         onClick={data.handleSubmit}
       >
-        Register
+        {data.isShowCircleProgress ? <CircularProgress color="primary" /> : 'Register'}
       </ButtonCustom>
-      <Backdrop open={data.isShowAlert} onClick={data.handleBackdrop}>
-        {data.isShowCircleProgress ? (
-          <CircularProgress color="primary" />
-        ) : (
-          <Alert severity={data.alertData.typeAlert}>{data.alertData.textAlert}</Alert>
-        )}
-      </Backdrop>
     </Box>
   );
 }
