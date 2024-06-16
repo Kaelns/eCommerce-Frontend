@@ -1,1 +1,3 @@
-export const checkUndefined = (test: number | number[] | undefined): boolean => test !== undefined;
+export function checkUndefined<T>(test: T | undefined): boolean {
+  return test !== undefined;
+}

@@ -15,6 +15,7 @@ import { checkUndefined } from '@/utils/checkUndefined';
 import { buildCategoryTree } from '@/services/helpers/buildCategoryTree/buildCategoryTree';
 import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
 import { ICategoriesObj } from '@/context/ECommerceContext/ECommerceContext.interface';
+import { LIMIT_ON_PAGE } from '@/services/ECommerceInitApi.constants';
 
 class ECommerceAPI {
   private api: ApiClient;
@@ -110,7 +111,7 @@ class ECommerceAPI {
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { limit: 18, ...parameters } })
+      .get({ queryArgs: { limit: LIMIT_ON_PAGE, ...parameters } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 

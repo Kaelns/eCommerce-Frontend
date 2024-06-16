@@ -13,7 +13,7 @@ describe('Given checkCredentialInputs function', () => {
     };
     const result = checkCredentialInputs(inputsValues, inputsErrors);
 
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 
   test("When inputsValues doesn't have password record, should return false", () => {
@@ -26,7 +26,7 @@ describe('Given checkCredentialInputs function', () => {
     };
     const result = checkCredentialInputs(inputsValues, inputsErrors);
 
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 
   test('When inputsErrors has non empty email record, should return false', () => {
@@ -40,7 +40,7 @@ describe('Given checkCredentialInputs function', () => {
     };
     const result = checkCredentialInputs(inputsValues, inputsErrors);
 
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 
   test('When inputsErrors has non empty password record, should return false', () => {
@@ -54,7 +54,7 @@ describe('Given checkCredentialInputs function', () => {
     };
     const result = checkCredentialInputs(inputsValues, inputsErrors);
 
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 
   test('When inputsErrors has empty password and email records and inputsValues has non empty password and email records, should return true', () => {
@@ -68,7 +68,7 @@ describe('Given checkCredentialInputs function', () => {
     };
     const result = checkCredentialInputs(inputsValues, inputsErrors);
 
-    expect(result).toBe(true);
+    expect(result).toBeTruthy();
   });
 });
 
@@ -93,7 +93,7 @@ describe('Given checkAllInputs function', () => {
     const inputsErrors = {};
     const result = checkAllInputs(inputsValues, inputsErrors, isSameAddress);
 
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 
   test('When inputsErrors has at least one non empty record by key in INPUTS, should return false', () => {
@@ -119,7 +119,7 @@ describe('Given checkAllInputs function', () => {
     };
     const result = checkAllInputs(inputsValues, inputsErrors, isSameAddress);
 
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 
   test("When inputsValues has record by each key in INPUTS and inputsErrors doesn't have non empty records by key in INPUTS, should return true", () => {
@@ -143,6 +143,6 @@ describe('Given checkAllInputs function', () => {
     const inputsErrors = {};
     const result = checkAllInputs(inputsValues, inputsErrors, isSameAddress);
 
-    expect(result).toBe(true);
+    expect(result).toBeTruthy();
   });
 });

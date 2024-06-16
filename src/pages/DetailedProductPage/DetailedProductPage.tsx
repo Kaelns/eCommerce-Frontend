@@ -8,11 +8,11 @@ import { ImgCarousel } from '@/components/ImgCarousel/ImgCarousel';
 import { MEDIA_TABLET } from '@/data/constants';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { findInCategories } from '@/services/helpers/findInCategories';
+import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead/ProductHead';
 import { LANGUAGE } from '@/services/ECommerceInitApi.constants';
 
 import styles from './DetailedProductPage.module.scss';
-import { usePageSkeleton } from '@/components/PageSkeleton/usePageSkeleton';
 
 export function DetailedProductPage(): React.ReactNode {
   const { categories } = useContext(ECommerceContext);
@@ -20,7 +20,6 @@ export function DetailedProductPage(): React.ReactNode {
   const { productData, isLoading, error } = useDetailedProduct();
   const [open, setOpen] = useState(false);
   const [imgNum, setImgNum] = useState(0);
-  const pageSkeleton = usePageSkeleton();
 
   const categoriesNames = useMemo(
     () => findInCategories(categories, productData.categoriesIdArr, true).map((obj) => obj.name[LANGUAGE]),
@@ -42,14 +41,14 @@ export function DetailedProductPage(): React.ReactNode {
         key={imageData.url}
         src={imageData.url}
         alt={productData.name}
-        className={`${classObj} ${styles.imgContainer}`}
+        containerStyles={`${classObj} ${styles.imgContainer}`}
         imgStyles={styles.img}
         onClick={onClick ? onClick(index) : (): void => {}}
       />
     ));
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} skeleton={pageSkeleton}>
+    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
       <Box className={styles.pageContainer}>
         <Box className={styles.headerContainer}>
           <ImgCarousel className={styles.carouselMedium} customDots={createImages(styles.imgContainerSmall)}>

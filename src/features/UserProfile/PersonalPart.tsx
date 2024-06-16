@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Button, FormHelperText } from '@mui/material';
 import dayjs from 'dayjs';
 
@@ -9,12 +9,9 @@ import { Title } from '@/components/typography/Title/Title';
 import styles from './UserProfile.module.scss';
 import { DateInput } from '@/features/AuthorizationForms/components/DateInput/DateInput';
 import checkBirthday from '@/features/validation/birthdayValidation';
-import getMaxDate from '@/utils/getMaxDate';
-import getMinDate from '@/utils/getMinDate';
-import { IUseRegistrationFormReturn } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import checkGeneralRule from '@/features/validation/generalValidation';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IResponseUserData } from '@/features/UserProfile/UserProfile.interface';
+import { IUserProfilePartWithInitial } from '@/features/UserProfile/UserProfile.interface';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
 
 export default function PersonalPart({
@@ -24,15 +21,12 @@ export default function PersonalPart({
   setIsShowAlert,
   setIsShowCircleProgress,
   setAlertData
-}: {
-  data: IUseRegistrationFormReturn;
-  initialValues: IResponseUserData;
-  setIsActualData: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>;
-  setAlertData: React.Dispatch<React.SetStateAction<{ typeAlert: Alerts; textAlert: AlertsText }>>;
-}): React.ReactNode {
+}: IUserProfilePartWithInitial): React.ReactNode {
   const [isChangeMode, setIsChangeMode] = useState(false);
+  const currentDate = useMemo(
+    () => dayjs(data.inputsValues[INPUTS.birthday.name]) ?? data.maxDate,
+    [data.inputsValues, data.maxDate]
+  );
 
   const handleEditMode = useCallback(() => {
     data.setInputsValues((values) => ({
@@ -135,13 +129,13 @@ export default function PersonalPart({
         </FormHelperText>
       </ValidationInput>
       <DateInput
-        label="Birthday"
-        name="birthday"
+        label={INPUTS.birthday.label}
+        name={INPUTS.birthday.name}
         disabled={!isChangeMode}
         validationChecks={checkBirthday}
-        value={dayjs(data.inputsValues[INPUTS.birthday.name]) ?? dayjs(getMaxDate())}
-        maxDate={dayjs(getMaxDate())}
-        minDate={dayjs(getMinDate())}
+        value={currentDate}
+        maxDate={data.maxDate}
+        minDate={data.minDate}
         setInputs={data.setInputsValues}
       />
       {isChangeMode && (

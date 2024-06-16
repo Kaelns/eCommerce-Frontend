@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Title } from '@/components/typography/Title/Title';
 import { SortBy } from '@/pages/CatalogPage/components/SortBy/SortBy';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
@@ -7,24 +7,22 @@ import { fromKeyToName } from '@/utils/fromKeyToName';
 import { fetchProducts } from '@/services/helpers/fetchProducts/fetchProducts';
 import { EMPTY_DATA_PRODUCTS } from '@/services/helpers/fetchProducts/fetchProducts.constants';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { useFetchWithParams } from '@/hooks/useFetch/useFetchWithParams';
+import { ProductPagination } from '@/pages/CatalogPage/components/ProductPagination/ProductPagination';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce/useDebounce';
-import { usePageSkeleton } from '@/components/PageSkeleton/usePageSkeleton';
+import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
+import { useFetch } from '@/hooks/useFetch/useFetch';
 
 import styles from './Products.module.scss';
 
 export function Products(): React.ReactNode {
   const { filterState } = useContext(FilterReducerContext);
   const filterStateDebounce = useDebounce(filterState);
-  const { data, isLoading, error } = useFetchWithParams(fetchProducts, filterStateDebounce);
+  const { data, isLoading, error } = useFetch(fetchProducts, filterStateDebounce);
   const { products, amount } = data ?? EMPTY_DATA_PRODUCTS;
-  const pageSkeleton = usePageSkeleton();
-
-  useEffect(() => console.log(filterStateDebounce), [filterStateDebounce]);
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} skeleton={pageSkeleton} className={styles.productsContainer}>
+    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
       {products.length ? (
         <>
           <Box className={styles.productsHeader}>
@@ -41,6 +39,7 @@ export function Products(): React.ReactNode {
               </Grid>
             ))}
           </Grid>
+          <ProductPagination amount={amount} />
         </>
       ) : (
         <Title>There is no products</Title>

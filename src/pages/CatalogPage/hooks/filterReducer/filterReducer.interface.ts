@@ -7,6 +7,7 @@ export interface IFilterState {
   color: IColorsState;
   search: string;
   sort: Sort;
+  page: number;
 }
 
 export interface IAction {

@@ -5,6 +5,7 @@ $width-mobile: 375px;
 
 :root {
   --color-primary-transparent: color-mix(in srgb, var(--mui-palette-primary-light), transparent 95%);
+  --color-primary-light: color-mix(in srgb, var(--mui-palette-primary-main), transparent 60%);
   --color-background-dark: color-mix(in srgb, var(--mui-palette-common-background), #000 30%);
 }
 

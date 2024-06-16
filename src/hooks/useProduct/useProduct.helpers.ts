@@ -9,7 +9,7 @@ export function getPrices(priceObj: Price | null | undefined): IGetPricesReturn 
     return {
       price: 0,
       discount: 0,
-      discounted: 0
+      discountedPrice: 0
     };
   }
 
@@ -19,12 +19,12 @@ export function getPrices(priceObj: Price | null | undefined): IGetPricesReturn 
   const { centAmount: centAmountDis } = discountedObj ? discountedObj.value : { centAmount: 0 };
 
   const price = calculatePrice(centAmount);
-  const discounted = centAmountDis ? calculatePrice(centAmountDis) : 0;
+  const discountedPrice = centAmountDis ? calculatePrice(centAmountDis) : 0;
   const discount = centAmountDis ? Math.round(100 - (centAmountDis / centAmount) * 100) : 0;
 
   return {
     price,
     discount,
-    discounted
+    discountedPrice
   };
 }

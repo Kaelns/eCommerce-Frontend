@@ -3,15 +3,16 @@ import { Image } from '@commercetools/platform-sdk';
 export interface IGetPricesReturn {
   price: number;
   discount: number;
-  discounted: number;
+  discountedPrice: number;
 }
 
 export interface IUseProductReturn {
+  id: string;
   key: string;
   name: string;
   description: string;
   price: number;
-  discounted: number;
+  discountedPrice: number;
   discount: number;
   imageUrl: string;
   categoriesIdArr: string[];

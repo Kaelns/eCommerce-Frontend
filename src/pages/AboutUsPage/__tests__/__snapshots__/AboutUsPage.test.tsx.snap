@@ -7,5 +7,112 @@ exports[`Given AboutUsPage component:  > when rendered, should match snapshot 1`
   >
     About Us Page
   </h5>
+  Here can be the description
+  <ul
+    class="MuiList-root MuiList-padding css-1703fb7-MuiList-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+    >
+      <div
+        class="MuiCardMedia-root css-16cvb1l-MuiCardMedia-root"
+      >
+        <img
+          alt="Ahanouski"
+          src="https://avatars.githubusercontent.com/u/67708215?v=4"
+          style="width: 200px; height: 200px;"
+        />
+      </div>
+      <div
+        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+        >
+          Yury Ahanouski
+        </h6>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+           Roles: 
+        </p>
+        role1, role2
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+           BIO: 
+        </p>
+        TODO: my short bio. here can be a lot of texta lot of texta lot of textot of texta lot of texta lot of te
+      </div>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+    >
+      <div
+        class="MuiCardMedia-root css-16cvb1l-MuiCardMedia-root"
+      >
+        <img
+          alt="Zdanevich"
+          src="https://avatars.githubusercontent.com/u/84130329?v=4"
+          style="width: 200px; height: 200px;"
+        />
+      </div>
+      <div
+        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+        >
+          Anatoli Zdanevich
+        </h6>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+           Roles: 
+        </p>
+        role1, role2
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+           BIO: 
+        </p>
+        TODO: my short bio. here can be a lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of te
+      </div>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+    >
+      <div
+        class="MuiCardMedia-root css-16cvb1l-MuiCardMedia-root"
+      >
+        <img
+          alt="Schepalina"
+          src="https://avatars.githubusercontent.com/u/112850187?v=4"
+          style="width: 200px; height: 200px;"
+        />
+      </div>
+      <div
+        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+        >
+          Viktoriya Schepalina
+        </h6>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+           Roles: 
+        </p>
+        role1, role2
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+           BIO: 
+        </p>
+        TODO: my short bio. here can be a lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of texta lot of text
+      </div>
+    </div>
+  </ul>
 </DocumentFragment>
 `;

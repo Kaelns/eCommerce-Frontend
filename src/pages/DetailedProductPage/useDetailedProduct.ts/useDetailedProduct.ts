@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/features/Router/data/Router.enum';
-import { useFetchWithParams } from '@/hooks/useFetch/useFetchWithParams';
 import { useProduct } from '@/hooks/useProduct/useProduct';
 import { IUseProductReturn } from '@/hooks/useProduct/useProduct.interface';
 import { fetchProduct } from '@/services/helpers/fetchProduct';
+import { useFetch } from '@/hooks/useFetch/useFetch';
 
 export function useDetailedProduct(): { productData: IUseProductReturn; isLoading: boolean; error: string } {
   const { id: key } = useParams();
@@ -17,7 +17,7 @@ export function useDetailedProduct(): { productData: IUseProductReturn; isLoadin
     redirectOnError();
   }
 
-  const { data, isLoading, error } = useFetchWithParams(fetchProduct, key!);
+  const { data, isLoading, error } = useFetch(fetchProduct, key!);
 
   const productData = useProduct(data);
 

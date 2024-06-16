@@ -1,4 +1,5 @@
 import { IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
+import { LIMIT_ON_PAGE } from '@/services/ECommerceInitApi.constants';
 import {
   convertSort,
   convertPrice,
@@ -10,19 +11,21 @@ import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilter
 
 export function convertToFilterParams(filterState: IFilterState): IConvertToFilterParamsReturn {
   const sort = convertSort(filterState.sort);
-  const price = convertPrice(filterState.price);
   const search = convertSearch(filterState.search);
+
+  const price = convertPrice(filterState.price);
   const colors = convertColors(filterState.color);
   const category = convertCategories(filterState.categoryKey);
-  console.log(category);
 
+  const offset = (filterState.page - 1) * LIMIT_ON_PAGE;
   const sortObj = sort ? { sort } : {};
-  const filters = [colors, category, price].filter((el) => el);
+  const filters = [colors, category, price].filter(Boolean);
 
   const parameters = {
     'filter.query': [...filters],
     ...search,
-    ...sortObj
+    ...sortObj,
+    offset
   };
 
   return parameters;

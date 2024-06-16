@@ -1,15 +1,23 @@
 import { Box, BoxProps, Skeleton } from '@mui/material';
-import { skeletonHeightBefore, skeletonHeightAfter } from '@/components/PageSkeleton/PageSkeleton.constants';
+import {
+  skeletonContainer,
+  pageSkeleton,
+  SKELETON_CIRCULAR_SIZE,
+  pageSkeletonBefore
+} from '@/components/PageSkeleton/PageSkeleton.constants';
 
 export function PageSkeleton(props: BoxProps): React.ReactNode {
   return (
-    <Box sx={{ width: '1' }} {...props}>
-      <Skeleton animation="wave" height={skeletonHeightBefore} />
-      <Skeleton variant="circular" width={skeletonHeightBefore} height={skeletonHeightBefore} animation="wave" />
-      <Skeleton animation="wave" height={skeletonHeightAfter} />
-      <Skeleton animation="wave" height={skeletonHeightAfter} />
-      <Skeleton animation="wave" height={skeletonHeightAfter} />
-      <Skeleton animation="wave" height={skeletonHeightAfter} />
+    <Box sx={skeletonContainer} {...props}>
+      <Skeleton animation="wave" sx={pageSkeletonBefore} />
+      <Skeleton variant="circular" width={SKELETON_CIRCULAR_SIZE} height={SKELETON_CIRCULAR_SIZE} animation="wave" />
+      <Skeleton animation="wave" sx={pageSkeletonBefore} />
+      <Skeleton animation="wave" sx={pageSkeletonBefore} />
+      <Skeleton animation="wave" sx={pageSkeleton} />
+      <Skeleton animation="wave" sx={pageSkeleton} />
+      <Skeleton animation="wave" sx={pageSkeleton} />
+      <Skeleton animation="wave" sx={pageSkeleton} />
+      <Skeleton animation="wave" sx={pageSkeleton} />
     </Box>
   );
 }

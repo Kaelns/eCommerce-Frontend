@@ -9,4 +9,20 @@ describe('Given checkBirthday function', () => {
 
     expect(result).toBe(ValidationErrors.AGE);
   });
+
+  test('When birthday more than 100 years ago, should return correct error', () => {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 101);
+    const result = checkBirthday(date.toString());
+
+    expect(result).toBe(ValidationErrors.AGE);
+  });
+
+  test("When birthday more than 13 years ago and less than 100 years ago, should return ''", () => {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 15);
+    const result = checkBirthday(date.toString());
+
+    expect(result).toBe('');
+  });
 });
