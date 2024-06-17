@@ -8,6 +8,7 @@ import { MainContainer } from '@/layout/MainContainer/MainContainer';
 import { MainPage } from '@/pages/MainPage/MainPage';
 import { ROUTES } from '@/features/Router/data/Router.enum';
 import { useRedirect } from '@/features/Router/hooks/useRedirect';
+import { BasketPage } from '@/pages/BasketPage/BasketPage';
 
 export function Router(): React.ReactNode {
   const redirect = useRedirect();
@@ -27,7 +28,7 @@ export function Router(): React.ReactNode {
           </Route>
           <Route path={ROUTES.USER} element={redirect[ROUTES.USER]} />
           <Route path={ROUTES.LOGIN} element={redirect[ROUTES.LOGIN]} />
-          <Route path={ROUTES.BASKET} element={redirect[ROUTES.BASKET]} />
+          <Route path={ROUTES.BASKET} element={<BasketPage />} />
           <Route path={ROUTES.REGISTRATION} element={redirect[ROUTES.REGISTRATION]} />
           <Route path={ROUTES.NONEXISTENT} element={<ErrorPage />} />
         </Route>

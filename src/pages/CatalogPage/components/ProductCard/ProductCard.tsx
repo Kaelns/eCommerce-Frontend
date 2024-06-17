@@ -21,7 +21,7 @@ export function ProductCard({ product }: IProductCardProps): React.ReactNode {
   return (
     <LinkRouter to={`${ROUTES.DETAILED_PRODUCT}/${data.key}`}>
       <Box className={styles.cardContainer}>
-        <AddToBasket productKey={data.key} />
+        <AddToBasket productKey={data.id} />
         <Discount discount={data.discount} className={styles.discount} />
         <ImageLoad height={200} src={data.imageUrl} alt={data.name} imgStyles={styles.img} />
         <Box>

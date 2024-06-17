@@ -1,14 +1,8 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CircularProgress, IconButton } from '@mui/material';
 import { useState } from 'react';
-
+import { addToCart } from '@/services/addToCart';
 import styles from './AddToBasket.module.scss';
-
-// Todo: delete  promise
-const wait = async (): Promise<unknown> =>
-  new Promise((resolve) => {
-    setTimeout(resolve, 1000);
-  });
 
 export function AddToBasket({ productKey }: { productKey: string }): React.ReactNode {
   const [isActiveBtn, setIsActiveBtn] = useState(false);
@@ -27,8 +21,8 @@ export function AddToBasket({ productKey }: { productKey: string }): React.React
       if (!isDisabled) {
         setIsDisabled(true);
         // Todo: addToBasket and wait
-        await wait();
-        console.log(key);
+        // console.log(key);
+        addToCart(key);
         // Todo: increment basket counter
         setIsDisabled(false);
         setIsActiveBtn((prev) => !prev);
