@@ -1,7 +1,7 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CircularProgress, IconButton } from '@mui/material';
 import { useState } from 'react';
-import { addToCart } from '@/services/addToCart';
+import { addToCart } from '@/services/helpers/cartHelpers/addToCart/addToCart';
 import styles from './AddToBasket.module.scss';
 
 export function AddToBasket({ productKey }: { productKey: string }): React.ReactNode {
@@ -21,7 +21,7 @@ export function AddToBasket({ productKey }: { productKey: string }): React.React
       if (!isDisabled) {
         setIsDisabled(true);
         // Todo: addToBasket and wait
-        // console.log(key);
+        console.log(key);
         addToCart(key);
         // Todo: increment basket counter
         setIsDisabled(false);

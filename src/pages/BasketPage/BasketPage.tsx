@@ -1,6 +1,6 @@
 import { Title } from '@/components/typography/Title/Title';
 import styles from './BasketPage.module.scss';
-import { getCart } from '@/services/getCart';
+import { getCart } from '@/services/helpers/cartHelpers/getCart';
 
 // interface IProps {}
 

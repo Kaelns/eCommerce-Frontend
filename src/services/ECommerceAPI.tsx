@@ -1,4 +1,5 @@
 import {
+  Cart,
   Category,
   CategoryPagedQueryResponse,
   ClientResponse,
@@ -24,11 +25,14 @@ class ECommerceAPI {
 
   public categories: Category[] = [];
 
-  private anonymousCartId!: string;
-
   constructor() {
     this.api = new ApiClient();
-    this.createAnonymousUser();
+    this.createAnonymousUser().then((res) => {
+      this.createCart(this.api.getTokenCache().get().token).then((data) => {
+        localStorage.setItem('anonymousCart', data.id);
+      });
+      return res;
+    });
   }
 
   public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -79,17 +83,14 @@ class ECommerceAPI {
 
   public async authenticateCustomer(email: string, password: string): Promise<ClientResponse<MyCustomerSignin>> {
     return this.api
-      .getApiRoot()
+      .getApiRootWithPassword(email, password)
+      .me()
       .login()
       .post({
         body: {
           email,
           password,
-          anonymousCart: {
-            id: localStorage.getItem('anonymousCart') as string,
-            typeId: 'cart'
-          },
-          anonymousCartSignInMode: 'MergeWithExistingCustomerCart'
+          activeCartSignInMode: 'MergeWithExistingCustomerCart'
         }
       })
       .execute()
@@ -151,7 +152,7 @@ class ECommerceAPI {
   // this request for create anonymousCart
   public async createAnonymousUser(): Promise<ClientResponse> {
     return this.api
-      .getApiRootWithAnonymousSession(/* true */)
+      .getApiRootWithAnonymousSession()
       .get()
       .execute()
       .then((response) => {
@@ -161,12 +162,18 @@ class ECommerceAPI {
       }) as Promise<ClientResponse>;
   }
 
-  public async getCart(token: string): Promise<ClientResponse> {
-    return this.api.getApiRootWithToken(token).me().carts().get().execute() as Promise<ClientResponse>;
+  public async getCart(token: string): Promise<Cart> {
+    return this.api
+      .getApiRootWithToken(token)
+      .me()
+      .carts()
+      .get()
+      .execute()
+      .then((responce) => responce.body.results[0]) as Promise<Cart>;
   }
 
   // this request for create anonymousCart
-  public async createCart(token: string): Promise<ClientResponse> {
+  public async createCart(token: string): Promise<Cart> {
     const cartDraft = {
       currency: 'USD',
       country: 'US'
@@ -176,11 +183,8 @@ class ECommerceAPI {
       .me()
       .carts()
       .post({ body: cartDraft })
-      .execute() as Promise<ClientResponse>;
-  }
-
-  public getAnonymousCartId(): string {
-    return this.anonymousCartId;
+      .execute()
+      .then((responce) => responce.body) as Promise<Cart>;
   }
 
   public async updateCart(token: string, cartId: string, productId: string, version: number): Promise<ClientResponse> {
@@ -195,8 +199,7 @@ class ECommerceAPI {
           actions: [
             {
               action: 'addLineItem',
-              productId,
-              quantity: 1
+              productId
             }
           ]
         }
@@ -249,7 +252,12 @@ class ECommerceAPI {
     localStorage.removeItem('Token');
     localStorage.removeItem('AnonToken');
     localStorage.removeItem('anonymousCart');
-    this.createAnonymousUser();
+    this.createAnonymousUser().then((res) => {
+      this.createCart(this.api.getTokenCache().get().token).then((data) => {
+        localStorage.setItem('anonymousCart', data.id);
+      });
+      return res;
+    });
   }
 }
 
