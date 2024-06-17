@@ -8,6 +8,7 @@ import { useBasket } from '@/pages/BasketPage/components/hooks/useBasket/useBask
 import { Title } from '@/components/typography/Title/Title';
 
 import styles from './BasketPage.module.scss';
+import { getCart } from '@/services/getCart';
 
 export function BasketPage(): React.ReactNode {
   const { isLoading, error, amount, basketProducts, setBasketProducts, finalPrice, setFinalPrice } = useBasket();
