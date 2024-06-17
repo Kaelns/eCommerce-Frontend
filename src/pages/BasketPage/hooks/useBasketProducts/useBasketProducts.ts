@@ -1,6 +1,6 @@
 import { LineItem } from '@commercetools/platform-sdk';
-import { IBasketProductReturn } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts.interface';
-import { MOCK_BASKET_PRODUCT } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProduct.constants';
+import { IBasketProductReturn } from '@/pages/BasketPage/hooks/useBasketProducts/useBasketProducts.interface';
+import { MOCK_BASKET_PRODUCT } from '@/pages/BasketPage/hooks/useBasketProducts/useBasketProduct.constants';
 import { getPrices } from '@/hooks/useProduct/useProduct.helpers';
 import { LANGUAGE, COUNTRY } from '@/services/ECommerceInitApi.constants';
 import imageNotAvailable from '@/assets/image_not_available.png';

@@ -14,7 +14,7 @@ export function AddToBasketBtn({
   progressIconStyles,
   isIconBtn = false
 }: IAddToBasketProps): React.ReactNode {
-  const { isInCart, isDisabled, addToBasket } = useAddToBasketBtn(lineItemId);
+  const { isInCart, isDisabled, addToBasket } = useAddToBasketBtn(productId, lineItemId);
 
   const btnStyles = `${className} ${styles.basketBtn} ${isInCart ? styles.activeIcon : ''}`;
   const progressStyles = `${progressIconStyles} ${styles.progress} ${isDisabled ? styles.activeProgress : ''} `;
@@ -23,12 +23,12 @@ export function AddToBasketBtn({
   // Todo: is Available product
 
   return isIconBtn ? (
-    <IconButton onClick={addToBasket(productId)} className={btnStyles}>
+    <IconButton onClick={addToBasket} className={btnStyles}>
       <CircularProgress className={progressStyles} disableShrink thickness={5} />
       <AddShoppingCartIcon className={iconStyles} />
     </IconButton>
   ) : (
-    <BtnCasual variant="outlined" onClick={addToBasket(productId)} className={`${styles.btnCasual} ${btnStyles}`}>
+    <BtnCasual variant="outlined" onClick={addToBasket} className={`${styles.btnCasual} ${btnStyles}`}>
       <LinearProgress className={`${progressStyles} ${styles.progressLinear}`} />
       <Typography variant="subtitle2" className={`${isDisabled ? styles.hidden : ''}`}>
         {isInCart ? 'Remove from' : 'Add to'}

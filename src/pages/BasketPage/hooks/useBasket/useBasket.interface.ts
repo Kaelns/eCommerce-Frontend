@@ -1,4 +1,4 @@
-import { IBasketAction } from '@/pages/BasketPage/components/hooks/useBasketReducer/useBasketReducer.interface';
+import { IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
 import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
 
 export interface IUseBasketReturn {

@@ -1,6 +1,6 @@
 import { LineItem } from '@commercetools/platform-sdk';
 import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
-import { useBasketProducts } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts';
+import { useBasketProducts } from '@/pages/BasketPage/hooks/useBasketProducts/useBasketProducts';
 
 export function convertToBasketProducts(products: LineItem[]): IBasketProducts {
   const basketProducts: IBasketProducts = {};

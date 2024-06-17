@@ -4,7 +4,7 @@ import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket/Produ
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { FinalPrice } from '@/pages/BasketPage/components/FinalPrice/FinalPrice';
-import { useBasket } from '@/pages/BasketPage/components/hooks/useBasket/useBasket';
+import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
 import { Title } from '@/components/typography/Title/Title';
 
 import styles from './BasketPage.module.scss';
@@ -16,7 +16,7 @@ export function BasketPage(): React.ReactNode {
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
-      {basketProducts.length ? (
+      {amount ? (
         <>
           <Box className={styles.productsHeader}>
             <Box>

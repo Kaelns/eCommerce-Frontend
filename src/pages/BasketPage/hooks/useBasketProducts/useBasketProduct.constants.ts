@@ -1,7 +1,8 @@
-import { IBasketProductReturn } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts.interface';
+import { IBasketProductReturn } from '@/pages/BasketPage/hooks/useBasketProducts/useBasketProducts.interface';
 
 export const MOCK_BASKET_PRODUCT: IBasketProductReturn = {
   id: '',
+  lineId: '',
   key: '',
   name: '',
   images: [],

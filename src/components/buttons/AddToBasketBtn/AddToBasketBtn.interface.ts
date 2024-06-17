@@ -11,5 +11,5 @@ export interface IAddToBasketProps extends ButtonProps {
 export interface IUseAddToBasket {
   isInCart: boolean;
   isDisabled: boolean;
-  addToBasket: (id: string) => (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
+  addToBasket: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 }
