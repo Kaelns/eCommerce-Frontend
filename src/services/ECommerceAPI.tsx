@@ -26,11 +26,14 @@ class ECommerceAPI {
 
   public categories: Category[] = [];
 
-  private anonymousCartId!: string;
-
   constructor() {
     this.api = new ApiClient();
-    this.createAnonymousUser();
+    this.createAnonymousUser().then((res) => {
+      this.createCart(this.api.getTokenCache().get().token).then((data) => {
+        localStorage.setItem('anonymousCart', data.id);
+      });
+      return res;
+    });
   }
 
   public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -81,17 +84,14 @@ class ECommerceAPI {
 
   public async authenticateCustomer(email: string, password: string): Promise<ClientResponse<MyCustomerSignin>> {
     return this.api
-      .getApiRoot()
+      .getApiRootWithPassword(email, password)
+      .me()
       .login()
       .post({
         body: {
           email,
           password,
-          anonymousCart: {
-            id: localStorage.getItem('anonymousCart') as string,
-            typeId: 'cart'
-          },
-          anonymousCartSignInMode: 'MergeWithExistingCustomerCart'
+          activeCartSignInMode: 'MergeWithExistingCustomerCart'
         }
       })
       .execute()
@@ -153,7 +153,7 @@ class ECommerceAPI {
   // this request for create anonymousCart
   public async createAnonymousUser(): Promise<ClientResponse> {
     return this.api
-      .getApiRootWithAnonymousSession(/* true */)
+      .getApiRootWithAnonymousSession()
       .get()
       .execute()
       .then((response) => {
@@ -186,10 +186,6 @@ class ECommerceAPI {
       .post({ body: cartDraft })
       .execute()
       .then((responce) => responce.body) as Promise<Cart>;
-  }
-
-  public getAnonymousCartId(): string {
-    return this.anonymousCartId;
   }
 
   public async updateCart(
@@ -257,7 +253,12 @@ class ECommerceAPI {
     localStorage.removeItem('Token');
     localStorage.removeItem('AnonToken');
     localStorage.removeItem('anonymousCart');
-    this.createAnonymousUser();
+    this.createAnonymousUser().then((res) => {
+      this.createCart(this.api.getTokenCache().get().token).then((data) => {
+        localStorage.setItem('anonymousCart', data.id);
+      });
+      return res;
+    });
   }
 }
 
