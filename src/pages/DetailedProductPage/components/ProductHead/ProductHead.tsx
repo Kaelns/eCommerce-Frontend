@@ -22,7 +22,7 @@ export function ProductHead({ productData, categoriesNames }: IProductHeaderProp
           <Chip key={category} label={category} />
         ))}
       </Box>
-      <AddToBasketBtn productKey={productData.key} className={styles.addToBasketBtn} />
+      <AddToBasketBtn productId={productData.id} className={styles.addToBasketBtn} />
     </Box>
   );
 }

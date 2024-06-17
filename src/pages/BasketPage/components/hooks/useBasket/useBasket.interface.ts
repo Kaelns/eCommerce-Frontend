@@ -1,3 +1,4 @@
+import { IBasketAction } from '@/pages/BasketPage/components/hooks/useBasketReducer/useBasketReducer.interface';
 import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
 
 export interface IUseBasketReturn {
@@ -5,7 +6,7 @@ export interface IUseBasketReturn {
   error: string;
   amount: number;
   basketProducts: IBasketProducts;
-  setBasketProducts: React.Dispatch<React.SetStateAction<IBasketProducts>>;
+  dispatchBasketProducts: React.Dispatch<IBasketAction>;
   finalPrice: number;
   setFinalPrice: React.Dispatch<React.SetStateAction<number>>;
 }

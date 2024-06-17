@@ -1,7 +1,10 @@
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IProductsResponce } from '@/services/data/productsResponce/productsResponce.interface';
+import { getToken } from '@/services/helpers/cartHelpers/getToken';
+import { IBasketResponce } from '@/services/helpers/fetchBasket/fetchBasket.interface';
 
-export async function fetchBasket(): Promise<IProductsResponce> {
-  const response = await eCommerceAPI.getProductsBasket();
-  return { products: response.body!.results, amount: response.body!.total ? response.body!.total : 0 };
+export async function fetchBasket(): Promise<IBasketResponce> {
+  // Todo: discount
+  const token = getToken();
+  const { lineItems } = await eCommerceAPI.getCart(token);
+  return { basket: lineItems, amount: lineItems.length };
 }

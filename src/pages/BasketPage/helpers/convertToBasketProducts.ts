@@ -1,12 +1,12 @@
-import { ProductProjection } from '@commercetools/platform-sdk';
-import { useProduct } from '@/hooks/useProduct/useProduct';
+import { LineItem } from '@commercetools/platform-sdk';
 import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
+import { useBasketProducts } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts';
 
-export function convertToBasketProducts(products: ProductProjection[]): IBasketProducts {
+export function convertToBasketProducts(products: LineItem[]): IBasketProducts {
   const basketProducts: IBasketProducts = {};
 
   products.forEach((product) => {
-    const data = useProduct(product);
+    const data = useBasketProducts(product);
     basketProducts[data.id] = data;
   });
 

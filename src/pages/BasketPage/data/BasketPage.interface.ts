@@ -1,5 +1,5 @@
-import { IUseProductReturn } from '@/hooks/useProduct/useProduct.interface';
+import { IBasketProductReturn } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts.interface';
 
 export interface IBasketProducts {
-  [key: string]: IUseProductReturn;
+  [key: string]: IBasketProductReturn;
 }

@@ -1,7 +1,6 @@
-import { IUseProductReturn } from '@/hooks/useProduct/useProduct.interface';
+import { IBasketProductReturn } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts.interface';
 
 export interface IProductBasketProps {
   className?: string;
-  // Todo: IBasketProducts
-  productData: IUseProductReturn;
+  productData: IBasketProductReturn;
 }

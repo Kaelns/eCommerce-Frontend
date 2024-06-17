@@ -5,13 +5,12 @@ import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { FinalPrice } from '@/pages/BasketPage/components/FinalPrice/FinalPrice';
 import { useBasket } from '@/pages/BasketPage/components/hooks/useBasket/useBasket';
-import { getCart } from '@/services/getCart';
 import { Title } from '@/components/typography/Title/Title';
 
 import styles from './BasketPage.module.scss';
 
 export function BasketPage(): React.ReactNode {
-  const { isLoading, error, amount, basketProducts, setBasketProducts, finalPrice, setFinalPrice } = useBasket();
+  const { isLoading, error, amount, basketProducts, dispatchBasketProducts, finalPrice, setFinalPrice } = useBasket();
 
   const basketKeys = useMemo(() => Object.keys(basketProducts), [basketProducts]);
 

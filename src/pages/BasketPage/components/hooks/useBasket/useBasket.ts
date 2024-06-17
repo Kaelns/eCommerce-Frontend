@@ -1,33 +1,23 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 import { calculatePrice } from '@/pages/BasketPage/helpers/calculatePrice';
 import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
-import { EMPTY_DATA_PRODUCTS } from '@/services/data/productsResponce/productsResponce.constants';
 import { IUseBasketReturn } from '@/pages/BasketPage/components/hooks/useBasket/useBasket.interface';
 import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';
+import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
+import { basketReducer } from '@/pages/BasketPage/components/hooks/useBasketReducer/useBasketReducer';
+import { useDebounceCash } from '@/hooks/useDebounceCash/useDebounceCash';
 
 export function useBasket(): IUseBasketReturn {
-  const { data, isLoading, error } = useFetch(fetchBasket);
-  const { products, amount } = data ?? EMPTY_DATA_PRODUCTS;
-  const [basketProducts, setBasketProducts] = useState(convertToBasketProducts(products));
+  // Todo: check authorized
+  const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket);
+  const { basket, amount } = data;
+  const [basketProducts, dispatchBasketProducts] = useReducer(basketReducer, convertToBasketProducts(basket));
+  const [basketProd, prevBasketProd] = useDebounceCash(basketProducts);
+  // useEffect(() => setFinalPrice(calculatePrice(basketProductsDebounce)), [basketProductsDebounce]);
   const [finalPrice, setFinalPrice] = useState(calculatePrice(basketProducts));
 
-  useEffect(() => setFinalPrice(calculatePrice(basketProducts)), [basketProducts]);
+  useEffect(() => setFinalPrice(calculatePrice(basketProd)), [basketProd]);
 
-  // const setQuantity = useCallback(
-  //   (id: string, quantity: number) => {
-  //     if (basketProducts.id) {
-  //       setBasketProducts({
-  //         ...basketProducts,
-  //         [id]: {
-  //           ...basketProducts[id],
-  //           quantity
-  //         }
-  //       });
-  //     }
-  //   },
-  //   [basketProducts]
-  // );
-
-  return { isLoading, error, amount, basketProducts, setBasketProducts, finalPrice, setFinalPrice };
+  return { isLoading, error, amount, basketProducts, dispatchBasketProducts, finalPrice, setFinalPrice };
 }

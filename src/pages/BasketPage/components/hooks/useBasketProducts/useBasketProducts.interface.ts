@@ -6,8 +6,9 @@ export interface IGetPricesReturn {
   discountedPrice: number;
 }
 
-export interface IBasketProduct extends IGetPricesReturn {
+export interface IBasketProductReturn extends IGetPricesReturn {
   id: string;
+  lineId: string;
   key: string;
   name: string;
   images: Image[];

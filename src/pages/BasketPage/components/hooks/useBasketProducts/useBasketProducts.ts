@@ -1,16 +1,21 @@
 import { LineItem } from '@commercetools/platform-sdk';
-import { IBasketProduct } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts.interface';
+import { IBasketProductReturn } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProducts.interface';
 import { MOCK_BASKET_PRODUCT } from '@/pages/BasketPage/components/hooks/useBasketProducts/useBasketProduct.constants';
 import { getPrices } from '@/hooks/useProduct/useProduct.helpers';
 import { LANGUAGE, COUNTRY } from '@/services/ECommerceInitApi.constants';
 import imageNotAvailable from '@/assets/image_not_available.png';
 
-export function useBasketProducts(basketProduct: LineItem): IBasketProduct {
+export function useBasketProducts(basketProduct: LineItem): IBasketProductReturn {
   if (!basketProduct) {
     return MOCK_BASKET_PRODUCT;
   }
 
-  const [id, key, name] = [basketProduct.id, basketProduct.key!, basketProduct.name[LANGUAGE]];
+  const [id, lineId, key, name] = [
+    basketProduct.productId,
+    basketProduct.id,
+    basketProduct.key!,
+    basketProduct.name[LANGUAGE]
+  ];
   const [image, prices] = [basketProduct.variant?.images?.[0], basketProduct.variant.prices];
 
   const { quantity } = basketProduct;
@@ -20,5 +25,5 @@ export function useBasketProducts(basketProduct: LineItem): IBasketProduct {
 
   const { price, discountedPrice, discount } = getPrices(pricesObjUSD);
 
-  return { id, key, name, quantity, price, discountedPrice, discount, imageUrl, images };
+  return { id, lineId, key, name, quantity, price, discountedPrice, discount, imageUrl, images };
 }

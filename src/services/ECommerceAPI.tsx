@@ -1,10 +1,12 @@
 import {
+  Cart,
   Category,
   CategoryPagedQueryResponse,
   ClientResponse,
   CustomerPagedQueryResponse,
   CustomerSignInResult,
   CustomerSignin,
+  MyCartUpdateAction,
   MyCustomerChangePassword,
   MyCustomerSignin,
   MyCustomerUpdate,
@@ -123,16 +125,6 @@ class ECommerceAPI {
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
-  // Todo: delete when basket
-  async getProductsBasket(): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
-    return this.api
-      .getApiRoot()
-      .productProjections()
-      .search()
-      .get({ queryArgs: { limit: 4 } })
-      .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
-  }
-
   public async getProduct(key: string): Promise<ClientResponse<ProductProjection>> {
     return this.api.getApiRoot().productProjections().withKey({ key }).get().execute() as Promise<
       ClientResponse<ProductProjection>
@@ -171,12 +163,18 @@ class ECommerceAPI {
       }) as Promise<ClientResponse>;
   }
 
-  public async getCart(token: string): Promise<ClientResponse> {
-    return this.api.getApiRootWithToken(token).me().carts().get().execute() as Promise<ClientResponse>;
+  public async getCart(token: string): Promise<Cart> {
+    return this.api
+      .getApiRootWithToken(token)
+      .me()
+      .carts()
+      .get()
+      .execute()
+      .then((responce) => responce.body.results[0]) as Promise<Cart>;
   }
 
   // this request for create anonymousCart
-  public async createCart(token: string): Promise<ClientResponse> {
+  public async createCart(token: string): Promise<Cart> {
     const cartDraft = {
       currency: 'USD',
       country: 'US'
@@ -186,14 +184,20 @@ class ECommerceAPI {
       .me()
       .carts()
       .post({ body: cartDraft })
-      .execute() as Promise<ClientResponse>;
+      .execute()
+      .then((responce) => responce.body) as Promise<Cart>;
   }
 
   public getAnonymousCartId(): string {
     return this.anonymousCartId;
   }
 
-  public async updateCart(token: string, cartId: string, productId: string, version: number): Promise<ClientResponse> {
+  public async updateCart(
+    token: string,
+    cartId: string,
+    version: number,
+    actionObj: MyCartUpdateAction
+  ): Promise<ClientResponse<Cart>> {
     return this.api
       .getApiRootWithToken(token)
       .me()
@@ -202,16 +206,10 @@ class ECommerceAPI {
       .post({
         body: {
           version,
-          actions: [
-            {
-              action: 'addLineItem',
-              productId,
-              quantity: 1
-            }
-          ]
+          actions: [actionObj]
         }
       })
-      .execute() as Promise<ClientResponse>;
+      .execute() as Promise<ClientResponse<Cart>>;
   }
 
   // this request for delete anonymousCart
