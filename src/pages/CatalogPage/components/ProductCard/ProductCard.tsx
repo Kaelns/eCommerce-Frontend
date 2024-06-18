@@ -7,8 +7,8 @@ import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { useProduct } from '@/hooks/useProduct/useProduct';
 import { LinkRouter } from '@/components/LinkRouter/LinkRouter';
-import { checkIsInCart } from '@/pages/CatalogPage/components/ProductCard/ProductCard.helpers';
 import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
+import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
 
 import styles from './ProductCard.module.scss';
 
@@ -24,7 +24,7 @@ export function ProductCard({ product, cartData }: IProductCardProps): React.Rea
         <AddToBasketBtn
           isIconBtn
           productId={data.id}
-          lineItemId={checkIsInCart(cartData, data.id)}
+          lineItemId={findBasketProductId(cartData.basket, data.id)}
           className={styles.basketBtn}
           basketIconStyles={styles.basketIcon}
           progressIconStyles={styles.basketProgress}

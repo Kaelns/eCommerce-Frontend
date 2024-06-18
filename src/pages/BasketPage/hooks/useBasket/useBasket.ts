@@ -18,7 +18,7 @@ export function useBasket(): IUseBasketReturn {
   // useEffect(() => setFinalPrice(calculatePrice(basketProductsDebounce)), [basketProductsDebounce]);
   const [finalPrice, setFinalPrice] = useState(0);
 
-  useEffect(() => setFinalPrice(calculatePrice(basketProd)), [basketProd]);
+  useEffect(() => setFinalPrice(calculatePrice(basketProducts)), [basketProducts]);
   useEffect(() => {
     dispatchBasketProducts({ type: BasketState.SET_BASKET, payload: convertToBasketProducts(basket) });
   }, [basket]);

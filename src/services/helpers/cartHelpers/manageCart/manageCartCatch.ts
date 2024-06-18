@@ -1,9 +1,10 @@
 import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
 import { getToken } from '@/services/helpers/cartHelpers/getToken';
 import { createAction } from '@/services/helpers/cartHelpers/manageCart/manageCart.helpers';
-import { ManageCart } from '@/services/helpers/cartHelpers/manageCart/manageCart.interface';
+import { IManageCartReturn, ManageCart } from '@/services/helpers/cartHelpers/manageCart/manageCart.interface';
 
-export async function manageCartCatch(action: ManageCart, id: string): Promise<string> {
+export async function manageCartCatch(action: ManageCart, id: string): Promise<IManageCartReturn> {
   try {
     const token = getToken();
     const currentCart = await eCommerceAPI.getCart(token);
@@ -16,11 +17,13 @@ export async function manageCartCatch(action: ManageCart, id: string): Promise<s
     if (!actionObj) {
       throw new Error('Something bad with action type');
     }
-    await eCommerceAPI.updateCart(token, cardId, version, actionObj);
+    const responce = await eCommerceAPI.updateCart(token, cardId, version, actionObj);
+    const lineItemId = action === ManageCart.ADD ? findBasketProductId(responce.body.lineItems, id) : '';
+    return { error: '', lineItemId };
   } catch (err) {
     if (err instanceof Error) {
-      return err.message;
+      return { error: err.message, lineItemId: '' };
     }
   }
-  return '';
+  return { error: 'Something went wrong', lineItemId: '' };
 }
