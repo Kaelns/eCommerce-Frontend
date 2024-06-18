@@ -233,32 +233,21 @@ class ECommerceAPI {
     email: string,
     newPassword: string,
     setIsActualData: React.Dispatch<React.SetStateAction<boolean>>
-  ): Promise<ClientResponse> {
-    return this.api
-      .getApiRootWithToken(token)
-      .me()
-      .password()
-      .post({ body })
-      .execute()
-      .then(() => {
-        this.logoutCustomer();
-        this.authenticateCustomer(email, newPassword).then(() => {
-          setIsActualData(false);
-        });
-      }) as Promise<ClientResponse>;
+  ): Promise<void> {
+    await this.api.getApiRootWithToken(token).me().password().post({ body }).execute();
+    this.logoutCustomer();
+    await this.authenticateCustomer(email, newPassword);
+    setIsActualData(false);
   }
 
-  public logoutCustomer(): void {
+  public async logoutCustomer(): Promise<void> {
     this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
     localStorage.removeItem('Token');
     localStorage.removeItem('AnonToken');
     localStorage.removeItem('anonymousCart');
-    this.createAnonymousUser().then((res) => {
-      this.createCart(this.api.getTokenCache().get().token).then((data) => {
-        localStorage.setItem('anonymousCart', data.id);
-      });
-      return res;
-    });
+    await this.createAnonymousUser();
+    const data = await this.createCart(this.api.getTokenCache().get().token);
+    localStorage.setItem('anonymousCart', data.id);
   }
 }
 

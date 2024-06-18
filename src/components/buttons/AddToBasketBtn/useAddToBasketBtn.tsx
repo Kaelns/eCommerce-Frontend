@@ -25,8 +25,8 @@ export function useAddToBasketBtn(productId: string, initLineItemId: string): IU
     if (!isDisabled) {
       setIsDisabled(true);
       const { error, lineItemId: newLineItemId } = isInCart
-        ? await manageCartCatch(ManageCart.DELETE, lineItemId)
-        : await manageCartCatch(ManageCart.ADD, productId);
+        ? await manageCartCatch(ManageCart.DECREMENT, lineItemId)
+        : await manageCartCatch(ManageCart.INCREMENT, productId);
       if (error) {
         handleOpenAlert(error, Severity.ERROR);
       } else {

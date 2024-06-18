@@ -25,9 +25,9 @@ export function UserPopover(): React.ReactNode {
     setAnchorEl(null);
   }, []);
 
-  const logOut = (): void => {
+  const logOut = async (): Promise<void> => {
+    await eCommerceAPI.logoutCustomer();
     setAuthUserToken('');
-    eCommerceAPI.logoutCustomer();
   };
 
   return (
