@@ -16,13 +16,13 @@ $borderRadius: 1.5rem;
   padding-block: 2rem;
   padding-inline: 1rem;
   cursor: pointer;
-  box-shadow: var(--mui-shadows-1);
+  box-shadow: var(--mui-shadows-3);
   border-radius: var(--mui-shape-borderRadius);
   @extend %animation;
 
   @include mixins.mediaHover {
     &:hover {
-      box-shadow: var(--mui-shadows-5);
+      box-shadow: var(--mui-shadows-7);
 
       .img {
         transform: scale(1.05);
@@ -45,7 +45,6 @@ $borderRadius: 1.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 1rem;
 }
 
 .description {

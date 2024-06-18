@@ -8,5 +8,4 @@ export interface IUseBasketReturn {
   basketProducts: IBasketProducts;
   dispatchBasketProducts: React.Dispatch<IBasketAction>;
   finalPrice: number;
-  setFinalPrice: React.Dispatch<React.SetStateAction<number>>;
 }

@@ -3,14 +3,14 @@ import { Box, Typography } from '@mui/material';
 import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket/ProductBasket';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
-import { FinalPrice } from '@/pages/BasketPage/components/FinalPrice/FinalPrice';
+import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
 import { Title } from '@/components/typography/Title/Title';
 
 import styles from './BasketPage.module.scss';
 
 export function BasketPage(): React.ReactNode {
-  const { isLoading, error, amount, basketProducts, dispatchBasketProducts, finalPrice, setFinalPrice } = useBasket();
+  const { isLoading, error, amount, basketProducts, dispatchBasketProducts, finalPrice } = useBasket();
 
   const basketKeys = useMemo(() => Object.keys(basketProducts), [basketProducts]);
 
@@ -23,11 +23,15 @@ export function BasketPage(): React.ReactNode {
               <Title className={styles.basket}>Product Basket</Title>
               <Typography>{amount} products</Typography>
             </Box>
-            <FinalPrice finalPrice={finalPrice} />
+            <CardPrice text="Result Price:" price={finalPrice} discount={0} discountedPrice={0} />
           </Box>
           <Box className={styles.productsContainer}>
             {basketKeys.map((productKey) => (
-              <ProductBasket key={productKey} productData={basketProducts[productKey]} />
+              <ProductBasket
+                key={productKey}
+                productData={basketProducts[productKey]}
+                dispatchBasketProducts={dispatchBasketProducts}
+              />
             ))}
           </Box>
         </>

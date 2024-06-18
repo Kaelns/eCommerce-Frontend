@@ -2,10 +2,50 @@
 
 exports[`Given BasketPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
-  <h5
-    class="MuiTypography-root MuiTypography-h5 _basket_01fa68 css-bezmlo-MuiTypography-root"
+  <div
+    class="_productsContainer_01fa68 _container_7db3c6 _overflowHidden_7db3c6 MuiBox-root css-0"
   >
-    Basket Page
-  </h5>
+    <div
+      class="_skeleton_7db3c6  MuiBox-root css-q8nw6e"
+    >
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
+        style="width: 10vh; height: 10vh;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+      />
+    </div>
+    <div
+      class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+      >
+        There is no products
+      </h5>
+    </div>
+  </div>
 </DocumentFragment>
 `;

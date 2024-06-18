@@ -12,7 +12,7 @@ $borderRadius: 1.5rem;
   height: 100%;
   gap: 1.5rem;
   padding: 2rem;
-  box-shadow: var(--mui-shadows-1);
+  box-shadow: var(--mui-shadows-3);
   border-radius: var(--mui-shape-borderRadius);
   @extend %animation;
 
@@ -22,11 +22,14 @@ $borderRadius: 1.5rem;
 
   & .column2 {
     flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   @include mixins.mediaHover {
     &:hover {
-      box-shadow: var(--mui-shadows-5);
+      box-shadow: var(--mui-shadows-7);
 
       .img {
         transform: scale(1.05);

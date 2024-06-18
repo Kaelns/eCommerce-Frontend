@@ -3,11 +3,13 @@ import { TextBold } from '@/components/typography/TextBold/TextBold';
 import { Discount } from '@/components/typography/Discount/Discount';
 import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
+import { Quantity } from '@/pages/BasketPage/components/Quantity/Quantity';
 import { IProductBasketProps } from '@/pages/BasketPage/components/ProductBasket/ProductBasket.interface';
 
 import styles from './ProductBasket.module.scss';
+import { FRACTION_DIGITS } from '@/services/ECommerceInitApi.constants';
 
-export function ProductBasket({ productData }: IProductBasketProps): React.ReactNode {
+export function ProductBasket({ productData, dispatchBasketProducts }: IProductBasketProps): React.ReactNode {
   return (
     <Box className={styles.cardContainer}>
       <Discount discount={productData.discount} className={styles.discount} />
@@ -19,13 +21,22 @@ export function ProductBasket({ productData }: IProductBasketProps): React.React
         imgStyles={styles.img}
       />
       <Box className={styles.column2}>
-        <TextBold variant="subtitle1" className={styles.title}>
-          {productData.name}
-        </TextBold>
+        <Box>
+          <TextBold variant="subtitle1" className={styles.title}>
+            {productData.name}
+          </TextBold>
+          <CardPrice
+            price={productData.price}
+            discount={productData.discount}
+            discountedPrice={productData.discountedPrice}
+          />
+        </Box>
+        <Quantity id={productData.id} quantity={productData.quantity} dispatchBasketProducts={dispatchBasketProducts} />
         <CardPrice
-          price={productData.price}
+          text="Final Price: "
+          price={+(productData.price * productData.quantity).toFixed(FRACTION_DIGITS)}
           discount={productData.discount}
-          discountedPrice={productData.discountedPrice}
+          discountedPrice={+(productData.discountedPrice * productData.quantity).toFixed(FRACTION_DIGITS)}
         />
       </Box>
     </Box>
