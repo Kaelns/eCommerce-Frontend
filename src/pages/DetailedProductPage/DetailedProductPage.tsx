@@ -16,10 +16,11 @@ import styles from './DetailedProductPage.module.scss';
 
 export function DetailedProductPage(): React.ReactNode {
   const { categories } = useContext(ECommerceContext);
-  const isMatchesMedia = useMediaQuery(`(max-width:${MEDIA_TABLET}px)`);
   const { productData, isLoading, error } = useDetailedProduct();
   const [open, setOpen] = useState(false);
   const [imgNum, setImgNum] = useState(0);
+
+  const isMatchesMedia = useMediaQuery(`(max-width:${MEDIA_TABLET}px)`);
 
   const categoriesNames = useMemo(
     () => findInCategories(categories, productData.categoriesIdArr, true).map((obj) => obj.name[LANGUAGE]),

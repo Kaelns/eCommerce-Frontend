@@ -143,7 +143,7 @@ exports[`Given RegistrationPage component > When rendered, should match snapshot
         >
           <input
             aria-invalid="false"
-            aria-label="Choose date, selected date is Jun 15, 2011"
+            aria-label="Choose date, selected date is Jun 18, 2011"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd Mui-readOnly MuiInputBase-readOnly css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
             id=":r1:"
@@ -151,7 +151,7 @@ exports[`Given RegistrationPage component > When rendered, should match snapshot
             placeholder="DD/MM/YYYY"
             readonly=""
             type="text"
-            value="15/06/2011"
+            value="18/06/2011"
           />
           <fieldset
             aria-hidden="true"
@@ -818,31 +818,6 @@ exports[`Given RegistrationPage component > When rendered, should match snapshot
       >
         Register
       </button>
-      <div
-        aria-hidden="true"
-        class="MuiBackdrop-root css-sox5kk-MuiBackdrop-root"
-        style="opacity: 0; visibility: hidden;"
-      >
-        <span
-          class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
-        >
-          <svg
-            class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
-        </span>
-      </div>
     </form>
   </div>
 </DocumentFragment>

@@ -117,7 +117,7 @@ exports[`Given UserPage component:  > when rendered, should match snapshot 1`] =
     >
       <input
         aria-invalid="false"
-        aria-label="Choose date, selected date is Jun 16, 2011"
+        aria-label="Choose date, selected date is Jun 18, 2011"
         autocomplete="off"
         class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputAdornedEnd Mui-readOnly MuiInputBase-readOnly css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
         disabled=""
@@ -126,7 +126,7 @@ exports[`Given UserPage component:  > when rendered, should match snapshot 1`] =
         placeholder="DD/MM/YYYY"
         readonly=""
         type="text"
-        value="16/06/2011"
+        value="18/06/2011"
       />
       <fieldset
         aria-hidden="true"

@@ -11,7 +11,8 @@ export const SCOPES = [
 ];
 
 export const LIMIT_ON_PAGE = 18;
-export const FRACTION_DIGITS = 100;
+export const FRACTION_DIGITS = 2;
+export const FRACTION_DOZENS = 10 ** FRACTION_DIGITS;
 export const LANGUAGE = 'en-US';
 export const COUNTRY = 'US';
 export const MONEY_SYMBOL = '$';

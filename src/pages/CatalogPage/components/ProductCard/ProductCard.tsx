@@ -8,14 +8,14 @@ import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { useProduct } from '@/hooks/useProduct/useProduct';
 import { LinkRouter } from '@/components/LinkRouter/LinkRouter';
 import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
+import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
 
 import styles from './ProductCard.module.scss';
 
-export function ProductCard({ product }: IProductCardProps): React.ReactNode {
+export function ProductCard({ product, cartData }: IProductCardProps): React.ReactNode {
   const data = useProduct(product);
 
   const shortedDescription = data.description.slice(0, data.description.indexOf(' ', 90));
-
   // Todo: is Available product
 
   return (
@@ -23,7 +23,8 @@ export function ProductCard({ product }: IProductCardProps): React.ReactNode {
       <Box className={styles.cardContainer}>
         <AddToBasketBtn
           isIconBtn
-          productKey={data.key}
+          productId={data.id}
+          lineItemId={findBasketProductId(cartData.basket, data.id)}
           className={styles.basketBtn}
           basketIconStyles={styles.basketIcon}
           progressIconStyles={styles.basketProgress}
