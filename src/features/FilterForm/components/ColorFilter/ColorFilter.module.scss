@@ -3,17 +3,17 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: var(--mui-palette-text-primary);
   gap: 0.5rem;
 }
 
 .colorBtn {
-  border: 3px solid white;
   border-radius: 100%;
   padding: 2.2rem;
-  outline: 2px solid transparent;
+  border: 3px solid rgb(215, 215, 215);
 
   &.active {
-    outline: 2px solid gray;
+    border: 3px solid var(--mui-palette-primary-main);
   }
 }
 

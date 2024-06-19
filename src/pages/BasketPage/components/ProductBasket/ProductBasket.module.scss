@@ -1,9 +1,6 @@
+@use '@styles/abstracts/constants';
 @use '@styles/abstracts/placeholders';
 @use '@styles/abstracts/mixins';
-
-$iconWidth: 2.2rem;
-$iconWidthTablet: 2.8rem;
-$borderRadius: 1.2rem;
 
 .cardContainer {
   position: relative;
@@ -60,14 +57,14 @@ $borderRadius: 1.2rem;
   z-index: 50;
   border-top-left-radius: 0;
   border-top-right-radius: var(--mui-shape-borderRadius);
-  border-bottom-left-radius: $borderRadius;
+  border-bottom-left-radius: constants.$borderRadius;
   border-bottom-right-radius: 0;
 }
 
 .deleteIcon {
-  font-size: $iconWidth;
+  font-size: constants.$iconWidth;
   @include mixins.media-tablet {
-    font-size: $iconWidthTablet;
+    font-size: constants.$iconWidthTablet;
   }
 }
 

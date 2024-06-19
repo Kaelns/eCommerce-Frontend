@@ -1,13 +1,18 @@
 import { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket/ProductBasket';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
+import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
+import { ROUTES } from '@/features/Router/data/Router.enum';
 import { Title } from '@/components/typography/Title/Title';
 
 import styles from './BasketPage.module.scss';
+import cartImg from '@/assets/cart.png';
 
 export function BasketPage(): React.ReactNode {
   const { isLoading, error, prodAmount, basketProducts, dispatchBasketProducts, finalPrice } = useBasket();
@@ -18,12 +23,15 @@ export function BasketPage(): React.ReactNode {
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
       {prodAmount ? (
         <>
-          <Box>
+          <Box className={styles.header}>
             <Box>
               <Title>Product Basket</Title>
               <Typography>{prodAmount} products</Typography>
+              <CardPrice text="Result Price:" price={finalPrice} discount={0} discountedPrice={0} />
             </Box>
-            <CardPrice text="Result Price:" price={finalPrice} discount={0} discountedPrice={0} />
+            <BtnCasual variant="contained" className={styles.deleteProduct}>
+              <DeleteForeverIcon />
+            </BtnCasual>
           </Box>
           <Box className={styles.productsContainer}>
             {basketKeys.map((productKey) => (
@@ -36,7 +44,13 @@ export function BasketPage(): React.ReactNode {
           </Box>
         </>
       ) : (
-        <Title>There is no products</Title>
+        <ErrorComponent
+          message="Your Cart is empty"
+          src={cartImg}
+          alt="Cart image"
+          goTo={ROUTES.CATALOG}
+          goToText="Go shopping"
+        />
       )}
     </LoadingFetch>
   );
