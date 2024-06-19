@@ -2,6 +2,7 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "cSpell.words": [
-    "Anonimus"
+    "Anonimus",
+    "Promocode"
   ]
 }

@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react';
 import { IReturnUseFetch } from '@/hooks/useFetch/useFetch.interface';
 
-export function useFetch<T, P>(func: () => T, parameters?: P): IReturnUseFetch<Awaited<T>>;
-export function useFetch<T, P>(func: (parameters: P) => T, parameters: P): IReturnUseFetch<Awaited<T>>;
-export function useFetch<T, P>(func: (parameters: P) => T, parameters: P): IReturnUseFetch<Awaited<T>> {
+export function useFetch<T, P, U>(func: () => T, parameters?: P, refreshState?: U): IReturnUseFetch<Awaited<T>>;
+export function useFetch<T, P, U>(
+  func: (parameters: P) => T,
+  parameters: P,
+  refreshState?: U
+): IReturnUseFetch<Awaited<T>>;
+export function useFetch<T, P, U>(
+  func: (parameters: P) => T,
+  parameters: P,
+  refreshState?: U
+): IReturnUseFetch<Awaited<T>> {
   const [data, setData] = useState<Awaited<T>>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +31,7 @@ export function useFetch<T, P>(func: (parameters: P) => T, parameters: P): IRetu
     };
 
     load();
-  }, [func, parameters]);
+  }, [func, parameters, refreshState]);
 
   return { data, error, isLoading };
 }

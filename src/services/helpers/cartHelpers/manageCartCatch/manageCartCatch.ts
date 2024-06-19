@@ -24,7 +24,6 @@ export async function manageCartCatch(
       throw new Error('Something bad with action type');
     }
     const responce = await eCommerceAPI.updateCart(token, cardId, version, actionObj);
-    // Todo: get amount
     const lineItemId = action === ManageCart.INCREMENT ? findBasketProductId(responce.body.lineItems, id) : '';
     return { error: '', lineItemId };
   } catch (err) {

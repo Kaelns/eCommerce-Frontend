@@ -1,4 +1,5 @@
 @use '@styles/abstracts/mixins';
+@use '@styles/abstracts/constants';
 
 .productsContainer {
   display: flex;
@@ -9,4 +10,25 @@
   @include mixins.media(600px) {
     align-items: center;
   }
+}
+
+.header {
+  gap: 4rem;
+  position: relative;
+}
+
+.promocodeContainer {
+  margin-top: -0.5rem;
+}
+
+.deleteProduct {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min-content;
+  z-index: 50;
+  border-top-left-radius: 0;
+  border-top-right-radius: var(--mui-shape-borderRadius);
+  border-bottom-left-radius: constants.$borderRadius;
+  border-bottom-right-radius: 0;
 }

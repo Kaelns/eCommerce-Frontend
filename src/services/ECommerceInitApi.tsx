@@ -19,12 +19,9 @@ class ECommerceInitApi {
 
   private tokenCache: MyTokenCache;
 
-  // private anonymousID: string;
-
   constructor() {
     this.projectKey = PROJECT_KEY;
     this.tokenCache = new MyTokenCache();
-    // this.anonymousID = this.getAnonymousID(false);
 
     this.authMiddlewareOptions = {
       host: AUTH_HOST,
@@ -76,14 +73,13 @@ class ECommerceInitApi {
       .build();
   }
 
-  private createClientWithAnonymousSession(/* check: boolean */): Client {
+  private createClientWithAnonymousSession(): Client {
     const options: AnonymousAuthMiddlewareOptions = {
       host: AUTH_HOST,
       projectKey: PROJECT_KEY,
       credentials: {
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET
-        // anonymousId: this.getAnonymousID(check)
       },
       scopes: SCOPES,
       fetch,
@@ -98,20 +94,12 @@ class ECommerceInitApi {
       .build();
   }
 
-  // getAnonymousID(check: boolean): string {
-  //   if (!check) {
-  //     this.anonymousID = Date.now().toString();
-  //   }
-  //   console.log(this.anonymousID);
-  //   return this.anonymousID;
-  // }
-
   public getApiRoot(): ByProjectKeyRequestBuilder {
     return createApiBuilderFromCtpClient(this.createClient()).withProjectKey({ projectKey: this.projectKey });
   }
 
-  public getApiRootWithAnonymousSession(/* check: boolean */): ByProjectKeyRequestBuilder {
-    return createApiBuilderFromCtpClient(this.createClientWithAnonymousSession(/* check */)).withProjectKey({
+  public getApiRootWithAnonymousSession(): ByProjectKeyRequestBuilder {
+    return createApiBuilderFromCtpClient(this.createClientWithAnonymousSession()).withProjectKey({
       projectKey: this.projectKey
     });
   }

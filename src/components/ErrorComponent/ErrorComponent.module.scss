@@ -7,9 +7,15 @@
   gap: 3rem;
 }
 
+.btnContainer {
+  display: flex;
+}
+
 .button {
+  flex: 1;
+  text-wrap: nowrap;
   text-transform: none;
-  background-color: var(--mui-palette-info-light);
+  background-color: var(--mui-palette-Alert-infoColor);
 }
 
 .image {
