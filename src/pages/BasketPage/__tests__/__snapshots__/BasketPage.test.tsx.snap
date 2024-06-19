@@ -40,11 +40,83 @@ exports[`Given BasketPage component:  > when rendered, should match snapshot 1`]
     <div
       class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
     >
-      <h5
-        class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+      <div
+        class="_container_e09756 MuiBox-root css-0"
       >
-        There is no products
-      </h5>
+        <img
+          alt="Cart image"
+          class="_image_e09756 MuiBox-root css-0"
+          src="/src/assets/cart.png"
+        />
+        <h5
+          class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+        >
+          Your Cart is empty
+        </h5>
+        <div
+          class="MuiButtonGroup-root MuiButtonGroup-contained _btnContainer_e09756 css-1d9bq45-MuiButtonGroup-root"
+          role="group"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="_container_26cd85 MuiBox-root css-0"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                data-testid="ArrowBackIosIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+                />
+              </svg>
+              <p
+                class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
+              >
+                Go back
+              </p>
+            </div>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="_container_26cd85 MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
+              >
+                Go shopping
+              </p>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                data-testid="ArrowForwardIosIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+                />
+              </svg>
+            </div>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>
