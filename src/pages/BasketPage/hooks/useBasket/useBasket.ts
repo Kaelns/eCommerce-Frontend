@@ -11,14 +11,14 @@ import { useDebounceCash } from '@/hooks/useDebounceCash/useDebounceCash';
 import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 import { IUseBasketReturn } from '@/pages/BasketPage/hooks/useBasket/useBasket.interface';
 import { calculateQuantity } from '@/pages/BasketPage/helpers/calculateAmount';
-import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
 import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOnError';
+import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();
-  const [promocode, setPromocode] = useState(false);
-  const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, token, promocode);
-  const { basket } = data;
+  const [basketState, setBasketState] = useState({ isPromocode: false, isDelete: false });
+  const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, token, basketState);
+  const { basket, discount, isDiscounted } = data;
   const [basketProducts, dispatchBasketProducts] = useReducer(basketReducer, {});
   const [basketProd, prevBasketProd] = useDebounceCash(basketProducts, token);
   const [finalPrice, setFinalPrice] = useState(0);
@@ -49,15 +49,21 @@ export function useBasket(): IUseBasketReturn {
   }, [basket]);
 
   const handlePromocode = useCallback((isSet: boolean) => {
-    setPromocode(isSet);
+    setBasketState((prev) => ({ ...prev, isPromocode: isSet }));
+  }, []);
+
+  const handleDelete = useCallback(() => {
+    setBasketState((prev) => ({ ...prev, isDelete: !prev.isDelete }));
   }, []);
 
   return {
     isLoading: !token ? true : isLoading,
     error,
+    discount,
     finalPrice,
     prodAmount,
-    promocode,
+    isDiscounted,
+    handleDelete,
     handlePromocode,
     basketProducts,
     dispatchBasketProducts

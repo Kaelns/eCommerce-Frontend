@@ -3,7 +3,7 @@ import { createAction } from '@/services/helpers/cartHelpers/manageCartCatch/man
 import { IDeleteCartReturn } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch.interface';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
-export async function aplyCuponCartCatch(
+export async function promocodeCartCatch(
   action: ManageCart,
   token: string,
   coupon: string

@@ -14,20 +14,24 @@ import { Title } from '@/components/typography/Title/Title';
 
 import styles from './BasketPage.module.scss';
 import cartImg from '@/assets/cart.png';
+import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscounted';
 
 export function BasketPage(): React.ReactNode {
   const {
     isLoading,
     error,
+    discount,
     prodAmount,
-    basketProducts,
-    dispatchBasketProducts,
     finalPrice,
-    promocode,
-    handlePromocode
+    isDiscounted,
+    basketProducts,
+    handleDelete,
+    handlePromocode,
+    dispatchBasketProducts
   } = useBasket();
 
   const basketKeys = useMemo(() => Object.keys(basketProducts), [basketProducts]);
+  const discountedPrice = useMemo(() => calculateDiscounted(finalPrice, discount), [discount, finalPrice]);
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
@@ -37,12 +41,21 @@ export function BasketPage(): React.ReactNode {
             <Box>
               <Title>Product Basket</Title>
               <Typography>{prodAmount} products</Typography>
-              <CardPrice text="Result Price:" price={finalPrice} discount={0} discountedPrice={0} />
+              <CardPrice
+                text="Result Price:"
+                price={finalPrice}
+                discount={discount}
+                discountedPrice={discountedPrice}
+              />
             </Box>
             <BtnCasual variant="contained" className={styles.deleteProduct}>
               <DeleteForeverIcon />
             </BtnCasual>
-            <Promocode className={styles.promocodeContainer} promocode={promocode} handlePromocode={handlePromocode} />
+            <Promocode
+              className={styles.promocodeContainer}
+              promocode={isDiscounted}
+              handlePromocode={handlePromocode}
+            />
           </Box>
           <Box className={styles.productsContainer}>
             {basketKeys.map((productKey) => (
