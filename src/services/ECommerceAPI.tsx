@@ -153,7 +153,7 @@ class ECommerceAPI {
       .then((responce) => responce.body.results[0]) as Promise<Cart>;
   }
 
-  // this request for create anonymousCart
+  // this request for create Cart
   public async createCart(token: string): Promise<Cart> {
     const cartDraft = {
       currency: 'USD',
@@ -188,7 +188,7 @@ class ECommerceAPI {
       .execute() as Promise<ClientResponse<Cart>>;
   }
 
-  // this request for delete anonymousCart
+  // this request for delete Cart
   public async deleteCart(token: string, cartId: string, cartVersion: number): Promise<ClientResponse> {
     return this.api
       .getApiRootWithToken(token)
@@ -199,11 +199,7 @@ class ECommerceAPI {
           version: cartVersion
         }
       })
-      .execute()
-      .then((res) => {
-        console.log(`Cart deleted: ${res.body.id}`);
-        return res;
-      });
+      .execute();
   }
 
   public async createAnonymousCart(): Promise<string> {
