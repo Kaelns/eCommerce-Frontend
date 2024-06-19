@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer, useContext } from 'react';
+import { useState, useEffect, useReducer, useContext, useCallback } from 'react';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 import { useToken } from '@/services/hooks/useToken';
 import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';
@@ -16,13 +16,15 @@ import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOn
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();
-  const { handleOpenAlert } = useContext(AlertTextContext);
-  const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, token);
+  const [promocode, setPromocode] = useState(false);
+  const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, token, promocode);
   const { basket } = data;
   const [basketProducts, dispatchBasketProducts] = useReducer(basketReducer, {});
   const [basketProd, prevBasketProd] = useDebounceCash(basketProducts, token);
   const [finalPrice, setFinalPrice] = useState(0);
   const [prodAmount, setProdAmount] = useState(0);
+
+  const { handleOpenAlert } = useContext(AlertTextContext);
 
   useEffect(() => {
     setFinalPrice(calculatePrice(basketProducts));
@@ -46,11 +48,17 @@ export function useBasket(): IUseBasketReturn {
     });
   }, [basket]);
 
+  const handlePromocode = useCallback((isSet: boolean) => {
+    setPromocode(isSet);
+  }, []);
+
   return {
     isLoading: !token ? true : isLoading,
     error,
     finalPrice,
     prodAmount,
+    promocode,
+    handlePromocode,
     basketProducts,
     dispatchBasketProducts
   };

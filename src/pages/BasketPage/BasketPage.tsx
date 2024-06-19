@@ -8,6 +8,7 @@ import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
 import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
+import { Promocode } from '@/pages/BasketPage/components/Promocode/Promocode';
 import { ROUTES } from '@/features/Router/data/Router.enum';
 import { Title } from '@/components/typography/Title/Title';
 
@@ -15,7 +16,16 @@ import styles from './BasketPage.module.scss';
 import cartImg from '@/assets/cart.png';
 
 export function BasketPage(): React.ReactNode {
-  const { isLoading, error, prodAmount, basketProducts, dispatchBasketProducts, finalPrice } = useBasket();
+  const {
+    isLoading,
+    error,
+    prodAmount,
+    basketProducts,
+    dispatchBasketProducts,
+    finalPrice,
+    promocode,
+    handlePromocode
+  } = useBasket();
 
   const basketKeys = useMemo(() => Object.keys(basketProducts), [basketProducts]);
 
@@ -32,6 +42,7 @@ export function BasketPage(): React.ReactNode {
             <BtnCasual variant="contained" className={styles.deleteProduct}>
               <DeleteForeverIcon />
             </BtnCasual>
+            <Promocode className={styles.promocodeContainer} promocode={promocode} handlePromocode={handlePromocode} />
           </Box>
           <Box className={styles.productsContainer}>
             {basketKeys.map((productKey) => (

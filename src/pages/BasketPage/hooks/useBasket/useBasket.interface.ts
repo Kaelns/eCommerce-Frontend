@@ -5,7 +5,9 @@ export interface IUseBasketReturn {
   isLoading: boolean;
   error: string;
   prodAmount: number;
+  finalPrice: number;
+  promocode: boolean;
+  handlePromocode: (isSet: boolean) => void;
   basketProducts: IBasketProducts;
   dispatchBasketProducts: React.Dispatch<IBasketAction>;
-  finalPrice: number;
 }

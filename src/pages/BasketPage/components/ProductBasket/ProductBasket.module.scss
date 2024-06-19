@@ -24,6 +24,10 @@
     @include mixins.media-tablet {
       flex: 3;
     }
+
+    @include mixins.media(600px) {
+      flex: initial;
+    }
   }
 
   & .column2 {
