@@ -9,6 +9,7 @@ export async function deleteCartCatch(token: string): Promise<IDeleteCartReturn>
     }
     const { id: cardId, version } = currentCart;
     await eCommerceAPI.deleteCart(token, cardId, version);
+    await eCommerceAPI.createCart(token);
     return { error: '' };
   } catch (err) {
     if (err instanceof Error) {

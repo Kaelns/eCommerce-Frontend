@@ -48,7 +48,7 @@ export function BasketPage(): React.ReactNode {
                 discountedPrice={discountedPrice}
               />
             </Box>
-            <BtnCasual variant="contained" className={styles.deleteProduct}>
+            <BtnCasual variant="contained" className={styles.deleteProduct} onClick={handleDelete}>
               <DeleteForeverIcon />
             </BtnCasual>
             <Promocode

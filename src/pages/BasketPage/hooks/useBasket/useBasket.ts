@@ -13,6 +13,8 @@ import { IUseBasketReturn } from '@/pages/BasketPage/hooks/useBasket/useBasket.i
 import { calculateQuantity } from '@/pages/BasketPage/helpers/calculateAmount';
 import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOnError';
 import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
+import { deleteCartCatch } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch';
+import { Severity } from '@/components/AlertText/AlertText.interface';
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();
@@ -20,7 +22,7 @@ export function useBasket(): IUseBasketReturn {
   const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, token, basketState);
   const { basket, discount, isDiscounted } = data;
   const [basketProducts, dispatchBasketProducts] = useReducer(basketReducer, {});
-  const [basketProd, prevBasketProd] = useDebounceCash(basketProducts, token);
+  const [basketProd, prevBasketProd] = useDebounceCash(basketProducts, `${token}${basketState.isDelete}`);
   const [finalPrice, setFinalPrice] = useState(0);
   const [prodAmount, setProdAmount] = useState(0);
 
@@ -52,9 +54,14 @@ export function useBasket(): IUseBasketReturn {
     setBasketState((prev) => ({ ...prev, isPromocode: isSet }));
   }, []);
 
-  const handleDelete = useCallback(() => {
-    setBasketState((prev) => ({ ...prev, isDelete: !prev.isDelete }));
-  }, []);
+  const handleDelete = useCallback(async () => {
+    const { error: deleteError } = await deleteCartCatch(token);
+    if (deleteError) {
+      handleOpenAlert(deleteError, Severity.ERROR);
+    } else {
+      setBasketState((prev) => ({ ...prev, isDelete: !prev.isDelete }));
+    }
+  }, [handleOpenAlert, token]);
 
   return {
     isLoading: !token ? true : isLoading,
