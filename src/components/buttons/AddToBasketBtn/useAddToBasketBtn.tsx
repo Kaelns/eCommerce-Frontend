@@ -1,9 +1,9 @@
 import { useState, useContext, useEffect } from 'react';
 import { Severity } from '@/components/AlertText/AlertText.interface';
 import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
-import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCart/manageCartCatch';
-import { ManageCart } from '@/services/helpers/cartHelpers/manageCart/manageCart.interface';
+import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { IUseAddToBasket } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn.interface';
+import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
 export function useAddToBasketBtn(productId: string, initLineItemId: string): IUseAddToBasket {
   const [isInCart, setIsInCart] = useState(false);

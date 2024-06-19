@@ -1,7 +1,7 @@
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
 import { getToken } from '@/services/helpers/cartHelpers/getToken';
-import { createAction } from '@/services/helpers/cartHelpers/manageCart/manageCart.helpers';
+import { createAction } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.helpers';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCart/manageCart.interface';
 
 export async function manageCart(action: ManageCart, id: string): Promise<string> {

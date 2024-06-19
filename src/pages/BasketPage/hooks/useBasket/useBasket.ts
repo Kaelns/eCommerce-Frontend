@@ -12,18 +12,23 @@ import { postQuantity } from '@/pages/BasketPage/helpers/postQuantity';
 import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 import { Severity } from '@/components/AlertText/AlertText.interface';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import { calculateQuantity } from '@/pages/BasketPage/helpers/calculateAmount';
 
 export function useBasket(): IUseBasketReturn {
   const { authUserToken } = useAuthContext();
   const { handleOpenAlert } = useContext(AlertTextContext);
 
   const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, authUserToken);
-  const { basket, amount } = data;
+  const { basket } = data;
   const [basketProducts, dispatchBasketProducts] = useReducer(basketReducer, {});
   const [basketProd, prevBasketProd] = useDebounceCash(basketProducts);
   const [finalPrice, setFinalPrice] = useState(0);
+  const [prodAmount, setProdAmount] = useState(0);
 
-  useEffect(() => setFinalPrice(calculatePrice(basketProducts)), [basketProducts]);
+  useEffect(() => {
+    setFinalPrice(calculatePrice(basketProducts));
+    setProdAmount(calculateQuantity(basketProducts));
+  }, [basketProducts]);
 
   useEffect(() => {
     const postOrRevertOnError = async (): Promise<void> => {
@@ -46,5 +51,5 @@ export function useBasket(): IUseBasketReturn {
     });
   }, [basket]);
 
-  return { isLoading, error, amount, basketProducts, dispatchBasketProducts, finalPrice };
+  return { isLoading, error, prodAmount, basketProducts, dispatchBasketProducts, finalPrice };
 }

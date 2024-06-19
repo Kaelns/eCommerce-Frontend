@@ -1,6 +1,6 @@
 import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
-import { ManageCart } from '@/services/helpers/cartHelpers/manageCart/manageCart.interface';
-import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCart/manageCartCatch';
+import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
+import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
 export async function postQuantity(prevBasketProd: IBasketProducts, basketProd: IBasketProducts): Promise<string> {
   let error = '';
@@ -13,7 +13,7 @@ export async function postQuantity(prevBasketProd: IBasketProducts, basketProd: 
     if (!currentProduct) {
       ({ error } = await manageCartCatch(ManageCart.DELETE, prevBasketProd[productId].lineId));
     }
-    if (prevProduct.quantity !== currentProduct.quantity) {
+    if (currentProduct && prevProduct.quantity !== currentProduct.quantity) {
       const quantityToChange = prevProduct.quantity - currentProduct.quantity;
       if (quantityToChange > 0) {
         ({ error } = await manageCartCatch(ManageCart.DECREMENT, lineId, quantityToChange));
