@@ -1,2 +1,8 @@
-.main {
+@use '@styles/abstracts/mixins';
+@use '@styles/abstracts/placeholders';
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }

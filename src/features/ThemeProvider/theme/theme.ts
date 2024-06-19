@@ -14,6 +14,12 @@ export const theme = extendTheme({
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"'
-    ].join(',')
+    ].join(','),
+    h1: {
+      fontSize: '7rem'
+    },
+    h2: {
+      fontSize: '3.2rem'
+    }
   }
 });

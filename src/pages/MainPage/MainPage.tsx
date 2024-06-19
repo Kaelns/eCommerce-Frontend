@@ -1,12 +1,12 @@
-import { Title } from '@/components/typography/Title/Title';
-import { Navbar } from '@/layout/Navbar/Navbar';
-import { Navbars } from '@/layout/Navbar/data/Navbar.enum';
+import { Box } from '@mui/material';
+import { MainSection } from '@/pages/MainPage/components/MainSection/MainSection';
+
+import styles from './MainPage.module.scss';
 
 export function MainPage(): React.ReactNode {
   return (
-    <>
-      <Title>Main page</Title>
-      <Navbar navbarType={Navbars.MAIN} />
-    </>
+    <Box className={styles.pageContainer}>
+      <MainSection />
+    </Box>
   );
 }
