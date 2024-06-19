@@ -1,7 +1,12 @@
 import { MyCartUpdateAction } from '@commercetools/platform-sdk';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
-export function createAction(action: ManageCart, id: string, quantity?: number): MyCartUpdateAction | null {
+export function createAction(
+  action: ManageCart,
+  id: string,
+  quantity?: number,
+  coupon?: string
+): MyCartUpdateAction | null {
   switch (action) {
     case ManageCart.INCREMENT:
       return {
@@ -19,6 +24,11 @@ export function createAction(action: ManageCart, id: string, quantity?: number):
       return {
         action: ManageCart.DECREMENT,
         lineItemId: id
+      };
+    case ManageCart.DISCOUNT:
+      return {
+        action: ManageCart.DISCOUNT,
+        code: coupon ?? ''
       };
     default:
   }
