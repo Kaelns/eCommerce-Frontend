@@ -59,6 +59,7 @@ export function useBasket(): IUseBasketReturn {
     if (deleteError) {
       handleOpenAlert(deleteError, Severity.ERROR);
     } else {
+      handleOpenAlert('The cart was successfully cleared', Severity.SUCCESS);
       setBasketState((prev) => ({ ...prev, isDelete: !prev.isDelete }));
     }
   }, [handleOpenAlert, token]);
