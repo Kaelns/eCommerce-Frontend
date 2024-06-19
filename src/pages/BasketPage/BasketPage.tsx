@@ -18,9 +18,9 @@ export function BasketPage(): React.ReactNode {
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
       {prodAmount ? (
         <>
-          <Box className={styles.productsHeader}>
+          <Box>
             <Box>
-              <Title className={styles.basket}>Product Basket</Title>
+              <Title>Product Basket</Title>
               <Typography>{prodAmount} products</Typography>
             </Box>
             <CardPrice text="Result Price:" price={finalPrice} discount={0} discountedPrice={0} />

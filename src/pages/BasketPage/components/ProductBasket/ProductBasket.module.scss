@@ -16,8 +16,17 @@ $borderRadius: 1.2rem;
   border-radius: var(--mui-shape-borderRadius);
   @extend %animation;
 
+  @include mixins.media(600px) {
+    flex-direction: column;
+    max-width: 300px;
+  }
+
   & .column1 {
     flex: 1;
+
+    @include mixins.media-tablet {
+      flex: 3;
+    }
   }
 
   & .column2 {
@@ -67,4 +76,20 @@ $borderRadius: 1.2rem;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 1rem;
+}
+
+.quantityInput {
+  @include mixins.media(600px) {
+    max-width: initial;
+
+    & > input {
+      padding: 0.7rem;
+    }
+  }
+}
+.quantityContainer {
+  margin-top: 1rem;
+  @include mixins.media(600px) {
+    margin-block: 0.5rem 1.5rem;
+  }
 }

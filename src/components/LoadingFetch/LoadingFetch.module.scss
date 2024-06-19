@@ -23,6 +23,7 @@
 }
 .childrenContainer {
   @extend %animation;
+  width: 100%;
 }
 
 .hidden {

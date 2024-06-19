@@ -7,23 +7,24 @@ import { checkCredentialInputs } from '@/features/AuthorizationForms/data/Author
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { handleAuthentication } from '@/services/createAuthApi';
 import { ROUTES } from '@/features/Router/data/Router.enum';
-import styles from './LoginForm.module.scss';
 import { HandleOnChangeInput } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.types';
 import { InputReactEvent } from '@/data/types/InputReactEvent';
+
+import styles from './LoginForm.module.scss';
 
 export default function LoginForm(): React.ReactNode {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
   const [inputsError, setInputsError] = useState<{ [key: string]: string }>({});
-  const { setAuthUserToken } = useAuthContext();
+  const { setAuthTokens } = useAuthContext();
 
-  const onSubmit = useCallback(
+  const handleSubmit = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const { email, password } = inputs;
-      await handleAuthentication(email, password, setAuthUserToken, setInputsError);
+      await handleAuthentication(email, password, setAuthTokens, setInputsError);
     },
-    [inputs, setAuthUserToken]
+    [inputs, setAuthTokens]
   );
 
   const handleOnChangeInput: HandleOnChangeInput = useCallback(
@@ -41,7 +42,7 @@ export default function LoginForm(): React.ReactNode {
     <Box component="form" className={styles.form}>
       <CredentialBlock onChangeFunction={handleOnChangeInput} inputsErrors={inputsError} />
       <Box className={styles.btnContainer}>
-        <ButtonCustom disabled={!checkCredentialInputs(inputs, inputsError)} onClick={onSubmit}>
+        <ButtonCustom disabled={!checkCredentialInputs(inputs, inputsError)} onClick={handleSubmit}>
           Login
         </ButtonCustom>
         <Divider>

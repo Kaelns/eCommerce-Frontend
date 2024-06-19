@@ -123,7 +123,6 @@ class ECommerceInitApi {
   }
 
   public getTokenCache(): MyTokenCache {
-    console.log(this.tokenCache);
     return this.tokenCache;
   }
 

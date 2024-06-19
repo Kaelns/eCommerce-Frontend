@@ -5,10 +5,8 @@ import {
   ClientResponse,
   CustomerPagedQueryResponse,
   CustomerSignInResult,
-  CustomerSignin,
   MyCartUpdateAction,
   MyCustomerChangePassword,
-  MyCustomerSignin,
   MyCustomerUpdate,
   ProductProjection,
   ProductProjectionPagedSearchResponse
@@ -28,12 +26,6 @@ class ECommerceAPI {
 
   constructor() {
     this.api = new ApiClient();
-    this.createAnonymousUser().then((res) => {
-      this.createCart(this.api.getTokenCache().get().token).then((data) => {
-        localStorage.setItem('anonymousCart', data.id);
-      });
-      return res;
-    });
   }
 
   public async createCustomer(params: ICreateCustomerParams): Promise<ClientResponse<CustomerSignInResult>> {
@@ -76,14 +68,13 @@ class ECommerceAPI {
       })
       .execute()
       .then((response) => {
-        this.api.getTokenCache();
         this.api.getApiRootWithPassword(email, password);
         return response;
       }) as Promise<ClientResponse<CustomerSignInResult>>;
   }
 
-  public async authenticateCustomer(email: string, password: string): Promise<ClientResponse<MyCustomerSignin>> {
-    return this.api
+  public async authenticateCustomer(email: string, password: string): Promise<string> {
+    await this.api
       .getApiRootWithPassword(email, password)
       .me()
       .login()
@@ -94,12 +85,8 @@ class ECommerceAPI {
           activeCartSignInMode: 'MergeWithExistingCustomerCart'
         }
       })
-      .execute()
-      .then((response) => {
-        this.api.getTokenCache();
-        localStorage.setItem('Token', this.api.getTokenCache().get().token);
-        return response;
-      }) as Promise<ClientResponse<CustomerSignin>>;
+      .execute();
+    return this.api.getTokenCache().get().token;
   }
 
   public async returnCustomerByEmail(customerEmail: string): Promise<ClientResponse<CustomerPagedQueryResponse>> {
@@ -151,16 +138,9 @@ class ECommerceAPI {
   }
 
   // this request for create anonymousCart
-  public async createAnonymousUser(): Promise<ClientResponse> {
-    return this.api
-      .getApiRootWithAnonymousSession()
-      .get()
-      .execute()
-      .then((response) => {
-        this.api.getTokenCache();
-        localStorage.setItem('AnonToken', this.api.getTokenCache().get().token);
-        return response;
-      }) as Promise<ClientResponse>;
+  public async createAnonymousUser(): Promise<string> {
+    await this.api.getApiRootWithAnonymousSession().get().execute();
+    return this.api.getTokenCache().get().token;
   }
 
   public async getCart(token: string): Promise<Cart> {
@@ -226,6 +206,13 @@ class ECommerceAPI {
       });
   }
 
+  public async createAnonymousCart(): Promise<string> {
+    await this.createAnonymousUser();
+    const anonToken = this.api.getTokenCache().get().token;
+    await this.createCart(anonToken);
+    return anonToken;
+  }
+
   // this Request for update user passwword
   public async updateUserPassword(
     token: string,
@@ -240,14 +227,15 @@ class ECommerceAPI {
     setIsActualData(false);
   }
 
-  public async logoutCustomer(): Promise<void> {
+  public async logoutCustomer(): Promise<string> {
     this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
     localStorage.removeItem('Token');
     localStorage.removeItem('AnonToken');
-    localStorage.removeItem('anonymousCart');
-    await this.createAnonymousUser();
+    const anonToken = await this.createAnonymousUser();
     const data = await this.createCart(this.api.getTokenCache().get().token);
+    // Todo: change from localStorage
     localStorage.setItem('anonymousCart', data.id);
+    return anonToken;
   }
 }
 

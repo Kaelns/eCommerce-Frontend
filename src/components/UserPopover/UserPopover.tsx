@@ -9,13 +9,13 @@ import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import styles from './UserPopover.module.scss';
 
 export function UserPopover(): React.ReactNode {
-  const { authUserToken, setAuthUserToken } = useAuthContext();
+  const { authTokens, setAuthTokens } = useAuthContext();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const isOpenPopover = Boolean(anchorEl);
   const id = isOpenPopover ? 'popover' : undefined;
 
-  const showBadgeIfNonAuthorized = authUserToken ? 0 : 'Login';
+  const showBadgeIfNonAuthorized = authTokens.token ? 0 : 'Login';
 
   const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -26,8 +26,8 @@ export function UserPopover(): React.ReactNode {
   }, []);
 
   const logOut = async (): Promise<void> => {
-    await eCommerceAPI.logoutCustomer();
-    setAuthUserToken('');
+    const anonToken = await eCommerceAPI.logoutCustomer();
+    setAuthTokens({ anonToken, token: '' });
   };
 
   return (
@@ -58,7 +58,7 @@ export function UserPopover(): React.ReactNode {
       >
         <Box className={styles.popover}>
           <Navbar navbarType={Navbars.POPOVER} />
-          {authUserToken && (
+          {authTokens.token && (
             <Button variant="contained" size="small" onClick={logOut}>
               Log out
             </Button>

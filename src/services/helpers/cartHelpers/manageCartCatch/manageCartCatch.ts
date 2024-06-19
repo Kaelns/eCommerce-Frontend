@@ -1,18 +1,21 @@
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
-import { getToken } from '@/services/helpers/cartHelpers/getToken';
 import { createAction } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.helpers';
 import {
   ManageCart,
   IManageCartReturn
 } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
-export async function manageCartCatch(action: ManageCart, id: string, quantity?: number): Promise<IManageCartReturn> {
+export async function manageCartCatch(
+  action: ManageCart,
+  id: string,
+  token: string,
+  quantity?: number
+): Promise<IManageCartReturn> {
   try {
-    const token = getToken();
     const currentCart = await eCommerceAPI.getCart(token);
     let cart = currentCart;
-    if (!currentCart) {
+    if (!currentCart.id) {
       cart = await eCommerceAPI.createCart(token);
     }
     const { id: cardId, version } = cart;

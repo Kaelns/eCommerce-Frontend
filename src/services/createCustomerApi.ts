@@ -5,10 +5,11 @@ import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.int
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 import { Severity } from '@/components/AlertText/AlertText.interface';
+import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
 
 export async function createCustomer(
   inputsValues: IInputsValues,
-  setAuthUserToken: (token: string) => void,
+  setAuthTokens: React.Dispatch<React.SetStateAction<IAuthTokens>> | (() => void),
   setInputsError: React.Dispatch<React.SetStateAction<IInputsErrors>>,
   setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>,
   handleOpenAlert: (message: string, severity: Severity) => void,
@@ -62,30 +63,25 @@ export async function createCustomer(
   }
 
   setIsShowCircleProgress(true);
-
-  await eCommerceAPI
-    .createCustomer(createCustomerDate)
-    .then(async () => {
-      setTimeout(() => {
-        setAuthUserToken('login_is_ok');
-      }, 1000);
-      handleOpenAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
-      eCommerceAPI.logoutCustomer();
-      // TODO
-      /* const authResponse = */ await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
-    })
-    .catch((error) => {
-      console.warn(error);
-      if (error instanceof Error) {
-        if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
-          setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
-          handleOpenAlert(AlertsText.ERROR_EMAIL_TEXT, Severity.ERROR);
-        } else {
-          handleOpenAlert(AlertsText.ERROR_CONNECTION_TEXT, Severity.ERROR);
-        }
+  try {
+    await eCommerceAPI.createCustomer(createCustomerDate);
+    eCommerceAPI.logoutCustomer();
+    const token = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
+    setTimeout(() => {
+      setAuthTokens((prev) => ({ ...prev, token }));
+    }, 1000);
+    handleOpenAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
+  } catch (error) {
+    console.warn(error);
+    if (error instanceof Error) {
+      if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
+        setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
+        handleOpenAlert(AlertsText.ERROR_EMAIL_TEXT, Severity.ERROR);
+      } else {
+        handleOpenAlert(AlertsText.ERROR_CONNECTION_TEXT, Severity.ERROR);
       }
-    })
-    .finally(() => {
-      setIsShowCircleProgress(false);
-    });
+    }
+  } finally {
+    setIsShowCircleProgress(false);
+  }
 }

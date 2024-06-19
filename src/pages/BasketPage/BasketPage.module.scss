@@ -1,6 +1,12 @@
+@use '@styles/abstracts/mixins';
+
 .productsContainer {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-block: 2rem;
+
+  @include mixins.media(600px) {
+    align-items: center;
+  }
 }

@@ -2,7 +2,11 @@ import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
 import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
-export async function postQuantity(prevBasketProd: IBasketProducts, basketProd: IBasketProducts): Promise<string> {
+export async function postQuantity(
+  prevBasketProd: IBasketProducts,
+  basketProd: IBasketProducts,
+  token: string
+): Promise<string> {
   let error = '';
   const prevKeys = Object.keys(prevBasketProd);
 
@@ -11,14 +15,14 @@ export async function postQuantity(prevBasketProd: IBasketProducts, basketProd: 
     const currentProduct = basketProd[productId];
     const { lineId } = prevProduct;
     if (!currentProduct) {
-      ({ error } = await manageCartCatch(ManageCart.DELETE, prevBasketProd[productId].lineId));
+      ({ error } = await manageCartCatch(ManageCart.DELETE, prevBasketProd[productId].lineId, token));
     }
     if (currentProduct && prevProduct.quantity !== currentProduct.quantity) {
       const quantityToChange = prevProduct.quantity - currentProduct.quantity;
       if (quantityToChange > 0) {
-        ({ error } = await manageCartCatch(ManageCart.DECREMENT, lineId, quantityToChange));
+        ({ error } = await manageCartCatch(ManageCart.DECREMENT, lineId, token, quantityToChange));
       } else {
-        ({ error } = await manageCartCatch(ManageCart.INCREMENT, productId, Math.abs(quantityToChange)));
+        ({ error } = await manageCartCatch(ManageCart.INCREMENT, productId, token, Math.abs(quantityToChange)));
       }
     }
     if (error) {

@@ -1,4 +1,9 @@
+export interface IAuthTokens {
+  token: string;
+  anonToken: string;
+}
+
 export interface IAuthState {
-  authUserToken: string;
-  setAuthUserToken: React.Dispatch<React.SetStateAction<string>> | (() => void);
+  authTokens: IAuthTokens;
+  setAuthTokens: React.Dispatch<React.SetStateAction<IAuthTokens>> | (() => void);
 }

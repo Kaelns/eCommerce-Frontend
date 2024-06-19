@@ -24,33 +24,39 @@ export function ProductBasket({ productData, dispatchBasketProducts }: IProductB
       <Discount discount={productData.discount} className={styles.discount} />
       <ImageLoad
         containerStyles={styles.column1}
-        height={200}
+        height={250}
         src={productData.imageUrl}
         alt={productData.name}
         imgStyles={styles.img}
       />
       <Box className={styles.column2}>
+        <TextBold variant="subtitle1" className={styles.title}>
+          {productData.name}
+        </TextBold>
         <Box>
-          <TextBold variant="subtitle1" className={styles.title}>
-            {productData.name}
-          </TextBold>
-          <Typography variant="subtitle2">
-            <b>Available quantity: </b>
-            {productData.maxQuantity}
-          </Typography>
           <CardPrice
             price={productData.price}
             discount={productData.discount}
             discountedPrice={productData.discountedPrice}
           />
+          <Typography variant="subtitle2">
+            <b>Available quantity: </b>
+            {productData.maxQuantity}
+          </Typography>
+          <Quantity
+            id={productData.id}
+            quantity={productData.quantity}
+            dispatchBasketProducts={dispatchBasketProducts}
+            inputStyles={styles.quantityInput}
+            containerStyles={styles.quantityContainer}
+          />
+          <CardPrice
+            text="Final: "
+            price={+(productData.price * productData.quantity).toFixed(FRACTION_DIGITS)}
+            discount={productData.discount}
+            discountedPrice={+(productData.discountedPrice * productData.quantity).toFixed(FRACTION_DIGITS)}
+          />
         </Box>
-        <Quantity id={productData.id} quantity={productData.quantity} dispatchBasketProducts={dispatchBasketProducts} />
-        <CardPrice
-          text="Final Price: "
-          price={+(productData.price * productData.quantity).toFixed(FRACTION_DIGITS)}
-          discount={productData.discount}
-          discountedPrice={+(productData.discountedPrice * productData.quantity).toFixed(FRACTION_DIGITS)}
-        />
       </Box>
     </Box>
   );
