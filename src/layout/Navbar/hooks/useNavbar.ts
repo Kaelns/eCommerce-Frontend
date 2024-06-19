@@ -11,12 +11,12 @@ import {
 } from '@/layout/Navbar/data/Navbar.routes';
 
 export function useNavbar(typeOfNavbar: Navbars): IReturnUseNavbarType {
-  const { authUserToken } = useAuthContext();
+  const { authTokens } = useAuthContext();
 
   let navRoutes = null;
   let orientation: TabsOrientation = 'horizontal';
 
-  const userPopoverRoutes = (): ReturnUserRoutes => (authUserToken ? authorizedUserRoutes : nonAuthorizedUserRoutes);
+  const userPopoverRoutes = (): ReturnUserRoutes => (authTokens.token ? authorizedUserRoutes : nonAuthorizedUserRoutes);
 
   switch (typeOfNavbar) {
     case Navbars.MAIN:

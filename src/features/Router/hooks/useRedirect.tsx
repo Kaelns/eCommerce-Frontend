@@ -16,12 +16,12 @@ interface IReturnUseRedirect {
 }
 
 export function useRedirect(): IReturnUseRedirect {
-  const { authUserToken, isLoading } = useAuthStorage();
+  const { authTokens, isLoading } = useAuthStorage();
 
   const pageOnAuthorized = useCallback(
     (onRegistered: React.ReactNode, onNonRegistered: React.ReactNode): React.ReactNode =>
-      authUserToken ? onRegistered : onNonRegistered,
-    [authUserToken]
+      authTokens.token ? onRegistered : onNonRegistered,
+    [authTokens.token]
   );
 
   const pageOnLoaded = useCallback(

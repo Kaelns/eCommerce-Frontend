@@ -7,6 +7,7 @@ import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
 import styles from './AddToBasketBtn.module.scss';
 
 export function AddToBasketBtn({
+  availability,
   productId,
   lineItemId,
   className,
@@ -23,12 +24,17 @@ export function AddToBasketBtn({
   // Todo: is Available product
 
   return isIconBtn ? (
-    <IconButton onClick={addToBasket} className={btnStyles}>
+    <IconButton onClick={addToBasket} className={btnStyles} disabled={availability}>
       <CircularProgress className={progressStyles} disableShrink thickness={5} />
       <AddShoppingCartIcon className={iconStyles} />
     </IconButton>
   ) : (
-    <BtnCasual variant="outlined" onClick={addToBasket} className={`${styles.btnCasual} ${btnStyles}`}>
+    <BtnCasual
+      variant="outlined"
+      onClick={addToBasket}
+      className={`${styles.btnCasual} ${btnStyles}`}
+      disabled={availability}
+    >
       <LinearProgress className={`${progressStyles} ${styles.progressLinear}`} />
       <Typography variant="subtitle2" className={`${isDisabled ? styles.hidden : ''}`}>
         {isInCart ? 'Remove from' : 'Add to'}

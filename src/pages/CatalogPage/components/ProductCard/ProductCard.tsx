@@ -24,6 +24,7 @@ export function ProductCard({ product, cartData }: IProductCardProps): React.Rea
         <AddToBasketBtn
           isIconBtn
           productId={data.id}
+          availability={!data.maxQuantity}
           lineItemId={findBasketProductId(cartData.basket, data.id)}
           className={styles.basketBtn}
           basketIconStyles={styles.basketIcon}
@@ -35,6 +36,10 @@ export function ProductCard({ product, cartData }: IProductCardProps): React.Rea
           <TextBold variant="subtitle1" className={styles.title}>
             {data.name}
           </TextBold>
+          <Typography variant="subtitle2">
+            <b>Available quantity: </b>
+            {data.maxQuantity}
+          </Typography>
           <CardPrice price={data.price} discount={data.discount} discountedPrice={data.discountedPrice} />
           <Typography className={styles.description}>{shortedDescription}...</Typography>
         </Box>

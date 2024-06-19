@@ -1,1 +1,2 @@
-export const keyAuthUserToken = 'AUTH_USER_TOKEN';
+export const KEY_AUTH_USER_TOKEN = 'AUTH_USER_TOKEN';
+export const KEY_ANON_TOKEN = 'ANON_TOKEN';

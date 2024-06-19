@@ -4,11 +4,12 @@ export const MOCK_PRODUCT: IUseProductReturn = {
   id: '',
   key: '',
   name: '',
-  description: '',
   price: 0,
-  discountedPrice: 0,
   discount: 0,
-  imageUrl: '',
+  maxQuantity: 0,
+  description: '',
+  discountedPrice: 0,
   images: [],
+  imageUrl: '',
   categoriesIdArr: []
 };

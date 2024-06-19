@@ -1,15 +1,15 @@
+import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 
 export async function handleAuthentication(
   email: string,
   password: string,
-  setAuthUserToken: (token: string) => void,
+  setAuthTokens: React.Dispatch<React.SetStateAction<IAuthTokens>> | (() => void),
   setInputsError: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>
 ): Promise<void> {
   try {
-    // TODO
-    /* const result =  */ await eCommerceAPI.authenticateCustomer(email, password);
-    setAuthUserToken('auth_is_ok');
+    const token = await eCommerceAPI.authenticateCustomer(email, password);
+    setAuthTokens((prev) => ({ ...prev, token }));
   } catch (error) {
     if (error instanceof Error) {
       console.warn(error.message);

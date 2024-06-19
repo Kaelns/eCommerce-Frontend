@@ -1,6 +1,6 @@
 export enum ManageCart {
-  ADD = 'addLineItem',
-  REMOVE = 'removeLineItem',
+  INCREMENT = 'addLineItem',
+  DECREMENT = 'removeLineItem',
   DELETE = 'delete'
 }
 

@@ -22,8 +22,11 @@ export function useBasketProducts(basketProduct: LineItem): IBasketProductReturn
   const images = basketProduct.variant?.images ? basketProduct.variant?.images : [];
   const imageUrl = image ? image.url : imageNotAvailable;
   const pricesObjUSD = prices ? prices.find((obj) => obj.country === COUNTRY) : null;
+  const maxQuantity = basketProduct.variant?.availability?.availableQuantity
+    ? basketProduct.variant.availability.availableQuantity
+    : 0;
 
   const { price, discountedPrice, discount } = getPrices(pricesObjUSD);
 
-  return { id, lineId, key, name, quantity, price, discountedPrice, discount, imageUrl, images };
+  return { id, lineId, key, name, quantity, maxQuantity, price, discountedPrice, discount, imageUrl, images };
 }

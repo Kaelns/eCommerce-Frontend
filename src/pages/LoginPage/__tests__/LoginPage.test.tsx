@@ -7,8 +7,11 @@ describe('Given LoginPage component: ', () => {
     const useMoviesSpy = vi.spyOn(useAuthContextHook, 'useAuthContext');
 
     useMoviesSpy.mockReturnValue({
-      authUserToken: '',
-      setAuthUserToken: vi.fn()
+      authTokens: {
+        token: '',
+        anonToken: ''
+      },
+      setAuthTokens: vi.fn()
     });
 
     const { asFragment } = render(<LoginPage />);

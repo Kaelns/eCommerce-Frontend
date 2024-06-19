@@ -3,7 +3,7 @@
 
 $iconWidth: 2.2rem;
 $iconWidthTablet: 2.8rem;
-$borderRadius: 1.5rem;
+$borderRadius: 1.2rem;
 
 .cardContainer {
   position: relative;
@@ -16,8 +16,17 @@ $borderRadius: 1.5rem;
   border-radius: var(--mui-shape-borderRadius);
   @extend %animation;
 
+  @include mixins.media(600px) {
+    flex-direction: column;
+    max-width: 300px;
+  }
+
   & .column1 {
     flex: 1;
+
+    @include mixins.media-tablet {
+      flex: 3;
+    }
   }
 
   & .column2 {
@@ -40,11 +49,25 @@ $borderRadius: 1.5rem;
 
 .discount {
   top: -1rem;
-  right: -1rem;
+  left: -1rem;
+}
 
+.deleteProduct {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min-content;
+  z-index: 50;
+  border-top-left-radius: 0;
+  border-top-right-radius: var(--mui-shape-borderRadius);
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: 0;
+}
+
+.deleteIcon {
+  font-size: $iconWidth;
   @include mixins.media-tablet {
-    right: auto;
-    left: -1rem;
+    font-size: $iconWidthTablet;
   }
 }
 
@@ -55,45 +78,18 @@ $borderRadius: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.description {
-  font-size: 1.9rem;
-}
+.quantityInput {
+  @include mixins.media(600px) {
+    max-width: initial;
 
-.basketBtn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: fit-content;
-  z-index: 50;
-  border-top-left-radius: var(--mui-shape-borderRadius);
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: $borderRadius;
-
-  @include mixins.media-tablet {
-    left: auto;
-    top: auto;
-    right: 0;
-    bottom: 0;
-    border-top-left-radius: $borderRadius;
-    border-bottom-right-radius: var(--mui-shape-borderRadius);
-    padding: 1rem;
+    & > input {
+      padding: 0.7rem;
+    }
   }
 }
-
-.basketIcon {
-  font-size: $iconWidth;
-  @include mixins.media-tablet {
-    font-size: $iconWidthTablet;
-  }
-}
-
-.basketProgress {
-  width: $iconWidth !important;
-  height: $iconWidth !important;
-
-  @include mixins.media-tablet {
-    width: $iconWidthTablet !important;
-    height: $iconWidthTablet !important;
+.quantityContainer {
+  margin-top: 1rem;
+  @include mixins.media(600px) {
+    margin-block: 0.5rem 1.5rem;
   }
 }

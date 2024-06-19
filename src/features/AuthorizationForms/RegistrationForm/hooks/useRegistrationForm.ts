@@ -23,7 +23,7 @@ import getMinDate from '@/utils/getMinDate';
 import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {
-  const { setAuthUserToken } = useAuthContext();
+  const { setAuthTokens } = useAuthContext();
   const maxDate = useMemo(() => dayjs(getMaxDate()), []);
   const minDate = useMemo(() => dayjs(getMinDate()), []);
 
@@ -94,7 +94,7 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
       event.preventDefault();
       await createCustomer(
         inputsValues,
-        setAuthUserToken,
+        setAuthTokens,
         setInputsErrors,
         setIsShowCircleProgress,
         handleOpenAlert,
@@ -103,7 +103,7 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
         isDefaultBillingAddress
       );
     },
-    [inputsValues, setAuthUserToken, handleOpenAlert, isSameAddress, isDefaultShippingAddress, isDefaultBillingAddress]
+    [inputsValues, setAuthTokens, handleOpenAlert, isSameAddress, isDefaultShippingAddress, isDefaultBillingAddress]
   );
 
   return {

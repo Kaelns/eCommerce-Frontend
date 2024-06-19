@@ -1,17 +1,27 @@
 import { useEffect, useState } from 'react';
 
-export function useDebounceCash<T>(value: T, delay = 1000): T[] {
+export function useDebounceCash<T, P>(value: T, skipCash?: P, delay = 1000): T[] {
   const [data, setData] = useState<T>(value);
-  const [prevData, setPrevData] = useState<T>(value);
+  const [cashData, setCashData] = useState<T>(value);
+  const [isSkipCash, setIsSkipCash] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setPrevData(data);
+      if (isSkipCash) {
+        setCashData(value);
+        setIsSkipCash(false);
+      } else {
+        setCashData(data);
+      }
       setData(value);
     }, delay);
 
     return (): void => clearTimeout(timeout);
-  }, [data, delay, value]);
+  }, [delay, value, data, isSkipCash]);
 
-  return [data, prevData];
+  useEffect(() => {
+    setIsSkipCash(true);
+  }, [skipCash]);
+
+  return [data, cashData];
 }

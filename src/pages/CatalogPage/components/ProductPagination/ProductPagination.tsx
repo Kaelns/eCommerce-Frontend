@@ -14,6 +14,7 @@ export function ProductPagination({ amount }: { amount: number }): React.ReactNo
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number): void => {
     dispatchFilterState({ type: FilterState.PAGE, payload: value });
+    window.scrollTo({ top: 0 });
   };
 
   return (

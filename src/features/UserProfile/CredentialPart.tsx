@@ -118,22 +118,19 @@ export default function CredentialPart({
           currentPassword,
           newPassword: data.inputsValues[INPUTS.password.name]!
         };
-        await eCommerceAPI
-          .updateUserPassword(
-            localToken as string,
-            userData,
-            initialValues.email,
-            userData.newPassword,
-            setIsActualData
-          )
-          .then(() => {
-            setIsShowCircleProgress(false);
-            setAlertData({
-              typeAlert: Alerts.SUCCESS,
-              textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
-            });
-            setIsChangePasswordMode(false);
-          });
+        await eCommerceAPI.updateUserPassword(
+          localToken as string,
+          userData,
+          initialValues.email,
+          userData.newPassword,
+          setIsActualData
+        );
+        setIsShowCircleProgress(false);
+        setAlertData({
+          typeAlert: Alerts.SUCCESS,
+          textAlert: AlertsText.SUCCESS_TEXT_UPDATE_USER
+        });
+        setIsChangePasswordMode(false);
       }
     } catch (error) {
       setIsShowCircleProgress(false);

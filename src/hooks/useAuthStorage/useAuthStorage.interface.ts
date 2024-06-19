@@ -1,5 +1,7 @@
+import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
+
 interface IUseAuthStorageReturn {
-  authUserToken: string;
+  authTokens: IAuthTokens;
   isLoading: boolean;
 }
 

@@ -10,18 +10,18 @@ import { Title } from '@/components/typography/Title/Title';
 import styles from './BasketPage.module.scss';
 
 export function BasketPage(): React.ReactNode {
-  const { isLoading, error, amount, basketProducts, dispatchBasketProducts, finalPrice } = useBasket();
+  const { isLoading, error, prodAmount, basketProducts, dispatchBasketProducts, finalPrice } = useBasket();
 
   const basketKeys = useMemo(() => Object.keys(basketProducts), [basketProducts]);
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
-      {amount ? (
+      {prodAmount ? (
         <>
-          <Box className={styles.productsHeader}>
+          <Box>
             <Box>
-              <Title className={styles.basket}>Product Basket</Title>
-              <Typography>{amount} products</Typography>
+              <Title>Product Basket</Title>
+              <Typography>{prodAmount} products</Typography>
             </Box>
             <CardPrice text="Result Price:" price={finalPrice} discount={0} discountedPrice={0} />
           </Box>

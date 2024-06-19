@@ -11,6 +11,7 @@ export interface IUseProductReturn extends IGetPricesReturn {
   key: string;
   name: string;
   imageUrl: string;
+  maxQuantity: number;
   description: string;
   categoriesIdArr: string[];
   images: Image[];
