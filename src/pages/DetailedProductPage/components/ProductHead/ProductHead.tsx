@@ -32,7 +32,13 @@ export function ProductHead({ productData, categoriesNames }: IProductHeaderProp
           <Chip key={category} label={category} />
         ))}
       </Box>
-      <AddToBasketBtn lineItemId={lineItemId} productId={productData.id} className={styles.addToBasketBtn} />
+
+      <AddToBasketBtn
+        availability={!productData.maxQuantity}
+        lineItemId={lineItemId}
+        productId={productData.id}
+        className={styles.addToBasketBtn}
+      />
     </Box>
   );
 }

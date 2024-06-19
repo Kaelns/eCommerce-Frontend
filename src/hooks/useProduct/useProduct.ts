@@ -23,8 +23,23 @@ export function useProduct(product: ProductProjection | undefined): IUseProductR
   const pricesObjUSD = prices ? prices.find((obj) => obj.country === COUNTRY) : null;
   const imageUrl = image ? image.url : imageNotAvailable;
   const images = product.masterVariant?.images ? product.masterVariant?.images : [];
+  const maxQuantity = product.masterVariant?.availability?.availableQuantity
+    ? product.masterVariant.availability.availableQuantity
+    : 0;
 
   const { price, discountedPrice, discount } = getPrices(pricesObjUSD);
 
-  return { id, key, name, description, categoriesIdArr, price, discountedPrice, discount, imageUrl, images };
+  return {
+    id,
+    key,
+    name,
+    description,
+    maxQuantity,
+    categoriesIdArr,
+    price,
+    discountedPrice,
+    discount,
+    imageUrl,
+    images
+  };
 }

@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { TextBold } from '@/components/typography/TextBold/TextBold';
 import { Discount } from '@/components/typography/Discount/Discount';
@@ -34,6 +34,10 @@ export function ProductBasket({ productData, dispatchBasketProducts }: IProductB
           <TextBold variant="subtitle1" className={styles.title}>
             {productData.name}
           </TextBold>
+          <Typography variant="subtitle2">
+            <b>Available quantity: </b>
+            {productData.maxQuantity}
+          </Typography>
           <CardPrice
             price={productData.price}
             discount={productData.discount}

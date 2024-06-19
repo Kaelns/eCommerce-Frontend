@@ -12,6 +12,10 @@
     }
   }
 
+  &:disabled {
+    background-color: var(--mui-palette-action-disabledBackground);
+  }
+
   &.activeIcon {
     background-color: var(--mui-palette-Switch-primaryDisabledColor);
 

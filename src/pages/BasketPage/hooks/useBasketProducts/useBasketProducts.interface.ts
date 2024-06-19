@@ -13,5 +13,6 @@ export interface IBasketProductReturn extends IGetPricesReturn {
   name: string;
   images: Image[];
   quantity: number;
+  maxQuantity: number;
   imageUrl: string;
 }

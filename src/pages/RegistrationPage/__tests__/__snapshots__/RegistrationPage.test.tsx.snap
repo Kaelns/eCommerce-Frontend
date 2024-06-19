@@ -143,7 +143,7 @@ exports[`Given RegistrationPage component > When rendered, should match snapshot
         >
           <input
             aria-invalid="false"
-            aria-label="Choose date, selected date is Jun 18, 2011"
+            aria-label="Choose date, selected date is Jun 19, 2011"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd Mui-readOnly MuiInputBase-readOnly css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
             id=":r1:"
@@ -151,7 +151,7 @@ exports[`Given RegistrationPage component > When rendered, should match snapshot
             placeholder="DD/MM/YYYY"
             readonly=""
             type="text"
-            value="18/06/2011"
+            value="19/06/2011"
           />
           <fieldset
             aria-hidden="true"

@@ -14,9 +14,10 @@ export default defineConfig({
     include: ['./src/**/*.test.tsx'],
     environment: 'jsdom',
     setupFiles: ['./src/__tests__/setup.tsx'],
+    pool: 'forks',
     coverage: {
       provider: 'v8'
-    },
+    }
   },
   resolve: {
     alias: {

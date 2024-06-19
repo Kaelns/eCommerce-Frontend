@@ -8,6 +8,7 @@ export const MOCK_BASKET_PRODUCT: IBasketProductReturn = {
   images: [],
   imageUrl: '',
   quantity: 0,
+  maxQuantity: 0,
   price: 0,
   discount: 0,
   discountedPrice: 0
