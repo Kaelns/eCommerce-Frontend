@@ -2,6 +2,6 @@ import { IBasketResponce } from '@/services/helpers/fetchBasket/fetchBasket.inte
 
 export const INIT_BASKET: IBasketResponce = {
   basket: [],
-  totalPrice: 0,
+  discount: 0,
   isDiscounted: false
 };
