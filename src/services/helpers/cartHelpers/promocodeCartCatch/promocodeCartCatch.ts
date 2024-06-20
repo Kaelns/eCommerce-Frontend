@@ -2,6 +2,7 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { createAction } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.helpers';
 import { IDeleteCartReturn } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch.interface';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
+import { getCart } from '@/services/helpers/cartHelpers/getCart/getCart';
 
 export async function promocodeCartCatch(
   action: ManageCart,
@@ -9,8 +10,8 @@ export async function promocodeCartCatch(
   coupon: string
 ): Promise<IDeleteCartReturn> {
   try {
-    const currentCart = await eCommerceAPI.getCart(token);
-    if (!currentCart.id) {
+    const currentCart = await getCart(token);
+    if (!currentCart || !currentCart.id) {
       throw new Error('No cart with this id');
     }
     const { id: cardId, version } = currentCart;
