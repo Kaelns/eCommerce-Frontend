@@ -5,9 +5,11 @@ import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { IUseAddToBasket } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn.interface';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
+import { BasketContext } from '@/context/BasketContext/BasketContext';
 
 export function useAddToBasketBtn(productId: string, initLineItemId: string): IUseAddToBasket {
   const token = useToken();
+  const { toggleBasketState } = useContext(BasketContext);
   const [isInCart, setIsInCart] = useState(false);
   const [lineItemId, setLineItemId] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
@@ -34,6 +36,7 @@ export function useAddToBasketBtn(productId: string, initLineItemId: string): IU
       } else {
         setIsInCart((prev) => !prev);
         setLineItemId(newLineItemId);
+        toggleBasketState();
       }
       setIsDisabled(false);
     }
