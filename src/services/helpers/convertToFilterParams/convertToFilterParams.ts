@@ -9,7 +9,7 @@ import {
 } from '@/services/helpers/convertToFilterParams/convertToFilterParams.helpers';
 import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
 
-export function convertToFilterParams(filterState: IFilterState): IConvertToFilterParamsReturn {
+export function convertToFilterParams(filterState: Partial<IFilterState>): IConvertToFilterParamsReturn {
   const sort = convertSort(filterState.sort);
   const search = convertSearch(filterState.search);
 
@@ -17,7 +17,7 @@ export function convertToFilterParams(filterState: IFilterState): IConvertToFilt
   const colors = convertColors(filterState.color);
   const category = convertCategories(filterState.categoryKey);
 
-  const offset = (filterState.page - 1) * LIMIT_ON_PAGE;
+  const offset = ((filterState.page ?? 1) - 1) * LIMIT_ON_PAGE;
   const sortObj = sort ? { sort } : {};
   const filters = [colors, category, price].filter(Boolean);
 

@@ -102,13 +102,14 @@ class ECommerceAPI {
   }
 
   async getProductsAll(
-    parameters: IConvertToFilterParamsReturn
+    parameters: IConvertToFilterParamsReturn,
+    amount = LIMIT_ON_PAGE
   ): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
     return this.api
       .getApiRoot()
       .productProjections()
       .search()
-      .get({ queryArgs: { limit: LIMIT_ON_PAGE, ...parameters } })
+      .get({ queryArgs: { limit: amount, ...parameters } })
       .execute() as Promise<ClientResponse<ProductProjectionPagedSearchResponse>>;
   }
 
