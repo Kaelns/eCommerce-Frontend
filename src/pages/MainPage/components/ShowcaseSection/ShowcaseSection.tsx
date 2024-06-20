@@ -2,7 +2,6 @@ import { Box, Grid, Paper } from '@mui/material';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetch } from '@/hooks/useFetch/useFetch';
-import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';

@@ -8,8 +8,31 @@ exports[`Given AboutUsPage component:  > when rendered, should match snapshot 1`
     About Us Page
   </h5>
   <div
+    class="MuiBox-root css-0"
     style="white-space: pre-line;"
   >
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+      style="text-align: center;"
+    >
+      All roads lead to
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+        href="https://rs.school/"
+      >
+        <span
+          aria-hidden="true"
+          class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-kp9ftd-MuiIcon-root"
+          style="height: 40px; width: 100px; margin-left: 20px;"
+        >
+          <img
+            alt="RS School logo"
+            class="MuiBox-root css-0"
+            src="/src/assets/rs_school.svg"
+          />
+        </span>
+      </a>
+    </p>
     Hello! We are RadioReactive team.
 We are a super "serious" radioactive group of programmers. The strength is in the team so we look out for each other, we come to help in any difficult situation. We help to develop as programmers, to correct our bad habits and to learn a lot for further work. Of course, we do not forget about relax and entertainment, where without them. And that's all help us to achieve success in this final project.
 And next, a little about each of us.
@@ -170,26 +193,6 @@ And next, a little about each of us.
         </div>
       </div>
     </div>
-    <p
-      class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
-    >
-      All roads lead to
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-        href="https://rs.school/"
-      >
-        <span
-          aria-hidden="true"
-          class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-kp9ftd-MuiIcon-root"
-          style="height: 40px; width: 100px; margin-left: 20px;"
-        >
-          <img
-            alt="RS School logo"
-            src="/src/assets/rs_school.svg"
-          />
-        </span>
-      </a>
-    </p>
   </div>
 </DocumentFragment>
 `;

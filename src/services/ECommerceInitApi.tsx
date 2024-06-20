@@ -69,7 +69,6 @@ class ECommerceInitApi {
       .withProjectKey(this.projectKey)
       .withPasswordFlow(passwordAuthMiddlewareOptions)
       .withHttpMiddleware(this.httpMiddlewareOptions)
-      .withLoggerMiddleware()
       .build();
   }
 
@@ -123,7 +122,6 @@ class ECommerceInitApi {
       .withExistingTokenFlow(authorization, options)
       .withProjectKey(this.projectKey)
       .withHttpMiddleware(this.httpMiddlewareOptions)
-      .withLoggerMiddleware()
       .build();
   }
 
