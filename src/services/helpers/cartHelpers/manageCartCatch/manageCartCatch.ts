@@ -1,5 +1,6 @@
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
+import { getCart } from '@/services/helpers/cartHelpers/getCart/getCart';
 import { createAction } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.helpers';
 import {
   ManageCart,
@@ -13,9 +14,9 @@ export async function manageCartCatch(
   quantity?: number
 ): Promise<IManageCartReturn> {
   try {
-    const currentCart = await eCommerceAPI.getCart(token);
+    const currentCart = await getCart(token);
     let cart = currentCart;
-    if (!currentCart.id) {
+    if (!currentCart || !currentCart.id) {
       cart = await eCommerceAPI.createCart(token);
     }
     const { id: cardId, version } = cart;

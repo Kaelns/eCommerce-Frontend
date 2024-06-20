@@ -230,9 +230,7 @@ class ECommerceAPI {
     localStorage.removeItem(KEY_AUTH_USER_TOKEN);
     localStorage.removeItem(KEY_ANON_TOKEN);
     const anonToken = await this.createAnonymousUser();
-    const data = await this.createCart(this.api.getTokenCache().get().token);
-    // Todo: change from localStorage
-    localStorage.setItem('anonymousCart', data.id);
+    await this.createCart(this.api.getTokenCache().get().token);
     return anonToken;
   }
 }

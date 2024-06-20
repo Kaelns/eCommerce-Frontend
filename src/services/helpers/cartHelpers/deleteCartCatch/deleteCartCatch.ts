@@ -1,10 +1,11 @@
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IDeleteCartReturn } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch.interface';
+import { getCart } from '@/services/helpers/cartHelpers/getCart/getCart';
 
 export async function deleteCartCatch(token: string): Promise<IDeleteCartReturn> {
   try {
-    const currentCart = await eCommerceAPI.getCart(token);
-    if (!currentCart.id) {
+    const currentCart = await getCart(token);
+    if (!currentCart || !currentCart.id) {
       throw new Error('No cart with this id');
     }
     const { id: cardId, version } = currentCart;

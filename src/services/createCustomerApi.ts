@@ -67,9 +67,8 @@ export async function createCustomer(
     await eCommerceAPI.createCustomer(createCustomerDate);
     eCommerceAPI.logoutCustomer();
     const token = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
-    setTimeout(() => {
-      setAuthTokens((prev) => ({ ...prev, token }));
-    }, 1000);
+    setAuthTokens((prev) => ({ ...prev, token }));
+    await eCommerceAPI.createCart(token);
     handleOpenAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
   } catch (error) {
     console.warn(error);
