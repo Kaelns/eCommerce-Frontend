@@ -31,6 +31,12 @@ $borderRadius: 1.5rem;
   }
 }
 
+.link {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
 .discount {
   top: -1rem;
   right: -1rem;

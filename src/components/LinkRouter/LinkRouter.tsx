@@ -3,9 +3,9 @@ import { PropsWithChildren } from '@/data/types/PropsWithChildren';
 
 import styles from './LinkRouter.module.scss';
 
-export function LinkRouter({ children, to, ...props }: PropsWithChildren<LinkProps>): React.ReactNode {
+export function LinkRouter({ children, className, to, ...props }: PropsWithChildren<LinkProps>): React.ReactNode {
   return (
-    <Link to={to} className={styles.link} {...props}>
+    <Link to={to} className={`${className} ${styles.link}`} {...props}>
       {children}
     </Link>
   );

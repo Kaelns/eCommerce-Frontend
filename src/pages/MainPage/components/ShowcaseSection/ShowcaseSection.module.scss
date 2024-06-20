@@ -1,0 +1,35 @@
+@use '@styles/abstracts/mixins';
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.paper {
+  padding: 1.5rem;
+}
+
+.btn {
+  cursor: pointer;
+  color: white;
+  background-color: var(--mui-palette-Alert-infoColor);
+}
+
+.paperProducts {
+  padding-block: 3rem;
+}
+
+.product {
+  @include mixins.media(900px) {
+    &:nth-last-child(-n + 1) {
+      display: none;
+    }
+  }
+
+  @include mixins.media(600px) {
+    &:nth-last-child(-n + 2) {
+      display: none;
+    }
+  }
+}

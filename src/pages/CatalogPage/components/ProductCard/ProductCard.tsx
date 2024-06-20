@@ -16,20 +16,21 @@ export function ProductCard({ product, cartData }: IProductCardProps): React.Rea
   const data = useProduct(product);
 
   const shortedDescription = data.description.slice(0, data.description.indexOf(' ', 90));
-  // Todo: is Available product
 
   return (
-    <LinkRouter to={`${ROUTES.DETAILED_PRODUCT}/${data.key}`}>
+    <LinkRouter to={`${ROUTES.DETAILED_PRODUCT}/${data.key}`} className={styles.link}>
       <Box className={styles.cardContainer}>
-        <AddToBasketBtn
-          isIconBtn
-          productId={data.id}
-          availability={!data.maxQuantity}
-          lineItemId={findBasketProductId(cartData.basket, data.id)}
-          className={styles.basketBtn}
-          basketIconStyles={styles.basketIcon}
-          progressIconStyles={styles.basketProgress}
-        />
+        {!!cartData && (
+          <AddToBasketBtn
+            isIconBtn
+            productId={data.id}
+            availability={!data.maxQuantity}
+            lineItemId={findBasketProductId(cartData.basket, data.id)}
+            className={styles.basketBtn}
+            basketIconStyles={styles.basketIcon}
+            progressIconStyles={styles.basketProgress}
+          />
+        )}
         <Discount discount={data.discount} className={styles.discount} />
         <ImageLoad height={200} src={data.imageUrl} alt={data.name} imgStyles={styles.img} />
         <Box>

@@ -3,6 +3,6 @@ import { IBasketResponce } from '@/services/helpers/fetchBasket/fetchBasket.inte
 
 export interface IProductCardProps {
   className?: string;
-  cartData: IBasketResponce;
+  cartData?: IBasketResponce;
   product: ProductProjection;
 }

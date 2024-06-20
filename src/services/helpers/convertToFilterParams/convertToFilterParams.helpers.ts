@@ -10,7 +10,7 @@ import {
 } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
 import { findInCategories } from '@/services/helpers/findInCategories';
 
-export function convertSort(typeOfSort: Sort): string {
+export function convertSort(typeOfSort: Sort | undefined): string {
   switch (typeOfSort) {
     case Sort.NAME_ASC:
       return `name.${LANGUAGE} asc`;
@@ -27,7 +27,7 @@ export function convertSort(typeOfSort: Sort): string {
   }
 }
 
-export function convertSearch(searchString: string): IConvertSearchReturn {
+export function convertSearch(searchString: string | undefined): IConvertSearchReturn {
   if (!searchString) {
     return {};
   }
@@ -49,14 +49,20 @@ export function convertSearch(searchString: string): IConvertSearchReturn {
   };
 }
 
-export function convertPrice(price: number[]): string {
+export function convertPrice(price: number[] | undefined): string {
+  if (!price || !price.length) {
+    return '';
+  }
   if (price[0] === MIN_MONEY && price[1] === MAX_MONEY) {
     return '';
   }
   return `variants.price.centAmount:range (${price[0] * FRACTION_DIGITS} to ${price[1] * FRACTION_DIGITS}) `;
 }
 
-export function convertColors(colors: IColorsState): string {
+export function convertColors(colors: IColorsState | undefined): string {
+  if (!colors) {
+    return '';
+  }
   const value = Object.entries(colors)
     .filter(([, val]) => val)
     .reduce(
@@ -67,7 +73,10 @@ export function convertColors(colors: IColorsState): string {
   return value ? `variants.attributes.color-filter.key: ${value}` : '';
 }
 
-export function convertCategories(categoryKey: string): string {
+export function convertCategories(categoryKey: string | undefined): string {
+  if (!categoryKey) {
+    return '';
+  }
   const category = categoryKey !== NO_CATEGORY ? findInCategories(eCommerceAPI.categories, [categoryKey])[0] : '';
   return category ? `categories.id: "${category.id}"` : '';
 }
