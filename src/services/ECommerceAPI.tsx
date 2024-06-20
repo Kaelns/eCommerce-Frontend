@@ -18,6 +18,7 @@ import { buildCategoryTree } from '@/services/helpers/buildCategoryTree/buildCat
 import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
 import { ICategoriesObj } from '@/context/ECommerceContext/ECommerceContext.interface';
 import { LIMIT_ON_PAGE } from '@/services/ECommerceInitApi.constants';
+import { KEY_ANON_TOKEN, KEY_AUTH_USER_TOKEN } from '@/hooks/useAuthStorage/useAuthStorage.constants';
 
 class ECommerceAPI {
   private api: ApiClient;
@@ -226,8 +227,8 @@ class ECommerceAPI {
 
   public async logoutCustomer(): Promise<string> {
     this.api.getTokenCache().set({ token: '', expirationTime: 1, refreshToken: '' });
-    localStorage.removeItem('Token');
-    localStorage.removeItem('AnonToken');
+    localStorage.removeItem(KEY_AUTH_USER_TOKEN);
+    localStorage.removeItem(KEY_ANON_TOKEN);
     const anonToken = await this.createAnonymousUser();
     const data = await this.createCart(this.api.getTokenCache().get().token);
     // Todo: change from localStorage
