@@ -15,9 +15,11 @@ import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOn
 import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
 import { deleteCartCatch } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch';
 import { Severity } from '@/components/AlertText/AlertText.interface';
+import { BasketContext } from '@/context/BasketContext/BasketContext';
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();
+  const { toggleBasketState } = useContext(BasketContext);
   const [basketState, setBasketState] = useState({ isPromocode: false, isDelete: false });
   const { data = INIT_BASKET, isLoading, error } = useFetch(fetchBasket, token, basketState);
   const { basket, discount, isDiscounted } = data;
@@ -38,10 +40,12 @@ export function useBasket(): IUseBasketReturn {
       const errorMessage = await postQuantity(prevBasketProd, basketProd, token);
       if (errorMessage) {
         setPrevBasketOnError(handleOpenAlert, dispatchBasketProducts, errorMessage, prevBasketProd);
+      } else {
+        toggleBasketState();
       }
     };
     postOrRevertOnError();
-  }, [prevBasketProd, basketProd, handleOpenAlert, token]);
+  }, [prevBasketProd, basketProd, handleOpenAlert, token, toggleBasketState]);
 
   useEffect(() => {
     dispatchBasketProducts({

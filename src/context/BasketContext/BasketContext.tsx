@@ -1,20 +1,22 @@
-import { createContext, PropsWithChildren, useState, useMemo } from 'react';
+import { createContext, PropsWithChildren, useState, useMemo, useCallback } from 'react';
 import { IBasketContext } from '@/context/BasketContext/BasketContext.interface';
 import { INITIAL_BASKET_CONTEXT } from '@/context/BasketContext/BasketContext.constants';
 
 export const BasketContext = createContext<IBasketContext>(INITIAL_BASKET_CONTEXT);
 
 export function BasketContextProvider({ children }: PropsWithChildren): React.ReactNode {
-  const [basketState, setBasketState] = useState(0);
+  const [basketState, setBasketState] = useState(false);
 
-  // Todo: remove if doesn't need
+  const toggleBasketState = useCallback(() => {
+    setBasketState((prev) => !prev);
+  }, []);
 
   const value = useMemo(
     () => ({
       basketState,
-      setBasketState
+      toggleBasketState
     }),
-    [basketState, setBasketState]
+    [basketState, toggleBasketState]
   );
 
   return <BasketContext.Provider value={value}>{children}</BasketContext.Provider>;
