@@ -1,6 +1,6 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { ButtonGroup, Button, OutlinedInput, Input } from '@mui/material';
+import { ButtonGroup, Button, Input } from '@mui/material';
 import { IQuantityProps } from '@/pages/BasketPage/components/Quantity/Quantity.interface';
 import { BasketState } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
 import { InputReactEvent } from '@/data/types/InputReactEvent';
