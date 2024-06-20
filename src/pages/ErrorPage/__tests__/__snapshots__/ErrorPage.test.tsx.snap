@@ -11,7 +11,7 @@ exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] 
       src="/src/assets/not-found.png"
     />
     <div
-      class="MuiButtonGroup-root MuiButtonGroup-contained css-1d9bq45-MuiButtonGroup-root"
+      class="MuiButtonGroup-root MuiButtonGroup-contained _btnContainer_e09756 css-1d9bq45-MuiButtonGroup-root"
       role="group"
     >
       <button

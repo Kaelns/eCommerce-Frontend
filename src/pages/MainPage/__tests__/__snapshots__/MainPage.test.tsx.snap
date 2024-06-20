@@ -2,141 +2,194 @@
 
 exports[`Given MainPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
-  <h5
-    class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+  <div
+    class="_pageContainer_db53ca MuiBox-root css-0"
   >
-    Main page
-  </h5>
-  <nav
-    class="MuiBox-root css-0"
-  >
-    <div
-      class="MuiTabs-root MuiTabs-vertical css-1g4ac1o-MuiTabs-root"
+    <section
+      class="_mainSection_5b38b0 MuiBox-root css-0"
+    >
+      <img
+        alt="furniture"
+        class="_mainImage_5b38b0 MuiBox-root css-0"
+        src="/src/assets/furniture.jpg"
+      />
+      <div
+        class="_mainColumn1_5b38b0 MuiBox-root css-0"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h1 _mainTitle_5b38b0 css-1omcj0n-MuiTypography-root"
+        >
+          Radiocommerce
+        </h1>
+        <h2
+          class="MuiTypography-root MuiTypography-h2 _mainSubtitle_5b38b0 css-w7r10c-MuiTypography-root"
+        >
+          All sort of high-quality furniture available here
+        </h2>
+        <p
+          class="MuiTypography-root MuiTypography-body2 _mainText_5b38b0 css-3rq6cm-MuiTypography-root"
+        >
+          Take a look around and choose what you like.Trust me, you won't regret it. Besides, we have a lot of discounts!
+        </p>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _mainBtn_5b38b0 _btn_d6e307 css-sghohy-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Go to catalog
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </section>
+    <section
+      class="_mainSection_c1045d MuiBox-root css-0"
     >
       <div
-        class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
-        style="overflow: hidden; margin-right: 0px;"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 _btn_c1045d _paper_c1045d css-qh7kl5-MuiPaper-root"
       >
-        <div
-          aria-orientation="vertical"
-          class="MuiTabs-flexContainer MuiTabs-flexContainerVertical css-lfwcke-MuiTabs-flexContainer"
-          role="tablist"
-        >
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="0"
-            type="button"
-          >
-            Main
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            User
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            Error
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            Login
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            Basket
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            Catalog
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            About Us
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            Register
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary _buttons_f95cce _verticalButton_f95cce css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            Detailed Product
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-        <span
-          class="MuiTabs-indicator css-107nzro-MuiTabs-indicator"
-          style="top: 0px; height: 0px;"
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
         />
       </div>
-    </div>
-  </nav>
+      <div
+        class=" _container_7db3c6 _overflowHidden_7db3c6 MuiBox-root css-0"
+      >
+        <div
+          class="_skeleton_7db3c6  MuiBox-root css-q8nw6e"
+        >
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
+            style="width: 10vh; height: 10vh;"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+        </div>
+        <div
+          class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 _paper_c1045d _paperProducts_c1045d css-1ps6pg7-MuiPaper-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="_mainSection_c1045d MuiBox-root css-0"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 _btn_c1045d _paper_c1045d css-qh7kl5-MuiPaper-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        />
+      </div>
+      <div
+        class=" _container_7db3c6 _overflowHidden_7db3c6 MuiBox-root css-0"
+      >
+        <div
+          class="_skeleton_7db3c6  MuiBox-root css-q8nw6e"
+        >
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
+            style="width: 10vh; height: 10vh;"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+          />
+        </div>
+        <div
+          class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 _paper_c1045d _paperProducts_c1045d css-1ps6pg7-MuiPaper-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="_specialSection_df6a65 MuiBox-root css-0"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 _paper1_df6a65 _paper_df6a65 css-qh7kl5-MuiPaper-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+          Our special offer:
+        </p>
+      </div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 _paper2_df6a65 _paper_c14054 css-qh7kl5-MuiPaper-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+          minus10
+        </p>
+      </div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 _paper2_df6a65 _paper_c14054 css-qh7kl5-MuiPaper-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+        >
+          minus15
+        </p>
+      </div>
+    </section>
+  </div>
 </DocumentFragment>
 `;
