@@ -15,6 +15,7 @@ import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.co
 import { IAddressPart, IUseAddressPartReturn } from '@/features/UserProfile/AddressPart/AddressesPart.interface';
 import { IResponseAddressData } from '@/features/UserProfile/UserProfile.interface';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
+import { KEY_AUTH_USER_TOKEN } from '@/hooks/useAuthStorage/useAuthStorage.constants';
 
 export const useAddressPart = ({
   data,
@@ -122,7 +123,7 @@ export const useAddressPart = ({
   const handleSaveUpdate = useCallback(async () => {
     setIsShowAlert(true);
     try {
-      const localToken = localStorage.getItem('Token');
+      const localToken = localStorage.getItem(KEY_AUTH_USER_TOKEN);
       if (localToken !== '') {
         const userData: MyCustomerUpdate = {
           version,
@@ -176,7 +177,7 @@ export const useAddressPart = ({
     (index: number) => async (): Promise<void> => {
       setIsShowAlert(true);
       try {
-        const localToken = localStorage.getItem('Token');
+        const localToken = localStorage.getItem(KEY_AUTH_USER_TOKEN);
         if (localToken !== '') {
           const userData: MyCustomerUpdate = {
             version,
@@ -241,7 +242,7 @@ export const useAddressPart = ({
   const handleSaveAdd = useCallback(async () => {
     setIsShowAlert(true);
     try {
-      const localToken = localStorage.getItem('Token');
+      const localToken = localStorage.getItem(KEY_AUTH_USER_TOKEN);
       if (localToken !== '') {
         const userData: MyCustomerUpdate = {
           version,

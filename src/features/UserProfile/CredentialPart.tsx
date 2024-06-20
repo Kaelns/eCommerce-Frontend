@@ -15,6 +15,7 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IUserProfilePartWithInitial } from '@/features/UserProfile/UserProfile.interface';
 import { Title } from '@/components/typography/Title/Title';
 import { Alerts, AlertsText } from '@/data/enum/alerts.enum';
+import { KEY_AUTH_USER_TOKEN } from '@/hooks/useAuthStorage/useAuthStorage.constants';
 
 export default function CredentialPart({
   data,
@@ -41,7 +42,7 @@ export default function CredentialPart({
   const handleClickSaveBtn = useCallback(async () => {
     setIsShowAlert(true);
     try {
-      const localToken = localStorage.getItem('Token');
+      const localToken = localStorage.getItem(KEY_AUTH_USER_TOKEN);
       if (localToken !== '') {
         const userData: MyCustomerUpdate = {
           version: initialValues.version,
@@ -111,7 +112,7 @@ export default function CredentialPart({
   const handleClickSavePasswordBtn = useCallback(async () => {
     setIsShowAlert(true);
     try {
-      const localToken = localStorage.getItem('Token');
+      const localToken = localStorage.getItem(KEY_AUTH_USER_TOKEN);
       if (localToken !== '') {
         const userData: MyCustomerChangePassword = {
           version: initialValues.version,

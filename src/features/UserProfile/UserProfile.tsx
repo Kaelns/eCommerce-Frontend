@@ -11,6 +11,7 @@ import getMaxDate from '@/utils/getMaxDate';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { IAlertData } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.interface';
 import { INIT_ALERT_DATA } from '@/features/AuthorizationForms/RegistrationForm/data/RegistrationForm.constants';
+import { KEY_AUTH_USER_TOKEN } from '@/hooks/useAuthStorage/useAuthStorage.constants';
 
 export default function UserProfile(): React.ReactNode {
   const data = useRegistrationForm();
@@ -34,7 +35,7 @@ export default function UserProfile(): React.ReactNode {
   useEffect(() => {
     async function getUserData(): Promise<void> {
       try {
-        const localToken = localStorage.getItem('Token');
+        const localToken = localStorage.getItem(KEY_AUTH_USER_TOKEN);
         if (localToken !== '') {
           const response = await eCommerceAPI.getUser(localToken as string);
           setInitialValues({
