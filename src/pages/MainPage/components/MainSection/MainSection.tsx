@@ -4,7 +4,7 @@ import { Title } from '@/components/typography/Title/Title';
 import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
 import { ROUTES } from '@/features/Router/data/Router.enum';
 
-import furnitureImg from '@/assets/furniture.jpg';
+import furnitureImg from '@/assets/furniture.webp';
 import styles from './MainSection.module.scss';
 
 export function MainSection(): React.ReactNode {
@@ -12,6 +12,7 @@ export function MainSection(): React.ReactNode {
   const navigateCatalog = (): void => navigate(ROUTES.CATALOG);
   return (
     <Box component="section" className={styles.mainSection}>
+      <Box className={styles.mainImageBackdrop} />
       <Box component="img" src={furnitureImg} alt="furniture" className={styles.mainImage} />
       <Box className={styles.mainColumn1}>
         <Title className={styles.mainTitle} variant="h1" color="white">

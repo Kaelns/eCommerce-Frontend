@@ -11,6 +11,8 @@
   width: 100%;
   height: 700px;
   position: relative;
+  background-color: var(--mui-palette-Alert-infoColor);
+  backdrop-filter: blur(10px);
 
   @include mixins.media-tablet {
     height: 500px;
@@ -19,6 +21,17 @@
   @include mixins.media(500px) {
     height: 300px;
   }
+}
+
+.mainImage,
+.mainImageBackdrop {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .mainImage {
@@ -31,11 +44,20 @@
   bottom: 0;
   object-fit: cover;
   z-index: 1;
+  animation: reveal 2s ease-out;
+}
+
+.mainImageBackdrop {
+  z-index: 2;
+  animation: hide 2s ease-out;
+  background-color: var(--mui-palette-Alert-infoColor);
+  backdrop-filter: blur(10px);
+  opacity: 0;
 }
 
 .mainColumn1 {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -85,5 +107,25 @@
 
   @include mixins.media(500px) {
     font-size: 1.6rem;
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
