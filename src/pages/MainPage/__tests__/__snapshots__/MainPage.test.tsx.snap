@@ -14,7 +14,7 @@ exports[`Given MainPage component:  > when rendered, should match snapshot 1`] =
       <img
         alt="furniture"
         class="_mainImage_5b38b0 MuiBox-root css-0"
-        src="/src/assets/furniture.webp?t=1718886947319"
+        src="/src/assets/furniture.webp"
       />
       <div
         class="_mainColumn1_5b38b0 MuiBox-root css-0"
