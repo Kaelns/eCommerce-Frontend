@@ -8,14 +8,14 @@ import { postQuantity } from '@/pages/BasketPage/helpers/postQuantity';
 import { basketReducer } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer';
 import { calculatePrice } from '@/pages/BasketPage/helpers/calculatePrice';
 import { useDebounceCash } from '@/hooks/useDebounceCash/useDebounceCash';
-import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 import { IUseBasketReturn } from '@/pages/BasketPage/hooks/useBasket/useBasket.interface';
 import { calculateQuantity } from '@/pages/BasketPage/helpers/calculateAmount';
 import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOnError';
 import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
 import { deleteCartCatch } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch';
-import { Severity } from '@/components/AlertText/AlertText.interface';
 import { BasketContext } from '@/context/BasketContext/BasketContext';
+import { useAlertText } from '@/components/AlertText/useAlertText';
+import { Severity } from '@/components/AlertText/AlertText.interface';
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();
@@ -28,7 +28,7 @@ export function useBasket(): IUseBasketReturn {
   const [finalPrice, setFinalPrice] = useState(0);
   const [prodAmount, setProdAmount] = useState(0);
 
-  const { handleOpenAlert } = useContext(AlertTextContext);
+  const { showAlert } = useAlertText();
 
   useEffect(() => {
     setFinalPrice(calculatePrice(basketProducts));
@@ -39,13 +39,13 @@ export function useBasket(): IUseBasketReturn {
     const postOrRevertOnError = async (): Promise<void> => {
       const errorMessage = await postQuantity(prevBasketProd, basketProd, token);
       if (errorMessage) {
-        setPrevBasketOnError(handleOpenAlert, dispatchBasketProducts, errorMessage, prevBasketProd);
+        setPrevBasketOnError(showAlert, dispatchBasketProducts, errorMessage, prevBasketProd);
       } else {
         toggleBasketState();
       }
     };
     postOrRevertOnError();
-  }, [prevBasketProd, basketProd, handleOpenAlert, token, toggleBasketState]);
+  }, [prevBasketProd, basketProd, showAlert, token, toggleBasketState]);
 
   useEffect(() => {
     dispatchBasketProducts({
@@ -61,12 +61,12 @@ export function useBasket(): IUseBasketReturn {
   const handleDelete = useCallback(async () => {
     const { error: deleteError } = await deleteCartCatch(token);
     if (deleteError) {
-      handleOpenAlert(deleteError, Severity.ERROR);
+      showAlert(deleteError, Severity.ERROR);
     } else {
-      handleOpenAlert('The cart was successfully cleared', Severity.SUCCESS);
+      showAlert('The cart was successfully cleared', Severity.SUCCESS);
       setBasketState((prev) => ({ ...prev, isDelete: !prev.isDelete }));
     }
-  }, [handleOpenAlert, token]);
+  }, [showAlert, token]);
 
   return {
     isLoading: !token ? true : isLoading,

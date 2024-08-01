@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useContext } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import dayjs from 'dayjs';
 import checkPostalCode from '@/features/validation/postalCodeValidation';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
@@ -20,14 +20,14 @@ import { InputReactEvent } from '@/data/types/InputReactEvent';
 import { handlePrefix } from '@/utils/handlePrefix';
 import getMaxDate from '@/utils/getMaxDate';
 import getMinDate from '@/utils/getMinDate';
-import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
+import { useAlertText } from '@/components/AlertText/useAlertText';
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   const { setAuthTokens } = useAuthContext();
   const maxDate = useMemo(() => dayjs(getMaxDate()), []);
   const minDate = useMemo(() => dayjs(getMinDate()), []);
 
-  const { handleOpenAlert } = useContext(AlertTextContext);
+  const { showAlert } = useAlertText();
   const [inputsValues, setInputsValues] = useState<IInputsValues>(INIT_INPUTS_DATA);
   const [inputsErrors, setInputsErrors] = useState<IInputsErrors>({});
   const [isSameAddress, setIsSameAddress] = useState(false);
@@ -97,13 +97,13 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
         setAuthTokens,
         setInputsErrors,
         setIsShowCircleProgress,
-        handleOpenAlert,
+        showAlert,
         isSameAddress,
         isDefaultShippingAddress,
         isDefaultBillingAddress
       );
     },
-    [inputsValues, setAuthTokens, handleOpenAlert, isSameAddress, isDefaultShippingAddress, isDefaultBillingAddress]
+    [inputsValues, setAuthTokens, showAlert, isSameAddress, isDefaultShippingAddress, isDefaultBillingAddress]
   );
 
   return {

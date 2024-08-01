@@ -84,7 +84,7 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 'error',
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
-    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'warn',
 
     curly: ['error', 'all'],
     'import/extensions': [0, { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],

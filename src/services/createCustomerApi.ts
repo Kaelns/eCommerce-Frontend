@@ -6,13 +6,14 @@ import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.co
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
 import { Severity } from '@/components/AlertText/AlertText.interface';
 import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
+import { IShowAlert } from '@/components/AlertText/useAlertText';
 
 export async function createCustomer(
   inputsValues: IInputsValues,
   setAuthTokens: React.Dispatch<React.SetStateAction<IAuthTokens>> | (() => void),
   setInputsError: React.Dispatch<React.SetStateAction<IInputsErrors>>,
   setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>,
-  handleOpenAlert: (message: string, severity: Severity) => void,
+  showAlert: IShowAlert,
   isSameAddress: boolean,
   isDefaultShippingAddress: boolean,
   isDefaultBillingAddress: boolean
@@ -69,15 +70,15 @@ export async function createCustomer(
     const token = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
     setAuthTokens((prev) => ({ ...prev, token }));
     await eCommerceAPI.createCart(token);
-    handleOpenAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
+    showAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
   } catch (error) {
     console.warn(error);
     if (error instanceof Error) {
       if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
         setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
-        handleOpenAlert(AlertsText.ERROR_EMAIL_TEXT, Severity.ERROR);
+        showAlert(AlertsText.ERROR_EMAIL_TEXT, Severity.ERROR);
       } else {
-        handleOpenAlert(AlertsText.ERROR_CONNECTION_TEXT, Severity.ERROR);
+        showAlert(AlertsText.ERROR_CONNECTION_TEXT, Severity.ERROR);
       }
     }
   } finally {

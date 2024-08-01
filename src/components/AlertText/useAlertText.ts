@@ -1,23 +1,21 @@
-import { useState } from 'react';
-import { IUseAlertTextReturn, Severity } from '@/components/AlertText/AlertText.interface';
+import { useCallback } from 'react';
+import { Severity } from '@/components/AlertText/AlertText.interface';
+import { showAlertAction } from '@/store/actions/assetsAction';
+import { useAppDispatch } from '@/store/store';
 
-export function useAlertText(): IUseAlertTextReturn {
-  const [text, setText] = useState('');
-  const [severity, setSeverity] = useState(Severity.SUCCESS);
-  const [isOpen, setIsOpen] = useState(false);
+export interface IShowAlert {
+  (message: string, severityType: Severity): void;
+}
 
-  const handleOpenAlert = (message: string, severityType: Severity): void => {
-    setSeverity(severityType);
-    setText(message);
-    setIsOpen(true);
-  };
+export function useAlertText(): { showAlert: IShowAlert } {
+  const dispatch = useAppDispatch();
 
-  const handleClose = (_?: React.SyntheticEvent | Event, reason?: string): void => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setIsOpen(false);
-  };
+  const showAlert = useCallback(
+    (message: string, severityType: Severity): void => {
+      dispatch(showAlertAction(message, severityType));
+    },
+    [dispatch]
+  );
 
-  return { isOpen, text, severity, handleOpenAlert, handleClose };
+  return { showAlert };
 }

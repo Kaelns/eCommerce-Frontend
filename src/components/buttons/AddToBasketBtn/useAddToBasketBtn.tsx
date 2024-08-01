@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from 'react';
 import { Severity } from '@/components/AlertText/AlertText.interface';
 import { useToken } from '@/services/hooks/useToken';
-import { AlertTextContext } from '@/context/AlertTextContext/AlertTextContext';
 import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { IUseAddToBasket } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn.interface';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 import { BasketContext } from '@/context/BasketContext/BasketContext';
+import { useAlertText } from '@/components/AlertText/useAlertText';
 
 export function useAddToBasketBtn(productId: string, initLineItemId: string): IUseAddToBasket {
   const token = useToken();
@@ -13,7 +13,7 @@ export function useAddToBasketBtn(productId: string, initLineItemId: string): IU
   const [isInCart, setIsInCart] = useState(false);
   const [lineItemId, setLineItemId] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
-  const { handleOpenAlert } = useContext(AlertTextContext);
+  const { showAlert } = useAlertText();
 
   useEffect(() => {
     if (initLineItemId) {
@@ -32,7 +32,7 @@ export function useAddToBasketBtn(productId: string, initLineItemId: string): IU
         ? await manageCartCatch(ManageCart.DECREMENT, lineItemId, token)
         : await manageCartCatch(ManageCart.INCREMENT, productId, token);
       if (error) {
-        handleOpenAlert(error, Severity.ERROR);
+        showAlert(error, Severity.ERROR);
       } else {
         setIsInCart((prev) => !prev);
         setLineItemId(newLineItemId);
