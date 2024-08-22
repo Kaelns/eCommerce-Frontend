@@ -14,8 +14,8 @@ import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOn
 import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBasketProducts';
 import { deleteCartCatch } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch';
 import { BasketContext } from '@/context/BasketContext/BasketContext';
-import { useAlertText } from '@/components/AlertText/useAlertText';
-import { Severity } from '@/components/AlertText/AlertText.interface';
+import { useAlertText } from '@/features/AlertText/useAlertText';
+import { Severity } from '@/features/AlertText/AlertText.interface';
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();

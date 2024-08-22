@@ -1,18 +1,18 @@
 import { useCallback } from 'react';
-import { Severity } from '@/components/AlertText/AlertText.interface';
-import { showAlertAction } from '@/store/actions/assetsAction';
+import { Severity } from '@/features/AlertText/AlertText.interface';
 import { useAppDispatch } from '@/store/store';
+import { showAlertAction } from '@/features/AlertText/alert.slice';
 
 export interface IShowAlert {
-  (message: string, severityType: Severity): void;
+  (message: string, severity: Severity): void;
 }
 
 export function useAlertText(): { showAlert: IShowAlert } {
   const dispatch = useAppDispatch();
 
   const showAlert = useCallback(
-    (message: string, severityType: Severity): void => {
-      dispatch(showAlertAction(message, severityType));
+    (message: string, severity: Severity): void => {
+      dispatch(showAlertAction({ message, severity }));
     },
     [dispatch]
   );

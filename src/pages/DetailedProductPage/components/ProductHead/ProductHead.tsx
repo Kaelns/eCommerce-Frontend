@@ -4,7 +4,7 @@ import { Title } from '@/components/typography/Title/Title';
 import { useToken } from '@/services/hooks/useToken';
 import { Discount } from '@/components/typography/Discount/Discount';
 import { useFetch } from '@/hooks/useFetch/useFetch';
-import { CardPrice } from '@/components/CardPrice/CardPrice';
+import { CardPrice } from '@/components/CardPrice';
 import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';
 import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
 import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';

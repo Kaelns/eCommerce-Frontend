@@ -5,7 +5,7 @@ import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket/ProductBasket';
 import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
 import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
-import { CardPrice } from '@/components/CardPrice/CardPrice';
+import { CardPrice } from '@/components/CardPrice';
 import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
 import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
 import { Promocode } from '@/pages/BasketPage/components/Promocode/Promocode';

@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { TextBold } from '@/components/typography/TextBold/TextBold';
 import { Discount } from '@/components/typography/Discount/Discount';
 import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
-import { CardPrice } from '@/components/CardPrice/CardPrice';
+import { CardPrice } from '@/components/CardPrice';
 import { Quantity } from '@/pages/BasketPage/components/Quantity/Quantity';
 import { IProductBasketProps } from '@/pages/BasketPage/components/ProductBasket/ProductBasket.interface';
 import { FRACTION_DIGITS } from '@/services/ECommerceInitApi.constants';

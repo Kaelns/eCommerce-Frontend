@@ -1,17 +1,16 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { IAppDispatch, IAppState } from '@/store/store.interface';
-import { assetsReducer } from '@/store/reducers/assetsReducer';
-import { counterReducer } from '@/store/reducers/counterReducer';
-
-const rootReducer = combineReducers({
-  assets: assetsReducer,
-  counter: counterReducer
-});
+import { counterReducer } from '@/store/counter/counter.slice';
+import { alertSlice } from '@/features/AlertText/alert.slice';
 
 export const store = configureStore({
-  reducer: rootReducer
+  reducer: {
+    [alertSlice.name]: alertSlice.reducer,
+    counter: counterReducer
+  }
 });
 
+export const useAppStore = useSelector.withTypes<typeof store>();
 export const useAppSelector = useSelector.withTypes<IAppState>();
 export const useAppDispatch = useDispatch.withTypes<IAppDispatch>();

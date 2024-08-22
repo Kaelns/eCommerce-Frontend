@@ -1,8 +1,8 @@
 import { Paper } from '@mui/material';
 import { TextBold } from '@/components/typography/TextBold/TextBold';
-import { Severity } from '@/components/AlertText/AlertText.interface';
+import { Severity } from '@/features/AlertText/AlertText.interface';
 import { IClickToClipboard } from '@/components/ClickToClipboard/ClickToClipboard.interfase';
-import { useAlertText } from '@/components/AlertText/useAlertText';
+import { useAlertText } from '@/features/AlertText/useAlertText';
 
 import styles from './ClickToClipboard.module.scss';
 

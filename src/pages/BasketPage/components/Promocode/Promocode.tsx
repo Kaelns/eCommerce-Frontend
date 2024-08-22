@@ -4,10 +4,10 @@ import { Box, ButtonGroup, Button, OutlinedInput } from '@mui/material';
 import { IPromocodeProps } from '@/pages/BasketPage/components/Promocode/Promocode.interface';
 import { InputReactEvent } from '@/data/types/InputReactEvent';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
-import { Severity } from '@/components/AlertText/AlertText.interface';
+import { Severity } from '@/features/AlertText/AlertText.interface';
 import { TextBold } from '@/components/typography/TextBold/TextBold';
 import { useToken } from '@/services/hooks/useToken';
-import { useAlertText } from '@/components/AlertText/useAlertText';
+import { useAlertText } from '@/features/AlertText/useAlertText';
 import { promocodeCartCatch } from '@/services/helpers/cartHelpers/promocodeCartCatch/promocodeCartCatch';
 
 import styles from './Promocode.module.scss';

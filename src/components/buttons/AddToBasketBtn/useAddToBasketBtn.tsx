@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from 'react';
-import { Severity } from '@/components/AlertText/AlertText.interface';
+import { Severity } from '@/features/AlertText/AlertText.interface';
 import { useToken } from '@/services/hooks/useToken';
 import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { IUseAddToBasket } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn.interface';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 import { BasketContext } from '@/context/BasketContext/BasketContext';
-import { useAlertText } from '@/components/AlertText/useAlertText';
+import { useAlertText } from '@/features/AlertText/useAlertText';
 
 export function useAddToBasketBtn(productId: string, initLineItemId: string): IUseAddToBasket {
   const token = useToken();

@@ -4,9 +4,9 @@ import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
-import { Severity } from '@/components/AlertText/AlertText.interface';
+import { Severity } from '@/features/AlertText/AlertText.interface';
 import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
-import { IShowAlert } from '@/components/AlertText/useAlertText';
+import { IShowAlert } from '@/features/AlertText/useAlertText';
 
 export async function createCustomer(
   inputsValues: IInputsValues,

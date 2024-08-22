@@ -4,7 +4,7 @@ import { ROUTES } from '@/features/Router/data/Router.enum';
 import { TextBold } from '@/components/typography/TextBold/TextBold';
 import { Discount } from '@/components/typography/Discount/Discount';
 import { ImageLoad } from '@/components/ImageLoad/ImageLoad';
-import { CardPrice } from '@/components/CardPrice/CardPrice';
+import { CardPrice } from '@/components/CardPrice';
 import { useProduct } from '@/hooks/useProduct/useProduct';
 import { LinkRouter } from '@/components/LinkRouter/LinkRouter';
 import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';

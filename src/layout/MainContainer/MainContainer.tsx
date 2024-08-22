@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import { SectionContainer } from '@/layout/SectionContainer/SectionContainer';
-import { AlertText } from '@/components/AlertText/AlertText';
+import { AlertText } from '@/features/AlertText/AlertText';
 
 import styles from './MainContainer.module.scss';
 

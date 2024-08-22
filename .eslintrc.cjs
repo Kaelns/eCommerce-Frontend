@@ -92,5 +92,12 @@ module.exports = {
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }]
   },
 
+  overrides: [
+    {
+      files: ['src/**/*.slice.ts'],
+      rules: { 'no-param-reassign': ['error', { props: false }] }
+    }
+  ],
+
   noInlineConfig: true
 };

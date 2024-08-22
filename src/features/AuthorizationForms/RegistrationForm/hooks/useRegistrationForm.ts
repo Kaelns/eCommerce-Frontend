@@ -20,7 +20,7 @@ import { InputReactEvent } from '@/data/types/InputReactEvent';
 import { handlePrefix } from '@/utils/handlePrefix';
 import getMaxDate from '@/utils/getMaxDate';
 import getMinDate from '@/utils/getMinDate';
-import { useAlertText } from '@/components/AlertText/useAlertText';
+import { useAlertText } from '@/features/AlertText/useAlertText';
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   const { setAuthTokens } = useAuthContext();

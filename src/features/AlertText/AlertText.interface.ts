@@ -4,7 +4,3 @@ export enum Severity {
   ERROR = 'error',
   INFO = 'info'
 }
-
-export interface IAlertTextProps {
-  autoHideMs?: number;
-}
