@@ -1,5 +1,5 @@
 import { createContext, useMemo, useState } from 'react';
-import { PropsWithChildren } from '@/data/types/PropsWithChildren';
+import { PropsWithChildren } from '@/shared/types';
 import { IAuthState } from '@/context/AuthContext/AuthContext.interface';
 import { AUTH_TOKENS, INITIAL_AUTH_CONTEXT } from '@/context/AuthContext/AuthContext.constants';
 

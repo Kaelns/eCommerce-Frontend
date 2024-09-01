@@ -1,14 +1,12 @@
+/* eslint-disable no-param-reassign */
 import { LineItem } from '@commercetools/platform-sdk';
-import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
-import { useBasketProducts } from '@/pages/BasketPage/hooks/useBasketProducts/useBasketProducts';
+import { getLightBasketProduct } from '@/services/helpers/getLightBasketProduct';
+import { IBasketProducts } from '@/shared/types';
 
 export function convertToBasketProducts(products: LineItem[]): IBasketProducts {
-  const basketProducts: IBasketProducts = {};
-
-  products.forEach((product) => {
-    const data = useBasketProducts(product);
+  return products.reduce<IBasketProducts>((basketProducts, product) => {
+    const data = getLightBasketProduct(product);
     basketProducts[data.id] = data;
-  });
-
-  return basketProducts;
+    return basketProducts;
+  }, {});
 }

@@ -1,3 +1,6 @@
+import { Category } from '@commercetools/platform-sdk';
+import { ICategoryTreeNode } from '@/shared/types';
+
 export interface IAddress {
   country: string;
   postalCode: string;
@@ -16,4 +19,11 @@ export interface ICreateCustomerParams {
   billingAddresses?: number[];
   defaultBillingAddress?: number;
   defaultShippingAddress?: number;
+}
+
+export type CategoriesObj = Record<Category['id'], Category>;
+export interface ICategories {
+  categoriesTree: ICategoryTreeNode[];
+  categoriesObj: CategoriesObj;
+  categories: Category[];
 }

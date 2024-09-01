@@ -1,5 +1,5 @@
-import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
-import { PropsWithChildren } from '@/data/types/PropsWithChildren';
+import { PageSkeleton } from '@/components/PageSkeleton';
+import { PropsWithChildren } from '@/shared/types';
 
 interface IBeforeLoadProps {
   isLoading: boolean;

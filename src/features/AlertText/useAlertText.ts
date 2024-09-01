@@ -1,21 +1,33 @@
 import { useCallback } from 'react';
-import { Severity } from '@/features/AlertText/AlertText.interface';
 import { useAppDispatch } from '@/store/store';
-import { showAlertAction } from '@/features/AlertText/alert.slice';
+import { hideAlertAction, showAlertAction, showLoadingAlertAction } from '@/features/AlertText/alert.slice';
+import { AlertsAPIText, AlertsText, Severity } from '@/shared/constants';
 
-export interface IShowAlert {
-  (message: string, severity: Severity): void;
+export type ShowAlertText = (message: string, severity: Severity) => void;
+
+export interface IUseAlertTextReturn {
+  showAlert: (message: AlertsText | AlertsAPIText | string, severity?: Severity) => void;
+  showLoadingAlert: () => void;
+  hideAlert: () => void;
 }
 
-export function useAlertText(): { showAlert: IShowAlert } {
+export function useAlertText(): IUseAlertTextReturn {
   const dispatch = useAppDispatch();
 
   const showAlert = useCallback(
-    (message: string, severity: Severity): void => {
+    (message: AlertsText | AlertsAPIText | string, severity: Severity = Severity.SUCCESS): void => {
       dispatch(showAlertAction({ message, severity }));
     },
     [dispatch]
   );
 
-  return { showAlert };
+  const showLoadingAlert = useCallback((): void => {
+    dispatch(showLoadingAlertAction());
+  }, [dispatch]);
+
+  const hideAlert = useCallback((): void => {
+    dispatch(hideAlertAction());
+  }, [dispatch]);
+
+  return { showAlert, showLoadingAlert, hideAlert };
 }

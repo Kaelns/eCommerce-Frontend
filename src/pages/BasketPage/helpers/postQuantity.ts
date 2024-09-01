@@ -1,4 +1,4 @@
-import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
+import { IBasketProducts } from '@/shared/types';
 import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 

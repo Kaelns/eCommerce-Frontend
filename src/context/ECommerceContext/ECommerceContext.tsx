@@ -1,15 +1,20 @@
 import { createContext, useEffect, useState } from 'react';
-import { PropsWithChildren } from '@/data/types/PropsWithChildren';
-import { ICategoriesObj } from '@/context/ECommerceContext/ECommerceContext.interface';
-import { INITIAL_CATEGORIES_CONTEXT } from '@/context/ECommerceContext/ECommerceContext.constants';
+import { PropsWithChildren } from '@/shared/types';
 import { useFetch } from '@/hooks/useFetch/useFetch';
-import { fetchCategories } from '@/hooks/useFetch/useFetch.helpers';
+import { ICategories } from '@/services/ECommerceInitApi.interface';
+import { getCategories } from '@/services';
 
-export const ECommerceContext = createContext<ICategoriesObj>(INITIAL_CATEGORIES_CONTEXT);
+const INITIAL_CATEGORIES_CONTEXT: ICategories = {
+  categoriesTree: [],
+  categoriesObj: {},
+  categories: []
+};
+
+export const ECommerceContext = createContext<ICategories>(INITIAL_CATEGORIES_CONTEXT);
 
 export function ECommerceContextProvider({ children }: PropsWithChildren): React.ReactNode {
-  const [categoriesObj, setCategoriesObj] = useState<ICategoriesObj>(INITIAL_CATEGORIES_CONTEXT);
-  const { data } = useFetch(fetchCategories);
+  const [categoriesObj, setCategoriesObj] = useState<ICategories>(INITIAL_CATEGORIES_CONTEXT);
+  const { data } = useFetch(getCategories);
 
   useEffect(() => {
     setCategoriesObj((prevData) => data ?? prevData);

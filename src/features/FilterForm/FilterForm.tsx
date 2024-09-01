@@ -1,21 +1,18 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { useContext } from 'react';
-import { Filters } from '@/features/FilterForm/data/FilterForm.enum';
-import { TextBold } from '@/components/typography/TextBold/TextBold';
-import { ColorFilter } from '@/features/FilterForm/components/ColorFilter/ColorFilter';
+import { Stack, StackProps } from '@mui/system';
+import { Filters, filtersOrder } from '@/features/FilterForm/FilterForm.constants';
+import { TypographyBold } from '@/components/typography/TypographyBold';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { filtersOrder } from '@/features/FilterForm/data/FilterForm.constants';
-import { AccordionTree } from '@/features/FilterForm/components/AccordionTree/AccordionTree';
-import { IFilterFormProps } from '@/features/FilterForm/data/FilterForm.interface';
-import { RangePriceSlider } from '@/features/FilterForm/components/RangePriceSlider/RangePriceSlider';
+import { AccordionTree } from '@/features/FilterForm/components/AccordionTree';
+import { RangePriceSlider } from '@/features/FilterForm/components/RangePriceSlider';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import ButtonCustom from '@/components/buttons/ButtonCustom/ButtonCustom';
+import { BtnContained } from '@/components/buttons/BtnContained';
+import { ColorFilter } from '@/features/FilterForm/components/ColorFilter';
 
-import styles from './FilterForm.module.scss';
-
-export function FilterForm({ className }: IFilterFormProps): React.ReactNode {
+export function FilterForm({ ...props }: StackProps): React.ReactNode {
   const { dispatchFilterState } = useContext(FilterReducerContext);
   const { categoriesTree } = useContext(ECommerceContext);
 
@@ -30,16 +27,16 @@ export function FilterForm({ className }: IFilterFormProps): React.ReactNode {
   };
 
   return (
-    <Box className={`${styles.filterForm} ${className}`}>
+    <Stack gap={1.5} {...props}>
       {filtersOrder.map((key) => (
         <Accordion key={key} defaultExpanded>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1-content" id="panel1-header">
-            <TextBold>{key}</TextBold>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <TypographyBold>{key}</TypographyBold>
           </AccordionSummary>
           <AccordionDetails>{filters[key]}</AccordionDetails>
         </Accordion>
       ))}
-      <ButtonCustom onClick={handleClear}>Clear</ButtonCustom>
-    </Box>
+      <BtnContained onClick={handleClear}>Clear</BtnContained>
+    </Stack>
   );
 }

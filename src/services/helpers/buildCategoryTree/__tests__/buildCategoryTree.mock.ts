@@ -1,5 +1,5 @@
 import { Category } from '@commercetools/platform-sdk';
-import { ITreeNode } from '@/data/interface/ITreeNode';
+import { ICategoryTreeNode } from '@/shared/types';
 
 export const initialCategories: Category[] = [
   {
@@ -600,7 +600,7 @@ export const initialCategories: Category[] = [
   }
 ];
 
-export const categoriesTree: ITreeNode[] = [
+export const categoriesTree: ICategoryTreeNode[] = [
   {
     id: 'eed88c71-7578-4b93-9dee-ffedc2745fb8',
     key: 'kitchen',

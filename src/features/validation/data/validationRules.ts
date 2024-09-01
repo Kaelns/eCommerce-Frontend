@@ -39,7 +39,7 @@ export function checkJustLetterAndSpace(value: string): boolean {
 }
 export function checkAge(value: string): boolean {
   const age = GetAge(new Date(value));
-  return age < MIN_AGE || age > MAX_AGE || Object.is(age, NaN);
+  return age < MIN_AGE || age > MAX_AGE || Number.isNaN(age);
 }
 export function checkLength(length: number, value: string): boolean {
   return value.length < length;

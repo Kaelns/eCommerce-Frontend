@@ -1,20 +1,44 @@
 import { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
-import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket/ProductBasket';
-import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
-import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
+import { Stack } from '@mui/system';
+import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscounted';
+import { ErrorComponent } from '@/components/ErrorComponent';
+import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket';
+import { LoadingFetch } from '@/components/LoadingFetch';
+import { PageSkeleton } from '@/components/PageSkeleton';
 import { CardPrice } from '@/components/CardPrice';
 import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
-import { BtnCasual } from '@/components/buttons/BtnCasual/BtnCasual';
-import { Promocode } from '@/pages/BasketPage/components/Promocode/Promocode';
-import { ROUTES } from '@/features/Router/data/Router.enum';
-import { Title } from '@/components/typography/Title/Title';
-
-import styles from './BasketPage.module.scss';
+import { BtnCasual } from '@/components/buttons/BtnCasual';
+import { Promocode } from '@/pages/BasketPage/components/Promocode';
+import { SxStyles } from '@/shared/types';
+import { Paths } from '@/features/Router/Router.constants';
+import { Title } from '@/components/typography/Title';
 import cartImg from '@/assets/cart.png';
-import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscounted';
+
+const sxStyles: SxStyles = {
+  stackContainer: {
+    alignItems: { zero: 'center', tablet: 'initial' },
+    gap: 2,
+    mb: 2
+  },
+  header: {
+    position: 'relative',
+    gap: 4,
+    alignSelf: 'stretch'
+  },
+  promocode: {
+    mt: -0.5
+  },
+  deleteBasket: {
+    position: 'absolute',
+    width: 'min-content',
+    top: 0,
+    right: 0,
+    zIndex: 50,
+    borderRadius: (theme) => `0 ${theme.shape.borderRadius}px 0 ${theme.shape.borderRadius}px`
+  }
+};
 
 export function BasketPage(): React.ReactNode {
   const {
@@ -34,10 +58,10 @@ export function BasketPage(): React.ReactNode {
   const discountedPrice = useMemo(() => calculateDiscounted(finalPrice, discount), [discount, finalPrice]);
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} className={styles.productsContainer}>
+    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} sx={sxStyles.stackContainer}>
       {prodAmount ? (
         <>
-          <Box className={styles.header}>
+          <Box sx={sxStyles.header}>
             <Box>
               <Title>Product Basket</Title>
               <Typography>{prodAmount} products</Typography>
@@ -48,16 +72,14 @@ export function BasketPage(): React.ReactNode {
                 discountedPrice={discountedPrice}
               />
             </Box>
-            <BtnCasual variant="contained" className={styles.deleteProduct} onClick={handleDelete}>
+
+            <BtnCasual variant="contained" onClick={handleDelete} sx={sxStyles.deleteBasket}>
               <DeleteForeverIcon />
             </BtnCasual>
-            <Promocode
-              className={styles.promocodeContainer}
-              promocode={isDiscounted}
-              handlePromocode={handlePromocode}
-            />
+            <Promocode promocode={isDiscounted} handlePromocode={handlePromocode} sx={sxStyles.promocode} />
           </Box>
-          <Box className={styles.productsContainer}>
+
+          <Stack sx={sxStyles.stackContainer}>
             {basketKeys.map((productKey) => (
               <ProductBasket
                 key={productKey}
@@ -65,14 +87,14 @@ export function BasketPage(): React.ReactNode {
                 dispatchBasketProducts={dispatchBasketProducts}
               />
             ))}
-          </Box>
+          </Stack>
         </>
       ) : (
         <ErrorComponent
           message="Your Cart is empty"
           src={cartImg}
           alt="Cart image"
-          goTo={ROUTES.CATALOG}
+          goTo={Paths.CATALOG}
           goToText="Go shopping"
         />
       )}

@@ -1,41 +1,39 @@
 import { Category } from '@commercetools/platform-sdk';
-import { ITreeNode } from '@/data/interface/ITreeNode';
+import { ICategoryTreeNode } from '@/shared/types';
+import { CategoriesObj } from '@/services/ECommerceInitApi.interface';
 
-// * It is assumed that the array of categories is sorted by the number of ancestors and has key
-
-export function buildCategoryTree(categories: Category[]): ITreeNode[] {
-  const finalArr: ITreeNode[] = [];
-  let workArr = finalArr;
+export function buildCategoryTree(categories: Category[], categoriesObj: CategoriesObj): ICategoryTreeNode[] {
+  const rootArr: ICategoryTreeNode[] = [];
+  let rootOrChildrenArr = rootArr;
 
   if (!categories.length) {
-    return finalArr;
+    return rootArr;
   }
 
   categories.forEach((category) => {
     const [id, key] = [category.id, category.key!];
-    const parentsCount = category.ancestors.length;
-    const newObjCategory = {
-      id,
-      key,
-      children: []
-    };
+    const ancestorsCount = category.ancestors.length;
+    const newObjCategory: ICategoryTreeNode = { id, key, children: [] };
 
-    if (parentsCount) {
-      category.ancestors.forEach((ancestor, count) => {
-        const foundCategory = workArr.find((obj) => obj.id === ancestor.id);
+    if (ancestorsCount) {
+      category.ancestors.forEach((ancestor, i) => {
+        const foundCategory = rootOrChildrenArr.find((categoryObj) => categoryObj.id === ancestor.id);
         if (foundCategory) {
-          workArr = foundCategory.children;
-          return;
+          rootOrChildrenArr = foundCategory.children;
         }
-        workArr.push(newObjCategory);
-        if (parentsCount === count + 1) {
-          workArr = finalArr;
+        if (ancestorsCount === i + 1) {
+          rootOrChildrenArr.push(newObjCategory);
+          rootOrChildrenArr = rootArr;
+        }
+        if (!foundCategory && ancestorsCount !== i + 1) {
+          const missedAncestor = categoriesObj[ancestor.id];
+          rootOrChildrenArr.push({ id: missedAncestor.id, key: missedAncestor.key!, children: [] });
         }
       });
     } else {
-      workArr.push(newObjCategory);
+      rootOrChildrenArr.push(newObjCategory);
     }
   });
 
-  return finalArr;
+  return rootArr;
 }

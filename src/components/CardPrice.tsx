@@ -1,7 +1,9 @@
-import { Box } from '@mui/material';
-import { TextBold } from '@/components/typography/TextBold/TextBold';
-import { PriceType } from '@/components/typography/Price/Price.interface';
-import { Price } from '@/components/typography/Price/Price';
+import { Stack } from '@mui/system';
+import { TypographyBold } from '@/components/typography/TypographyBold';
+import { Price } from '@/components/typography/Price';
+import { SxPropsObj } from '@/shared/types';
+
+const sxPrice: SxPropsObj = { textDecoration: 'crossedPrice' };
 
 interface ICardPriceProps {
   text?: string;
@@ -11,12 +13,11 @@ interface ICardPriceProps {
 }
 
 export function CardPrice({ text = 'Price: ', price, discount, discountedPrice }: ICardPriceProps): React.ReactNode {
-  const crossedPrice = discount ? 'line-through' : 'none';
   return (
-    <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center', mb: '0.6rem' }}>
-      <TextBold variant="subtitle2">{text}</TextBold>
-      <Price price={price} priceType={PriceType.PRICE} sx={{ textDecoration: crossedPrice }} />
-      {!!discount && <Price price={discountedPrice} priceType={PriceType.DISCOUNT} />}
-    </Box>
+    <Stack direction="row" alignItems="center" gap={1} mb={0.6}>
+      <TypographyBold variant="subtitle2">{text}</TypographyBold>
+      <Price price={price} priceType="price" sx={[!discount && sxPrice]} />
+      {!!discount && <Price price={discountedPrice} priceType="discount" />}
+    </Stack>
   );
 }

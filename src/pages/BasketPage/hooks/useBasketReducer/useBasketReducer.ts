@@ -1,6 +1,6 @@
 import { BasketState, IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
-import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
-import { checkIsObject } from '@/utils/checkObject';
+import { IBasketProducts } from '@/shared/types';
+import { checkIsObject } from '@/utils/checkIsObject';
 
 export const basketReducer = (state: IBasketProducts, action: IBasketAction): IBasketProducts => {
   const { id, value } = action.payload;
