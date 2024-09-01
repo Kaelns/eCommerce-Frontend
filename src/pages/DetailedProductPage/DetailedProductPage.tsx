@@ -1,32 +1,96 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, IconButton, Modal, Typography, useMediaQuery } from '@mui/material';
+import { Box, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useCallback, useContext, useMemo, useState } from 'react';
-import { LoadingFetch } from '@/components/LoadingFetch/LoadingFetch';
-import { useDetailedProduct } from '@/pages/DetailedProductPage/useDetailedProduct.ts/useDetailedProduct';
-import { ImgCarousel } from '@/components/ImgCarousel/ImgCarousel';
-import { MEDIA_TABLET } from '@/data/constants';
+import { Stack } from '@mui/system';
+import { useNavigate, useParams } from 'react-router-dom';
+import { LoadingFetch } from '@/components/LoadingFetch';
+import { ImgCarousel } from '@/components/ImgCarousel';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { findInCategories } from '@/services/helpers/findInCategories';
-import { PageSkeleton } from '@/components/PageSkeleton/PageSkeleton';
-import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead/ProductHead';
+import { PageSkeleton } from '@/components/PageSkeleton';
+import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead';
 import { LANGUAGE } from '@/services/ECommerceInitApi.constants';
-import { createImagesCallback } from '@/pages/DetailedProductPage/helpers/createImages';
+import { ICreateImagesStyles, createImagesMap } from '@/pages/DetailedProductPage/DetailedProductPage.helpers';
+import { SxPropsNotArr, SxStyles } from '@/shared/types';
+import { Paths } from '@/features/Router/Router.constants';
+import { useFetch } from '@/hooks/useFetch/useFetch';
+import { fetchProduct } from '@/services/helpers/fetchProduct';
+import { sxMixins } from '@/features/MuiTheme/mixins';
+import { getLightProduct } from '@/services/helpers/getLightProduct';
 
-import styles from './DetailedProductPage.module.scss';
+const sxStyles: SxStyles = {
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modalBody: {
+    position: 'relative',
+    width: '93%',
+    height: { zero: '54%', tablet: '80%', laptop: '93%' },
+    padding: 1,
+    borderRadius: 1,
+    bgcolor: 'common.background'
+  },
+  imgSmall: {
+    height: 100,
+    width: 130
+  },
+  imgMedium: {
+    height: 300
+  },
+  imgLarge: {
+    height: { zero: '40vh', tablet: '65vh', laptop: '85vh' }
+  },
+  imgContainer: {
+    position: 'relative',
+    height: 300,
+    borderRadius: 1,
+    cursor: 'pointer',
+    overflow: 'hidden',
+    ...sxMixins.mediaHover(
+      {
+        transform: 'scale(1.05)'
+      },
+      '> img'
+    )
+  },
+  closeIcon: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    top: 0,
+    right: 0,
+    zIndex: 100,
+    transform: { zero: 'translate(25%, -25%)', tablet: 'translate(50%, -50%)' },
+    bgcolor: 'primary.main',
+    ...sxMixins.mediaHover({
+      bgcolor: 'primary.light'
+    })
+  }
+};
 
 export function DetailedProductPage(): React.ReactNode {
+  const { id: key } = useParams();
+  const navigate = useNavigate();
+  if (!key) {
+    navigate(Paths.ERROR);
+  }
+
+  const { data, isLoading, error } = useFetch(fetchProduct, key!);
   const { categories } = useContext(ECommerceContext);
-  const { productData, isLoading, error } = useDetailedProduct();
-  const [open, setOpen] = useState(false);
-  const [imgNum, setImgNum] = useState(0);
-
-  const isMatchesMedia = useMediaQuery(`(max-width:${MEDIA_TABLET}px)`);
-
+  const productData = useMemo(() => getLightProduct(data), [data]);
   const categoriesNames = useMemo(
     () => findInCategories(categories, productData.categoriesIdArr, true).map((obj) => obj.name[LANGUAGE]),
     [categories, productData.categoriesIdArr]
   );
 
+  const theme = useTheme();
+  const isMatchesMedia = useMediaQuery(theme.breakpoints.down('tablet'));
+
+  const [open, setOpen] = useState(false);
+  const [imgNum, setImgNum] = useState(0);
+  const handleClose = (): void => setOpen(false);
   const handleOpen = useCallback(
     (num: number) => (): void => {
       setImgNum(num);
@@ -34,23 +98,27 @@ export function DetailedProductPage(): React.ReactNode {
     },
     []
   );
-  const handleClose = (): void => setOpen(false);
 
   const createImages = useCallback(
-    (classObj: string, onClick?: (num: number) => () => void) =>
-      createImagesCallback(productData, styles.imgContainer, styles.img)(classObj, onClick),
+    (containerSize: SxPropsNotArr, onClick?: (num: number) => () => void) => {
+      const stylesObj: ICreateImagesStyles = {
+        containerStyles: [sxStyles.imgContainer, containerSize as object]
+      };
+      return createImagesMap(productData, stylesObj, onClick);
+    },
     [productData]
   );
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
-      <Box className={styles.pageContainer}>
-        <Box className={styles.headerContainer}>
-          <ImgCarousel className={styles.carouselMedium} customDots={createImages(styles.imgContainerSmall)}>
-            {createImages(styles.imgContainerMedium, handleOpen)}
+      <Stack gap={1.5} flexDirection={{ zero: 'column-reverse', tablet: 'column' }}>
+        <Stack direction="row" justifyContent="space-between" gap={1.5}>
+          <ImgCarousel width={{ zero: 1, tablet: '65%' }} customDots={createImages(sxStyles.imgSmall)}>
+            {createImages(sxStyles.imgMedium, handleOpen)}
           </ImgCarousel>
           {!isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
-        </Box>
+        </Stack>
+
         <Box>
           {isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
           <Typography>
@@ -58,17 +126,18 @@ export function DetailedProductPage(): React.ReactNode {
             {productData.description}
           </Typography>
         </Box>
-        <Modal open={open} onClose={handleClose} className={styles.modalContainer}>
-          <Box className={styles.modalBody}>
-            <IconButton className={styles.modalClose} onClick={handleClose}>
+
+        <Modal open={open} onClose={handleClose} sx={sxStyles.modal}>
+          <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
+            <IconButton onClick={handleClose} sx={sxStyles.closeIcon}>
               <CloseIcon />
             </IconButton>
-            <ImgCarousel arrows className={styles.carouselLarge} openModalImg={imgNum}>
-              {createImages(styles.imgContainerLarge)}
+            <ImgCarousel arrows openModalImg={imgNum}>
+              {createImages(sxStyles.imgLarge)}
             </ImgCarousel>
-          </Box>
+          </Stack>
         </Modal>
-      </Box>
+      </Stack>
     </LoadingFetch>
   );
 }

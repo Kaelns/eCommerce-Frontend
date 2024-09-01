@@ -3,6 +3,7 @@ import {
   Category,
   CategoryPagedQueryResponse,
   ClientResponse,
+  Customer,
   CustomerPagedQueryResponse,
   CustomerSignInResult,
   MyCartUpdateAction,
@@ -14,9 +15,7 @@ import {
 import ApiClient from '@/services/ECommerceInitApi';
 import { ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
 import { checkUndefined } from '@/utils/checkUndefined';
-import { buildCategoryTree } from '@/services/helpers/buildCategoryTree/buildCategoryTree';
 import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
-import { ICategoriesObj } from '@/context/ECommerceContext/ECommerceContext.interface';
 import { LIMIT_ON_PAGE } from '@/services/ECommerceInitApi.constants';
 import { KEY_ANON_TOKEN, KEY_AUTH_USER_TOKEN } from '@/hooks/useAuthStorage/useAuthStorage.constants';
 
@@ -120,23 +119,20 @@ class ECommerceAPI {
     >;
   }
 
-  async getCategoryAll(): Promise<ICategoriesObj> {
+  async getCategoryAll(): Promise<Category[]> {
     const responce = await (this.api.getApiRoot().categories().get().execute() as Promise<
       ClientResponse<CategoryPagedQueryResponse>
     >);
-    const categories = responce.body!.results;
-    const categoriesTree = buildCategoryTree(categories);
-    this.categories = categories;
-    return { categories, categoriesTree };
+    return responce.body.results;
   }
 
-  public async getUser(token: string): Promise<ClientResponse> {
-    return this.api.getApiRootWithToken(token).me().get().execute() as Promise<ClientResponse>;
+  public async getUser(token: string): Promise<ClientResponse<Customer>> {
+    return this.api.getApiRootWithToken(token).me().get().execute() as Promise<ClientResponse<Customer>>;
   }
 
   // this Request for update user data
-  public async updateUser(token: string, body: MyCustomerUpdate): Promise<ClientResponse> {
-    return this.api.getApiRootWithToken(token).me().post({ body }).execute() as Promise<ClientResponse>;
+  public async updateUser(token: string, body: MyCustomerUpdate): Promise<ClientResponse<Customer>> {
+    return this.api.getApiRootWithToken(token).me().post({ body }).execute() as Promise<ClientResponse<Customer>>;
   }
 
   // this request for create anonymousCart

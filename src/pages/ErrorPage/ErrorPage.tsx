@@ -1,4 +1,4 @@
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
+import { ErrorComponent } from '@/components/ErrorComponent';
 import imageNotFound from '@/assets/not-found.png';
 
 export function ErrorPage(): React.ReactNode {

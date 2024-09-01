@@ -1,5 +1,5 @@
 import { createContext, useMemo, useReducer } from 'react';
-import { PropsWithChildren } from '@/data/types/PropsWithChildren';
+import { PropsWithChildren } from '@/shared/types';
 import { filterReducer } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer';
 import { INITIAL_FILTER_VALUE } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
 import { IFilterReducer } from '@/context/FilterReducerContext/FilterReducerContext.interface';

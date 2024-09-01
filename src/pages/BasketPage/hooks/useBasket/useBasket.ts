@@ -15,7 +15,7 @@ import { convertToBasketProducts } from '@/pages/BasketPage/helpers/convertToBas
 import { deleteCartCatch } from '@/services/helpers/cartHelpers/deleteCartCatch/deleteCartCatch';
 import { BasketContext } from '@/context/BasketContext/BasketContext';
 import { useAlertText } from '@/features/AlertText/useAlertText';
-import { Severity } from '@/features/AlertText/AlertText.interface';
+import { Severity } from '@/shared/constants';
 
 export function useBasket(): IUseBasketReturn {
   const token = useToken();

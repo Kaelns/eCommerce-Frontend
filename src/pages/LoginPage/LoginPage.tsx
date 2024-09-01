@@ -1,14 +1,12 @@
-import { Box } from '@mui/material';
-import LoginForm from '@/features/AuthorizationForms/LoginForm/LoginForm';
-import { Title } from '@/components/typography/Title/Title';
-
-import styles from './LoginPage.module.scss';
+import { Stack } from '@mui/system';
+import { LoginForm } from '@/features/AuthForms/LoginForm/LoginForm';
+import { Title } from '@/components/typography/Title';
 
 export function LoginPage(): React.ReactNode {
   return (
-    <Box className={styles.loginContainer}>
+    <Stack justifyContent="center" alignItems="center" gap={2}>
       <Title>Login page</Title>
       <LoginForm />
-    </Box>
+    </Stack>
   );
 }

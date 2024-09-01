@@ -1,26 +1,40 @@
-import { Breadcrumbs, BreadcrumbsProps, Button } from '@mui/material';
-import { useCallback, useContext } from 'react';
-import { LinkBtn } from '@/components/buttons/LinkBtn/LinkBtn';
+import { Breadcrumbs, BreadcrumbsProps, Button, SxProps } from '@mui/material';
+import { useCallback, useContext, useMemo } from 'react';
+import { Theme } from '@mui/system';
+import { LinkBtn } from '@/components/buttons/LinkBtn';
+import { SxStyles } from '@/shared/types';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
 import { fromKeyToName } from '@/utils/fromKeyToName';
+import { convertSxToArr } from '@/utils/convertSxToArr';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
-import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/helpers/convertToBreadcrumb';
+import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb.helpers';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 
-import styles from './Breadcrumb.module.scss';
+const sxStyles: SxStyles = {
+  btn: (theme) => ({
+    textTransform: 'none',
+    color: `${theme.palette.text.secondary} !important`
+  })
+};
 
-export function Breadcrumb({ className }: BreadcrumbsProps): React.ReactNode {
+interface IBreadcrumbProps extends BreadcrumbsProps {
+  btnSx?: SxProps<Theme>;
+}
+
+export function Breadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps): React.ReactNode {
+  // TODO remove contexts and pass elem through props. Move to the features folder
+
   const { categoriesTree } = useContext(ECommerceContext);
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
 
-  let categoriesToRender = NO_CATEGORY;
-  if (filterState.categoryKey !== NO_CATEGORY) {
-    categoriesToRender = convertToBreadcrumb(filterState.categoryKey, categoriesTree);
-  } else {
-    categoriesToRender = NO_CATEGORY;
-  }
-  const arrToRender = categoriesToRender.trim().split(' ');
+  const categoriesToRender = useMemo(
+    () =>
+      filterState.categoryKey !== NO_CATEGORY
+        ? convertToBreadcrumb(filterState.categoryKey, categoriesTree)
+        : [NO_CATEGORY],
+    [categoriesTree, filterState.categoryKey]
+  );
 
   const setCategory = useCallback(
     (key: string) => (): void => {
@@ -30,17 +44,17 @@ export function Breadcrumb({ className }: BreadcrumbsProps): React.ReactNode {
   );
 
   return (
-    <Breadcrumbs>
-      {arrToRender.map((key, index) => {
-        if (index !== arrToRender.length - 1) {
+    <Breadcrumbs {...props}>
+      {categoriesToRender.map((key, index) => {
+        if (index !== categoriesToRender.length - 1) {
           return (
-            <LinkBtn key={key} navigateTo={setCategory(key)} className={className}>
+            <LinkBtn key={key} navigateTo={setCategory(key)} sx={btnSx}>
               {fromKeyToName(key)}
             </LinkBtn>
           );
         }
         return (
-          <Button disabled key={key} className={`${className} ${styles.btn}`}>
+          <Button disabled key={key} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
             {fromKeyToName(key)}
           </Button>
         );

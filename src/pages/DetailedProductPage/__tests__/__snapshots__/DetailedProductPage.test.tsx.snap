@@ -3,51 +3,50 @@
 exports[`Given DetailedProductPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class=" _container_7db3c6 _overflowHidden_7db3c6 MuiBox-root css-0"
+    class="MuiBox-root css-79elbk"
   >
     <div
-      class="_skeleton_7db3c6  MuiBox-root css-q8nw6e"
+      class="MuiStack-root css-r78jfo-MuiStack-root"
     >
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
-        style="width: 10vh; height: 10vh;"
+        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7bduwa-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
     </div>
     <div
-      class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
+      class="MuiStack-root css-x6bnna-MuiStack-root"
     >
       <div
-        class="_pageContainer_0feb98 MuiBox-root css-0"
+        class="MuiStack-root css-1shucjb-MuiStack-root"
       >
         <div
-          class="_headerContainer_0feb98 MuiBox-root css-0"
+          class="MuiStack-root css-re6u3m-MuiStack-root"
         >
           <div
-            class="slick-slider _carouselMedium_0feb98 _carousel_95e9a0 slick-initialized"
+            class="slick-slider MuiBox-root css-zz3cru slick-initialized"
             dir="ltr"
           >
             <div
@@ -60,53 +59,53 @@ exports[`Given DetailedProductPage component:  > when rendered, should match sna
             </div>
           </div>
           <div
-            class="_productData_5be6a8 MuiBox-root css-0"
+            class="MuiStack-root css-9f25q2-MuiStack-root"
           >
             <h5
-              class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
             />
             <div
-              class="_priceContainer_92edd5 MuiBox-root css-0"
+              class="MuiStack-root css-1hgk1tk-MuiStack-root"
             >
               <h6
-                class="MuiTypography-root MuiTypography-subtitle2 css-zdy50j-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-subtitle2 css-iy6nlt-MuiTypography-root"
               >
                 Price: 
               </h6>
               <h6
-                class="MuiTypography-root MuiTypography-subtitle2 _price_c0cdf9  false css-ati914-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-subtitle2 css-11y6jfv-MuiTypography-root"
               >
                 0 $
               </h6>
             </div>
             <div
-              class="_chipContainer_5be6a8 MuiBox-root css-0"
+              class="MuiStack-root css-wjj0nm-MuiStack-root"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary _btnCasual_0b5bfe _addToBasketBtn_5be6a8 _basketBtn_0b5bfe  _btn_d6e307 css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-13hdmgp-MuiButtonBase-root-MuiButton-root"
               disabled=""
               tabindex="-1"
               type="button"
             >
               <span
-                class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate undefined _progress_0b5bfe   _progressLinear_0b5bfe css-eglki6-MuiLinearProgress-root"
+                class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate css-1415yxo-MuiLinearProgress-root"
                 role="progressbar"
               >
                 <span
-                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-5ir5xx-MuiLinearProgress-bar1"
+                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-eg0r9f-MuiLinearProgress-bar1"
                 />
                 <span
-                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-1r8wrcl-MuiLinearProgress-bar2"
+                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-1yf7653-MuiLinearProgress-bar2"
                 />
               </span>
               <h6
-                class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-subtitle2 css-57pk4j-MuiTypography-root"
               >
                 Add to
               </h6>
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium undefined _basketIcon_0b5bfe  _iconCasual_0b5bfe css-i4bv87-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-p9fvvg-MuiSvgIcon-root"
                 data-testid="AddShoppingCartIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -122,7 +121,7 @@ exports[`Given DetailedProductPage component:  > when rendered, should match sna
           class="MuiBox-root css-0"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1edfpdg-MuiTypography-root"
           >
             <b>
                 Description: 

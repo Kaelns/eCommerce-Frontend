@@ -1,26 +1,26 @@
-import { Box, Button, Chip, Divider } from '@mui/material';
+import { Button, Chip, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import RegistrationForm from '@/features/AuthorizationForms/RegistrationForm/RegistrationForm';
-import { ROUTES } from '@/features/Router/data/Router.enum';
-
-import styles from './RegistrationPage.module.scss';
-import { Title } from '@/components/typography/Title/Title';
+import { Stack } from '@mui/system';
+import { Paths } from '@/features/Router/Router.constants';
+import { Title } from '@/components/typography/Title';
+import RegistrationForm from '@/features/AuthForms/RegistrationForm/RegistrationForm';
 
 export function RegistrationPage(): React.ReactNode {
   const navigate = useNavigate();
+  const navigateToLogin = (): void => navigate(Paths.LOGIN);
 
   return (
-    <Box className={styles.pageContainer}>
-      <Box className={styles.titleContainer}>
-        <Title className={styles.title}>Registration Page</Title>
+    <Stack gap={2} alignItems="center">
+      <Stack gap={1.5} width={{ zero: 1, tablet: 400 }}>
+        <Title textAlign="center">Registration Page</Title>
         <Divider>
           <Chip label="Or if you are already registered:" />
         </Divider>
-        <Button variant="contained" onClick={() => navigate(ROUTES.LOGIN)}>
+        <Button variant="contained" onClick={navigateToLogin}>
           Login
         </Button>
-      </Box>
+      </Stack>
       <RegistrationForm />
-    </Box>
+    </Stack>
   );
 }

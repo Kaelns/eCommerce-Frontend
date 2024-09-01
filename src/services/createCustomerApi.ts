@@ -1,19 +1,18 @@
-import { AlertsText } from '@/data/enum/alerts.enum';
 import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
 import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
-import { INPUTS } from '@/features/AuthorizationForms/data/AuthorizationForms.constants';
-import { IInputsErrors, IInputsValues } from '@/features/AuthorizationForms/data/AuthorizationForms.types';
-import { Severity } from '@/features/AlertText/AlertText.interface';
+import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
+import { IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
 import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
-import { IShowAlert } from '@/features/AlertText/useAlertText';
+import { ShowAlertText } from '@/features/AlertText/useAlertText';
+import { AlertsAPIText, Severity } from '@/shared/constants';
 
 export async function createCustomer(
   inputsValues: IInputsValues,
   setAuthTokens: React.Dispatch<React.SetStateAction<IAuthTokens>> | (() => void),
   setInputsError: React.Dispatch<React.SetStateAction<IInputsErrors>>,
   setIsShowCircleProgress: React.Dispatch<React.SetStateAction<boolean>>,
-  showAlert: IShowAlert,
+  showAlert: ShowAlertText,
   isSameAddress: boolean,
   isDefaultShippingAddress: boolean,
   isDefaultBillingAddress: boolean
@@ -70,15 +69,15 @@ export async function createCustomer(
     const token = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
     setAuthTokens((prev) => ({ ...prev, token }));
     await eCommerceAPI.createCart(token);
-    showAlert(AlertsText.SUCCESS_TEXT, Severity.SUCCESS);
+    showAlert(AlertsAPIText.USER_CREATE_SUCCESS, Severity.SUCCESS);
   } catch (error) {
     console.warn(error);
     if (error instanceof Error) {
-      if (error.message === AlertsText.ERROR_EMAIL_TEXT) {
+      if (error.message === AlertsAPIText.EMAIL_DUPLICATE_ERROR) {
         setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
-        showAlert(AlertsText.ERROR_EMAIL_TEXT, Severity.ERROR);
+        showAlert(AlertsAPIText.EMAIL_DUPLICATE_ERROR, Severity.ERROR);
       } else {
-        showAlert(AlertsText.ERROR_CONNECTION_TEXT, Severity.ERROR);
+        showAlert(AlertsAPIText.REGISTRATION_CONNECTION_ERROR, Severity.ERROR);
       }
     }
   } finally {

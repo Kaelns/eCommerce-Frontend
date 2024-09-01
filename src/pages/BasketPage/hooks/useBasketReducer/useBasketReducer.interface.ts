@@ -1,4 +1,4 @@
-import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
+import { IBasketProducts } from '@/shared/types';
 
 export enum BasketState {
   INCREMENT,

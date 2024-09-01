@@ -1,18 +1,20 @@
-import { IColorsState } from '@/features/FilterForm/components/ColorFilter/ColorFilter.interface';
+import { FilterColorsState } from '@/features/FilterForm/FilterForm.constants';
 import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 
 export interface IFilterState {
   categoryKey: string;
   price: number[];
-  color: IColorsState;
+  color: typeof FilterColorsState;
   search: string;
   sort: Sort;
   page: number;
 }
 
+export type FilterPayload = IFilterState[keyof IFilterState];
+
 export interface IAction {
   type: FilterState;
-  payload?: IFilterState[keyof IFilterState];
+  payload?: FilterPayload;
 }
 
 export type IFilterFormState = Pick<IFilterState, 'categoryKey' | 'price' | 'color'>;

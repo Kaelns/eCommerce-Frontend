@@ -1,12 +1,5 @@
-import { Title } from '@/components/typography/Title/Title';
-import styles from './UserPage.module.scss';
-import UserProfile from '@/features/UserProfile/UserProfile';
+import { Title } from '@/components/typography/Title';
 
 export function UserPage(): React.ReactNode {
-  return (
-    <>
-      <Title className={styles.user}>User Profile Page</Title>
-      <UserProfile />
-    </>
-  );
+  return <Title>User Profile Page</Title>;
 }

@@ -1,5 +1,5 @@
 import { IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
-import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
+import { IBasketProducts } from '@/shared/types';
 
 export interface IUseBasketReturn {
   isLoading: boolean;

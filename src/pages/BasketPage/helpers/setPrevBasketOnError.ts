@@ -1,5 +1,5 @@
-import { Severity } from '@/features/AlertText/AlertText.interface';
-import { IBasketProducts } from '@/pages/BasketPage/data/BasketPage.interface';
+import { Severity } from '@/shared/constants';
+import { IBasketProducts } from '@/shared/types';
 import { BasketState, IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
 
 export function setPrevBasketOnError(

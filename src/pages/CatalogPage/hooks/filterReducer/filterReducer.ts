@@ -1,4 +1,4 @@
-import { IColorsState } from '@/features/FilterForm/components/ColorFilter/ColorFilter.interface';
+import { IFilterColorsKeys } from '@/features/FilterForm/FilterForm.types';
 import { INITIAL_FORM_VALUE, NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
 import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { IAction, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
@@ -34,7 +34,7 @@ export const filterReducer = (state: IFilterState, action: IAction): IFilterStat
         page: 1,
         color: {
           ...state.color,
-          [action.payload as keyof IColorsState]: !state.color[action.payload as keyof IColorsState]
+          [action.payload as IFilterColorsKeys]: !state.color[action.payload as IFilterColorsKeys]
         }
       };
     case FilterState.SEARCH:
