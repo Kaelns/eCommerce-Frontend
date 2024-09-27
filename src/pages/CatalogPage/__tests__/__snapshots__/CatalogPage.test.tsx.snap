@@ -3,10 +3,10 @@
 exports[`Given CatalogPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="_pageContainer_b2ca2b MuiBox-root css-0"
+    class="MuiBox-root css-1ytub8b"
   >
     <nav
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-63vwl1-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-8yvas4-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -15,7 +15,7 @@ exports[`Given CatalogPage component:  > when rendered, should match snapshot 1`
           class="MuiBreadcrumbs-li"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary _breadcrumbBtn_b2ca2b _btn_288684 css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-13tp3gi-MuiButtonBase-root-MuiButton-root"
             disabled=""
             tabindex="-1"
             type="button"
@@ -26,20 +26,20 @@ exports[`Given CatalogPage component:  > when rendered, should match snapshot 1`
       </ol>
     </nav>
     <div
-      class="_bodyContainer_b2ca2b MuiBox-root css-0"
+      class="MuiStack-root css-d25iif-MuiStack-root"
     >
       <div
-        class="_btnContainer_01be3b MuiBox-root css-0"
+        class="MuiStack-root css-1oxswqj-MuiStack-root"
       >
         <div
-          class=" _btn1_01be3b _search_38e80c MuiBox-root css-0"
+          class="MuiBox-root css-1new6zd"
         >
           <div
-            class="_iconWrapper_38e80c MuiBox-root css-0"
+            class="MuiStack-root css-8xhq8x-MuiStack-root"
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
               data-testid="SearchIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -50,73 +50,106 @@ exports[`Given CatalogPage component:  > when rendered, should match snapshot 1`
             </svg>
           </div>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary _input_38e80c css-1le28he-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-adornedEnd css-18j0p5e-MuiInputBase-root"
           >
             <input
-              class="MuiInputBase-input css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-1jrstcx-MuiInputBase-input"
               placeholder="Search…"
               type="text"
               value=""
             />
+            <button
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium MuiInputAdornment-root MuiInputAdornment-positionEnd css-1b5u5pl-MuiButtonBase-root-MuiIconButton-root-MuiInputAdornment-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
+                data-testid="CloseIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </button>
           </div>
         </div>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary _btn2_01be3b css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1x76y4a-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >
-          Filters
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
+          <div
+            class="MuiStack-root css-1uhex6k-MuiStack-root"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
+              data-testid="FilterListIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10 18h4v-2h-4zM3 6v2h18V6zm3 7h12v-2H6z"
+              />
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-b3z1-MuiTypography-root"
+            >
+              Filters
+            </p>
+          </div>
         </button>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+        class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-2 css-1u5xnsm-MuiGrid-root"
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-lg-9.6 css-m0qq8o-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-grid-tablet-grow css-1d90wfh-MuiGrid-root"
         >
           <div
-            class="_productsContainer_1c9b0b _container_7db3c6 _overflowHidden_7db3c6 MuiBox-root css-0"
+            class="MuiBox-root css-1kxonj9"
           >
             <div
-              class="_skeleton_7db3c6  MuiBox-root css-q8nw6e"
+              class="MuiStack-root css-r78jfo-MuiStack-root"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
-                style="width: 10vh; height: 10vh;"
+                class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7bduwa-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
               />
               <span
-                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+                class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
               />
             </div>
             <div
-              class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
+              class="MuiStack-root css-x6bnna-MuiStack-root"
             >
               <h5
-                class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
               >
                 There is no products
               </h5>

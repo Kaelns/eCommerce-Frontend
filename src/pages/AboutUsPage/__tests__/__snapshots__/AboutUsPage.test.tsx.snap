@@ -2,88 +2,75 @@
 
 exports[`Given AboutUsPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
-  <h5
-    class="MuiTypography-root MuiTypography-h5 _about-us_3b65ea css-bezmlo-MuiTypography-root"
-  >
-    About Us Page
-  </h5>
   <div
-    class="MuiBox-root css-0"
-    style="white-space: pre-line;"
+    class="MuiStack-root css-gs2j6y-MuiStack-root"
   >
-    <p
-      class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
-      style="text-align: center;"
+    <h5
+      class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
     >
-      All roads lead to
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-        href="https://rs.school/"
+      About Us
+    </h5>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 css-bwajh5-MuiPaper-root"
+      style="--Paper-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1edfpdg-MuiTypography-root"
       >
-        <span
-          aria-hidden="true"
-          class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-kp9ftd-MuiIcon-root"
-          style="height: 40px; width: 100px; margin-left: 20px;"
-        >
-          <img
-            alt="RS School logo"
-            class="MuiBox-root css-0"
-            src="/src/assets/rs_school.svg"
-          />
-        </span>
-      </a>
-    </p>
-    Hello! We are RadioReactive team.
+        Hello! We are RadioReactive team.
 We are a super "serious" radioactive group of programmers. The strength is in the team so we look out for each other, we come to help in any difficult situation. We help to develop as programmers, to correct our bad habits and to learn a lot for further work. Of course, we do not forget about relax and entertainment, where without them. And that's all help us to achieve success in this final project.
 And next, a little about each of us.
+      </p>
+    </div>
     <div
-      class="MuiStack-root MuiList-root MuiList-padding css-at4np2-MuiStack-root-MuiList-root"
+      class="MuiStack-root MuiList-root MuiList-padding css-1yxf2se-MuiStack-root-MuiList-root"
     >
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation4 MuiCard-root css-6fm6rz-MuiPaper-root-MuiCard-root"
+        style="--Paper-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
       >
         <div
-          class="MuiCardMedia-root css-16cvb1l-MuiCardMedia-root"
+          class="MuiCardMedia-root css-1jx4tcu-MuiCardMedia-root"
         >
           <img
             alt="Ahanouski"
+            class="MuiBox-root css-s6zp27"
             src="https://avatars.githubusercontent.com/u/67708215?v=4"
-            style="width: 200px; height: 200px;"
           />
         </div>
         <div
           class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h6 css-vn5cbk-MuiTypography-root"
           >
             Yury Ahanouski
           </h6>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Github: 
           </p>
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-11iau0r-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-1seph5p-MuiTypography-root-MuiLink-root"
             href="https://github.com/kaelns"
           >
             https://github.com/kaelns
           </a>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Role: 
           </p>
           Team leader
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Significant contributions: 
           </p>
           This guy responsible for team collaboration and main visual part of project such as catalog page and product detailed page, navigation and app's header.
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              BIO: 
           </p>
@@ -91,50 +78,51 @@ And next, a little about each of us.
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation4 MuiCard-root css-6fm6rz-MuiPaper-root-MuiCard-root"
+        style="--Paper-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
       >
         <div
-          class="MuiCardMedia-root css-16cvb1l-MuiCardMedia-root"
+          class="MuiCardMedia-root css-1jx4tcu-MuiCardMedia-root"
         >
           <img
             alt="Zdanevich"
+            class="MuiBox-root css-s6zp27"
             src="https://avatars.githubusercontent.com/u/84130329?v=4"
-            style="width: 200px; height: 200px;"
           />
         </div>
         <div
           class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h6 css-vn5cbk-MuiTypography-root"
           >
             Anatoli Zdanevich
           </h6>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Github: 
           </p>
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-11iau0r-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-1seph5p-MuiTypography-root-MuiLink-root"
             href="https://github.com/zdan3v1ch"
           >
             https://github.com/zdan3v1ch
           </a>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Role: 
           </p>
           The right hand of the leader
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Significant contributions: 
           </p>
           This guy is a guru of commercetools API. The average user won't see his work, only the one who familiar with Network tab in Devtools. All API requests are his handiwork.
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              BIO: 
           </p>
@@ -142,50 +130,51 @@ And next, a little about each of us.
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation4 MuiCard-root css-6fm6rz-MuiPaper-root-MuiCard-root"
+        style="--Paper-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
       >
         <div
-          class="MuiCardMedia-root css-16cvb1l-MuiCardMedia-root"
+          class="MuiCardMedia-root css-1jx4tcu-MuiCardMedia-root"
         >
           <img
             alt="Schepalina"
+            class="MuiBox-root css-s6zp27"
             src="https://avatars.githubusercontent.com/u/112850187?v=4"
-            style="width: 200px; height: 200px;"
           />
         </div>
         <div
           class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h6 css-vn5cbk-MuiTypography-root"
           >
             Viktoriya Schepalina
           </h6>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Github: 
           </p>
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-11iau0r-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-1seph5p-MuiTypography-root-MuiLink-root"
             href="https://github.com/90Viktoriya"
           >
             https://github.com/90Viktoriya
           </a>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Role: 
           </p>
           The left hand of the leader
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              Significant contributions: 
           </p>
           This girl is responsible for periodic reminders and checks that the work is in full swing. If you have any problems with login, registration or user profile pages, it's also to her.
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
           >
              BIO: 
           </p>

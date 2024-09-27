@@ -9,6 +9,13 @@ beforeAll(() => {
       useLocation: () => vi.fn()
     };
   });
+  vi.mock('@/store/store', async () => {
+    const mod = await vi.importActual<typeof import('@/store/store')>('@/store/store');
+    return {
+      ...mod,
+      useAppDispatch: () => vi.fn()
+    };
+  });
 });
 
 Object.defineProperty(window, 'matchMedia', {

@@ -3,71 +3,70 @@
 exports[`Given BasketPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="_productsContainer_01fa68 _container_7db3c6 _overflowHidden_7db3c6 MuiBox-root css-0"
+    class="MuiBox-root css-79elbk"
   >
     <div
-      class="_skeleton_7db3c6  MuiBox-root css-q8nw6e"
+      class="MuiStack-root css-r78jfo-MuiStack-root"
     >
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7vt8oa-MuiSkeleton-root"
-        style="width: 10vh; height: 10vh;"
+        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7bduwa-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-15a4b0z-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
       <span
-        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-i8tnst-MuiSkeleton-root"
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
       />
     </div>
     <div
-      class="_childrenContainer_7db3c6 _hidden_7db3c6 MuiBox-root css-0"
+      class="MuiStack-root css-9v3bmo-MuiStack-root"
     >
       <div
-        class="_container_e09756 MuiBox-root css-0"
+        class="MuiStack-root css-1lnkgqj-MuiStack-root"
       >
         <img
           alt="Cart image"
-          class="_image_e09756 MuiBox-root css-0"
+          class="MuiBox-root css-wsz5nz"
           src="/src/assets/cart.png"
         />
         <h5
-          class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
         >
           Your Cart is empty
         </h5>
         <div
-          class="MuiButtonGroup-root MuiButtonGroup-contained _btnContainer_e09756 css-1d9bq45-MuiButtonGroup-root"
+          class="MuiButtonGroup-root MuiButtonGroup-contained MuiButtonGroup-horizontal MuiButtonGroup-colorPrimary css-d0cc94-MuiButtonGroup-root"
           role="group"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-firstButton css-12ghmft-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
-            <div
-              class="_container_26cd85 MuiBox-root css-0"
+            <span
+              class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1sh91j5-MuiButton-startIcon"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
                 data-testid="ArrowBackIosIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -76,32 +75,21 @@ exports[`Given BasketPage component:  > when rendered, should match snapshot 1`]
                   d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
                 />
               </svg>
-              <p
-                class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
-              >
-                Go back
-              </p>
-            </div>
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
+            </span>
+            Go back
           </button>
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-lastButton css-12ghmft-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
-            <div
-              class="_container_26cd85 MuiBox-root css-0"
+            Go shopping
+            <span
+              class="MuiButton-icon MuiButton-endIcon MuiButton-iconSizeMedium css-1gulhci-MuiButton-endIcon"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
-              >
-                Go shopping
-              </p>
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
                 data-testid="ArrowForwardIosIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -110,10 +98,7 @@ exports[`Given BasketPage component:  > when rendered, should match snapshot 1`]
                   d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
                 />
               </svg>
-            </div>
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
+            </span>
           </button>
         </div>
       </div>

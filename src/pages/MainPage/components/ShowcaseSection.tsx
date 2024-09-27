@@ -15,12 +15,12 @@ import { fromKeyToName } from '@/utils/fromKeyToName';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 
 const sxStyles: SxStyles = {
-  header: (theme) => ({
+  header: {
     p: 1.5,
     cursor: 'pointer',
     color: 'white',
-    bgcolor: theme.palette.Alert.infoColor
-  }),
+    bgcolor: 'Alert.infoColor'
+  },
   body: {
     px: 1.5,
     py: 3

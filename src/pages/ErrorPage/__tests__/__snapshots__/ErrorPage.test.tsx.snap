@@ -3,28 +3,28 @@
 exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="_container_e09756 MuiBox-root css-0"
+    class="MuiStack-root css-1lnkgqj-MuiStack-root"
   >
     <img
       alt="404"
-      class="_image_e09756 MuiBox-root css-0"
+      class="MuiBox-root css-wsz5nz"
       src="/src/assets/not-found.png"
     />
     <div
-      class="MuiButtonGroup-root MuiButtonGroup-contained _btnContainer_e09756 css-1d9bq45-MuiButtonGroup-root"
+      class="MuiButtonGroup-root MuiButtonGroup-contained MuiButtonGroup-horizontal MuiButtonGroup-colorPrimary css-d0cc94-MuiButtonGroup-root"
       role="group"
     >
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-firstButton css-12ghmft-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
-        <div
-          class="_container_26cd85 MuiBox-root css-0"
+        <span
+          class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1sh91j5-MuiButton-startIcon"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
             data-testid="ArrowBackIosIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -33,32 +33,21 @@ exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] 
               d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
             />
           </svg>
-          <p
-            class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
-          >
-            Go back
-          </p>
-        </div>
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
+        </span>
+        Go back
       </button>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _button_e09756 MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-lastButton css-12ghmft-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
-        <div
-          class="_container_26cd85 MuiBox-root css-0"
+        Go main
+        <span
+          class="MuiButton-icon MuiButton-endIcon MuiButton-iconSizeMedium css-1gulhci-MuiButton-endIcon"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 _text_26cd85  css-ahj2mt-MuiTypography-root"
-          >
-            Go main
-          </p>
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-18w7uxr-MuiSvgIcon-root"
             data-testid="ArrowForwardIosIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -67,10 +56,7 @@ exports[`Given ErrorPage component:  > when rendered, should match snapshot 1`] 
               d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
             />
           </svg>
-        </div>
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
+        </span>
       </button>
     </div>
   </div>
