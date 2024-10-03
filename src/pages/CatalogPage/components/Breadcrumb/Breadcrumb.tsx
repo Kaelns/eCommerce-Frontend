@@ -5,11 +5,11 @@ import { LinkBtn } from '@/components/buttons/LinkBtn';
 import { SxStyles } from '@/shared/types';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
-import { fromKeyToName } from '@/utils/fromKeyToName';
 import { convertSxToArr } from '@/utils/convertSxToArr';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb.helpers';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+import { convertKeyToName } from '@/utils/convertKeyToName';
 
 const sxStyles: SxStyles = {
   btn: (theme) => ({
@@ -49,13 +49,13 @@ export function Breadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps): React.Re
         if (index !== categoriesToRender.length - 1) {
           return (
             <LinkBtn key={key} navigateTo={setCategory(key)} sx={btnSx}>
-              {fromKeyToName(key)}
+              {convertKeyToName(key)}
             </LinkBtn>
           );
         }
         return (
           <Button disabled key={key} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
-            {fromKeyToName(key)}
+            {convertKeyToName(key)}
           </Button>
         );
       })}

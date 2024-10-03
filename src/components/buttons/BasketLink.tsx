@@ -2,7 +2,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { IconButton, Badge } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 import { useToken } from '@/services/hooks/useToken';
 import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';

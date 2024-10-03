@@ -19,10 +19,10 @@ export function convertToFilterParams(filterState: Partial<IFilterState>): IConv
 
   const offset = ((filterState.page ?? 1) - 1) * LIMIT_ON_PAGE;
   const sortObj = sort ? { sort } : {};
-  const filters = [colors, category, price].filter(Boolean);
+  const filtersQuery = [colors, category, price].filter(Boolean);
 
   const parameters = {
-    'filter.query': [...filters],
+    'filter.query': filtersQuery,
     ...search,
     ...sortObj,
     offset

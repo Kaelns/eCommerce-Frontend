@@ -2,7 +2,7 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { Title } from '@/components/typography/Title';
 import { hideAnimation, revealAnimation } from '@/shared/constants';
 import furnitureImg from '@/assets/furniture.webp';

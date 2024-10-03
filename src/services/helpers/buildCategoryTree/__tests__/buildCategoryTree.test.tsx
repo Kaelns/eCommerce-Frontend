@@ -1,4 +1,4 @@
-import { CategoriesObj } from '@/services/ECommerceInitApi.interface';
+import { ICategoriesObj } from '@/services/ECommerceInitApi.interface';
 import {
   initCategories,
   initCategoriesObj,
@@ -23,7 +23,7 @@ describe('Build category tree', () => {
     const categories: Category[] = [kitchenId, servewareOfKitchenId, dinnerwareOfKitchenId, platesOfDinnerwareId].map(
       (id) => initCategoriesObj[id]
     );
-    const categoriesObj: CategoriesObj = convertArrOfIdElemToIdObj(categories);
+    const categoriesObj: ICategoriesObj = convertArrOfIdElemToIdObj(categories);
     const categoriesTree: ICategoryTreeNode[] = [
       {
         id: '5667aecb-b311-4a42-b358-aedc802a28a7',

@@ -7,16 +7,16 @@ import { LoadingFetch } from '@/components/LoadingFetch';
 import { ImgCarousel } from '@/components/ImgCarousel';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { findInCategories } from '@/services/helpers/findInCategories';
-import { PageSkeleton } from '@/components/PageSkeleton';
 import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead';
 import { LANGUAGE } from '@/services/ECommerceInitApi.constants';
 import { ICreateImagesStyles, createImagesMap } from '@/pages/DetailedProductPage/DetailedProductPage.helpers';
 import { SxPropsNotArr, SxStyles } from '@/shared/types';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { useFetch } from '@/hooks/useFetch/useFetch';
-import { fetchProduct } from '@/services/helpers/fetchProduct';
 import { sxMixins } from '@/features/MuiTheme/mixins';
-import { getLightProduct } from '@/services/helpers/getLightProduct';
+import { convertToLightProduct } from '@/services/helpers/convertToLightProduct';
+import { getProductByKeyApi } from '@/services/model/products/getProductByKeyApi';
+import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 
 const sxStyles: SxStyles = {
   modal: {
@@ -77,9 +77,10 @@ export function DetailedProductPage(): React.ReactNode {
     navigate(Paths.ERROR);
   }
 
-  const { data, isLoading, error } = useFetch(fetchProduct, key!);
+  const { data, isLoading, error } = useFetch(getProductByKeyApi, key!);
   const { categories } = useContext(ECommerceContext);
-  const productData = useMemo(() => getLightProduct(data), [data]);
+  const productData = useMemo(() => convertToLightProduct(data), [data]);
+  // TODO change on categoriesObj
   const categoriesNames = useMemo(
     () => findInCategories(categories, productData.categoriesIdArr, true).map((obj) => obj.name[LANGUAGE]),
     [categories, productData.categoriesIdArr]

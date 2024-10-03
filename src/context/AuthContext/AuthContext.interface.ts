@@ -1,5 +1,6 @@
 export interface IAuthTokens {
   token: string;
+  refreshToken: string;
   anonToken: string;
 }
 

@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react';
 import checkPostalCode from '@/features/validation/postalCodeValidation';
 import { INPUTS, AddressPrefix, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
-import { createCustomer } from '@/services/createCustomerApi';
 import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import {
   IInputsValues,
@@ -14,6 +13,7 @@ import { InputReactEvent } from '@/shared/types';
 import { useAlertText } from '@/features/AlertText/useAlertText';
 import { MAX_DATE_DASH, COUNTRY_LIST } from '@/shared/constants';
 import { getPrefix } from '@/features/AuthForms/data/AuthForms.helpers';
+import { createUserApi } from '@/services/model/user/createUserApi';
 
 const INIT_INPUTS_DATA = {
   birthday: MAX_DATE_DASH,
@@ -113,7 +113,7 @@ export const useRegistrationForm = (): IUseRegistrationFormReturn => {
   const handleSubmit = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      await createCustomer(
+      await createUserApi(
         inputsValues,
         setAuthTokens,
         setInputsErrors,

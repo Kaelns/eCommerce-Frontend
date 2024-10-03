@@ -1,6 +1,5 @@
 import TollIcon from '@mui/icons-material/Toll';
 import { AppBar, Box, Drawer, useMediaQuery, useTheme } from '@mui/material';
-import { Outlet } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import { Stack } from '@mui/system';
 import { Navbar } from '@/layout/Navbar/Navbar';
@@ -36,26 +35,23 @@ export function Header(): React.ReactNode {
   }, []);
 
   return (
-    <>
-      <AppBar position="static" color="default" elevation={2}>
-        <SectionContainer sx={sxStyles.headerContainer}>
-          <Stack direction="row" gap={4}>
-            <TollIcon color="primary" fontSize="large" />
-            {!isMatchesMedia && <Navbar navbarType={Navbars.HEADER} />}
-          </Stack>
-          <Box>
-            <BasketLink />
-            <UserPopover />
-            {isMatchesMedia && <Burger onClick={openDrawer} />}
-            <Drawer anchor="right" open={isOpen} onClose={closeDrawer}>
-              <Box sx={sxStyles.burgerMenu}>
-                <Navbar customOrientation="vertical" navbarType={Navbars.HEADER_BURGER} onLinkClick={closeDrawer} />
-              </Box>
-            </Drawer>
-          </Box>
-        </SectionContainer>
-      </AppBar>
-      <Outlet />
-    </>
+    <AppBar position="static" color="default" elevation={2}>
+      <SectionContainer sx={sxStyles.headerContainer}>
+        <Stack direction="row" gap={4}>
+          <TollIcon color="primary" fontSize="large" />
+          {!isMatchesMedia && <Navbar navbarType={Navbars.HEADER} />}
+        </Stack>
+        <Box>
+          <BasketLink />
+          <UserPopover />
+          {isMatchesMedia && <Burger onClick={openDrawer} />}
+          <Drawer anchor="right" open={isOpen} onClose={closeDrawer}>
+            <Box sx={sxStyles.burgerMenu}>
+              <Navbar customOrientation="vertical" navbarType={Navbars.HEADER_BURGER} onLinkClick={closeDrawer} />
+            </Box>
+          </Drawer>
+        </Box>
+      </SectionContainer>
+    </AppBar>
   );
 }

@@ -1,6 +1,6 @@
 import { Category } from '@commercetools/platform-sdk';
 import { ICategoryTreeNode } from '@/shared/types';
-import { CategoriesObj } from '@/services/ECommerceInitApi.interface';
+import { ICategoriesObj } from '@/services/ECommerceInitApi.interface';
 import { convertArrOfIdElemToIdObj } from '@/utils/convertArrOfIdElemToIdObj';
 
 export const initCategories: Category[] = [
@@ -582,7 +582,7 @@ export const initCategories: Category[] = [
   }
 ];
 
-export const initCategoriesObj: CategoriesObj = convertArrOfIdElemToIdObj(initCategories);
+export const initCategoriesObj: ICategoriesObj = convertArrOfIdElemToIdObj(initCategories);
 
 export const initCategoriesTree: ICategoryTreeNode[] = [
   {

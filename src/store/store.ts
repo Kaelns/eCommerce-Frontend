@@ -1,13 +1,19 @@
-import { ThunkAction, UnknownAction, configureStore } from '@reduxjs/toolkit';
+import { ThunkAction, UnknownAction, combineSlices, configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { counterReducer } from '@/store/counter/counter.slice';
 import { alertSlice } from '@/features/AlertText/alert.slice';
+import { router } from '@/router';
+import { authSlice } from '@/store/slices/auth.slice';
+import { counterReducer } from '@/store/slices/counter.slice';
+
+const extraArgument = {
+  router
+};
 
 export const store = configureStore({
-  reducer: {
-    [alertSlice.name]: alertSlice.reducer,
+  reducer: combineSlices(alertSlice, authSlice, {
     counter: counterReducer
-  }
+  }),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ thunk: { extraArgument } })
 });
 
 export type IAppState = ReturnType<typeof store.getState>;

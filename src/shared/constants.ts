@@ -9,6 +9,21 @@ export const MAX_DATE_DASH = dayjs(getMaxDate()).format(DATE_DASH);
 export const MAX_DATE = dayjs(getMaxDate());
 export const MIN_DATE = dayjs(getMinDate());
 
+export enum Paths {
+  MAIN = '/',
+  USER = '/user',
+  ERROR = '/error',
+  LOGIN = '/login',
+  BASKET = '/basket',
+  CATALOG = '/catalog',
+  ABOUT_US = '/about-us',
+  NONEXISTENT = '*',
+  REGISTRATION = '/registration',
+  CATALOG_CATEGORY = ':category',
+  DETAILED_PRODUCT = '/detailed-product',
+  DETAILED_PRODUCT_ID = ':id'
+}
+
 export enum Severity {
   SUCCESS = 'success',
   WARNING = 'warning',

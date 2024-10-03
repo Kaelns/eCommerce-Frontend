@@ -3,7 +3,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CategoryIcon from '@mui/icons-material/Category';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { UserAvatarPopover } from '@/components/UserAvatarPopover';
 import { TextInlineElem } from '@/components/typography/TextInlineElem';
 

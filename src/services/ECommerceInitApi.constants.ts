@@ -1,15 +1,3 @@
-export const PROJECT_KEY = 'radioreactive';
-export const CLIENT_ID = 'Cdjbr1fd1tHKFdxOxWo4tTRX';
-export const CLIENT_SECRET = 'lr77mlIQrnfNafkQjcxJgRvrvsYyAk6A';
-export const AUTH_HOST = 'https://auth.europe-west1.gcp.commercetools.com';
-export const API_HOST = 'https://api.europe-west1.gcp.commercetools.com';
-export const SCOPES = [
-  'manage_project:radioreactive',
-  'view_audit_log:radioreactive',
-  'view_api_clients:radioreactive',
-  'manage_api_clients:radioreactive'
-];
-
 export const COUNTRY = 'US';
 export const LANGUAGE = 'en-US';
 export const MONEY_SYMBOL = '$';

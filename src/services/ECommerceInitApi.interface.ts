@@ -8,7 +8,7 @@ export interface IAddress {
   streetName: string;
 }
 
-export interface ICreateCustomerParams {
+export interface ICreateUserParams {
   firstName: string;
   lastName: string;
   email: string;
@@ -21,9 +21,9 @@ export interface ICreateCustomerParams {
   defaultShippingAddress?: number;
 }
 
-export type CategoriesObj = Record<Category['id'], Category>;
+export type ICategoriesObj = Record<Category['id'], Category>;
 export interface ICategories {
   categoriesTree: ICategoryTreeNode[];
-  categoriesObj: CategoriesObj;
+  categoriesObj: ICategoriesObj;
   categories: Category[];
 }

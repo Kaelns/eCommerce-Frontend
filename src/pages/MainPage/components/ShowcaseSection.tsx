@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { LoadingFetch } from '@/components/LoadingFetch';
-import { PageSkeleton } from '@/components/PageSkeleton';
-import { Paths } from '@/features/Router/Router.constants';
+import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
+import { Paths } from '@/shared/constants';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
 import { SxStyles } from '@/shared/types';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { fetchCategoryProducts } from '@/pages/MainPage/MainPage.helpers';
-import { fromKeyToName } from '@/utils/fromKeyToName';
+import { convertKeyToName } from '@/utils/convertKeyToName';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 
 const sxStyles: SxStyles = {
@@ -52,7 +52,7 @@ export function ShowcaseSection({ categoryKey }: { categoryKey: string }): React
   return (
     <Stack component="section" gap={2}>
       <Paper elevation={5} onClick={setCategoryAndRedirect} sx={sxStyles.header}>
-        <TypographyBold>{fromKeyToName(categoryKey)}</TypographyBold>
+        <TypographyBold>{convertKeyToName(categoryKey)}</TypographyBold>
       </Paper>
       <Paper sx={sxStyles.body}>
         <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>

@@ -4,12 +4,10 @@ import { Grid, Stack } from '@mui/system';
 import { Title } from '@/components/typography/Title';
 import { SortBy } from '@/pages/CatalogPage/components/SortBy';
 import { LoadingFetch } from '@/components/LoadingFetch';
-import { fromKeyToName } from '@/utils/fromKeyToName';
-import { fetchProducts } from '@/services/helpers/fetchProducts';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { EMPTY_DATA_PRODUCTS } from '@/services/data/productsResponce/productsResponce.constants';
 import { ProductPagination } from '@/pages/CatalogPage/components/ProductPagination';
-import { PageSkeleton } from '@/components/PageSkeleton';
+import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce/useDebounce';
 import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';
@@ -17,6 +15,8 @@ import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constant
 import { useFetch } from '@/hooks/useFetch/useFetch';
 import { useToken } from '@/services/hooks/useToken';
 import { SxPropsNotArr } from '@/shared/types';
+import { getProductsApi } from '@/services/model/products/getProductsApi';
+import { convertKeyToName } from '@/utils/convertKeyToName';
 
 const sxProductWrapper: SxPropsNotArr = {
   display: 'flex',
@@ -27,7 +27,7 @@ const sxProductWrapper: SxPropsNotArr = {
 export function Products(): React.ReactNode {
   const { filterState } = useContext(FilterReducerContext);
   const filterStateDebounce = useDebounce(filterState);
-  const { data = EMPTY_DATA_PRODUCTS, isLoading, error } = useFetch(fetchProducts, filterStateDebounce);
+  const { data = EMPTY_DATA_PRODUCTS, isLoading, error } = useFetch(getProductsApi, filterStateDebounce);
   const { products, amount } = data;
 
   const token = useToken();
@@ -45,7 +45,7 @@ export function Products(): React.ReactNode {
             mb={2}
           >
             <Box>
-              <Title variant="h4">{fromKeyToName(filterState.categoryKey)}</Title>
+              <Title variant="h4">{convertKeyToName(filterState.categoryKey)}</Title>
               <Typography>{amount} products</Typography>
             </Box>
 

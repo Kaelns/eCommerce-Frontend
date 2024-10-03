@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { BoxProps, Stack, StackProps } from '@mui/system';
 import { ProductProjection } from '@commercetools/platform-sdk';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { Discount } from '@/components/typography/Discount';
 import { ImgLoad } from '@/components/ImgLoad';
@@ -12,7 +12,7 @@ import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketPr
 import { SxStyles } from '@/shared/types';
 import { sxMixins } from '@/features/MuiTheme/mixins';
 import { IBasketResponce } from '@/services/helpers/fetchBasket/fetchBasket.interface';
-import { getLightProduct } from '@/services/helpers/getLightProduct';
+import { convertToLightProduct } from '@/services/helpers/convertToLightProduct';
 
 const ICON_WIDTH = '2.2rem';
 const ICON_WIDTH_TABLET = '2.8rem';
@@ -90,7 +90,7 @@ export function ProductCard({
   imgHeight = IMG_HEIGHT,
   containerMaxWidth = CONTAINER_MAX_WIDTH
 }: IProductCardProps): React.ReactNode {
-  const data = getLightProduct(product);
+  const data = convertToLightProduct(product);
   const pathToProduct = `${Paths.DETAILED_PRODUCT}/${data.key}`;
   const shortedDescription = data.description.slice(0, data.description.indexOf(' ', 90));
 

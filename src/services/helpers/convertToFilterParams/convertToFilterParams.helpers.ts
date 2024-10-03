@@ -8,7 +8,7 @@ import {
 } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
 import { findInCategories } from '@/services/helpers/findInCategories';
 import { IFilterColorsKeys, IFilterColorsState } from '@/features/FilterForm/FilterForm.types';
-import { FilterColors } from '@/features/FilterForm/FilterForm.constants';
+// import { FilterColors } from '@/features/FilterForm/FilterForm.constants';
 
 export function convertSort(typeOfSort: Sort | undefined): string {
   switch (typeOfSort) {
@@ -66,14 +66,15 @@ export function convertColors(colors: IFilterColorsState | undefined): string {
   const colorsEntries = Object.entries(colors) as [IFilterColorsKeys, boolean][];
   const value = colorsEntries
     .filter(([, val]) => val)
-    .reduce((acc, [key]) => (acc ? `${acc}, "${FilterColors[key]}"` : `"${FilterColors[key]}"`), '');
-  return value ? `variants.attributes.color-filter.key: ${value}` : '';
+    .reduce((acc, [key]) => (acc ? `${acc}, "${key}"` : `"${key}"`), '');
+  return value ? `variants.attributes.color:${value}` : '';
 }
 
 export function convertCategories(categoryKey: string | undefined): string {
   if (!categoryKey) {
     return '';
   }
+  // FIXME getCategoriesObj
   const category = categoryKey !== NO_CATEGORY ? findInCategories(eCommerceAPI.categories, [categoryKey])[0] : '';
   return category ? `categories.id: "${category.id}"` : '';
 }

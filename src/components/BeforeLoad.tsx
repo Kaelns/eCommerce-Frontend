@@ -1,4 +1,4 @@
-import { PageSkeleton } from '@/components/PageSkeleton';
+import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 import { PropsWithChildren } from '@/shared/types';
 
 interface IBeforeLoadProps {

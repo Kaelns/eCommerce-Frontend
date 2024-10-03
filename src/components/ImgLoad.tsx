@@ -2,7 +2,7 @@ import { Box, BoxProps, SxProps } from '@mui/material';
 import { useState } from 'react';
 import { Stack, StackProps, Theme } from '@mui/system';
 import { grey } from '@mui/material/colors';
-import { ImgSkeleton } from '@/components/ImgSkeleton';
+import { ImgSkeleton } from '@/components/skeleton/ImgSkeleton';
 import { convertSxToArr } from '@/utils/convertSxToArr';
 import { SxStyles } from '@/shared/types';
 import { sxMixins } from '@/features/MuiTheme/mixins';

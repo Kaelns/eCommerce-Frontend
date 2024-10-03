@@ -2,7 +2,7 @@ import React from 'react';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { Stack, SxProps } from '@mui/system';
 import { AddressSection } from '@/features/AuthForms/components/AddressSection';
-import { CredentialBlock } from '@/features/AuthForms/components/CredentialBlock';
+import { LoginBlock } from '@/features/AuthForms/components/LoginBlock';
 import { Title } from '@/components/typography/Title';
 import { INPUTS, AddressPrefix } from '@/features/AuthForms/data/AuthForms.constants';
 import { DateInput } from '@/features/AuthForms/components/DateInput';
@@ -52,7 +52,7 @@ export default function RegistrationForm(): React.ReactNode {
         minDate={MIN_DATE}
         setInputs={data.setInputsValues}
       />
-      <CredentialBlock onChangeFunction={data.handleOnChangeInput} inputsErrors={data.inputsErrors} />
+      <LoginBlock onChangeFunction={data.handleOnChangeInput} inputsErrors={data.inputsErrors} />
       <Title variant="h6" sx={sxTitle}>
         Shipping Address
       </Title>

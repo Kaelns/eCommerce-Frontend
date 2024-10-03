@@ -33,8 +33,10 @@ export function UserPopover(): React.ReactNode {
   };
 
   const logOut = async (): Promise<void> => {
-    const anonToken = await eCommerceAPI.logoutCustomer();
-    setAuthTokens({ anonToken, token: '' });
+    const { token, refreshToken, expirationTime } = await eCommerceAPI.logoutUser();
+    // TODO remove
+    console.log('Anon token: ', refreshToken, expirationTime);
+    setAuthTokens({ anonToken: token, token: '', refreshToken: '' });
   };
 
   return (

@@ -8,12 +8,12 @@ import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
 import { ValidationInput } from '@/features/AuthForms/components/ValidationInput';
 import { HandleOnChangeInput, IInputsErrors } from '@/features/AuthForms/data/AuthForms.types';
 
-interface ICredentialBlock {
+interface ILoginBlock {
   onChangeFunction: HandleOnChangeInput;
   inputsErrors: IInputsErrors;
 }
 
-export function CredentialBlock({ onChangeFunction, inputsErrors }: ICredentialBlock): React.ReactNode {
+export function LoginBlock({ onChangeFunction, inputsErrors }: ILoginBlock): React.ReactNode {
   const [showPassword, setShowPassword] = useState(false);
 
   const isEmailError = !!inputsErrors[INPUTS.email.name];

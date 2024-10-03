@@ -1,9 +1,9 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionSummary, Button, AccordionDetails, Box } from '@mui/material';
 import { AccordionTree } from '@/features/FilterForm/components/AccordionTree';
-import { fromKeyToName } from '@/utils/fromKeyToName';
 import { ICategoryTreeNode, SxStyles } from '@/shared/types';
 import { IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
+import { convertKeyToName } from '@/utils/convertKeyToName';
 
 const sxStyles: SxStyles = {
   accordionPadding: {
@@ -57,7 +57,7 @@ export function AccordionItem({
     >
       <AccordionSummary expandIcon={isHasChildren ? <ExpandMoreIcon /> : ''} sx={sxStyles.accordionPadding}>
         <Button onClick={handleClickedCategory(categoryKey)} sx={[sxStyles.btn, removeParentDeactivation]}>
-          {fromKeyToName(categoryKey)}
+          {convertKeyToName(categoryKey)}
         </Button>
       </AccordionSummary>
       {isHasChildren && (

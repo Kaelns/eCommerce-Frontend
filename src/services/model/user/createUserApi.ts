@@ -1,13 +1,13 @@
 import { ValidationErrors } from '@/features/validation/data/validation.enum';
 import { eCommerceAPI } from '@/services/ECommerceAPI';
-import { IAddress, ICreateCustomerParams } from '@/services/ECommerceInitApi.interface';
+import { IAddress, ICreateUserParams } from '@/services/ECommerceInitApi.interface';
 import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
 import { IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
 import { IAuthTokens } from '@/context/AuthContext/AuthContext.interface';
 import { ShowAlertText } from '@/features/AlertText/useAlertText';
 import { AlertsAPIText, Severity } from '@/shared/constants';
 
-export async function createCustomer(
+export async function createUserApi(
   inputsValues: IInputsValues,
   setAuthTokens: React.Dispatch<React.SetStateAction<IAuthTokens>> | (() => void),
   setInputsError: React.Dispatch<React.SetStateAction<IInputsErrors>>,
@@ -44,7 +44,7 @@ export async function createCustomer(
         }
       ];
 
-  const createCustomerDate: ICreateCustomerParams = {
+  const createCustomerDate: ICreateUserParams = {
     firstName: inputsValues.firstName!,
     lastName: inputsValues.lastName!,
     email: inputsValues.email!,
@@ -64,11 +64,11 @@ export async function createCustomer(
 
   setIsShowCircleProgress(true);
   try {
-    await eCommerceAPI.createCustomer(createCustomerDate);
-    eCommerceAPI.logoutCustomer();
-    const token = await eCommerceAPI.authenticateCustomer(inputsValues.email!, inputsValues.password!);
-    setAuthTokens((prev) => ({ ...prev, token }));
-    await eCommerceAPI.createCart(token);
+    const { token, refreshToken, expirationTime } = await eCommerceAPI.createUser(createCustomerDate);
+    console.log('User creation', token, refreshToken, expirationTime);
+    // const token = await eCommerceAPI.authenticateUser(inputsValues.email!, inputsValues.password!);
+    setAuthTokens((prev) => ({ ...prev, token, refreshToken: refreshToken ?? '' }));
+    await eCommerceAPI.createCart();
     showAlert(AlertsAPIText.USER_CREATE_SUCCESS, Severity.SUCCESS);
   } catch (error) {
     console.warn(error);

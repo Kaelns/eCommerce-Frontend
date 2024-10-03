@@ -20,7 +20,7 @@ const MOCK_PRODUCT: IProduct = {
 
 // TODO pure function
 
-export function getLightProduct(product: ProductProjection | undefined): IProduct {
+export function convertToLightProduct(product: ProductProjection | undefined): IProduct {
   if (!product) {
     return MOCK_PRODUCT;
   }

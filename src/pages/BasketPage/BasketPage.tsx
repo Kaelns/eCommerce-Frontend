@@ -6,13 +6,13 @@ import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscoun
 import { ErrorComponent } from '@/components/ErrorComponent';
 import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket';
 import { LoadingFetch } from '@/components/LoadingFetch';
-import { PageSkeleton } from '@/components/PageSkeleton';
+import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 import { CardPrice } from '@/components/CardPrice';
 import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
 import { BtnCasual } from '@/components/buttons/BtnCasual';
 import { Promocode } from '@/pages/BasketPage/components/Promocode';
 import { SxStyles } from '@/shared/types';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { Title } from '@/components/typography/Title';
 import cartImg from '@/assets/cart.png';
 

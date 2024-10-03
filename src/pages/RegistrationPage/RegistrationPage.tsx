@@ -1,7 +1,7 @@
 import { Button, Chip, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
-import { Paths } from '@/features/Router/Router.constants';
+import { Paths } from '@/shared/constants';
 import { Title } from '@/components/typography/Title';
 import RegistrationForm from '@/features/AuthForms/RegistrationForm/RegistrationForm';
 

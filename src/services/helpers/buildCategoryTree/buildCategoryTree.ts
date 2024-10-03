@@ -1,8 +1,8 @@
 import { Category } from '@commercetools/platform-sdk';
 import { ICategoryTreeNode } from '@/shared/types';
-import { CategoriesObj } from '@/services/ECommerceInitApi.interface';
+import { ICategoriesObj } from '@/services/ECommerceInitApi.interface';
 
-export function buildCategoryTree(categories: Category[], categoriesObj: CategoriesObj): ICategoryTreeNode[] {
+export function buildCategoryTree(categories: Category[], categoriesObj: ICategoriesObj): ICategoryTreeNode[] {
   const rootArr: ICategoryTreeNode[] = [];
   let rootOrChildrenArr = rootArr;
 

@@ -9,7 +9,8 @@ describe('Given LoginPage component: ', () => {
     useMoviesSpy.mockReturnValue({
       authTokens: {
         token: '',
-        anonToken: ''
+        anonToken: '',
+        refreshToken: ''
       },
       setAuthTokens: vi.fn()
     });
