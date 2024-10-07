@@ -1,5 +1,5 @@
 import { Theme, SystemStyleObject } from '@mui/system';
-import { Image } from '@commercetools/platform-sdk';
+import { ByProjectKeyProductProjectionsSearchRequestBuilder, Image } from '@commercetools/platform-sdk';
 
 export type PropsWithChildren<P = unknown> = P & { children: React.ReactNode };
 
@@ -53,4 +53,19 @@ export interface IAutocompleteOptions {
   label: string;
   code: string;
   postalCodePattern: RegExp;
+}
+
+export type IQueryProductsArgs = NonNullable<
+  NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']
+>;
+
+export type ISrcsetPxAsc = [string, `${number}w`][];
+export function isISrcsetPxAsc(elem: unknown): elem is ISrcsetPxAsc {
+  return (
+    Array.isArray(elem) &&
+    Array.isArray(elem[0]) &&
+    elem[0].length === 2 &&
+    typeof elem[0][0] === 'string' &&
+    typeof elem[0][1] === 'string'
+  );
 }

@@ -13,9 +13,9 @@ import {
 import { TokenStore, UserAuthOptions } from '@commercetools/sdk-client-v2';
 import { ApiClient } from '@/services/api/ApiClient';
 import { ICreateUserParams } from '@/services/ECommerceInitApi.interface';
-import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
 import { LIMIT_ON_PAGE } from '@/services/ECommerceInitApi.constants';
 import { filterUndefinedProperties } from '@/utils/filterUndefinedProperties';
+import { IQueryProductsArgs } from '@/shared/types';
 
 class ECommerceAPI {
   private api: ApiClient;
@@ -70,15 +70,16 @@ class ECommerceAPI {
   }
 
   async getProductsAll(
-    parameters: IConvertToFilterParamsReturn,
-    amount = LIMIT_ON_PAGE
+    parameters: IQueryProductsArgs,
+    amount?: number | 'all'
   ): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> {
-    return this.api
-      .getApiRoot()
-      .productProjections()
-      .search()
-      .get({ queryArgs: { limit: amount, ...parameters } })
-      .execute();
+    const queryArgs: IQueryProductsArgs = parameters;
+    if (!amount) {
+      queryArgs.limit = LIMIT_ON_PAGE;
+    } else if (amount !== 'all') {
+      queryArgs.limit = amount;
+    }
+    return this.api.getApiRoot().productProjections().search().get({ queryArgs }).execute();
   }
 
   public async getProduct(key: string): Promise<ClientResponse<ProductProjection>> {

@@ -13,12 +13,14 @@ import { SxStyles } from '@/shared/types';
 import { sxMixins } from '@/features/MuiTheme/mixins';
 import { IBasketResponce } from '@/services/helpers/fetchBasket/fetchBasket.interface';
 import { convertToLightProduct } from '@/services/helpers/convertToLightProduct';
+import { SRCSET_API } from '@/services/ECommerceInitApi.constants';
 
 const ICON_WIDTH = '2.2rem';
 const ICON_WIDTH_TABLET = '2.8rem';
 const BORDER_RADIUS = '1.5rem';
 const IMG_SELECTOR = 'product-card__img';
 
+const MAX_IMG_SIZE = 400;
 const IMG_HEIGHT: BoxProps['height'] = { zero: 400, laptop: 200 };
 const CONTAINER_MAX_WIDTH: StackProps['maxWidth'] = { zero: 400, laptop: 300 };
 
@@ -80,19 +82,26 @@ const sxStyles: SxStyles = {
 interface IProductCardProps {
   product: ProductProjection;
   cartData?: IBasketResponce;
-  imgHeight?: BoxProps['height'];
+  imgHeight?: {
+    height: BoxProps['height'];
+    maxSize: number;
+  };
   containerMaxWidth?: StackProps['maxWidth'];
 }
 
 export function ProductCard({
   product,
   cartData,
-  imgHeight = IMG_HEIGHT,
+  imgHeight = {
+    height: IMG_HEIGHT,
+    maxSize: MAX_IMG_SIZE
+  },
   containerMaxWidth = CONTAINER_MAX_WIDTH
 }: IProductCardProps): React.ReactNode {
   const data = convertToLightProduct(product);
   const pathToProduct = `${Paths.DETAILED_PRODUCT}/${data.key}`;
   const shortedDescription = data.description.slice(0, data.description.indexOf(' ', 90));
+  const { height, maxSize } = imgHeight;
 
   return (
     <LinkRouter to={pathToProduct} display="flex" justifyContent="center" height={1} width={1}>
@@ -110,7 +119,14 @@ export function ProductCard({
         )}
 
         <Discount discount={data.discount} sx={sxStyles.discount} />
-        <ImgLoad height={imgHeight} src={data.imageUrl} alt={data.name} className={IMG_SELECTOR} />
+
+        <ImgLoad
+          height={height}
+          src={data.imageUrl}
+          alt={data.name}
+          className={IMG_SELECTOR}
+          srcset={{ srcSetArr: SRCSET_API, maxSize }}
+        />
 
         <Box>
           <TypographyBold variant="subtitle1" sx={sxStyles.title}>

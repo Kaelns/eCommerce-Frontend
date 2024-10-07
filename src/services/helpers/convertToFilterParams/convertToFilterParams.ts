@@ -7,9 +7,9 @@ import {
   convertColors,
   convertCategories
 } from '@/services/helpers/convertToFilterParams/convertToFilterParams.helpers';
-import { IConvertToFilterParamsReturn } from '@/services/helpers/convertToFilterParams/convertToFilterParams.interface';
+import { IQueryProductsArgs } from '@/shared/types';
 
-export function convertToFilterParams(filterState: Partial<IFilterState>): IConvertToFilterParamsReturn {
+export function convertToFilterParams(filterState: Partial<IFilterState>): IQueryProductsArgs {
   const sort = convertSort(filterState.sort);
   const search = convertSearch(filterState.search);
 
@@ -21,12 +21,12 @@ export function convertToFilterParams(filterState: Partial<IFilterState>): IConv
   const sortObj = sort ? { sort } : {};
   const filtersQuery = [colors, category, price].filter(Boolean);
 
-  const parameters = {
+  const queryArgs = {
     'filter.query': filtersQuery,
     ...search,
     ...sortObj,
     offset
   };
 
-  return parameters;
+  return queryArgs;
 }

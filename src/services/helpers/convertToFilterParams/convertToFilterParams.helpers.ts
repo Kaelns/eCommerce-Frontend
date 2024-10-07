@@ -67,7 +67,7 @@ export function convertColors(colors: IFilterColorsState | undefined): string {
   const value = colorsEntries
     .filter(([, val]) => val)
     .reduce((acc, [key]) => (acc ? `${acc}, "${key}"` : `"${key}"`), '');
-  return value ? `variants.attributes.color:${value}` : '';
+  return value ? `variants.attributes.color-filter.key: ${value}` : '';
 }
 
 export function convertCategories(categoryKey: string | undefined): string {

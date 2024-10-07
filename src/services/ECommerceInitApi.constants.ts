@@ -1,3 +1,5 @@
+import { ISrcsetPxAsc } from '@/shared/types';
+
 export const COUNTRY = 'US';
 export const LANGUAGE = 'en-US';
 export const MONEY_SYMBOL = '$';
@@ -7,10 +9,8 @@ export const FRACTION_DOZENS = 10 ** FRACTION_DIGITS;
 
 export const PROMOCODES = ['minus10', 'minus15'];
 
-export const SrcsetApi = [
-  ['-thumb', '50w'],
+export const SRCSET_API: ISrcsetPxAsc = [
   ['-small', '150w'],
   ['-medium', '400w'],
-  ['-large', '700w'],
-  ['-zoom', '1400w']
-];
+  ['-large', '1024w'] // actual postfix = 700px, but there are no larger sizes except original
+] as const;

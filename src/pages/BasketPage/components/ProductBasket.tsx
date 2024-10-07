@@ -5,7 +5,7 @@ import { TypographyBold } from '@/components/typography/TypographyBold';
 import { Discount } from '@/components/typography/Discount';
 import { CardPrice } from '@/components/CardPrice';
 import { Quantity } from '@/pages/BasketPage/components/Quantity';
-import { FRACTION_DIGITS } from '@/services/ECommerceInitApi.constants';
+import { FRACTION_DIGITS, SRCSET_API } from '@/services/ECommerceInitApi.constants';
 import { BasketState, IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
 import { IBasketProduct, SxStyles } from '@/shared/types';
 import { sxMixins } from '@/features/MuiTheme/mixins';
@@ -13,6 +13,7 @@ import { ImgLoad } from '@/components/ImgLoad';
 
 const IMG_SELECTOR = 'product-basket__img';
 const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };
+const MAX_IMG_SIZE = 300;
 
 const sxStyles: SxStyles = {
   container: (theme) => ({
@@ -77,14 +78,22 @@ const sxStyles: SxStyles = {
 interface IProductBasketProps {
   productData: IBasketProduct;
   dispatchBasketProducts: React.Dispatch<IBasketAction>;
-  imgHeight?: BoxProps['height'];
+  imgHeight?: {
+    height: BoxProps['height'];
+    maxSize: number;
+  };
 }
 
 export function ProductBasket({
   productData,
   dispatchBasketProducts,
-  imgHeight = IMG_HEIGHT
+  imgHeight = {
+    height: IMG_HEIGHT,
+    maxSize: MAX_IMG_SIZE
+  }
 }: IProductBasketProps): React.ReactNode {
+  const { height, maxSize } = imgHeight;
+
   const handleDelete = (): void => {
     dispatchBasketProducts({ type: BasketState.DELETE, payload: { id: productData.id } });
   };
@@ -97,10 +106,11 @@ export function ProductBasket({
       <Discount discount={productData.discount} sx={sxStyles.discount} />
 
       <ImgLoad
-        height={imgHeight}
+        height={height}
         src={productData.imageUrl}
         alt={productData.name}
         containerStyles={sxStyles.column1}
+        srcset={{ srcSetArr: SRCSET_API, maxSize }}
         className={IMG_SELECTOR}
       />
 

@@ -9,9 +9,4 @@ export interface IConvertSearchReturn {
   fuzzyLevel?: number;
 }
 
-export type IConvertToFilterParamsReturn = IConvertSearchReturn & {
-  sort?: string;
-  'filter.query': string[];
-};
-
 export type IConvertToFilter = typeof convertToFilterParams;

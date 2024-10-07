@@ -1,11 +1,12 @@
 import { Box, BoxProps, SxProps } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Stack, StackProps, Theme } from '@mui/system';
 import { grey } from '@mui/material/colors';
 import { ImgSkeleton } from '@/components/skeleton/ImgSkeleton';
 import { convertSxToArr } from '@/utils/convertSxToArr';
-import { SxStyles } from '@/shared/types';
+import { ISrcsetPxAsc, SxStyles } from '@/shared/types';
 import { sxMixins } from '@/features/MuiTheme/mixins';
+import { createSrcset } from '@/utils/createSrcset';
 
 const sxStyles: SxStyles = {
   container: {
@@ -24,21 +25,45 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface IImgLoadProps extends BoxProps {
+interface IImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
   src: string;
   alt: string;
-  height: StackProps['height'];
+  height?: T;
+  srcset?: T extends number
+    ? { srcSetArr: ISrcsetPxAsc }
+    : {
+        srcSetArr: ISrcsetPxAsc;
+        maxSize: number | 'unlimited';
+      };
   containerStyles?: SxProps<Theme>;
 }
 
-export function ImgLoad({ height, onClick, sx = {}, containerStyles = {}, ...props }: IImgLoadProps): React.ReactNode {
+export function ImgLoad<T extends StackProps['height']>({
+  src,
+  height,
+  srcset,
+  onClick,
+  sx = {},
+  containerStyles = {},
+  ...props
+}: IImgLoadProps<T>): React.ReactNode {
   const [isImgLoading, setIsImgLoading] = useState(true);
+  const [srcSetOfImg, setSrcSetOfImg] = useState('');
 
   const handleOnImgLoad = (): void => {
     setIsImgLoading(false);
   };
 
-  // TODO srcset
+  // TODO slice srcSetArr for max height and add isCreateSrcSet
+  useEffect(() => {
+    if (srcset) {
+      if (typeof height === 'number') {
+        setSrcSetOfImg(createSrcset(src, srcset.srcSetArr, height));
+      } else if ('maxSize' in srcset) {
+        setSrcSetOfImg(createSrcset(src, srcset.srcSetArr, srcset.maxSize));
+      }
+    }
+  }, [height, src, srcset]);
 
   return (
     <Stack
@@ -51,6 +76,8 @@ export function ImgLoad({ height, onClick, sx = {}, containerStyles = {}, ...pro
       <ImgSkeleton sx={[sxStyles.skeleton, sxMixins.animation(), !isImgLoading && sxMixins.invisible]} />
       <Box
         component="img"
+        src={src}
+        srcSet={srcSetOfImg}
         loading="lazy"
         onLoad={handleOnImgLoad}
         sx={[sxStyles.img, sxMixins.animation(), isImgLoading && sxMixins.invisible, ...convertSxToArr(sx)]}

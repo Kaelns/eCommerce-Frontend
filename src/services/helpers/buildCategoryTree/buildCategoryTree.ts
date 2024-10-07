@@ -6,8 +6,6 @@ export function buildCategoryTree(categories: Category[], categoriesObj: ICatego
   const rootArr: ICategoryTreeNode[] = [];
   let rootOrChildrenArr = rootArr;
 
-  console.log(categories.length);
-
   if (!categories.length) {
     return rootArr;
   }
@@ -36,8 +34,6 @@ export function buildCategoryTree(categories: Category[], categoriesObj: ICatego
       rootOrChildrenArr.push(newObjCategory);
     }
   });
-
-  console.log(rootArr);
 
   return rootArr;
 }
