@@ -1,7 +1,7 @@
-import { FRACTION_DIGITS } from '@/services/ECommerceInitApi.constants';
-import { IBasketProducts } from '@/shared/types';
+import type { ICartProducts } from '@/shared/types';
+import { FRACTION_DIGITS } from '@/services/ecommerce/constants';
 
-export function calculatePrice(products: IBasketProducts): number {
+export function calculatePrice(products: ICartProducts): number {
   const finalPrice = Object.values(products).reduce((acc, productData) => {
     const { discountedPrice, price, quantity } = productData;
     const calcPrice = (discountedPrice || price) * quantity;

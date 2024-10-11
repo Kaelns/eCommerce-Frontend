@@ -1,5 +1,4 @@
-import { NavbarPaths } from '@/layout/Navbar/Navbar.types';
-import { useAuthContext } from '@/context/AuthContext/useAuthContext';
+import type { NavbarPaths } from '@/layout/Navbar/Navbar.types';
 import {
   Navbars,
   headerPaths,
@@ -7,6 +6,8 @@ import {
   authorizedUserPaths,
   nonAuthorizedUserPaths
 } from '@/layout/Navbar/Navbar.constants';
+import { useAppSelector } from '@/store/redux';
+import { selectIsLoggedAuth } from '@/store/slices/auth.slice';
 
 interface IUseNavbarReturn {
   navPaths: NavbarPaths;
@@ -14,7 +15,7 @@ interface IUseNavbarReturn {
 }
 
 export function useNavbar(typeOfNavbar: Navbars): IUseNavbarReturn {
-  const { authTokens } = useAuthContext();
+  const isLogged = useAppSelector(selectIsLoggedAuth);
 
   let navPaths: NavbarPaths = headerPaths;
   let orientation: 'vertical' | 'horizontal' = 'horizontal';
@@ -27,7 +28,7 @@ export function useNavbar(typeOfNavbar: Navbars): IUseNavbarReturn {
       navPaths = headerBurgerPaths;
       break;
     case Navbars.USER_POPOVER:
-      navPaths = authTokens.token ? authorizedUserPaths : nonAuthorizedUserPaths;
+      navPaths = isLogged ? authorizedUserPaths : nonAuthorizedUserPaths;
       orientation = 'vertical';
       break;
     default:

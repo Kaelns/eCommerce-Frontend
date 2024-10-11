@@ -1,7 +1,8 @@
-import { IFilterColorsKeys } from '@/features/FilterForm/FilterForm.types';
+import type { IFilterColorsKeys } from '@/features/components/FilterForm/FilterForm.types';
 import { INITIAL_FORM_VALUE, NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
-import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { IAction, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
+import type { Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
+import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
+import type { IAction, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
 
 export const filterReducer = (state: IFilterState, action: IAction): IFilterState => {
   switch (action.type) {

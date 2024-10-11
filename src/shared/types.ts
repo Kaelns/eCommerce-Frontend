@@ -1,5 +1,5 @@
-import { Theme, SystemStyleObject } from '@mui/system';
-import { ByProjectKeyProductProjectionsSearchRequestBuilder, Image } from '@commercetools/platform-sdk';
+import type { Theme, SystemStyleObject } from '@mui/system';
+import type { ByProjectKeyProductProjectionsSearchRequestBuilder, Image } from '@commercetools/platform-sdk';
 
 export type PropsWithChildren<P = unknown> = P & { children: React.ReactNode };
 
@@ -34,7 +34,7 @@ export interface IProduct extends IPrices {
   categoriesIdArr: string[];
   images: Image[];
 }
-export interface IBasketProduct extends IPrices {
+export interface ICartProduct extends IPrices {
   id: string;
   lineId: string;
   key: string;
@@ -45,8 +45,8 @@ export interface IBasketProduct extends IPrices {
   imageUrl: string;
 }
 
-export interface IBasketProducts {
-  [key: string]: IBasketProduct;
+export interface ICartProducts {
+  [key: string]: ICartProduct;
 }
 
 export interface IAutocompleteOptions {

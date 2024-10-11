@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IReturnUseFetch } from '@/hooks/useFetch/useFetch.interface';
+import type { IReturnUseFetch } from '@/hooks/useFetch/useFetch.interface';
 
 export function useFetch<T, P, U>(func: () => T, parameters?: P, refreshState?: U): IReturnUseFetch<Awaited<T>>;
 export function useFetch<T, P, U>(

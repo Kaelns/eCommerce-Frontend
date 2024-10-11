@@ -1,12 +1,13 @@
-import { Pagination, PaginationProps } from '@mui/material';
+import type { PaginationProps } from '@mui/material';
+import { Pagination } from '@mui/material';
 import { useContext, useMemo } from 'react';
 import { useMediaQuery, useTheme } from '@mui/system';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { SxPropsNotArr } from '@/shared/types';
-import { convertSxToArr } from '@/utils/convertSxToArr';
-import { LIMIT_ON_PAGE } from '@/services/ECommerceInitApi.constants';
-import { convertToMaxPages } from '@/utils/convertToMaxPages';
+import type { SxPropsNotArr } from '@/shared/types';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { LIMIT_ON_PAGE } from '@/services/constants';
+import { convertToMaxPages } from '@/utils/convert/convertToMaxPages';
 
 const sxPagination: SxPropsNotArr = {
   display: 'flex',

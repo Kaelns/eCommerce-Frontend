@@ -1,13 +1,14 @@
-import { Grid, Stack, useMediaQuery, useTheme } from '@mui/system';
+// import { Grid, Stack, useMediaQuery, useTheme } from '@mui/system';
 import { Box } from '@mui/material';
-import { useSideDrawer } from '@/layout/SideDrawer/useSideDrawer';
-import { CatalogHeader } from '@/pages/CatalogPage/components/CatalogHeader';
-import { Breadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb';
-import { SxStyles } from '@/shared/types';
-import { BtnContained } from '@/components/buttons/BtnContained';
-import { FilterForm } from '@/features/FilterForm/FilterForm';
-import { SideDrawer } from '@/layout/SideDrawer/SideDrawer';
-import { Products } from '@/pages/CatalogPage/components/Products';
+// import { useSideDrawer } from '@/layout/SideDrawer/useSideDrawer';
+// import { CatalogHeader } from '@/pages/CatalogPage/components/CatalogHeader';
+// import { Breadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb';
+import type { SxStyles } from '@/shared/types';
+// import { BtnContained } from '@/components/buttons/BtnContained';
+// import { FilterForm } from '@/features/components/FilterForm/FilterForm';
+// import { SideDrawer } from '@/layout/SideDrawer/SideDrawer';
+// import { Products } from '@/pages/CatalogPage/components/Products';
+import { Title } from '@/components/typography/Title';
 
 const sxStyles: SxStyles = {
   container: {
@@ -23,13 +24,14 @@ const sxStyles: SxStyles = {
 };
 
 export function CatalogPage(): React.ReactNode {
-  const theme = useTheme();
-  const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
-  const sideDriverHook = useSideDrawer();
+  // const theme = useTheme();
+  // const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
+  // const sideDriverHook = useSideDrawer();
 
   return (
     <Box sx={sxStyles.container}>
-      <Breadcrumb />
+      <Title>Catalog</Title>
+      {/* <Breadcrumb />
       <Stack gap={2} mt={1}>
         <CatalogHeader openDrawer={sideDriverHook.openDrawer} />
 
@@ -50,7 +52,7 @@ export function CatalogPage(): React.ReactNode {
             <BtnContained onClick={sideDriverHook.closeDrawer}>Close</BtnContained>
           </Stack>
         </SideDrawer>
-      </Stack>
+      </Stack> */}
     </Box>
   );
 }

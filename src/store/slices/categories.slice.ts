@@ -1,5 +1,6 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ICategories } from '@/services/ECommerceInitApi.interface';
+import type { ICategories } from '@/services/ecommerce/interface';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const INIT_CATEGORIES: ICategories = {
   categories: [],
@@ -7,7 +8,7 @@ const INIT_CATEGORIES: ICategories = {
   categoriesTree: []
 };
 
-export const authSlice = createSlice({
+export const categoriesSlice = createSlice({
   name: 'categories',
   initialState: INIT_CATEGORIES,
   selectors: {
@@ -23,6 +24,3 @@ export const authSlice = createSlice({
     }
   }
 });
-
-export const authSliceSelectors = authSlice.selectors;
-export const authSliceActions = authSlice.actions;

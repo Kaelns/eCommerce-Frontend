@@ -2,9 +2,9 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { Button, Stack, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { Search } from '@/pages/CatalogPage/components/Search';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 import { TextInlineElem } from '@/components/typography/TextInlineElem';
-import { sxMixins } from '@/features/MuiTheme/mixins';
+import { sxMixins } from '@/features/mui-theme/mixins';
 
 const sxStyles: SxStyles = {
   search: {

@@ -2,7 +2,7 @@ import { Box, List, Stack, Card, CardMedia, CardContent, Link, Typography, Paper
 import { Title } from '@/components/typography/Title';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { ABOUT_US } from '@/pages/AboutUsPage/AboutUs.constant';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 
 const sxStyles: SxStyles = {
   pageContainer: {

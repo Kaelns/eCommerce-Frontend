@@ -1,15 +1,17 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Typography, inputClasses } from '@mui/material';
-import { BoxProps, Stack } from '@mui/system';
+import type { BoxProps } from '@mui/system';
+import { Stack } from '@mui/system';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { Discount } from '@/components/typography/Discount';
 import { CardPrice } from '@/components/CardPrice';
 import { Quantity } from '@/pages/BasketPage/components/Quantity';
-import { FRACTION_DIGITS, SRCSET_API } from '@/services/ECommerceInitApi.constants';
-import { BasketState, IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
-import { IBasketProduct, SxStyles } from '@/shared/types';
-import { sxMixins } from '@/features/MuiTheme/mixins';
+import { FRACTION_DIGITS, SRCSET_API } from '@/services/constants';
+import type { ICartProduct, SxStyles } from '@/shared/types';
+import { sxMixins } from '@/features/mui-theme/mixins';
 import { ImgLoad } from '@/components/ImgLoad';
+import { cartProductsSlice } from '@/pages/BasketPage/cartProducts.slice';
+import { useAppDispatch } from '@/store/redux';
 
 const IMG_SELECTOR = 'product-basket__img';
 const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };
@@ -76,8 +78,7 @@ const sxStyles: SxStyles = {
 };
 
 interface IProductBasketProps {
-  productData: IBasketProduct;
-  dispatchBasketProducts: React.Dispatch<IBasketAction>;
+  productData: ICartProduct;
   imgHeight?: {
     height: BoxProps['height'];
     maxSize: number;
@@ -86,21 +87,23 @@ interface IProductBasketProps {
 
 export function ProductBasket({
   productData,
-  dispatchBasketProducts,
   imgHeight = {
     height: IMG_HEIGHT,
     maxSize: MAX_IMG_SIZE
   }
 }: IProductBasketProps): React.ReactNode {
-  const { height, maxSize } = imgHeight;
+  const dispatch = useAppDispatch();
 
-  const handleDelete = (): void => {
-    dispatchBasketProducts({ type: BasketState.DELETE, payload: { id: productData.id } });
+  const { height, maxSize } = imgHeight;
+  const totalProductPrice = +(productData.price * productData.quantity).toFixed(FRACTION_DIGITS);
+
+  const handleProductDelete = (): void => {
+    dispatch(cartProductsSlice.actions.deleteProductAction({ id: productData.id }));
   };
 
   return (
     <Stack direction={{ zero: 'column', tablet: 'row' }} gap={1.5} sx={sxStyles.container}>
-      <Button variant="contained" onClick={handleDelete} sx={sxStyles.deleteProduct}>
+      <Button variant="contained" onClick={handleProductDelete} sx={sxStyles.deleteProduct}>
         <CloseIcon />
       </Button>
       <Discount discount={productData.discount} sx={sxStyles.discount} />
@@ -132,13 +135,12 @@ export function ProductBasket({
           <Quantity
             id={productData.id}
             quantity={productData.quantity}
-            dispatchBasketProducts={dispatchBasketProducts}
             sxInput={sxStyles.quantityInput}
             sxContainer={sxStyles.quantityContainer}
           />
           <CardPrice
             text="Final: "
-            price={+(productData.price * productData.quantity).toFixed(FRACTION_DIGITS)}
+            price={totalProductPrice}
             discount={productData.discount}
             discountedPrice={+(productData.discountedPrice * productData.quantity).toFixed(FRACTION_DIGITS)}
           />

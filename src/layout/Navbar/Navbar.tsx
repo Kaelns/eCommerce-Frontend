@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Navbars } from '@/layout/Navbar/Navbar.constants';
+import type { Navbars } from '@/layout/Navbar/Navbar.constants';
 import { useNavbar } from '@/layout/Navbar/useNavbar';
-import { sxMixins } from '@/features/MuiTheme/mixins';
-import { SxStyles } from '@/shared/types';
+import { sxMixins } from '@/features/mui-theme/mixins';
+import type { SxStyles } from '@/shared/types';
 
 const sxStyles: SxStyles = {
   btns: {

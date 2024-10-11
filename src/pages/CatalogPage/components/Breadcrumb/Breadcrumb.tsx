@@ -1,15 +1,16 @@
-import { Breadcrumbs, BreadcrumbsProps, Button, SxProps } from '@mui/material';
-import { useCallback, useContext, useMemo } from 'react';
-import { Theme } from '@mui/system';
+import type { BreadcrumbsProps, SxProps } from '@mui/material';
+import { Breadcrumbs, Button } from '@mui/material';
+import { memo, useCallback, useContext, useMemo } from 'react';
+import type { Theme } from '@mui/system';
 import { LinkBtn } from '@/components/buttons/LinkBtn';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
-import { convertSxToArr } from '@/utils/convertSxToArr';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb.helpers';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { convertKeyToName } from '@/utils/convertKeyToName';
+import { convertKeyToName } from '@/utils/convert/convertKeyToName';
 
 const sxStyles: SxStyles = {
   btn: (theme) => ({
@@ -22,7 +23,7 @@ interface IBreadcrumbProps extends BreadcrumbsProps {
   btnSx?: SxProps<Theme>;
 }
 
-export function Breadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps): React.ReactNode {
+export const Breadcrumb = memo(function Breadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps): React.ReactNode {
   // TODO remove contexts and pass elem through props. Move to the features folder
 
   const { categoriesTree } = useContext(ECommerceContext);
@@ -61,4 +62,4 @@ export function Breadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps): React.Re
       })}
     </Breadcrumbs>
   );
-}
+});

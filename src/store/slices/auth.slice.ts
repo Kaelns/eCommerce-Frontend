@@ -1,34 +1,29 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const INIT_AUTH = {
-  authToken: '',
-  refreshAuthToken: '',
-  anonToken: ''
+  isPending: true,
+  isLogged: false
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState: INIT_AUTH,
   selectors: {
-    selectAuthToken: (state) => state.authToken,
-    selectRefreshAuthToken: (state) => state.refreshAuthToken,
-    selectAnonToken: (state) => state.anonToken
+    selectIsPendingAuth: (state) => state.isPending,
+    selectIsLoggedAuth: (state) => state.isLogged
   },
   reducers: {
-    loginAuthAction(state, action: PayloadAction<{ authToken: string; refreshAuthToken: string }>) {
-      state.authToken = action.payload.authToken;
-      state.refreshAuthToken = action.payload.refreshAuthToken;
+    setIsLoggedAuthAction(state, action: PayloadAction<{ isLogged: boolean }>) {
+      state.isLogged = action.payload.isLogged;
     },
-    logoutAuthAction(state, action: PayloadAction<{ anonToken: string }>) {
-      state.authToken = '';
-      state.refreshAuthToken = '';
-      state.anonToken = action.payload.anonToken;
-    },
-    anonLoginAuthAction(state, action: PayloadAction<{ anonToken: string }>) {
-      state.anonToken = action.payload.anonToken;
+    setIsPendingAuthAction(state, action: PayloadAction<{ isPending: boolean }>) {
+      state.isPending = action.payload.isPending;
     }
   }
 });
 
 export const authSliceSelectors = authSlice.selectors;
+export const { selectIsPendingAuth, selectIsLoggedAuth } = authSlice.selectors;
 export const authSliceActions = authSlice.actions;
+export const { setIsLoggedAuthAction, setIsPendingAuthAction } = authSlice.actions;

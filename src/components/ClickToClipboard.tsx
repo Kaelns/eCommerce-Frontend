@@ -1,7 +1,8 @@
-import { Paper, PaperProps } from '@mui/material';
+import type { PaperProps } from '@mui/material';
+import { Paper } from '@mui/material';
 import { TypographyBold } from '@/components/typography/TypographyBold';
-import { convertSxToArr } from '@/utils/convertSxToArr';
-import { SxPropsObj } from '@/shared/types';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import type { SxPropsObj } from '@/shared/types';
 
 const sxPaper: SxPropsObj = { p: 1.5, cursor: ' pointer' };
 
@@ -13,9 +14,7 @@ interface IClickToClipboard extends PaperProps {
 export function ClickToClipboard({ text, sx = {}, handleOnCopy }: IClickToClipboard): React.ReactNode {
   const handleClick = async (): Promise<void> => {
     await navigator.clipboard.writeText(text);
-    if (handleOnCopy) {
-      handleOnCopy();
-    }
+    handleOnCopy?.();
   };
 
   return (

@@ -1,13 +1,11 @@
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import { Box, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
-import { Paths } from '@/shared/constants';
+import type { SxStyles } from '@/shared/types';
+import { Box, Typography } from '@mui/material';
+import { router } from '@/features/router/router';
 import { Title } from '@/components/typography/Title';
-import { hideAnimation, revealAnimation } from '@/shared/constants';
-import furnitureImg from '@/assets/furniture.webp';
-import { SxStyles } from '@/shared/types';
 import { BtnContained } from '@/components/buttons/BtnContained';
+import { Paths, hideAnimation, revealAnimation } from '@/shared/constants';
+import furnitureImg from '@/assets/furniture.webp';
 
 const sxStyles: SxStyles = {
   root: {
@@ -50,8 +48,7 @@ const sxStyles: SxStyles = {
 };
 
 export function MainSection(): React.ReactNode {
-  const navigate = useNavigate();
-  const navigateCatalog = (): void => navigate(Paths.CATALOG);
+  const navigateCatalog = () => router.navigate(Paths.CATALOG);
   return (
     <Stack component="section" direction="row" sx={sxStyles.root}>
       <Box sx={[sxStyles.imgBackdrop, sxStyles.imgShared]} />

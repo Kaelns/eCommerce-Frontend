@@ -1,10 +1,10 @@
-import { IBasketProducts } from '@/shared/types';
-import { manageCartCatch } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch';
-import { ManageCart } from '@/services/helpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
+import type { ICartProducts } from '@/shared/types';
+import { manageCartCatch } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch';
+import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
 export async function postQuantity(
-  prevBasketProd: IBasketProducts,
-  basketProd: IBasketProducts,
+  prevBasketProd: ICartProducts,
+  basketProd: ICartProducts,
   token: string
 ): Promise<string> {
   let error = '';

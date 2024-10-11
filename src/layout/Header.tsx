@@ -7,7 +7,7 @@ import { BasketLink } from '@/components/buttons/BasketLink';
 import { UserPopover } from '@/components/UserPopover';
 import { SectionContainer } from '@/layout/SectionContainer';
 import { Burger } from '@/components/buttons/Burger';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 import { Navbars } from '@/layout/Navbar/Navbar.constants';
 
 const sxStyles: SxStyles = {
@@ -41,6 +41,7 @@ export function Header(): React.ReactNode {
           <TollIcon color="primary" fontSize="large" />
           {!isMatchesMedia && <Navbar navbarType={Navbars.HEADER} />}
         </Stack>
+
         <Box>
           <BasketLink />
           <UserPopover />

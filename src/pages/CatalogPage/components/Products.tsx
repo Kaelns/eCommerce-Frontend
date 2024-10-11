@@ -5,18 +5,15 @@ import { Title } from '@/components/typography/Title';
 import { SortBy } from '@/pages/CatalogPage/components/SortBy';
 import { LoadingFetch } from '@/components/LoadingFetch';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { EMPTY_DATA_PRODUCTS } from '@/services/data/productsResponce/productsResponce.constants';
 import { ProductPagination } from '@/pages/CatalogPage/components/ProductPagination';
 import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce/useDebounce';
-import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';
-import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
 import { useFetch } from '@/hooks/useFetch/useFetch';
-import { useToken } from '@/services/hooks/useToken';
-import { SxPropsNotArr } from '@/shared/types';
+import type { SxPropsNotArr } from '@/shared/types';
 import { getProductsApi } from '@/services/model/products/getProductsApi';
-import { convertKeyToName } from '@/utils/convertKeyToName';
+import { convertKeyToName } from '@/utils/convert/convertKeyToName';
+import { EMPTY_DATA_PRODUCTS } from '@/services/constants';
 
 const sxProductWrapper: SxPropsNotArr = {
   display: 'flex',
@@ -29,9 +26,6 @@ export function Products(): React.ReactNode {
   const filterStateDebounce = useDebounce(filterState);
   const { data = EMPTY_DATA_PRODUCTS, isLoading, error } = useFetch(getProductsApi, filterStateDebounce);
   const { products, amount } = data;
-
-  const token = useToken();
-  const { data: cartData = INIT_BASKET } = useFetch(fetchBasket, token);
 
   return (
     <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} width={1}>
@@ -55,7 +49,7 @@ export function Products(): React.ReactNode {
           <Grid container spacing={2} columns={9}>
             {products.map((product) => (
               <Grid key={product.id} size={{ mobile: 9, tablet: 4.5, laptop: 3 }} sx={sxProductWrapper}>
-                <ProductCard product={product} cartData={cartData} />
+                <ProductCard product={product} />
               </Grid>
             ))}
           </Grid>

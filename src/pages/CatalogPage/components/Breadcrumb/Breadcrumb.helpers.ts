@@ -1,4 +1,4 @@
-import { ICategoryTreeNode } from '@/shared/types';
+import type { ICategoryTreeNode } from '@/shared/types';
 
 export const convertToBreadcrumb = (categoryKey: string, categories: ICategoryTreeNode[]): string[] => {
   let breadcrumbsFinal = '';

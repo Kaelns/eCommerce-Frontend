@@ -1,5 +1,5 @@
 import { Drawer } from '@mui/material';
-import { PropsWithChildren } from '@/shared/types';
+import type { PropsWithChildren } from '@/shared/types';
 
 export interface IUseSideDrawerReturn {
   isOpenDrawer: boolean;

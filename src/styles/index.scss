@@ -1,9 +1,9 @@
-@import 'abstracts/constants';
-@import 'abstracts/mixins';
-@import 'abstracts/placeholders';
+@use 'abstracts/constants';
+@use 'abstracts/mixins';
+@use 'abstracts/placeholders';
 
-@import 'base/base';
-@import 'base/scrollbar';
+@use 'base/base';
+@use 'base/scrollbar';
 
 $width-laptop-big: 1300px;
 $width-laptop: 1024px;

@@ -1,11 +1,13 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Badge, Button, IconButton, Popover, badgeClasses } from '@mui/material';
 import { useState } from 'react';
-import { Stack, SxProps } from '@mui/system';
-import { eCommerceAPI } from '@/services/ECommerceAPI';
+import type { SxProps } from '@mui/system';
+import { Stack } from '@mui/system';
 import { Navbar } from '@/layout/Navbar/Navbar';
-import { useAuthContext } from '@/context/AuthContext/useAuthContext';
 import { Navbars } from '@/layout/Navbar/Navbar.constants';
+import { useAppDispatch, useAppSelector } from '@/store/redux';
+import { logoutUserApi } from '@/services/model/user/logoutUserApi';
+import { authSliceSelectors } from '@/store/slices/auth.slice';
 
 const BADGE_LOGIN_TEXT = 'Login';
 
@@ -18,11 +20,12 @@ const sxBadge: SxProps = {
 };
 
 export function UserPopover(): React.ReactNode {
-  const { authTokens, setAuthTokens } = useAuthContext();
+  const dispatch = useAppDispatch();
+  const isLogged = useAppSelector(authSliceSelectors.selectIsLoggedAuth);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const isOpenPopover = Boolean(anchorEl);
-  const showBadgeIfNonAuthorized = authTokens.token ? 0 : BADGE_LOGIN_TEXT;
+  const showBadgeIfNonAuthorized = isLogged ? 0 : BADGE_LOGIN_TEXT;
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -33,10 +36,7 @@ export function UserPopover(): React.ReactNode {
   };
 
   const logOut = async (): Promise<void> => {
-    const { token, refreshToken, expirationTime } = await eCommerceAPI.logoutUser();
-    // TODO remove
-    console.log('Anon token: ', refreshToken, expirationTime);
-    setAuthTokens({ anonToken: token, token: '', refreshToken: '' });
+    dispatch(logoutUserApi());
   };
 
   return (
@@ -61,7 +61,7 @@ export function UserPopover(): React.ReactNode {
       >
         <Stack gap={1} padding={2}>
           <Navbar navbarType={Navbars.USER_POPOVER} />
-          {authTokens.token && (
+          {isLogged && (
             <Button variant="contained" size="small" onClick={logOut}>
               Log out
             </Button>

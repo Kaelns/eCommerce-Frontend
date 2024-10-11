@@ -1,13 +1,12 @@
 import { Button, Chip, Divider } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { router } from '@/features/router/router';
 import { Stack } from '@mui/system';
 import { Paths } from '@/shared/constants';
 import { Title } from '@/components/typography/Title';
-import RegistrationForm from '@/features/AuthForms/RegistrationForm/RegistrationForm';
+// import { RegistrationForm } from '@/features/components/AuthForms/RegistrationForm/RegistrationForm';
 
 export function RegistrationPage(): React.ReactNode {
-  const navigate = useNavigate();
-  const navigateToLogin = (): void => navigate(Paths.LOGIN);
+  const navigateToLogin = () => router.navigate(Paths.LOGIN);
 
   return (
     <Stack gap={2} alignItems="center">
@@ -20,7 +19,7 @@ export function RegistrationPage(): React.ReactNode {
           Login
         </Button>
       </Stack>
-      <RegistrationForm />
+      {/* <RegistrationForm /> */}
     </Stack>
   );
 }

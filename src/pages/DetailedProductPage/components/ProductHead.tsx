@@ -2,15 +2,14 @@ import { Chip } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Stack } from '@mui/system';
 import { Title } from '@/components/typography/Title';
-import { useToken } from '@/services/hooks/useToken';
 import { Discount } from '@/components/typography/Discount';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 import { CardPrice } from '@/components/CardPrice';
-import { fetchBasket } from '@/services/helpers/fetchBasket/fetchBasket';
+import { fetchBasket } from '@/services/%%%BADhelpers/fetchBasket/fetchBasket';
 import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
-import { AddToBasketBtn } from '@/features/AddToBasketBtn/AddToBasketBtn';
-import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
-import { IProduct, SxStyles } from '@/shared/types';
+import { AddToBasketBtn } from '@/features/components/AddToBasketBtn/AddToBasketBtn';
+import { findBasketProductId } from '@/services/ecommerce/helpers/cart/findBasketProductId';
+import type { IProduct, SxStyles } from '@/shared/types';
 
 const sxStyles: SxStyles = {
   container: (theme) => ({
@@ -45,8 +44,6 @@ interface IProductHeaderProps {
 }
 
 export function ProductHead({ productData, categoriesNames }: IProductHeaderProps): React.ReactNode {
-  const token = useToken();
-
   const [lineItemId, setLineItemId] = useState('');
   const { data = INIT_BASKET } = useFetch(fetchBasket, token);
 

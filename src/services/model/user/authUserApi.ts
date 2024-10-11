@@ -1,6 +1,6 @@
-import { TokenStore } from '@commercetools/sdk-client-v2';
-import { eCommerceAPI } from '@/services/ECommerceAPI';
+import type { TokenStore } from '@commercetools/sdk-client-v2';
 import { consoleWarnError } from '@/utils/consoleWarnError';
+import { api } from '@/services/api/Api';
 
 export async function authUserApi(
   email: string,
@@ -8,11 +8,11 @@ export async function authUserApi(
   reportError: (reason: 'email' | 'password', message: string) => void
 ): Promise<TokenStore | null> {
   // TODO middleware error
-  const token = await eCommerceAPI.authenticateUser(email, password).catch(consoleWarnError);
+  const token = await api.user.loginUser(email, password).catch(consoleWarnError);
   if (token) {
     return token;
   }
-  const responce = await eCommerceAPI.returnUserByEmail(email).catch(consoleWarnError);
+  const responce = await api.user.getUserByEmail(email).catch(consoleWarnError);
   if (responce && responce.body.results.length === 0) {
     // TODO remove magic alert text
     reportError('email', 'This email address has not been registered');

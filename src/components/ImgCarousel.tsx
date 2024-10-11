@@ -1,15 +1,17 @@
-import Slider, { Settings } from 'react-slick';
+import type { JSX } from 'react';
+import type { Settings } from 'react-slick';
+import type { BoxProps } from '@mui/system';
+import type { PropsWithChildren, SxStyles } from '@/shared/types';
+import Slider from 'react-slick';
 import { useMemo, useRef } from 'react';
+import { Box, IconButton } from '@mui/material';
+import { LightMuiBox } from '@/components/LightMuiBox';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { Box, IconButton } from '@mui/material';
-import { BoxProps } from '@mui/system';
-import { LightMuiBox } from '@/components/LightMuiBox';
-import { PropsWithChildren, SxStyles } from '@/shared/types';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { sxMixins } from '@/features/MuiTheme/mixins';
+import { sxMixins } from '@/features/mui-theme/mixins';
 
 const sxStyles: SxStyles = {
   slider: {
@@ -72,7 +74,7 @@ const settings: Settings = {
   )
 };
 
-const additionalSettings = (customDots: React.ReactNode[], sliderRef: React.RefObject<Slider>): Settings => ({
+const additionalSettings = (customDots: React.ReactNode[], sliderRef: React.RefObject<Slider | null>): Settings => ({
   customPaging(index: number): JSX.Element {
     const slideTo = (): void => sliderRef.current?.slickGoTo(index);
     return (

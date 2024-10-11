@@ -1,12 +1,11 @@
 import { Severity } from '@/shared/constants';
-import { IBasketProducts } from '@/shared/types';
-import { BasketState, IBasketAction } from '@/pages/BasketPage/hooks/useBasketReducer/useBasketReducer.interface';
+import type { ICartProducts } from '@/shared/types';
 
 export function setPrevBasketOnError(
   showAlert: (message: string, severity: Severity) => void,
   dispatchBasketProducts: (value: IBasketAction) => void,
   errorMessage: string,
-  prevBasketProd: IBasketProducts
+  prevBasketProd: ICartProducts
 ): void {
   showAlert(errorMessage, Severity.ERROR);
   dispatchBasketProducts({

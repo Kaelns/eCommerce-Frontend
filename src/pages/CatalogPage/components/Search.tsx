@@ -1,13 +1,14 @@
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, IconButton, InputAdornment, InputBase, InputBaseProps, Stack, SxProps } from '@mui/material';
+import type { InputBaseProps, SxProps } from '@mui/material';
+import { Box, IconButton, InputAdornment, InputBase, Stack } from '@mui/material';
 import { useContext } from 'react';
-import { Theme } from '@mui/system';
+import type { Theme } from '@mui/system';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { InputReactEvent, SxStyles } from '@/shared/types';
+import type { InputReactEvent, SxStyles } from '@/shared/types';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { convertSxToArr } from '@/utils/convertSxToArr';
-import { sxMixins } from '@/features/MuiTheme/mixins';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { sxMixins } from '@/features/mui-theme/mixins';
 
 const sxStyles: SxStyles = {
   search: {

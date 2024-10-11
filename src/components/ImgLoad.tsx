@@ -1,12 +1,14 @@
-import { Box, BoxProps, SxProps } from '@mui/material';
+import type { BoxProps, SxProps } from '@mui/material';
+import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Stack, StackProps, Theme } from '@mui/system';
+import type { StackProps, Theme } from '@mui/system';
+import { Stack } from '@mui/system';
 import { grey } from '@mui/material/colors';
 import { ImgSkeleton } from '@/components/skeleton/ImgSkeleton';
-import { convertSxToArr } from '@/utils/convertSxToArr';
-import { ISrcsetPxAsc, SxStyles } from '@/shared/types';
-import { sxMixins } from '@/features/MuiTheme/mixins';
-import { createSrcset } from '@/utils/createSrcset';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import type { ISrcsetPxAsc, SxStyles } from '@/shared/types';
+import { sxMixins } from '@/features/mui-theme/mixins';
+import { createSrcset } from '@/utils/create/createSrcset';
 
 const sxStyles: SxStyles = {
   container: {

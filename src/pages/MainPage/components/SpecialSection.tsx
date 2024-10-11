@@ -1,13 +1,12 @@
-import { Paper } from '@mui/material';
-import { useCallback } from 'react';
 import { Stack } from '@mui/system';
+import { Paper } from '@mui/material';
+import { sxMixins } from '@/features/mui-theme/mixins';
+import { PROMOCODES } from '@/services/ecommerce/constants';
+import { useAlertText } from '@/features/components/AlertText/useAlertText';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { ClickToClipboard } from '@/components/ClickToClipboard';
-import { useAlertText } from '@/features/AlertText/useAlertText';
 import { AlertsText, pulseAnimation } from '@/shared/constants';
-import { PROMOCODES } from '@/services/ECommerceInitApi.constants';
-import { SxStyles } from '@/shared/types';
-import { sxMixins } from '@/features/MuiTheme/mixins';
+import type { SxStyles } from '@/shared/types';
 
 const sxStyles: SxStyles = {
   header: {
@@ -32,9 +31,9 @@ const sxStyles: SxStyles = {
 export function SpecialSection(): React.ReactNode {
   const { showAlert } = useAlertText();
 
-  const handleOnCopy = useCallback(() => {
+  const handleOnCopy = () => {
     showAlert(AlertsText.CLIPBOARD_SUCCESS);
-  }, [showAlert]);
+  };
 
   return (
     <Stack

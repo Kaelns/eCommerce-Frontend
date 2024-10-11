@@ -1,19 +1,22 @@
 import { Box, Typography } from '@mui/material';
-import { BoxProps, Stack, StackProps } from '@mui/system';
-import { ProductProjection } from '@commercetools/platform-sdk';
+import type { BoxProps, StackProps } from '@mui/system';
+import { Stack } from '@mui/system';
+import type { ProductProjection } from '@commercetools/platform-sdk';
+import { useMemo } from 'react';
 import { Paths } from '@/shared/constants';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { Discount } from '@/components/typography/Discount';
 import { ImgLoad } from '@/components/ImgLoad';
 import { CardPrice } from '@/components/CardPrice';
 import { LinkRouter } from '@/components/LinkRouter';
-import { AddToBasketBtn } from '@/features/AddToBasketBtn/AddToBasketBtn';
-import { findBasketProductId } from '@/services/helpers/cartHelpers/findBasketProductId';
-import { SxStyles } from '@/shared/types';
-import { sxMixins } from '@/features/MuiTheme/mixins';
-import { IBasketResponce } from '@/services/helpers/fetchBasket/fetchBasket.interface';
-import { convertToLightProduct } from '@/services/helpers/convertToLightProduct';
-import { SRCSET_API } from '@/services/ECommerceInitApi.constants';
+import { AddToBasketBtn } from '@/features/components/AddToBasketBtn/AddToBasketBtn';
+import { findBasketProductId } from '@/services/ecommerce/helpers/cart/findBasketProductId';
+import type { SxStyles } from '@/shared/types';
+import { sxMixins } from '@/features/mui-theme/mixins';
+import { SRCSET_API } from '@/services/constants';
+import { useAppSelector } from '@/store/redux';
+import { selectCart } from '@/pages/BasketPage/cart.slice';
+import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
 
 const ICON_WIDTH = '2.2rem';
 const ICON_WIDTH_TABLET = '2.8rem';
@@ -81,7 +84,6 @@ const sxStyles: SxStyles = {
 
 interface IProductCardProps {
   product: ProductProjection;
-  cartData?: IBasketResponce;
   imgHeight?: {
     height: BoxProps['height'];
     maxSize: number;
@@ -91,14 +93,14 @@ interface IProductCardProps {
 
 export function ProductCard({
   product,
-  cartData,
   imgHeight = {
     height: IMG_HEIGHT,
     maxSize: MAX_IMG_SIZE
   },
   containerMaxWidth = CONTAINER_MAX_WIDTH
 }: IProductCardProps): React.ReactNode {
-  const data = convertToLightProduct(product);
+  const cartData = useAppSelector(selectCart);
+  const data = useMemo(() => convertToLightProduct(product), [product]);
   const pathToProduct = `${Paths.DETAILED_PRODUCT}/${data.key}`;
   const shortedDescription = data.description.slice(0, data.description.indexOf(' ', 90));
   const { height, maxSize } = imgHeight;
@@ -111,7 +113,7 @@ export function ProductCard({
             isIconBtn
             productId={data.id}
             isAvailable={!data.maxQuantity}
-            lineItemId={findBasketProductId(cartData.basket, data.id)}
+            lineItemId={findBasketProductId(cartData.lineItems, data.id)}
             sx={sxStyles.basketBtn}
             iconSx={sxStyles.basketIcon}
             progressSx={sxStyles.basketProgress}

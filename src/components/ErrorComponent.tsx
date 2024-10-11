@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
 import { Paths } from '@/shared/constants';
 import { Title } from '@/components/typography/Title';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 
 const sxStyles: SxStyles = {
   btn: {
@@ -40,8 +40,8 @@ export function ErrorComponent({
   goToText = 'Go main'
 }: IErrorProps): React.ReactNode {
   const navigate = useNavigate();
-  const navigateBack = (): void => navigate(-1);
-  const navigateTo = (): void => navigate(goTo);
+  const navigateBack = () => navigate(-1);
+  const navigateTo = () => navigate(goTo);
 
   return (
     <Stack minHeight="80vh" justifyContent="center" alignItems="center" gap={3}>

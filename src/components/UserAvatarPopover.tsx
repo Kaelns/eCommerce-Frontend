@@ -1,4 +1,5 @@
-import { Avatar, Typography, Stack, SxProps } from '@mui/material';
+import type { SxProps } from '@mui/material';
+import { Avatar, Typography, Stack } from '@mui/material';
 
 const userInitials = 'UI';
 const userName = 'User';

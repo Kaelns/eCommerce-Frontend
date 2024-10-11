@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
-import { Stack, StackProps } from '@mui/system';
-import { PropsWithChildren, SxStyles } from '@/shared/types';
+import type { StackProps } from '@mui/system';
+import { Stack } from '@mui/system';
+import type { PropsWithChildren, SxStyles } from '@/shared/types';
 import { ErrorComponent } from '@/components/ErrorComponent';
-import { convertSxToArr } from '@/utils/convertSxToArr';
-import { sxMixins } from '@/features/MuiTheme/mixins';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { sxMixins } from '@/features/mui-theme/mixins';
 import imageError from '@/assets/error2.png';
 
 const sxStyles: SxStyles = {

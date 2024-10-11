@@ -1,5 +1,5 @@
-import { FilterColorsState } from '@/features/FilterForm/FilterForm.constants';
-import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
+import type { FilterColorsState } from '@/features/components/FilterForm/FilterForm.constants';
+import type { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 
 export interface IFilterState {
   categoryKey: string;

@@ -8,10 +8,10 @@ import { LoadingFetch } from '@/components/LoadingFetch';
 import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 import { Paths } from '@/shared/constants';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { fetchCategoryProducts } from '@/pages/MainPage/MainPage.helpers';
-import { convertKeyToName } from '@/utils/convertKeyToName';
+import { convertKeyToName } from '@/utils/convert/convertKeyToName';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 
 const sxStyles: SxStyles = {
@@ -41,6 +41,7 @@ const sxStyles: SxStyles = {
 
 export function ShowcaseSection({ categoryKey }: { categoryKey: string }): React.ReactNode {
   const navigate = useNavigate();
+  // FIXME
   const { dispatchFilterState } = useContext(FilterReducerContext);
   const { data = [], isLoading, error } = useFetch(fetchCategoryProducts, categoryKey);
 

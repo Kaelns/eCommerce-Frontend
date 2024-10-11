@@ -1,8 +1,11 @@
-import { Typography, TypographyProps } from '@mui/material';
-import { Stack, SxProps, Theme } from '@mui/system';
-import { PropsWithChildren } from '@/shared/types';
+import type { TypographyProps } from '@mui/material';
+import { Typography } from '@mui/material';
+import type { SxProps, Theme } from '@mui/system';
+import { Stack } from '@mui/system';
+import type { PropsWithChildren } from '@/shared/types';
 
 interface ITextInlineElemProps extends TypographyProps {
+  // TODO elem to Component
   elem: React.ReactNode;
   isAfter?: boolean;
   sxContainer?: SxProps<Theme>;

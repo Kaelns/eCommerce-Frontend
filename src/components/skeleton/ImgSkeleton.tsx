@@ -1,6 +1,7 @@
-import { Skeleton, SkeletonProps, SxProps, skeletonClasses } from '@mui/material';
+import type { SkeletonProps, SxProps } from '@mui/material';
+import { Skeleton, skeletonClasses } from '@mui/material';
 import { revealAnimation } from '@/shared/constants';
-import { convertSxToArr } from '@/utils/convertSxToArr';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 
 const sxSkeleton: SxProps = {
   width: 1,

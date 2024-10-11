@@ -1,9 +1,10 @@
-import { Select, MenuItem, SelectChangeEvent, Stack } from '@mui/material';
+import type { SelectChangeEvent } from '@mui/material';
+import { Select, MenuItem, Stack } from '@mui/material';
 import { useContext } from 'react';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { Title } from '@/components/typography/Title';
-import { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types';
 
 const sxStyles: SxStyles = {
   select: {

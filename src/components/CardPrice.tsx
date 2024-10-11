@@ -1,7 +1,7 @@
 import { Stack } from '@mui/system';
 import { TypographyBold } from '@/components/typography/TypographyBold';
 import { Price } from '@/components/typography/Price';
-import { SxPropsObj } from '@/shared/types';
+import type { SxPropsObj } from '@/shared/types';
 
 const sxPrice: SxPropsObj = { textDecoration: 'crossedPrice' };
 

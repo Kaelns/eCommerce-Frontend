@@ -1,7 +1,8 @@
 import Button from '@mui/material/Button';
-import { ButtonProps, CircularProgress } from '@mui/material';
-import { PropsWithChildren, SxPropsObj } from '@/shared/types';
-import { convertSxToArr } from '@/utils/convertSxToArr';
+import type { ButtonProps } from '@mui/material';
+import { CircularProgress } from '@mui/material';
+import type { PropsWithChildren, SxPropsObj } from '@/shared/types';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 
 const sxBtn: SxPropsObj = {
   display: 'flex',
@@ -13,6 +14,7 @@ type LoadingBtnProps = ButtonProps & {
   loading: boolean;
 };
 
+//  FIXME such a mui btn already exists
 export function LoadingBtn({
   loading,
   children,

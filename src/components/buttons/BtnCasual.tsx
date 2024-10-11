@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
-import { ButtonProps } from '@mui/material';
-import { PropsWithChildren, SxPropsObj } from '@/shared/types';
+import type { ButtonProps } from '@mui/material';
+import type { PropsWithChildren, SxPropsObj } from '@/shared/types';
 import { ButtonVariant } from '@/shared/constants';
-import { convertSxToArr } from '@/utils/convertSxToArr';
+import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 
 const sxBtn: SxPropsObj = { textTransform: 'none' };
 

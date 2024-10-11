@@ -1,20 +1,26 @@
-import { useMemo } from 'react';
-import { Box, Typography } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Stack } from '@mui/system';
-import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscounted';
-import { ErrorComponent } from '@/components/ErrorComponent';
-import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket';
-import { LoadingFetch } from '@/components/LoadingFetch';
-import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
-import { CardPrice } from '@/components/CardPrice';
-import { useBasket } from '@/pages/BasketPage/hooks/useBasket/useBasket';
-import { BtnCasual } from '@/components/buttons/BtnCasual';
-import { Promocode } from '@/pages/BasketPage/components/Promocode';
-import { SxStyles } from '@/shared/types';
-import { Paths } from '@/shared/constants';
+// import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
+// import { Box, Typography } from '@mui/material';
+// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+// import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscounted';
+// import { ErrorComponent } from '@/components/ErrorComponent';
+// import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket';
+// import { CardPrice } from '@/components/CardPrice';
+// import { BtnCasual } from '@/components/buttons/BtnCasual';
+// import { Promocode } from '@/pages/BasketPage/components/Promocode';
+// import { Paths } from '@/shared/constants';
+// import cartImg from '@/assets/cart.png';
+// import { useAlertText } from '@/features/AlertText/useAlertText';
+// import { useDebounceCache } from '@/hooks/useDebounceCash/useDebounceCash';
+// import { cartSlice } from '@/pages/BasketPage/cart.slice';
+// import { postQuantity } from '@/pages/BasketPage/helpers/postQuantity';
+// import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOnError';
+// import { deleteCartApi } from '@/services/model/cart/deleteCartApi';
+// import { authSliceSelectors } from '@/store/slices/auth.slice';
+// import { useAppDispatch, useAppSelector } from '@/store/redux';
+// import { cartProductsSlice } from '@/pages/BasketPage/cartProducts.slice';
 import { Title } from '@/components/typography/Title';
-import cartImg from '@/assets/cart.png';
+import type { SxStyles } from '@/shared/types';
+import { Stack } from '@mui/system';
 
 const sxStyles: SxStyles = {
   stackContainer: {
@@ -41,30 +47,54 @@ const sxStyles: SxStyles = {
 };
 
 export function BasketPage(): React.ReactNode {
-  const {
-    isLoading,
-    error,
-    discount,
-    prodAmount,
-    finalPrice,
-    isDiscounted,
-    basketProducts,
-    handleDelete,
-    handlePromocode,
-    dispatchBasketProducts
-  } = useBasket();
+  // const dispatch = useAppDispatch();
+  // const isLogged = useAppSelector(authSliceSelectors.selectIsLoggedAuthToken);
 
-  const basketKeys = useMemo(() => Object.keys(basketProducts), [basketProducts]);
-  const discountedPrice = useMemo(() => calculateDiscounted(finalPrice, discount), [discount, finalPrice]);
+  // const cartProducts = useAppSelector(cartProductsSlice.selectors.selectCartProducts);
+  // const discount = useAppSelector(cartSlice.selectors.selectDiscount);
+  // const finalPrice = useAppSelector(cartProductsSlice.selectors.selectFinalPrice);
+  // const productQuantity = useAppSelector(cartProductsSlice.selectors.selectProductQuantity);
+
+  // const deletionSignal = useAppSelector(cartSlice.selectors.selectDeletionSignal);
+  // const [cartProductsCopy, prevBasketProd] = useDebounceCache(cartProducts, `${isLogged}${deletionSignal}`);
+
+  // const { showAlert } = useAlertText();
+
+  // // useEffect(() => {
+  // //   dispatch(getCartApi());
+  // // }, [dispatch, authToken, isPromocode, deletionSignal]);
+
+  // useEffect(() => {
+  //   const postOrRevertOnError = async (): Promise<void> => {
+  //     const errorMessage = await postQuantity(prevBasketProd, cartProductsCopy, isLogged);
+  //     if (errorMessage) {
+  //       setPrevBasketOnError(showAlert, dispatchCartProducts, errorMessage, prevBasketProd);
+  //     }
+  //   };
+  //   postOrRevertOnError();
+  // }, [prevBasketProd, cartProductsCopy, showAlert, isLogged]);
+
+  // const handlePromocode = useCallback(
+  //   (isApplied: boolean) => dispatch(cartSlice.actions.setIsPromocodeAction(isApplied)),
+  //   [dispatch]
+  // );
+
+  // const handleDelete = useCallback(() => {
+  //   dispatch(deleteCartApi());
+  // }, [dispatch]);
+
+  // const basketKeys = useMemo(() => Object.keys(cartProducts), [cartProducts]);
+  // const discountedPrice = useMemo(() => calculateDiscounted(finalPrice, discount), [discount, finalPrice]);
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} sx={sxStyles.stackContainer}>
-      {prodAmount ? (
+    <Stack sx={sxStyles.stackContainer}>
+      <Title>Basket</Title>
+      {/* {productQuantity ? (
         <>
           <Box sx={sxStyles.header}>
             <Box>
               <Title>Product Basket</Title>
-              <Typography>{prodAmount} products</Typography>
+              <Typography>{productQuantity} products</Typography>
               <CardPrice
                 text="Result Price:"
                 price={finalPrice}
@@ -76,16 +106,12 @@ export function BasketPage(): React.ReactNode {
             <BtnCasual variant="contained" onClick={handleDelete} sx={sxStyles.deleteBasket}>
               <DeleteForeverIcon />
             </BtnCasual>
-            <Promocode promocode={isDiscounted} handlePromocode={handlePromocode} sx={sxStyles.promocode} />
+            <Promocode handlePromocode={handlePromocode} sx={sxStyles.promocode} />
           </Box>
 
           <Stack sx={sxStyles.stackContainer}>
             {basketKeys.map((productKey) => (
-              <ProductBasket
-                key={productKey}
-                productData={basketProducts[productKey]}
-                dispatchBasketProducts={dispatchBasketProducts}
-              />
+              <ProductBasket key={productKey} productData={cartProducts[productKey]} />
             ))}
           </Stack>
         </>
@@ -97,7 +123,7 @@ export function BasketPage(): React.ReactNode {
           goTo={Paths.CATALOG}
           goToText="Go shopping"
         />
-      )}
-    </LoadingFetch>
+      )} */}
+    </Stack>
   );
 }
