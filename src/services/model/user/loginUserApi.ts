@@ -1,6 +1,6 @@
-import { authSliceActions } from '@/store/slices/auth.slice';
-import { cartSlice } from '@/pages/BasketPage/cart.slice';
-import type { IAppThunk } from '@/store/redux';
+import { authSliceActions } from '@/shared/slices/auth.slice';
+import { cartSlice } from '@/pages/CartPage/cart.slice';
+import type { IAppThunk } from '@/app/store';
 
 export const loginUserApi =
   (email: string, password: string): IAppThunk =>

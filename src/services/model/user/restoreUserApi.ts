@@ -1,7 +1,7 @@
 import { logoutUserApi } from '@/services/model/user/logoutUserApi';
-import { AuthTokensKeys } from '@/shared/constants';
-import { authSliceActions } from '@/store/slices/auth.slice';
-import type { IAppThunk } from '@/store/redux';
+import { AuthTokensKeys } from '@/shared/data/constants';
+import { authSliceActions } from '@/shared/slices/auth.slice';
+import type { IAppThunk } from '@/app/store';
 
 export const restoreUserApi =
   (): IAppThunk =>

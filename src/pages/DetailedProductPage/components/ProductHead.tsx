@@ -1,15 +1,15 @@
 import { Chip } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Stack } from '@mui/system';
-import { Title } from '@/components/typography/Title';
-import { Discount } from '@/components/typography/Discount';
+import { TitleTypography } from '@/components/typography/TitleTypography';
+import { DiscountTypography } from '@/components/typography/DiscountTypography';
 import { useFetch } from '@/hooks/useFetch/useFetch';
-import { CardPrice } from '@/components/CardPrice';
+import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
 import { fetchBasket } from '@/services/%%%BADhelpers/fetchBasket/fetchBasket';
 import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
-import { AddToBasketBtn } from '@/features/components/AddToBasketBtn/AddToBasketBtn';
+import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
 import { findBasketProductId } from '@/services/ecommerce/helpers/cart/findBasketProductId';
-import type { IProduct, SxStyles } from '@/shared/types';
+import type { IProduct, SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {
   container: (theme) => ({
@@ -51,26 +51,17 @@ export function ProductHead({ productData, categoriesNames }: IProductHeaderProp
 
   return (
     <Stack spacing={0.7} sx={sxStyles.container}>
-      <Discount discount={productData.discount} sx={sxStyles.discountIcon} />
+      <DiscountTypography discount={productData.discount} sx={sxStyles.discountIcon} />
 
-      <Title>{productData.name}</Title>
-      <CardPrice
-        price={productData.price}
-        discount={productData.discount}
-        discountedPrice={productData.discountedPrice}
-      />
+      <TitleTypography>{productData.name}</TitleTypography>
+      <CardPriceTypography price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
       <Stack direction="row" gap={0.7} flexWrap="wrap">
         {categoriesNames.map((category) => (
           <Chip key={category} label={category} />
         ))}
       </Stack>
 
-      <AddToBasketBtn
-        isAvailable={!productData.maxQuantity}
-        lineItemId={lineItemId}
-        productId={productData.id}
-        sx={sxStyles.basketBtn}
-      />
+      <AddToBasketBtn isAvailable={!productData.maxQuantity} lineItemId={lineItemId} productId={productData.id} sx={sxStyles.basketBtn} />
     </Stack>
   );
 }

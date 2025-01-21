@@ -3,12 +3,12 @@ import { Box } from '@mui/material';
 // import { useSideDrawer } from '@/layout/SideDrawer/useSideDrawer';
 // import { CatalogHeader } from '@/pages/CatalogPage/components/CatalogHeader';
 // import { Breadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb';
-import type { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types/types';
 // import { BtnContained } from '@/components/buttons/BtnContained';
 // import { FilterForm } from '@/features/components/FilterForm/FilterForm';
 // import { SideDrawer } from '@/layout/SideDrawer/SideDrawer';
 // import { Products } from '@/pages/CatalogPage/components/Products';
-import { Title } from '@/components/typography/Title';
+import { TitleTypography } from '@/components/typography/TitleTypography';
 
 const sxStyles: SxStyles = {
   container: {
@@ -30,7 +30,7 @@ export function CatalogPage(): React.ReactNode {
 
   return (
     <Box sx={sxStyles.container}>
-      <Title>Catalog</Title>
+      <TitleTypography>Catalog</TitleTypography>
       {/* <Breadcrumb />
       <Stack gap={2} mt={1}>
         <CatalogHeader openDrawer={sideDriverHook.openDrawer} />

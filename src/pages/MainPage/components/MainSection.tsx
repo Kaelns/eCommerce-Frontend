@@ -1,10 +1,10 @@
 import { Stack } from '@mui/system';
-import type { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types/types';
 import { Box, Typography } from '@mui/material';
-import { router } from '@/features/router/router';
-import { Title } from '@/components/typography/Title';
-import { BtnContained } from '@/components/buttons/BtnContained';
-import { Paths, hideAnimation, revealAnimation } from '@/shared/constants';
+import { router } from '@/app/router/router';
+import { TitleTypography } from '@/components/typography/TitleTypography';
+import { ContainedBtn } from '@/components/buttons/ContainedBtn';
+import { Paths, hideAnimation, revealAnimation } from '@/shared/data/constants';
 import furnitureImg from '@/assets/furniture.webp';
 
 const sxStyles: SxStyles = {
@@ -54,19 +54,18 @@ export function MainSection(): React.ReactNode {
       <Box sx={[sxStyles.imgBackdrop, sxStyles.imgShared]} />
       <Box component="img" src={furnitureImg} alt="furniture" sx={[sxStyles.img, sxStyles.imgShared]} />
       <Stack gap={1.5} alignSelf="center" justifySelf="flex-start" sx={sxStyles.textContainer}>
-        <Title variant="h1" color="white">
+        <TitleTypography variant="h1" color="white">
           Radiocommerce
-        </Title>
-        <Title variant="h2" color="white">
+        </TitleTypography>
+        <TitleTypography variant="h2" color="white">
           All sort of high-quality furniture available here
-        </Title>
+        </TitleTypography>
         <Typography variant="body2" color="white">
-          Take a look around and choose what you like.Trust me, you won&apos;t regret it. Besides, we have a lot of
-          discounts!
+          Take a look around and choose what you like.Trust me, you won&apos;t regret it. Besides, we have a lot of discounts!
         </Typography>
-        <BtnContained color="primary" onClick={navigateCatalog} sx={sxStyles.btn}>
+        <ContainedBtn color="primary" onClick={navigateCatalog} sx={sxStyles.btn}>
           Go to catalog
-        </BtnContained>
+        </ContainedBtn>
       </Stack>
     </Stack>
   );

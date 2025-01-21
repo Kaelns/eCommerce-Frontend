@@ -2,8 +2,8 @@ import type { BreadcrumbsProps, SxProps } from '@mui/material';
 import { Breadcrumbs, Button } from '@mui/material';
 import { memo, useCallback, useContext, useMemo } from 'react';
 import type { Theme } from '@mui/system';
-import { LinkBtn } from '@/components/buttons/LinkBtn';
-import type { SxStyles } from '@/shared/types';
+import { BtnOnClickLink } from '@/components/buttons/BtnOnClickLink';
+import type { SxStyles } from '@/shared/types/types';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
@@ -30,10 +30,7 @@ export const Breadcrumb = memo(function Breadcrumb({ btnSx = {}, ...props }: IBr
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
 
   const categoriesToRender = useMemo(
-    () =>
-      filterState.categoryKey !== NO_CATEGORY
-        ? convertToBreadcrumb(filterState.categoryKey, categoriesTree)
-        : [NO_CATEGORY],
+    () => (filterState.categoryKey !== NO_CATEGORY ? convertToBreadcrumb(filterState.categoryKey, categoriesTree) : [NO_CATEGORY]),
     [categoriesTree, filterState.categoryKey]
   );
 
@@ -49,9 +46,9 @@ export const Breadcrumb = memo(function Breadcrumb({ btnSx = {}, ...props }: IBr
       {categoriesToRender.map((key, index) => {
         if (index !== categoriesToRender.length - 1) {
           return (
-            <LinkBtn key={key} navigateTo={setCategory(key)} sx={btnSx}>
+            <Button key={key} onClick={setCategory(key)} sx={btnSx}>
               {convertKeyToName(key)}
-            </LinkBtn>
+            </Button>
           );
         }
         return (

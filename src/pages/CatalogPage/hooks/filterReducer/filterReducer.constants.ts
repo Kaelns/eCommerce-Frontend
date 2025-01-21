@@ -1,4 +1,4 @@
-import { FilterColorsState } from '@/features/components/FilterForm/FilterForm.constants';
+import { FilterColorsState } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
 import { Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import type { IFilterFormState, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
 

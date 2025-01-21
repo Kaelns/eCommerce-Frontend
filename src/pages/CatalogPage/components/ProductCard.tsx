@@ -1,22 +1,22 @@
-import { Box, Typography } from '@mui/material';
+import type { SxStyles } from '@/shared/types/types';
+import type { ProductProjection } from '@commercetools/platform-sdk';
 import type { BoxProps, StackProps } from '@mui/system';
 import { Stack } from '@mui/system';
-import type { ProductProjection } from '@commercetools/platform-sdk';
+import { Paths } from '@/shared/data/constants';
 import { useMemo } from 'react';
-import { Paths } from '@/shared/constants';
-import { TypographyBold } from '@/components/typography/TypographyBold';
-import { Discount } from '@/components/typography/Discount';
-import { ImgLoad } from '@/components/ImgLoad';
-import { CardPrice } from '@/components/CardPrice';
-import { LinkRouter } from '@/components/LinkRouter';
-import { AddToBasketBtn } from '@/features/components/AddToBasketBtn/AddToBasketBtn';
-import { findBasketProductId } from '@/services/ecommerce/helpers/cart/findBasketProductId';
-import type { SxStyles } from '@/shared/types';
-import { sxMixins } from '@/features/mui-theme/mixins';
-import { SRCSET_API } from '@/services/constants';
-import { useAppSelector } from '@/store/redux';
-import { selectCart } from '@/pages/BasketPage/cart.slice';
-import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
+import { ImgLoad } from '@/components/img/ImgLoad';
+import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { SRCSET_API } from '@/services/ecommerceApi';
+import { selectCart } from '@/pages/CartPage/cart.slice';
+import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
+import { useAppSelector } from '@/shared/redux';
+import { BoldTypography } from '@/components/typography/BoldTypography';
+import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
+import { Box, Typography } from '@mui/material';
+import { DiscountTypography } from '@/components/typography/DiscountTypography';
+import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+import { findBasketProductId } from '@/services/ecommerceApi/helpers/cart/findBasketProductId';
+import { convertToLightProduct } from '@/services/ecommerceApi/helpers/products/convertToLightProduct';
 
 const ICON_WIDTH = '2.2rem';
 const ICON_WIDTH_TABLET = '2.8rem';
@@ -106,7 +106,7 @@ export function ProductCard({
   const { height, maxSize } = imgHeight;
 
   return (
-    <LinkRouter to={pathToProduct} display="flex" justifyContent="center" height={1} width={1}>
+    <LinkRouterWrapper to={pathToProduct} display="flex" justifyContent="center" height={1} width={1}>
       <Stack spacing={3} height={1} width={1} maxWidth={containerMaxWidth} sx={sxStyles.cardContainer}>
         {!!cartData && (
           <AddToBasketBtn
@@ -120,28 +120,22 @@ export function ProductCard({
           />
         )}
 
-        <Discount discount={data.discount} sx={sxStyles.discount} />
+        <DiscountTypography discount={data.discount} sx={sxStyles.discount} />
 
-        <ImgLoad
-          height={height}
-          src={data.imageUrl}
-          alt={data.name}
-          className={IMG_SELECTOR}
-          srcset={{ srcSetArr: SRCSET_API, maxSize }}
-        />
+        <ImgLoad height={height} src={data.imageUrl} alt={data.name} className={IMG_SELECTOR} srcset={{ srcSetArr: SRCSET_API, maxSize }} />
 
         <Box>
-          <TypographyBold variant="subtitle1" sx={sxStyles.title}>
+          <BoldTypography variant="subtitle1" sx={sxStyles.title}>
             {data.name}
-          </TypographyBold>
+          </BoldTypography>
           <Typography variant="subtitle2">
             <b>Available quantity: </b>
             {data.maxQuantity}
           </Typography>
-          <CardPrice price={data.price} discount={data.discount} discountedPrice={data.discountedPrice} />
+          <CardPriceTypography price={data.price} discount={data.discount} discountedPrice={data.discountedPrice} />
           <Typography>{shortedDescription}...</Typography>
         </Box>
       </Stack>
-    </LinkRouter>
+    </LinkRouterWrapper>
   );
 }

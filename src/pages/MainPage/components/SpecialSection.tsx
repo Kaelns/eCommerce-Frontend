@@ -1,12 +1,13 @@
+import type { SxStyles } from '@/shared/types/types';
 import { Stack } from '@mui/system';
 import { Paper } from '@mui/material';
-import { sxMixins } from '@/features/mui-theme/mixins';
-import { PROMOCODES } from '@/services/ecommerce/constants';
-import { useAlertText } from '@/features/components/AlertText/useAlertText';
-import { TypographyBold } from '@/components/typography/TypographyBold';
-import { ClickToClipboard } from '@/components/ClickToClipboard';
-import { AlertsText, pulseAnimation } from '@/shared/constants';
-import type { SxStyles } from '@/shared/types';
+import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { useAlert } from '@/features/Alert/useScreenNotification';
+import { BoldTypography } from '@/components/typography/BoldTypography';
+import { ClickToClipboardPaper } from '@/components/boxes/ClickToClipboardPaper';
+import { PROMOCODES } from '@/services/ecommerceApi';
+import { AlertsText } from '@/shared/data/constants';
+import { pulseAnimation } from '@/shared/data/mui-animations';
 
 const sxStyles: SxStyles = {
   header: {
@@ -29,25 +30,20 @@ const sxStyles: SxStyles = {
 };
 
 export function SpecialSection(): React.ReactNode {
-  const { showAlert } = useAlertText();
+  const { showAlert } = useAlert();
 
   const handleOnCopy = () => {
     showAlert(AlertsText.CLIPBOARD_SUCCESS);
   };
 
   return (
-    <Stack
-      component="section"
-      gap={2}
-      direction={{ zero: 'column', tablet: 'row' }}
-      alignItems={{ zero: 'stretch', table: 'center' }}
-    >
+    <Stack component="section" gap={2} direction={{ zero: 'column', tablet: 'row' }} alignItems={{ zero: 'stretch', table: 'center' }}>
       <Paper elevation={5} sx={sxStyles.header}>
-        <TypographyBold>Our special offer:</TypographyBold>
+        <BoldTypography>Our special offer:</BoldTypography>
       </Paper>
       <Stack direction="row" gap={2} flex={2}>
         {PROMOCODES.map((promocode) => (
-          <ClickToClipboard handleOnCopy={handleOnCopy} text={promocode} key={promocode} sx={sxStyles.clipboard} />
+          <ClickToClipboardPaper handleOnCopy={handleOnCopy} text={promocode} key={promocode} sx={sxStyles.clipboard} />
         ))}
       </Stack>
     </Stack>

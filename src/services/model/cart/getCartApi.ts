@@ -1,5 +1,5 @@
-import { cartSlice } from '@/pages/BasketPage/cart.slice';
-import type { IAppThunk } from '@/store/redux';
+import { cartSlice } from '@/pages/CartPage/cart.slice';
+import type { IAppThunk } from '@/app/store';
 
 export const getCartApi =
   (): IAppThunk =>

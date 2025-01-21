@@ -1,4 +1,4 @@
-import type { ISrcsetPxAsc } from '@/shared/types';
+import type { ISrcsetPxAsc } from '@/shared/types/types';
 import { getImgSrcWithPostfix } from '@/utils/get/getImgSrcWithPostfix';
 
 export function createSrcset(

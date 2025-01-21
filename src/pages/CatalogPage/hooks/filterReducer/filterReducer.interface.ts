@@ -1,4 +1,4 @@
-import type { FilterColorsState } from '@/features/components/FilterForm/FilterForm.constants';
+import type { FilterColorsState } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
 import type { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 
 export interface IFilterState {

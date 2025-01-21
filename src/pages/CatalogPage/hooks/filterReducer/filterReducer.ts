@@ -1,4 +1,4 @@
-import type { IFilterColorsKeys } from '@/features/components/FilterForm/FilterForm.types';
+import type { IFilterColorsKeys } from '@/features/CatalogFilterForm/CatalogFilterForm.types';
 import { INITIAL_FORM_VALUE, NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
 import type { Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';

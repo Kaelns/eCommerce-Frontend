@@ -3,9 +3,9 @@ import InfoIcon from '@mui/icons-material/Info';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CategoryIcon from '@mui/icons-material/Category';
-import { Paths } from '@/shared/constants';
-import { UserAvatarPopover } from '@/components/UserAvatarPopover';
-import { TextInlineElem } from '@/components/typography/TextInlineElem';
+import { Paths } from '@/shared/data/constants';
+import { UserFullNameCard } from '@/layout/Navbar/components/UserFullNameCard';
+import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
 
 export enum Navbars {
   HEADER,
@@ -20,16 +20,16 @@ export const headerPaths = {
 };
 
 export const headerBurgerPaths = {
-  [Paths.MAIN]: <TextInlineElem elem={<MenuBookIcon fontSize="small" />}>Main</TextInlineElem>,
-  [Paths.CATALOG]: <TextInlineElem elem={<CategoryIcon fontSize="small" />}>Catalog</TextInlineElem>,
-  [Paths.ABOUT_US]: <TextInlineElem elem={<InfoIcon fontSize="small" />}>About Us</TextInlineElem>
+  [Paths.MAIN]: <ElemWithTypography elem={<MenuBookIcon fontSize="small" />}>Main</ElemWithTypography>,
+  [Paths.CATALOG]: <ElemWithTypography elem={<CategoryIcon fontSize="small" />}>Catalog</ElemWithTypography>,
+  [Paths.ABOUT_US]: <ElemWithTypography elem={<InfoIcon fontSize="small" />}>About Us</ElemWithTypography>
 };
 
 export const nonAuthorizedUserPaths = {
-  [Paths.LOGIN]: <TextInlineElem elem={<KeyIcon fontSize="small" />}>Login</TextInlineElem>,
-  [Paths.REGISTRATION]: <TextInlineElem elem={<HowToRegIcon fontSize="small" />}>Register</TextInlineElem>
+  [Paths.LOGIN]: <ElemWithTypography elem={<KeyIcon fontSize="small" />}>Login</ElemWithTypography>,
+  [Paths.REGISTRATION]: <ElemWithTypography elem={<HowToRegIcon fontSize="small" />}>Register</ElemWithTypography>
 };
 
 export const authorizedUserPaths = {
-  [Paths.USER]: <UserAvatarPopover />
+  [Paths.USER]: <UserFullNameCard />
 };

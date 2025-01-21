@@ -10,7 +10,7 @@ beforeAll(() => {
     };
   });
   vi.mock('@/store/store', async () => {
-    const mod = await vi.importActual<typeof import('@/store/store')>('@/store/store');
+    const mod = await vi.importActual<typeof import('@/app/store')>('@/store/store');
     return {
       ...mod,
       useAppDispatch: () => vi.fn()

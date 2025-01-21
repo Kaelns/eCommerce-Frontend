@@ -6,10 +6,10 @@ import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReduc
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { LoadingFetch } from '@/components/LoadingFetch';
 import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
-import { Paths } from '@/shared/constants';
+import { Paths } from '@/shared/data/constants';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
-import type { SxStyles } from '@/shared/types';
-import { TypographyBold } from '@/components/typography/TypographyBold';
+import type { SxStyles } from '@/shared/types/types';
+import { BoldTypography } from '@/components/typography/BoldTypography';
 import { fetchCategoryProducts } from '@/pages/MainPage/MainPage.helpers';
 import { convertKeyToName } from '@/utils/convert/convertKeyToName';
 import { useFetch } from '@/hooks/useFetch/useFetch';
@@ -53,17 +53,13 @@ export function ShowcaseSection({ categoryKey }: { categoryKey: string }): React
   return (
     <Stack component="section" gap={2}>
       <Paper elevation={5} onClick={setCategoryAndRedirect} sx={sxStyles.header}>
-        <TypographyBold>{convertKeyToName(categoryKey)}</TypographyBold>
+        <BoldTypography>{convertKeyToName(categoryKey)}</BoldTypography>
       </Paper>
       <Paper sx={sxStyles.body}>
         <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
           <Grid container spacing={2} columns={9}>
             {data.map((product) => (
-              <Grid
-                key={product.id}
-                size={{ mobile: 'grow', tablet: 4.5, laptop: 3 }}
-                sx={sxStyles.productCardContainer}
-              >
+              <Grid key={product.id} size={{ mobile: 'grow', tablet: 4.5, laptop: 3 }} sx={sxStyles.productCardContainer}>
                 <ProductCard product={product} />
               </Grid>
             ))}

@@ -4,7 +4,7 @@ import { useContext, useMemo } from 'react';
 import { useMediaQuery, useTheme } from '@mui/system';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import type { SxPropsNotArr } from '@/shared/types';
+import type { SxPropsNotArr } from '@/shared/types/types';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 import { LIMIT_ON_PAGE } from '@/services/constants';
 import { convertToMaxPages } from '@/utils/convert/convertToMaxPages';
@@ -20,13 +20,7 @@ interface IProductPagination extends PaginationProps {
   amount: number;
 }
 
-export function ProductPagination({
-  amount,
-  sx = {},
-  showLastButton = true,
-  showFirstButton = true,
-  ...props
-}: IProductPagination): React.ReactNode {
+export function ProductPagination({ amount, sx = {}, showLastButton = true, showFirstButton = true, ...props }: IProductPagination): React.ReactNode {
   const theme = useTheme();
   const isMatchTablet = useMediaQuery(theme.breakpoints.down('tablet'));
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);

@@ -1,7 +1,7 @@
-import type { IAppThunk } from '@/store/redux';
-import { cartSlice } from '@/pages/BasketPage/cart.slice';
-import { alertSliceActions } from '@/features/AlertText/alert.slice';
-import { Severity } from '@/shared/constants';
+import type { IAppThunk } from '@/app/store';
+import { cartSlice } from '@/pages/CartPage/cart.slice';
+import { alertSliceActions } from '@/features/Alert/alert.slice';
+import { Severity } from '@/shared/data/constants';
 
 export const deleteCartApi =
   (): IAppThunk =>
@@ -15,13 +15,13 @@ export const deleteCartApi =
       await api.cart.deleteCart(cardId, version);
       const cart = await api.cart.createCart();
       dispatch(cartSlice.actions.setCartAction(cart));
-      dispatch(alertSliceActions.showAlertAction({ message: 'The cart was successfully cleared' }));
+      dispatch(alertSliceActions.showScreenNotificationAction({ message: 'The cart was successfully cleared' }));
       dispatch(cartSlice.actions.deletionSignalAction());
     } catch (err) {
       if (!(err instanceof Error)) {
         return;
       }
-      dispatch(alertSliceActions.showAlertAction({ message: err.message, severity: Severity.ERROR }));
+      dispatch(alertSliceActions.showScreenNotificationAction({ message: err.message, severity: Severity.ERROR }));
     }
   };
 

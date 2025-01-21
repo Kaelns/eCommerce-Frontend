@@ -1,4 +1,4 @@
-import { MAX_AGE } from '@/features/validation/data/validation.constants';
+import { MAX_AGE } from '@/shared/zod/validation/data/validation.constants';
 
 export default function getMinDate(): Date {
   const today = new Date();

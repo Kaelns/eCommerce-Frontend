@@ -1,10 +1,10 @@
 import { Stack } from '@mui/system';
-import { Title } from '@/components/typography/Title';
+import { TitleTypography } from '@/components/typography/TitleTypography';
 
 export function LoginPage(): React.ReactNode {
   return (
     <Stack justifyContent="center" alignItems="center" gap={2}>
-      <Title>Login page</Title>
+      <TitleTypography>Login page</TitleTypography>
       {/* <LoginForm /> */}
     </Stack>
   );

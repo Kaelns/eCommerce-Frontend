@@ -12,11 +12,7 @@ interface ICreateImagesProps<T extends StackProps['height']> {
   onClick?: (num: number) => () => void;
 }
 
-export function CreateImages<T extends StackProps['height'] = StackProps['height']>({
-  key,
-  styles,
-  onClick
-}: ICreateImagesProps<T>) {
+export function CreateImages<T extends StackProps['height'] = StackProps['height']>({ key, styles, onClick }: ICreateImagesProps<T>) {
   const { imgHeight, imgStyles = {}, containerStyles = {} } = styles;
   const maxSize = imgHeight && 'maxSize' in imgHeight ? imgHeight.maxSize : undefined;
   // FIXME redux fetch product by key and then convert in to light product

@@ -1,5 +1,5 @@
-import { Title } from '@/components/typography/Title';
+import { TitleTypography } from '@/components/typography/TitleTypography';
 
 export function UserPage(): React.ReactNode {
-  return <Title>User Profile Page</Title>;
+  return <TitleTypography>User Profile Page</TitleTypography>;
 }

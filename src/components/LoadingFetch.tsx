@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
 import type { StackProps } from '@mui/system';
 import { Stack } from '@mui/system';
-import type { PropsWithChildren, SxStyles } from '@/shared/types';
-import { ErrorComponent } from '@/components/ErrorComponent';
+import type { PropsWithChildren, SxStyles } from '@/shared/types/types';
+import { ErrorBody } from '@/layout/ErrorBody';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
-import { sxMixins } from '@/features/mui-theme/mixins';
+import { sxMixins } from '@/app/config/mui-theme/mixins';
 import imageError from '@/assets/error2.png';
 
 const sxStyles: SxStyles = {
@@ -30,16 +30,10 @@ interface ILoadingFetchProps extends StackProps {
   Skeleton: (props: StackProps) => React.ReactNode;
 }
 
-export function LoadingFetch({
-  children,
-  error,
-  isLoading,
-  Skeleton,
-  sx = {},
-  ...props
-}: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {
+//  TODO suspence
+export function LoadingFetch({ children, error, isLoading, Skeleton, sx = {}, ...props }: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {
   return error ? (
-    <ErrorComponent message={error} src={imageError} alt="error" />
+    <ErrorBody message={error} src={imageError} alt="error" />
   ) : (
     <Box sx={sxStyles.container} {...props}>
       <Skeleton sx={[sxStyles.skeleton, !isLoading && sxMixins.invisible]} />

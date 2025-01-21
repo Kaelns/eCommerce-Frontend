@@ -1,7 +1,7 @@
 import { Skeleton, skeletonClasses } from '@mui/material';
 import type { StackProps } from '@mui/system';
 import { Stack } from '@mui/system';
-import type { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {
   increasedSkeleton: {

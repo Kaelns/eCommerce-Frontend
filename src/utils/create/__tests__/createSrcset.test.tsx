@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { createSrcset } from '@/utils/create/createSrcset';
-import { ISrcsetPxAsc } from '@/shared/types';
+import { ISrcsetPxAsc } from '@/shared/types/types';
 
 const imgSrc = 'google_images_2015.png';
 const srcsetArr: ISrcsetPxAsc = [
@@ -8,8 +8,7 @@ const srcsetArr: ISrcsetPxAsc = [
   ['-medium', '400w'],
   ['-large', '700w']
 ];
-const result =
-  'google_images_2015-small.png 150w, google_images_2015-medium.png 400w, google_images_2015-large.png 700w';
+const result = 'google_images_2015-small.png 150w, google_images_2015-medium.png 400w, google_images_2015-large.png 700w';
 
 describe('Given generateSrcset function', () => {
   test('handle normal data', () => {
@@ -33,8 +32,7 @@ describe('Given generateSrcset function', () => {
 
   test('handle border maxSize argument', () => {
     const maxSize = 400;
-    const cutedResult =
-      'google_images_2015-small.png 150w, google_images_2015-medium.png 400w, google_images_2015-large.png 700w';
+    const cutedResult = 'google_images_2015-small.png 150w, google_images_2015-medium.png 400w, google_images_2015-large.png 700w';
     expect(createSrcset(imgSrc, srcsetArr, maxSize)).toEqual(cutedResult);
   });
 

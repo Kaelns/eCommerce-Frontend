@@ -1,8 +1,8 @@
 import { Box, List, Stack, Card, CardMedia, CardContent, Link, Typography, Paper } from '@mui/material';
-import { Title } from '@/components/typography/Title';
-import { TypographyBold } from '@/components/typography/TypographyBold';
+import { TitleTypography } from '@/components/typography/TitleTypography';
+import { BoldTypography } from '@/components/typography/BoldTypography';
 import { ABOUT_US } from '@/pages/AboutUsPage/AboutUs.constant';
-import type { SxStyles } from '@/shared/types';
+import type { SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {
   pageContainer: {
@@ -25,7 +25,7 @@ const sxStyles: SxStyles = {
 export function AboutUsPage(): React.ReactNode {
   return (
     <Stack gap={1.5} sx={sxStyles.pageContainer}>
-      <Title>About Us</Title>
+      <TitleTypography>About Us</TitleTypography>
       <Paper elevation={2} sx={sxStyles.introductionWrapper}>
         <Typography>{ABOUT_US.introduction}</Typography>
       </Paper>
@@ -36,16 +36,16 @@ export function AboutUsPage(): React.ReactNode {
               <Box component="img" src={member.photo} alt={member.lastName} sx={sxStyles.img} />
             </CardMedia>
             <CardContent>
-              <Title variant="h6">{`${member.firstName} ${member.lastName}`}</Title>
-              <TypographyBold> Github: </TypographyBold>
+              <TitleTypography variant="h6">{`${member.firstName} ${member.lastName}`}</TitleTypography>
+              <BoldTypography> Github: </BoldTypography>
               <Link href={member.github} underline="hover">
                 {member.github}
               </Link>
-              <TypographyBold> Role: </TypographyBold>
+              <BoldTypography> Role: </BoldTypography>
               {member.roles}
-              <TypographyBold> Significant contributions: </TypographyBold>
+              <BoldTypography> Significant contributions: </BoldTypography>
               {member.contributions}
-              <TypographyBold> BIO: </TypographyBold>
+              <BoldTypography> BIO: </BoldTypography>
               {member.bio}
             </CardContent>
           </Card>

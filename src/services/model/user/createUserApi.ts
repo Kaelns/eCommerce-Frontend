@@ -1,12 +1,12 @@
-import { ValidationErrors } from '@/features/validation/data/validation.enum';
+import { ValidationErrors } from '@/shared/zod/validation/data/validation.enum';
 import type { IAddress, ICreateUserParams } from '@/services/interface';
 import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
 import type { IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
-import { AlertsAPIText, Severity } from '@/shared/constants';
-import type { IAppThunk } from '@/store/redux';
-import { authSliceActions } from '@/store/slices/auth.slice';
-import { cartSlice } from '@/pages/BasketPage/cart.slice';
-import { alertSliceActions } from '@/features/AlertText/alert.slice';
+import { AlertsAPIText, Severity } from '@/shared/data/constants';
+import type { IAppThunk } from '@/app/store';
+import { authSliceActions } from '@/shared/slices/auth.slice';
+import { cartSlice } from '@/pages/CartPage/cart.slice';
+import { alertSliceActions } from '@/features/Alert/alert.slice';
 
 export const createUserApi =
   (
@@ -65,7 +65,7 @@ export const createUserApi =
       // const token = await authenticateUser(inputsValues.email!, inputsValues.password!);
       dispatch(authSliceActions.loginAuthAction({ authToken, refreshAuthToken: refreshToken ?? '' }));
       dispatch(cartSlice.actions.setCartAction(cart));
-      dispatch(alertSliceActions.showAlertAction({ message: AlertsAPIText.USER_CREATE_SUCCESS }));
+      dispatch(alertSliceActions.showScreenNotificationAction({ message: AlertsAPIText.USER_CREATE_SUCCESS }));
     } catch (error) {
       console.warn(error);
       if (!(error instanceof Error)) {
@@ -74,14 +74,14 @@ export const createUserApi =
       if (error.message === AlertsAPIText.EMAIL_DUPLICATE_ERROR) {
         setInputsError((values) => ({ ...values, [INPUTS.email.name]: ValidationErrors.API }));
         dispatch(
-          alertSliceActions.showAlertAction({
+          alertSliceActions.showScreenNotificationAction({
             message: AlertsAPIText.EMAIL_DUPLICATE_ERROR,
             severity: Severity.ERROR
           })
         );
       } else {
         dispatch(
-          alertSliceActions.showAlertAction({
+          alertSliceActions.showScreenNotificationAction({
             message: AlertsAPIText.REGISTRATION_CONNECTION_ERROR,
             severity: Severity.ERROR
           })

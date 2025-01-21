@@ -19,7 +19,7 @@
 // import { getProductByKeyApi } from '@/services/model/products/getProductByKeyApi';
 // import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
 // import { Box, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { Title } from '@/components/typography/Title';
+import { TitleTypography } from '@/components/typography/TitleTypography';
 
 // const sxStyles: SxStyles = {
 //   modal: {
@@ -115,7 +115,7 @@ export function DetailedProductPage(): React.ReactNode {
   // );
 
   return (
-    <Title>Something</Title>
+    <TitleTypography>Something</TitleTypography>
     // <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
     //   <Stack gap={1.5} flexDirection={{ zero: 'column-reverse', tablet: 'column' }}>
     //     <Stack direction="row" justifyContent="space-between" gap={1.5}>

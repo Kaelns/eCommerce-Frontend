@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import type { ViteUserConfig } from 'vitest/config';
 
 declare module 'vite' {
-  export interface IUserConfig {
+  export interface UserConfig {
     test: ViteUserConfig['test'];
   }
 }

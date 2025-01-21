@@ -6,8 +6,8 @@ import {
   authorizedUserPaths,
   nonAuthorizedUserPaths
 } from '@/layout/Navbar/Navbar.constants';
-import { useAppSelector } from '@/store/redux';
-import { selectIsLoggedAuth } from '@/store/slices/auth.slice';
+import { useAppSelector } from '@/app/store';
+import { selectIsLoggedAuth } from '@/shared/slices/auth.slice';
 
 interface IUseNavbarReturn {
   navPaths: NavbarPaths;

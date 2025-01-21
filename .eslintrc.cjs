@@ -11,7 +11,7 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', 'vitest.config.ts'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'react', 'react-hooks', 'jsx-a11y', '@typescript-eslint', 'prettier', 'vitest'],
+  plugins: ['react-refresh', 'react', 'react-hooks', 'jsx-a11y', '@typescript-eslint', 'vitest'],
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
@@ -21,14 +21,9 @@ module.exports = {
     }
   },
   rules: {
-    'vitest/max-nested-describe': [
-      'error',
-      {
-        max: 3
-      }
-    ],
+    'vitest/max-nested-describe': ['error', { max: 3 }],
+
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-    'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
     'react/jsx-uses-vars': 'error',
     'react/jsx-uses-react': 'error',
     'react/react-in-jsx-scope': 'off',
@@ -36,12 +31,10 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/self-closing-comp': ['error', { component: true, html: true }],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
 
-    'import/prefer-default-export': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
-
-    'no-console': 0,
 
     '@typescript-eslint/no-unused-vars': ['off', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-explicit-any': 'error',
@@ -51,10 +44,12 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': 'error',
     // '@typescript-eslint/explicit-function-return-type': 'warn',
 
-    curly: ['error', 'all'],
+    'import/prefer-default-export': 'off',
     'import/extensions': [0, { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
-    'prettier/prettier': 2,
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }]
+
+    'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
+    'no-console': 0,
+    curly: ['error', 'all']
   },
 
   overrides: [

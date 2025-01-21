@@ -1,8 +1,8 @@
 import { Button, Chip, Divider } from '@mui/material';
-import { router } from '@/features/router/router';
+import { router } from '@/app/router/router';
 import { Stack } from '@mui/system';
-import { Paths } from '@/shared/constants';
-import { Title } from '@/components/typography/Title';
+import { Paths } from '@/shared/data/constants';
+import { TitleTypography } from '@/components/typography/TitleTypography';
 // import { RegistrationForm } from '@/features/components/AuthForms/RegistrationForm/RegistrationForm';
 
 export function RegistrationPage(): React.ReactNode {
@@ -11,7 +11,7 @@ export function RegistrationPage(): React.ReactNode {
   return (
     <Stack gap={2} alignItems="center">
       <Stack gap={1.5} width={{ zero: 1, tablet: 400 }}>
-        <Title textAlign="center">Registration Page</Title>
+        <TitleTypography textAlign="center">Registration Page</TitleTypography>
         <Divider>
           <Chip label="Or if you are already registered:" />
         </Divider>
