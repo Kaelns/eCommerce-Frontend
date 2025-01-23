@@ -1,10 +1,5 @@
 import type { Theme, SystemStyleObject } from '@mui/system';
-import type {
-  ByProjectKeyProductProjectionsSearchRequestBuilder,
-  Category,
-  Image,
-  ProductProjection
-} from '@commercetools/platform-sdk';
+import type { ByProjectKeyProductProjectionsSearchRequestBuilder, Category, Image, ProductProjection } from '@commercetools/platform-sdk';
 
 // * React types
 
@@ -23,6 +18,18 @@ export type SxPropsNotArr<T extends object = Theme> = SxPropsObj<T> | SxPropsCal
 
 export type SxStyles<T extends object = Theme> = Record<string, SxPropsNotArr<T>>;
 
+// * Backend types
+
+export interface ResponceOk {
+  ok: boolean;
+}
+
+export interface BackendError extends ResponceOk {
+  name: string;
+  message: string;
+  statusCode: number;
+}
+
 // * EcommerceApi types
 
 export interface IAppData {
@@ -36,18 +43,10 @@ export interface IAppData {
 
 export type ISrcsetPxAsc = [string, `${number}w`][];
 export function isISrcsetPxAsc(elem: unknown): elem is ISrcsetPxAsc {
-  return (
-    Array.isArray(elem) &&
-    Array.isArray(elem[0]) &&
-    elem[0].length === 2 &&
-    typeof elem[0][0] === 'string' &&
-    typeof elem[0][1] === 'string'
-  );
+  return Array.isArray(elem) && Array.isArray(elem[0]) && elem[0].length === 2 && typeof elem[0][0] === 'string' && typeof elem[0][1] === 'string';
 }
 
-export type IQueryProductsArgs = NonNullable<
-  NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']
->;
+export type IQueryProductsArgs = NonNullable<NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']>;
 
 export interface IPrices {
   price: number;

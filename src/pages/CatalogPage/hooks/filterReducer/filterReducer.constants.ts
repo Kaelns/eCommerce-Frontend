@@ -1,4 +1,4 @@
-import { FilterColorsState } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
+import { FILTER_COLORS_STATE } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
 import { Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import type { IFilterFormState, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
 
@@ -10,7 +10,7 @@ export const NO_CATEGORY = 'no-category';
 export const INITIAL_FILTER_VALUE: IFilterState = {
   categoryKey: NO_CATEGORY,
   price: [MIN_MONEY, MAX_MONEY],
-  color: FilterColorsState,
+  color: FILTER_COLORS_STATE,
   search: '',
   sort: Sort.NO_SORT,
   page: 1
@@ -19,5 +19,5 @@ export const INITIAL_FILTER_VALUE: IFilterState = {
 export const INITIAL_FORM_VALUE: IFilterFormState = {
   categoryKey: NO_CATEGORY,
   price: [MIN_MONEY, MAX_MONEY],
-  color: FilterColorsState
+  color: FILTER_COLORS_STATE
 };

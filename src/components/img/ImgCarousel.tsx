@@ -11,7 +11,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
   slider: {

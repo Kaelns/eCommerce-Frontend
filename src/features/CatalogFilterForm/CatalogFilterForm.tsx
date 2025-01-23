@@ -3,7 +3,7 @@ import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { useContext } from 'react';
 import type { StackProps } from '@mui/system';
 import { Stack } from '@mui/system';
-import { Filters, filtersOrder } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
+import { Filters, FILTERS_ORDER } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
 import { BoldTypography } from '@/components/typography/BoldTypography';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { AccordionTree } from '@/features/CatalogFilterForm/components/AccordionTree';
@@ -29,7 +29,7 @@ export function CatalogFilterForm({ ...props }: StackProps): React.ReactNode {
 
   return (
     <Stack gap={1.5} {...props}>
-      {filtersOrder.map((key) => (
+      {FILTERS_ORDER.map((key) => (
         <Accordion key={key} defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <BoldTypography>{key}</BoldTypography>

@@ -8,7 +8,7 @@ import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReduc
 import type { InputReactEvent, SxStyles } from '@/shared/types/types';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
   search: {

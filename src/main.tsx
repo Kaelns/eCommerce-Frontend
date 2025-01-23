@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { store } from '@/app/store';
-import { router } from '@/app/router/router';
+import { store } from '@/app';
+import { router } from '@/app';
 import { Provider } from 'react-redux';
 import { MuiTheme } from '@/app/config/mui-theme/MuiTheme';
 import { RouterProvider } from 'react-router-dom';

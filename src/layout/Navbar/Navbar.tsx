@@ -3,7 +3,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import type { Navbars } from '@/layout/Navbar/Navbar.constants';
 import { useNavbar } from '@/layout/Navbar/useNavbar';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 import type { SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {

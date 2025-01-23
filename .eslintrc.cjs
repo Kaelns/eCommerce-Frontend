@@ -42,6 +42,7 @@ module.exports = {
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
+    '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
     // '@typescript-eslint/explicit-function-return-type': 'warn',
 
     'import/prefer-default-export': 'off',
@@ -58,6 +59,4 @@ module.exports = {
       rules: { 'no-param-reassign': ['error', { props: false }] }
     }
   ]
-
-  // noInlineConfig: true
 };

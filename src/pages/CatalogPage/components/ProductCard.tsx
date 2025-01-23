@@ -5,7 +5,7 @@ import { Stack } from '@mui/system';
 import { Paths } from '@/shared/data/constants';
 import { useMemo } from 'react';
 import { ImgLoad } from '@/components/img/ImgLoad';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 import { SRCSET_API } from '@/services/ecommerceApi';
 import { selectCart } from '@/pages/CartPage/cart.slice';
 import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';

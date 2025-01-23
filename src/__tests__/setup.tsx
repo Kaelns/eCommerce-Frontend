@@ -9,8 +9,8 @@ beforeAll(() => {
       useLocation: () => vi.fn()
     };
   });
-  vi.mock('@/store/store', async () => {
-    const mod = await vi.importActual<typeof import('@/app/store')>('@/store/store');
+  vi.mock('@/app/store', async () => {
+    const mod = await vi.importActual<typeof import('@/app/store/store')>('@/store/store');
     return {
       ...mod,
       useAppDispatch: () => vi.fn()

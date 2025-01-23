@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ProductSearch } from '@/pages/CatalogPage/components/ProductSearch';
 import type { SxStyles } from '@/shared/types/types';
 import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
   search: {

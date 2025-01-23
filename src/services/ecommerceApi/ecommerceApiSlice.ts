@@ -1,11 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryExtended } from '@/services/ecommerceApi/redux/baseQueryExtended';
 
-const baseUrl = import.meta.env.VITE_BACKEND_URL;
-
+export const reducerPath = 'ecommerceApi';
 export const ecommerceApiSlice = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl,
-    credentials: 'include'
-  }),
+  reducerPath,
+  baseQuery: baseQueryExtended,
   endpoints: () => ({})
 });

@@ -1,11 +1,12 @@
-import { Stack } from '@mui/system';
 import type { SxStyles } from '@/shared/types/types';
-import { Box, Typography } from '@mui/material';
-import { router } from '@/app/router/router';
-import { TitleTypography } from '@/components/typography/TitleTypography';
+import { Stack } from '@mui/system';
+import { Paths } from '@/shared/data/constants';
+import { router } from '@/app';
 import { ContainedBtn } from '@/components/buttons/ContainedBtn';
-import { Paths, hideAnimation, revealAnimation } from '@/shared/data/constants';
-import furnitureImg from '@/assets/furniture.webp';
+import { Box, Typography } from '@mui/material';
+import { TitleTypography } from '@/components/typography/TitleTypography';
+import { revealAnimation, hideAnimation } from '@/shared/data/mui-animations';
+import furnitureImg from '@/shared/assets/furniture.webp';
 
 const sxStyles: SxStyles = {
   root: {

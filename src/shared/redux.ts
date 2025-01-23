@@ -1,18 +1,23 @@
-import type { extraArgument, store } from '@/app/store';
+import type { extraArgument, store } from '@/app';
 import type { ThunkAction, UnknownAction } from '@reduxjs/toolkit';
 import { combineSlices } from '@reduxjs/toolkit';
 import { ecommerceApiSlice } from '@/services/ecommerceApi';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const rootReducer = combineSlices(ecommerceApiSlice);
+export interface ILazyLoadedSlices {}
+
+console.log('Init');
+
+// * Used slice.injectInto for encapsulation
+export const rootReducer = combineSlices(ecommerceApiSlice).withLazyLoadedSlices<ILazyLoadedSlices>();
 export const middlewares = [ecommerceApiSlice.middleware];
 
-// * To create encapsulation. We forget about the general store and get the elements through selectors
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type IAppState = any;
-export type IAppDispatch = typeof store.dispatch;
-export type IAppThunk<T = void> = ThunkAction<T, IAppState, typeof extraArgument, UnknownAction>;
+export type IAppStore = typeof store;
+export type IAppState = ReturnType<IAppStore['getState']>;
+export type IAppDispatch = IAppStore['dispatch'];
+export type IAppExtraArgument = typeof extraArgument;
+export type IAppThunk<T = void> = ThunkAction<T, IAppStore, IAppExtraArgument, UnknownAction>;
 
-export const useAppStore = useSelector.withTypes<typeof store>();
+export const useAppStore = useSelector.withTypes<IAppStore>();
 export const useAppSelector = useSelector.withTypes<IAppState>();
 export const useAppDispatch = useDispatch.withTypes<IAppDispatch>();

@@ -1,7 +1,7 @@
 import type { SxStyles } from '@/shared/types/types';
 import { Stack } from '@mui/system';
-import { Alert } from '@/features/Alert/Alert';
-import { Header } from '@/layout/Header/Header';
+import { Alert } from '@/features/Alert';
+import { Header } from '@/layout/Header';
 import { Outlet } from 'react-router-dom';
 import { SectionContainer } from '@/layout/SectionContainer';
 

@@ -1,5 +1,5 @@
 import type { ICategories } from '@/shared/types/types';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import { rootReducer } from '@/shared/redux';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -24,4 +24,10 @@ export const categoriesSlice = createSlice({
       state.categoriesTree = action.payload.receivedCategories.categoriesTree;
     }
   }
-}).injectInto(rootReducer);
+});
+
+rootReducer.inject(categoriesSlice);
+
+declare module '@/shared/redux' {
+  export interface ILazyLoadedSlices extends WithSlice<typeof categoriesSlice> {}
+}

@@ -3,11 +3,9 @@ import type { SxProps } from '@mui/system';
 import { Badge, Button, IconButton, Popover, badgeClasses } from '@mui/material';
 import { useState } from 'react';
 import { Stack } from '@mui/system';
-import { Navbar } from '@/layout/Navbar/Navbar';
-import { Navbars } from '@/layout/Navbar/Navbar.constants';
-import { logoutUserApi } from '@/services/model/user/logoutUserApi';
+import { Navbar, Navbars } from '@/layout/Navbar';
 import { selectIsLoggedAuth } from '@/shared/slices/auth.slice';
-import { useAppDispatch, useAppSelector } from '@/shared/redux';
+import { useAppSelector } from '@/shared/redux';
 
 const BADGE_LOGIN_TEXT = 'Login';
 
@@ -20,7 +18,7 @@ const sxBadge: SxProps = {
 };
 
 export function UserPopoverMenu(): React.ReactNode {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const isLogged = useAppSelector(selectIsLoggedAuth);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -36,7 +34,7 @@ export function UserPopoverMenu(): React.ReactNode {
   };
 
   const logOut = async (): Promise<void> => {
-    dispatch(logoutUserApi());
+    // dispatch(logoutUserApi());
   };
 
   return (

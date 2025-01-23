@@ -8,10 +8,10 @@ import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTyp
 import { Quantity } from '@/pages/CartPage/components/Quantity';
 import { FRACTION_DIGITS, SRCSET_API } from '@/services/constants';
 import type { ICartProduct, SxStyles } from '@/shared/types/types';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 import { ImgLoad } from '@/components/img/ImgLoad';
 import { cartProductsSlice } from '@/pages/CartPage/slices/cartProducts.slice';
-import { useAppDispatch } from '@/app/store';
+import { useAppDispatch } from '@/app/store/store';
 
 const IMG_SELECTOR = 'product-basket__img';
 const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };

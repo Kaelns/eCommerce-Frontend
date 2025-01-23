@@ -56,10 +56,17 @@ export enum AlertsText {
 export enum AlertsAPIText {
   LOGIN_ERROR = 'Login Error',
   LOGIN_SUCCESS = 'Successful login',
-  USER_UPDATE_ERROR = 'Something went wrong during the updating process and that they should try again later.',
+
+  SERVER_ERROR = 'Error: Server error',
+
+  USER_FORBIDDEN_ERROR = 'Error: The user is forbidden to access the requested resource.',
+  USER_UNAUTHORIZED_ERROR = 'Error: The user is not authorized.',
+  USER_UPDATE_ERROR = 'Error: Something went wrong during the updating process. Try again later.',
   USER_CREATE_SUCCESS = 'The user has been successfully created.',
   USER_UPDATE_SUCCESS = 'The user has been successfully updated.',
+
   EMAIL_DUPLICATE_ERROR = 'There is already an existing customer with the provided email.',
+
   REGISTRATION_CONNECTION_ERROR = 'Something went wrong during the registration process and that they should try again later.'
 }
 

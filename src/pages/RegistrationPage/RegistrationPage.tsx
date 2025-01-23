@@ -1,5 +1,5 @@
 import { Button, Chip, Divider } from '@mui/material';
-import { router } from '@/app/router/router';
+import { router } from '@/app';
 import { Stack } from '@mui/system';
 import { Paths } from '@/shared/data/constants';
 import { TitleTypography } from '@/components/typography/TitleTypography';

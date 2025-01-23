@@ -1,8 +1,8 @@
 import type { LineItem } from '@commercetools/platform-sdk';
 import type { ICartProduct } from '@/shared/types/types';
-import { getProductPrices } from '@/services/ecommerce/helpers/products/getProductPrices';
-import { LANGUAGE, COUNTRY } from '@/services/ecommerce';
-import imageNotAvailable from '@/assets/image_not_available.png';
+import { LANGUAGE, COUNTRY } from '@/services/ecommerceApi/data/constants';
+import { getProductPrices } from '@/services/ecommerceApi/helpers/products/getProductPrices';
+import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
 export const MOCK_BASKET_PRODUCT: ICartProduct = {
   id: '',
@@ -23,21 +23,14 @@ export function convertToLightCartProduct(basketProduct: LineItem): ICartProduct
     return MOCK_BASKET_PRODUCT;
   }
 
-  const [id, lineId, key, name] = [
-    basketProduct.productId,
-    basketProduct.id,
-    basketProduct.key!,
-    basketProduct.name[LANGUAGE]
-  ];
+  const [id, lineId, key, name] = [basketProduct.productId, basketProduct.id, basketProduct.key!, basketProduct.name[LANGUAGE]];
   const [image, prices] = [basketProduct.variant?.images?.[0], basketProduct.variant.prices];
 
   const { quantity } = basketProduct;
   const images = basketProduct.variant?.images ? basketProduct.variant?.images : [];
   const imageUrl = image ? image.url : imageNotAvailable;
   const pricesObjUSD = prices ? prices.find((obj) => obj.country === COUNTRY) : null;
-  const maxQuantity = basketProduct.variant?.availability?.availableQuantity
-    ? basketProduct.variant.availability.availableQuantity
-    : 0;
+  const maxQuantity = basketProduct.variant?.availability?.availableQuantity ? basketProduct.variant.availability.availableQuantity : 0;
 
   const { price, discountedPrice, discount } = getProductPrices(pricesObjUSD);
 

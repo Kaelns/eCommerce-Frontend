@@ -7,7 +7,7 @@ import { grey } from '@mui/material/colors';
 import { ImgSkeleton } from '@/components/skeleton/ImgSkeleton';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 import type { ISrcsetPxAsc, SxStyles } from '@/shared/types/types';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 import { createSrcset } from '@/utils/create/createSrcset';
 
 const sxStyles: SxStyles = {

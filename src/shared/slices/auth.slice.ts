@@ -1,13 +1,13 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { rootReducer } from '@/shared/redux';
 import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 
 const INIT_AUTH = {
   isPending: true,
   isLogged: false
 };
 
-export const authSlice = createSlice({
+const authSliceLazy = createSlice({
   name: 'auth',
   initialState: INIT_AUTH,
   selectors: {
@@ -22,7 +22,12 @@ export const authSlice = createSlice({
       state.isPending = action.payload.isPending;
     }
   }
-}).injectInto(rootReducer);
+});
 
-export const { selectIsPendingAuth, selectIsLoggedAuth } = authSlice.selectors;
-export const { setIsLoggedAuthAction, setIsPendingAuthAction } = authSlice.actions;
+export const authSliceInjected = authSliceLazy.injectInto(rootReducer);
+declare module '@/shared/redux' {
+  export interface ILazyLoadedSlices extends WithSlice<typeof authSliceLazy> {}
+}
+
+export const { selectIsPendingAuth, selectIsLoggedAuth } = authSliceInjected.selectors;
+export const { setIsLoggedAuthAction, setIsPendingAuthAction } = authSliceInjected.actions;

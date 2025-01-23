@@ -1,9 +1,8 @@
 import TollIcon from '@mui/icons-material/Toll';
 import type { SxStyles } from '@/shared/types/types';
 import { Stack } from '@mui/system';
-import { Navbar } from '@/layout/Navbar/Navbar';
 import { Burger } from '@/layout/Header/components/Burger';
-import { Navbars } from '@/layout/Navbar/Navbar.constants';
+import { Navbar, Navbars } from '@/layout/Navbar';
 import { UserPopoverMenu } from '@/layout/Header/components/UserPopoverMenu';
 import { SectionContainer } from '@/layout/SectionContainer';
 import { BasketLinkIconBtn } from '@/layout/Header/components/BasketLinkIconBtn';

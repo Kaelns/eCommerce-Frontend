@@ -1,8 +1,8 @@
 import type { SxStyles } from '@/shared/types/types';
 import { Stack } from '@mui/system';
 import { Paper } from '@mui/material';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
-import { useAlert } from '@/features/Alert/useScreenNotification';
+import { sxMixins } from '@/shared/data/mui-mixins';
+import { useAlert } from '@/features/Alert';
 import { BoldTypography } from '@/components/typography/BoldTypography';
 import { ClickToClipboardPaper } from '@/components/boxes/ClickToClipboardPaper';
 import { PROMOCODES } from '@/services/ecommerceApi';

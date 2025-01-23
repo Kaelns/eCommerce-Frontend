@@ -1,5 +1,5 @@
 import type { ICartProducts } from '@/shared/types/types';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import type { Cart } from '@commercetools/platform-sdk';
 import { MOCK_CART } from '@/services/ecommerceApi';
 import { rootReducer } from '@/shared/redux';
@@ -22,7 +22,7 @@ const INIT_CART = {
 type CartSlice = typeof INIT_CART;
 type CartSliceKeys = keyof CartSlice;
 
-export const cartSlice = createSlice({
+const cartSliceLazy = createSlice({
   name: 'cart',
   initialState: INIT_CART,
   selectors: {
@@ -98,7 +98,13 @@ export const cartSlice = createSlice({
       delete state.cartProducts[id];
     }
   }
-}).injectInto(rootReducer);
+});
+
+export const cartSliceInjected = cartSliceLazy.injectInto(rootReducer);
+
+declare module '@/shared/redux' {
+  export interface ILazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
+}
 
 export const {
   selectCart,
@@ -108,7 +114,7 @@ export const {
   selectIsPromocodeCart,
   selectDeletionSignalCart,
   selectProductQuantityCart
-} = cartSlice.selectors;
+} = cartSliceInjected.selectors;
 
 export const {
   setCartAction,
@@ -119,4 +125,4 @@ export const {
   deletionSignalAction,
   decrementQuantityAction,
   incrementQuantityAction
-} = cartSlice.actions;
+} = cartSliceInjected.actions;

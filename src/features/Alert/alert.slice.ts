@@ -1,8 +1,8 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import type { AlertsAPIText } from '@/shared/data/constants';
-import { AlertsText, Severity } from '@/shared/data/constants';
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { rootReducer } from '@/shared/redux';
+import { AlertsText, Severity } from '@/shared/data/constants';
 
 const INIT_MODAL = {
   isOpen: false,
@@ -11,7 +11,7 @@ const INIT_MODAL = {
   isLoading: false
 };
 
-export const alertSlice = createSlice({
+export const alertSliceLazy = createSlice({
   name: 'alert',
   initialState: INIT_MODAL,
   selectors: {
@@ -22,10 +22,7 @@ export const alertSlice = createSlice({
   },
   reducers: {
     // TODO Change string to enums below
-    showAlertAction(
-      state,
-      action: PayloadAction<{ message: AlertsText | AlertsAPIText | string; severity?: Severity }>
-    ) {
+    showAlertAction(state, action: PayloadAction<{ message: AlertsText | AlertsAPIText | string; severity?: Severity }>) {
       state.isOpen = true;
       state.isLoading = false;
       state.message = action.payload.message;
@@ -42,9 +39,14 @@ export const alertSlice = createSlice({
       state.severity = Severity.SUCCESS;
     }
   }
-}).injectInto(rootReducer);
+});
 
-export const { selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } =
-  alertSlice.selectors;
+export const alertSliceInjected = alertSliceLazy.injectInto(rootReducer);
 
-export const { hideAlertAction, showLoadingAlertAction, showAlertAction } = alertSlice.actions;
+declare module '@/shared/redux' {
+  export interface ILazyLoadedSlices extends WithSlice<typeof alertSliceLazy> {}
+}
+
+export const { selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } = alertSliceInjected.selectors;
+
+export const { hideAlertAction, showLoadingAlertAction, showAlertAction } = alertSliceInjected.actions;

@@ -5,7 +5,7 @@ import { CasualBtn } from '@/components/buttons/CasualBtn';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import type { SxPropsObj, SxStyles } from '@/shared/types/types';
-import { FilterColors } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
+import { FILTER_COLORS } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
 import type { IFilterColorsKeys } from '@/features/CatalogFilterForm/CatalogFilterForm.types';
 
 const sxStyles: SxStyles = {
@@ -30,17 +30,17 @@ const sxStyles: SxStyles = {
 };
 
 const colorBtnBgcolor = (colorKey: IFilterColorsKeys): SxPropsObj => ({
-  bgcolor: FilterColors[colorKey],
-  color: FilterColors[colorKey],
+  bgcolor: FILTER_COLORS[colorKey],
+  color: FILTER_COLORS[colorKey],
   '&:hover': {
-    bgcolor: FilterColors[colorKey]
+    bgcolor: FILTER_COLORS[colorKey]
   }
 });
 
 export function ColorFilter(): React.ReactNode {
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
 
-  const colorsNames = Object.keys(FilterColors) as IFilterColorsKeys[];
+  const colorsNames = Object.keys(FILTER_COLORS) as IFilterColorsKeys[];
 
   const toggleColor = (colorKey: IFilterColorsKeys) => (): void => {
     dispatchFilterState({ type: FilterState.COLOR, payload: colorKey });

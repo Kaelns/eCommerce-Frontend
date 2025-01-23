@@ -3,10 +3,10 @@ import type { IAddress, ICreateUserParams } from '@/services/interface';
 import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
 import type { IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
 import { AlertsAPIText, Severity } from '@/shared/data/constants';
-import type { IAppThunk } from '@/app/store';
+import type { IAppThunk } from '@/app/store/store';
 import { authSliceActions } from '@/shared/slices/auth.slice';
 import { cartSlice } from '@/pages/CartPage/cart.slice';
-import { alertSliceActions } from '@/features/Alert/alert.slice';
+import { alertSliceActions } from '@/features/Alert.slice';
 
 export const createUserApi =
   (

@@ -1,13 +1,7 @@
 import type { NavbarPaths } from '@/layout/Navbar/Navbar.types';
-import {
-  Navbars,
-  headerPaths,
-  headerBurgerPaths,
-  authorizedUserPaths,
-  nonAuthorizedUserPaths
-} from '@/layout/Navbar/Navbar.constants';
-import { useAppSelector } from '@/app/store';
+import { useAppSelector } from '@/shared/redux';
 import { selectIsLoggedAuth } from '@/shared/slices/auth.slice';
+import { Navbars, headerPaths, headerBurgerPaths, authorizedUserPaths, nonAuthorizedUserPaths } from '@/layout/Navbar/Navbar.constants';
 
 interface IUseNavbarReturn {
   navPaths: NavbarPaths;

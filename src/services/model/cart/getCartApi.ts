@@ -1,5 +1,5 @@
 import { cartSlice } from '@/pages/CartPage/cart.slice';
-import type { IAppThunk } from '@/app/store';
+import type { IAppThunk } from '@/app/store/store';
 
 export const getCartApi =
   (): IAppThunk =>

@@ -5,7 +5,7 @@ import type { SxPropsArr, SxStyles } from '@/shared/types/types';
 import { useAddToBasketBtn } from '@/components/buttons/AddToBasketBtn/useAddToBasketBtn';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
 import { CasualBtn } from '@/components/buttons/CasualBtn';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
+import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
   btn: {

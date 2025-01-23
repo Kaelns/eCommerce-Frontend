@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react';
+import { memo, useCallback, useContext } from 'react';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
 import { AccordionItem } from '@/features/CatalogFilterForm/components/AccordionItem';
@@ -8,7 +8,7 @@ interface IAccordionTreeProps {
   treeData: ICategoryTreeNode[];
 }
 
-export function AccordionTree({ treeData }: IAccordionTreeProps): React.ReactNode {
+export const AccordionTree = memo(function AccordionTree({ treeData }: IAccordionTreeProps): React.ReactNode {
   const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
 
   const handleClickedCategory = useCallback(
@@ -27,4 +27,4 @@ export function AccordionTree({ treeData }: IAccordionTreeProps): React.ReactNod
       ))}
     </>
   );
-}
+});

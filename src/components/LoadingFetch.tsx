@@ -4,8 +4,8 @@ import { Stack } from '@mui/system';
 import type { PropsWithChildren, SxStyles } from '@/shared/types/types';
 import { ErrorBody } from '@/layout/ErrorBody';
 import { convertSxToArr } from '@/utils/convert/convertSxToArr';
-import { sxMixins } from '@/app/config/mui-theme/mixins';
-import imageError from '@/assets/error2.png';
+import { sxMixins } from '@/shared/data/mui-mixins';
+import imageError from '@/shared/assets/error2.png';
 
 const sxStyles: SxStyles = {
   container: {

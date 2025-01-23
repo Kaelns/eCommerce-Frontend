@@ -3,7 +3,7 @@ import { useToken } from '@/services/hooks/useToken';
 import { manageCartCatch } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 import { Severity } from '@/shared/data/constants';
-import { useAlert } from '@/features/Alert/useScreenNotification';
+import { useAlert } from '@/features/Alert';
 
 interface IUseAddToBasket {
   isInCart: boolean;

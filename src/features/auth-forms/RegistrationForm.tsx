@@ -19,7 +19,7 @@ import checkPostalCode from '@/shared/zod/validation/postalCodeValidation';
 import { createUserApi } from '@/services';
 import { MAX_DATE_DASH, COUNTRY_LIST, MAX_DATE, MIN_DATE } from '@/shared/data/constants';
 import type { InputReactEvent } from '@/shared/types/types';
-import { useAppDispatch } from '@/app/store';
+import { useAppDispatch } from '@/app/store/store';
 import { FormControlLabel, Checkbox, Button } from '@mui/material';
 import type { SxProps } from '@mui/system';
 import { Stack } from '@mui/system';

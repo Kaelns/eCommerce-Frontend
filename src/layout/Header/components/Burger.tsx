@@ -1,10 +1,9 @@
 import type { SxStyles } from '@/shared/types/types';
-import { BurgerBtn } from '@/components/buttons/BurgerBtn';
-import { Navbar } from '@/layout/Navbar/Navbar';
-import { Navbars } from '@/layout/Navbar/Navbar.constants';
 import { Drawer } from '@mui/material';
-import { useMediaQuery, Box, useTheme } from '@mui/system';
+import { BurgerBtn } from '@/components/buttons/BurgerBtn';
+import { Navbar, Navbars } from '@/layout/Navbar';
 import { useState, useCallback } from 'react';
+import { useMediaQuery, Box, useTheme } from '@mui/system';
 
 const sxStyles: SxStyles = {
   burgerMenu: {

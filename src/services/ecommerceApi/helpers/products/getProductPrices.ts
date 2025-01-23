@@ -1,7 +1,7 @@
 import type { Price } from '@commercetools/platform-sdk';
 import type { IPrices } from '@/shared/types/types';
 import { revealPriceDecimals } from '@/utils/revealPriceDecimals';
-import { FRACTION_DIGITS } from '@/services/ecommerce';
+import { FRACTION_DIGITS } from '@/services/ecommerceApi/data/constants';
 
 export function getProductPrices(priceObj: Price | null | undefined): IPrices {
   if (!priceObj) {

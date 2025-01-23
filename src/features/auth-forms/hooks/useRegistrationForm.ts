@@ -12,7 +12,7 @@ import type { InputReactEvent } from '@/shared/types/types';
 import { MAX_DATE_DASH, COUNTRY_LIST } from '@/shared/data/constants';
 import { getPrefix } from '@/features/AuthForms/data/AuthForms.helpers';
 import { createUserApi } from '@/services/model/user/createUserApi';
-import { useAppDispatch } from '@/app/store';
+import { useAppDispatch } from '@/app/store/store';
 
 const INIT_INPUTS_DATA = {
   birthday: MAX_DATE_DASH,

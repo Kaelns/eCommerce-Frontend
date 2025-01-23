@@ -1,5 +1,5 @@
-import type { FilterColors, FilterColorsState } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
+import type { FILTER_COLORS, FILTER_COLORS_STATE } from '@/features/CatalogFilterForm/CatalogFilterForm.constants';
 
-export type IFilterColors = typeof FilterColors;
-export type IFilterColorsState = typeof FilterColorsState;
-export type IFilterColorsKeys = keyof typeof FilterColors;
+export type IFilterColors = typeof FILTER_COLORS;
+export type IFilterColorsState = typeof FILTER_COLORS_STATE;
+export type IFilterColorsKeys = keyof IFilterColors;

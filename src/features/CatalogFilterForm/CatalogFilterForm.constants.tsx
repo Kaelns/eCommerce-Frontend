@@ -7,9 +7,9 @@ export enum Filters {
   CATEGORY = 'Category'
 }
 
-export const filtersOrder = [Filters.CATEGORY, Filters.PRICE, Filters.COLOR];
+export const FILTERS_ORDER = [Filters.CATEGORY, Filters.PRICE, Filters.COLOR];
 
-export const FilterColors = {
+export const FILTER_COLORS = {
   Red: '#ff0000',
   Tan: '#d2b48c',
   Blue: '#0288d1',
@@ -25,22 +25,9 @@ export const FilterColors = {
   Purple: '#9c27b0',
   Silver: '#c0c0c0',
   Transparent: 'transparent'
-};
+} as const;
 
-export const FilterColorsState = {
-  Tan: false,
-  Red: false,
-  Blue: false,
-  Gold: false,
-  Gray: false,
-  Pink: false,
-  White: false,
-  Beige: false,
-  Black: false,
-  Brown: false,
-  Green: false,
-  Orange: false,
-  Purple: false,
-  Silver: false,
-  Transparent: false
-};
+export const FILTER_COLORS_STATE = Object.fromEntries(Object.entries(FILTER_COLORS).map(([key]) => [key, false])) as Record<
+  keyof typeof FILTER_COLORS,
+  boolean
+>;

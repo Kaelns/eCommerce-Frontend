@@ -8,7 +8,7 @@
 // import { BtnCasual } from '@/components/buttons/BtnCasual';
 // import { Promocode } from '@/pages/BasketPage/components/Promocode';
 // import { Paths } from '@/shared/constants';
-// import cartImg from '@/assets/cart.png';
+// import cartImg from '@/shared/assets/cart.png';
 // import { useAlertText } from '@/features/AlertText/useAlertText';
 // import { useDebounceCache } from '@/hooks/useDebounceCash/useDebounceCash';
 // import { cartSlice } from '@/pages/BasketPage/cart.slice';

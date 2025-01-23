@@ -1,7 +1,7 @@
 import type { ProductProjection } from '@commercetools/platform-sdk';
 import { LANGUAGE, COUNTRY } from '@/services/constants';
 import type { IProduct } from '@/shared/types/types';
-import imageNotAvailable from '@/assets/image_not_available.png';
+import imageNotAvailable from '@/shared/assets/image_not_available.png';
 import { getProductPrices } from '@/services/ecommerce/helpers/products/getProductPrices';
 
 const MOCK_PRODUCT: IProduct = {

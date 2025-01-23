@@ -2,8 +2,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Paths } from '@/shared/data/constants';
 import { useAppSelector } from '@/shared/redux';
 import { IconButton, Badge } from '@mui/material';
-import { selectProductQuantityCart } from '@/pages/CartPage/cart.slice';
 import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
+import { selectProductQuantityCart } from '@/pages/CartPage/cart.slice';
 
 export function BasketLinkIconBtn(): React.ReactNode {
   const productQuantity = useAppSelector(selectProductQuantityCart);

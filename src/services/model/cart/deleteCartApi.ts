@@ -1,6 +1,6 @@
-import type { IAppThunk } from '@/app/store';
+import type { IAppThunk } from '@/app/store/store';
 import { cartSlice } from '@/pages/CartPage/cart.slice';
-import { alertSliceActions } from '@/features/Alert/alert.slice';
+import { alertSliceActions } from '@/features/Alert.slice';
 import { Severity } from '@/shared/data/constants';
 
 export const deleteCartApi =
