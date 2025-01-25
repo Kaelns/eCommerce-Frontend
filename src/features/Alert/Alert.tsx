@@ -2,7 +2,7 @@ import type { SxStyles } from '@/shared/types/types';
 import { TimingProgress } from '@/components/TimingProgress';
 import { useAppDispatch, useAppSelector } from '@/shared/redux';
 import { Alert as MuiAlert, LinearProgress, Snackbar, Stack } from '@mui/material';
-import { hideAlertAction, selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } from '@/features/Alert/alert.slice';
+import { hideAlertAction, selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } from '@/features/alert/alert.slice';
 
 const sxStyles: SxStyles = {
   alertContainer: {

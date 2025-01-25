@@ -5,9 +5,9 @@ import type { AddressPrefix } from '@/features/AuthForms/data/AuthForms.constant
 import { INPUTS, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
 import type { HandleChangeAutocomplete, HandleOnChangeInput, IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
 import { COUNTRY_LIST } from '@/shared/data/constants';
-import checkGeneralRule from '@/shared/zod/validation/generalValidation';
-import checkPostalCode from '@/shared/zod/validation/postalCodeValidation';
-import streetValidation from '@/shared/zod/validation/streetValidation';
+import checkGeneralRule from '@/shared/zod/%%%BADvalidation/generalValidation';
+import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
+import streetValidation from '@/shared/zod/%%%BADvalidation/streetValidation';
 
 const ADDRESS_INPUTS = {
   [AddressProperty.POSTAL_CODE]: checkPostalCode,

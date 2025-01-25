@@ -8,7 +8,7 @@ import { checkCredentialInputs } from '@/features/AuthForms/data/AuthForms.helpe
 import { Paths, AlertsAPIText } from '@/shared/data/constants';
 import type { InputReactEvent } from '@/shared/types/types';
 import type { HandleOnChangeInput } from '@/features/AuthForms/data/AuthForms.types';
-import { useAlert } from '@/features/Alert';
+import { useAlert } from '@/features/alert';
 import { authUserApi } from '@/services/model/user/authUserApi';
 import { useAppDispatch } from '@/app/store/store';
 import { loginAuthAction } from '@/shared/slices/auth.slice';

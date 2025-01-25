@@ -1,3 +1,3 @@
-export { useAlert } from '@/features/Alert/useAlert';
+export { useAlert } from '@/features/alert/useAlert';
 
-export { Alert } from '@/features/Alert/Alert';
+export { Alert } from '@/features/alert/Alert';

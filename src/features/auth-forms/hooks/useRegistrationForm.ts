@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import checkPostalCode from '@/shared/zod/validation/postalCodeValidation';
+import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
 import { INPUTS, AddressPrefix, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
 import type {
   IInputsValues,

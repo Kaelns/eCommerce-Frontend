@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { LoadingFetch } from '@/components/LoadingFetch';
+import { SuspenseWithError } from '@/components/SuspenseWithError';
 import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
 import { Paths } from '@/shared/data/constants';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
@@ -56,7 +56,7 @@ export function ShowcaseSection({ categoryKey }: { categoryKey: string }): React
         <BoldTypography>{convertKeyToName(categoryKey)}</BoldTypography>
       </Paper>
       <Paper sx={sxStyles.body}>
-        <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
+        <SuspenseWithError error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
           <Grid container spacing={2} columns={9}>
             {data.map((product) => (
               <Grid key={product.id} size={{ mobile: 'grow', tablet: 4.5, laptop: 3 }} sx={sxStyles.productCardContainer}>
@@ -64,7 +64,7 @@ export function ShowcaseSection({ categoryKey }: { categoryKey: string }): React
               </Grid>
             ))}
           </Grid>
-        </LoadingFetch>
+        </SuspenseWithError>
       </Paper>
     </Stack>
   );

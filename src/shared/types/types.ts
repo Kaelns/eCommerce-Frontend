@@ -1,5 +1,12 @@
 import type { Theme, SystemStyleObject } from '@mui/system';
 import type { ByProjectKeyProductProjectionsSearchRequestBuilder, Category, Image, ProductProjection } from '@commercetools/platform-sdk';
+import type { IAppExtraArgument } from '@/shared/redux';
+import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { isObject as isObjectLodash } from 'lodash';
+
+export const isObject = (elem: unknown): elem is object => {
+  return isObjectLodash(elem) && !Array.isArray(elem);
+};
 
 // * React types
 
@@ -26,11 +33,21 @@ export interface ResponceOk {
 
 export interface BackendError extends ResponceOk {
   name: string;
+  status: number;
   message: string;
-  statusCode: number;
 }
 
+export const isBackendError = (obj: unknown): obj is BackendError => {
+  return isObject(obj) && 'name' in obj && 'status' in obj && 'message' in obj;
+};
+
 // * EcommerceApi types
+
+export type EcommerceBaseQuery = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, Partial<IAppExtraArgument>>;
+
+export const isFetchBaseQueryError = (obj: unknown): obj is FetchBaseQueryError => {
+  return isObject(obj) && 'status' in obj && 'data' in obj;
+};
 
 export interface IAppData {
   countries: Record<string, string>;
@@ -66,7 +83,7 @@ export interface IProduct extends IPrices {
 
 //  *** Categories types
 
-export type ICategoriesObj = Record<Category['id'], Category>;
+export type CategoriesObj = Record<Category['id'], Category>;
 export interface IProductsResponce {
   products: ProductProjection[];
   amount: number;
@@ -76,9 +93,9 @@ export interface ICategoryTreeNode {
   key: string;
   children: ICategoryTreeNode[];
 }
-export interface ICategories {
+export interface Categories {
   categoriesTree: ICategoryTreeNode[];
-  categoriesObj: ICategoriesObj;
+  categoriesObj: CategoriesObj;
   categories: Category[];
 }
 

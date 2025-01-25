@@ -1,9 +1,9 @@
-import type { ICategories } from '@/shared/types/types';
+import type { Categories } from '@/shared/types/types';
 import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import { rootReducer } from '@/shared/redux';
 import { createSlice } from '@reduxjs/toolkit';
 
-const INIT_CATEGORIES: ICategories = {
+const INIT_CATEGORIES: Categories = {
   categories: [],
   categoriesObj: {},
   categoriesTree: []
@@ -18,7 +18,7 @@ export const categoriesSlice = createSlice({
     selectCategoriesTree: (state) => state.categoriesTree
   },
   reducers: {
-    setCategories(state, action: PayloadAction<{ receivedCategories: ICategories }>) {
+    setCategories(state, action: PayloadAction<{ receivedCategories: Categories }>) {
       state.categories = action.payload.receivedCategories.categories;
       state.categoriesObj = action.payload.receivedCategories.categoriesObj;
       state.categoriesTree = action.payload.receivedCategories.categoriesTree;

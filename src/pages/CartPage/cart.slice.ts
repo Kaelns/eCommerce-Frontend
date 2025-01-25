@@ -1,12 +1,12 @@
 import type { ICartProducts } from '@/shared/types/types';
 import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import type { Cart } from '@commercetools/platform-sdk';
-import { MOCK_CART } from '@/services/ecommerceApi';
+import { MOCK_CART } from '@/services/ecommerce-api';
 import { rootReducer } from '@/shared/redux';
 import { calculatePrice } from '@/pages/CartPage/helpers/calculatePrice';
 import { calculateDiscountPercent } from '@/pages/CartPage/helpers/calculateDiscountPercent';
 import { calculateProductsQuantity } from '@/pages/CartPage/helpers/calculateProductsQuantity';
-import { convertToLightCartProducts } from '@/pages/CartPage/helpers/convertToLightCartProducts';
+import { convertToLightCartAllProducts } from '@/pages/CartPage/helpers/convertToLightCartProducts';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 const INIT_CART = {
@@ -42,7 +42,7 @@ const cartSliceLazy = createSlice({
       const discountInMoney = discountOnTotalPrice?.discountedAmount?.centAmount ?? 0;
 
       state.cart = action.payload;
-      state.cartProducts = convertToLightCartProducts(action.payload.lineItems);
+      state.cartProducts = convertToLightCartAllProducts(action.payload.lineItems);
       state.productQuantity = calculateProductsQuantity(action.payload.lineItems);
       state.discount = calculateDiscountPercent(action.payload.totalPrice.centAmount, discountInMoney);
       state.isPromocode = discountCodes.length > 0 || directDiscounts.length > 0;

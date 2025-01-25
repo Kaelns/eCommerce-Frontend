@@ -1,4 +1,4 @@
-import type { IAutocompleteOptions } from '@/shared/types/types';
+import type { IAutocompleteOptions, ResponceOk } from '@/shared/types/types';
 import dayjs from 'dayjs';
 import getMaxDate from '@/utils/get/getMaxDate';
 import getMinDate from '@/utils/get/getMinDate';
@@ -8,6 +8,10 @@ export const DATE_DASH_FORMAT = 'YYYY-MM-DD';
 export const MAX_DATE_DASH = dayjs(getMaxDate()).format(DATE_DASH_FORMAT);
 export const MAX_DATE = dayjs(getMaxDate());
 export const MIN_DATE = dayjs(getMinDate());
+
+// * General
+
+export const responceNotOk: ResponceOk = { ok: false };
 
 export enum Cookies {
   USER_IS_LOGGED = 'IsLogged'
@@ -26,6 +30,12 @@ export enum Paths {
   CATALOG_CATEGORY = ':category',
   DETAILED_PRODUCT = '/detailed-product',
   DETAILED_PRODUCT_ID = ':id'
+}
+
+export enum HttpStatus {
+  UNAUTHORIZED = 401,
+  FORBIDDEN = 403,
+  SERVER_ERROR = 500
 }
 
 //  * Components

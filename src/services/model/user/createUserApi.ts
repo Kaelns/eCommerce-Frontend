@@ -1,4 +1,4 @@
-import { ValidationErrors } from '@/shared/zod/validation/data/validation.enum';
+import { ValidationErrors } from '@/shared/zod/%%%BADvalidation/data/validation.enum';
 import type { IAddress, ICreateUserParams } from '@/services/interface';
 import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
 import type { IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';

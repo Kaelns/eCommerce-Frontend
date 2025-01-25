@@ -13,9 +13,9 @@ import type {
   HandleOnChangeInput,
   HandleChangeAutocomplete
 } from '@/features/components/AuthForms/data/AuthForms.types';
-import checkBirthday from '@/shared/zod/validation/birthdayValidation';
-import checkGeneralRule from '@/shared/zod/validation/generalValidation';
-import checkPostalCode from '@/shared/zod/validation/postalCodeValidation';
+import checkBirthday from '@/shared/zod/%%%BADvalidation/birthdayValidation';
+import checkGeneralRule from '@/shared/zod/%%%BADvalidation/generalValidation';
+import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
 import { createUserApi } from '@/services';
 import { MAX_DATE_DASH, COUNTRY_LIST, MAX_DATE, MIN_DATE } from '@/shared/data/constants';
 import type { InputReactEvent } from '@/shared/types/types';

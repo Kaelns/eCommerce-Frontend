@@ -6,7 +6,7 @@ import { Paths } from '@/shared/data/constants';
 import { useMemo } from 'react';
 import { ImgLoad } from '@/components/img/ImgLoad';
 import { sxMixins } from '@/shared/data/mui-mixins';
-import { SRCSET_API } from '@/services/ecommerceApi';
+import { SRCSET_API } from '@/services/ecommerce-api';
 import { selectCart } from '@/pages/CartPage/cart.slice';
 import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
 import { useAppSelector } from '@/shared/redux';
@@ -15,8 +15,8 @@ import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketB
 import { Box, Typography } from '@mui/material';
 import { DiscountTypography } from '@/components/typography/DiscountTypography';
 import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
-import { findBasketProductId } from '@/services/ecommerceApi/helpers/cart/findBasketProductId';
-import { convertToLightProduct } from '@/services/ecommerceApi/helpers/products/convertToLightProduct';
+import { findBasketProductId } from '@/services/ecommerce-api/helpers/cart/findBasketProductId';
+import { convertToLightProduct } from '@/services/ecommerce-api/helpers/products/convertToLightProduct';
 
 const ICON_WIDTH = '2.2rem';
 const ICON_WIDTH_TABLET = '2.8rem';

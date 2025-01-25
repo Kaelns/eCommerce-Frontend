@@ -3,7 +3,7 @@ import { memo, useContext } from 'react';
 import { Grid, Stack } from '@mui/system';
 import { TitleTypography } from '@/components/typography/TitleTypography';
 import { ProductSortBy } from '@/pages/CatalogPage/components/ProductSortBy';
-import { LoadingFetch } from '@/components/LoadingFetch';
+import { SuspenseWithError } from '@/components/SuspenseWithError';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 import { ProductPagination } from '@/pages/CatalogPage/components/ProductPagination';
 import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
@@ -28,7 +28,7 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
   const { products, amount } = data;
 
   return (
-    <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton} width={1}>
+    <SuspenseWithError error={error} isLoading={isLoading} Skeleton={PageSkeleton} width={1}>
       {products.length ? (
         <>
           <Stack
@@ -59,6 +59,6 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
       ) : (
         <TitleTypography>There is no products</TitleTypography>
       )}
-    </LoadingFetch>
+    </SuspenseWithError>
   );
 });

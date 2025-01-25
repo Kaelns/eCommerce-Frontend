@@ -1,4 +1,4 @@
-import { FRACTION_DIGITS } from '@/services/ecommerceApi';
+import { FRACTION_DIGITS } from '@/services/ecommerce-api';
 import type { ICartProducts } from '@/shared/types/types';
 
 export function calculatePrice(products: ICartProducts): number {

@@ -6,7 +6,7 @@ import type { InputReactEvent, SxStyles } from '@/shared/types/types';
 import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 import { BoldTypography } from '@/components/typography/BoldTypography';
 import { Severity } from '@/shared/data/constants';
-import { useAlert } from '@/features/Alert';
+import { useAlert } from '@/features/alert';
 import { promocodeCartCatch } from '@/services/%%%BADhelpers/cartHelpers/promocodeCartCatch/promocodeCartCatch';
 import { cartSlice } from '@/pages/CartPage/cart.slice';
 import { useAppSelector } from '@/app/store/store';

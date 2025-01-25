@@ -2,11 +2,8 @@ import type { ICartProducts } from '@/shared/types/types';
 import { manageCartCatch } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
-export async function postQuantity(
-  prevBasketProd: ICartProducts,
-  basketProd: ICartProducts,
-  token: string
-): Promise<string> {
+//  FIXME
+export async function postQuantity(prevBasketProd: ICartProducts, basketProd: ICartProducts, token: string): Promise<string> {
   let error = '';
   const prevKeys = Object.keys(prevBasketProd);
 

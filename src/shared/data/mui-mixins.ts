@@ -4,6 +4,7 @@ interface IMixins {
   animation: (duration?: number) => SxPropsNotArr;
   mediaHover: (styles: SxPropsNotArr, selector?: string) => SxPropsNotArr;
   hidden: SxPropsNotArr;
+  visible: SxPropsNotArr;
   invisible: SxPropsNotArr;
   opacity0: SxPropsNotArr;
   opacity1: SxPropsNotArr;
@@ -18,6 +19,10 @@ export const sxMixins: IMixins = {
       [`&:hover ${selector}`]: styles
     }
   }),
+  visible: {
+    opacity: 1,
+    visibility: 'visible'
+  },
   invisible: {
     opacity: 0,
     visibility: 'hidden'

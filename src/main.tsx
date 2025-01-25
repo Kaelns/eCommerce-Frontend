@@ -14,7 +14,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <MuiTheme>
-        <RouterProvider router={router} />
+        {/* TODO : Add fallbackElement={<PageSkeleton />} to RouterProvider */}
+        <RouterProvider router={router} /* fallbackElement={<PageSkeleton />} */ />
       </MuiTheme>
     </Provider>
   </React.StrictMode>

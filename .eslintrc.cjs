@@ -3,6 +3,8 @@ module.exports = {
   env: { browser: true, es2021: true },
   extends: [
     'eslint:recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
@@ -18,6 +20,20 @@ module.exports = {
     project: ['**/tsconfig.json'],
     ecmaFeatures: {
       jsx: true
+    }
+  },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true
+      },
+      alias: {
+        map: [['@/', './src/']],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+      }
     }
   },
   rules: {
@@ -36,6 +52,9 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
 
+    'import/no-cycle': [2, { maxDepth: 1 }],
+    'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+
     '@typescript-eslint/no-unused-vars': ['off', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-inferrable-types': 'error',
@@ -44,9 +63,6 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': 'error',
     '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
     // '@typescript-eslint/explicit-function-return-type': 'warn',
-
-    'import/prefer-default-export': 'off',
-    'import/extensions': [0, { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
 
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
     'no-console': 0,

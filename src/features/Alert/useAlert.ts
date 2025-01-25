@@ -2,7 +2,7 @@ import type { AlertsAPIText, AlertsText } from '@/shared/data/constants';
 import { Severity } from '@/shared/data/constants';
 import { useCallback } from 'react';
 import { useAppDispatch } from '@/shared/redux';
-import { showAlertAction, showLoadingAlertAction, hideAlertAction } from '@/features/Alert/alert.slice';
+import { showAlertAction, showLoadingAlertAction, hideAlertAction } from '@/features/alert/alert.slice';
 
 export type ShowAlertText = (message: string, severity: Severity) => void;
 
