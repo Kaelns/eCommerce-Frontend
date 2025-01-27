@@ -1,6 +1,6 @@
 import type { SxStyles } from '@/shared/types/types';
 import { Stack } from '@mui/system';
-import { Paths } from '@/shared/data/constants';
+import { Paths } from '@/shared/data/enums';
 import { router } from '@/app';
 import { ContainedBtn } from '@/components/buttons/ContainedBtn';
 import { Box, Typography } from '@mui/material';

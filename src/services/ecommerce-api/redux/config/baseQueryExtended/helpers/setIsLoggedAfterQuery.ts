@@ -1,5 +1,5 @@
-import { Cookies } from '@/shared/data/constants';
-import { getCookieByName } from '@/utils/get/getCookieByName';
+import { Cookies } from '@/shared/data/enums';
+import { getCookieByName } from '@/utils/side-effects/getCookieByName';
 import type { BaseQueryApi } from '@reduxjs/toolkit/query';
 
 export function setIsLoggedAfterQuery(queryApi: BaseQueryApi) {

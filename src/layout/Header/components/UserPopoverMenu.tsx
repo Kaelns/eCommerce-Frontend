@@ -4,8 +4,8 @@ import { Badge, Button, IconButton, Popover, badgeClasses } from '@mui/material'
 import { useState } from 'react';
 import { Stack } from '@mui/system';
 import { Navbar, Navbars } from '@/layout/Navbar';
-import { selectIsLoggedAuth } from '@/shared/slices/auth.slice';
-import { useAppSelector } from '@/shared/redux';
+import { selectIsLoggedAuth } from '@/shared/redux/slices/auth.slice';
+import { useAppSelector } from '@/shared/redux/redux';
 
 const BADGE_LOGIN_TEXT = 'Login';
 
@@ -34,6 +34,7 @@ export function UserPopoverMenu(): React.ReactNode {
   };
 
   const logOut = async (): Promise<void> => {
+    // TODO: Add logout logic
     // dispatch(logoutUserApi());
   };
 

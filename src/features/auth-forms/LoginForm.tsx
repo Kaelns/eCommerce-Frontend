@@ -1,17 +1,17 @@
-import { useState, useCallback } from 'react';
-import { Divider, Chip, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
+import { useAlert } from '@/features/alert';
+import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/app/store/store';
+import { Divider, Chip, Button } from '@mui/material';
+import type { InputReactEvent } from '@/shared/types/types';
+import { AlertAPIText, Paths } from '@/shared/data/constants';
+import { authUserApi } from '@/services/model/user/authUserApi';
 import { ContainedBtn } from '@/components/buttons/ContainedBtn';
+import { loginAuthAction } from '@/shared/redux/slices/auth.slice';
 import { LoginBlock } from '@/features/AuthForms/components/LoginBlock';
 import { checkCredentialInputs } from '@/features/AuthForms/data/AuthForms.helpers';
-import { Paths, AlertsAPIText } from '@/shared/data/constants';
-import type { InputReactEvent } from '@/shared/types/types';
 import type { HandleOnChangeInput } from '@/features/AuthForms/data/AuthForms.types';
-import { useAlert } from '@/features/alert';
-import { authUserApi } from '@/services/model/user/authUserApi';
-import { useAppDispatch } from '@/app/store/store';
-import { loginAuthAction } from '@/shared/slices/auth.slice';
 
 export function LoginForm(): React.ReactNode {
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ export function LoginForm(): React.ReactNode {
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [inputsError, setInputsError] = useState<{ [key: string]: string }>({});
 
-  const navigateToRegistrationPage = (): void => navigate(Paths.REGISTRATION);
+  const navigateToRegistrationPage = () => navigate(Paths.REGISTRATION);
 
   const reportError = useCallback((reason: 'email' | 'password', message: string): void => {
     setInputsError((prev) => ({ ...prev, [reason]: message }));
@@ -34,9 +34,9 @@ export function LoginForm(): React.ReactNode {
       if (tokenStore) {
         const { token, refreshToken } = tokenStore;
         dispatch(loginAuthAction({ authToken: token, refreshAuthToken: refreshToken ?? '' }));
-        showAlert(AlertsAPIText.LOGIN_SUCCESS);
+        showAlert(AlertAPIText.LOGIN_SUCCESS);
       } else {
-        showAlert(AlertsAPIText.LOGIN_ERROR);
+        showAlert(AlertAPIText.LOGIN_ERROR);
       }
     },
     [dispatch, inputs, reportError, showAlert]

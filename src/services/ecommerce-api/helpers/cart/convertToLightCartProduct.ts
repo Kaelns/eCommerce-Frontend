@@ -1,10 +1,10 @@
 import type { LineItem } from '@commercetools/platform-sdk';
-import type { ICartProduct } from '@/shared/types/types';
+import type { CartProduct } from '@/shared/types/types';
 import { LANGUAGE, COUNTRY } from '@/services/ecommerce-api/data/constants';
 import { getProductPrices } from '@/services/ecommerce-api/helpers/products/getProductPrices';
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
-export const MOCK_BASKET_PRODUCT: ICartProduct = {
+export const MOCK_BASKET_PRODUCT: CartProduct = {
   id: '',
   lineId: '',
   key: '',
@@ -18,7 +18,7 @@ export const MOCK_BASKET_PRODUCT: ICartProduct = {
   discountedPrice: 0
 };
 
-export function convertToLightCartProduct(basketProduct: LineItem): ICartProduct {
+export function convertToLightCartProduct(basketProduct: LineItem): CartProduct {
   if (!basketProduct) {
     return MOCK_BASKET_PRODUCT;
   }

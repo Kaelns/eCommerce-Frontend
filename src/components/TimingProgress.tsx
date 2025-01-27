@@ -1,7 +1,7 @@
 import type { LinearProgressProps } from '@mui/material';
 import { LinearProgress, keyframes, linearProgressClasses } from '@mui/material';
 import type { SxPropsObj } from '@/shared/types/types';
-import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
 const progressKeyframes = keyframes({
   '0%': {
@@ -25,10 +25,10 @@ const sxProgress = (time: number): SxPropsObj => ({
   }
 });
 
-export interface ITimingProgressProps extends LinearProgressProps {
+export interface TimingProgressProps extends LinearProgressProps {
   maxTimeSec: number;
 }
 
-export function TimingProgress({ maxTimeSec, sx = {}, ...props }: ITimingProgressProps): React.ReactNode {
+export function TimingProgress({ maxTimeSec, sx = {}, ...props }: TimingProgressProps): React.ReactNode {
   return <LinearProgress variant="indeterminate" sx={[sxProgress(maxTimeSec), ...convertSxToArr(sx)]} {...props} />;
 }

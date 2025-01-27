@@ -1,12 +1,13 @@
 import { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSlice';
-import { setIsPendingAuthAction } from '@/shared/slices/auth.slice';
-import type { IAppData, IBodyUserCredentials, ResponceOk } from '@/shared/types/types';
+import { setIsPendingAuthAction } from '@/shared/redux/slices/auth.slice';
+import type { AppData, ResponceOk } from '@/shared/types/types';
+import type { BodyUserCredentials } from '@/shared/zod/ecommerce/user.schemas';
 
 const authPath = '/session';
 
 export const authApi = ecommerceApiSlice.injectEndpoints({
   endpoints: (build) => ({
-    startSession: build.query<IAppData, void>({
+    startSession: build.query<AppData, void>({
       query: () => '/',
 
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
@@ -20,7 +21,7 @@ export const authApi = ecommerceApiSlice.injectEndpoints({
     }),
     // * Mutations
     //  TODO Set Cart
-    signUpUser: build.mutation<void, IBodyUserCredentials>({
+    signUpUser: build.mutation<void, BodyUserCredentials>({
       query: (body) => ({
         url: authPath,
         method: 'POST',

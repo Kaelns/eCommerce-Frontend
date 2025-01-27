@@ -1,13 +1,13 @@
-import type { AlertsAPIText } from '@/shared/data/constants';
-import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { rootReducer } from '@/shared/redux';
-import { AlertsText, Severity } from '@/shared/data/constants';
+import { rootReducer } from '@/shared/redux/redux';
+import { AlertSeverity, AlertText } from '@/shared/data/enums';
+import type { AlertAPIText } from '@/shared/data/enums';
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 
 const INIT_MODAL = {
   isOpen: false,
   message: '',
-  severity: Severity.ERROR,
+  severity: AlertSeverity.ERROR,
   isLoading: false
 };
 
@@ -22,11 +22,11 @@ export const alertSliceLazy = createSlice({
   },
   reducers: {
     // TODO Change string to enums below
-    showAlertAction(state, action: PayloadAction<{ message: AlertsText | AlertsAPIText | string; severity?: Severity }>) {
+    showAlertAction(state, action: PayloadAction<{ message: AlertText | AlertAPIText | string; severity?: AlertSeverity }>) {
       state.isOpen = true;
       state.isLoading = false;
       state.message = action.payload.message;
-      state.severity = action.payload.severity ?? Severity.SUCCESS;
+      state.severity = action.payload.severity ?? AlertSeverity.SUCCESS;
     },
     hideAlertAction(state) {
       state.isOpen = false;
@@ -35,18 +35,14 @@ export const alertSliceLazy = createSlice({
     showLoadingAlertAction(state) {
       state.isOpen = true;
       state.isLoading = true;
-      state.message = AlertsText.LOADING;
-      state.severity = Severity.SUCCESS;
+      state.message = AlertText.LOADING;
+      state.severity = AlertSeverity.SUCCESS;
     }
   }
 });
 
 export const alertSliceInjected = alertSliceLazy.injectInto(rootReducer);
 
-declare module '@/shared/redux' {
-  export interface ILazyLoadedSlices extends WithSlice<typeof alertSliceLazy> {}
+declare module '@/shared/redux/redux' {
+  export interface LazyLoadedSlices extends WithSlice<typeof alertSliceLazy> {}
 }
-
-export const { selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } = alertSliceInjected.selectors;
-
-export const { hideAlertAction, showLoadingAlertAction, showAlertAction } = alertSliceInjected.actions;

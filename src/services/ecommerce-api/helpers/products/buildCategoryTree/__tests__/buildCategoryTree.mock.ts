@@ -1,5 +1,5 @@
 import type { Category } from '@commercetools/platform-sdk';
-import type { ICategoryTreeNode } from '@/shared/types/types';
+import type { CategoryTreeNode } from '@/shared/types/types';
 import type { ICategoriesObj } from '@/services/interface';
 import { convertArrOfIdElemToIdObj } from '@/utils/convertArrOfIdElemToIdObj';
 
@@ -584,7 +584,7 @@ export const initCategories: Category[] = [
 
 export const initCategoriesObj: ICategoriesObj = convertArrOfIdElemToIdObj(initCategories);
 
-export const initCategoriesTree: ICategoryTreeNode[] = [
+export const initCategoriesTree: CategoryTreeNode[] = [
   {
     id: '17961d11-5114-495a-bad8-643daa70913c',
     key: 'new-arrivals',

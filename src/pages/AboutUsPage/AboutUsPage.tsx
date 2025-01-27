@@ -1,7 +1,7 @@
 import { Box, List, Stack, Card, CardMedia, CardContent, Link, Typography, Paper } from '@mui/material';
 import { TitleTypography } from '@/components/typography/TitleTypography';
 import { BoldTypography } from '@/components/typography/BoldTypography';
-import { ABOUT_US } from '@/pages/AboutUsPage/AboutUs.constant';
+import { ABOUT_US } from '@/pages/AboutUsPage/constants';
 import type { SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {

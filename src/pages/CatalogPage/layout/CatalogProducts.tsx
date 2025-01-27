@@ -2,17 +2,17 @@ import { Box, Typography } from '@mui/material';
 import { memo, useContext } from 'react';
 import { Grid, Stack } from '@mui/system';
 import { TitleTypography } from '@/components/typography/TitleTypography';
-import { ProductSortBy } from '@/pages/CatalogPage/components/ProductSortBy';
+import { CatalogSortBy } from '@/pages/CatalogPage/layout/CatalogSortBy';
 import { SuspenseWithError } from '@/components/SuspenseWithError';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { ProductPagination } from '@/pages/CatalogPage/components/ProductPagination';
-import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
+import { CatalogPagination } from '@/pages/CatalogPage/layout/CatalogPagination';
+import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce/useDebounce';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 import type { SxPropsNotArr } from '@/shared/types/types';
 import { getProductsApi } from '@/services/model/products/getProductsApi';
-import { convertKeyToName } from '@/utils/convert/convertKeyToName';
+import { convertKeyToName } from '@/utils/strings/convertKeyToName';
 import { EMPTY_DATA_PRODUCTS } from '@/services/constants';
 
 const sxProductWrapper: SxPropsNotArr = {
@@ -28,7 +28,7 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
   const { products, amount } = data;
 
   return (
-    <SuspenseWithError error={error} isLoading={isLoading} Skeleton={PageSkeleton} width={1}>
+    <SuspenseWithError error={error} isLoading={isLoading} width={1}>
       {products.length ? (
         <>
           <Stack
@@ -43,7 +43,7 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
               <Typography>{amount} products</Typography>
             </Box>
 
-            <ProductSortBy />
+            <CatalogSortBy />
           </Stack>
 
           <Grid container spacing={2} columns={9}>
@@ -54,7 +54,7 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
             ))}
           </Grid>
 
-          <ProductPagination amount={amount} />
+          <CatalogPagination amount={amount} />
         </>
       ) : (
         <TitleTypography>There is no products</TitleTypography>

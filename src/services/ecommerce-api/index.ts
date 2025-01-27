@@ -1,4 +1,5 @@
 import { authApi } from '@/services/ecommerce-api/redux/model/authApi';
+import { productApi } from '@/services/ecommerce-api/redux/model/productApi';
 import { usersApi } from '@/services/ecommerce-api/redux/model/usersApi';
 
 export {
@@ -18,3 +19,5 @@ export { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSl
 
 export const { useStartSessionQuery } = authApi;
 export const { useCheckIsUserExistByEmailMutation } = usersApi;
+export const { useGetCategoriesQuery } = productApi;
+// export const { useCheckIsUserExistByEmailMutation } = usersApi;

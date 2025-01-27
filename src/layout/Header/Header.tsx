@@ -5,7 +5,7 @@ import { Burger } from '@/layout/Header/components/Burger';
 import { Navbar, Navbars } from '@/layout/Navbar';
 import { UserPopoverMenu } from '@/layout/Header/components/UserPopoverMenu';
 import { SectionContainer } from '@/layout/SectionContainer';
-import { BasketLinkIconBtn } from '@/layout/Header/components/BasketLinkIconBtn';
+import { CartLinkIconBtn } from '@/layout/Header/components/CartLinkIconBtn';
 import { AppBar, Box, useMediaQuery, useTheme } from '@mui/material';
 
 const sxStyles: SxStyles = {
@@ -29,7 +29,7 @@ export function Header(): React.ReactNode {
         </Stack>
 
         <Box>
-          <BasketLinkIconBtn />
+          <CartLinkIconBtn />
           <UserPopoverMenu />
           <Burger />
         </Box>

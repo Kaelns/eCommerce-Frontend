@@ -1,10 +1,10 @@
 import type { ProductProjection } from '@commercetools/platform-sdk';
-import type { IProduct } from '@/shared/types/types';
+import type { Product } from '@/shared/types/types';
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 import { COUNTRY, LANGUAGE } from '@/services/ecommerce-api';
 import { getProductPrices } from '@/services/ecommerce-api/helpers/products/getProductPrices';
 
-const MOCK_PRODUCT: IProduct = {
+const MOCK_PRODUCT: Product = {
   id: '',
   key: '',
   name: '',
@@ -20,7 +20,7 @@ const MOCK_PRODUCT: IProduct = {
 
 // TODO pure function
 
-export function convertToLightProduct(product: ProductProjection | undefined): IProduct {
+export function convertToLightProduct(product: ProductProjection | undefined): Product {
   if (!product) {
     return MOCK_PRODUCT;
   }

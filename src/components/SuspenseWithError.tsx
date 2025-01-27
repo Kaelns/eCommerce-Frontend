@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Stack } from '@mui/system';
-import { ErrorBody } from '@/layout/ErrorBody';
+import { AppError } from '@/layout/AppError';
 import { sxMixins } from '@/shared/data/mui-mixins';
-import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import type { StackProps } from '@mui/system';
 import type { PropsWithChildren, SxStyles } from '@/shared/types/types';
 import imageError from '@/shared/assets/error2.png';
 import { revealAnimation } from '@/shared/data/mui-animations';
+import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
 
 const sxStyles: SxStyles = {
   container: {
@@ -31,16 +32,15 @@ interface ILoadingFetchProps extends StackProps {
     isError: boolean;
     error?: string;
   };
-  components: {
-    Skeleton: React.ReactNode;
-    Fallback?: React.ReactNode;
-  };
+  Skeleton?: React.ReactNode;
+  Fallback?: React.ReactNode;
 }
 
 export function SuspenseWithError({
   children,
   settings: { isLoading, isError, error },
-  components: { Skeleton, Fallback = <ErrorBody message={error} src={imageError} alt="error" /> },
+  Skeleton = <PageSkeleton />,
+  Fallback = <AppError message={error} src={imageError} alt="error" />,
   sx = {},
   ...props
 }: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {

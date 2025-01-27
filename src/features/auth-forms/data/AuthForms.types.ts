@@ -1,5 +1,5 @@
 import type { AddressPrefix, INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
-import type { IAutocompleteOptions, InputReactEvent } from '@/shared/types/types';
+import type { AutocompleteOptions, InputReactEvent } from '@/shared/types/types';
 
 type InputKeys = keyof typeof INPUTS;
 
@@ -23,5 +23,5 @@ export type PostalCodePattern = {
 
 export type HandleChangeAutocomplete = (
   event: React.SyntheticEvent<Element, Event>,
-  value: IAutocompleteOptions | null
+  value: AutocompleteOptions | null
 ) => void;

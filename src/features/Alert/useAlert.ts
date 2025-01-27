@@ -1,13 +1,13 @@
-import type { AlertsAPIText, AlertsText } from '@/shared/data/constants';
-import { Severity } from '@/shared/data/constants';
+import type { AlertText, AlertAPIText } from '@/shared/data/enums';
+import { showAlertAction, showLoadingAlertAction, hideAlertAction } from '@/features/alert';
+import { AlertSeverity } from '@/shared/data/enums';
+import { useAppDispatch } from '@/shared/redux/redux';
 import { useCallback } from 'react';
-import { useAppDispatch } from '@/shared/redux';
-import { showAlertAction, showLoadingAlertAction, hideAlertAction } from '@/features/alert/alert.slice';
 
-export type ShowAlertText = (message: string, severity: Severity) => void;
+export type ShowAlertText = (message: string, severity: AlertSeverity) => void;
 
 export interface IUseAlertTextReturn {
-  showAlert: (message: AlertsText | AlertsAPIText | string, severity?: Severity) => void;
+  showAlert: (message: AlertText | AlertAPIText | string, severity?: AlertSeverity) => void;
   showLoadingAlert: () => void;
   hideAlert: () => void;
 }
@@ -18,7 +18,7 @@ export function useAlert(): IUseAlertTextReturn {
   const dispatch = useAppDispatch();
 
   const showAlert = useCallback(
-    (message: AlertsText | AlertsAPIText | string, severity: Severity = Severity.SUCCESS): void => {
+    (message: AlertText | AlertAPIText | string, severity: AlertSeverity = AlertSeverity.SUCCESS): void => {
       dispatch(showAlertAction({ message, severity }));
     },
     [dispatch]

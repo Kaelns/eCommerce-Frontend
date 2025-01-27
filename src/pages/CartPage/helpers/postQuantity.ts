@@ -1,9 +1,9 @@
-import type { ICartProducts } from '@/shared/types/types';
+import type { CartProducts } from '@/shared/types/types';
 import { manageCartCatch } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch';
 import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 
-//  FIXME
-export async function postQuantity(prevBasketProd: ICartProducts, basketProd: ICartProducts, token: string): Promise<string> {
+//  FIXME delete
+export async function postQuantity(prevBasketProd: CartProducts, basketProd: CartProducts, token: string): Promise<string> {
   let error = '';
   const prevKeys = Object.keys(prevBasketProd);
 

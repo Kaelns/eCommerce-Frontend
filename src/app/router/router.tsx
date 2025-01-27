@@ -1,5 +1,5 @@
 import { App } from '@/layout/App';
-import { Paths } from '@/shared/data/constants';
+import { Paths } from '@/shared/data/enums';
 import { MainPage } from '@/pages/MainPage/MainPage';
 import { CartPage } from '@/pages/CartPage/CartPage';
 import { UserPage } from '@/pages/UserPage/UserPage';

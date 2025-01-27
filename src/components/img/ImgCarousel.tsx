@@ -88,7 +88,7 @@ const additionalSettings = (customDots: React.ReactNode[], sliderRef: React.RefO
   }
 });
 
-interface IImgCarousel extends BoxProps {
+interface ImgCarouselProps extends BoxProps {
   arrows?: boolean;
   customDots?: React.ReactNode[];
   openModalImg?: number;
@@ -101,7 +101,7 @@ export function ImgCarousel({
   openModalImg = 0,
   width = 1,
   ...props
-}: PropsWithChildren<IImgCarousel>): React.ReactNode {
+}: PropsWithChildren<ImgCarouselProps>): React.ReactNode {
   const sliderRef = useRef<Slider>(null);
 
   const addSettings = useMemo(() => (customDots.length ? additionalSettings(customDots, sliderRef) : {}), [customDots]);

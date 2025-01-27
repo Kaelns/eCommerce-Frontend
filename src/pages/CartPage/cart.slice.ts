@@ -1,17 +1,17 @@
-import type { ICartProducts } from '@/shared/types/types';
+import type { CartProducts } from '@/shared/types/types';
 import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import type { Cart } from '@commercetools/platform-sdk';
 import { MOCK_CART } from '@/services/ecommerce-api';
-import { rootReducer } from '@/shared/redux';
-import { calculatePrice } from '@/pages/CartPage/helpers/calculatePrice';
-import { calculateDiscountPercent } from '@/pages/CartPage/helpers/calculateDiscountPercent';
-import { calculateProductsQuantity } from '@/pages/CartPage/helpers/calculateProductsQuantity';
-import { convertToLightCartAllProducts } from '@/pages/CartPage/helpers/convertToLightCartProducts';
+import { rootReducer } from '@/shared/redux/redux';
+import { calculatePrice } from '@/pages/CartPage/helpers/numbers/calculatePrice';
+import { calculateDiscountPercent } from '@/pages/CartPage/helpers/numbers/calculateDiscountPercent';
+import { calculateProductsQuantity } from '@/pages/CartPage/helpers/numbers/calculateProductsQuantity';
+import { convertToLightCartAllProducts } from '@/pages/CartPage/helpers/objects/convertToLightCartProducts';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 const INIT_CART = {
   cart: MOCK_CART,
-  cartProducts: {} as ICartProducts,
+  cartProducts: {} as CartProducts,
   productQuantity: 0,
   finalPrice: 0,
   discount: 0,
@@ -34,7 +34,7 @@ const cartSliceLazy = createSlice({
     selectCartProducts: (state) => state.cartProducts,
     selectProductQuantityCart: (state) => state.productQuantity,
     // * Calculates automatically by create selector
-    selectFinalPriceCart: createSelector([(state): ICartProducts => state.cartProducts], calculatePrice)
+    selectFinalPriceCart: createSelector([(state): CartProducts => state.cartProducts], calculatePrice)
   },
   reducers: {
     setCartAction(state, action: PayloadAction<Cart>) {
@@ -102,27 +102,6 @@ const cartSliceLazy = createSlice({
 
 export const cartSliceInjected = cartSliceLazy.injectInto(rootReducer);
 
-declare module '@/shared/redux' {
-  export interface ILazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
+declare module '@/shared/redux/redux' {
+  export interface LazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
 }
-
-export const {
-  selectCart,
-  selectCartProducts,
-  selectDiscountCart,
-  selectFinalPriceCart,
-  selectIsPromocodeCart,
-  selectDeletionSignalCart,
-  selectProductQuantityCart
-} = cartSliceInjected.selectors;
-
-export const {
-  setCartAction,
-  resetCartAction,
-  setQuantityAction,
-  deleteProductAction,
-  setIsPromocodeAction,
-  deletionSignalAction,
-  decrementQuantityAction,
-  incrementQuantityAction
-} = cartSliceInjected.actions;

@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import type { LinkProps, SxProps } from '@mui/material';
 import { Link } from '@mui/material';
 import type { PropsWithChildren } from '@/shared/types/types';
-import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
 const sxLink: SxProps = {
   color: 'inherit',

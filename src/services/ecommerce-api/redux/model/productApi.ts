@@ -2,7 +2,7 @@ import { LIMIT_ON_PAGE } from '@/services/ecommerce-api/data/constants';
 import { convertCategories } from '@/services/ecommerce-api/helpers/products/convertCategories';
 import { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSlice';
 import type { Categories } from '@/shared/types/types';
-import type { QueryArgsProducts } from '@/shared/zod/ecommerce/product.schema';
+import type { QueryArgsProductsZod } from '@/shared/zod/ecommerce/product.schemas';
 import type { CategoryPagedQueryResponse, ProductProjection, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
 
 const productsPath = '/products';
@@ -13,7 +13,7 @@ export const productApi = ecommerceApiSlice
   })
   .injectEndpoints({
     endpoints: (build) => ({
-      getProducts: build.query<ProductProjectionPagedSearchResponse, QueryArgsProducts>({
+      getProducts: build.query<ProductProjectionPagedSearchResponse, QueryArgsProductsZod>({
         query: (queryArgs) => ({
           url: productsPath,
           params: {
@@ -35,6 +35,7 @@ export const productApi = ecommerceApiSlice
           return convertCategories(categories);
         }
       })
+      // fetchCategoryProducts
     }),
     overrideExisting: 'throw'
   });

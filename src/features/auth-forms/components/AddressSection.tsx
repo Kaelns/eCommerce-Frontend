@@ -1,13 +1,6 @@
 import { useMemo } from 'react';
 import { Autocomplete, InputLabel, TextField } from '@mui/material';
-import { ValidationInput } from '@/features/AuthForms/components/ValidationInput';
-import type { AddressPrefix } from '@/features/AuthForms/data/AuthForms.constants';
-import { INPUTS, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
-import type { HandleChangeAutocomplete, HandleOnChangeInput, IInputsErrors, IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
 import { COUNTRY_LIST } from '@/shared/data/constants';
-import checkGeneralRule from '@/shared/zod/%%%BADvalidation/generalValidation';
-import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
-import streetValidation from '@/shared/zod/%%%BADvalidation/streetValidation';
 
 const ADDRESS_INPUTS = {
   [AddressProperty.POSTAL_CODE]: checkPostalCode,

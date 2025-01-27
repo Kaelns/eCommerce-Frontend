@@ -1,7 +1,7 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { Button, Stack, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
-import { ProductSearch } from '@/pages/CatalogPage/components/ProductSearch';
+import { CatalogSearch } from '@/pages/CatalogPage/layout/CatalogSearch';
 import type { SxStyles } from '@/shared/types/types';
 import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
 import { sxMixins } from '@/shared/data/mui-mixins';
@@ -39,7 +39,7 @@ export function CatalogHeader({ openDrawer }: ICatalogHeaderProps): React.ReactN
 
   return (
     <Stack direction="row" gap={1}>
-      <ProductSearch setIsSearchInFocus={setIsSearchInFocus} sxContainer={[sxStyles.search, isSearchInFocus && sxStyles.searchActive]} />
+      <CatalogSearch setIsSearchInFocus={setIsSearchInFocus} sxContainer={[sxStyles.search, isSearchInFocus && sxStyles.searchActive]} />
 
       {!isMatchesLaptopBig && (
         <Button onClick={openDrawer} sx={sxStyles.filters}>

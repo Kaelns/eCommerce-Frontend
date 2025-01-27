@@ -1,12 +1,19 @@
 import type { Theme, SystemStyleObject } from '@mui/system';
 import type { ByProjectKeyProductProjectionsSearchRequestBuilder, Category, Image, ProductProjection } from '@commercetools/platform-sdk';
-import type { IAppExtraArgument } from '@/shared/redux';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { isObject as isObjectLodash } from 'lodash';
+import type { AppExtraArgument } from '@/shared/redux/redux';
 
 export const isObject = (elem: unknown): elem is object => {
   return isObjectLodash(elem) && !Array.isArray(elem);
 };
+
+// * General types
+
+export interface TreeNode {
+  id: string;
+  children: TreeNode[];
+}
 
 // * React types
 
@@ -37,19 +44,11 @@ export interface BackendError extends ResponceOk {
   message: string;
 }
 
-export const isBackendError = (obj: unknown): obj is BackendError => {
-  return isObject(obj) && 'name' in obj && 'status' in obj && 'message' in obj;
-};
-
 // * EcommerceApi types
 
-export type EcommerceBaseQuery = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, Partial<IAppExtraArgument>>;
+export type EcommerceBaseQuery = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, Partial<AppExtraArgument>>;
 
-export const isFetchBaseQueryError = (obj: unknown): obj is FetchBaseQueryError => {
-  return isObject(obj) && 'status' in obj && 'data' in obj;
-};
-
-export interface IAppData {
+export interface AppData {
   countries: Record<string, string>;
   currencies: string[];
   isUserLogged: boolean;
@@ -58,49 +57,49 @@ export interface IAppData {
 
 // ** Product types
 
-export type ISrcsetPxAsc = [string, `${number}w`][];
-export function isISrcsetPxAsc(elem: unknown): elem is ISrcsetPxAsc {
-  return Array.isArray(elem) && Array.isArray(elem[0]) && elem[0].length === 2 && typeof elem[0][0] === 'string' && typeof elem[0][1] === 'string';
-}
+export type SrcsetPxAsc = [string, `${number}w`][];
+export type QueryProductsArgs = NonNullable<NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']>;
 
-export type IQueryProductsArgs = NonNullable<NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']>;
-
-export interface IPrices {
+export interface Prices {
   price: number;
   discount: number;
   discountedPrice: number;
 }
-export interface IProduct extends IPrices {
+
+export interface Product extends Prices {
   id: string;
   key: string;
   name: string;
+  images: Image[];
   imageUrl: string;
   maxQuantity: number;
   description: string;
   categoriesIdArr: string[];
-  images: Image[];
 }
 
 //  *** Categories types
 
 export type CategoriesObj = Record<Category['id'], Category>;
+
+//  FIXME Delete if not used
 export interface IProductsResponce {
   products: ProductProjection[];
   amount: number;
 }
-export interface ICategoryTreeNode {
-  id: string;
+export interface CategoryTreeNode extends TreeNode {
   key: string;
-  children: ICategoryTreeNode[];
+  children: CategoryTreeNode[];
 }
+
 export interface Categories {
-  categoriesTree: ICategoryTreeNode[];
+  categoriesTree: CategoryTreeNode[];
   categoriesObj: CategoriesObj;
   categories: Category[];
 }
 
 // ** Cart types
-export interface ICartProduct extends IPrices {
+
+export interface CartProduct extends Prices {
   id: string;
   lineId: string;
   key: string;
@@ -111,52 +110,13 @@ export interface ICartProduct extends IPrices {
   imageUrl: string;
 }
 
-export interface ICartProducts {
-  [key: string]: ICartProduct;
+export interface CartProducts {
+  [key: string]: CartProduct;
 }
 
 // ** User types
-export interface IAutocompleteOptions {
+export interface AutocompleteOptions {
   label: string;
   code: string;
   postalCodePattern: RegExp;
-}
-export interface IAddress {
-  country: string;
-  postalCode: string;
-  city: string;
-  streetName: string;
-}
-
-export interface ICreateUserParams {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  dateOfBirth: string;
-  addresses: IAddress[];
-  shippingAddresses: number[];
-  billingAddresses?: number[];
-  defaultBillingAddress?: number;
-  defaultShippingAddress?: number;
-}
-
-export interface IBodyUserCredentials {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-  dateOfBirth: string;
-  addresses: {
-    country: string;
-    city: string;
-    streetName: string;
-    streetNumber: string;
-    postalCode: string;
-    apartment?: string | undefined;
-  }[];
-  shippingAddresses: number[];
-  billingAddresses?: number[] | undefined;
-  defaultBillingAddress?: number | undefined;
-  defaultShippingAddress?: number | undefined;
 }

@@ -3,15 +3,15 @@ import { Paper } from '@mui/material';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
+import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { SuspenseWithError } from '@/components/SuspenseWithError';
-import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
+import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
 import { Paths } from '@/shared/data/constants';
 import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
 import type { SxStyles } from '@/shared/types/types';
 import { BoldTypography } from '@/components/typography/BoldTypography';
-import { fetchCategoryProducts } from '@/pages/MainPage/MainPage.helpers';
-import { convertKeyToName } from '@/utils/convert/convertKeyToName';
+import { fetchCategoryProducts } from '@/pages/MainPage/helpers';
+import { convertKeyToName } from '@/utils/strings/convertKeyToName';
 import { useFetch } from '@/hooks/useFetch/useFetch';
 
 const sxStyles: SxStyles = {

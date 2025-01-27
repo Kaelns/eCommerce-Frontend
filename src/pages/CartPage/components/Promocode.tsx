@@ -5,12 +5,10 @@ import type { BoxProps } from '@mui/system';
 import type { InputReactEvent, SxStyles } from '@/shared/types/types';
 import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
 import { BoldTypography } from '@/components/typography/BoldTypography';
-import { Severity } from '@/shared/data/constants';
 import { useAlert } from '@/features/alert';
 import { promocodeCartCatch } from '@/services/%%%BADhelpers/cartHelpers/promocodeCartCatch/promocodeCartCatch';
-import { cartSlice } from '@/pages/CartPage/cart.slice';
-import { useAppSelector } from '@/app/store/store';
-import { authSliceSelectors } from '@/shared/slices/auth.slice';
+import { AlertSeverity } from '@/shared/data/enums';
+import { useAppSelector } from '@/shared/redux/redux';
 
 const sxStyles: SxStyles = {
   input: {
@@ -42,7 +40,7 @@ export function Promocode({ handlePromocode, ...props }: IPromocodeProps): React
   const handleSubmit = async (): Promise<void> => {
     const { error } = await promocodeCartCatch(ManageCart.DISCOUNT, authToken, inputValue);
     if (error) {
-      showAlert(error, Severity.ERROR);
+      showAlert(error, AlertSeverity.ERROR);
     } else {
       handlePromocode(true);
     }

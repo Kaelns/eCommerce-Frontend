@@ -2,12 +2,11 @@ import {
   initCategories,
   initCategoriesObj,
   initCategoriesTree
-} from '@/services/ecommerce/helpers/products/buildCategoryTree/__tests__/buildCategoryTree.mock';
+} from '@/services/ecommerce-api/helpers/products/buildCategoryTree/__tests__/buildCategoryTree.mock';
 import { Category } from '@commercetools/platform-sdk';
-import { ICategoriesObj } from '@/services/ecommerce';
-import { buildCategoryTree } from '@/services/ecommerce/helpers/products/buildCategoryTree/buildCategoryTree';
-import { ICategoryTreeNode } from '@/shared/types/types';
-import { convertArrOfIdElemToIdObj } from '@/utils/convert/convertArrOfIdElemToIdObj';
+import { buildCategoryTree } from '@/services/ecommerce-api/helpers/products/buildCategoryTree/buildCategoryTree';
+import { convertArrOfIdElemToIdObj } from '@/utils/arrays/convertArrOfIdElemToIdObj';
+import { CategoriesObj, CategoryTreeNode } from '@/shared/types/types';
 
 describe('buildCategoryTree', () => {
   it('must return right tree', () => {
@@ -21,8 +20,8 @@ describe('buildCategoryTree', () => {
     const platesOfDinnerwareId = 'd1ab0fd1-a2d4-4b10-bdfa-261bd74346d9';
 
     const categories: Category[] = [kitchenId, servewareOfKitchenId, dinnerwareOfKitchenId, platesOfDinnerwareId].map((id) => initCategoriesObj[id]);
-    const categoriesObj: ICategoriesObj = convertArrOfIdElemToIdObj(categories);
-    const categoriesTree: ICategoryTreeNode[] = [
+    const categoriesObj: CategoriesObj = convertArrOfIdElemToIdObj(categories);
+    const categoriesTree: CategoryTreeNode[] = [
       {
         id: '5667aecb-b311-4a42-b358-aedc802a28a7',
         key: 'kitchen',

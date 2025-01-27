@@ -11,11 +11,11 @@ import { selectCart } from '@/pages/CartPage/cart.slice';
 import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
 import { useAppSelector } from '@/shared/redux';
 import { BoldTypography } from '@/components/typography/BoldTypography';
-import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
+import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
 import { Box, Typography } from '@mui/material';
 import { DiscountTypography } from '@/components/typography/DiscountTypography';
 import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
-import { findBasketProductId } from '@/services/ecommerce-api/helpers/cart/findBasketProductId';
+import { findCartProductId } from '@/services/ecommerce-api/helpers/cart/findCartProductId';
 import { convertToLightProduct } from '@/services/ecommerce-api/helpers/products/convertToLightProduct';
 
 const ICON_WIDTH = '2.2rem';
@@ -109,11 +109,11 @@ export function ProductCard({
     <LinkRouterWrapper to={pathToProduct} display="flex" justifyContent="center" height={1} width={1}>
       <Stack spacing={3} height={1} width={1} maxWidth={containerMaxWidth} sx={sxStyles.cardContainer}>
         {!!cartData && (
-          <AddToBasketBtn
+          <AddProductToCartBtn
             isIconBtn
             productId={data.id}
             isAvailable={!data.maxQuantity}
-            lineItemId={findBasketProductId(cartData.lineItems, data.id)}
+            lineItemId={findCartProductId(cartData.lineItems, data.id)}
             sx={sxStyles.basketBtn}
             iconSx={sxStyles.basketIcon}
             progressSx={sxStyles.basketProgress}

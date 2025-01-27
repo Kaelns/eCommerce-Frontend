@@ -1,6 +1,6 @@
 import type { TypographyProps } from '@mui/material';
 import { Typography } from '@mui/material';
-import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import type { SxPropsObj } from '@/shared/types/types';
 
 const sxText: SxPropsObj = {
@@ -16,11 +16,11 @@ const sxText: SxPropsObj = {
   bgcolor: 'error.light'
 };
 
-interface IDiscountProps extends TypographyProps {
+interface DiscountTypographyProps extends TypographyProps {
   discount: number;
 }
 
-export function DiscountTypography({ discount, sx = {} }: IDiscountProps): React.ReactNode {
+export function DiscountTypography({ discount, sx = {} }: DiscountTypographyProps): React.ReactNode {
   return (
     !!discount && (
       <Typography variant="subtitle2" sx={[sxText, ...convertSxToArr(sx)]}>

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-export interface IReturnUseFetch<T> {
+export interface ReturnUseFetch<T> {
   data: T | undefined;
   error: string;
   isLoading: boolean;
 }
 
-export function useFetch<T, P, U>(func: () => T, parameters?: P, refreshState?: U): IReturnUseFetch<Awaited<T>>;
-export function useFetch<T, P, U>(func: (parameters: P) => T, parameters: P, refreshState?: U): IReturnUseFetch<Awaited<T>>;
-export function useFetch<T, P, U>(func: (parameters: P) => T, parameters: P, refreshState?: U): IReturnUseFetch<Awaited<T>> {
+export function useFetch<T, P, U>(func: () => T, parameters?: P, refreshState?: U): ReturnUseFetch<Awaited<T>>;
+export function useFetch<T, P, U>(func: (parameters: P) => T, parameters: P, refreshState?: U): ReturnUseFetch<Awaited<T>>;
+export function useFetch<T, P, U>(func: (parameters: P) => T, parameters: P, refreshState?: U): ReturnUseFetch<Awaited<T>> {
   const [data, setData] = useState<Awaited<T>>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);

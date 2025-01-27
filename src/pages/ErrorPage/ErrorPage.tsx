@@ -1,6 +1,6 @@
-import { ErrorBody } from '@/layout/ErrorBody';
+import { AppError } from '@/layout/AppError';
 import imageNotFound from '@/shared/assets/not-found.png';
 
 export function ErrorPage(): React.ReactNode {
-  return <ErrorBody src={imageNotFound} alt="404" />;
+  return <AppError src={imageNotFound} alt="404" />;
 }

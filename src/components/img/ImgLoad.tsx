@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import type { StackProps, Theme } from '@mui/system';
 import { Stack } from '@mui/system';
 import { grey } from '@mui/material/colors';
-import { ImgSkeleton } from '@/components/skeleton/ImgSkeleton';
-import { convertSxToArr } from '@/utils/convert/convertSxToArr';
-import type { ISrcsetPxAsc, SxStyles } from '@/shared/types/types';
+import { ImgSkeleton } from '@/components/skeletons/ImgSkeleton';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+import type { SrcsetPxAsc, SxStyles } from '@/shared/types/types';
 import { sxMixins } from '@/shared/data/mui-mixins';
-import { createSrcset } from '@/utils/create/createSrcset';
+import { createSrcset } from '@/utils/strings/createSrcset';
 
 const sxStyles: SxStyles = {
   container: {
@@ -27,19 +27,20 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface IImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
+interface ImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
   src: string;
   alt: string;
   height?: T;
   srcset?: T extends number
-    ? { srcSetArr: ISrcsetPxAsc }
+    ? { srcSetArr: SrcsetPxAsc }
     : {
-        srcSetArr: ISrcsetPxAsc;
+        srcSetArr: SrcsetPxAsc;
         maxSize: number | 'unlimited';
       };
   containerStyles?: SxProps<Theme>;
 }
 
+// TODO change to custom Suspense
 export function ImgLoad<T extends StackProps['height']>({
   src,
   height,
@@ -48,7 +49,7 @@ export function ImgLoad<T extends StackProps['height']>({
   sx = {},
   containerStyles = {},
   ...props
-}: IImgLoadProps<T>): React.ReactNode {
+}: ImgLoadProps<T>): React.ReactNode {
   const [isImgLoading, setIsImgLoading] = useState(true);
   const [srcSetOfImg, setSrcSetOfImg] = useState('');
 
@@ -56,7 +57,8 @@ export function ImgLoad<T extends StackProps['height']>({
     setIsImgLoading(false);
   };
 
-  // TODO slice srcSetArr for max height and add isCreateSrcSet
+  // TODO slice srcSetArr for max height and add isCreateSrcSet.
+  // TODO add createSrcset to useState default value
   useEffect(() => {
     if (srcset) {
       if (typeof height === 'number') {

@@ -1,8 +1,8 @@
 import type { Category } from '@commercetools/platform-sdk';
-import type { CategoriesObj, ICategoryTreeNode } from '@/shared/types/types';
+import type { CategoriesObj, CategoryTreeNode } from '@/shared/types/types';
 
-export function buildCategoryTree(categories: Category[], categoriesObj: CategoriesObj): ICategoryTreeNode[] {
-  const rootArr: ICategoryTreeNode[] = [];
+export function buildCategoryTree(categories: Category[], categoriesObj: CategoriesObj): CategoryTreeNode[] {
+  const rootArr: CategoryTreeNode[] = [];
   let rootOrChildrenArr = rootArr;
 
   if (!categories.length) {
@@ -12,7 +12,7 @@ export function buildCategoryTree(categories: Category[], categoriesObj: Categor
   categories.forEach((category) => {
     const [id, key] = [category.id, category.key!];
     const ancestorsCount = category.ancestors.length;
-    const newObjCategory: ICategoryTreeNode = { id, key, children: [] };
+    const newObjCategory: CategoryTreeNode = { id, key, children: [] };
 
     if (ancestorsCount) {
       category.ancestors.forEach((ancestor, i) => {

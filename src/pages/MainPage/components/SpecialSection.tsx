@@ -4,9 +4,9 @@ import { Paper } from '@mui/material';
 import { sxMixins } from '@/shared/data/mui-mixins';
 import { useAlert } from '@/features/alert';
 import { BoldTypography } from '@/components/typography/BoldTypography';
-import { ClickToClipboardPaper } from '@/components/boxes/ClickToClipboardPaper';
+import { ClickToClipboardPaper } from '@/pages/MainPage/components/ClickToClipboardPaper';
 import { PROMOCODES } from '@/services/ecommerce-api';
-import { AlertsText } from '@/shared/data/constants';
+import { AlertText } from '@/shared/data/enums';
 import { pulseAnimation } from '@/shared/data/mui-animations';
 
 const sxStyles: SxStyles = {
@@ -33,7 +33,7 @@ export function SpecialSection(): React.ReactNode {
   const { showAlert } = useAlert();
 
   const handleOnCopy = () => {
-    showAlert(AlertsText.CLIPBOARD_SUCCESS);
+    showAlert(AlertText.CLIPBOARD_SUCCESS);
   };
 
   return (

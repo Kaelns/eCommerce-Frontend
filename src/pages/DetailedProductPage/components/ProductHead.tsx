@@ -7,9 +7,9 @@ import { useFetch } from '@/hooks/useFetch/useFetch';
 import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
 import { fetchBasket } from '@/services/%%%BADhelpers/fetchBasket/fetchBasket';
 import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
-import { AddToBasketBtn } from '@/components/buttons/AddToBasketBtn/AddToBasketBtn';
+import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
 import { findBasketProductId } from '@/services/ecommerce/helpers/cart/findBasketProductId';
-import type { IProduct, SxStyles } from '@/shared/types/types';
+import type { Product, SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {
   container: (theme) => ({
@@ -40,7 +40,7 @@ const sxStyles: SxStyles = {
 
 interface IProductHeaderProps {
   categoriesNames: string[];
-  productData: IProduct;
+  productData: Product;
 }
 
 export function ProductHead({ productData, categoriesNames }: IProductHeaderProps): React.ReactNode {
@@ -61,7 +61,7 @@ export function ProductHead({ productData, categoriesNames }: IProductHeaderProp
         ))}
       </Stack>
 
-      <AddToBasketBtn isAvailable={!productData.maxQuantity} lineItemId={lineItemId} productId={productData.id} sx={sxStyles.basketBtn} />
+      <AddProductToCartBtn isAvailable={!productData.maxQuantity} lineItemId={lineItemId} productId={productData.id} sx={sxStyles.basketBtn} />
     </Stack>
   );
 }

@@ -1,8 +1,8 @@
-import type { IFilterColorsKeys } from '@/features/CatalogFilterForm/CatalogFilterForm.types';
-import { INITIAL_FORM_VALUE, NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.constants';
-import type { Sort } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.enum';
-import type { IAction, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/filterReducer.interface';
+import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+import { INITIAL_FORM_VALUE, NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
+import type { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import type { IAction, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
 
 export const filterReducer = (state: IFilterState, action: IAction): IFilterState => {
   switch (action.type) {
@@ -35,7 +35,7 @@ export const filterReducer = (state: IFilterState, action: IAction): IFilterStat
         page: 1,
         color: {
           ...state.color,
-          [action.payload as IFilterColorsKeys]: !state.color[action.payload as IFilterColorsKeys]
+          [action.payload as FilterColorsKeys]: !state.color[action.payload as FilterColorsKeys]
         }
       };
     case FilterState.SEARCH:

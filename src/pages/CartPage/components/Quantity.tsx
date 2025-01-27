@@ -4,7 +4,7 @@ import type { SxProps } from '@mui/material';
 import { ButtonGroup, Button, Input } from '@mui/material';
 import type { Theme } from '@mui/system';
 import type { InputReactEvent, SxStyles } from '@/shared/types/types';
-import { convertSxToArr } from '@/utils/convert/convertSxToArr';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import { cartProductsSlice } from '@/pages/CartPage/slices/cartProducts.slice';
 import { useAppDispatch } from '@/app/store/store';
 

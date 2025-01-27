@@ -1,12 +1,7 @@
+import type { UseSideDrawerReturn } from '@/layout/SideDrawer/types';
 import { useState } from 'react';
 
-export interface IUseSideDrawerReturn {
-  isOpenDrawer: boolean;
-  openDrawer: () => void;
-  closeDrawer: () => void;
-}
-
-export function useSideDrawer(): IUseSideDrawerReturn {
+export function useSideDrawer(): UseSideDrawerReturn {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
   const openDrawer = (): void => {

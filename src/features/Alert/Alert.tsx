@@ -1,8 +1,8 @@
 import type { SxStyles } from '@/shared/types/types';
 import { TimingProgress } from '@/components/TimingProgress';
-import { useAppDispatch, useAppSelector } from '@/shared/redux';
+import { useAppDispatch, useAppSelector } from '@/shared/redux/redux';
 import { Alert as MuiAlert, LinearProgress, Snackbar, Stack } from '@mui/material';
-import { hideAlertAction, selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } from '@/features/alert/alert.slice';
+import { hideAlertAction, selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } from '@/features/alert';
 
 const sxStyles: SxStyles = {
   alertContainer: {
@@ -19,11 +19,11 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface IAlertTextProps {
+interface AlertTextProps {
   autoHideMs?: number;
 }
 
-export function Alert({ autoHideMs = 3000 }: IAlertTextProps): React.ReactNode {
+export function Alert({ autoHideMs = 3000 }: AlertTextProps): React.ReactNode {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectIsOpenAlert);
   const message = useAppSelector(selectMessageAlert);
