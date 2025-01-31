@@ -1,7 +1,9 @@
-import type { LineItem } from '@commercetools/platform-sdk';
 import type { CartProduct } from '@/shared/types/types';
-import { LANGUAGE, COUNTRY } from '@/services/ecommerce-api/data/constants';
+import type { LineItem } from '@commercetools/platform-sdk';
+
+import { COUNTRY, LANGUAGE } from '@/services/ecommerce-api/data/constants';
 import { getProductPrices } from '@/services/ecommerce-api/helpers/products/getProductPrices';
+
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
 export const MOCK_BASKET_PRODUCT: CartProduct = {

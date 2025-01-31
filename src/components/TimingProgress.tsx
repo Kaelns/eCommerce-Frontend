@@ -1,6 +1,8 @@
-import type { LinearProgressProps } from '@mui/material';
-import { LinearProgress, keyframes, linearProgressClasses } from '@mui/material';
 import type { SxPropsObj } from '@/shared/types/types';
+import type { LinearProgressProps } from '@mui/material';
+
+import { keyframes, LinearProgress, linearProgressClasses } from '@mui/material';
+
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
 const progressKeyframes = keyframes({

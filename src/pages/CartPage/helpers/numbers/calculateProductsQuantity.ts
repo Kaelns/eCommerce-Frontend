@@ -1,5 +1,5 @@
-import type { LineItem } from '@commercetools/platform-sdk';
 import type { CartProducts } from '@/shared/types/types';
+import type { LineItem } from '@commercetools/platform-sdk';
 
 export function calculateProductsQuantity(products: CartProducts | LineItem[]): number {
   const arrToReduce = Array.isArray(products) ? products : Object.values(products);

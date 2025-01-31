@@ -1,6 +1,8 @@
-import { Cookies } from '@/shared/data/enums';
-import { getCookieByName } from '@/utils/side-effects/getCookieByName';
 import type { BaseQueryApi } from '@reduxjs/toolkit/query';
+
+import { getCookieByName } from '@/utils/side-effects/getCookieByName';
+
+import { Cookies } from '@/shared/data/enums';
 
 export function setIsLoggedAfterQuery(queryApi: BaseQueryApi) {
   const isLogged = getCookieByName(Cookies.USER_IS_LOGGED) === 'true';

@@ -1,11 +1,14 @@
+import type { SxStyles } from '@/shared/types/types';
+
+import { Stack } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, ButtonGroup } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Box, Button, ButtonGroup } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { Stack } from '@mui/system';
-import { Paths } from '@/shared/data/enums';
+
 import { TitleTypography } from '@/components/typography/TitleTypography';
-import type { SxStyles } from '@/shared/types/types';
+
+import { Paths } from '@/shared/data/enums';
 
 const sxStyles: SxStyles = {
   btn: {
@@ -27,8 +30,8 @@ const sxStyles: SxStyles = {
 interface AppErrorProps {
   src: string;
   alt: string;
-  message?: string;
   goTo?: Paths;
+  message?: string;
   goToText?: string;
 }
 

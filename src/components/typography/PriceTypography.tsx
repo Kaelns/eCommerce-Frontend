@@ -1,8 +1,11 @@
 import type { TypographyProps } from '@mui/material';
 import type { SxStyles } from '@/shared/types/types';
+
 import { Typography } from '@mui/material';
-import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+
 import { MONEY_SYMBOL } from '@/services/ecommerce-api';
+
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
 const sxStyles: SxStyles = {
   text: {

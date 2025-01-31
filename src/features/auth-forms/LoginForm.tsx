@@ -1,17 +1,22 @@
+import type { InputReactEvent } from '@/shared/types/types';
+import type { HandleOnChangeInput } from '@/features/AuthForms/data/AuthForms.types';
+
 import { Stack } from '@mui/system';
-import { useAlert } from '@/features/alert';
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@/app/store/store';
-import { Divider, Chip, Button } from '@mui/material';
-import type { InputReactEvent } from '@/shared/types/types';
-import { AlertAPIText, Paths } from '@/shared/data/constants';
+import { Chip, Button, Divider } from '@mui/material';
+
 import { authUserApi } from '@/services/model/user/authUserApi';
-import { ContainedBtn } from '@/components/buttons/ContainedBtn';
-import { loginAuthAction } from '@/shared/redux/slices/auth.slice';
+
+import { useAlert } from '@/features/alert';
+import { useAppDispatch } from '@/app/store/store';
 import { LoginBlock } from '@/features/AuthForms/components/LoginBlock';
 import { checkCredentialInputs } from '@/features/AuthForms/data/AuthForms.helpers';
-import type { HandleOnChangeInput } from '@/features/AuthForms/data/AuthForms.types';
+
+import { ContainedBtn } from '@/components/buttons/ContainedBtn';
+
+import { Paths, AlertAPIText } from '@/shared/data/constants';
+import { loginAuthAction } from '@/shared/redux/slices/auth.slice';
 
 export function LoginForm(): React.ReactNode {
   const dispatch = useAppDispatch();

@@ -9,8 +9,8 @@ declare module '@mui/material/styles' {
     mobile: true;
     tablet: true;
     laptop: true;
-    laptopBig: true;
     desktop: true;
+    laptopBig: true;
   }
 }
 

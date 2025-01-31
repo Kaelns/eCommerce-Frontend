@@ -1,12 +1,14 @@
-import TollIcon from '@mui/icons-material/Toll';
 import type { SxStyles } from '@/shared/types/types';
+
 import { Stack } from '@mui/system';
-import { Burger } from '@/layout/Header/components/Burger';
+import TollIcon from '@mui/icons-material/Toll';
+import { Box, AppBar, useTheme, useMediaQuery } from '@mui/material';
+
 import { Navbar, Navbars } from '@/layout/Navbar';
-import { UserPopoverMenu } from '@/layout/Header/components/UserPopoverMenu';
+import { Burger } from '@/layout/Header/components/Burger';
 import { SectionContainer } from '@/layout/SectionContainer';
+import { UserPopoverMenu } from '@/layout/Header/components/UserPopoverMenu';
 import { CartLinkIconBtn } from '@/layout/Header/components/CartLinkIconBtn';
-import { AppBar, Box, useMediaQuery, useTheme } from '@mui/material';
 
 const sxStyles: SxStyles = {
   headerContainer: {

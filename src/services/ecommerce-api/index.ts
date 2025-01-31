@@ -1,6 +1,10 @@
-import { authApi } from '@/services/ecommerce-api/redux/model/authApi';
-import { productApi } from '@/services/ecommerce-api/redux/model/productApi';
-import { usersApi } from '@/services/ecommerce-api/redux/model/usersApi';
+import { authApi } from '@/services/ecommerce-api/rtk-query/model/authApi';
+import { usersApi } from '@/services/ecommerce-api/rtk-query/model/usersApi';
+import { productApi } from '@/services/ecommerce-api/rtk-query/model/productApi';
+
+export { MOCK_CART } from '@/services/ecommerce-api/data/mocks';
+export { queryArgsProductProps } from '@/services/ecommerce-api/helpers/products/queryArgsProductProps';
+export { ecommerceApi as ecommerceApiSlice } from '@/services/ecommerce-api/rtk-query/ecommerceApi.slice';
 
 export {
   COUNTRY,
@@ -13,11 +17,7 @@ export {
   FRACTION_DOZENS
 } from '@/services/ecommerce-api/data/constants';
 
-export { MOCK_CART } from '@/services/ecommerce-api/data/mocks';
-
-export { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSlice';
-
 export const { useStartSessionQuery } = authApi;
 export const { useCheckIsUserExistByEmailMutation } = usersApi;
-export const { useGetCategoriesQuery } = productApi;
+export const { useGetCategoriesQuery, useGetProductsQuery } = productApi;
 // export const { useCheckIsUserExistByEmailMutation } = usersApi;

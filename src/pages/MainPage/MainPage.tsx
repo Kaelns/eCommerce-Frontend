@@ -1,20 +1,27 @@
 import { Stack } from '@mui/system';
-import { MainSection } from '@/pages/MainPage/components/MainSection';
-// import { ShowcaseSection } from '@/pages/MainPage/components/ShowcaseSection';
-import { SpecialSection } from '@/pages/MainPage/components/SpecialSection';
-import { useGetCategoriesQuery } from '@/services/ecommerce-api';
+
+import { getErrorMessage } from '@/services/ecommerce-api/rtk-query';
+import { LANGUAGE, useGetCategoriesQuery } from '@/services/ecommerce-api';
+
+import { MainSection } from '@/pages/MainPage/layout/MainSection';
+import { ShowcaseSection } from '@/pages/MainPage/layout/ShowcaseSection';
+import { PromocodeSection } from '@/pages/MainPage/layout/SpecialSection';
+
 import { SuspenseWithError } from '@/components/SuspenseWithError';
 
 export function MainPage(): React.ReactNode {
-  const { /* data: categories, */ isLoading, isError /* , error */ } = useGetCategoriesQuery();
+  const { data: categoriesCollection, error, isError, isLoading } = useGetCategoriesQuery();
+
+  const firstCategory = categoriesCollection?.categories[0];
+  const secondCategory = categoriesCollection?.categories[1];
 
   return (
-    <SuspenseWithError settings={{ isLoading, isError }}>
+    <SuspenseWithError settings={{ error: getErrorMessage(error), isError, isLoading }}>
       <Stack gap={5}>
         <MainSection />
-        {/* <ShowcaseSection categoryKey={categories[0]?.key ?? ''} /> */}
-        {/* <ShowcaseSection categoryKey={categories[1]?.key ?? ''} /> */}
-        <SpecialSection />
+        <ShowcaseSection categoryId={firstCategory?.id ?? ''} categoryName={firstCategory?.name[LANGUAGE] ?? ''} />
+        <ShowcaseSection categoryId={secondCategory?.id ?? ''} categoryName={secondCategory?.name[LANGUAGE] ?? ''} />
+        <PromocodeSection />
       </Stack>
     </SuspenseWithError>
   );

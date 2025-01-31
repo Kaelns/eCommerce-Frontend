@@ -1,18 +1,22 @@
-import { useState, useCallback } from 'react';
-import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
-import { INPUTS, AddressPrefix, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
+import type { InputReactEvent } from '@/shared/types/types';
 import type {
   IInputsValues,
   IInputsErrors,
-  HandleChangeAutocomplete,
+  PostalCodePattern,
   HandleOnChangeInput,
-  PostalCodePattern
+  HandleChangeAutocomplete
 } from '@/features/AuthForms/data/AuthForms.types';
-import type { InputReactEvent } from '@/shared/types/types';
-import { MAX_DATE_DASH, COUNTRY_LIST } from '@/shared/data/constants';
-import { getPrefix } from '@/features/AuthForms/data/AuthForms.helpers';
+
+import { useState, useCallback } from 'react';
+
 import { createUserApi } from '@/services/model/user/createUserApi';
+
 import { useAppDispatch } from '@/app/store/store';
+import { getPrefix } from '@/features/AuthForms/data/AuthForms.helpers';
+import { INPUTS, AddressPrefix, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
+
+import { COUNTRY_LIST, MAX_DATE_DASH } from '@/shared/data/constants';
+import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
 
 const INIT_INPUTS_DATA = {
   birthday: MAX_DATE_DASH,
@@ -26,22 +30,22 @@ const INIT_POSTAL_PATTERN = {
 };
 
 interface IUseRegistrationFormReturn {
+  isSameAddress: boolean;
   inputsValues: IInputsValues;
   inputsErrors: IInputsErrors;
-  isSameAddress: boolean;
   isShowCircleProgress: boolean;
   isDefaultBillingAddress: boolean;
   isDefaultShippingAddress: boolean;
+  handleToggleAsBilling: () => void;
+  handleToggleDefaultBilling: () => void;
+  handleToggleDefaultShipping: () => void;
+  handleOnChangeInput: HandleOnChangeInput;
+  handleOnChangeAutocomplete: HandleChangeAutocomplete;
+  setInputsValues: React.Dispatch<React.SetStateAction<IInputsValues>>;
+  setInputsErrors: React.Dispatch<React.SetStateAction<IInputsErrors>>;
   setIsDefaultBillingAddress: React.Dispatch<React.SetStateAction<boolean>>;
   setIsDefaultShippingAddress: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
-  handleOnChangeInput: HandleOnChangeInput;
-  handleToggleAsBilling: () => void;
-  handleOnChangeAutocomplete: HandleChangeAutocomplete;
-  handleToggleDefaultBilling: () => void;
-  handleToggleDefaultShipping: () => void;
-  setInputsValues: React.Dispatch<React.SetStateAction<IInputsValues>>;
-  setInputsErrors: React.Dispatch<React.SetStateAction<IInputsErrors>>;
 }
 
 export const useRegistrationForm = (): IUseRegistrationFormReturn => {

@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { store } from '@/app';
-import { router } from '@/app';
+import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
-import { MuiTheme } from '@/app/config/mui-theme/MuiTheme';
+import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+
+import { store, router } from '@/app';
+import { MuiTheme } from '@/app/config/mui-theme/MuiTheme';
 import '@/app/styles/index.scss';
 
 // * Define global if it's undefined
 window.global ||= window;
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <Provider store={store}>
       <MuiTheme>
         {/* TODO : Add fallbackElement={<PageSkeleton />} to RouterProvider */}
         <RouterProvider router={router} /* fallbackElement={<PageSkeleton />} */ />
       </MuiTheme>
     </Provider>
-  </React.StrictMode>
+  </StrictMode>
 );

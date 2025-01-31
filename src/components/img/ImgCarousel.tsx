@@ -1,16 +1,19 @@
 import type { JSX } from 'react';
 import type { Settings } from 'react-slick';
 import type { BoxProps } from '@mui/system';
-import type { PropsWithChildren, SxStyles } from '@/shared/types/types';
+import type { SxStyles, PropsWithChildren } from '@/shared/types/types';
+
 import Slider from 'react-slick';
-import { useMemo, useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { Box, IconButton } from '@mui/material';
-import { LightMuiBox } from '@/components/boxes/LightMuiBox';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
+import { LightMuiBox } from '@/components/boxes/LightMuiBox';
+
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+
 import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
@@ -74,7 +77,7 @@ const settings: Settings = {
   )
 };
 
-const additionalSettings = (customDots: React.ReactNode[], sliderRef: React.RefObject<Slider | null>): Settings => ({
+const additionalSettings = (customDots: React.ReactNode[], sliderRef: React.RefObject<null | Slider>): Settings => ({
   customPaging(index: number): JSX.Element {
     const slideTo = (): void => sliderRef.current?.slickGoTo(index);
     return (
@@ -90,8 +93,8 @@ const additionalSettings = (customDots: React.ReactNode[], sliderRef: React.RefO
 
 interface ImgCarouselProps extends BoxProps {
   arrows?: boolean;
-  customDots?: React.ReactNode[];
   openModalImg?: number;
+  customDots?: React.ReactNode[];
 }
 
 export function ImgCarousel({

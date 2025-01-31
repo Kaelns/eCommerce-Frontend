@@ -1,9 +1,10 @@
-import { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSlice';
 import type { Cart, CartPagedQueryResponse } from '@commercetools/platform-sdk';
+
+import { ecommerceApi } from '@/services/ecommerce-api/rtk-query/ecommerceApi.slice';
 
 const cartPath = '/cart';
 
-export const cartApi = ecommerceApiSlice
+export const cartApi = ecommerceApi
   .enhanceEndpoints({
     addTagTypes: ['Cart', 'CartByKey']
   })

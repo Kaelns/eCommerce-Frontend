@@ -1,35 +1,30 @@
-import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
-import { INITIAL_FORM_VALUE, NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
 import type { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import type { IAction, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+import type { IAction, FilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
 
-export const filterReducer = (state: IFilterState, action: IAction): IFilterState => {
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import { NO_CATEGORY, INITIAL_FORM_VALUE } from '@/pages/CatalogPage/hooks/filterReducer/constants';
+
+export const filterReducer = (state: FilterState, action: IAction): FilterState => {
   switch (action.type) {
-    case FilterState.PAGE:
-      return {
-        ...state,
-        page: action.payload as number
-      };
-    case FilterState.CATEGORY:
+    case FilterStateEnum.CATEGORY:
       return {
         ...state,
         page: 1,
         categoryKey: action.payload as string
       };
-    case FilterState.CATEGORY_TOGGLE:
+    case FilterStateEnum.CATEGORY_TOGGLE:
       return {
         ...state,
         page: 1,
         categoryKey: (state.categoryKey === action.payload ? NO_CATEGORY : action.payload) as string
       };
-    case FilterState.PRICE:
+    case FilterStateEnum.CLEAR_FORM:
       return {
         ...state,
-        page: 1,
-        price: action.payload as number[]
+        ...INITIAL_FORM_VALUE
       };
-    case FilterState.COLOR:
+    case FilterStateEnum.COLOR:
       return {
         ...state,
         page: 1,
@@ -38,21 +33,27 @@ export const filterReducer = (state: IFilterState, action: IAction): IFilterStat
           [action.payload as FilterColorsKeys]: !state.color[action.payload as FilterColorsKeys]
         }
       };
-    case FilterState.SEARCH:
+    case FilterStateEnum.PAGE:
+      return {
+        ...state,
+        page: action.payload as number
+      };
+    case FilterStateEnum.PRICE:
+      return {
+        ...state,
+        page: 1,
+        price: action.payload as number[]
+      };
+    case FilterStateEnum.SEARCH:
       return {
         ...state,
         page: 1,
         search: action.payload as string
       };
-    case FilterState.SORT:
+    case FilterStateEnum.SORT:
       return {
         ...state,
         sort: action.payload as Sort
-      };
-    case FilterState.CLEAR_FORM:
-      return {
-        ...state,
-        ...INITIAL_FORM_VALUE
       };
     default:
   }

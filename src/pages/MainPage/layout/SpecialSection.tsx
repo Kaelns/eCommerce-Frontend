@@ -1,12 +1,18 @@
 import type { SxStyles } from '@/shared/types/types';
+
 import { Stack } from '@mui/system';
 import { Paper } from '@mui/material';
-import { sxMixins } from '@/shared/data/mui-mixins';
-import { useAlert } from '@/features/alert';
-import { BoldTypography } from '@/components/typography/BoldTypography';
-import { ClickToClipboardPaper } from '@/pages/MainPage/components/ClickToClipboardPaper';
+
 import { PROMOCODES } from '@/services/ecommerce-api';
+
+import { ClickToClipboardPaper } from '@/pages/MainPage/components/ClickToClipboardPaper';
+
+import { useAlert } from '@/features/alert';
+
+import { BoldTypography } from '@/components/typography/BoldTypography';
+
 import { AlertText } from '@/shared/data/enums';
+import { sxMixins } from '@/shared/data/mui-mixins';
 import { pulseAnimation } from '@/shared/data/mui-animations';
 
 const sxStyles: SxStyles = {
@@ -29,7 +35,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function SpecialSection(): React.ReactNode {
+export function PromocodeSection(): React.ReactNode {
   const { showAlert } = useAlert();
 
   const handleOnCopy = () => {
@@ -41,6 +47,7 @@ export function SpecialSection(): React.ReactNode {
       <Paper elevation={5} sx={sxStyles.header}>
         <BoldTypography>Our special offer:</BoldTypography>
       </Paper>
+
       <Stack direction="row" gap={2} flex={2}>
         {PROMOCODES.map((promocode) => (
           <ClickToClipboardPaper handleOnCopy={handleOnCopy} text={promocode} key={promocode} sx={sxStyles.clipboard} />

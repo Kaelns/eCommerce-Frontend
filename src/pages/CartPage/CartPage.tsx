@@ -1,3 +1,7 @@
+import type { SxStyles } from '@/shared/types/types';
+
+import { Stack } from '@mui/system';
+
 // import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
 // import { Box, Typography } from '@mui/material';
 // import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -19,8 +23,6 @@
 // import { useAppDispatch, useAppSelector } from '@/store/store';
 // import { cartProductsSlice } from '@/pages/BasketPage/cartProducts.slice';
 import { TitleTypography } from '@/components/typography/TitleTypography';
-import type { SxStyles } from '@/shared/types/types';
-import { Stack } from '@mui/system';
 
 const sxStyles: SxStyles = {
   stackContainer: {

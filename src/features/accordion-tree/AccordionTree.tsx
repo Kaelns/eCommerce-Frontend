@@ -1,8 +1,12 @@
-import { memo, useCallback, useContext } from 'react';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { AccordionItem } from '@/features/accordion-tree/AccordionItem';
 import type { CategoryTreeNode } from '@/shared/types/types';
+
+import { memo, useContext, useCallback } from 'react';
+
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+
+// eslint-disable-next-line import/no-cycle
+import { AccordionItem } from '@/features/accordion-tree/AccordionItem';
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 
 interface AccordionTreeProps {
   treeData: CategoryTreeNode[];
@@ -16,7 +20,7 @@ export const AccordionTree = memo(function AccordionTree({ treeData }: Accordion
     (keyOfCategory: string) =>
       (e: React.MouseEvent<HTMLButtonElement>): void => {
         e.stopPropagation();
-        dispatchFilterState({ type: FilterState.CATEGORY_TOGGLE, payload: keyOfCategory });
+        dispatchFilterState({ type: FilterStateEnum.CATEGORY_TOGGLE, payload: keyOfCategory });
       },
     [dispatchFilterState]
   );

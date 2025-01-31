@@ -1,6 +1,8 @@
-import { rootReducer } from '@/shared/redux/redux';
+import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
+
+import { rootReducer } from '@/shared/redux/redux';
 
 const INIT_AUTH = {
   isPending: true,

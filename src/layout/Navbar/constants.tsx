@@ -3,9 +3,12 @@ import InfoIcon from '@mui/icons-material/Info';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CategoryIcon from '@mui/icons-material/Category';
-import { Paths } from '@/shared/data/enums';
+
 import { UserFullNameCard } from '@/layout/Navbar/components/UserFullNameCard';
+
 import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
+
+import { Paths } from '@/shared/data/enums';
 
 export enum Navbars {
   HEADER,

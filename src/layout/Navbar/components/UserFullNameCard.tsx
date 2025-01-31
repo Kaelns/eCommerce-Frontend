@@ -1,6 +1,8 @@
 import type { SxProps } from '@mui/material';
-import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
+
 import { Avatar } from '@mui/material';
+
+import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
 
 const userInitials = 'UI';
 const userName = 'User';

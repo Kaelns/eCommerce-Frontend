@@ -1,13 +1,13 @@
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
-import type { InputBaseProps, SxProps } from '@mui/material';
-import { Box, IconButton, InputAdornment, InputBase, Stack } from '@mui/material';
-import { useContext } from 'react';
 import type { Theme } from '@mui/system';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import type { InputReactEvent, SxStyles } from '@/shared/types/types';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import type { SxProps, InputBaseProps } from '@mui/material';
+import type { SxStyles, InputReactEvent } from '@/shared/types/types';
+
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Stack, InputBase, IconButton, InputAdornment } from '@mui/material';
+
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+
 import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
@@ -35,13 +35,11 @@ const sxStyles: SxStyles = {
 };
 
 interface ISearchProps extends InputBaseProps {
-  setIsSearchInFocus: React.Dispatch<React.SetStateAction<boolean>>;
   sxContainer?: SxProps<Theme>;
+  setIsSearchInFocus: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function CatalogSearch({ setIsSearchInFocus, sx = {}, sxContainer = {}, ...props }: ISearchProps): React.ReactNode {
-  const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
-
   const handleOnFocus = (): void => {
     setIsSearchInFocus(true);
   };
@@ -50,12 +48,12 @@ export function CatalogSearch({ setIsSearchInFocus, sx = {}, sxContainer = {}, .
     setIsSearchInFocus(false);
   };
 
-  const handleSearch = (e: InputReactEvent): void => {
-    dispatchFilterState({ type: FilterState.SEARCH, payload: e.target.value });
+  const handleSearch = (/* e: InputReactEvent */): void => {
+    // dispatchFilterState({ type: FilterStateEnum.SEARCH, payload: e.target.value });
   };
 
   const handleClearSearch = (): void => {
-    dispatchFilterState({ type: FilterState.SEARCH, payload: '' });
+    // dispatchFilterState({ type: FilterStateEnum.SEARCH, payload: '' });
   };
 
   return (
@@ -65,13 +63,13 @@ export function CatalogSearch({ setIsSearchInFocus, sx = {}, sxContainer = {}, .
       </Stack>
 
       <InputBase
-        value={filterState.search}
+        value={/* filterState.search */ ''}
         placeholder="Search…"
         onBlur={handleBlur}
         onFocus={handleOnFocus}
         onChange={handleSearch}
         endAdornment={
-          <InputAdornment position="end" component={IconButton} disabled={!filterState.search} onClick={handleClearSearch}>
+          <InputAdornment position="end" component={IconButton} disabled={/* !filterState.search */ true} onClick={handleClearSearch}>
             <CloseIcon fontSize="small" />
           </InputAdornment>
         }

@@ -1,16 +1,19 @@
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { IconButton, InputAdornment } from '@mui/material';
+import type { IInputsErrors, HandleOnChangeInput } from '@/features/AuthForms/data/AuthForms.types';
+
 import { useState } from 'react';
-import checkEmail from '@/shared/zod/%%%BADvalidation/emailValidation';
-import checkPassword from '@/shared/zod/%%%BADvalidation/passwordValidation';
+import Visibility from '@mui/icons-material/Visibility';
+import { IconButton, InputAdornment } from '@mui/material';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 import { INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
 import { ValidationInput } from '@/features/AuthForms/components/ValidationInput';
-import type { HandleOnChangeInput, IInputsErrors } from '@/features/AuthForms/data/AuthForms.types';
+
+import checkEmail from '@/shared/zod/%%%BADvalidation/emailValidation';
+import checkPassword from '@/shared/zod/%%%BADvalidation/passwordValidation';
 
 interface ILoginBlock {
-  onChangeFunction: HandleOnChangeInput;
   inputsErrors: IInputsErrors;
+  onChangeFunction: HandleOnChangeInput;
 }
 
 export function LoginBlock({ onChangeFunction, inputsErrors }: ILoginBlock): React.ReactNode {

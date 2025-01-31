@@ -1,20 +1,22 @@
+import type { Sort, FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import type { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
-import type { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 
-export interface IFilterState {
-  categoryKey: string;
-  price: number[];
-  color: typeof FILTER_COLORS_STATE;
-  search: string;
+export interface FilterState {
   sort: Sort;
   page: number;
+  search: string;
+  price: number[];
+  categoryId: string;
+  categoryKey: string;
+  categoryName: string;
+  color: typeof FILTER_COLORS_STATE;
 }
 
-export type FilterPayload = IFilterState[keyof IFilterState];
+export type FilterPayload = FilterState[keyof FilterState];
 
 export interface IAction {
-  type: FilterState;
+  type: FilterStateEnum;
   payload?: FilterPayload;
 }
 
-export type IFilterFormState = Pick<IFilterState, 'categoryKey' | 'price' | 'color'>;
+export type FilterFormState = Pick<FilterState, 'categoryKey' | 'color' | 'price'>;

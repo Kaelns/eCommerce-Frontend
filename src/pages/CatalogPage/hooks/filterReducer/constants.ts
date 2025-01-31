@@ -1,6 +1,7 @@
-import { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
+import type { FilterState, FilterFormState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+
 import { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import type { IFilterFormState, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+import { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
 
 //  TODO fetch max price
 export const MIN_MONEY = 0;
@@ -16,7 +17,7 @@ export const INITIAL_FILTER_VALUE = {
   page: 1
 };
 
-export const INITIAL_FORM_VALUE: IFilterFormState = {
+export const INITIAL_FORM_VALUE: FilterFormState = {
   categoryKey: NO_CATEGORY,
   price: [MIN_MONEY, MAX_MONEY],
   color: FILTER_COLORS_STATE

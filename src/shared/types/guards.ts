@@ -1,12 +1,9 @@
-import type { BackendError, SrcsetPxAsc } from '@/shared/types/types';
-import { isObject } from '@/shared/types/types';
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type { SrcsetPxAsc } from '@/shared/types/types';
 
-export const isBackendError = (obj: unknown): obj is BackendError => {
-  return isObject(obj) && 'name' in obj && 'status' in obj && 'message' in obj;
-};
-export const isFetchBaseQueryError = (obj: unknown): obj is FetchBaseQueryError => {
-  return isObject(obj) && 'status' in obj && 'data' in obj;
+import { isObject as isObjectLodash } from 'lodash';
+
+export const isObject = (elem: unknown): elem is object => {
+  return isObjectLodash(elem) && !Array.isArray(elem);
 };
 
 // FIXME Delete if not used

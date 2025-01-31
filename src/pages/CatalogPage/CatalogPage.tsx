@@ -1,9 +1,11 @@
-// import { Grid, Stack, useMediaQuery, useTheme } from '@mui/system';
-import { Box } from '@mui/material';
 // import { useSideDrawer } from '@/layout/SideDrawer/useSideDrawer';
 // import { CatalogHeader } from '@/pages/CatalogPage/components/CatalogHeader';
 // import { Breadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb';
 import type { SxStyles } from '@/shared/types/types';
+
+// import { Grid, Stack, useMediaQuery, useTheme } from '@mui/system';
+import { Box } from '@mui/material';
+
 // import { BtnContained } from '@/components/buttons/BtnContained';
 // import { FilterForm } from '@/features/components/FilterForm/FilterForm';
 // import { SideDrawer } from '@/layout/SideDrawer/SideDrawer';

@@ -1,20 +1,22 @@
 import type dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import type { DatePickerProps } from '@mui/x-date-pickers/DatePicker';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { FormHelperText, InputLabel } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import type { SetStateAction } from 'react';
-import { useState } from 'react';
+import type { DatePickerProps } from '@mui/x-date-pickers/DatePicker';
 import type { IInputsValues } from '@/features/AuthForms/data/AuthForms.types';
+
+import { useState } from 'react';
+import { InputLabel, FormHelperText } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 import { DATE_DASH_FORMAT } from '@/shared/data/constants';
 
 const OPEN_TO = 'year';
 const FORMAT = 'DD/MM/YYYY';
 
 interface IDateInputProps extends DatePickerProps<dayjs.Dayjs> {
-  label: string;
   name: string;
+  label: string;
   validationChecks: (value: string) => string;
   setInputs: React.Dispatch<SetStateAction<IInputsValues>>;
 }

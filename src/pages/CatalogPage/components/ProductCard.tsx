@@ -1,22 +1,27 @@
 import type { SxStyles } from '@/shared/types/types';
-import type { ProductProjection } from '@commercetools/platform-sdk';
 import type { BoxProps, StackProps } from '@mui/system';
-import { Stack } from '@mui/system';
-import { Paths } from '@/shared/data/constants';
+import type { ProductProjection } from '@commercetools/platform-sdk';
+
 import { useMemo } from 'react';
-import { ImgLoad } from '@/components/img/ImgLoad';
-import { sxMixins } from '@/shared/data/mui-mixins';
-import { SRCSET_API } from '@/services/ecommerce-api';
-import { selectCart } from '@/pages/CartPage/cart.slice';
-import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
-import { useAppSelector } from '@/shared/redux';
-import { BoldTypography } from '@/components/typography/BoldTypography';
-import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
+import { Stack } from '@mui/system';
 import { Box, Typography } from '@mui/material';
-import { DiscountTypography } from '@/components/typography/DiscountTypography';
-import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+
+import { SRCSET_API } from '@/services/ecommerce-api';
 import { findCartProductId } from '@/services/ecommerce-api/helpers/cart/findCartProductId';
 import { convertToLightProduct } from '@/services/ecommerce-api/helpers/products/convertToLightProduct';
+
+import { selectCart } from '@/pages/CartPage';
+import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+
+import { ImgLoad } from '@/components/img/ImgLoad';
+import { BoldTypography } from '@/components/typography/BoldTypography';
+import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
+import { DiscountTypography } from '@/components/typography/DiscountTypography';
+import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
+
+import { Paths } from '@/shared/data/enums';
+import { sxMixins } from '@/shared/data/mui-mixins';
+import { useAppSelector } from '@/shared/redux/redux';
 
 const ICON_WIDTH = '2.2rem';
 const ICON_WIDTH_TABLET = '2.8rem';
@@ -84,11 +89,11 @@ const sxStyles: SxStyles = {
 
 interface IProductCardProps {
   product: ProductProjection;
-  imgHeight?: {
-    height: BoxProps['height'];
-    maxSize: number;
-  };
   containerMaxWidth?: StackProps['maxWidth'];
+  imgHeight?: {
+    maxSize: number;
+    height: BoxProps['height'];
+  };
 }
 
 export function ProductCard({

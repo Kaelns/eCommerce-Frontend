@@ -1,19 +1,18 @@
-import { Box, Typography } from '@mui/material';
-import { memo, useContext } from 'react';
-import { Grid, Stack } from '@mui/system';
-import { TitleTypography } from '@/components/typography/TitleTypography';
-import { CatalogSortBy } from '@/pages/CatalogPage/layout/CatalogSortBy';
-import { SuspenseWithError } from '@/components/SuspenseWithError';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { CatalogPagination } from '@/pages/CatalogPage/layout/CatalogPagination';
-import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
-import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
-import { useDebounce } from '@/hooks/useDebounce/useDebounce';
-import { useFetch } from '@/hooks/useFetch/useFetch';
 import type { SxPropsNotArr } from '@/shared/types/types';
-import { getProductsApi } from '@/services/model/products/getProductsApi';
-import { convertKeyToName } from '@/utils/strings/convertKeyToName';
-import { EMPTY_DATA_PRODUCTS } from '@/services/constants';
+
+import { memo } from 'react';
+import { Grid, Stack } from '@mui/system';
+import { Box, Typography } from '@mui/material';
+
+import { useGetProductsQuery } from '@/services/ecommerce-api';
+import { getErrorMessage } from '@/services/ecommerce-api/rtk-query';
+
+import { CatalogSortBy } from '@/pages/CatalogPage/layout/CatalogSortBy';
+import { ProductCard } from '@/pages/CatalogPage/components/ProductCard';
+import { CatalogPagination } from '@/pages/CatalogPage/layout/CatalogPagination';
+
+import { SuspenseWithError } from '@/components/SuspenseWithError';
+import { TitleTypography } from '@/components/typography/TitleTypography';
 
 const sxProductWrapper: SxPropsNotArr = {
   display: 'flex',
@@ -22,14 +21,12 @@ const sxProductWrapper: SxPropsNotArr = {
 };
 
 export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode {
-  const { filterState } = useContext(FilterReducerContext);
-  const filterStateDebounce = useDebounce(filterState);
-  const { data = EMPTY_DATA_PRODUCTS, isLoading, error } = useFetch(getProductsApi, filterStateDebounce);
-  const { products, amount } = data;
+  const { data: productsData, isError, error, isLoading } = useGetProductsQuery();
+  const amount = productsData?.results.length ?? 0;
 
   return (
-    <SuspenseWithError error={error} isLoading={isLoading} width={1}>
-      {products.length ? (
+    <SuspenseWithError settings={{ isError, error: getErrorMessage(error), isLoading }} width={1}>
+      {amount ? (
         <>
           <Stack
             direction={{ zero: 'column', tablet: 'row' }}
@@ -39,7 +36,7 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
             mb={2}
           >
             <Box>
-              <TitleTypography variant="h4">{convertKeyToName(filterState.categoryKey)}</TitleTypography>
+              <TitleTypography variant="h4">{/* convertKeyToName(filterState.categoryKey) */ 'Category key'}</TitleTypography>
               <Typography>{amount} products</Typography>
             </Box>
 
@@ -47,7 +44,7 @@ export const CatalogProducts = memo(function CatalogProducts(): React.ReactNode 
           </Stack>
 
           <Grid container spacing={2} columns={9}>
-            {products.map((product) => (
+            {productsData?.results.map((product) => (
               <Grid key={product.id} size={{ mobile: 9, tablet: 4.5, laptop: 3 }} sx={sxProductWrapper}>
                 <ProductCard product={product} />
               </Grid>

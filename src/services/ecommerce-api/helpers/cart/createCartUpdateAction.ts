@@ -1,5 +1,6 @@
-import { CartUpdateActionTypes } from '@/shared/data/enums';
 import type { MyCartUpdateAction } from '@commercetools/platform-sdk';
+
+import { CartUpdateActionTypes } from '@/shared/data/enums';
 
 export function createCartUpdateAction<T extends CartUpdateActionTypes>(
   action: T,
@@ -7,12 +8,6 @@ export function createCartUpdateAction<T extends CartUpdateActionTypes>(
   { quantity, coupon }: { quantity?: number; coupon: T extends CartUpdateActionTypes.DISCOUNT ? string : undefined }
 ): MyCartUpdateAction | null {
   switch (action) {
-    case CartUpdateActionTypes.INCREMENT:
-      return {
-        action,
-        productId: id,
-        quantity: quantity ?? 1
-      };
     case CartUpdateActionTypes.DECREMENT:
       return {
         action,
@@ -28,6 +23,12 @@ export function createCartUpdateAction<T extends CartUpdateActionTypes>(
       return {
         action: CartUpdateActionTypes.DISCOUNT,
         code: coupon ?? ''
+      };
+    case CartUpdateActionTypes.INCREMENT:
+      return {
+        action,
+        productId: id,
+        quantity: quantity ?? 1
       };
     default:
   }

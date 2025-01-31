@@ -1,8 +1,11 @@
 import type { WithSlice } from '@reduxjs/toolkit';
-import { rootReducer } from '@/shared/redux/redux';
-import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { FILTER_COLORS_STATE, MAX_MONEY, MIN_MONEY, NO_CATEGORY, Sort } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
 import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+
+import { Sort, MAX_MONEY, MIN_MONEY, NO_CATEGORY, FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
+
+import { rootReducer } from '@/shared/redux/redux';
 
 export const INIT_FILTER = {
   categoryKey: NO_CATEGORY,

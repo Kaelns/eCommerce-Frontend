@@ -1,13 +1,17 @@
+import type { StackProps } from '@mui/system';
+import type { SxStyles, PropsWithChildren } from '@/shared/types/types';
+
 import { useState } from 'react';
 import { Stack } from '@mui/system';
+
 import { AppError } from '@/layout/AppError';
-import { sxMixins } from '@/shared/data/mui-mixins';
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
-import type { StackProps } from '@mui/system';
-import type { PropsWithChildren, SxStyles } from '@/shared/types/types';
+
+import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
+
+import { sxMixins } from '@/shared/data/mui-mixins';
 import imageError from '@/shared/assets/error2.png';
 import { revealAnimation } from '@/shared/data/mui-animations';
-import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
 
 const sxStyles: SxStyles = {
   container: {
@@ -27,13 +31,13 @@ const sxStyles: SxStyles = {
 };
 
 interface ILoadingFetchProps extends StackProps {
-  settings: {
-    isLoading: boolean;
-    isError: boolean;
-    error?: string;
-  };
   Skeleton?: React.ReactNode;
   Fallback?: React.ReactNode;
+  settings: {
+    error?: string;
+    isError: boolean;
+    isLoading: boolean;
+  };
 }
 
 export function SuspenseWithError({
@@ -44,13 +48,14 @@ export function SuspenseWithError({
   sx = {},
   ...props
 }: PropsWithChildren<ILoadingFetchProps>): React.ReactNode {
-  const [isLoadingAfterTransition, setIsLoadingAfterTransition] = useState(true);
+  const [isLoadingAfterTransition, setIsLoadingAfterTransition] = useState(isLoading);
 
   const onTransitionEndHandler = () => {
     setIsLoadingAfterTransition(isLoading);
   };
 
   // * That animation (transition) logic works on fade-out. There is css "animation" on fade-in.
+  //  TODO check if works and then change on Fade from mui with unmountOnExit
   return isError ? (
     Fallback
   ) : isLoadingAfterTransition ? (
@@ -59,7 +64,7 @@ export function SuspenseWithError({
     </Stack>
   ) : (
     <Stack
-      sx={[sxStyles.childrenWrapper, isLoading && sxMixins.invisible, ...convertSxToArr(sx)]}
+      sx={[sxStyles.childrenWrapper, sxMixins.visible, isLoading && sxMixins.invisible, ...convertSxToArr(sx)]}
       onTransitionEnd={onTransitionEndHandler}
       {...props}
     >

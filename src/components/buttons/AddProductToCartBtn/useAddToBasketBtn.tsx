@@ -1,9 +1,8 @@
-import { useState, useContext, useEffect } from 'react';
-import { useToken } from '@/services/hooks/useToken';
-import { manageCartCatch } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch';
-import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
-import { AlertSeverity } from '@/shared/data/enums';
+import { useState, useEffect } from 'react';
+
 import { useAlert } from '@/features/alert';
+
+import { AlertSeverity } from '@/shared/data/enums';
 
 interface IUseAddToBasket {
   isInCart: boolean;
@@ -11,17 +10,16 @@ interface IUseAddToBasket {
   addToBasket: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 }
 
-export function useAddToBasketBtn(productId: string, initLineItemId: string): IUseAddToBasket {
-  const token = useToken();
+export function useAddToBasketBtn(/* productId: string, */ initLineItemId: string): IUseAddToBasket {
   const [isInCart, setIsInCart] = useState(false);
-  const [lineItemId, setLineItemId] = useState('');
+  // const [lineItemId, setLineItemId] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
   const { showAlert } = useAlert();
 
   useEffect(() => {
     if (initLineItemId) {
       setIsInCart(true);
-      setLineItemId(initLineItemId);
+      // setLineItemId(initLineItemId);
     }
   }, [initLineItemId]);
 
@@ -31,15 +29,15 @@ export function useAddToBasketBtn(productId: string, initLineItemId: string): IU
 
     if (!isDisabled) {
       setIsDisabled(true);
-      const { error, lineItemId: newLineItemId } = isInCart
-        ? await manageCartCatch(ManageCart.DECREMENT, lineItemId, token)
-        : await manageCartCatch(ManageCart.INCREMENT, productId, token);
-      if (error) {
-        showAlert(error, AlertSeverity.ERROR);
-      } else {
-        setIsInCart((prev) => !prev);
-        setLineItemId(newLineItemId);
-      }
+      // const { error, lineItemId: newLineItemId } = isInCart
+      //   ? await manageCartCatch(ManageCart.DECREMENT, lineItemId, token)
+      //   : await manageCartCatch(ManageCart.INCREMENT, productId, token);
+      // if (error) {
+      showAlert('No', AlertSeverity.ERROR);
+      // } else {
+      //   setIsInCart((prev) => !prev);
+      //   setLineItemId(newLineItemId);
+      // }
       setIsDisabled(false);
     }
   };

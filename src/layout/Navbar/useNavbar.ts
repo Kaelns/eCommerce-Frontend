@@ -1,18 +1,20 @@
 import type { NavbarPaths } from '@/layout/Navbar/types';
+
+import { Navbars, headerPaths, headerBurgerPaths, authorizedUserPaths, nonAuthorizedUserPaths } from '@/layout/Navbar/constants';
+
 import { useAppSelector } from '@/shared/redux/redux';
 import { selectIsLoggedAuth } from '@/shared/redux/slices/auth.slice';
-import { Navbars, headerPaths, headerBurgerPaths, authorizedUserPaths, nonAuthorizedUserPaths } from '@/layout/Navbar/constants';
 
 interface IUseNavbarReturn {
   navPaths: NavbarPaths;
-  orientation: 'vertical' | 'horizontal';
+  orientation: 'horizontal' | 'vertical';
 }
 
 export function useNavbar(typeOfNavbar: Navbars): IUseNavbarReturn {
   const isLogged = useAppSelector(selectIsLoggedAuth);
 
   let navPaths: NavbarPaths = headerPaths;
-  let orientation: 'vertical' | 'horizontal' = 'horizontal';
+  let orientation: 'horizontal' | 'vertical' = 'horizontal';
 
   switch (typeOfNavbar) {
     case Navbars.HEADER:

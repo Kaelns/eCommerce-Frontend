@@ -12,15 +12,9 @@ declare module 'vite' {
 
 export default defineConfig({
   plugins: [react(), svgr()],
-  test: {
-    globals: true,
-    include: ['./src/**/*.test.tsx'],
-    environment: 'jsdom',
-    setupFiles: ['./src/__tests__/setup.tsx'],
-    pool: 'forks',
-    coverage: {
-      provider: 'v8'
-    }
+  server: {
+    port: 3000,
+    strictPort: true
   },
   resolve: {
     alias: {
@@ -35,6 +29,16 @@ export default defineConfig({
       define: {
         global: 'globalThis'
       }
+    }
+  },
+  test: {
+    globals: true,
+    include: ['./src/**/*.test.tsx'],
+    environment: 'jsdom',
+    setupFiles: ['./src/__tests__/setup.tsx'],
+    pool: 'forks',
+    coverage: {
+      provider: 'v8'
     }
   }
 });

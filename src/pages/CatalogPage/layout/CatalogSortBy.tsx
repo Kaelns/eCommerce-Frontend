@@ -1,10 +1,10 @@
-import type { SelectChangeEvent } from '@mui/material';
-import { Select, MenuItem, Stack } from '@mui/material';
-import { useContext } from 'react';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { FilterState, Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { TitleTypography } from '@/components/typography/TitleTypography';
 import type { SxStyles } from '@/shared/types/types';
+
+import { Stack, Select, MenuItem } from '@mui/material';
+
+import { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+
+import { TitleTypography } from '@/components/typography/TitleTypography';
 
 const sxStyles: SxStyles = {
   select: {
@@ -21,16 +21,14 @@ const sxStyles: SxStyles = {
 };
 
 export function CatalogSortBy(): React.ReactNode {
-  const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
-
-  const handleChange = (event: SelectChangeEvent): void => {
-    dispatchFilterState({ type: FilterState.SORT, payload: event.target.value });
+  const handleChange = (/* event: SelectChangeEvent */): void => {
+    // dispatchFilterState({ type: FilterStateEnum.SORT, payload: event.target.value });
   };
 
   return (
     <Stack direction="row" alignItems="baseline" gap={1}>
       <TitleTypography variant="subtitle1">Sort: </TitleTypography>
-      <Select value={filterState.sort} onChange={handleChange} sx={sxStyles.select}>
+      <Select value={/* filterState.sort */ 'No sort'} onChange={handleChange} sx={sxStyles.select}>
         {Object.values(Sort).map((key) => (
           <MenuItem key={key} value={key}>
             {key}

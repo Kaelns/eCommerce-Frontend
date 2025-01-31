@@ -1,8 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { rootReducer } from '@/shared/redux/redux';
-import { AlertSeverity, AlertText } from '@/shared/data/enums';
 import type { AlertAPIText } from '@/shared/data/enums';
-import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
+import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { createSlice } from '@reduxjs/toolkit';
+
+import { rootReducer } from '@/shared/redux/redux';
+import { AlertText, AlertSeverity } from '@/shared/data/enums';
 
 const INIT_MODAL = {
   isOpen: false,
@@ -22,7 +24,7 @@ export const alertSliceLazy = createSlice({
   },
   reducers: {
     // TODO Change string to enums below
-    showAlertAction(state, action: PayloadAction<{ message: AlertText | AlertAPIText | string; severity?: AlertSeverity }>) {
+    showAlertAction(state, action: PayloadAction<{ severity?: AlertSeverity; message: AlertAPIText | AlertText | string; }>) {
       state.isOpen = true;
       state.isLoading = false;
       state.message = action.payload.message;

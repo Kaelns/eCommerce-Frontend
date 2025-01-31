@@ -7,6 +7,7 @@ export const queryArgsProductsSchema = z.object({
   markMatchingVariants: z.boolean().optional(),
   filter: z.union([z.string(), z.array(z.string())]).optional(),
   'filter.facets': z.union([z.string(), z.array(z.string())]).optional(),
+  // TODO add filter.query zod
   'filter.query': z.union([z.string(), z.array(z.string())]).optional(),
   facet: z.union([z.string(), z.array(z.string())]).optional(),
   sort: z.union([z.string(), z.array(z.string())]).optional(),
@@ -25,3 +26,5 @@ export const queryArgsProductsSchema = z.object({
 
 export type QueryArgsProductsZod = z.infer<typeof queryArgsProductsSchema>;
 export type QueryArgsProductsKeysZod = keyof QueryArgsProductsZod;
+
+export const queryArgsProductsSchemaKeys = Object.keys(queryArgsProductsSchema.shape) as QueryArgsProductsKeysZod[];

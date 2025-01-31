@@ -1,4 +1,5 @@
-import type { EcommerceBaseQuery } from '@/shared/types/types';
+import type { EcommerceBaseQuery } from '@/services/ecommerce-api/rtk-query/types/types';
+
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 
 export const baseQuery: EcommerceBaseQuery = fetchBaseQuery({

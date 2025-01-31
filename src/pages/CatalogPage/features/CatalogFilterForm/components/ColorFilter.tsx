@@ -1,12 +1,16 @@
-import { Box, Typography } from '@mui/material';
+import type { SxStyles, SxPropsObj } from '@/shared/types/types';
+import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+
 import { useContext } from 'react';
 import { Grid } from '@mui/system';
-import { CasualBtn } from '@/components/buttons/CasualBtn';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import type { SxPropsObj, SxStyles } from '@/shared/types/types';
+import { Box, Typography } from '@mui/material';
+
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { FILTER_COLORS } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
-import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+
+import { CasualBtn } from '@/components/buttons/CasualBtn';
 
 const sxStyles: SxStyles = {
   gridItem: {
@@ -43,7 +47,7 @@ export function ColorFilter(): React.ReactNode {
   const colorsNames = Object.keys(FILTER_COLORS) as FilterColorsKeys[];
 
   const toggleColor = (colorKey: FilterColorsKeys) => (): void => {
-    dispatchFilterState({ type: FilterState.COLOR, payload: colorKey });
+    dispatchFilterState({ type: FilterStateEnum.COLOR, payload: colorKey });
   };
 
   return (

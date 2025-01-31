@@ -1,9 +1,11 @@
-import type { Price } from '@commercetools/platform-sdk';
 import type { Prices } from '@/shared/types/types';
-import { calculatePriceDecimals } from '@/utils/numbers/calculatePriceDecimals';
+import type { Price } from '@commercetools/platform-sdk';
+
 import { FRACTION_DIGITS } from '@/services/ecommerce-api/data/constants';
 
-export function getProductPrices(priceObj: Price | null | undefined): Prices {
+import { calculatePriceDecimals } from '@/utils/numbers/calculatePriceDecimals';
+
+export function getProductPrices(priceObj: null | Price | undefined): Prices {
   if (!priceObj) {
     return {
       price: 0,

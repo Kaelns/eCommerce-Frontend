@@ -1,11 +1,14 @@
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import type { SxProps } from '@mui/system';
-import { Badge, Button, IconButton, Popover, badgeClasses } from '@mui/material';
+
 import { useState } from 'react';
 import { Stack } from '@mui/system';
+import { Badge, Button, Popover, IconButton, badgeClasses } from '@mui/material';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+
 import { Navbar, Navbars } from '@/layout/Navbar';
-import { selectIsLoggedAuth } from '@/shared/redux/slices/auth.slice';
+
 import { useAppSelector } from '@/shared/redux/redux';
+import { selectIsLoggedAuth } from '@/shared/redux/slices/auth.slice';
 
 const BADGE_LOGIN_TEXT = 'Login';
 

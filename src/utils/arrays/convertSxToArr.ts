@@ -1,3 +1,3 @@
-import type { SxProps, Theme } from '@mui/material';
+import type { Theme, SxProps } from '@mui/material';
 
 export const convertSxToArr = (sx: SxProps<Theme>): object[] => (Array.isArray(sx) ? sx : [sx]);

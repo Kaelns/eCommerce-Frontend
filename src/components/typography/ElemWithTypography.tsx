@@ -1,13 +1,14 @@
+import type { Theme, SxProps } from '@mui/system';
 import type { TypographyProps } from '@mui/material';
-import { Typography } from '@mui/material';
-import type { SxProps, Theme } from '@mui/system';
-import { Stack } from '@mui/system';
 import type { PropsWithChildren } from '@/shared/types/types';
 
+import { Stack } from '@mui/system';
+import { Typography } from '@mui/material';
+
 interface ElemWithTypographyProps extends TypographyProps {
+  isAfter?: boolean;
   // TODO elem to Component
   elem: React.ReactNode;
-  isAfter?: boolean;
   sxContainer?: SxProps<Theme>;
 }
 

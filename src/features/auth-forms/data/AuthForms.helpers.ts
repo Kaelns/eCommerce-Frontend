@@ -1,6 +1,7 @@
-import { INPUTS, AddressPrefix } from '@/features/components/AuthForms/data/AuthForms.constants';
-import type { IInputsValues, IInputsErrors } from '@/features/components/AuthForms/data/AuthForms.types';
 import type { IAddress } from '@/services/interface';
+import type { IInputsValues, IInputsErrors } from '@/features/components/AuthForms/data/AuthForms.types';
+
+import { INPUTS, AddressPrefix } from '@/features/components/AuthForms/data/AuthForms.constants';
 
 export function checkCredentialInputs(inputsValues: IInputsValues, inputsErrors: IInputsErrors): boolean {
   const isValidEmail = !!inputsValues[INPUTS.email.name] && !inputsErrors[INPUTS.email.name];
@@ -27,14 +28,14 @@ export function getAddressValue(key: string, address?: IAddress): string {
     return '';
   }
   switch (key) {
-    case 'Street':
-      return address.streetName;
-    case 'PostalCode':
-      return address.postalCode;
-    case 'Country':
-      return address.country;
     case 'City':
       return address.city;
+    case 'Country':
+      return address.country;
+    case 'PostalCode':
+      return address.postalCode;
+    case 'Street':
+      return address.streetName;
     default:
       return '';
   }

@@ -1,10 +1,14 @@
+import type { Theme, SxProps, ButtonProps } from '@mui/material';
+import type { SxStyles, SxPropsArr } from '@/shared/types/types';
+
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import type { ButtonProps, SxProps, Theme } from '@mui/material';
-import { CircularProgress, IconButton, LinearProgress, Typography } from '@mui/material';
-import type { SxPropsArr, SxStyles } from '@/shared/types/types';
-import { useAddToBasketBtn } from '@/components/buttons/AddProductToCartBtn/useAddToBasketBtn';
+import { IconButton, Typography, LinearProgress, CircularProgress } from '@mui/material';
+
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+
 import { CasualBtn } from '@/components/buttons/CasualBtn';
+import { useAddToBasketBtn } from '@/components/buttons/AddProductToCartBtn/useAddToBasketBtn';
+
 import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
@@ -46,9 +50,9 @@ const sxStyles: SxStyles = {
 };
 
 interface AddToCartProps extends ButtonProps {
-  isIconBtn?: boolean;
   productId: string;
   lineItemId: string;
+  isIconBtn?: boolean;
   isAvailable: boolean;
   iconSx?: SxProps<Theme>;
   progressSx?: SxProps<Theme>;

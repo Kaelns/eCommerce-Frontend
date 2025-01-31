@@ -1,16 +1,20 @@
-import type { BreadcrumbsProps, SxProps } from '@mui/material';
-import { Breadcrumbs, Button } from '@mui/material';
-import { memo, useCallback, useContext, useMemo } from 'react';
 import type { Theme } from '@mui/system';
-import { BtnOnClickLink } from '@/components/buttons/BtnOnClickLink';
 import type { SxStyles } from '@/shared/types/types';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import type { SxProps, BreadcrumbsProps } from '@mui/material';
+
+import { Button, Breadcrumbs } from '@mui/material';
+import { memo, useMemo, useContext, useCallback } from 'react';
+
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
-import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
-import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb.helpers';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import { convertKeyToName } from '@/utils/strings/convertKeyToName';
+import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+
+import { BtnOnClickLink } from '@/components/buttons/BtnOnClickLink';
 
 const sxStyles: SxStyles = {
   btn: (theme) => ({
@@ -36,7 +40,7 @@ export const CategoriesBreadcrumb = memo(function Breadcrumb({ btnSx = {}, ...pr
 
   const setCategory = useCallback(
     (key: string) => (): void => {
-      dispatchFilterState({ type: FilterState.CATEGORY, payload: key });
+      dispatchFilterState({ type: FilterStateEnum.CATEGORY, payload: key });
     },
     [dispatchFilterState]
   );

@@ -1,8 +1,8 @@
-import { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSlice';
+import { ecommerceApi } from '@/services/ecommerce-api/rtk-query/ecommerceApi.slice';
 
 const usersPath = '/users';
 
-export const usersApi = ecommerceApiSlice.injectEndpoints({
+export const usersApi = ecommerceApi.injectEndpoints({
   endpoints: (build) => ({
     checkIsUserExistByEmail: build.mutation<void, { email: string }>({
       query: (body) => ({

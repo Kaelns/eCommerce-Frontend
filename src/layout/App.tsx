@@ -1,11 +1,15 @@
 import type { SxStyles } from '@/shared/types/types';
+
 import { Stack } from '@mui/system';
+import { Outlet } from 'react-router-dom';
+
+import { useStartSessionQuery } from '@/services/ecommerce-api';
+
 import { Alert } from '@/features/alert';
 import { Header } from '@/layout/Header';
-import { Outlet } from 'react-router-dom';
 import { SectionContainer } from '@/layout/SectionContainer';
+
 import { SuspenseWithError } from '@/components/SuspenseWithError';
-import { useStartSessionQuery } from '@/services/ecommerce-api';
 
 const sxStyles: SxStyles = {
   container: {

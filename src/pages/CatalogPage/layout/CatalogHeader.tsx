@@ -1,9 +1,13 @@
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { Button, Stack, useMediaQuery, useTheme } from '@mui/material';
-import { useState } from 'react';
-import { CatalogSearch } from '@/pages/CatalogPage/layout/CatalogSearch';
 import type { SxStyles } from '@/shared/types/types';
+
+import { useState } from 'react';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { Stack, Button, useTheme, useMediaQuery } from '@mui/material';
+
+import { CatalogSearch } from '@/pages/CatalogPage/layout/CatalogSearch';
+
 import { ElemWithTypography } from '@/components/typography/ElemWithTypography';
+
 import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {

@@ -1,17 +1,23 @@
+import type { BoxProps } from '@mui/system';
+import type { SxStyles, CartProduct } from '@/shared/types/types';
+
+import { Stack } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Typography, inputClasses } from '@mui/material';
-import type { BoxProps } from '@mui/system';
-import { Stack } from '@mui/system';
+
+import { SRCSET_API, FRACTION_DIGITS } from '@/services/constants';
+
+import { Quantity } from '@/pages/CartPage/components/Quantity';
+import { cartProductsSlice } from '@/pages/CartPage/slices/cartProducts.slice';
+import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+
+import { useAppDispatch } from '@/app/store/store';
+
+import { ImgLoad } from '@/components/img/ImgLoad';
 import { BoldTypography } from '@/components/typography/BoldTypography';
 import { DiscountTypography } from '@/components/typography/DiscountTypography';
-import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
-import { Quantity } from '@/pages/CartPage/components/Quantity';
-import { FRACTION_DIGITS, SRCSET_API } from '@/services/constants';
-import type { CartProduct, SxStyles } from '@/shared/types/types';
+
 import { sxMixins } from '@/shared/data/mui-mixins';
-import { ImgLoad } from '@/components/img/ImgLoad';
-import { cartProductsSlice } from '@/pages/CartPage/slices/cartProducts.slice';
-import { useAppDispatch } from '@/app/store/store';
 
 const IMG_SELECTOR = 'product-basket__img';
 const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };
@@ -80,8 +86,8 @@ const sxStyles: SxStyles = {
 interface IProductBasketProps {
   productData: CartProduct;
   imgHeight?: {
-    height: BoxProps['height'];
     maxSize: number;
+    height: BoxProps['height'];
   };
 }
 

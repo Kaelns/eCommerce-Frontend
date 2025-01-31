@@ -1,6 +1,7 @@
-import { Drawer } from '@mui/material';
 import type { PropsWithChildren } from '@/shared/types/types';
 import type { UseSideDrawerReturn } from '@/layout/SideDrawer/types';
+
+import { Drawer } from '@mui/material';
 
 interface SideDrawerProps {
   data: Omit<UseSideDrawerReturn, 'openDrawer'>;

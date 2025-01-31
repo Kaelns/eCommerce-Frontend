@@ -1,7 +1,7 @@
 import type { Category } from '@commercetools/platform-sdk';
-import type { CategoryTreeNode } from '@/shared/types/types';
-import type { ICategoriesObj } from '@/services/interface';
-import { convertArrOfIdElemToIdObj } from '@/utils/convertArrOfIdElemToIdObj';
+import type { CategoriesObj, CategoryTreeNode } from '@/shared/types/types';
+
+import { convertArrOfIdElemToIdObj } from '@/utils/arrays/convertArrOfIdElemToIdObj';
 
 export const initCategories: Category[] = [
   {
@@ -582,7 +582,7 @@ export const initCategories: Category[] = [
   }
 ];
 
-export const initCategoriesObj: ICategoriesObj = convertArrOfIdElemToIdObj(initCategories);
+export const initCategoriesObj: CategoriesObj = convertArrOfIdElemToIdObj(initCategories);
 
 export const initCategoriesTree: CategoryTreeNode[] = [
   {

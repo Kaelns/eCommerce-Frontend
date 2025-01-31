@@ -1,12 +1,17 @@
-import CheckIcon from '@mui/icons-material/Check';
-import { useState } from 'react';
-import { Box, ButtonGroup, Button, OutlinedInput } from '@mui/material';
 import type { BoxProps } from '@mui/system';
-import type { InputReactEvent, SxStyles } from '@/shared/types/types';
+import type { SxStyles, InputReactEvent } from '@/shared/types/types';
+
+import { useState } from 'react';
+import CheckIcon from '@mui/icons-material/Check';
+import { Box, Button, ButtonGroup, OutlinedInput } from '@mui/material';
+
 import { ManageCart } from '@/services/%%%BADhelpers/cartHelpers/manageCartCatch/manageCartCatch.interface';
-import { BoldTypography } from '@/components/typography/BoldTypography';
-import { useAlert } from '@/features/alert';
 import { promocodeCartCatch } from '@/services/%%%BADhelpers/cartHelpers/promocodeCartCatch/promocodeCartCatch';
+
+import { useAlert } from '@/features/alert';
+
+import { BoldTypography } from '@/components/typography/BoldTypography';
+
 import { AlertSeverity } from '@/shared/data/enums';
 import { useAppSelector } from '@/shared/redux/redux';
 

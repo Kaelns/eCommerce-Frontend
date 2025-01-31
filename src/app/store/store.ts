@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer, middlewares } from '@/shared/redux';
+
 import { router } from '@/app/router/router';
+
+import { rootReducer, middlewares } from '@/shared/redux/redux';
 
 export const extraArgument = {
   router

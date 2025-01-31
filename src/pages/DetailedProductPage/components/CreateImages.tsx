@@ -1,9 +1,9 @@
-import type { StackProps, SxProps, Theme } from '@mui/system';
+import type { Theme, SxProps, StackProps } from '@mui/system';
 
 interface ICreateImagesStyles<T extends StackProps['height'] = StackProps['height']> {
-  imgHeight?: T extends number ? { height: T } : { height: T; maxSize: number | 'unlimited' };
   imgStyles?: SxProps<Theme>;
   containerStyles?: SxProps<Theme>;
+  imgHeight?: T extends number ? { height: T } : { height: T; maxSize: 'unlimited' | number };
 }
 
 interface ICreateImagesProps<T extends StackProps['height']> {

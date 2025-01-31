@@ -1,13 +1,13 @@
 import type { SxPropsNotArr } from '@/shared/types/types';
 
 interface IMixins {
-  animation: (duration?: number) => SxPropsNotArr;
-  mediaHover: (styles: SxPropsNotArr, selector?: string) => SxPropsNotArr;
   hidden: SxPropsNotArr;
   visible: SxPropsNotArr;
-  invisible: SxPropsNotArr;
   opacity0: SxPropsNotArr;
   opacity1: SxPropsNotArr;
+  invisible: SxPropsNotArr;
+  animation: (duration?: number) => SxPropsNotArr;
+  mediaHover: (styles: SxPropsNotArr, selector?: string) => SxPropsNotArr;
 }
 
 export const sxMixins: IMixins = {

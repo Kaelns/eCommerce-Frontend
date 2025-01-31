@@ -1,4 +1,5 @@
 import type { UseSideDrawerReturn } from '@/layout/SideDrawer/types';
+
 import { useState } from 'react';
 
 export function useSideDrawer(): UseSideDrawerReturn {

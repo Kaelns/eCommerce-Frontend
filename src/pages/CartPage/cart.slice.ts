@@ -1,13 +1,17 @@
-import type { CartProducts } from '@/shared/types/types';
-import type { PayloadAction, WithSlice } from '@reduxjs/toolkit';
 import type { Cart } from '@commercetools/platform-sdk';
+import type { CartProducts } from '@/shared/types/types';
+import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+
 import { MOCK_CART } from '@/services/ecommerce-api';
-import { rootReducer } from '@/shared/redux/redux';
+
 import { calculatePrice } from '@/pages/CartPage/helpers/numbers/calculatePrice';
 import { calculateDiscountPercent } from '@/pages/CartPage/helpers/numbers/calculateDiscountPercent';
 import { calculateProductsQuantity } from '@/pages/CartPage/helpers/numbers/calculateProductsQuantity';
 import { convertToLightCartAllProducts } from '@/pages/CartPage/helpers/objects/convertToLightCartProducts';
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+
+import { rootReducer } from '@/shared/redux/redux';
 
 const INIT_CART = {
   cart: MOCK_CART,

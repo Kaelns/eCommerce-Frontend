@@ -1,5 +1,6 @@
-import { FRACTION_DIGITS } from '@/services/ecommerce-api';
 import type { CartProducts } from '@/shared/types/types';
+
+import { FRACTION_DIGITS } from '@/services/ecommerce-api';
 
 export function calculatePrice(products: CartProducts): number {
   const finalPrice = Object.values(products).reduce((acc, productData) => {

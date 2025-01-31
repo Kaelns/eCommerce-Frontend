@@ -1,14 +1,18 @@
-import type { BoxProps, SxProps } from '@mui/material';
+import type { Theme, StackProps } from '@mui/system';
+import type { SxProps, BoxProps } from '@mui/material';
+import type { SxStyles, SrcsetPxAsc } from '@/shared/types/types';
+
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
-import type { StackProps, Theme } from '@mui/system';
 import { Stack } from '@mui/system';
+import { useState, useEffect } from 'react';
 import { grey } from '@mui/material/colors';
-import { ImgSkeleton } from '@/components/skeletons/ImgSkeleton';
-import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
-import type { SrcsetPxAsc, SxStyles } from '@/shared/types/types';
-import { sxMixins } from '@/shared/data/mui-mixins';
+
 import { createSrcset } from '@/utils/strings/createSrcset';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+
+import { ImgSkeleton } from '@/components/skeletons/ImgSkeleton';
+
+import { sxMixins } from '@/shared/data/mui-mixins';
 
 const sxStyles: SxStyles = {
   container: {
@@ -28,16 +32,16 @@ const sxStyles: SxStyles = {
 };
 
 interface ImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
+  height?: T;
   src: string;
   alt: string;
-  height?: T;
+  containerStyles?: SxProps<Theme>;
   srcset?: T extends number
     ? { srcSetArr: SrcsetPxAsc }
     : {
         srcSetArr: SrcsetPxAsc;
-        maxSize: number | 'unlimited';
+        maxSize: 'unlimited' | number;
       };
-  containerStyles?: SxProps<Theme>;
 }
 
 // TODO change to custom Suspense

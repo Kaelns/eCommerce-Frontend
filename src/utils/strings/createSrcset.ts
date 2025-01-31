@@ -1,7 +1,8 @@
 import type { SrcsetPxAsc } from '@/shared/types/types';
+
 import { getImgSrcWithPostfix } from '@/utils/strings/getImgSrcWithPostfix';
 
-export function createSrcset(imgSrc: string, srcSetArr: SrcsetPxAsc, maxSize: number | 'unlimited' = 'unlimited'): string {
+export function createSrcset(imgSrc: string, srcSetArr: SrcsetPxAsc, maxSize: 'unlimited' | number = 'unlimited'): string {
   if (!srcSetArr.length || !imgSrc) {
     return imgSrc;
   }

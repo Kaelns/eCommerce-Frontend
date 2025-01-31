@@ -4,6 +4,8 @@ export const COUNTRY = 'US';
 export const LANGUAGE = 'en-US';
 
 export const MONEY_SYMBOL = '$';
+export const USER_MIN_AGE = 13;
+export const USER_MAX_AGE = 100;
 export const LIMIT_ON_PAGE = 18;
 export const FRACTION_DIGITS = 2;
 export const FRACTION_DOZENS = 10 ** FRACTION_DIGITS;

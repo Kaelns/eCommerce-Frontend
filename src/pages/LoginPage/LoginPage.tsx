@@ -1,4 +1,5 @@
 import { Stack } from '@mui/system';
+
 import { TitleTypography } from '@/components/typography/TitleTypography';
 
 export function LoginPage(): React.ReactNode {

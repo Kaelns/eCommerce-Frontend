@@ -1,5 +1,5 @@
-import { App } from '@/layout/App';
-import { Paths } from '@/shared/data/enums';
+import { Route, Navigate, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+
 import { MainPage } from '@/pages/MainPage/MainPage';
 import { CartPage } from '@/pages/CartPage/CartPage';
 import { UserPage } from '@/pages/UserPage/UserPage';
@@ -8,10 +8,13 @@ import { LoginPage } from '@/pages/LoginPage/LoginPage';
 import { AboutUsPage } from '@/pages/AboutUsPage/AboutUsPage';
 import { CatalogPage } from '@/pages/CatalogPage/CatalogPage';
 import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
+import { DetailedProductPage } from '@/pages/DetailedProductPage/DetailedProductPage';
+
+import { App } from '@/layout/App';
 import { startSessionLoader } from '@/app/router/router.loaders';
 import { RedirectLoginRouter } from '@/app/router/RedirectLoginRouter';
-import { DetailedProductPage } from '@/pages/DetailedProductPage/DetailedProductPage';
-import { Navigate, Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+
+import { Paths } from '@/shared/data/enums';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

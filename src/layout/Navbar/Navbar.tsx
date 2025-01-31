@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import type { SxStyles } from '@/shared/types/types';
+import type { Navbars } from '@/layout/Navbar/constants';
+
+import { useState, useEffect } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { Navbars } from '@/layout/Navbar/constants';
+
 import { useNavbar } from '@/layout/Navbar/useNavbar';
+
 import { sxMixins } from '@/shared/data/mui-mixins';
-import type { SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {
   btns: {
@@ -27,15 +30,15 @@ const sxStyles: SxStyles = {
 
 interface INavbarProps {
   navbarType: Navbars;
-  customOrientation?: 'vertical' | 'horizontal';
   onLinkClick?: () => void;
+  customOrientation?: 'horizontal' | 'vertical';
 }
 
 export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarProps): React.ReactNode {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { navPaths, orientation } = useNavbar(navbarType);
-  const [activeLink, setActiveLink] = useState<number | false>(false);
+  const [activeLink, setActiveLink] = useState<false | number>(false);
 
   const navPathsKeys = Object.keys(navPaths);
   const resultOrientation = customOrientation ?? orientation;

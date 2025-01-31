@@ -1,6 +1,7 @@
 import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
-import { useAppSelector } from '@/shared/redux';
-import { selectIsPendingAuth, selectIsLoggedAuth } from '@/shared/redux/slices/auth.slice';
+
+import { useAppSelector } from '@/shared/redux/redux';
+import { selectIsLoggedAuth, selectIsPendingAuth } from '@/shared/redux/slices/auth.slice';
 
 interface IRedirectLoginRouter {
   IfLogged: React.ReactNode;

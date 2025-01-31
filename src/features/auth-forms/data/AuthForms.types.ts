@@ -1,5 +1,5 @@
-import type { AddressPrefix, INPUTS } from '@/features/AuthForms/data/AuthForms.constants';
-import type { AutocompleteOptions, InputReactEvent } from '@/shared/types/types';
+import type { InputReactEvent, AutocompleteOptions } from '@/shared/types/types';
+import type { INPUTS, AddressPrefix } from '@/features/AuthForms/data/AuthForms.constants';
 
 type InputKeys = keyof typeof INPUTS;
 

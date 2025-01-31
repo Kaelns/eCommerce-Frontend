@@ -1,12 +1,15 @@
+import type { Theme } from '@mui/system';
+import type { SxProps } from '@mui/material';
+import type { SxStyles, InputReactEvent } from '@/shared/types/types';
+
+import { Input, Button, ButtonGroup } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import type { SxProps } from '@mui/material';
-import { ButtonGroup, Button, Input } from '@mui/material';
-import type { Theme } from '@mui/system';
-import type { InputReactEvent, SxStyles } from '@/shared/types/types';
-import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+
 import { cartProductsSlice } from '@/pages/CartPage/slices/cartProducts.slice';
+
 import { useAppDispatch } from '@/app/store/store';
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
 const sxStyles: SxStyles = {
   input: {

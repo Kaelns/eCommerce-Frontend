@@ -1,15 +1,14 @@
-import { Chip } from '@mui/material';
-import { useEffect, useState } from 'react';
+import type { Product, SxStyles } from '@/shared/types/types';
+
+import { useState } from 'react';
 import { Stack } from '@mui/system';
+import { Chip } from '@mui/material';
+
+import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+
 import { TitleTypography } from '@/components/typography/TitleTypography';
 import { DiscountTypography } from '@/components/typography/DiscountTypography';
-import { useFetch } from '@/hooks/useFetch/useFetch';
-import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
-import { fetchBasket } from '@/services/%%%BADhelpers/fetchBasket/fetchBasket';
-import { INIT_BASKET } from '@/services/helpers/fetchBasket/fetchBasket.constants';
 import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
-import { findBasketProductId } from '@/services/ecommerce/helpers/cart/findBasketProductId';
-import type { Product, SxStyles } from '@/shared/types/types';
 
 const sxStyles: SxStyles = {
   container: (theme) => ({
@@ -38,16 +37,16 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface IProductHeaderProps {
-  categoriesNames: string[];
+interface ProductHeaderProps {
   productData: Product;
+  categoriesNames: string[];
 }
 
-export function ProductHead({ productData, categoriesNames }: IProductHeaderProps): React.ReactNode {
-  const [lineItemId, setLineItemId] = useState('');
-  const { data = INIT_BASKET } = useFetch(fetchBasket, token);
+export function ProductHead({ productData, categoriesNames }: ProductHeaderProps): React.ReactNode {
+  const [lineItemId /* , setLineItemId */] = useState('');
+  // const { data: cartData = INIT_BASKET } = useFetch(fetchBasket, token);
 
-  useEffect(() => setLineItemId(findBasketProductId(data.basket, productData.id)), [data.basket, productData.id]);
+  // useEffect(() => setLineItemId(findBasketProductId(cartData.basket, productData.id)), [cartData.basket, productData.id]);
 
   return (
     <Stack spacing={0.7} sx={sxStyles.container}>

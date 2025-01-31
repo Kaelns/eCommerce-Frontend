@@ -1,12 +1,15 @@
-import { OutlinedInput, Slider, Typography } from '@mui/material';
+import type { SxStyles, InputReactEvent } from '@/shared/types/types';
+import type { IAction, FilterState, FilterPayload } from '@/pages/CatalogPage/hooks/filterReducer/types';
+
 import { useContext } from 'react';
 import { Stack } from '@mui/system';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+import { Slider, Typography, OutlinedInput } from '@mui/material';
+
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { MIN_MONEY, MAX_MONEY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
-import { SLIDER_MIN_DISTANCE, SLIDER_STEP } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
-import type { InputReactEvent, SxStyles } from '@/shared/types/types';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import type { IAction, FilterPayload, IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+import { SLIDER_STEP, SLIDER_MIN_DISTANCE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
+
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 
 const sxStyles: SxStyles = {
   input: {
@@ -41,11 +44,11 @@ function changeRangeSlider(dispatchFilterState: React.Dispatch<IAction>) {
     } else {
       payload = newValue;
     }
-    dispatchFilterState({ type: FilterState.PRICE, payload });
+    dispatchFilterState({ type: FilterStateEnum.PRICE, payload });
   };
 }
 
-function changeRangeInput(isLeft: boolean, filterState: IFilterState, dispatchFilterState: React.Dispatch<IAction>) {
+function changeRangeInput(isLeft: boolean, filterState: FilterState, dispatchFilterState: React.Dispatch<IAction>) {
   return (event: InputReactEvent): void => {
     const value = +event.target.value;
     if (!Number.isNaN(value) && value < MAX_MONEY && value > MIN_MONEY) {

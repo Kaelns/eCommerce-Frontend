@@ -1,12 +1,9 @@
 import type { Theme, SystemStyleObject } from '@mui/system';
-import type { ByProjectKeyProductProjectionsSearchRequestBuilder, Category, Image, ProductProjection } from '@commercetools/platform-sdk';
-import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { isObject as isObjectLodash } from 'lodash';
-import type { AppExtraArgument } from '@/shared/redux/redux';
+import type { Image, Category, ProductProjection, ByProjectKeyProductProjectionsSearchRequestBuilder } from '@commercetools/platform-sdk';
 
-export const isObject = (elem: unknown): elem is object => {
-  return isObjectLodash(elem) && !Array.isArray(elem);
-};
+import { FILTER_COLORS } from '@/shared/data/constants';
+
+//  TODO Split to separate files. Also organize Types folder.
 
 // * General types
 
@@ -17,49 +14,29 @@ export interface TreeNode {
 
 // * React types
 
-export type PropsWithChildren<P = unknown> = P & { children: React.ReactNode };
+export type PropsWithChildren<P = unknown> = { children: React.ReactNode } & P;
 
 export type InputReactEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 // * MUI types
-export type Sizes = 'small' | 'medium' | 'large';
+export type Sizes = 'large' | 'medium' | 'small';
 
 export type SxPropsObj<T extends object = Theme> = SystemStyleObject<T>;
 export type SxPropsCallback<T extends object = Theme> = (theme: Theme) => SystemStyleObject<T>;
 
-export type SxPropsArr<T extends object = Theme> = ReadonlyArray<boolean | SxPropsObj<T> | SxPropsCallback<T>>;
-export type SxPropsNotArr<T extends object = Theme> = SxPropsObj<T> | SxPropsCallback<T>;
+export type SxPropsArr<T extends object = Theme> = ReadonlyArray<boolean | SxPropsCallback<T> | SxPropsObj<T>>;
+export type SxPropsNotArr<T extends object = Theme> = SxPropsCallback<T> | SxPropsObj<T>;
 
 export type SxStyles<T extends object = Theme> = Record<string, SxPropsNotArr<T>>;
-
-// * Backend types
-
-export interface ResponceOk {
-  ok: boolean;
-}
-
-export interface BackendError extends ResponceOk {
-  name: string;
-  status: number;
-  message: string;
-}
-
-// * EcommerceApi types
-
-export type EcommerceBaseQuery = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, Partial<AppExtraArgument>>;
-
-export interface AppData {
-  countries: Record<string, string>;
-  currencies: string[];
-  isUserLogged: boolean;
-  countriesWithoutPostal?: Record<string, string>;
-}
 
 // ** Product types
 
 export type SrcsetPxAsc = [string, `${number}w`][];
 export type QueryProductsArgs = NonNullable<NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']>;
 
+export type FilterColors = typeof FILTER_COLORS;
+export type FilterColorsKeys = keyof FilterColors;
+export type FilterColorsValues = FilterColors[FilterColorsKeys];
 export interface Prices {
   price: number;
   discount: number;
@@ -72,8 +49,8 @@ export interface Product extends Prices {
   name: string;
   images: Image[];
   imageUrl: string;
-  maxQuantity: number;
   description: string;
+  maxQuantity: number;
   categoriesIdArr: string[];
 }
 
@@ -82,32 +59,32 @@ export interface Product extends Prices {
 export type CategoriesObj = Record<Category['id'], Category>;
 
 //  FIXME Delete if not used
-export interface IProductsResponce {
-  products: ProductProjection[];
+export interface ProductsResponce {
   amount: number;
+  products: ProductProjection[];
 }
 export interface CategoryTreeNode extends TreeNode {
   key: string;
   children: CategoryTreeNode[];
 }
 
-export interface Categories {
-  categoriesTree: CategoryTreeNode[];
-  categoriesObj: CategoriesObj;
+export interface CategoriesCollection {
   categories: Category[];
+  categoriesObj: CategoriesObj;
+  categoriesTree: CategoryTreeNode[];
 }
 
 // ** Cart types
 
 export interface CartProduct extends Prices {
   id: string;
-  lineId: string;
   key: string;
   name: string;
+  lineId: string;
   images: Image[];
+  imageUrl: string;
   quantity: number;
   maxQuantity: number;
-  imageUrl: string;
 }
 
 export interface CartProducts {
@@ -116,7 +93,7 @@ export interface CartProducts {
 
 // ** User types
 export interface AutocompleteOptions {
-  label: string;
   code: string;
+  label: string;
   postalCodePattern: RegExp;
 }

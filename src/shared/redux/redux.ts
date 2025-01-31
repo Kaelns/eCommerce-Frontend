@@ -1,14 +1,16 @@
-import type { extraArgument, store } from '@/app';
+import type { store, extraArgument } from '@/app';
 import type { ThunkAction, UnknownAction } from '@reduxjs/toolkit';
+
 import { combineSlices } from '@reduxjs/toolkit';
-import { ecommerceApiSlice } from '@/services/ecommerce-api';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { ecommerceApi } from '@/services/ecommerce-api/rtk-query';
 
 export interface LazyLoadedSlices {}
 
 // * Used "slice.injectInto" for encapsulation
-export const rootReducer = combineSlices(ecommerceApiSlice).withLazyLoadedSlices<LazyLoadedSlices>();
-export const middlewares = [ecommerceApiSlice.middleware];
+export const rootReducer = combineSlices(ecommerceApi).withLazyLoadedSlices<LazyLoadedSlices>();
+export const middlewares = [ecommerceApi.middleware];
 
 //  * Used "any" for encapsulation to prevent getting the date without slice selectors
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,8 +1,12 @@
 import type { SxStyles } from '@/shared/types/types';
+
+import { Stack, Snackbar, LinearProgress, Alert as MuiAlert } from '@mui/material';
+
+import { alertSliceInjected } from '@/features/alert/alert.slice';
+
 import { TimingProgress } from '@/components/TimingProgress';
+
 import { useAppDispatch, useAppSelector } from '@/shared/redux/redux';
-import { Alert as MuiAlert, LinearProgress, Snackbar, Stack } from '@mui/material';
-import { hideAlertAction, selectIsOpenAlert, selectMessageAlert, selectSeverityAlert, selectIsLoadingAlert } from '@/features/alert';
 
 const sxStyles: SxStyles = {
   alertContainer: {
@@ -25,16 +29,16 @@ interface AlertTextProps {
 
 export function Alert({ autoHideMs = 3000 }: AlertTextProps): React.ReactNode {
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector(selectIsOpenAlert);
-  const message = useAppSelector(selectMessageAlert);
-  const severity = useAppSelector(selectSeverityAlert);
-  const isLoading = useAppSelector(selectIsLoadingAlert);
+  const isOpen = useAppSelector(alertSliceInjected.selectors.selectIsOpenAlert);
+  const message = useAppSelector(alertSliceInjected.selectors.selectMessageAlert);
+  const severity = useAppSelector(alertSliceInjected.selectors.selectSeverityAlert);
+  const isLoading = useAppSelector(alertSliceInjected.selectors.selectIsLoadingAlert);
 
   const autoHideSec = autoHideMs / 1000;
 
-  const handleClose = (_?: React.SyntheticEvent | Event, reason?: string): void => {
+  const handleClose = (_?: Event | React.SyntheticEvent, reason?: string): void => {
     if (reason !== 'clickaway') {
-      dispatch(hideAlertAction());
+      dispatch(alertSliceInjected.actions.hideAlertAction());
     }
   };
 

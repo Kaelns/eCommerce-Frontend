@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 export interface ReturnUseFetch<T> {
-  data: T | undefined;
   error: string;
   isLoading: boolean;
+  data: T | undefined;
 }
 
 export function useFetch<T, P, U>(func: () => T, parameters?: P, refreshState?: U): ReturnUseFetch<Awaited<T>>;

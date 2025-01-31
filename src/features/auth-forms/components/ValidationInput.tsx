@@ -1,7 +1,8 @@
-import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { FormHelperText, InputLabel } from '@mui/material';
 import type { PropsWithChildren } from '@/shared/types/types';
+import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
+
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { InputLabel, FormHelperText } from '@mui/material';
 
 interface IValidationInputProps extends OutlinedInputProps {
   label: string;

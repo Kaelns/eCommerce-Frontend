@@ -1,11 +1,5 @@
-import { BtnLoading } from '@/components/buttons/BtnLoading';
-import { TitleTypography } from '@/components/typography/TitleTypography';
-import { AddressSection } from '@/features/components/AuthForms/components/AddressSection';
-import { DateInput } from '@/features/components/AuthForms/components/DateInput';
-import { LoginBlock } from '@/features/components/AuthForms/components/LoginBlock';
-import { ValidationInput } from '@/features/components/AuthForms/components/ValidationInput';
-import { INPUTS, AddressProperty, AddressPrefix } from '@/features/components/AuthForms/data/AuthForms.constants';
-import { getPrefix, checkAllInputs } from '@/features/components/AuthForms/data/AuthForms.helpers';
+import type { SxProps } from '@mui/system';
+import type { InputReactEvent } from '@/shared/types/types';
 import type {
   IInputsValues,
   IInputsErrors,
@@ -13,17 +7,27 @@ import type {
   HandleOnChangeInput,
   HandleChangeAutocomplete
 } from '@/features/components/AuthForms/data/AuthForms.types';
+
+import { Stack } from '@mui/system';
+import { useState, useCallback } from 'react';
+import { Button, Checkbox, FormControlLabel } from '@mui/material';
+
+import { createUserApi } from '@/services';
+import { useAppDispatch } from '@/app/store/store';
+import { DateInput } from '@/features/components/AuthForms/components/DateInput';
+import { LoginBlock } from '@/features/components/AuthForms/components/LoginBlock';
+import { AddressSection } from '@/features/components/AuthForms/components/AddressSection';
+import { ValidationInput } from '@/features/components/AuthForms/components/ValidationInput';
+import { getPrefix, checkAllInputs } from '@/features/components/AuthForms/data/AuthForms.helpers';
+import { INPUTS, AddressPrefix, AddressProperty } from '@/features/components/AuthForms/data/AuthForms.constants';
+
+import { BtnLoading } from '@/components/buttons/BtnLoading';
+import { TitleTypography } from '@/components/typography/TitleTypography';
+
 import checkBirthday from '@/shared/zod/%%%BADvalidation/birthdayValidation';
 import checkGeneralRule from '@/shared/zod/%%%BADvalidation/generalValidation';
 import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
-import { createUserApi } from '@/services';
-import { MAX_DATE_DASH, COUNTRY_LIST, MAX_DATE, MIN_DATE } from '@/shared/data/constants';
-import type { InputReactEvent } from '@/shared/types/types';
-import { useAppDispatch } from '@/app/store/store';
-import { FormControlLabel, Checkbox, Button } from '@mui/material';
-import type { SxProps } from '@mui/system';
-import { Stack } from '@mui/system';
-import { useState, useCallback } from 'react';
+import { MAX_DATE, MIN_DATE, COUNTRY_LIST, MAX_DATE_DASH } from '@/shared/data/constants';
 
 const sxTitle: SxProps = { py: 1.5 };
 

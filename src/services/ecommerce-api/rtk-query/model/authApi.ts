@@ -1,11 +1,13 @@
-import { ecommerceApiSlice } from '@/services/ecommerce-api/redux/ecommerceApiSlice';
-import { setIsPendingAuthAction } from '@/shared/redux/slices/auth.slice';
-import type { AppData, ResponceOk } from '@/shared/types/types';
 import type { BodyUserCredentials } from '@/shared/zod/ecommerce/user.schemas';
+import type { AppData, ResponceOk } from '@/services/ecommerce-api/rtk-query/types/types';
+
+import { ecommerceApi } from '@/services/ecommerce-api/rtk-query/ecommerceApi.slice';
+
+import { setIsPendingAuthAction } from '@/shared/redux/slices/auth.slice';
 
 const authPath = '/session';
 
-export const authApi = ecommerceApiSlice.injectEndpoints({
+export const authApi = ecommerceApi.injectEndpoints({
   endpoints: (build) => ({
     startSession: build.query<AppData, void>({
       query: () => '/',

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { Autocomplete, InputLabel, TextField } from '@mui/material';
+import { TextField, InputLabel, Autocomplete } from '@mui/material';
+
 import { COUNTRY_LIST } from '@/shared/data/constants';
 
 const ADDRESS_INPUTS = {
@@ -11,11 +12,11 @@ const ADDRESS_INPUTS = {
 const ADDRESS_INPUTS_KEYS = Object.keys(ADDRESS_INPUTS) as Array<keyof typeof ADDRESS_INPUTS>;
 
 interface IAddressSectionProps {
-  onChangeFunction: HandleOnChangeInput;
-  onChangeAutocomplete: HandleChangeAutocomplete;
+  prefix: AddressPrefix;
   inputsErrors: IInputsErrors;
   inputsValues: IInputsValues;
-  prefix: AddressPrefix;
+  onChangeFunction: HandleOnChangeInput;
+  onChangeAutocomplete: HandleChangeAutocomplete;
 }
 
 export function AddressSection({

@@ -1,17 +1,21 @@
+import type { StackProps } from '@mui/system';
+
+import { useContext } from 'react';
+import { Stack } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import { useContext } from 'react';
-import type { StackProps } from '@mui/system';
-import { Stack } from '@mui/system';
+
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { Filters, FILTERS_ORDER } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
-import { BoldTypography } from '@/components/typography/BoldTypography';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { AccordionTree } from '@/features/accordion-tree/AccordionTree';
+import { ColorFilter } from '@/pages/CatalogPage/features/CatalogFilterForm/components/ColorFilter';
 import { RangePriceSlider } from '@/pages/CatalogPage/features/CatalogFilterForm/components/RangePriceSlider';
+
+import { AccordionTree } from '@/features/accordion-tree/AccordionTree';
 import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
 import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+
 import { ContainedBtn } from '@/components/buttons/ContainedBtn';
-import { ColorFilter } from '@/pages/CatalogPage/features/CatalogFilterForm/components/ColorFilter';
+import { BoldTypography } from '@/components/typography/BoldTypography';
 
 export function CatalogFilterForm({ ...props }: StackProps): React.ReactNode {
   const { dispatchFilterState } = useContext(FilterReducerContext);
@@ -24,7 +28,7 @@ export function CatalogFilterForm({ ...props }: StackProps): React.ReactNode {
   };
 
   const handleClear = (): void => {
-    dispatchFilterState({ type: FilterState.CLEAR_FORM });
+    dispatchFilterState({ type: FilterStateEnum.CLEAR_FORM });
   };
 
   return (

@@ -1,7 +1,9 @@
 import type { TypographyProps } from '@mui/material';
-import { Typography } from '@mui/material';
-import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import type { SxPropsObj } from '@/shared/types/types';
+
+import { Typography } from '@mui/material';
+
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
 const sxText: SxPropsObj = {
   position: 'absolute',

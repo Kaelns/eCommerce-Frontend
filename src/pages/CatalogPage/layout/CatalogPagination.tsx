@@ -1,13 +1,17 @@
 import type { PaginationProps } from '@mui/material';
-import { Pagination } from '@mui/material';
-import { useContext, useMemo } from 'react';
-import { useMediaQuery, useTheme } from '@mui/system';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
-import { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import type { SxPropsNotArr } from '@/shared/types/types';
-import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+
+import { Pagination } from '@mui/material';
+import { useMemo, useContext } from 'react';
+import { useTheme, useMediaQuery } from '@mui/system';
+
 import { LIMIT_ON_PAGE } from '@/services/constants';
+
+import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+
+import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import { calculateMaxPages } from '@/utils/numbers/calculateMaxPages';
+import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 
 const sxPagination: SxPropsNotArr = {
   display: 'flex',
@@ -30,7 +34,7 @@ export function CatalogPagination({ amount, sx = {}, showLastButton = true, show
   const isDisabled = !(pages - 1);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number): void => {
-    dispatchFilterState({ type: FilterState.PAGE, payload: value });
+    dispatchFilterState({ type: FilterStateEnum.PAGE, payload: value });
     window.scrollTo({ top: 0 });
   };
 

@@ -1,23 +1,23 @@
-// import { FilterColors } from '@/features/FilterForm/FilterForm.constants';
 import { LANGUAGE, FRACTION_DOZENS } from '@/services/ecommerce-api/data/constants';
-import type { FilterColorsState, FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
-import { MIN_MONEY, MAX_MONEY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
-import { PROPERTY } from '@/services/ecommerce-api/helpers/general/convertToFilterParams/types';
-import type { IConvertSearchReturn } from '@/services/ecommerce-api/helpers/general/convertToFilterParams/types';
-import { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import { queryArgsProductProps } from '@/services/ecommerce-api/helpers/products/queryArgsProductProps';
+import { PROPERTY, IConvertSearchReturn } from '@/services/ecommerce-api/helpers/general/convertToFilterParams/types';
 
-export function convertSort(typeOfSort: Sort | undefined): string {
+import { Sort } from '@/pages/CatalogPage/features/CatalogFilterForm';
+import { FilterColorsState } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+
+import { FilterColorsKeys, FilterColorsValues } from '@/shared/types/types';
+import { MIN_MONEY, MAX_MONEY, NO_CATEGORY, FILTER_COLORS } from '@/shared/data/constants';
+
+export function convertSort(typeOfSort: Sort | undefined) {
   switch (typeOfSort) {
     case Sort.NAME_ASC:
-      return `name.${LANGUAGE} asc`;
+      return queryArgsProductProps.sort.nameAsc(LANGUAGE);
     case Sort.NAME_DESC:
-      return `name.${LANGUAGE} desc`;
+      return queryArgsProductProps.sort.nameDesc(LANGUAGE);
     case Sort.PRICE_ASC:
-      return 'price asc';
+      return queryArgsProductProps.sort.priceAsc;
     case Sort.PRICE_DESC:
-      return `price desc`;
-    case Sort.NO_SORT:
-      return '';
+      return queryArgsProductProps.sort.priceDesc;
     default:
       return '';
   }
@@ -39,20 +39,10 @@ export function convertSearch(searchString: string | undefined): IConvertSearchR
   }
 
   return {
-    fuzzy: true,
     [PROPERTY]: searchString,
+    fuzzy: true,
     fuzzyLevel
   };
-}
-
-export function convertPrice(price: number[] | undefined): string {
-  if (!price || !price.length) {
-    return '';
-  }
-  if (price[0] === MIN_MONEY && price[1] === MAX_MONEY) {
-    return '';
-  }
-  return `variants.price.centAmount:range (${price[0] * FRACTION_DOZENS} to ${price[1] * FRACTION_DOZENS})`;
 }
 
 export function convertColors(colors: FilterColorsState | undefined): string {
@@ -60,15 +50,21 @@ export function convertColors(colors: FilterColorsState | undefined): string {
     return '';
   }
   const colorsEntries = Object.entries(colors) as [FilterColorsKeys, boolean][];
-  const value = colorsEntries.filter(([, val]) => val).reduce((acc, [key]) => (acc ? `${acc}, "${key}"` : `"${key}"`), '');
-  return value ? `variants.attributes.color-filter.key: ${value}` : '';
+  const colorsArr = colorsEntries.filter(([, isColor]) => isColor).map<FilterColorsValues>(([key]) => FILTER_COLORS[key]);
+  return queryArgsProductProps.filterQuery.colors(colorsArr);
 }
 
-// export function convertCategories(categoryKey: string | undefined): string {
-//   if (!categoryKey) {
-//     return '';
-//   }
-//   // FIXME getCategoriesObj
-//   const category = categoryKey !== NO_CATEGORY ? findInCategories(api.products.categories, [categoryKey])[0] : '';
-//   return category ? `categories.id: "${category.id}"` : '';
-// }
+export function convertPrice(price: number[] | undefined): string {
+  if (!price || !price.length || (price[0] === MIN_MONEY && price[1] === MAX_MONEY)) {
+    return '';
+  }
+  return queryArgsProductProps.filterQuery.priceRange(price[0] * FRACTION_DOZENS, price[1] * FRACTION_DOZENS);
+}
+
+export function convertCategories(categoryId: string | undefined): string {
+  if (!categoryId) {
+    return '';
+  }
+  const category = categoryId !== NO_CATEGORY ? categoryId : '';
+  return queryArgsProductProps.filterQuery.categoryId(category);
+}

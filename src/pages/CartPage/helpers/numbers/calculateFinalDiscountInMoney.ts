@@ -1,4 +1,4 @@
-import { FRACTION_DIGITS } from '@/services/ecommerce';
+import { FRACTION_DIGITS } from '@/services/ecommerce-api';
 
 export function calculateFinalDiscountInMoney(finalPrice: number, discount: number): number {
   const price = (finalPrice * (100 - discount)) / 100;

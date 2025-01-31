@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useDebounceCache<T, P>(nextData: T, skipCaching?: P, delay = 1000): T[] {
   const [currentData, setCurrentData] = useState<T>(nextData);

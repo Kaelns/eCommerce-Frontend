@@ -1,43 +1,46 @@
+import type { SxStyles, CategoryTreeNode } from '@/shared/types/types';
+import type { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionSummary, Button, AccordionDetails, Box } from '@mui/material';
-import { AccordionTree } from '@/features/accordion-tree/AccordionTree';
-import type { CategoryTreeNode, SxStyles } from '@/shared/types/types';
-import type { IFilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+import { Box, Button, Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+
 import { convertKeyToName } from '@/utils/strings/convertKeyToName';
+// eslint-disable-next-line import/no-cycle
+import { AccordionTree } from '@/features/accordion-tree/AccordionTree';
 
 const sxStyles: SxStyles = {
-  accordionPadding: {
-    px: 0.25
-  },
   accordionActive: {
     bgcolor: 'var(--color-primary-transparent)'
   },
-  subAccordionWrapper: {
-    pl: 0.2
+  accordionPadding: {
+    px: 0.25
   },
-  pointerEventsOn: {
-    pointerEvents: 'all'
+  btn: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    textAlign: 'left',
+    textTransform: 'none',
+    width: 1
   },
   pointerEventsOff: {
     pointerEvents: 'none'
   },
-  btn: {
-    width: 1,
-    textTransform: 'none',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    textAlign: 'left'
+  pointerEventsOn: {
+    pointerEvents: 'all'
+  },
+  subAccordionWrapper: {
+    pl: 0.2
   }
 };
 
-interface IAccordionItemProps {
+interface AccordionItemProps {
   categoryKey: string;
+  filterState: FilterState;
   treeData: CategoryTreeNode[];
-  filterState: IFilterState;
   handleClickedCategory: (keyOfCategory: string) => (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export function AccordionItem({ treeData, filterState, categoryKey, handleClickedCategory }: IAccordionItemProps): React.ReactNode {
+export function AccordionItem({ categoryKey, filterState, handleClickedCategory, treeData }: AccordionItemProps): React.ReactNode {
   const isHasChildren = Boolean(treeData.length);
   const deactivateIfNoChildren = !isHasChildren && sxStyles.pointerEventsOff;
   const removeParentDeactivation = !isHasChildren && sxStyles.pointerEventsOn;

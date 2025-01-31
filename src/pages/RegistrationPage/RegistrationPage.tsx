@@ -1,8 +1,11 @@
-import { router } from '@/app';
 import { Stack } from '@mui/system';
-import { Paths } from '@/shared/data/enums';
+import { Chip, Button, Divider } from '@mui/material';
+
+import { router } from '@/app';
+
 import { TitleTypography } from '@/components/typography/TitleTypography';
-import { Button, Chip, Divider } from '@mui/material';
+
+import { Paths } from '@/shared/data/enums';
 // import { RegistrationForm } from '@/features/components/AuthForms/RegistrationForm/RegistrationForm';
 
 export function RegistrationPage(): React.ReactNode {
