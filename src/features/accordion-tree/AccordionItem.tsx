@@ -40,7 +40,7 @@ interface AccordionItemProps {
   handleClickedCategory: (keyOfCategory: string) => (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export function AccordionItem({ categoryKey, filterState, handleClickedCategory, treeData }: AccordionItemProps): React.ReactNode {
+export function AccordionItem({ categoryKey, filterState, handleClickedCategory, treeData }: AccordionItemProps) {
   const isHasChildren = Boolean(treeData.length);
   const deactivateIfNoChildren = !isHasChildren && sxStyles.pointerEventsOff;
   const removeParentDeactivation = !isHasChildren && sxStyles.pointerEventsOn;

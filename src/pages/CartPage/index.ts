@@ -6,6 +6,7 @@ export const {
   selectCart,
   selectCartProducts,
   selectDiscountCart,
+  selectCartProductId,
   selectFinalPriceCart,
   selectIsPromocodeCart,
   selectDeletionSignalCart,

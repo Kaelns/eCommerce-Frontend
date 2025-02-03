@@ -1,34 +1,37 @@
 import type { StackProps } from '@mui/system';
 
-import { useContext } from 'react';
+import { memo } from 'react';
 import { Stack } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 
-import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { Filters, FILTERS_ORDER } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
 import { ColorFilter } from '@/pages/CatalogPage/features/CatalogFilterForm/components/ColorFilter';
+import { Filters, FILTERS_ORDER } from '@/pages/CatalogPage/features/CatalogFilterForm/data/constants';
+import { resetFiltersAction } from '@/pages/CatalogPage/features/CatalogFilterForm/catalogFilter.slice';
 import { RangePriceSlider } from '@/pages/CatalogPage/features/CatalogFilterForm/components/RangePriceSlider';
-
-import { AccordionTree } from '@/features/accordion-tree/AccordionTree';
-import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+import { CategoriesAccordionTree } from '@/pages/CatalogPage/features/CatalogFilterForm/components/CategoriesAccordionTree';
 
 import { ContainedBtn } from '@/components/buttons/ContainedBtn';
 import { BoldTypography } from '@/components/typography/BoldTypography';
 
-export function CatalogFilterForm({ ...props }: StackProps): React.ReactNode {
-  const { dispatchFilterState } = useContext(FilterReducerContext);
-  const { categoriesTree } = useContext(ECommerceContext);
+import { useAppDispatch } from '@/shared/redux/redux';
+
+export const CatalogFilterForm = memo(function CatalogFilterForm({ ...props }: StackProps) {
+  const dispatch = useAppDispatch();
 
   const filters = {
     [Filters.PRICE]: <RangePriceSlider />,
     [Filters.COLOR]: <ColorFilter />,
-    [Filters.CATEGORY]: <AccordionTree treeData={categoriesTree} />
+    [Filters.CATEGORY]: <CategoriesAccordionTree />
   };
 
   const handleClear = (): void => {
-    dispatchFilterState({ type: FilterStateEnum.CLEAR_FORM });
+    dispatch(resetFiltersAction());
+  };
+
+  const handleApplyFilters = (): void => {
+    // TODO
+    // dispatch(applyFiltersAction());
   };
 
   return (
@@ -42,6 +45,7 @@ export function CatalogFilterForm({ ...props }: StackProps): React.ReactNode {
         </Accordion>
       ))}
       <ContainedBtn onClick={handleClear}>Clear</ContainedBtn>
+      <ContainedBtn onClick={handleApplyFilters}>Apply</ContainedBtn>
     </Stack>
   );
-}
+});

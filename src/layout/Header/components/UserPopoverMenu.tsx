@@ -20,7 +20,7 @@ const sxBadge: SxProps = {
   }
 };
 
-export function UserPopoverMenu(): React.ReactNode {
+export function UserPopoverMenu() {
   // const dispatch = useAppDispatch();
   const isLogged = useAppSelector(selectIsLoggedAuth);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);

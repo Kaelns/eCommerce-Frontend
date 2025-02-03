@@ -27,7 +27,7 @@ interface AlertTextProps {
   autoHideMs?: number;
 }
 
-export function Alert({ autoHideMs = 3000 }: AlertTextProps): React.ReactNode {
+export function Alert({ autoHideMs = 3000 }: AlertTextProps) {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(alertSliceInjected.selectors.selectIsOpenAlert);
   const message = useAppSelector(alertSliceInjected.selectors.selectMessageAlert);

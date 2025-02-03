@@ -104,7 +104,7 @@ export function ImgCarousel({
   openModalImg = 0,
   width = 1,
   ...props
-}: PropsWithChildren<ImgCarouselProps>): React.ReactNode {
+}: PropsWithChildren<ImgCarouselProps>) {
   const sliderRef = useRef<Slider>(null);
 
   const addSettings = useMemo(() => (customDots.length ? additionalSettings(customDots, sliderRef) : {}), [customDots]);

@@ -20,7 +20,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function CatalogSortBy(): React.ReactNode {
+export function CatalogSortBy() {
   const handleChange = (/* event: SelectChangeEvent */): void => {
     // dispatchFilterState({ type: FilterStateEnum.SORT, payload: event.target.value });
   };

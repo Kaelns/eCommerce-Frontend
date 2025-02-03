@@ -42,7 +42,7 @@ const INIT_POSTAL_PATTERN = {
   billing: undefined
 };
 
-export function RegistrationForm(): React.ReactNode {
+export function RegistrationForm() {
   const dispatch = useAppDispatch();
   const [inputsValues, setInputsValues] = useState<IInputsValues>(INIT_INPUTS_DATA);
   const [inputsErrors, setInputsErrors] = useState<IInputsErrors>({});

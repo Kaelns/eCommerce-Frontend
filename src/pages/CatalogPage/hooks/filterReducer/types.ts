@@ -1,5 +1,5 @@
 import type { Sort, FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import type { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
+import type { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/data/constants';
 
 export interface FilterState {
   sort: Sort;

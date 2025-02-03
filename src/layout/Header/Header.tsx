@@ -18,7 +18,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function Header(): React.ReactNode {
+export function Header() {
   const theme = useTheme();
   const isMatchesMedia = useMediaQuery(theme.breakpoints.down('tablet'));
 

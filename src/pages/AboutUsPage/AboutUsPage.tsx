@@ -25,7 +25,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function AboutUsPage(): React.ReactNode {
+export function AboutUsPage() {
   return (
     <Stack gap={1.5} sx={sxStyles.pageContainer}>
       <TitleTypography>About Us</TitleTypography>

@@ -22,7 +22,7 @@ interface PriceTypographyProps extends TypographyProps {
   priceType: 'discount' | 'price';
 }
 
-export function PriceTypography({ priceType, price, sx = {} }: PriceTypographyProps): React.ReactNode {
+export function PriceTypography({ priceType, price, sx = {} }: PriceTypographyProps) {
   return (
     <Typography variant="subtitle2" sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}>
       {price} {MONEY_SYMBOL}

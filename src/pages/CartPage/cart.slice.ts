@@ -37,8 +37,13 @@ const cartSliceLazy = createSlice({
 
     selectCartProducts: (state) => state.cartProducts,
     selectProductQuantityCart: (state) => state.productQuantity,
-    // * Calculates automatically by create selector
-    selectFinalPriceCart: createSelector([(state): CartProducts => state.cartProducts], calculatePrice)
+
+    selectFinalPriceCart: createSelector([(state): CartProducts => state.cartProducts], calculatePrice),
+
+    selectCartProductId: createSelector(
+      [(state): CartProducts => state.cartProducts, (_, productId: string) => productId],
+      (cartProducts, productId) => cartProducts[productId]?.lineId
+    )
   },
   reducers: {
     setCartAction(state, action: PayloadAction<Cart>) {

@@ -5,11 +5,11 @@ import { LANGUAGE, useGetCategoriesQuery } from '@/services/ecommerce-api';
 
 import { MainSection } from '@/pages/MainPage/layout/MainSection';
 import { ShowcaseSection } from '@/pages/MainPage/layout/ShowcaseSection';
-import { PromocodeSection } from '@/pages/MainPage/layout/SpecialSection';
+import { PromocodeSection } from '@/pages/MainPage/layout/PromocodeSection';
 
 import { SuspenseWithError } from '@/components/SuspenseWithError';
 
-export function MainPage(): React.ReactNode {
+export function MainPage() {
   const { data: categoriesCollection, error, isError, isLoading } = useGetCategoriesQuery();
 
   const firstCategory = categoriesCollection?.categories[0];

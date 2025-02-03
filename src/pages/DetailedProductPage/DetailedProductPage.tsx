@@ -62,7 +62,7 @@ import { TitleTypography } from '@/components/typography/TitleTypography';
 //   }
 // };
 
-export function DetailedProductPage(): React.ReactNode {
+export function DetailedProductPage() {
   // const { id: key } = useParams();
   // const navigate = useNavigate();
   // if (!key) {

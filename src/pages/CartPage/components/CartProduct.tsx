@@ -97,7 +97,7 @@ export function CartProduct({
     height: IMG_HEIGHT,
     maxSize: MAX_IMG_SIZE
   }
-}: IProductBasketProps): React.ReactNode {
+}: IProductBasketProps) {
   const dispatch = useAppDispatch();
 
   const { height, maxSize } = imgHeight;

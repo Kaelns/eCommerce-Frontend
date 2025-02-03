@@ -9,6 +9,8 @@
     "start:preview": "vite preview",
     "start:dev": "vite",
     "test": "vitest",
+    "test:staged": "vitest related --run",
+    "test:changed:last:commit": "vitest run --changed HEAD~1",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint . --ext .tsx,.ts",
     "lint:fix": "eslint --fix --ext .ts,.tsx .",

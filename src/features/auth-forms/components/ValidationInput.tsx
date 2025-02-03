@@ -14,7 +14,7 @@ export function ValidationInput({
   type = 'text',
   required = true,
   ...props
-}: PropsWithChildren<IValidationInputProps>): React.ReactNode {
+}: PropsWithChildren<IValidationInputProps>) {
   return (
     <>
       <InputLabel required>{label}</InputLabel>

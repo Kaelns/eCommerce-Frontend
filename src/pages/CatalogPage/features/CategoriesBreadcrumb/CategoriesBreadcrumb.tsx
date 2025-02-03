@@ -2,19 +2,22 @@ import type { Theme } from '@mui/system';
 import type { SxStyles } from '@/shared/types/types';
 import type { SxProps, BreadcrumbsProps } from '@mui/material';
 
+import { memo, useMemo } from 'react';
 import { Button, Breadcrumbs } from '@mui/material';
-import { memo, useMemo, useContext, useCallback } from 'react';
 
-import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import { getErrorMessage } from '@/services/ecommerce-api/rtk-query';
+import { LANGUAGE, useGetCategoriesQuery } from '@/services/ecommerce-api';
+
 import { NO_CATEGORY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
-import { convertToBreadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb.helpers';
+import { selectCategoryId } from '@/pages/CatalogPage/features/CatalogFilterForm';
+import { convertToBreadcrumb } from '@/pages/CatalogPage/features/CategoriesBreadcrumb/helpers';
 
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
-import { convertKeyToName } from '@/utils/strings/convertKeyToName';
-import { ECommerceContext } from '@/context/ECommerceContext/ECommerceContext';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
 
-import { BtnOnClickLink } from '@/components/buttons/BtnOnClickLink';
+import { SuspenseWithError } from '@/components/SuspenseWithError';
+
+import { useAppSelector } from '@/shared/redux/redux';
+import { NO_CATEGORY_NAME } from '@/shared/data/constants';
 
 const sxStyles: SxStyles = {
   btn: (theme) => ({
@@ -27,40 +30,43 @@ interface IBreadcrumbProps extends BreadcrumbsProps {
   btnSx?: SxProps<Theme>;
 }
 
-export const CategoriesBreadcrumb = memo(function Breadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps): React.ReactNode {
-  // TODO remove contexts and pass elem through props. Move to the features folder
+export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx = {}, ...props }: IBreadcrumbProps) {
+  // const dispatch = useAppDispatch();
+  const categoryId = useAppSelector(selectCategoryId);
 
-  const { categoriesTree } = useContext(ECommerceContext);
-  const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
+  const { data: categoriesCollection, error, isError, isLoading } = useGetCategoriesQuery();
 
   const categoriesToRender = useMemo(
-    () => (filterState.categoryKey !== NO_CATEGORY ? convertToBreadcrumb(filterState.categoryKey, categoriesTree) : [NO_CATEGORY]),
-    [categoriesTree, filterState.categoryKey]
+    () => (categoryId !== NO_CATEGORY && categoriesCollection ? convertToBreadcrumb(categoryId, categoriesCollection.categoriesTree) : [NO_CATEGORY]),
+    [categoriesCollection, categoryId]
   );
 
-  const setCategory = useCallback(
-    (key: string) => (): void => {
-      dispatchFilterState({ type: FilterStateEnum.CATEGORY, payload: key });
-    },
-    [dispatchFilterState]
-  );
+  const setCategoryId = (categoryId: string, categoryName: string) => (): void => {
+    console.log('🚀 ~ CategoriesBreadcrumb ~ categoryId: string, categoryName: string:', categoryId, categoryName);
+
+    // dispatch(setCategoryIdAndNameAction({ categoryId, categoryName }));
+  };
 
   return (
-    <Breadcrumbs {...props}>
-      {categoriesToRender.map((key, index) => {
-        if (index !== categoriesToRender.length - 1) {
-          return (
-            <Button key={key} onClick={setCategory(key)} sx={btnSx}>
-              {convertKeyToName(key)}
+    <SuspenseWithError settings={{ error: getErrorMessage(error), isError, isLoading }}>
+      <Breadcrumbs {...props}>
+        {categoriesToRender.map((categoryId, index) => {
+          const categoryName =
+            categoriesCollection && categoriesCollection.categoriesObj[categoryId]?.name
+              ? categoriesCollection.categoriesObj[categoryId].name[LANGUAGE]
+              : NO_CATEGORY_NAME;
+
+          return index !== categoriesToRender.length - 1 ? (
+            <Button key={categoryId} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
+              {categoryName}
+            </Button>
+          ) : (
+            <Button disabled key={categoryId} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
+              {categoryName}
             </Button>
           );
-        }
-        return (
-          <Button disabled key={key} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
-            {convertKeyToName(key)}
-          </Button>
-        );
-      })}
-    </Breadcrumbs>
+        })}
+      </Breadcrumbs>
+    </SuspenseWithError>
   );
 });

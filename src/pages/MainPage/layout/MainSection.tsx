@@ -53,7 +53,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function MainSection(): React.ReactNode {
+export function MainSection() {
   const navigate = useNavigate();
   const navigateCatalog = () => navigate(Paths.CATALOG);
 

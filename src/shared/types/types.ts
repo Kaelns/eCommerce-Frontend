@@ -1,7 +1,6 @@
 import type { Theme, SystemStyleObject } from '@mui/system';
+import type { FILTER_COLORS } from '@/shared/data/constants';
 import type { Image, Category, ProductProjection, ByProjectKeyProductProjectionsSearchRequestBuilder } from '@commercetools/platform-sdk';
-
-import { FILTER_COLORS } from '@/shared/data/constants';
 
 //  TODO Split to separate files. Also organize Types folder.
 

@@ -4,6 +4,7 @@ import { Stack } from '@mui/system';
 import { Outlet } from 'react-router-dom';
 
 import { useStartSessionQuery } from '@/services/ecommerce-api';
+import { getErrorMessage } from '@/services/ecommerce-api/rtk-query';
 
 import { Alert } from '@/features/alert';
 import { Header } from '@/layout/Header';
@@ -23,8 +24,8 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function App(): React.ReactNode {
-  const { /* data, */ isLoading, isError /* , error */ } = useStartSessionQuery();
+export function App() {
+  const { /* data, */ isLoading, isError, error } = useStartSessionQuery();
 
   return (
     <>
@@ -32,7 +33,7 @@ export function App(): React.ReactNode {
 
       <Stack component="main" gap={1.5} sx={sxStyles.container}>
         <SectionContainer sx={sxStyles.sectionContainer}>
-          <SuspenseWithError settings={{ isLoading, isError /* , error: error?.data?.message */ }}>
+          <SuspenseWithError settings={{ isLoading, isError, error: getErrorMessage(error) }}>
             <Outlet />
           </SuspenseWithError>
         </SectionContainer>

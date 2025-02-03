@@ -14,7 +14,7 @@ interface ICardPriceProps {
   discountedPrice: number;
 }
 
-export function CardPriceTypography({ text = 'Price: ', price, discount, discountedPrice }: ICardPriceProps): React.ReactNode {
+export function CardPriceTypography({ text = 'Price: ', price, discount, discountedPrice }: ICardPriceProps) {
   return (
     <Stack direction="row" alignItems="center" gap={1} mb={0.6}>
       <BoldTypography variant="subtitle2">{text}</BoldTypography>

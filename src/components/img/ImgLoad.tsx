@@ -2,9 +2,9 @@ import type { Theme, StackProps } from '@mui/system';
 import type { SxProps, BoxProps } from '@mui/material';
 import type { SxStyles, SrcsetPxAsc } from '@/shared/types/types';
 
-import { Box } from '@mui/material';
 import { Stack } from '@mui/system';
-import { useState, useEffect } from 'react';
+import { Box, Fade } from '@mui/material';
+import { useMemo, useState } from 'react';
 import { grey } from '@mui/material/colors';
 
 import { createSrcset } from '@/utils/strings/createSrcset';
@@ -17,7 +17,10 @@ import { sxMixins } from '@/shared/data/mui-mixins';
 const sxStyles: SxStyles = {
   container: {
     position: 'relative',
-    borderRadius: 1
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 1,
+    ...sxMixins.animation()
   },
   skeleton: {
     position: 'absolute',
@@ -27,7 +30,8 @@ const sxStyles: SxStyles = {
     width: 1,
     height: 1,
     borderRadius: 1,
-    objectFit: 'contain'
+    objectFit: 'contain',
+    ...sxMixins.animation()
   }
 };
 
@@ -44,7 +48,6 @@ interface ImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
       };
 }
 
-// TODO change to custom Suspense
 export function ImgLoad<T extends StackProps['height']>({
   src,
   height,
@@ -53,44 +56,40 @@ export function ImgLoad<T extends StackProps['height']>({
   sx = {},
   containerStyles = {},
   ...props
-}: ImgLoadProps<T>): React.ReactNode {
+}: ImgLoadProps<T>) {
   const [isImgLoading, setIsImgLoading] = useState(true);
-  const [srcSetOfImg, setSrcSetOfImg] = useState('');
 
   const handleOnImgLoad = (): void => {
     setIsImgLoading(false);
   };
 
   // TODO slice srcSetArr for max height and add isCreateSrcSet.
-  // TODO add createSrcset to useState default value
-  useEffect(() => {
+  const srcSetOfImg = useMemo(() => {
     if (srcset) {
       if (typeof height === 'number') {
-        setSrcSetOfImg(createSrcset(src, srcset.srcSetArr, height));
+        return createSrcset(src, srcset.srcSetArr, height);
       } else if ('maxSize' in srcset) {
-        setSrcSetOfImg(createSrcset(src, srcset.srcSetArr, srcset.maxSize));
+        return createSrcset(src, srcset.srcSetArr, srcset.maxSize);
       }
     }
   }, [height, src, srcset]);
 
   return (
-    <Stack
-      height={height}
-      onClick={onClick}
-      alignItems="center"
-      justifyContent="center"
-      sx={[sxStyles.container, sxMixins.animation(), ...convertSxToArr(containerStyles)]}
-    >
-      <ImgSkeleton sx={[sxStyles.skeleton, sxMixins.animation(), !isImgLoading && sxMixins.invisible]} />
-      <Box
-        component="img"
-        src={src}
-        srcSet={srcSetOfImg}
-        loading="lazy"
-        onLoad={handleOnImgLoad}
-        sx={[sxStyles.img, sxMixins.animation(), isImgLoading && sxMixins.invisible, ...convertSxToArr(sx)]}
-        {...props}
-      />
+    <Stack height={height} onClick={onClick} sx={[sxStyles.container, ...convertSxToArr(containerStyles)]}>
+      <Fade in={isImgLoading} unmountOnExit>
+        <ImgSkeleton sx={sxStyles.skeleton} />
+      </Fade>
+      <Fade in={!isImgLoading}>
+        <Box
+          component="img"
+          src={src}
+          srcSet={srcSetOfImg}
+          loading="lazy"
+          onLoad={handleOnImgLoad}
+          sx={[sxStyles.img, ...convertSxToArr(sx)]}
+          {...props}
+        />
+      </Fade>
     </Stack>
   );
 }

@@ -2,9 +2,13 @@ import type { CategoriesCollection } from '@/shared/types/types';
 import type { QueryArgsProductsZod } from '@/shared/zod/ecommerce/product.schemas';
 import type { ProductProjection, CategoryPagedQueryResponse, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
 
+import { createDraftSafeSelector } from '@reduxjs/toolkit';
+
 import { LIMIT_ON_PAGE } from '@/services/ecommerce-api/data/constants';
 import { ecommerceApi } from '@/services/ecommerce-api/rtk-query/ecommerceApi.slice';
 import { convertCategories } from '@/services/ecommerce-api/helpers/products/convertCategories';
+
+import { selectStateAny } from '@/shared/redux/helpers';
 
 const productsPath = '/products';
 
@@ -41,3 +45,6 @@ export const productApi = ecommerceApi
     }),
     overrideExisting: 'throw'
   });
+//  FIXME delete if not used
+
+export const selectGetCategories = createDraftSafeSelector([selectStateAny], (state) => productApi.endpoints.getCategories.select()(state).data);

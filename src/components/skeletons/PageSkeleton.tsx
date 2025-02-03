@@ -27,7 +27,7 @@ const sxStyles: SxStyles = {
 
 // * Skeleton doesn't change
 const arr = new Array(5).fill('skeleton');
-export function PageSkeleton({ ...props }: StackProps): React.ReactNode {
+export function PageSkeleton({ ...props }: StackProps): React.ReactElement {
   const sxSkeleton = [sxStyles.skeleton, sxStyles.increasedSkeleton];
   const sxSkeletonBefore = [sxStyles.skeletonBefore, sxStyles.increasedSkeleton];
 

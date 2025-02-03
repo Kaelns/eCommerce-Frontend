@@ -32,7 +32,7 @@ interface IPromocodeProps extends BoxProps {
   handlePromocode: (isSet: boolean) => void;
 }
 
-export function Promocode({ handlePromocode, ...props }: IPromocodeProps): React.ReactNode {
+export function Promocode({ handlePromocode, ...props }: IPromocodeProps) {
   const authToken = useAppSelector(authSliceSelectors.selectAuthToken);
   const isPromocode = useAppSelector(cartSlice.selectors.selectIsPromocode);
   const [inputValue, setInputValue] = useState('');

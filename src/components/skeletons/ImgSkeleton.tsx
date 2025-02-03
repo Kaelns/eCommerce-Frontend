@@ -13,6 +13,6 @@ const sxSkeleton: SxProps = {
   [`&.${skeletonClasses.root}`]: { transform: 'scale(1)' }
 };
 
-export function ImgSkeleton({ sx = {}, ...props }: SkeletonProps): React.ReactNode {
+export function ImgSkeleton({ sx = {}, ...props }: SkeletonProps) {
   return <Skeleton animation="wave" sx={[sxSkeleton, ...convertSxToArr(sx)]} {...props} />;
 }

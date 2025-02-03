@@ -3,7 +3,7 @@ import { queryArgsProductProps } from '@/services/ecommerce-api/helpers/products
 import { PROPERTY, IConvertSearchReturn } from '@/services/ecommerce-api/helpers/general/convertToFilterParams/types';
 
 import { Sort } from '@/pages/CatalogPage/features/CatalogFilterForm';
-import { FilterColorsState } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+import { FilterColorsState } from '@/pages/CatalogPage/features/CatalogFilterForm/data/types';
 
 import { FilterColorsKeys, FilterColorsValues } from '@/shared/types/types';
 import { MIN_MONEY, MAX_MONEY, NO_CATEGORY, FILTER_COLORS } from '@/shared/data/constants';

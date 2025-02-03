@@ -22,7 +22,7 @@ interface DiscountTypographyProps extends TypographyProps {
   discount: number;
 }
 
-export function DiscountTypography({ discount, sx = {} }: DiscountTypographyProps): React.ReactNode {
+export function DiscountTypography({ discount, sx = {} }: DiscountTypographyProps) {
   return (
     !!discount && (
       <Typography variant="subtitle2" sx={[sxText, ...convertSxToArr(sx)]}>

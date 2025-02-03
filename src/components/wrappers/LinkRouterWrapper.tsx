@@ -14,7 +14,7 @@ const sxLink: SxProps = {
 
 //  TODO create link that allows to copy text inside without redirection
 
-export function LinkRouterWrapper({ to, children, sx = {}, ...props }: PropsWithChildren<LinkProps & RouterLinkProps>): React.ReactNode {
+export function LinkRouterWrapper({ to, children, sx = {}, ...props }: PropsWithChildren<LinkProps & RouterLinkProps>) {
   return (
     <Link to={to} component={RouterLink} sx={[sxLink, ...convertSxToArr(sx)]} {...props}>
       {children}

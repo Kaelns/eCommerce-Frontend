@@ -1,15 +1,14 @@
+import type { AppDispatch} from '@/shared/redux/redux';
 import type { SxStyles, InputReactEvent } from '@/shared/types/types';
 import type { IAction, FilterState, FilterPayload } from '@/pages/CatalogPage/hooks/filterReducer/types';
 
-import { useContext } from 'react';
 import { Stack } from '@mui/system';
-import { Slider, Typography, OutlinedInput } from '@mui/material';
 
 import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { MIN_MONEY, MAX_MONEY } from '@/pages/CatalogPage/hooks/filterReducer/constants';
-import { SLIDER_STEP, SLIDER_MIN_DISTANCE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
+import { SLIDER_MIN_DISTANCE } from '@/pages/CatalogPage/features/CatalogFilterForm/data/constants';
 
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+import { useAppDispatch } from '@/shared/redux/redux';
 
 const sxStyles: SxStyles = {
   input: {
@@ -48,27 +47,27 @@ function changeRangeSlider(dispatchFilterState: React.Dispatch<IAction>) {
   };
 }
 
-function changeRangeInput(isLeft: boolean, filterState: FilterState, dispatchFilterState: React.Dispatch<IAction>) {
+function changeRangeInput(isLeft: boolean, filterState: FilterState, dispatch: AppDispatch) {
   return (event: InputReactEvent): void => {
     const value = +event.target.value;
     if (!Number.isNaN(value) && value < MAX_MONEY && value > MIN_MONEY) {
       const newValue = isLeft ? [value, filterState.price[1]] : [filterState.price[0], value];
       const activeThumb = isLeft ? 0 : 1;
-      changeRangeSlider(dispatchFilterState)(event, newValue, activeThumb);
+      changeRangeSlider(dispatch)(event, newValue, activeThumb);
     }
   };
 }
 
-export function RangePriceSlider(): React.ReactNode {
-  const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
+export function RangePriceSlider() {
+  const dispatch = useAppDispatch();
 
-  const handleChange = changeRangeSlider(dispatchFilterState);
-  const handleLeftInput = changeRangeInput(true, filterState, dispatchFilterState);
-  const handleRightInput = changeRangeInput(true, filterState, dispatchFilterState);
+  const handleChange = changeRangeSlider(dispatch);
+  // const handleLeftInput = changeRangeInput(true, filterState, dispatch);
+  // const handleRightInput = changeRangeInput(true, filterState, dispatch);
 
   return (
     <Stack alignItems="center" gap={2.5}>
-      <Stack direction="row" gap={1}>
+      {/* <Stack direction="row" gap={1}>
         <OutlinedInput value={filterState.price[0]} onChange={handleLeftInput} sx={sxStyles.input} />
         <Typography sx={sxStyles.divider}>-</Typography>
         <OutlinedInput value={filterState.price[1]} onChange={handleRightInput} sx={sxStyles.input} />
@@ -81,7 +80,7 @@ export function RangePriceSlider(): React.ReactNode {
         max={MAX_MONEY}
         step={SLIDER_STEP}
         sx={sxStyles.slider}
-      />
+      /> */}
     </Stack>
   );
 }

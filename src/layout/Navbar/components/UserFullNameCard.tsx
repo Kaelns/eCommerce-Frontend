@@ -14,7 +14,7 @@ const sxAvatar: SxProps = {
   fontSize: '2rem'
 };
 
-export function UserFullNameCard(): React.ReactNode {
+export function UserFullNameCard() {
   // TODO Get user data
 
   return <ElemWithTypography elem={<Avatar sx={sxAvatar}>{userInitials}</Avatar>}>{userName}</ElemWithTypography>;

@@ -25,7 +25,7 @@ export function AddressSection({
   inputsErrors,
   inputsValues,
   prefix
-}: IAddressSectionProps): React.ReactNode {
+}: IAddressSectionProps) {
   const input = INPUTS[`${prefix}${AddressProperty.COUNTRY}`];
 
   const currentCountry = useMemo(

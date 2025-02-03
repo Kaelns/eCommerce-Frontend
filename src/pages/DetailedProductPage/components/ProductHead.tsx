@@ -42,7 +42,7 @@ interface ProductHeaderProps {
   categoriesNames: string[];
 }
 
-export function ProductHead({ productData, categoriesNames }: ProductHeaderProps): React.ReactNode {
+export function ProductHead({ productData, categoriesNames }: ProductHeaderProps) {
   const [lineItemId /* , setLineItemId */] = useState('');
   // const { data: cartData = INIT_BASKET } = useFetch(fetchBasket, token);
 
@@ -60,7 +60,7 @@ export function ProductHead({ productData, categoriesNames }: ProductHeaderProps
         ))}
       </Stack>
 
-      <AddProductToCartBtn isAvailable={!productData.maxQuantity} lineItemId={lineItemId} productId={productData.id} sx={sxStyles.basketBtn} />
+      <AddProductToCartBtn isAvailable={!productData.maxQuantity} cartProductId={lineItemId} productId={productData.id} sx={sxStyles.basketBtn} />
     </Stack>
   );
 }

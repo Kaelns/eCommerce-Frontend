@@ -1,16 +1,19 @@
-// import { useSideDrawer } from '@/layout/SideDrawer/useSideDrawer';
-// import { CatalogHeader } from '@/pages/CatalogPage/components/CatalogHeader';
-// import { Breadcrumb } from '@/pages/CatalogPage/components/Breadcrumb/Breadcrumb';
 import type { SxStyles } from '@/shared/types/types';
 
-// import { Grid, Stack, useMediaQuery, useTheme } from '@mui/system';
 import { Box } from '@mui/material';
+import { Stack, useTheme, useMediaQuery } from '@mui/system';
 
-// import { BtnContained } from '@/components/buttons/BtnContained';
-// import { FilterForm } from '@/features/components/FilterForm/FilterForm';
-// import { SideDrawer } from '@/layout/SideDrawer/SideDrawer';
-// import { Products } from '@/pages/CatalogPage/components/Products';
+import { CatalogSearch } from '@/pages/CatalogPage/layout/CatalogSearch';
+import { CatalogProducts } from '@/pages/CatalogPage/layout/CatalogProducts';
+import { CatalogSideDrawer } from '@/pages/CatalogPage/layout/CatalogSideDrawer';
+import { setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/catalogPage.slice';
+import { CategoriesBreadcrumb } from '@/pages/CatalogPage/features/CategoriesBreadcrumb';
+import { OpenCatalogSideDrawerBtn } from '@/pages/CatalogPage/components/OpenCatalogSideDrawerBtn';
+
+import { ContainedBtn } from '@/components/buttons/ContainedBtn';
 import { TitleTypography } from '@/components/typography/TitleTypography';
+
+import { useAppDispatch } from '@/shared/redux/redux';
 
 const sxStyles: SxStyles = {
   container: {
@@ -25,36 +28,43 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function CatalogPage(): React.ReactNode {
-  // const theme = useTheme();
-  // const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
-  // const sideDriverHook = useSideDrawer();
+export function CatalogPage() {
+  const dispatch = useAppDispatch();
+
+  const theme = useTheme();
+  const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
+
+  const handleCloseSideDrawer = () => {
+    dispatch(setIsOpenFilterDrawerAction(false));
+  };
 
   return (
     <Box sx={sxStyles.container}>
-      <TitleTypography>Catalog</TitleTypography>
-      {/* <Breadcrumb />
+      <CategoriesBreadcrumb />
       <Stack gap={2} mt={1}>
-        <CatalogHeader openDrawer={sideDriverHook.openDrawer} />
+        <Stack direction="row" gap={1}>
+          <CatalogSearch />
+          <OpenCatalogSideDrawerBtn />
+        </Stack>
 
-        <Grid container spacing={2} columns={10}>
+        {/* <CatalogFilterForm sx={sxStyles.filterForm} /> */}
+
+        <Stack direction="row" gap={2}>
           {isMatchesLaptopBig && (
-            <Grid size={{ tablet: 2 }}>
-              <FilterForm sx={sxStyles.filterForm} />
-            </Grid>
+            <TitleTypography flex={2} sx={sxStyles.filterForm}>
+              Filter
+            </TitleTypography>
           )}
-          <Grid container size={{ tablet: 'grow' }} alignContent="flex-start">
-            <Products />
-          </Grid>
-        </Grid>
+          <CatalogProducts flex={8} />
+        </Stack>
 
-        <SideDrawer data={sideDriverHook}>
+        <CatalogSideDrawer>
           <Stack gap={2} sx={sxStyles.drawerContainer}>
-            <FilterForm sx={sxStyles.filterForm} />
-            <BtnContained onClick={sideDriverHook.closeDrawer}>Close</BtnContained>
+            {/* <CatalogFilterForm sx={sxStyles.filterForm} /> */}
+            <ContainedBtn onClick={handleCloseSideDrawer}>Close</ContainedBtn>
           </Stack>
-        </SideDrawer>
-      </Stack> */}
+        </CatalogSideDrawer>
+      </Stack>
     </Box>
   );
 }

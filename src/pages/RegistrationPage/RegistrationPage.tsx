@@ -8,7 +8,7 @@ import { TitleTypography } from '@/components/typography/TitleTypography';
 import { Paths } from '@/shared/data/enums';
 // import { RegistrationForm } from '@/features/components/AuthForms/RegistrationForm/RegistrationForm';
 
-export function RegistrationPage(): React.ReactNode {
+export function RegistrationPage() {
   const navigateToLogin = () => router.navigate(Paths.LOGIN);
 
   return (

@@ -51,11 +51,11 @@ const sxStyles: SxStyles = {
 
 interface AddToCartProps extends ButtonProps {
   productId: string;
-  lineItemId: string;
   isIconBtn?: boolean;
   isAvailable: boolean;
   iconSx?: SxProps<Theme>;
   progressSx?: SxProps<Theme>;
+  cartProductId: string | undefined;
 }
 
 //  TODO change props partially to objects
@@ -63,13 +63,13 @@ interface AddToCartProps extends ButtonProps {
 export function AddProductToCartBtn({
   isIconBtn = false,
   productId,
-  lineItemId,
+  cartProductId,
   isAvailable,
   sx = {},
   iconSx = {},
   progressSx = {}
-}: AddToCartProps): React.ReactNode {
-  const { isInCart, isDisabled, addToBasket } = useAddToBasketBtn(productId, lineItemId);
+}: AddToCartProps) {
+  const { isInCart, isDisabled, addToBasket } = useAddToBasketBtn(productId, cartProductId);
 
   // TODO check is useMemo needed
   const sxBtn: SxPropsArr = [sxStyles.btn, isInCart && sxStyles.btnActive, ...convertSxToArr(sx)];

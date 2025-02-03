@@ -3,7 +3,7 @@ import type { PropsWithChildren } from '@/shared/types/types';
 
 import { Typography } from '@mui/material';
 
-export function BoldTypography({ children, ...props }: PropsWithChildren<TypographyProps>): React.ReactNode {
+export function BoldTypography({ children, ...props }: PropsWithChildren<TypographyProps>) {
   return (
     <Typography fontWeight="bold" {...props}>
       {children}

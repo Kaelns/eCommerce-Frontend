@@ -1,4 +1,4 @@
-const sortByLineLength = ['error', { type: 'line-length', order: 'asc' }];
+const sortByLineLength = ['error', { type: 'line-length', order: 'asc', partitionByComment: true, partitionByNewLine: true }];
 
 module.exports = {
   root: true,
@@ -40,14 +40,11 @@ module.exports = {
   rules: {
     'vitest/max-nested-describe': ['error', { max: 3 }],
 
-    'react/jsx-uses-vars': 'error',
-    'react/jsx-uses-react': 'error',
     'react/react-in-jsx-scope': 'off',
-    'react-hooks/exhaustive-deps': 'error',
-    'react/require-default-props': 'off',
-    'react/jsx-props-no-spreading': 'off',
     'react/self-closing-comp': ['error', { component: true, html: true }],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+
+    'react-hooks/exhaustive-deps': 'error',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
     'jsx-a11y/click-events-have-key-events': 'off',
@@ -66,14 +63,15 @@ module.exports = {
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
 
     'import/no-cycle': [2, { maxDepth: 1 }],
+    '@typescript-eslint/consistent-type-imports': 'error',
 
     'perfectionist/sort-exports': sortByLineLength,
+    'perfectionist/sort-modules': sortByLineLength,
+    'perfectionist/sort-interfaces': sortByLineLength,
+    'perfectionist/sort-object-types': sortByLineLength,
     'perfectionist/sort-named-exports': sortByLineLength,
     'perfectionist/sort-named-imports': sortByLineLength,
-    'perfectionist/sort-object-types': sortByLineLength,
-    'perfectionist/sort-interfaces': sortByLineLength,
     'perfectionist/sort-objects': 'off',
-    'perfectionist/sort-modules': 'off',
     'perfectionist/sort-jsx-props': 'off',
     'perfectionist/sort-imports': [
       'error',
@@ -106,6 +104,16 @@ module.exports = {
             assets: '^@/shared/assets/.+'
           }
         }
+      }
+    ],
+    'perfectionist/sort-enums': [
+      'error',
+      {
+        type: 'alphabetical',
+        order: 'asc',
+        partitionByComment: true,
+        partitionByNewLine: true,
+        forceNumericSort: true
       }
     ]
   },

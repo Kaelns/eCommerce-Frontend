@@ -18,7 +18,7 @@ export function ElemWithTypography({
   isAfter = false,
   sxContainer = {},
   ...props
-}: PropsWithChildren<ElemWithTypographyProps>): React.ReactNode {
+}: PropsWithChildren<ElemWithTypographyProps>) {
   return (
     <Stack direction="row" alignItems="center" gap={{ zero: 0.75, tablet: 1 }} sx={sxContainer}>
       {!isAfter && elem}

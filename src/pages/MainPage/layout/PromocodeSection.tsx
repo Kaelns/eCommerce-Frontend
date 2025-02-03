@@ -35,7 +35,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function PromocodeSection(): React.ReactNode {
+export function PromocodeSection() {
   const { showAlert } = useAlert();
 
   const handleOnCopy = () => {

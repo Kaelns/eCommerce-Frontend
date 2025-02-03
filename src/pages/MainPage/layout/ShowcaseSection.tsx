@@ -27,6 +27,8 @@ const sxStyles: SxStyles = {
     p: 1.5
   },
   productCardContainer: (theme) => ({
+    display: 'flex',
+    justifyContent: 'center',
     [theme.breakpoints.down('laptop')]: {
       '&:nth-last-of-type(-n + 1)': {
         display: 'none'
@@ -40,13 +42,7 @@ const sxStyles: SxStyles = {
   })
 };
 
-export const ShowcaseSection = memo(function ShowcaseSection({
-  categoryId,
-  categoryName
-}: {
-  categoryId: string;
-  categoryName: string;
-}): React.ReactNode {
+export const ShowcaseSection = memo(function ShowcaseSection({ categoryId, categoryName }: { categoryId: string; categoryName: string }) {
   const navigate = useNavigate();
 
   const {
@@ -54,7 +50,7 @@ export const ShowcaseSection = memo(function ShowcaseSection({
     error,
     isError,
     isLoading
-  } = useGetProductsQuery({ 'filter.query': queryArgsProductProps.filterQuery.categoryId(categoryId), limit: 3 });
+  } = useGetProductsQuery({ 'filter.query': queryArgsProductProps.filterQuery.categoryId(categoryId), limit: 3 }, { skip: !categoryId });
 
   // TODO do a category redirect and set category in filter reducer
   const setCategoryAndRedirect = (): void => {

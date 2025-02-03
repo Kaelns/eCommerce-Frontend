@@ -3,7 +3,7 @@ import type { PropsWithChildren } from '@/shared/types/types';
 
 import { Container } from '@mui/material';
 
-export function SectionContainer({ children, ...props }: PropsWithChildren<ContainerProps>): React.ReactNode {
+export function SectionContainer({ children, ...props }: PropsWithChildren<ContainerProps>) {
   return (
     <Container maxWidth="laptopBig" {...props}>
       {children}

@@ -1,19 +1,19 @@
 import type { CategoryTreeNode } from '@/shared/types/types';
 
-export const convertToBreadcrumb = (categoryKey: string, categories: CategoryTreeNode[]): string[] => {
+export const convertToBreadcrumb = (categoryId: string, categoriesTree: CategoryTreeNode[]): string[] => {
   let breadcrumbsFinal = '';
   let breadcrumbs = '';
   let i = 0;
 
   const recursiveBreadcrumbBuilder = (categoriesRecursive: CategoryTreeNode[]): void => {
-    for (const { key, children } of categoriesRecursive) {
-      if (key === categoryKey) {
-        breadcrumbs += ` ${categoryKey}`;
+    for (const { id, children } of categoriesRecursive) {
+      if (id === categoryId) {
+        breadcrumbs += ` ${categoryId}`;
         breadcrumbsFinal = breadcrumbs;
       }
 
       if (!breadcrumbsFinal && children.length) {
-        breadcrumbs += ` ${key}`;
+        breadcrumbs += ` ${id}`;
         recursiveBreadcrumbBuilder(children);
       }
 
@@ -30,7 +30,7 @@ export const convertToBreadcrumb = (categoryKey: string, categories: CategoryTre
     }
   };
 
-  recursiveBreadcrumbBuilder(categories);
+  recursiveBreadcrumbBuilder(categoriesTree);
 
   return breadcrumbsFinal.trim().split(' ');
 };

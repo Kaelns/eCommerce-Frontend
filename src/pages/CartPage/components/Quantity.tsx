@@ -33,7 +33,7 @@ interface IQuantityProps {
   sxContainer?: SxProps<Theme>;
 }
 
-export function Quantity({ id, quantity, sxInput = {}, sxContainer = {} }: IQuantityProps): React.ReactNode {
+export function Quantity({ id, quantity, sxInput = {}, sxContainer = {} }: IQuantityProps) {
   const dispatch = useAppDispatch();
 
   const handleBtnLeftDecrement = (): void => {

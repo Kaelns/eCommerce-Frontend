@@ -34,7 +34,7 @@ interface INavbarProps {
   customOrientation?: 'horizontal' | 'vertical';
 }
 
-export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarProps): React.ReactNode {
+export function Navbar({ navbarType, customOrientation, onLinkClick }: INavbarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { navPaths, orientation } = useNavbar(navbarType);

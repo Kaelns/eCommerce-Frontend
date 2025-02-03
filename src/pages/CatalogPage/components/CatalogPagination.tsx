@@ -1,17 +1,18 @@
 import type { PaginationProps } from '@mui/material';
 import type { SxPropsNotArr } from '@/shared/types/types';
 
+import { useMemo } from 'react';
 import { Pagination } from '@mui/material';
-import { useMemo, useContext } from 'react';
 import { useTheme, useMediaQuery } from '@mui/system';
 
-import { LIMIT_ON_PAGE } from '@/services/constants';
+import { LIMIT_ON_PAGE } from '@/services/ecommerce-api';
 
-import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import { selectPage, setPageAction } from '@/pages/CatalogPage/features/CatalogFilterForm';
 
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import { calculateMaxPages } from '@/utils/numbers/calculateMaxPages';
-import { FilterReducerContext } from '@/context/FilterReducerContext/FilterReducerContext';
+
+import { useAppDispatch, useAppSelector } from '@/shared/redux/redux';
 
 const sxPagination: SxPropsNotArr = {
   display: 'flex',
@@ -20,31 +21,33 @@ const sxPagination: SxPropsNotArr = {
   mt: 1
 };
 
-interface IProductPagination extends PaginationProps {
+interface ProductPagination extends PaginationProps {
   amount: number;
 }
 
-export function CatalogPagination({ amount, sx = {}, showLastButton = true, showFirstButton = true, ...props }: IProductPagination): React.ReactNode {
+export function CatalogPagination({ amount, sx = {}, ...props }: ProductPagination) {
   const theme = useTheme();
-  const isMatchTablet = useMediaQuery(theme.breakpoints.down('tablet'));
-  const { filterState, dispatchFilterState } = useContext(FilterReducerContext);
+  const dispatch = useAppDispatch();
 
-  const adaptiveSize = isMatchTablet ? 'medium' : 'large';
-  const pages = useMemo(() => calculateMaxPages(amount, LIMIT_ON_PAGE), [amount]);
-  const isDisabled = !(pages - 1);
+  const isMatchTablet = useMediaQuery(theme.breakpoints.down('tablet'));
+
+  const page = useAppSelector(selectPage);
+  const maxPages = useMemo(() => calculateMaxPages(amount, LIMIT_ON_PAGE), [amount]);
+
+  const isDisabled = !(maxPages - 1);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number): void => {
-    dispatchFilterState({ type: FilterStateEnum.PAGE, payload: value });
+    dispatch(setPageAction(value));
     window.scrollTo({ top: 0 });
   };
 
   return (
     <Pagination
-      count={pages}
-      page={filterState.page}
+      page={page}
+      count={maxPages}
       disabled={isDisabled}
       onChange={handlePageChange}
-      size={adaptiveSize}
+      size={isMatchTablet ? 'medium' : 'large'}
       color="primary"
       sx={[sxPagination, ...convertSxToArr(sx)]}
       {...props}

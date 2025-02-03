@@ -18,7 +18,7 @@ import { ContainedBtn } from '@/components/buttons/ContainedBtn';
 import { Paths, AlertAPIText } from '@/shared/data/constants';
 import { loginAuthAction } from '@/shared/redux/slices/auth.slice';
 
-export function LoginForm(): React.ReactNode {
+export function LoginForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { showAlert } = useAlert();

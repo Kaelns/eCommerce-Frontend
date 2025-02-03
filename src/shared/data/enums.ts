@@ -4,26 +4,35 @@ export enum Cookies {
 }
 
 export enum HttpStatus {
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
   FORBIDDEN = 403,
-  SERVER_ERROR = 500,
-  UNAUTHORIZED = 401
+  NOT_FOUND = 404,
+  PROXY_AUTHENTICATION_REQUIRED = 407,
+  CONFLICT = 409,
+
+  INTERNAL_SERVER_ERROR = 500,
+  BAD_GATEWAY = 502
 }
 
 // * Router
 
 export enum Paths {
+  MAIN = '/',
+
   ABOUT_US = '/about-us',
   BASKET = '/basket',
   CATALOG = '/catalog',
   CATALOG_CATEGORY = ':category',
   DETAILED_PRODUCT = '/detailed-product',
   DETAILED_PRODUCT_ID = ':id',
-  ERROR = '/error',
+
   LOGIN = '/login',
-  MAIN = '/',
-  NONEXISTENT = '*',
   REGISTRATION = '/registration',
-  USER = '/user'
+  USER = '/user',
+
+  ERROR = '/error',
+  NONEXISTENT = '*'
 }
 
 //  * Components
@@ -53,18 +62,17 @@ export enum AlertText {
 
 export enum AlertAPIText {
   EMAIL_DUPLICATE_ERROR = 'There is already an existing customer with the provided email.',
-  LOGIN_ERROR = 'Login Error',
-
-  LOGIN_SUCCESS = 'Successful login',
-
-  REGISTRATION_CONNECTION_ERROR = 'Something went wrong during the registration process and that they should try again later.',
   SERVER_ERROR = 'Error: Server error',
-  USER_CREATE_SUCCESS = 'The user has been successfully created.',
+
+  LOGIN_ERROR = 'Login Error',
+  LOGIN_SUCCESS = 'Successful login',
+  REGISTRATION_CONNECTION_ERROR = 'Something went wrong during the registration process and that they should try again later.',
+
   USER_FORBIDDEN_ERROR = 'Error: The user is forbidden to access the requested resource.',
   USER_UNAUTHORIZED_ERROR = 'Error: The user is not authorized.',
-
   USER_UPDATE_ERROR = 'Error: Something went wrong during the updating process. Try again later.',
 
+  USER_CREATE_SUCCESS = 'The user has been successfully created.',
   USER_UPDATE_SUCCESS = 'The user has been successfully updated.'
 }
 

@@ -1,6 +1,6 @@
 import type { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import type { IAction, FilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
-import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/types';
+import type { FilterColorsKeys } from '@/pages/CatalogPage/features/CatalogFilterForm/data/types';
 
 import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
 import { NO_CATEGORY, INITIAL_FORM_VALUE } from '@/pages/CatalogPage/hooks/filterReducer/constants';

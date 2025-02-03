@@ -9,7 +9,7 @@ import { ButtonVariant } from '@/shared/data/enums';
 
 const sxBtn: SxPropsObj = { textTransform: 'none' };
 
-export function ContainedBtn({ children, variant = ButtonVariant.CONTAINED, sx = {}, ...props }: PropsWithChildren<ButtonProps>): React.ReactNode {
+export function ContainedBtn({ children, variant = ButtonVariant.CONTAINED, sx = {}, ...props }: PropsWithChildren<ButtonProps>) {
   return (
     <Button variant={variant} sx={[sxBtn, ...convertSxToArr(sx)]} {...props}>
       {children}

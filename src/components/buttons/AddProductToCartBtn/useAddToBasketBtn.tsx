@@ -10,7 +10,7 @@ interface IUseAddToBasket {
   addToBasket: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 }
 
-export function useAddToBasketBtn(/* productId: string, */ initLineItemId: string): IUseAddToBasket {
+export function useAddToBasketBtn(productId: string, initLineItemId: string | undefined): IUseAddToBasket {
   const [isInCart, setIsInCart] = useState(false);
   // const [lineItemId, setLineItemId] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);

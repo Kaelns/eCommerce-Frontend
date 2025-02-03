@@ -2,16 +2,14 @@ import type { AutocompleteOptions } from '@/shared/types/types';
 
 import dayjs from 'dayjs';
 
-import { ResponceOk } from '@/services/ecommerce-api/rtk-query/types/types';
-
 import getMaxDate from '@/utils/dates/getMaxDate';
 import getMinDate from '@/utils/dates/getMinDate';
 
 // * General
 export const NO_CATEGORY = 'no-category';
+export const NO_CATEGORY_NAME = 'No category';
 export const MIN_MONEY = 0;
 export const MAX_MONEY = 5000;
-export const responceNotOk: ResponceOk = { ok: false };
 
 // * Day Js
 export const DATE_DASH_FORMAT = 'YYYY-MM-DD';

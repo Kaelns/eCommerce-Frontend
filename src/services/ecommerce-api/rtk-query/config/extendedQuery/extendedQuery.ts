@@ -20,7 +20,7 @@ export const extendedQuery: EcommerceExtendedQuery = async (args, queryApi, extr
     case HttpStatus.FORBIDDEN:
       queryApi.dispatch({ type: 'alert/showAlertAction', payload: { message: AlertAPIText.USER_FORBIDDEN_ERROR, severity: AlertSeverity.ERROR } });
       break;
-    case HttpStatus.SERVER_ERROR:
+    case HttpStatus.INTERNAL_SERVER_ERROR:
       queryApi.dispatch({ type: 'alert/showAlertAction', payload: { message: AlertAPIText.SERVER_ERROR, severity: AlertSeverity.ERROR } });
       break;
     case HttpStatus.UNAUTHORIZED: {
@@ -36,13 +36,13 @@ export const extendedQuery: EcommerceExtendedQuery = async (args, queryApi, extr
       }
       break;
     }
-    default: {
-      setIsLoggedAfterQuery(queryApi);
+    default:
+  }
 
-      if (import.meta.env.PROD) {
-        console.log('Responce ', '\n', result.data);
-      }
-    }
+  setIsLoggedAfterQuery(queryApi);
+
+  if (import.meta.env.PROD) {
+    console.log('Responce ', '\n', result.data);
   }
 
   return result.error ? { ...result, error: serializeError(result?.error) } : result;

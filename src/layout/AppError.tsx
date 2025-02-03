@@ -35,7 +35,7 @@ interface AppErrorProps {
   goToText?: string;
 }
 
-export function AppError({ src, alt, message, goTo = Paths.MAIN, goToText = 'Go main' }: AppErrorProps): React.ReactNode {
+export function AppError({ src, alt, message, goTo = Paths.MAIN, goToText = 'Go main' }: AppErrorProps) {
   const navigate = useNavigate();
   const navigateBack = () => navigate(-1);
   const navigateTo = () => navigate(goTo);

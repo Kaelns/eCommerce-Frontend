@@ -8,7 +8,7 @@ import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
 import { Paths } from '@/shared/data/enums';
 import { useAppSelector } from '@/shared/redux/redux';
 
-export function CartLinkIconBtn(): React.ReactNode {
+export function CartLinkIconBtn() {
   const productQuantity = useAppSelector(selectProductQuantityCart);
 
   return (

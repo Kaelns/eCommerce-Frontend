@@ -21,7 +21,7 @@ interface IDateInputProps extends DatePickerProps<dayjs.Dayjs> {
   setInputs: React.Dispatch<SetStateAction<IInputsValues>>;
 }
 
-export function DateInput({ label, name, validationChecks, setInputs, ...props }: IDateInputProps): React.ReactNode {
+export function DateInput({ label, name, validationChecks, setInputs, ...props }: IDateInputProps) {
   const [valueMatch, setValueMatch] = useState('');
 
   const handleDateChange = (date: dayjs.Dayjs | null): void => {

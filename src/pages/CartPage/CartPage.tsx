@@ -48,7 +48,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function CartPage(): React.ReactNode {
+export function CartPage() {
   // const dispatch = useAppDispatch();
   // const isLogged = useAppSelector(authSliceSelectors.selectIsLoggedAuthToken);
 

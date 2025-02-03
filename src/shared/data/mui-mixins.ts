@@ -12,7 +12,7 @@ interface IMixins {
 
 export const sxMixins: IMixins = {
   animation: (duration = 0.3) => ({
-    transition: `all ${duration}s ease-out, visibility ${duration}s ease-out`
+    transition: `all ${duration}s ease-out, visibility ${duration}s ease-out !important`
   }),
   mediaHover: (styles, selector = '') => ({
     '@media (hover: hover)': {

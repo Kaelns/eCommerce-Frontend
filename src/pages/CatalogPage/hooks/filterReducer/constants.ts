@@ -1,7 +1,7 @@
 import type { FilterState, FilterFormState } from '@/pages/CatalogPage/hooks/filterReducer/types';
 
 import { Sort } from '@/pages/CatalogPage/hooks/filterReducer/enums';
-import { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/constants';
+import { FILTER_COLORS_STATE } from '@/pages/CatalogPage/features/CatalogFilterForm/data/constants';
 
 //  TODO fetch max price
 export const MIN_MONEY = 0;

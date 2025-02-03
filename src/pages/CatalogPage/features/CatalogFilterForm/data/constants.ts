@@ -23,3 +23,5 @@ export const FILTER_COLORS_STATE = Object.fromEntries(Object.entries(FILTER_COLO
   keyof typeof FILTER_COLORS,
   boolean
 >;
+
+export { FILTER_COLORS };

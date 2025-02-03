@@ -16,7 +16,7 @@ interface ILoginBlock {
   onChangeFunction: HandleOnChangeInput;
 }
 
-export function LoginBlock({ onChangeFunction, inputsErrors }: ILoginBlock): React.ReactNode {
+export function LoginBlock({ onChangeFunction, inputsErrors }: ILoginBlock) {
   const [showPassword, setShowPassword] = useState(false);
 
   const isEmailError = !!inputsErrors[INPUTS.email.name];
