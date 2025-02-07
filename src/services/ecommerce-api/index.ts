@@ -2,6 +2,9 @@ import { authApi } from '@/services/ecommerce-api/rtk-query/model/authApi';
 import { usersApi } from '@/services/ecommerce-api/rtk-query/model/usersApi';
 import { productApi } from '@/services/ecommerce-api/rtk-query/model/productApi';
 
+export { convertSortQueryArgs } from '@/services/ecommerce-api/helpers/general/convertFilterToQueryArgs/helpers';
+export { convertFilterToQueryArgs } from '@/services/ecommerce-api/helpers/general/convertFilterToQueryArgs/convertFilterToQueryArgs';
+
 export { MOCK_CART } from '@/services/ecommerce-api/data/mocks';
 export { queryArgsProductProps } from '@/services/ecommerce-api/helpers/products/queryArgsProductProps';
 export { ecommerceApi as ecommerceApiSlice } from '@/services/ecommerce-api/rtk-query/ecommerceApi.slice';

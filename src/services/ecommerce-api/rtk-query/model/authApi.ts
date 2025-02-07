@@ -51,13 +51,6 @@ export const authApi = ecommerceApi.injectEndpoints({
     }),
     checkLoginStatus: build.mutation<ResponceOk, void>({
       query: () => authPath
-    }),
-    //  FIXME delete
-    someStuff: build.mutation<{ data: string }, void>({
-      queryFn: (_arg, queryApi, _extraOptions, _baseQuery) => {
-        console.log(queryApi);
-        return { data: { data: 'some data' } };
-      }
     })
   }),
   overrideExisting: 'throw'

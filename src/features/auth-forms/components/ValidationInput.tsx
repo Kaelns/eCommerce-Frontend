@@ -8,13 +8,7 @@ interface IValidationInputProps extends OutlinedInputProps {
   label: string;
 }
 
-export function ValidationInput({
-  label,
-  children,
-  type = 'text',
-  required = true,
-  ...props
-}: PropsWithChildren<IValidationInputProps>) {
+export function ValidationInput({ label, children, type = 'text', required = true, ...props }: PropsWithChildren<IValidationInputProps>) {
   return (
     <>
       <InputLabel required>{label}</InputLabel>

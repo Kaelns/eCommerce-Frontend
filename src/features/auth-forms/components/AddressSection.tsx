@@ -19,13 +19,7 @@ interface IAddressSectionProps {
   onChangeAutocomplete: HandleChangeAutocomplete;
 }
 
-export function AddressSection({
-  onChangeFunction,
-  onChangeAutocomplete,
-  inputsErrors,
-  inputsValues,
-  prefix
-}: IAddressSectionProps) {
+export function AddressSection({ onChangeFunction, onChangeAutocomplete, inputsErrors, inputsValues, prefix }: IAddressSectionProps) {
   const input = INPUTS[`${prefix}${AddressProperty.COUNTRY}`];
 
   const currentCountry = useMemo(

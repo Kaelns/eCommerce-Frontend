@@ -78,6 +78,7 @@ module.exports = {
       {
         type: 'line-length',
         order: 'asc',
+        ignoreCase: false,
         internalPattern: ['^@/.+'],
         newlinesBetween: 'always',
         groups: [

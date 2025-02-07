@@ -3,12 +3,12 @@ import type { SxStyles } from '@/shared/types/types';
 import { Box } from '@mui/material';
 import { Stack, useTheme, useMediaQuery } from '@mui/system';
 
-import { CatalogSearch } from '@/pages/CatalogPage/layout/CatalogSearch';
-import { CatalogProducts } from '@/pages/CatalogPage/layout/CatalogProducts';
 import { CatalogSideDrawer } from '@/pages/CatalogPage/layout/CatalogSideDrawer';
 import { setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/catalogPage.slice';
-import { CategoriesBreadcrumb } from '@/pages/CatalogPage/features/CategoriesBreadcrumb';
+import { CategoriesBreadcrumb } from '@/pages/CatalogPage/features/catalog-filters';
+import { CatalogProducts } from '@/pages/CatalogPage/layout/CatalogProducts/CatalogProducts';
 import { OpenCatalogSideDrawerBtn } from '@/pages/CatalogPage/components/OpenCatalogSideDrawerBtn';
+import { CatalogSearch } from '@/pages/CatalogPage/features/catalog-filters/features/CatalogSearch';
 
 import { ContainedBtn } from '@/components/buttons/ContainedBtn';
 import { TitleTypography } from '@/components/typography/TitleTypography';
@@ -47,12 +47,11 @@ export function CatalogPage() {
           <OpenCatalogSideDrawerBtn />
         </Stack>
 
-        {/* <CatalogFilterForm sx={sxStyles.filterForm} /> */}
-
         <Stack direction="row" gap={2}>
           {isMatchesLaptopBig && (
             <TitleTypography flex={2} sx={sxStyles.filterForm}>
               Filter
+              {/* <CatalogFilterForm sx={sxStyles.filterForm} /> */}
             </TitleTypography>
           )}
           <CatalogProducts flex={8} />

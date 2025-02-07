@@ -9,7 +9,7 @@ import { SRCSET_API, FRACTION_DIGITS } from '@/services/constants';
 
 import { Quantity } from '@/pages/CartPage/components/Quantity';
 import { cartProductsSlice } from '@/pages/CartPage/slices/cartProducts.slice';
-import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+import { CardPriceTypography } from '@/components/typography/CardPriceTypography';
 
 import { useAppDispatch } from '@/app/store/store';
 

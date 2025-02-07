@@ -1,5 +1,5 @@
 import type { store, extraArgument } from '@/app';
-import type { ThunkAction, UnknownAction } from '@reduxjs/toolkit';
+import type { ThunkAction, ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
 
 import { combineSlices } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,9 +17,11 @@ export const middlewares = [ecommerceApi.middleware];
 export type AppStoreAny = any;
 
 export type AppStore = typeof store;
-export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
+export type AppState = ReturnType<AppStore['getState']>;
+
 export type AppExtraArgument = typeof extraArgument;
+export type AppThunkDispatch = ThunkDispatch<AppState, AppExtraArgument, UnknownAction>;
 export type AppThunk<T = void> = ThunkAction<T, AppState, AppExtraArgument, UnknownAction>;
 
 export const useAppStore = useSelector.withTypes<AppStoreAny>();

@@ -1,22 +1,25 @@
 import type { StackProps } from '@mui/system';
 import type { SxStyles, PropsWithChildren } from '@/shared/types/types';
 
-import { Fade } from '@mui/material';
-import { Box, Stack } from '@mui/system';
+import { Box } from '@mui/system';
 
 import { AppError } from '@/layout/AppError';
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 
+import { FadeBox } from '@/components/boxes/FadeBox';
 import { PageSkeleton } from '@/components/skeletons/PageSkeleton';
 
 import imageError from '@/shared/assets/error2.png';
 
 const sxStyles: SxStyles = {
   wrapper: {
-    width: 1
-    // display: 'grid',
-    // gridTemplateAreas: 'stack',
-    // '& > *': { gridArea: 'stack' }
+    width: 1,
+    display: 'grid',
+    gridTemplateColumns: '1fr'
+  },
+  overlayingChildren: {
+    gridRowStart: 1,
+    gridColumnStart: 1
   }
 };
 
@@ -40,37 +43,13 @@ export function SuspenseWithError({
 }: PropsWithChildren<LoadingFetchProps>) {
   return (
     <Box sx={[sxStyles.wrapper, ...convertSxToArr(sx)]} {...props}>
-      <Fade in={isError} unmountOnExit>
-        <Box>{Fallback}</Box>
-      </Fade>
-      <Fade in={!isError && isLoading} unmountOnExit>
+      <FadeBox isShow={isError}>{Fallback}</FadeBox>
+      <FadeBox isShow={!isError && isLoading} sx={sxStyles.overlayingChildren}>
         {Skeleton}
-      </Fade>
-      <Fade in={!isError && !isLoading}>
-        <Stack width={1}>{children}</Stack>
-      </Fade>
+      </FadeBox>
+      <FadeBox isShow={!isError && !isLoading} sx={sxStyles.overlayingChildren} notUnmountOnExit={!isError}>
+        {children}
+      </FadeBox>
     </Box>
   );
 }
-
-// const [isLoadingAfterTransition, setIsLoadingAfterTransition] = useState(isLoading);
-
-// const onTransitionEndHandler = () => {
-//   setIsLoadingAfterTransition(isLoading);
-// };
-
-// return isError ? (
-//   Fallback
-// ) : isLoadingAfterTransition ? (
-//   <Stack sx={[sxStyles.skeletonWrapper, sxMixins.invisible, isLoading && sxMixins.visible]} onTransitionEnd={onTransitionEndHandler}>
-//     {Skeleton}
-//   </Stack>
-// ) : (
-//   <Stack
-//     sx={[sxStyles.childrenWrapper, sxMixins.visible, isLoading && sxMixins.invisible, ...convertSxToArr(sx)]}
-//     onTransitionEnd={onTransitionEndHandler}
-//     {...props}
-//   >
-//     {children}
-//   </Stack>
-// );

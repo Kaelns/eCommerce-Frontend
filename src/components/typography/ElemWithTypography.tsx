@@ -12,13 +12,7 @@ interface ElemWithTypographyProps extends TypographyProps {
   sxContainer?: SxProps<Theme>;
 }
 
-export function ElemWithTypography({
-  elem,
-  children,
-  isAfter = false,
-  sxContainer = {},
-  ...props
-}: PropsWithChildren<ElemWithTypographyProps>) {
+export function ElemWithTypography({ elem, children, isAfter = false, sxContainer = {}, ...props }: PropsWithChildren<ElemWithTypographyProps>) {
   return (
     <Stack direction="row" alignItems="center" gap={{ zero: 0.75, tablet: 1 }} sx={sxContainer}>
       {!isAfter && elem}

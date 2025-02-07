@@ -1,4 +1,4 @@
-import { SerializedError } from '@reduxjs/toolkit';
+import type { SerializedError } from '@reduxjs/toolkit';
 
 import { RTKQueryError } from '@/services/ecommerce-api/rtk-query/types/RTKQueryError';
 
@@ -8,7 +8,7 @@ export function getErrorMessage(error: RTKQueryError | SerializedError | undefin
   }
 
   if (!error) {
-    return 'Something went wrong';
+    return '';
   } else if (!error?.message) {
     return 'Unknown error';
   } else if (error instanceof RTKQueryError) {

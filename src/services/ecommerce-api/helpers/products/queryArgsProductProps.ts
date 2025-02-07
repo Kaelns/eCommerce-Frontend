@@ -1,4 +1,4 @@
-import { FilterColorsValues } from '@/shared/types/types';
+import type { FilterColorsValues, SearchTextQueryArgKey } from '@/shared/types/types';
 
 export const queryArgsProductProps = {
   filterQuery: {
@@ -11,5 +11,8 @@ export const queryArgsProductProps = {
     nameDesc: (language: string) => `name.${language} desc`,
     priceAsc: 'price asc',
     priceDesc: 'price desc'
+  },
+  search: {
+    textProp: (language: string): SearchTextQueryArgKey => `text.${language}`
   }
 } as const;

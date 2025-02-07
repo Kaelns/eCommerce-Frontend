@@ -9,7 +9,7 @@ import { Box, Typography } from '@mui/material';
 import { SRCSET_API } from '@/services/ecommerce-api';
 import { convertToLightProduct } from '@/services/ecommerce-api/helpers/products/convertToLightProduct';
 
-import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
+import { CardPriceTypography } from '@/components/typography/CardPriceTypography';
 import { ProductToCartBtn } from '@/pages/CatalogPage/features/ProductCard/components/ProductToCartBtn';
 
 import { ImgLoad } from '@/components/img/ImgLoad';

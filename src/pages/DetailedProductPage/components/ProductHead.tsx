@@ -4,10 +4,9 @@ import { useState } from 'react';
 import { Stack } from '@mui/system';
 import { Chip } from '@mui/material';
 
-import { CardPriceTypography } from '@/pages/CatalogPage/components/CardPriceTypography';
-
 import { TitleTypography } from '@/components/typography/TitleTypography';
 import { DiscountTypography } from '@/components/typography/DiscountTypography';
+import { CardPriceTypography } from '@/components/typography/CardPriceTypography';
 import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
 
 const sxStyles: SxStyles = {
