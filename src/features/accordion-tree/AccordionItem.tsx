@@ -1,5 +1,5 @@
-import type { SxStyles, CategoryTreeNode } from '@/shared/types/types';
-import type { FilterState } from '@/pages/CatalogPage/hooks/filterReducer/types';
+import type { SxStyles, TreeNode } from '@/shared/types/types';
+import type { ReduxElemIdData } from '@/features/accordion-tree/types';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Button, Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
@@ -7,6 +7,8 @@ import { Box, Button, Accordion, AccordionDetails, AccordionSummary } from '@mui
 import { convertKeyToName } from '@/utils/strings/convertKeyToName';
 // eslint-disable-next-line import/no-cycle
 import { AccordionTree } from '@/features/accordion-tree/AccordionTree';
+
+import { useAppSelector } from '@/shared/redux/redux';
 
 const sxStyles: SxStyles = {
   accordionActive: {
@@ -34,28 +36,28 @@ const sxStyles: SxStyles = {
 };
 
 interface AccordionItemProps {
-  categoryKey: string;
-  filterState: FilterState;
-  treeData: CategoryTreeNode[];
-  handleClickedCategory: (keyOfCategory: string) => (e: React.MouseEvent<HTMLButtonElement>) => void;
+  treeElem: TreeNode;
+  reduxElemIdData: ReduxElemIdData;
 }
 
-export function AccordionItem({ categoryKey, filterState, handleClickedCategory, treeData }: AccordionItemProps) {
-  const isHasChildren = Boolean(treeData.length);
+export function AccordionItem({ treeElem: { id, key, children }, reduxElemIdData }: AccordionItemProps) {
+  const isHasChildren = Boolean(children.length);
+  const isSelectedElem = useAppSelector((state) => reduxElemIdData.isCurrentIdSelector(state, id));
+
   const deactivateIfNoChildren = !isHasChildren && sxStyles.pointerEventsOff;
   const removeParentDeactivation = !isHasChildren && sxStyles.pointerEventsOn;
 
   return (
-    <Accordion sx={[sxStyles.accordionPadding, filterState.categoryKey === categoryKey && sxStyles.accordionActive, deactivateIfNoChildren]}>
+    <Accordion sx={[sxStyles.accordionPadding, isSelectedElem && sxStyles.accordionActive, deactivateIfNoChildren]}>
       <AccordionSummary expandIcon={isHasChildren ? <ExpandMoreIcon /> : ''} sx={sxStyles.accordionPadding}>
-        <Button onClick={handleClickedCategory(categoryKey)} sx={[sxStyles.btn, removeParentDeactivation]}>
-          {convertKeyToName(categoryKey)}
+        <Button component="span" onClick={reduxElemIdData.setClickedElemMemoized(id)} sx={[sxStyles.btn, removeParentDeactivation]}>
+          {convertKeyToName(key)}
         </Button>
       </AccordionSummary>
       {isHasChildren && (
         <AccordionDetails sx={sxStyles.accordionPadding}>
           <Box sx={sxStyles.subAccordionWrapper}>
-            <AccordionTree treeData={treeData} />
+            <AccordionTree treeData={children} reduxElemIdData={reduxElemIdData} />
           </Box>
         </AccordionDetails>
       )}

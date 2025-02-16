@@ -1,9 +1,9 @@
 import type { Category } from '@commercetools/platform-sdk';
-import type { CategoriesObj, CategoryTreeNode } from '@/shared/types/types';
+import type { TreeNode, CategoriesObj } from '@/shared/types/types';
 
 import { convertArrOfIdElemToIdObj } from '@/utils/arrays/convertArrOfIdElemToIdObj';
 
-export const initCategories: Category[] = [
+export const categoriesMock: Category[] = [
   {
     id: '17961d11-5114-495a-bad8-643daa70913c',
     version: 1,
@@ -582,9 +582,9 @@ export const initCategories: Category[] = [
   }
 ];
 
-export const initCategoriesObj: CategoriesObj = convertArrOfIdElemToIdObj(initCategories);
+export const categoriesObjMock: CategoriesObj = convertArrOfIdElemToIdObj(categoriesMock);
 
-export const initCategoriesTree: CategoryTreeNode[] = [
+export const categoriesTreeMock: TreeNode[] = [
   {
     id: '17961d11-5114-495a-bad8-643daa70913c',
     key: 'new-arrivals',

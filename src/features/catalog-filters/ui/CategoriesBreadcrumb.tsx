@@ -3,24 +3,23 @@ import type { SxStyles } from '@/shared/types/types';
 import type { SxProps, BreadcrumbsProps } from '@mui/material';
 
 import { memo, useMemo } from 'react';
-import { Button, Breadcrumbs } from '@mui/material';
+import { Skeleton, Breadcrumbs } from '@mui/material';
 
 import { getErrorMessage } from '@/services/ecommerce-api/rtk-query';
 import { LANGUAGE, useGetCategoriesQuery } from '@/services/ecommerce-api';
 
-import { selectCategoryId, setCategoryIdAndNameAction } from '@/pages/CatalogPage/features/catalog-filters/redux/catalogFilter.slice';
-
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryName';
+import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
+import { CasualBtn } from '@/components/buttons/CasualBtn';
 import { SuspenseWithError } from '@/components/SuspenseWithError';
 
 import { useAppSelector, useAppDispatch } from '@/shared/redux/redux';
-import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/shared/data/constants';
-import { convertToBreadcrumb } from '@/shared/helpers/convertToBreadcrumb';
+import { convertToBreadcrumbCategories } from '@/shared/helpers/convertToBreadcrumbCategories';
 
 const sxStyles: SxStyles = {
   btn: (theme) => ({
-    textTransform: 'none',
     color: `${theme.palette.text.secondary} !important`
   })
 };
@@ -36,31 +35,32 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
   const { data: categoriesCollection, error, isError, isLoading } = useGetCategoriesQuery();
 
   const categoriesToRender = useMemo(
-    () => (categoryId !== NO_CATEGORY && categoriesCollection ? convertToBreadcrumb(categoryId, categoriesCollection.categoriesTree) : [NO_CATEGORY]),
+    () => convertToBreadcrumbCategories(categoryId, categoriesCollection?.categoriesObj),
     [categoriesCollection, categoryId]
   );
 
   const setCategoryId = (categoryId: string, categoryName: string) => (): void => {
-    dispatch(setCategoryIdAndNameAction({ categoryId, categoryName }));
+    dispatch(setCategoryIdAndNameFormAction({ categoryId, categoryName }));
   };
 
   return (
-    <SuspenseWithError settings={{ error: getErrorMessage(error), isError, isLoading }}>
+    <SuspenseWithError
+      settings={{ error: getErrorMessage(error), isError, isLoading }}
+      Fallback={<Skeleton />}
+      Skeleton={<Skeleton />}
+    >
       <Breadcrumbs {...props}>
         {categoriesToRender.map((categoryId, index) => {
-          const categoryName =
-            categoriesCollection && categoriesCollection.categoriesObj[categoryId]?.name
-              ? categoriesCollection.categoriesObj[categoryId].name[LANGUAGE]
-              : NO_CATEGORY_NAME;
+          const categoryName = getCategoryName(categoriesCollection?.categoriesObj, categoryId, LANGUAGE);
 
           return index !== categoriesToRender.length - 1 ? (
-            <Button key={categoryId} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
+            <CasualBtn key={categoryId} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
               {categoryName}
-            </Button>
+            </CasualBtn>
           ) : (
-            <Button disabled key={categoryId} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
+            <CasualBtn disabled key={categoryId} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
               {categoryName}
-            </Button>
+            </CasualBtn>
           );
         })}
       </Breadcrumbs>

@@ -7,11 +7,10 @@ import { Stack } from '@mui/system';
 import { useGetProductsQuery } from '@/services/ecommerce-api';
 import { getErrorMessage } from '@/services/ecommerce-api/rtk-query';
 
-import { selectQueryArgs } from '@/pages/CatalogPage/features/catalog-filters';
-import { CatalogSortBy } from '@/pages/CatalogPage/features/catalog-filters/features/CatalogSortBy';
-import { CatalogPagination } from '@/pages/CatalogPage/features/catalog-filters/features/CatalogPagination';
 import { CatalogProductsGrid } from '@/pages/CatalogPage/layout/CatalogProducts/components/CatalogProductsGrid';
 import { CatalogProductsTitle } from '@/pages/CatalogPage/layout/CatalogProducts/components/CatalogProductsTitle';
+
+import { CatalogSortBy, selectQueryArgs, CatalogPagination } from '@/features/catalog-filters';
 
 import { SuspenseWithError } from '@/components/SuspenseWithError';
 import { TitleTypography } from '@/components/typography/TitleTypography';
@@ -33,7 +32,7 @@ export const CatalogProducts = memo(function CatalogProducts({ ...props }: Stack
   const amount = productsData?.total ?? 0;
 
   return (
-    <SuspenseWithError settings={{ isError, error: getErrorMessage(error), isLoading: isFetching }} {...props}>
+    <SuspenseWithError settings={{ isError, isFetching, error: getErrorMessage(error) }} {...props}>
       {amount ? (
         <>
           <Stack sx={sxProductsHeader}>

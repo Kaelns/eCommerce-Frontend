@@ -23,22 +23,3 @@ export const COUNTRY_LIST: AutocompleteOptions[] = [
   { label: 'Russia', code: 'RU', postalCodePattern: /^[0-9]{6}$/gm },
   { label: 'Belarus', code: 'BY', postalCodePattern: /^[0-9]{6}$/gm }
 ] as const;
-
-// * Colors directly from ecommerceAPI
-export const FILTER_COLORS = {
-  Red: '#ff0000',
-  Tan: '#d2b48c',
-  Blue: '#0288d1',
-  Gold: '#ffc107',
-  Gray: '#9e9e9e',
-  Pink: '#ed4b82',
-  White: '#ffffff',
-  Beige: '#f5f5dc',
-  Black: '#000000',
-  Brown: '#8b4513',
-  Green: '#2e7d32',
-  Orange: '#ff9800',
-  Purple: '#9c27b0',
-  Silver: '#c0c0c0',
-  Transparent: 'transparent'
-} as const;

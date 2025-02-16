@@ -1,6 +1,4 @@
-import { authApi } from '@/services/ecommerce-api/rtk-query/model/authApi';
-import { usersApi } from '@/services/ecommerce-api/rtk-query/model/usersApi';
-import { productApi } from '@/services/ecommerce-api/rtk-query/model/productApi';
+import { authApi, usersApi, productApi } from '@/services/ecommerce-api/rtk-query';
 
 export { convertSortQueryArgs } from '@/services/ecommerce-api/helpers/general/convertFilterToQueryArgs/helpers';
 export { convertFilterToQueryArgs } from '@/services/ecommerce-api/helpers/general/convertFilterToQueryArgs/convertFilterToQueryArgs';
@@ -20,7 +18,8 @@ export {
   FRACTION_DOZENS
 } from '@/services/ecommerce-api/data/constants';
 
+export { authApi, usersApi, productApi };
 export const { useStartSessionQuery } = authApi;
 export const { useCheckIsUserExistByEmailMutation } = usersApi;
-export const { useGetCategoriesQuery, useGetProductsQuery } = productApi;
+export const { useGetCategoriesQuery, useGetProductsQuery, useGetProductColorsQuery } = productApi;
 // export const { useCheckIsUserExistByEmailMutation } = usersApi;

@@ -6,11 +6,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Stack, InputBase, IconButton, InputAdornment } from '@mui/material';
 
-import { selectSearch } from '@/pages/CatalogPage/features/catalog-filters/redux/catalogFilter.slice';
 import { selectIsSearchInFocus, setIsSearchInFocusAction } from '@/pages/CatalogPage/catalogPage.slice';
-import { debounceSearchToQueryArgs } from '@/pages/CatalogPage/features/catalog-filters/redux/thunks/debounceSearchToQueryArgs.thunk';
 
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
+import { selectSearch } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { debounceSearchToQueryArgs } from '@/features/catalog-filters/model/redux/thunks/debounceSearchToQueryArgs.thunk';
 
 import { sxMixins } from '@/shared/data/mui-mixins';
 import { useAppDispatch, useAppSelector } from '@/shared/redux/redux';

@@ -5,7 +5,7 @@ import { Container } from '@mui/material';
 
 export function SectionContainer({ children, ...props }: PropsWithChildren<ContainerProps>) {
   return (
-    <Container maxWidth="laptopBig" {...props}>
+    <Container maxWidth="desktop" {...props}>
       {children}
     </Container>
   );

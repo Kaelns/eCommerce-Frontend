@@ -66,11 +66,11 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'error',
 
     'perfectionist/sort-exports': sortByLineLength,
-    'perfectionist/sort-modules': sortByLineLength,
     'perfectionist/sort-interfaces': sortByLineLength,
     'perfectionist/sort-object-types': sortByLineLength,
     'perfectionist/sort-named-exports': sortByLineLength,
     'perfectionist/sort-named-imports': sortByLineLength,
+    'perfectionist/sort-modules': ['error', { type: 'line-length', order: 'asc', partitionByComment: true }],
     'perfectionist/sort-objects': 'off',
     'perfectionist/sort-jsx-props': 'off',
     'perfectionist/sort-imports': [
@@ -118,11 +118,16 @@ module.exports = {
       }
     ]
   },
-
   overrides: [
     {
       files: ['src/**/*.slice.ts'],
       rules: { 'no-param-reassign': ['error', { props: false }] }
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      parserOptions: {
+        projectService: true
+      }
     }
   ]
 };

@@ -7,11 +7,11 @@ import { Fade } from '@mui/material';
 interface FadeBoxProps extends BoxProps {
   isShow: boolean;
   timeout?: number;
-  notUnmountOnExit?: boolean;
+  unmountOnExit?: boolean;
 }
-export function FadeBox({ isShow, children, notUnmountOnExit = false, timeout, ...props }: PropsWithChildren<FadeBoxProps>) {
+export function FadeBox({ isShow, children, unmountOnExit = true, timeout, ...props }: PropsWithChildren<FadeBoxProps>) {
   return (
-    <Fade in={isShow} timeout={650} unmountOnExit={!notUnmountOnExit}>
+    <Fade in={isShow} timeout={650} unmountOnExit={unmountOnExit}>
       <Box {...props}>{children}</Box>
     </Fade>
   );

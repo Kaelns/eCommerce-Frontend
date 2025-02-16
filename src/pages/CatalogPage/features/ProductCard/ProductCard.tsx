@@ -9,13 +9,13 @@ import { Box, Typography } from '@mui/material';
 import { SRCSET_API } from '@/services/ecommerce-api';
 import { convertToLightProduct } from '@/services/ecommerce-api/helpers/products/convertToLightProduct';
 
-import { CardPriceTypography } from '@/components/typography/CardPriceTypography';
 import { ProductToCartBtn } from '@/pages/CatalogPage/features/ProductCard/components/ProductToCartBtn';
 
 import { ImgLoad } from '@/components/img/ImgLoad';
 import { BoldTypography } from '@/components/typography/BoldTypography';
 import { LinkRouterWrapper } from '@/components/wrappers/LinkRouterWrapper';
 import { DiscountTypography } from '@/components/typography/DiscountTypography';
+import { CardPriceTypography } from '@/components/typography/CardPriceTypography';
 
 import { Paths } from '@/shared/data/enums';
 import { sxMixins } from '@/shared/data/mui-mixins';

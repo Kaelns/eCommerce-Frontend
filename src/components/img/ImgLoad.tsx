@@ -55,7 +55,15 @@ interface ImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
       };
 }
 
-export function ImgLoad<T extends StackProps['height']>({ src, height, srcset, onClick, sx = {}, containerStyles = {}, ...props }: ImgLoadProps<T>) {
+export function ImgLoad<T extends StackProps['height']>({
+  src,
+  height,
+  srcset,
+  onClick,
+  sx = {},
+  containerStyles = {},
+  ...props
+}: ImgLoadProps<T>) {
   const [isImgLoading, setIsImgLoading] = useState(true);
 
   const handleOnImgLoad = (): void => {
@@ -79,7 +87,7 @@ export function ImgLoad<T extends StackProps['height']>({ src, height, srcset, o
       <FadeBox isShow={isImgLoading} sx={[sxStyles.skeletonWrapper, sxStyles.sizes100]}>
         <ImgSkeleton sx={sxStyles.skeleton} />
       </FadeBox>
-      <FadeBox isShow={!isImgLoading} sx={sxStyles.sizes100} notUnmountOnExit>
+      <FadeBox isShow={!isImgLoading} sx={sxStyles.sizes100} unmountOnExit={false}>
         <Box
           component="img"
           src={src}

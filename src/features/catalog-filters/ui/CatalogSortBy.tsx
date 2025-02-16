@@ -3,8 +3,8 @@ import type { SelectChangeEvent } from '@mui/material';
 
 import { Stack, Select, MenuItem } from '@mui/material';
 
-import { Sort } from '@/pages/CatalogPage/features/catalog-filters/data/constants';
-import { selectSort, setSortAction } from '@/pages/CatalogPage/features/catalog-filters/redux/catalogFilter.slice';
+import { FiltersSort } from '@/features/catalog-filters/model/constants';
+import { selectSort, setSortAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { TitleTypography } from '@/components/typography/TitleTypography';
 
@@ -29,14 +29,14 @@ export function CatalogSortBy() {
   const sort = useAppSelector(selectSort);
 
   const handleChange = (event: SelectChangeEvent): void => {
-    dispatch(setSortAction(event.target.value as Sort));
+    dispatch(setSortAction(event.target.value as FiltersSort));
   };
 
   return (
     <Stack direction="row" alignItems="baseline" gap={1}>
       <TitleTypography variant="subtitle1">Sort: </TitleTypography>
       <Select value={sort} onChange={handleChange} sx={sxStyles.select}>
-        {Object.values(Sort).map((key) => (
+        {Object.values(FiltersSort).map((key) => (
           <MenuItem key={key} value={key}>
             {key}
           </MenuItem>

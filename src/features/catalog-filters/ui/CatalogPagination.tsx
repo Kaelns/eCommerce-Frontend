@@ -7,10 +7,9 @@ import { useTheme, useMediaQuery } from '@mui/system';
 
 import { LIMIT_ON_PAGE } from '@/services/ecommerce-api';
 
-import { selectPage, setPageAction } from '@/pages/CatalogPage/features/catalog-filters/redux/catalogFilter.slice';
-
 import { convertSxToArr } from '@/utils/arrays/convertSxToArr';
 import { calculateMaxPages } from '@/utils/numbers/calculateMaxPages';
+import { selectPage, setPageAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { useAppDispatch, useAppSelector } from '@/shared/redux/redux';
 

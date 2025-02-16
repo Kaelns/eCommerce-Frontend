@@ -1,17 +1,17 @@
 import type { SxStyles } from '@/shared/types/types';
 
 import { Box } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 import { Stack, useTheme, useMediaQuery } from '@mui/system';
 
 import { CatalogSideDrawer } from '@/pages/CatalogPage/layout/CatalogSideDrawer';
 import { setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/catalogPage.slice';
-import { CategoriesBreadcrumb } from '@/pages/CatalogPage/features/catalog-filters';
 import { CatalogProducts } from '@/pages/CatalogPage/layout/CatalogProducts/CatalogProducts';
 import { OpenCatalogSideDrawerBtn } from '@/pages/CatalogPage/components/OpenCatalogSideDrawerBtn';
-import { CatalogSearch } from '@/pages/CatalogPage/features/catalog-filters/features/CatalogSearch';
 
-import { ContainedBtn } from '@/components/buttons/ContainedBtn';
-import { TitleTypography } from '@/components/typography/TitleTypography';
+import { CatalogSearch, CatalogFilterForm, CategoriesBreadcrumb } from '@/features/catalog-filters';
+
+import { ContainedIconBtn } from '@/components/buttons/ContainedIconBtn';
 
 import { useAppDispatch } from '@/shared/redux/redux';
 
@@ -25,6 +25,12 @@ const sxStyles: SxStyles = {
   drawerContainer: {
     overflowY: 'scroll',
     p: 3
+  },
+  drawerCloseBtn: {
+    position: 'fixed',
+    top: '1rem',
+    right: '2rem',
+    zIndex: 1000
   }
 };
 
@@ -48,19 +54,16 @@ export function CatalogPage() {
         </Stack>
 
         <Stack direction="row" gap={2}>
-          {isMatchesLaptopBig && (
-            <TitleTypography flex={2} sx={sxStyles.filterForm}>
-              Filter
-              {/* <CatalogFilterForm sx={sxStyles.filterForm} /> */}
-            </TitleTypography>
-          )}
+          {isMatchesLaptopBig && <CatalogFilterForm flex={2} sx={sxStyles.filterForm} />}
           <CatalogProducts flex={8} />
         </Stack>
 
         <CatalogSideDrawer>
+          <ContainedIconBtn onClick={handleCloseSideDrawer} sx={sxStyles.drawerCloseBtn}>
+            <ClearIcon />
+          </ContainedIconBtn>
           <Stack gap={2} sx={sxStyles.drawerContainer}>
-            {/* <CatalogFilterForm sx={sxStyles.filterForm} /> */}
-            <ContainedBtn onClick={handleCloseSideDrawer}>Close</ContainedBtn>
+            <CatalogFilterForm sx={sxStyles.filterForm} />
           </Stack>
         </CatalogSideDrawer>
       </Stack>

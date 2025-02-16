@@ -11,8 +11,8 @@ import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
 import { DetailedProductPage } from '@/pages/DetailedProductPage/DetailedProductPage';
 
 import { App } from '@/layout/App';
-import { startSessionLoader } from '@/app/router/router.loaders';
 import { RedirectLoginRouter } from '@/app/router/RedirectLoginRouter';
+import { startSessionLoader, prefetchCatalogPageLoader } from '@/app/router/router.loaders';
 
 import { Paths } from '@/shared/data/enums';
 
@@ -20,9 +20,7 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} loader={startSessionLoader}>
       <Route path={Paths.MAIN} element={<MainPage />} />
-      <Route path={Paths.CATALOG} element={<CatalogPage />}>
-        <Route path={Paths.CATALOG_CATEGORY} />
-      </Route>
+      <Route path={Paths.CATALOG} element={<CatalogPage />} loader={prefetchCatalogPageLoader} />
       <Route path={Paths.ABOUT_US} element={<AboutUsPage />} />
       <Route path={Paths.DETAILED_PRODUCT}>
         <Route path={Paths.DETAILED_PRODUCT_ID} element={<DetailedProductPage />} />
@@ -30,7 +28,10 @@ export const router = createBrowserRouter(
       <Route path={Paths.USER} element={<RedirectLoginRouter IfLogged={<UserPage />} IfUnLogged={<Navigate to={Paths.LOGIN} />} />} />
       <Route path={Paths.LOGIN} element={<RedirectLoginRouter IfLogged={<Navigate to={Paths.MAIN} />} IfUnLogged={<LoginPage />} />} />
       <Route path={Paths.BASKET} element={<RedirectLoginRouter IfLogged={<CartPage />} IfUnLogged={<Navigate to={Paths.LOGIN} />} />} />
-      <Route path={Paths.REGISTRATION} element={<RedirectLoginRouter IfLogged={<Navigate to={Paths.MAIN} />} IfUnLogged={<RegistrationPage />} />} />
+      <Route
+        path={Paths.REGISTRATION}
+        element={<RedirectLoginRouter IfLogged={<Navigate to={Paths.MAIN} />} IfUnLogged={<RegistrationPage />} />}
+      />
       <Route path={Paths.NONEXISTENT} element={<ErrorPage />} />
     </Route>
   )

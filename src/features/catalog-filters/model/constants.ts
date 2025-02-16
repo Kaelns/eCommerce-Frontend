@@ -1,5 +1,3 @@
-import { FILTER_COLORS } from '@/shared/data/constants';
-
 export const MIN_MONEY = 0;
 export const MAX_MONEY = 5000;
 export const NO_CATEGORY = 'no-category';
@@ -14,7 +12,7 @@ export enum Filters {
 
 export const FILTERS_ORDER = [Filters.CATEGORY, Filters.PRICE, Filters.COLOR];
 
-export enum Sort {
+export enum FiltersSort {
   NO_SORT = 'No sort',
 
   NAME_ASC = 'Ascending by name',
@@ -22,10 +20,3 @@ export enum Sort {
   PRICE_ASC = 'Ascending price',
   PRICE_DESC = 'Descending price'
 }
-
-export const FILTER_COLORS_STATE = Object.fromEntries(Object.entries(FILTER_COLORS).map(([key]) => [key, false])) as Record<
-  keyof typeof FILTER_COLORS,
-  boolean
->;
-
-export { FILTER_COLORS };

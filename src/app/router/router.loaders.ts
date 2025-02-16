@@ -5,6 +5,8 @@ import { productApi } from '@/services/ecommerce-api/rtk-query/model/productApi'
 
 import { store } from '@/app';
 
+import { selectLanguage } from '@/shared/redux/slices/global.slice';
+
 //  * That hack is to avoid cyclic dependency when we pass router to store and use store inside router
 const loadStoreAndSession = new Promise<AppStore>((res) => {
   setTimeout(async () => {
@@ -20,9 +22,10 @@ export const startSessionLoader = () => {
   return null;
 };
 
-// export const prefetchCatalogPageLoader = () => {
-//   loadStore.then((store) => {
-//     //
-//   });
-//   return null;
-// };
+export const prefetchCatalogPageLoader = () => {
+  loadStoreAndSession.then((store) => {
+    const language = selectLanguage(store.getState());
+    store.dispatch(productApi.util.prefetch('getProductColors', language, {}));
+  });
+  return null;
+};

@@ -33,12 +33,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    include: ['./src/**/*.test.tsx'],
     environment: 'jsdom',
-    setupFiles: ['./src/__tests__/setup.tsx'],
-    pool: 'forks',
-    coverage: {
-      provider: 'v8'
-    }
+    setupFiles: ['./src/__tests__/setup.tsx']
   }
 });

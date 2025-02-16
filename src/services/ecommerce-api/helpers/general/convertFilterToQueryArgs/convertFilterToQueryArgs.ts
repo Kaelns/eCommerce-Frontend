@@ -1,5 +1,5 @@
 import type { QueryProductsArgs } from '@/shared/types/types';
-import type { FilterState } from '@/pages/CatalogPage/features/catalog-filters/redux/catalogFilter.slice';
+import type { FilterState } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { LIMIT_ON_PAGE } from '@/services/ecommerce-api/data/constants';
 import {
@@ -12,13 +12,13 @@ import {
 } from '@/services/ecommerce-api/helpers/general/convertFilterToQueryArgs/helpers';
 
 export function convertFilterToQueryArgs(filterState: FilterState, limitOnPage = LIMIT_ON_PAGE): QueryProductsArgs {
-  const sortValue = convertSortQueryArgs(filterState.sort);
-  const searchObj = convertSearchQueryArgs(filterState.search);
-  const offset = convertPageQueryArgs(filterState.page, limitOnPage);
+  const sortValue = convertSortQueryArgs(filterState.filters.sort);
+  const searchObj = convertSearchQueryArgs(filterState.filters.search);
+  const offset = convertPageQueryArgs(filterState.filters.page, limitOnPage);
 
-  const price = convertPriceQueryArgs(filterState.filterQuery.price);
-  const colors = convertColorsQueryArgs(filterState.filterQuery.colorObj);
-  const category = convertCategoriesQueryArgs(filterState.filterQuery.categoryId);
+  const price = convertPriceQueryArgs(filterState.filters.price);
+  const colors = convertColorsQueryArgs(filterState.filters.colorObj, filterState.colors);
+  const category = convertCategoriesQueryArgs(filterState.filters.categoryId);
 
   const filterQuery = [colors, category, price].filter(Boolean);
 

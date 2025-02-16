@@ -1,10 +1,9 @@
 import type { AppThunk, AppThunkDispatch } from '@/shared/redux/redux';
 
-import { setSearchAction, applyFiltersAction } from '@/pages/CatalogPage/features/catalog-filters/redux/catalogFilter.slice';
-
 import { debounce } from '@/utils/side-effects/debounce';
+import { setSearchAction, applyFormFiltersAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
-const debounceDispatchSearchQueryArgs = debounce((dispatch: AppThunkDispatch) => dispatch(applyFiltersAction()), 1500);
+const debounceDispatchSearchQueryArgs = debounce((dispatch: AppThunkDispatch) => dispatch(applyFormFiltersAction()), 1500);
 
 export const debounceSearchToQueryArgs =
   (search: string): AppThunk =>

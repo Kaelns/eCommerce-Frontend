@@ -2,8 +2,8 @@ import type { AppExtraArgument } from '@/shared/redux/redux';
 import type { FetchArgs, BaseQueryFn, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { RTKQueryError } from '@/services/ecommerce-api/rtk-query/types/RTKQueryError';
 
-export type EcommerceBaseQuery = BaseQueryFn<FetchArgs | string, unknown, FetchBaseQueryError, Partial<AppExtraArgument>>;
 export type EcommerceExtendedQuery = BaseQueryFn<FetchArgs | string, unknown, RTKQueryError, Partial<AppExtraArgument>>;
+export type EcommerceBaseQuery = BaseQueryFn<FetchArgs | string, unknown, FetchBaseQueryError, Partial<AppExtraArgument>>;
 
 // * Backend types
 
@@ -18,6 +18,9 @@ export interface BackendError {
 }
 
 // * Ecommerce types
+
+export type ColorsValues = Colors[keyof Colors];
+export type Colors = Record<string, { hex: string; value: string }>;
 
 export interface AppData {
   // TODO can use types from json iso

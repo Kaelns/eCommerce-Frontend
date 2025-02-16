@@ -1,33 +1,22 @@
-import type { CategoryTreeNode } from '@/shared/types/types';
+import type { TreeNode } from '@/shared/types/types';
+import type { ReduxElemIdData } from '@/features/accordion-tree/types';
 
-import { memo, useContext, useCallback } from 'react';
-
-import { FilterStateEnum } from '@/pages/CatalogPage/hooks/filterReducer/enums';
+import { memo } from 'react';
 
 // eslint-disable-next-line import/no-cycle
 import { AccordionItem } from '@/features/accordion-tree/AccordionItem';
 
 interface AccordionTreeProps {
-  treeData: CategoryTreeNode[];
+  treeData: TreeNode[];
+  reduxElemIdData: ReduxElemIdData;
 }
 
-// FIXME fix this tree
-export const AccordionTree = memo(function AccordionTree({ treeData }: AccordionTreeProps) {
-  // const handleClickedCategory = useCallback(
-  //   (keyOfCategory: string) =>
-  //     (e: React.MouseEvent<HTMLButtonElement>): void => {
-  //       e.stopPropagation();
-  //       dispatchFilterState({ type: FilterStateEnum.CATEGORY_TOGGLE, payload: keyOfCategory });
-  //     },
-  //   [dispatchFilterState]
-  // );
-
+export const AccordionTree = memo(function AccordionTree({ treeData, reduxElemIdData }: AccordionTreeProps) {
   return (
     <>
-      {/* {treeData.map(({ id, key, children }) => (
-        // FIXME filterState causes massive rerenders
-        <AccordionItem key={id} categoryKey={key} treeData={children} filterState={filterState} handleClickedCategory={handleClickedCategory} />
-      ))} */}
+      {treeData.map((treeElem) => (
+        <AccordionItem key={treeElem.id} treeElem={treeElem} reduxElemIdData={reduxElemIdData} />
+      ))}
     </>
   );
 });
