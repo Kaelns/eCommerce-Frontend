@@ -1,15 +1,15 @@
 import type { Theme, SxProps, StackProps } from '@mui/system';
 
-interface ICreateImagesStyles<T extends StackProps['height'] = StackProps['height']> {
-  imgStyles?: SxProps<Theme>;
-  containerStyles?: SxProps<Theme>;
-  imgHeight?: T extends number ? { height: T } : { height: T; maxSize: 'unlimited' | number };
-}
-
 interface ICreateImagesProps<T extends StackProps['height']> {
   key: string;
   styles: ICreateImagesStyles<T>;
   onClick?: (num: number) => () => void;
+}
+
+interface ICreateImagesStyles<T extends StackProps['height'] = StackProps['height']> {
+  imgStyles?: SxProps<Theme>;
+  containerStyles?: SxProps<Theme>;
+  imgHeight?: T extends number ? { height: T } : { height: T; maxSize: 'unlimited' | number };
 }
 
 export function CreateImages<T extends StackProps['height'] = StackProps['height']>({ key, styles, onClick }: ICreateImagesProps<T>) {

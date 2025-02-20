@@ -1,4 +1,4 @@
-import type { InputReactEvent } from '@/shared/types/types';
+import type { InputReactEvent } from '@/shared/model/types/types';
 import type {
   IInputsValues,
   IInputsErrors,
@@ -9,13 +9,12 @@ import type {
 
 import { useState, useCallback } from 'react';
 
-import { createUserApi } from '@/services/model/user/createUserApi';
-
 import { useAppDispatch } from '@/app/store/store';
+import { createUserApi } from '@/services/model/user/createUserApi';
 import { getPrefix } from '@/features/AuthForms/data/AuthForms.helpers';
 import { INPUTS, AddressPrefix, AddressProperty } from '@/features/AuthForms/data/AuthForms.constants';
 
-import { COUNTRY_LIST, MAX_DATE_DASH } from '@/shared/data/constants';
+import { COUNTRY_LIST, MAX_DATE_DASH } from '@/shared/model/data/constants';
 import checkPostalCode from '@/shared/zod/%%%BADvalidation/postalCodeValidation';
 
 const INIT_INPUTS_DATA = {

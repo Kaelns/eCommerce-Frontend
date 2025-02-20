@@ -28,10 +28,10 @@
     "paths": {
       "@/*": ["./src/*", "./dist/*", ""],
       "pages/*": ["src/pages/*"],
-      "components/*": ["src/components/*"]
+      "components/*": ["src/shared/ui/components/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "husky"],
+  "exclude": ["node_modules", "dist", "husky", "_[a-zA-Z]*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

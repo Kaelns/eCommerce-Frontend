@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/types/types';
+import type { SxStyles } from '@/shared/model/types/types';
 
 import { Stack } from '@mui/system';
 
@@ -22,7 +22,7 @@ import { Stack } from '@mui/system';
 // import { authSliceSelectors } from '@/store/slices/auth.slice';
 // import { useAppDispatch, useAppSelector } from '@/store/store';
 // import { cartProductsSlice } from '@/pages/BasketPage/cartProducts.slice';
-import { TitleTypography } from '@/components/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
 
 const sxStyles: SxStyles = {
   stackContainer: {

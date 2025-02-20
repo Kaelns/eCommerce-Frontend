@@ -1,13 +1,13 @@
-import type { Product, SxStyles } from '@/shared/types/types';
+import type { Product, SxStyles } from '@/shared/model/types/types';
 
 import { useState } from 'react';
 import { Stack } from '@mui/system';
 import { Chip } from '@mui/material';
 
-import { TitleTypography } from '@/components/typography/TitleTypography';
-import { DiscountTypography } from '@/components/typography/DiscountTypography';
-import { CardPriceTypography } from '@/components/typography/CardPriceTypography';
-import { AddProductToCartBtn } from '@/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
+import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
+import { DiscountTypography } from '@/shared/ui/elements/typography/DiscountTypography';
+import { FullPriceTypography } from '@/shared/ui/components/typography/FullPriceTypography';
+import { AddProductToCartBtn } from '@/shared/ui/components/buttons/AddProductToCartBtn/AddProductToCartBtn';
 
 const sxStyles: SxStyles = {
   container: (theme) => ({
@@ -52,7 +52,7 @@ export function ProductHead({ productData, categoriesNames }: ProductHeaderProps
       <DiscountTypography discount={productData.discount} sx={sxStyles.discountIcon} />
 
       <TitleTypography>{productData.name}</TitleTypography>
-      <CardPriceTypography price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
+      <FullPriceTypography price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
       <Stack direction="row" gap={0.7} flexWrap="wrap">
         {categoriesNames.map((category) => (
           <Chip key={category} label={category} />

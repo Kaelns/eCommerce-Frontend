@@ -9,7 +9,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import { DATE_DASH_FORMAT } from '@/shared/data/constants';
+import { DATE_DASH_FORMAT } from '@/shared/model/data/constants';
 
 const OPEN_TO = 'year';
 const FORMAT = 'DD/MM/YYYY';

@@ -1,6 +1,6 @@
 import { Stack } from '@mui/system';
 
-import { TitleTypography } from '@/components/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
 
 export function LoginPage() {
   return (

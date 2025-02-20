@@ -1,13 +1,8 @@
+import type { AppStore } from '@/shared/lib/redux/redux.types';
+
 import { configureStore } from '@reduxjs/toolkit';
 
-import { router } from '@/app/router/router';
-
-import { rootReducer, middlewares } from '@/shared/redux/redux';
-import { actionsReduxExtension } from '@/shared/redux/actionsReduxExtension';
-
-export const extraArgument = {
-  router
-};
+import { rootReducer, middlewares, extraArgument, actionsReduxExtension } from '@/app/store/config';
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -15,4 +10,10 @@ export const store = configureStore({
   devTools: import.meta.env.DEV && {
     ...actionsReduxExtension
   }
+});
+
+export const loadStore = new Promise<AppStore>((res) => {
+  setTimeout(async () => {
+    res(store);
+  }, 0);
 });

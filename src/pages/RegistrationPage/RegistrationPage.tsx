@@ -3,9 +3,9 @@ import { Chip, Button, Divider } from '@mui/material';
 
 import { router } from '@/app';
 
-import { TitleTypography } from '@/components/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
 
-import { Paths } from '@/shared/data/enums';
+import { Paths } from '@/shared/model/data/enums';
 // import { RegistrationForm } from '@/features/components/AuthForms/RegistrationForm/RegistrationForm';
 
 export function RegistrationPage() {

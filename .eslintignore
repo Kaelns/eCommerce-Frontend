@@ -8,3 +8,4 @@ node_modules
 **/*.test[s].ts
 **/*.d.ts
 coverage
+_[a-zA-Z]*

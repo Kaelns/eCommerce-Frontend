@@ -9,20 +9,6 @@ export function checkCredentialInputs(inputsValues: IInputsValues, inputsErrors:
   return isValidEmail && isValidPassword;
 }
 
-export function checkAllInputs(
-  inputsValues: IInputsValues,
-  inputsErrors: IInputsErrors,
-  isSameAddress: boolean
-): boolean {
-  const values = Object.values(INPUTS);
-  const result = !values.some((input) => {
-    const isErrOrNoValue = Boolean(!inputsValues[input.name] || inputsErrors[input.name]);
-    const isNotSameAddressOrAsBilling = Boolean(!(isSameAddress && input.name.indexOf(AddressPrefix.BILLING) >= 0));
-    return isErrOrNoValue && isNotSameAddressOrAsBilling;
-  });
-  return result;
-}
-
 export function getAddressValue(key: string, address?: IAddress): string {
   if (address === undefined) {
     return '';
@@ -39,6 +25,20 @@ export function getAddressValue(key: string, address?: IAddress): string {
     default:
       return '';
   }
+}
+
+export function checkAllInputs(
+  inputsValues: IInputsValues,
+  inputsErrors: IInputsErrors,
+  isSameAddress: boolean
+): boolean {
+  const values = Object.values(INPUTS);
+  const result = !values.some((input) => {
+    const isErrOrNoValue = Boolean(!inputsValues[input.name] || inputsErrors[input.name]);
+    const isNotSameAddressOrAsBilling = Boolean(!(isSameAddress && input.name.indexOf(AddressPrefix.BILLING) >= 0));
+    return isErrOrNoValue && isNotSameAddressOrAsBilling;
+  });
+  return result;
 }
 
 export const getPrefix = (name: string): AddressPrefix | null => {

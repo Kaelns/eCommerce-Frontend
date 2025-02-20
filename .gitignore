@@ -87,3 +87,5 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+_[a-zA-Z]*

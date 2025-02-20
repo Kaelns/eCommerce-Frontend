@@ -1,19 +1,19 @@
-import type { SxStyles } from '@/shared/types/types';
+import type { SxStyles } from '@/shared/model/types/types';
 
 import { Box } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Stack, useTheme, useMediaQuery } from '@mui/system';
 
-import { CatalogSideDrawer } from '@/pages/CatalogPage/layout/CatalogSideDrawer';
-import { setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/catalogPage.slice';
-import { CatalogProducts } from '@/pages/CatalogPage/layout/CatalogProducts/CatalogProducts';
-import { OpenCatalogSideDrawerBtn } from '@/pages/CatalogPage/components/OpenCatalogSideDrawerBtn';
+import { CatalogProducts } from '@/pages/CatalogPage/ui/layout/CatalogProducts';
+import { CatalogSideDrawer } from '@/pages/CatalogPage/ui/layout/CatalogSideDrawer';
+import { setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/model/catalogPage.slice';
+import { OpenCatalogSideDrawerBtn } from '@/pages/CatalogPage/ui/components/OpenCatalogSideDrawerBtn';
 
 import { CatalogSearch, CatalogFilterForm, CategoriesBreadcrumb } from '@/features/catalog-filters';
 
-import { ContainedIconBtn } from '@/components/buttons/ContainedIconBtn';
+import { ContainedIconBtn } from '@/shared/ui/elements/buttons/ContainedIconBtn';
 
-import { useAppDispatch } from '@/shared/redux/redux';
+import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
 
 const sxStyles: SxStyles = {
   container: {

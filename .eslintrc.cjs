@@ -63,6 +63,7 @@ module.exports = {
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
 
     'import/no-cycle': [2, { maxDepth: 1 }],
+    'import/no-unresolved': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
 
     'perfectionist/sort-exports': sortByLineLength,
@@ -84,10 +85,12 @@ module.exports = {
         groups: [
           'type',
           ['builtin', 'external'],
-          'services',
+          'router',
           'pages',
+          'widgets',
+          'entities',
           'internal',
-          'components',
+          'ui',
           'shared',
           { newlinesBetween: 'never' },
           'assets',
@@ -98,11 +101,13 @@ module.exports = {
         customGroups: {
           type: {},
           value: {
-            components: '^@/components/.+',
-            services: '^@/services/.+',
+            router: '^@/router/.+',
             pages: '^@/pages/.+',
-            shared: '^@/shared/(?!assets).+',
-            assets: '^@/shared/assets/.+'
+            widgets: '^@/widgets/.+',
+            entities: '^@/entities/.+',
+            shared: '^@/shared/(?!assets)(?!ui).+',
+            assets: '^@/shared/assets/.+',
+            ui: '^@/shared/ui/.+'
           }
         }
       }

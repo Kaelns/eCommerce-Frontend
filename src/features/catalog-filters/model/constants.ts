@@ -1,6 +1,3 @@
-export const MIN_MONEY = 0;
-export const MAX_MONEY = 5000;
-export const NO_CATEGORY = 'no-category';
 export const SLIDER_MIN_DISTANCE = 10;
 export const SLIDER_STEP = 10;
 

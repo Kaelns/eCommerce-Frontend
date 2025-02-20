@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from '@/shared/types/types';
+import type { PropsWithChildren } from '@/shared/model/types/types';
 import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
 
 import OutlinedInput from '@mui/material/OutlinedInput';

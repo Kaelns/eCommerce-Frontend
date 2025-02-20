@@ -1,2 +1,2 @@
 export { CatalogPage } from '@/pages/CatalogPage/CatalogPage';
-export { ProductCard } from '@/pages/CatalogPage/features/ProductCard/ProductCard';
+export { prefetchCatalogPageLoader } from '@/pages/CatalogPage/model/prefetchCatalogPage.loader';

@@ -1,12 +1,12 @@
-import type { SxStyles } from '@/shared/types/types';
+import type { SxStyles } from '@/shared/model/types/types';
 
 import { Stack, Snackbar, LinearProgress, Alert as MuiAlert } from '@mui/material';
 
-import { alertSliceInjected } from '@/features/alert/alert.slice';
+import { alertSliceInjected } from '@/features/Alert/model/alert.slice';
 
-import { TimingProgress } from '@/components/TimingProgress';
+import { TimingProgress } from '@/shared/ui/components/animations/TimingProgress';
 
-import { useAppDispatch, useAppSelector } from '@/shared/redux/redux';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
 
 const sxStyles: SxStyles = {
   alertContainer: {

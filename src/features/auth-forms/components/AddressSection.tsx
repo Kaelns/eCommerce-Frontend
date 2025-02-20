@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { TextField, InputLabel, Autocomplete } from '@mui/material';
 
-import { COUNTRY_LIST } from '@/shared/data/constants';
+import { COUNTRY_LIST } from '@/shared/model/data/constants';
 
 const ADDRESS_INPUTS = {
   [AddressProperty.POSTAL_CODE]: checkPostalCode,

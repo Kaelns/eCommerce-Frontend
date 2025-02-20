@@ -1,6 +1,6 @@
-import type { CartProducts } from '@/shared/types/types';
+import type { CartProducts } from '@/shared/model/types/types';
 
-import { AlertSeverity } from '@/shared/data/enums';
+import { AlertSeverity } from '@/shared/model/data/enums';
 
 // FIXME delete
 export function setPrevBasketOnError(

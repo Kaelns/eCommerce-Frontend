@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from '@/shared/types/types';
+import type { PropsWithChildren } from '@/shared/model/types/types';
 
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';

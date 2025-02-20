@@ -1,13 +1,13 @@
+export enum AddressPrefix {
+  BILLING = 'billing',
+  SHIPPING = 'shipping'
+}
+
 export enum AddressProperty {
   CITY = 'City',
   COUNTRY = 'Country',
   POSTAL_CODE = 'PostalCode',
   STREET = 'Street'
-}
-
-export enum AddressPrefix {
-  BILLING = 'billing',
-  SHIPPING = 'shipping'
 }
 
 export const INPUTS = {

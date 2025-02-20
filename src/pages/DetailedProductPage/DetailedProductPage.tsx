@@ -19,7 +19,7 @@
 // import { getProductByKeyApi } from '@/services/model/products/getProductByKeyApi';
 // import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
 // import { Box, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { TitleTypography } from '@/components/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
 
 // const sxStyles: SxStyles = {
 //   modal: {
