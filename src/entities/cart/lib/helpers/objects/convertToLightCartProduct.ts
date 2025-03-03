@@ -1,40 +1,49 @@
-import type { UserLocation } from '@/entities/user';
 import type { LineItem } from '@commercetools/platform-sdk';
+import type { PriceConverted } from '@/shared/model/types/types';
 import type { CartProduct } from '@/entities/cart/model/types/cart.types';
 
-import { getProductPrices } from '@/entities/product/lib/helpers/objects/getProductPrices';
+import { getProductPrice } from '@/entities/product';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
 export const MOCK_BASKET_PRODUCT: CartProduct = {
-  id: '',
+  name: {},
   lineId: '',
-  key: '',
-  name: '',
   images: [],
-  imageUrl: '',
   quantity: 0,
-  maxQuantity: 0,
-  price: 0,
-  discount: 0,
-  discountedPrice: 0
+  imageUrl: '',
+  pricesObj: {},
+  productId: '',
+  maxQuantity: 0
 };
 
-export function convertToLightCartProduct(basketProduct: LineItem, { language, country }: UserLocation): CartProduct {
+export function convertToLightCartProduct(basketProduct: LineItem): CartProduct {
   if (!basketProduct) {
     return MOCK_BASKET_PRODUCT;
   }
 
-  const [id, lineId, key, name] = [basketProduct.productId, basketProduct.id, basketProduct.key!, basketProduct.name[language]];
-  const [image, prices] = [basketProduct.variant?.images?.[0], basketProduct.variant.prices];
+  const { productId, id: lineId, quantity } = basketProduct;
 
-  const { quantity } = basketProduct;
-  const images = basketProduct.variant?.images ? basketProduct.variant?.images : [];
-  const imageUrl = image ? image.url : imageNotAvailable;
-  const pricesObjUSD = prices ? prices.find((obj) => obj.country === country) : null;
-  const maxQuantity = basketProduct.variant?.availability?.availableQuantity ? basketProduct.variant.availability.availableQuantity : 0;
+  const name = basketProduct.name;
+  const prices = basketProduct.variant.prices ?? [];
+  const images = basketProduct.variant?.images ?? [];
 
-  const { price, discountedPrice, discount } = getProductPrices(pricesObjUSD);
+  const imageUrl = images[0] ? images[0].url : imageNotAvailable;
+  const maxQuantity = basketProduct.variant?.availability?.availableQuantity ?? 0;
 
-  return { id, lineId, key, name, quantity, maxQuantity, price, discountedPrice, discount, imageUrl, images };
+  const pricesObj = prices.reduce<Record<string, PriceConverted>>((acc, priceObj) => {
+    acc[priceObj.country ?? priceObj.value.currencyCode] = getProductPrice(priceObj);
+    return acc;
+  }, {});
+
+  return {
+    name,
+    images,
+    lineId,
+    quantity,
+    imageUrl,
+    pricesObj,
+    productId,
+    maxQuantity
+  };
 }

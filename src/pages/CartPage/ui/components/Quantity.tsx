@@ -6,7 +6,7 @@ import { Input, Button, ButtonGroup } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import { setQuantityAction, decrementQuantityAction, incrementQuantityAction } from '@/pages/CartPage/model/cart.slice';
+import { setQuantityAction, decrementQuantityAction, incrementQuantityAction } from '@/entities/cart';
 
 import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
 import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
@@ -37,15 +37,15 @@ export function Quantity({ id, quantity, sxInput = {}, sxContainer = {} }: IQuan
   const dispatch = useAppDispatch();
 
   const handleBtnLeftDecrement = (): void => {
-    dispatch(decrementQuantityAction({ id }));
+    dispatch(decrementQuantityAction({ productId: id }));
   };
 
   const handleBtnRightIncrement = (): void => {
-    dispatch(incrementQuantityAction({ id }));
+    dispatch(incrementQuantityAction({ productId: id }));
   };
 
   const handleInputChange = (event: InputReactEvent): void => {
-    dispatch(setQuantityAction({ id, newQuantity: +event.target.value }));
+    dispatch(setQuantityAction({ productId: id, newQuantity: +event.target.value }));
   };
 
   return (

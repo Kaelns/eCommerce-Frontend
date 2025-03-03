@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { Stack } from '@mui/system';
 import { Box, Typography } from '@mui/material';
 
+import { selectLanguage } from '@/entities/user';
 import { SRCSET_API } from '@/entities/product/model/product.constants';
 import { ProductToCartBtn } from '@/entities/product/ui/ProductCard/components/ProductToCartBtn';
 import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
@@ -18,6 +19,7 @@ import { FullPriceTypography } from '@/shared/ui/components/typography/FullPrice
 
 import { Paths } from '@/shared/model/data/enums';
 import { sxMixins } from '@/shared/lib/mui/mui-mixins';
+import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
 
 const IMG_SELECTOR = 'product-card__img';
 
@@ -77,37 +79,39 @@ export function ProductCard({
   imgHeight = { height: IMG_HEIGHT, maxSize: MAX_IMG_SIZE },
   containerMaxWidth = CONTAINER_MAX_WIDTH
 }: ProductCardProps) {
+  const language = useAppSelector(selectLanguage);
   const productData = useMemo(() => convertToLightProduct(product), [product]);
 
-  const shortedDescription = productData.description.slice(0, productData.description.indexOf(' ', 90));
+  const shortedDescription = productData.description ? productData.description[language].slice(0, 90) : '';
 
   const { height, maxSize } = imgHeight;
+  const { price, discount, discountedPrice } = productData.pricesObj[language];
 
   return (
     <LinkRouterWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper}>
       <Stack spacing={3} maxWidth={containerMaxWidth} sx={sxStyles.cardContainer}>
         <ProductToCartBtn productId={productData.id} isAvailable={!productData.maxQuantity} />
 
-        <DiscountTypography discount={productData.discount} sx={sxStyles.discount} />
+        <DiscountTypography discount={discount} sx={sxStyles.discount} />
 
         <ImgLoad
           height={height}
           src={productData.imageUrl}
-          alt={productData.name}
+          alt={productData.name[language]}
           className={IMG_SELECTOR}
           srcset={{ srcSetArr: SRCSET_API, maxSize }}
         />
 
         <Box>
           <BoldTypography variant="subtitle1" sx={sxStyles.title}>
-            {productData.name}
+            {productData.name[language]}
           </BoldTypography>
           <Typography variant="subtitle2">
             <b>Available quantity: </b>
             {productData.maxQuantity}
           </Typography>
-          <FullPriceTypography price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
-          <Typography>{shortedDescription}...</Typography>
+          <FullPriceTypography price={price} discount={discount} discountedPrice={discountedPrice} />
+          {Boolean(shortedDescription) ?? <Typography>{shortedDescription}...</Typography>}
         </Box>
       </Stack>
     </LinkRouterWrapper>

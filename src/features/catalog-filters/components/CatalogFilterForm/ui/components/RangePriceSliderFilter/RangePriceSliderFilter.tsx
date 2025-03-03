@@ -2,8 +2,10 @@ import type { SxStyles } from '@/shared/model/types/types';
 
 import { Stack, Slider, Typography, OutlinedInput } from '@mui/material';
 
+import { ProductConsts } from '@/entities/product';
+
+import { SLIDER_STEP } from '@/features/catalog-filters/model/constants';
 import { selectPriceForm } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
-import { MAX_MONEY, MIN_MONEY, SLIDER_STEP } from '@/features/catalog-filters/model/constants';
 import {
   changeRangeInput,
   changeRangeSlider
@@ -46,8 +48,8 @@ export function RangePriceSliderFilter() {
         value={priceState}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        min={MIN_MONEY}
-        max={MAX_MONEY}
+        min={ProductConsts.MIN_MONEY}
+        max={ProductConsts.MAX_MONEY}
         step={SLIDER_STEP}
         sx={sxStyles.slider}
       />

@@ -1,6 +1,6 @@
 import type { SxStyles } from '@/shared/model/types/types';
 
-import { selectCartProductId } from '@/pages/CartPage';
+import { selectCartProductLineId } from '@/pages/CartPage';
 
 import { AddProductToCartBtn } from '@/entities/cart/ui/AddProductToCartBtn/AddProductToCartBtn';
 
@@ -36,7 +36,7 @@ const sxStyles: SxStyles = {
   }
 };
 export function ProductToCartBtn({ productId, isAvailable }: { productId: string; isAvailable: boolean }) {
-  const cartProductId = useAppSelector((state) => selectCartProductId(state, productId));
+  const cartProductId = useAppSelector((state) => selectCartProductLineId(state, productId));
 
   return (
     <AddProductToCartBtn

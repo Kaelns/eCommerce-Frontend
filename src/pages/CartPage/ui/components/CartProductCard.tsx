@@ -1,15 +1,16 @@
 import type { BoxProps } from '@mui/system';
-import type { CartProduct } from '@/entities/cart';
 import type { SxStyles } from '@/shared/model/types/types';
 
 import { Stack } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Typography, inputClasses } from '@mui/material';
 
-import { Quantity } from '@/pages/CartPage/ui/Quantity';
-import { cartSlice } from '@/pages/CartPage/model/cart.slice';
+import { Quantity } from '@/pages/CartPage/ui/components/Quantity';
 
-import { SRCSET_API, ProductConsts } from '@/entities/product';
+import { SRCSET_API } from '@/entities/product';
+import { selectLanguage } from '@/entities/user';
+import { selectCartProductById } from '@/entities/cart';
+import { cartSlice } from '@/entities/cart/model/cart.slice';
 
 import { ImgLoad } from '@/shared/ui/components/img/ImgLoad';
 import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
@@ -17,7 +18,7 @@ import { DiscountTypography } from '@/shared/ui/elements/typography/DiscountTypo
 import { FullPriceTypography } from '@/shared/ui/components/typography/FullPriceTypography';
 
 import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
 
 const IMG_SELECTOR = 'product-basket__img';
 const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };
@@ -83,8 +84,8 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface IProductBasketProps {
-  productData: CartProduct;
+interface CartProductCardProps {
+  productId: string;
   imgHeight?: {
     maxSize: number;
     height: BoxProps['height'];
@@ -92,19 +93,25 @@ interface IProductBasketProps {
 }
 
 export function CartProductCard({
-  productData,
+  productId,
   imgHeight = {
     height: IMG_HEIGHT,
     maxSize: MAX_IMG_SIZE
   }
-}: IProductBasketProps) {
+}: CartProductCardProps) {
   const dispatch = useAppDispatch();
+  const language = useAppSelector(selectLanguage);
+
+  const cartProductData = useAppSelector((state) => selectCartProductById(state, productId));
 
   const { height, maxSize } = imgHeight;
-  const totalProductPrice = +(productData.price * productData.quantity).toFixed(ProductConsts.FRACTION_DIGITS);
+  const { price, discount, fractionDigits, discountedPrice } = cartProductData.pricesObj[language];
+
+  const totalProductPrice = +(price * cartProductData.quantity).toFixed(fractionDigits);
+  const totalDiscountedPrice = +(discountedPrice * cartProductData.quantity).toFixed(fractionDigits);
 
   const handleProductDelete = (): void => {
-    dispatch(cartSlice.actions.deleteProductAction({ id: productData.id }));
+    dispatch(cartSlice.actions.deleteProductAction({ productId }));
   };
 
   return (
@@ -112,12 +119,12 @@ export function CartProductCard({
       <Button variant="contained" onClick={handleProductDelete} sx={sxStyles.deleteProduct}>
         <CloseIcon />
       </Button>
-      <DiscountTypography discount={productData.discount} sx={sxStyles.discount} />
+      <DiscountTypography discount={discount} sx={sxStyles.discount} />
 
       <ImgLoad
         height={height}
-        src={productData.imageUrl}
-        alt={productData.name}
+        src={cartProductData.imageUrl}
+        alt={cartProductData.name[language]}
         containerStyles={sxStyles.column1}
         srcset={{ srcSetArr: SRCSET_API, maxSize }}
         className={IMG_SELECTOR}
@@ -125,27 +132,22 @@ export function CartProductCard({
 
       <Box sx={sxStyles.column2}>
         <BoldTypography variant="subtitle1" sx={sxStyles.title}>
-          {productData.name}
+          {cartProductData.name[language]}
         </BoldTypography>
 
         <Box>
-          <FullPriceTypography price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
+          <FullPriceTypography price={price} discount={discount} discountedPrice={discountedPrice} />
           <Typography variant="subtitle2">
             <b>Available quantity: </b>
-            {productData.maxQuantity}
+            {cartProductData.maxQuantity}
           </Typography>
           <Quantity
-            id={productData.id}
-            quantity={productData.quantity}
+            id={cartProductData.productId}
+            quantity={cartProductData.quantity}
             sxInput={sxStyles.quantityInput}
             sxContainer={sxStyles.quantityContainer}
           />
-          <FullPriceTypography
-            text="Final: "
-            price={totalProductPrice}
-            discount={productData.discount}
-            discountedPrice={+(productData.discountedPrice * productData.quantity).toFixed(ProductConsts.FRACTION_DIGITS)}
-          />
+          <FullPriceTypography text="Final: " price={totalProductPrice} discount={discount} discountedPrice={totalDiscountedPrice} />
         </Box>
       </Box>
     </Stack>

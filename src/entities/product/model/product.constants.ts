@@ -7,11 +7,7 @@ export const ProductConsts = {
   MIN_MONEY: 0,
   MAX_MONEY: 5000,
 
-  LIMIT_ON_PAGE: 18,
-  MONEY_SYMBOL: '$',
-
-  FRACTION_DIGITS: 2,
-  FRACTION_DOZENS: 10 ** 2
+  LIMIT_ON_PAGE: 18
 } as const;
 
 export const SRCSET_API: SrcsetPxAsc = [

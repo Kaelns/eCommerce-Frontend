@@ -1,17 +1,22 @@
-import type { Prices } from '@/shared/model/types/types';
-import type { Image } from '@commercetools/platform-sdk';
+import type { PriceConverted } from '@/shared/model/types/types';
+import type { Image, LocalizedString } from '@commercetools/platform-sdk';
 
 export interface CartProducts {
   [key: string]: CartProduct;
 }
 
-export interface CartProduct extends Prices {
-  id: string;
-  key: string;
-  name: string;
+export interface CartData {
+  cartId: string;
+  version: number;
+}
+
+export interface CartProduct {
   lineId: string;
   images: Image[];
   imageUrl: string;
   quantity: number;
+  productId: string;
   maxQuantity: number;
+  name: LocalizedString;
+  pricesObj: Record<string, PriceConverted>;
 }

@@ -1,0 +1,1034 @@
+{
+  "AED": {
+    "code": "AED",
+    "fractionDigits": 2,
+    "symbol": "د.إ.",
+    "symbolNative": "د.إ."
+  },
+  "AFN": {
+    "code": "AFN",
+    "fractionDigits": 2,
+    "symbol": "Af",
+    "symbolNative": "؋"
+  },
+  "ALL": {
+    "code": "ALL",
+    "fractionDigits": 2,
+    "symbol": "L",
+    "symbolNative": "L"
+  },
+  "AMD": {
+    "code": "AMD",
+    "fractionDigits": 2,
+    "symbol": "֏",
+    "symbolNative": "դր"
+  },
+  "ANG": {
+    "code": "ANG",
+    "fractionDigits": 2,
+    "symbol": "ƒ",
+    "symbolNative": "ƒ"
+  },
+  "AOA": {
+    "code": "AOA",
+    "fractionDigits": 2,
+    "symbol": "Kz",
+    "symbolNative": "Kz"
+  },
+  "ARS": {
+    "code": "ARS",
+    "fractionDigits": 2,
+    "symbol": "AR$",
+    "symbolNative": "$"
+  },
+  "AUD": {
+    "code": "AUD",
+    "fractionDigits": 2,
+    "symbol": "AU$",
+    "symbolNative": "$"
+  },
+  "AWG": {
+    "code": "AWG",
+    "fractionDigits": 2,
+    "symbol": "ƒ",
+    "symbolNative": "ƒ"
+  },
+  "AZN": {
+    "code": "AZN",
+    "fractionDigits": 2,
+    "symbol": "ман",
+    "symbolNative": "₼"
+  },
+  "BAM": {
+    "code": "BAM",
+    "fractionDigits": 2,
+    "symbol": "KM",
+    "symbolNative": "КМ"
+  },
+  "BBD": {
+    "code": "BBD",
+    "fractionDigits": 2,
+    "symbol": "BBD$",
+    "symbolNative": "$"
+  },
+  "BDT": {
+    "code": "BDT",
+    "fractionDigits": 2,
+    "symbol": "৳",
+    "symbolNative": "৳"
+  },
+  "BGN": {
+    "code": "BGN",
+    "fractionDigits": 2,
+    "symbol": "лв.",
+    "symbolNative": "лв."
+  },
+  "BHD": {
+    "code": "BHD",
+    "fractionDigits": 3,
+    "symbol": "BD",
+    "symbolNative": "د.ب."
+  },
+  "BIF": {
+    "code": "BIF",
+    "fractionDigits": 2,
+    "symbol": "FBu",
+    "symbolNative": "FBu"
+  },
+  "BMD": {
+    "code": "BMD",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "BND": {
+    "code": "BND",
+    "fractionDigits": 2,
+    "symbol": "B$",
+    "symbolNative": "$"
+  },
+  "BOB": {
+    "code": "BOB",
+    "fractionDigits": 2,
+    "symbol": "Bs.",
+    "symbolNative": "Bs."
+  },
+  "BRL": {
+    "code": "BRL",
+    "fractionDigits": 2,
+    "symbol": "R$",
+    "symbolNative": "R$"
+  },
+  "BSD": {
+    "code": "BSD",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "BTN": {
+    "code": "BTN",
+    "fractionDigits": 2,
+    "symbol": "Nu.",
+    "symbolNative": "Nu."
+  },
+  "BWP": {
+    "code": "BWP",
+    "fractionDigits": 2,
+    "symbol": "P",
+    "symbolNative": "P"
+  },
+  "BYN": {
+    "code": "BYN",
+    "fractionDigits": 2,
+    "symbol": "Br",
+    "symbolNative": "руб."
+  },
+  "BZD": {
+    "code": "BZD",
+    "fractionDigits": 2,
+    "symbol": "BZ$",
+    "symbolNative": "$"
+  },
+  "CAD": {
+    "code": "CAD",
+    "fractionDigits": 2,
+    "symbol": "CA$",
+    "symbolNative": "$"
+  },
+  "CDF": {
+    "code": "CDF",
+    "fractionDigits": 2,
+    "symbol": "FC",
+    "symbolNative": "₣"
+  },
+  "CHF": {
+    "code": "CHF",
+    "fractionDigits": 2,
+    "symbol": "Fr.",
+    "symbolNative": "₣"
+  },
+  "CKD": {
+    "code": "CKD",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "CLP": {
+    "code": "CLP",
+    "fractionDigits": 0,
+    "symbol": "CL$",
+    "symbolNative": "$"
+  },
+  "CNY": {
+    "code": "CNY",
+    "fractionDigits": 2,
+    "symbol": "CN¥",
+    "symbolNative": "¥元"
+  },
+  "COP": {
+    "code": "COP",
+    "fractionDigits": 2,
+    "symbol": "CO$",
+    "symbolNative": "$"
+  },
+  "CRC": {
+    "code": "CRC",
+    "fractionDigits": 2,
+    "symbol": "₡",
+    "symbolNative": "₡"
+  },
+  "CUC": {
+    "code": "CUC",
+    "fractionDigits": 2,
+    "symbol": "CUC$",
+    "symbolNative": "$"
+  },
+  "CUP": {
+    "code": "CUP",
+    "fractionDigits": 2,
+    "symbol": "$MN",
+    "symbolNative": "₱"
+  },
+  "CVE": {
+    "code": "CVE",
+    "fractionDigits": 2,
+    "symbol": "CV$",
+    "symbolNative": "$"
+  },
+  "CZK": {
+    "code": "CZK",
+    "fractionDigits": 2,
+    "symbol": "Kč",
+    "symbolNative": "Kč"
+  },
+  "DJF": {
+    "code": "DJF",
+    "fractionDigits": 2,
+    "symbol": "Fdj",
+    "symbolNative": "ف.ج."
+  },
+  "DKK": {
+    "code": "DKK",
+    "fractionDigits": 2,
+    "symbol": "kr.",
+    "symbolNative": "kr."
+  },
+  "DOP": {
+    "code": "DOP",
+    "fractionDigits": 2,
+    "symbol": "RD$",
+    "symbolNative": "$"
+  },
+  "DZD": {
+    "code": "DZD",
+    "fractionDigits": 2,
+    "symbol": "DA",
+    "symbolNative": "د.ج."
+  },
+  "EGP": {
+    "code": "EGP",
+    "fractionDigits": 2,
+    "symbol": "E£",
+    "symbolNative": "ج.م."
+  },
+  "EHP": {
+    "code": "EHP",
+    "fractionDigits": 2,
+    "symbol": "Ptas.",
+    "symbolNative": "Ptas."
+  },
+  "ERN": {
+    "code": "ERN",
+    "fractionDigits": 2,
+    "symbol": "Nkf",
+    "symbolNative": "ناكفا"
+  },
+  "ETB": {
+    "code": "ETB",
+    "fractionDigits": 2,
+    "symbol": "Br",
+    "symbolNative": "ብር"
+  },
+  "EUR": {
+    "code": "EUR",
+    "fractionDigits": 2,
+    "symbol": "€",
+    "symbolNative": "€"
+  },
+  "FJD": {
+    "code": "FJD",
+    "fractionDigits": 2,
+    "symbol": "FJ$",
+    "symbolNative": "$"
+  },
+  "FKP": {
+    "code": "FKP",
+    "fractionDigits": 2,
+    "symbol": "FK£",
+    "symbolNative": "£"
+  },
+  "FOK": {
+    "code": "FOK",
+    "fractionDigits": 2,
+    "symbol": "kr",
+    "symbolNative": "kr"
+  },
+  "GBP": {
+    "code": "GBP",
+    "fractionDigits": 2,
+    "symbol": "£",
+    "symbolNative": "£"
+  },
+  "GEL": {
+    "code": "GEL",
+    "fractionDigits": 2,
+    "symbol": "₾",
+    "symbolNative": "₾"
+  },
+  "GGP": {
+    "code": "GGP",
+    "fractionDigits": 2,
+    "symbol": "£",
+    "symbolNative": "£"
+  },
+  "GHS": {
+    "code": "GHS",
+    "fractionDigits": 2,
+    "symbol": "GH₵",
+    "symbolNative": "₵"
+  },
+  "GIP": {
+    "code": "GIP",
+    "fractionDigits": 2,
+    "symbol": "£",
+    "symbolNative": "£"
+  },
+  "GMD": {
+    "code": "GMD",
+    "fractionDigits": 2,
+    "symbol": "D",
+    "symbolNative": "D"
+  },
+  "GNF": {
+    "code": "GNF",
+    "fractionDigits": 2,
+    "symbol": "FG",
+    "symbolNative": "FG"
+  },
+  "GTQ": {
+    "code": "GTQ",
+    "fractionDigits": 2,
+    "symbol": "Q",
+    "symbolNative": "$"
+  },
+  "GYD": {
+    "code": "GYD",
+    "fractionDigits": 2,
+    "symbol": "G$",
+    "symbolNative": "$"
+  },
+  "HKD": {
+    "code": "HKD",
+    "fractionDigits": 2,
+    "symbol": "HK$",
+    "symbolNative": "$"
+  },
+  "HNL": {
+    "code": "HNL",
+    "fractionDigits": 2,
+    "symbol": "L",
+    "symbolNative": "L"
+  },
+  "HRK": {
+    "code": "HRK",
+    "fractionDigits": 2,
+    "symbol": "kn",
+    "symbolNative": "kn"
+  },
+  "HTG": {
+    "code": "HTG",
+    "fractionDigits": 2,
+    "symbol": "G",
+    "symbolNative": "G"
+  },
+  "HUF": {
+    "code": "HUF",
+    "fractionDigits": 2,
+    "symbol": "Ft",
+    "symbolNative": "Ft"
+  },
+  "IDR": {
+    "code": "IDR",
+    "fractionDigits": 2,
+    "symbol": "Rp",
+    "symbolNative": "Rp"
+  },
+  "ILS": {
+    "code": "ILS",
+    "fractionDigits": 2,
+    "symbol": "₪",
+    "symbolNative": "₪"
+  },
+  "IMP": {
+    "code": "IMP",
+    "fractionDigits": 2,
+    "symbol": "£",
+    "symbolNative": "£"
+  },
+  "INR": {
+    "code": "INR",
+    "fractionDigits": 2,
+    "symbol": "Rs.",
+    "symbolNative": "₹"
+  },
+  "IQD": {
+    "code": "IQD",
+    "fractionDigits": 3,
+    "symbol": "د.ع.",
+    "symbolNative": "د.ع."
+  },
+  "IRR": {
+    "code": "IRR",
+    "fractionDigits": 2,
+    "symbol": "﷼",
+    "symbolNative": "﷼"
+  },
+  "ISK": {
+    "code": "ISK",
+    "fractionDigits": 2,
+    "symbol": "kr",
+    "symbolNative": "kr"
+  },
+  "JEP": {
+    "code": "JEP",
+    "fractionDigits": 2,
+    "symbol": "£",
+    "symbolNative": "£"
+  },
+  "JMD": {
+    "code": "JMD",
+    "fractionDigits": 2,
+    "symbol": "J$",
+    "symbolNative": "$"
+  },
+  "JOD": {
+    "code": "JOD",
+    "fractionDigits": 3,
+    "symbol": "JD",
+    "symbolNative": "د.أ."
+  },
+  "JPY": {
+    "code": "JPY",
+    "fractionDigits": 2,
+    "symbol": "¥",
+    "symbolNative": "¥"
+  },
+  "KES": {
+    "code": "KES",
+    "fractionDigits": 2,
+    "symbol": "KSh",
+    "symbolNative": "KSh"
+  },
+  "KGS": {
+    "code": "KGS",
+    "fractionDigits": 2,
+    "symbol": "с",
+    "symbolNative": "с"
+  },
+  "KHR": {
+    "code": "KHR",
+    "fractionDigits": 2,
+    "symbol": "៛",
+    "symbolNative": "៛"
+  },
+  "KID": {
+    "code": "KID",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "KMF": {
+    "code": "KMF",
+    "fractionDigits": 2,
+    "symbol": "CF",
+    "symbolNative": "CF"
+  },
+  "KPW": {
+    "code": "KPW",
+    "fractionDigits": 2,
+    "symbol": "₩",
+    "symbolNative": "₩"
+  },
+  "KRW": {
+    "code": "KRW",
+    "fractionDigits": 2,
+    "symbol": "₩",
+    "symbolNative": "₩"
+  },
+  "KWD": {
+    "code": "KWD",
+    "fractionDigits": 3,
+    "symbol": "KD",
+    "symbolNative": "د.ك."
+  },
+  "KYD": {
+    "code": "KYD",
+    "fractionDigits": 2,
+    "symbol": "CI$",
+    "symbolNative": "$"
+  },
+  "KZT": {
+    "code": "KZT",
+    "fractionDigits": 2,
+    "symbol": "₸",
+    "symbolNative": "₸"
+  },
+  "LAK": {
+    "code": "LAK",
+    "fractionDigits": 2,
+    "symbol": "₭N",
+    "symbolNative": "₭"
+  },
+  "LBP": {
+    "code": "LBP",
+    "fractionDigits": 2,
+    "symbol": "LL.",
+    "symbolNative": "ل.ل."
+  },
+  "LKR": {
+    "code": "LKR",
+    "fractionDigits": 2,
+    "symbol": "Rs.",
+    "symbolNative": "රු or ரூ"
+  },
+  "LRD": {
+    "code": "LRD",
+    "fractionDigits": 2,
+    "symbol": "L$",
+    "symbolNative": "$"
+  },
+  "LSL": {
+    "code": "LSL",
+    "fractionDigits": 2,
+    "symbol": "L",
+    "symbolNative": "L"
+  },
+  "LYD": {
+    "code": "LYD",
+    "fractionDigits": 3,
+    "symbol": "LD",
+    "symbolNative": "ل.د."
+  },
+  "MAD": {
+    "code": "MAD",
+    "fractionDigits": 2,
+    "symbol": "DH",
+    "symbolNative": "د.م."
+  },
+  "MDL": {
+    "code": "MDL",
+    "fractionDigits": 2,
+    "symbol": "L",
+    "symbolNative": "L"
+  },
+  "MGA": {
+    "code": "MGA",
+    "fractionDigits": 0,
+    "symbol": "Ar",
+    "symbolNative": "Ar"
+  },
+  "MKD": {
+    "code": "MKD",
+    "fractionDigits": 2,
+    "symbol": "den",
+    "symbolNative": "ден"
+  },
+  "MMK": {
+    "code": "MMK",
+    "fractionDigits": 2,
+    "symbol": "Ks",
+    "symbolNative": "Ks"
+  },
+  "MNT": {
+    "code": "MNT",
+    "fractionDigits": 2,
+    "symbol": "₮",
+    "symbolNative": "₮"
+  },
+  "MOP": {
+    "code": "MOP",
+    "fractionDigits": 2,
+    "symbol": "MOP$",
+    "symbolNative": "MOP$"
+  },
+  "MRU": {
+    "code": "MRU",
+    "fractionDigits": 0,
+    "symbol": "UM",
+    "symbolNative": "أ.م."
+  },
+  "MUR": {
+    "code": "MUR",
+    "fractionDigits": 2,
+    "symbol": "Rs.",
+    "symbolNative": "रु "
+  },
+  "MVR": {
+    "code": "MVR",
+    "fractionDigits": 2,
+    "symbol": "MRf",
+    "symbolNative": ".ރ"
+  },
+  "MWK": {
+    "code": "MWK",
+    "fractionDigits": 2,
+    "symbol": "MK",
+    "symbolNative": "MK"
+  },
+  "MXN": {
+    "code": "MXN",
+    "fractionDigits": 2,
+    "symbol": "MX$",
+    "symbolNative": "$"
+  },
+  "MYR": {
+    "code": "MYR",
+    "fractionDigits": 2,
+    "symbol": "RM",
+    "symbolNative": "RM"
+  },
+  "MZN": {
+    "code": "MZN",
+    "fractionDigits": 2,
+    "symbol": "MTn",
+    "symbolNative": "MT"
+  },
+  "NAD": {
+    "code": "NAD",
+    "fractionDigits": 2,
+    "symbol": "N$",
+    "symbolNative": "$"
+  },
+  "NGN": {
+    "code": "NGN",
+    "fractionDigits": 2,
+    "symbol": "₦",
+    "symbolNative": "₦"
+  },
+  "NIO": {
+    "code": "NIO",
+    "fractionDigits": 2,
+    "symbol": "C$",
+    "symbolNative": "C$"
+  },
+  "NOK": {
+    "code": "NOK",
+    "fractionDigits": 2,
+    "symbol": "kr",
+    "symbolNative": "kr"
+  },
+  "NPR": {
+    "code": "NPR",
+    "fractionDigits": 2,
+    "symbol": "Rs.",
+    "symbolNative": "रू"
+  },
+  "NZD": {
+    "code": "NZD",
+    "fractionDigits": 2,
+    "symbol": "NZ$",
+    "symbolNative": "$"
+  },
+  "OMR": {
+    "code": "OMR",
+    "fractionDigits": 3,
+    "symbol": "OR",
+    "symbolNative": "ر.ع."
+  },
+  "PAB": {
+    "code": "PAB",
+    "fractionDigits": 2,
+    "symbol": "B/.",
+    "symbolNative": "B/."
+  },
+  "PEN": {
+    "code": "PEN",
+    "fractionDigits": 2,
+    "symbol": "S/.",
+    "symbolNative": "S/."
+  },
+  "PGK": {
+    "code": "PGK",
+    "fractionDigits": 2,
+    "symbol": "K",
+    "symbolNative": "K"
+  },
+  "PHP": {
+    "code": "PHP",
+    "fractionDigits": 2,
+    "symbol": "₱",
+    "symbolNative": "₱"
+  },
+  "PKR": {
+    "code": "PKR",
+    "fractionDigits": 2,
+    "symbol": "Rs.",
+    "symbolNative": "Rs"
+  },
+  "PLN": {
+    "code": "PLN",
+    "fractionDigits": 2,
+    "symbol": "zł",
+    "symbolNative": "zł"
+  },
+  "PND": {
+    "code": "PND",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "PRB": {
+    "code": "PRB",
+    "fractionDigits": 2,
+    "symbol": "р.",
+    "symbolNative": "р."
+  },
+  "PYG": {
+    "code": "PYG",
+    "fractionDigits": 2,
+    "symbol": "₲",
+    "symbolNative": "₲"
+  },
+  "QAR": {
+    "code": "QAR",
+    "fractionDigits": 2,
+    "symbol": "QR",
+    "symbolNative": "ر.ق."
+  },
+  "RON": {
+    "code": "RON",
+    "fractionDigits": 2,
+    "symbol": "L",
+    "symbolNative": "L"
+  },
+  "RSD": {
+    "code": "RSD",
+    "fractionDigits": 2,
+    "symbol": "din",
+    "symbolNative": "дин"
+  },
+  "RUB": {
+    "code": "RUB",
+    "fractionDigits": 2,
+    "symbol": "₽",
+    "symbolNative": "₽"
+  },
+  "RWF": {
+    "code": "RWF",
+    "fractionDigits": 2,
+    "symbol": "FRw",
+    "symbolNative": "R₣"
+  },
+  "SAR": {
+    "code": "SAR",
+    "fractionDigits": 2,
+    "symbol": "SR",
+    "symbolNative": "ر.س."
+  },
+  "SBD": {
+    "code": "SBD",
+    "fractionDigits": 2,
+    "symbol": "SI$",
+    "symbolNative": "$"
+  },
+  "SCR": {
+    "code": "SCR",
+    "fractionDigits": 2,
+    "symbol": "Rs.",
+    "symbolNative": "Rs"
+  },
+  "SDG": {
+    "code": "SDG",
+    "fractionDigits": 2,
+    "symbol": "£SD",
+    "symbolNative": "ج.س."
+  },
+  "SEK": {
+    "code": "SEK",
+    "fractionDigits": 2,
+    "symbol": "kr",
+    "symbolNative": "kr"
+  },
+  "SGD": {
+    "code": "SGD",
+    "fractionDigits": 2,
+    "symbol": "S$",
+    "symbolNative": "$"
+  },
+  "SHP": {
+    "code": "SHP",
+    "fractionDigits": 2,
+    "symbol": "£",
+    "symbolNative": "£"
+  },
+  "SLL": {
+    "code": "SLL",
+    "fractionDigits": 2,
+    "symbol": "Le",
+    "symbolNative": "Le"
+  },
+  "SLS": {
+    "code": "SLS",
+    "fractionDigits": 2,
+    "symbol": "Sl",
+    "symbolNative": "Sl"
+  },
+  "SOS": {
+    "code": "SOS",
+    "fractionDigits": 2,
+    "symbol": "Sh.So.",
+    "symbolNative": "Ssh"
+  },
+  "SRD": {
+    "code": "SRD",
+    "fractionDigits": 2,
+    "symbol": "Sr$",
+    "symbolNative": "$"
+  },
+  "SSP": {
+    "code": "SSP",
+    "fractionDigits": 2,
+    "symbol": "SS£",
+    "symbolNative": "SS£"
+  },
+  "STN": {
+    "code": "STN",
+    "fractionDigits": 2,
+    "symbol": "Db",
+    "symbolNative": "Db"
+  },
+  "SVC": {
+    "code": "SVC",
+    "fractionDigits": 2,
+    "symbol": "₡",
+    "symbolNative": "₡"
+  },
+  "SYP": {
+    "code": "SYP",
+    "fractionDigits": 2,
+    "symbol": "LS",
+    "symbolNative": "ل.س."
+  },
+  "SZL": {
+    "code": "SZL",
+    "fractionDigits": 2,
+    "symbol": "L",
+    "symbolNative": "L"
+  },
+  "THB": {
+    "code": "THB",
+    "fractionDigits": 2,
+    "symbol": "฿",
+    "symbolNative": "฿"
+  },
+  "TJS": {
+    "code": "TJS",
+    "fractionDigits": 2,
+    "symbol": "SM",
+    "symbolNative": "SM"
+  },
+  "TMT": {
+    "code": "TMT",
+    "fractionDigits": 2,
+    "symbol": "m.",
+    "symbolNative": "T"
+  },
+  "TND": {
+    "code": "TND",
+    "fractionDigits": 3,
+    "symbol": "DT",
+    "symbolNative": "د.ت."
+  },
+  "TOP": {
+    "code": "TOP",
+    "fractionDigits": 2,
+    "symbol": "T$",
+    "symbolNative": "PT"
+  },
+  "TRY": {
+    "code": "TRY",
+    "fractionDigits": 2,
+    "symbol": "TL",
+    "symbolNative": "₺"
+  },
+  "TTD": {
+    "code": "TTD",
+    "fractionDigits": 2,
+    "symbol": "TT$",
+    "symbolNative": "$"
+  },
+  "TVD": {
+    "code": "TVD",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "TWD": {
+    "code": "TWD",
+    "fractionDigits": 2,
+    "symbol": "NT$",
+    "symbolNative": "圓"
+  },
+  "TZS": {
+    "code": "TZS",
+    "fractionDigits": 2,
+    "symbol": "TSh",
+    "symbolNative": "TSh"
+  },
+  "UAH": {
+    "code": "UAH",
+    "fractionDigits": 2,
+    "symbol": "₴",
+    "symbolNative": "грн"
+  },
+  "UGX": {
+    "code": "UGX",
+    "fractionDigits": 2,
+    "symbol": "USh",
+    "symbolNative": "Sh"
+  },
+  "USD": {
+    "code": "USD",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "UYU": {
+    "code": "UYU",
+    "fractionDigits": 2,
+    "symbol": "$U",
+    "symbolNative": "$"
+  },
+  "UZS": {
+    "code": "UZS",
+    "fractionDigits": 2,
+    "symbol": "сум",
+    "symbolNative": "сум"
+  },
+  "VED": {
+    "code": "VED",
+    "fractionDigits": 2,
+    "symbol": "Bs.",
+    "symbolNative": "Bs."
+  },
+  "VES": {
+    "code": "VES",
+    "fractionDigits": 2,
+    "symbol": "Bs.F",
+    "symbolNative": "Bs.F"
+  },
+  "VND": {
+    "code": "VND",
+    "fractionDigits": 2,
+    "symbol": "₫",
+    "symbolNative": "₫"
+  },
+  "VUV": {
+    "code": "VUV",
+    "fractionDigits": 0,
+    "symbol": "VT",
+    "symbolNative": "VT"
+  },
+  "WST": {
+    "code": "WST",
+    "fractionDigits": 2,
+    "symbol": "T",
+    "symbolNative": "ST"
+  },
+  "XAF": {
+    "code": "XAF",
+    "fractionDigits": 2,
+    "symbol": "Fr",
+    "symbolNative": "Fr."
+  },
+  "XCD": {
+    "code": "XCD",
+    "fractionDigits": 2,
+    "symbol": "$",
+    "symbolNative": "$"
+  },
+  "XOF": {
+    "code": "XOF",
+    "fractionDigits": 2,
+    "symbol": "₣",
+    "symbolNative": "₣"
+  },
+  "XPF": {
+    "code": "XPF",
+    "fractionDigits": 0,
+    "symbol": "₣",
+    "symbolNative": "₣"
+  },
+  "YER": {
+    "code": "YER",
+    "fractionDigits": 2,
+    "symbol": "YR",
+    "symbolNative": "ر.ي."
+  },
+  "ZAR": {
+    "code": "ZAR",
+    "fractionDigits": 2,
+    "symbol": "R",
+    "symbolNative": "R"
+  },
+  "ZMW": {
+    "code": "ZMW",
+    "fractionDigits": 2,
+    "symbol": "ZK",
+    "symbolNative": "ZK"
+  },
+  "ZWB": {
+    "code": "ZWB",
+    "fractionDigits": 0,
+    "symbol": "",
+    "symbolNative": ""
+  },
+  "ZWL": {
+    "code": "ZWL",
+    "fractionDigits": 2,
+    "symbol": "Z$",
+    "symbolNative": "$"
+  },
+  "Abkhazia": {
+    "code": "Abkhazia",
+    "fractionDigits": 0,
+    "symbol": "",
+    "symbolNative": ""
+  },
+  "Artsakh": {
+    "code": "Artsakh",
+    "fractionDigits": 2,
+    "symbol": "դր.",
+    "symbolNative": "դր."
+  }
+}

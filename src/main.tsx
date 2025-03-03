@@ -8,9 +8,7 @@ import { router } from '@/router/router';
 import { store } from '@/app';
 import '@/app/styles/index.scss';
 import { MuiTheme } from '@/app/config/mui-theme/MuiTheme';
-
-// * Define global if it's undefined
-window.global ||= window;
+import '@/app/model/init-scripts.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

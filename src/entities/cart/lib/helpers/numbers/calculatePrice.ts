@@ -1,12 +1,12 @@
-import type { CartProducts } from '@/shared/model/types/types';
+import type { CartProducts } from '@/entities/cart/model/types/cart.types';
 
-import { ProductConsts } from '@/entities/product';
+export function calculatePrice(products: CartProducts, language: string): number {
+  const fractionDigits = products[0].pricesObj[language].fractionDigits;
 
-export function calculatePrice(products: CartProducts): number {
   const finalPrice = Object.values(products).reduce((acc, productData) => {
-    const { discountedPrice, price, quantity } = productData;
-    const calcPrice = (discountedPrice || price) * quantity;
+    const { discountedPrice, price } = productData.pricesObj[language];
+    const calcPrice = (discountedPrice || price) * productData.quantity;
     return acc + calcPrice;
   }, 0);
-  return +finalPrice.toFixed(ProductConsts.FRACTION_DIGITS);
+  return +finalPrice.toFixed(fractionDigits);
 }
