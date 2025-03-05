@@ -22,22 +22,20 @@ export function convertToLightProduct(product: ProductProjection | undefined): P
     return MOCK_PRODUCT;
   }
 
-  const { id, key, name, description, categories } = product;
-
   const prices = product.masterVariant.prices ?? [];
   const images = product.masterVariant?.images ?? [];
 
   const imageUrl = images[0] ? images[0].url : imageNotAvailable;
-  const categoriesIdArr = categories.map((obj) => obj.id);
+  const categoriesIdArr = product.categories.map((obj) => obj.id);
   const maxQuantity = product.masterVariant?.availability?.availableQuantity ?? 0;
 
   const pricesObj = getProductPricesObj(prices);
 
   return {
-    id,
-    key: key ?? id,
-    name,
-    description,
+    id: product.id,
+    key: product.key ?? product.id,
+    name: product.name,
+    description: product.description,
     images,
     imageUrl,
     pricesObj,

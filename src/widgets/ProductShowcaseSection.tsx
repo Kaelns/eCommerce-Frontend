@@ -5,7 +5,6 @@ import { Paper } from '@mui/material';
 import { Grid, Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 
-import { selectLanguage } from '@/entities/user';
 import { useGetProductsQuery } from '@/entities/product';
 import { queryArgsByCategory } from '@/entities/categories';
 import { ProductCard } from '@/entities/product/ui/ProductCard';
@@ -17,7 +16,7 @@ import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWi
 
 import { Paths } from '@/shared/model/data/enums';
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
 
 const sxStyles: SxStyles = {
   body: {
@@ -56,12 +55,10 @@ export const ProductShowcaseSection = memo(function ShowcaseSection({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const language = useAppSelector(selectLanguage);
-
   const { data: products, error, isError, isLoading } = useGetProductsQuery(queryArgsByCategory(categoryId), { skip: !categoryId });
 
   const setCategoryAndRedirect = (): void => {
-    dispatch(setCategoryIdAndNameAction({ categoryId, categoryName, language }));
+    dispatch(setCategoryIdAndNameAction({ categoryId, categoryName }));
     navigate(Paths.CATALOG);
   };
 

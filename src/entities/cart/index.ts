@@ -6,21 +6,24 @@ export * from '@/entities/cart/model/types/cart.schemas';
 export * from '@/entities/cart/model/data/cart.constants';
 
 export { cartApi };
-export const { useGetAllCartsQuery } = cartApi;
+export const { useGetAllCartsQuery, useUpdateCartMutation } = cartApi;
 
-export { calculatePrice } from '@/entities/cart/lib/helpers/numbers/calculatePrice';
+export { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
 export { calculateDiscountPercent } from '@/shared/lib/utils/numbers/calculateDiscountPercent';
-export { calculateProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateProductsQuantity';
-export { convertToLightCartAllProducts } from '@/entities/cart/lib/helpers/objects/convertToLightCartAllProducts';
+export { createCartUpdateAction } from '@/entities/cart/lib/helpers/objects/createCartUpdateAction';
+export { calculateFinalCartPrice as calculatePrice } from '@/entities/cart/lib/helpers/numbers/calculateFinalCartPrice';
+export { calculateCartProductsQuantity as calculateProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateCartProductsQuantity';
 
 export const {
   selectCartProducts,
-  selectDiscountCart,
-  selectFinalPriceCart,
+  selectCartDiscount,
   selectCartProductById,
-  selectIsPromocodeCart,
+  selectCartProductsIds,
+  selectCartIsPromocode,
+  selectCartIdAndVersion,
+  selectCartFinalPriceObj,
   selectCartProductLineId,
-  selectProductQuantityCart
+  selectCartProductQuantity
 } = cartSlice.selectors;
 
 export const {
@@ -28,7 +31,7 @@ export const {
   setCartDataAction,
   setQuantityAction,
   deleteProductAction,
-  setIsPromocodeAction,
   decrementQuantityAction,
-  incrementQuantityAction
+  incrementQuantityAction,
+  setCartIsPromocodeAction
 } = cartSlice.actions;

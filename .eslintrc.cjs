@@ -74,6 +74,7 @@ module.exports = {
     'perfectionist/sort-modules': ['error', { type: 'line-length', order: 'asc', partitionByComment: true }],
     'perfectionist/sort-objects': 'off',
     'perfectionist/sort-jsx-props': 'off',
+    'perfectionist/sort-switch-case': 'off',
     'perfectionist/sort-imports': [
       'error',
       {

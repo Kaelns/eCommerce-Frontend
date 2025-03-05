@@ -1,6 +1,7 @@
 import type { BoxProps } from '@mui/system';
 import type { SxStyles } from '@/shared/model/types/types';
 
+import { round } from 'lodash';
 import { Stack } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Typography, inputClasses } from '@mui/material';
@@ -107,8 +108,8 @@ export function CartProductCard({
   const { height, maxSize } = imgHeight;
   const { price, discount, fractionDigits, discountedPrice } = cartProductData.pricesObj[language];
 
-  const totalProductPrice = +(price * cartProductData.quantity).toFixed(fractionDigits);
-  const totalDiscountedPrice = +(discountedPrice * cartProductData.quantity).toFixed(fractionDigits);
+  const totalProductPrice = round(price * cartProductData.quantity, fractionDigits);
+  const totalDiscountedPrice = round(discountedPrice * cartProductData.quantity, fractionDigits);
 
   const handleProductDelete = (): void => {
     dispatch(cartSlice.actions.deleteProductAction({ productId }));
