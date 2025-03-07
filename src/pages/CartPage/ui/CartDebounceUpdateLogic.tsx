@@ -13,9 +13,19 @@ export const CartDebounceUpdateLogic = memo(function CartDebounceLogic() {
   const [updateCartProducts] = useUpdateCartMutation();
 
   useEffect(() => {
-    if (prevCartProducts !== newCartProducts) {
-    }
+    // if (prevCartProducts !== newCartProducts) {
+    // }
   }, [prevCartProducts, newCartProducts]);
 
   return null;
 });
+
+// useEffect(() => {
+//   const postOrRevertOnError = async (): Promise<void> => {
+//     const errorMessage = await postQuantity(prevBasketProd, cartProductsCopy, isLogged);
+//     if (errorMessage) {
+//       setPrevBasketOnError(showAlert, dispatchCartProducts, errorMessage, prevBasketProd);
+//     }
+//   };
+//   postOrRevertOnError();
+// }, [prevBasketProd, cartProductsCopy, showAlert, isLogged]);

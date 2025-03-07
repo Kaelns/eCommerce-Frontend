@@ -26,7 +26,7 @@ const sxStyles: SxStyles = {
 interface SuspenseWithErrorProps extends StackProps {
   Fallback?: React.ReactElement;
   Skeleton?: React.ReactElement;
-  settings: { error?: string; isError: boolean; isOnlyInitialFetch?: boolean } & (
+  settings: { error?: string; isError: boolean } & (
     | {
         isFetching: boolean;
         isLoading?: undefined;
@@ -40,13 +40,14 @@ interface SuspenseWithErrorProps extends StackProps {
 
 export function SuspenseWithError({
   children,
-  settings: { isLoading, isFetching, isError, isOnlyInitialFetch = false, error },
+  settings: { isLoading, isFetching, isError, error },
   Skeleton = <PageSkeleton />,
   Fallback = <AppError message={error} src={imageError} alt="error" />,
   sx = {},
   ...props
 }: PropsWithChildren<SuspenseWithErrorProps>) {
   const isLoadingOrFetching = typeof isLoading === 'boolean' ? isLoading : isFetching;
+  const isOnlyInitialFetch = isLoading !== undefined && isFetching === undefined;
 
   return (
     <Box sx={[sxStyles.wrapper, ...convertSxToArr(sx)]} {...props}>

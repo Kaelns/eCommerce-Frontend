@@ -46,11 +46,11 @@ export const cartApi = ecommerceApi
         }
       }),
 
-      updateCart: build.mutation<Cart, { action: MyCartUpdateAction } & CartData>({
-        query: (queryArgs) => ({
+      updateCart: build.mutation<Cart, { actions: MyCartUpdateAction[] } & CartData>({
+        query: (body) => ({
           url: cartPath,
           method: 'PATCH',
-          body: queryArgs
+          body: body
         }),
         onQueryStarted: async ({ cartId }, { dispatch, queryFulfilled }) => {
           try {

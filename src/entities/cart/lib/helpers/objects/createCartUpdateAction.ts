@@ -1,8 +1,8 @@
 import type {
-  MyCartAddDiscountCodeAction,
+  MyCartUpdateAction,
   MyCartAddLineItemAction,
   MyCartRemoveLineItemAction,
-  MyCartUpdateAction
+  MyCartAddDiscountCodeAction
 } from '@commercetools/platform-sdk';
 
 import { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
@@ -12,8 +12,8 @@ interface Setting {
     quantity: number;
     productId: string;
 
-    lineItemId?: undefined;
     promocode?: undefined;
+    lineItemId?: undefined;
   };
 
   [CartUpdateActionTypes.DECREMENT]: {
@@ -71,33 +71,3 @@ export function createCartUpdateAction<T extends CartUpdateActionTypes>(
       } satisfies MyCartAddDiscountCodeAction;
   }
 }
-
-//  TODO to update already existing cart product we need his lineItemId
-
-// export async function manageCartCatch(
-//   action: ManageCart,
-//   id: string,
-//   token: string,
-//   quantity?: number
-// ): Promise<IManageCartReturn> {
-//   try {
-//     const currentCart = await getCart();
-//     let cart = currentCart;
-//     if (!cart || !cart.id) {
-//       cart = await api.cart.createCart();
-//     }
-//     const { id: cardId, version } = cart;
-//     const actionObj = createAction(action, id, quantity);
-//     if (!actionObj) {
-//       throw new Error('Something bad with action type');
-//     }
-//     const responce = await api.cart.updateCart(cardId, version, actionObj);
-//     const lineItemId = action === ManageCart.INCREMENT ? findBasketProductId(responce.body.lineItems, id) : '';
-//     return { error: '', lineItemId };
-//   } catch (err) {
-//     if (err instanceof Error) {
-//       return { error: err.message, lineItemId: '' };
-//     }
-//   }
-//   return { error: 'Something went wrong', lineItemId: '' };
-// }

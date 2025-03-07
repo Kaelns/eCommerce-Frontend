@@ -1,6 +1,6 @@
 import type { Cart } from '@commercetools/platform-sdk';
 import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { CartLight, CartLightAllProducts } from '@/entities/cart/model/types/cart.types';
+import type { CartData, CartLight, CartLightAllProducts } from '@/entities/cart/model/types/cart.types';
 
 import { isEqual } from 'lodash';
 import { createSlice, createSelector } from '@reduxjs/toolkit';
@@ -27,7 +27,8 @@ const cartSliceLazy = createSlice({
   name: 'cart',
   initialState: INIT_CART,
   selectors: {
-    selectCartIdAndVersion: (state) => ({ cartId: state.id, version: state.version }),
+    selectCartId: (state) => state.id,
+    selectCartIdAndVersion: (state): CartData => ({ cartId: state.id, version: state.version }),
 
     selectCartProducts: (state) => state.products,
     selectCartProductsIds: (state) => state.productsIds,
@@ -52,8 +53,11 @@ const cartSliceLazy = createSlice({
       state.isPromocode = action.payload;
     },
 
-    resetCartAction() {
-      return INIT_CART;
+    clearCartAction(state) {
+      state.products = INIT_CART.products;
+      state.productsIds = INIT_CART.productsIds;
+      state.productsQuantity = INIT_CART.productsQuantity;
+      state.discount = INIT_CART.discount;
     },
 
     // * Cart Products Actions
@@ -117,3 +121,5 @@ export const cartSlice = cartSliceLazy.injectInto(rootReducer);
 declare module '@/app/store/config' {
   export interface LazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
 }
+
+export const { deleteProductAction } = cartSlice.actions;

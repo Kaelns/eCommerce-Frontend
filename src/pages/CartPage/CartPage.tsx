@@ -1,27 +1,24 @@
 import type { SxStyles } from '@/shared/model/types/types';
 
-import { Stack } from '@mui/system';
+import { Box } from '@mui/system';
+import { Title } from '@mui/icons-material';
 
-// import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
-// import { Box, Typography } from '@mui/material';
-// import { calculateDiscounted } from '@/pages/BasketPage/helpers/calculateDiscounted';
-// import { ErrorComponent } from '@/components/ErrorComponent';
-// import { ProductBasket } from '@/pages/BasketPage/components/ProductBasket';
-// import { CardPrice } from '@/components/CardPrice';
-// import { BtnCasual } from '@/components/buttons/BtnCasual';
-// import { Promocode } from '@/pages/BasketPage/components/Promocode';
-// import { Paths } from '@/shared/constants';
-// import cartImg from '@/shared/assets/cart.png';
-// import { useAlertText } from '@/features/AlertText/useAlertText';
-// import { useDebounceCache } from '@/hooks/useDebounceCash/useDebounceCash';
-// import { cartSlice } from '@/pages/BasketPage/cart.slice';
-// import { postQuantity } from '@/pages/BasketPage/helpers/postQuantity';
-// import { setPrevBasketOnError } from '@/pages/BasketPage/helpers/setPrevBasketOnError';
-// import { deleteCartApi } from '@/services/model/cart/deleteCartApi';
-// import { authSliceSelectors } from '@/store/slices/auth.slice';
-// import { useAppDispatch, useAppSelector } from '@/store/store';
-// import { cartProductsSlice } from '@/pages/BasketPage/cartProducts.slice';
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
+import cartImg from '@/pages/CartPage/assets/cart.png';
+import { CartResetBtn } from '@/pages/CartPage/ui/components/buttons/CartResetBtn';
+import { CartProductsList } from '@/pages/CartPage/ui/components/CartProductsList';
+import { CartPromocode } from '@/pages/CartPage/ui/components/inputs/CartPromocode';
+import { CartShowIfProducts } from '@/pages/CartPage/ui/components/conditional/CartShowIfProducts';
+import { CartProductsFinalPrice } from '@/pages/CartPage/ui/components/typography/CartProductsFinalPrice';
+import { CartProductsFinalQuantity } from '@/pages/CartPage/ui/components/typography/CartProductsFinalQuantity';
+
+import { AppError } from '@/widgets/AppError';
+
+import { useGetAllCartsQuery } from '@/entities/cart';
+
+import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
+
+import { Paths } from '@/shared/model/data/enums';
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 const sxStyles: SxStyles = {
   stackContainer: {
@@ -33,98 +30,34 @@ const sxStyles: SxStyles = {
     position: 'relative',
     gap: 4,
     alignSelf: 'stretch'
-  },
-  promocode: {
-    mt: -0.5
-  },
-  deleteBasket: {
-    position: 'absolute',
-    width: 'min-content',
-    top: 0,
-    right: 0,
-    zIndex: 50,
-    borderRadius: (theme) => `0 ${theme.shape.borderRadius}px 0 ${theme.shape.borderRadius}px`
   }
 };
 
 export function CartPage() {
-  // const dispatch = useAppDispatch();
-  // const isLogged = useAppSelector(authSliceSelectors.selectIsLoggedAuthToken);
-
-  // const cartProducts = useAppSelector(cartProductsSlice.selectors.selectCartProducts);
-  // const discount = useAppSelector(cartSlice.selectors.selectDiscount);
-  // const finalPrice = useAppSelector(cartProductsSlice.selectors.selectFinalPrice);
-  // const productQuantity = useAppSelector(cartProductsSlice.selectors.selectProductQuantity);
-
-  // const deletionSignal = useAppSelector(cartSlice.selectors.selectDeletionSignal);
-  // const [cartProductsCopy, prevBasketProd] = useDebounceCache(cartProducts, `${isLogged}${deletionSignal}`);
-
-  // const { showAlert } = useAlertText();
-
-  // // useEffect(() => {
-  // //   dispatch(getCartApi());
-  // // }, [dispatch, authToken, isPromocode, deletionSignal]);
-
-  // useEffect(() => {
-  //   const postOrRevertOnError = async (): Promise<void> => {
-  //     const errorMessage = await postQuantity(prevBasketProd, cartProductsCopy, isLogged);
-  //     if (errorMessage) {
-  //       setPrevBasketOnError(showAlert, dispatchCartProducts, errorMessage, prevBasketProd);
-  //     }
-  //   };
-  //   postOrRevertOnError();
-  // }, [prevBasketProd, cartProductsCopy, showAlert, isLogged]);
-
-  // const handlePromocode = useCallback(
-  //   (isApplied: boolean) => dispatch(cartSlice.actions.setIsPromocodeAction(isApplied)),
-  //   [dispatch]
-  // );
-
-  // const handleDelete = useCallback(() => {
-  //   dispatch(deleteCartApi());
-  // }, [dispatch]);
-
-  // const basketKeys = useMemo(() => Object.keys(cartProducts), [cartProducts]);
-  // const discountedPrice = useMemo(() => calculateDiscounted(finalPrice, discount), [discount, finalPrice]);
+  const { isLoading, isError, error } = useGetAllCartsQuery(undefined, {
+    selectFromResult: ({ isLoading, isError, error }) => ({ isLoading, isError, error })
+  });
 
   return (
-    <Stack sx={sxStyles.stackContainer}>
-      <TitleTypography>Basket</TitleTypography>
-      {/* {productQuantity ? (
-        <>
-          <Box sx={sxStyles.header}>
-            <Box>
-              <Title>Product Basket</Title>
-              <Typography>{productQuantity} products</Typography>
-              <CardPrice
-                text="Result Price:"
-                price={finalPrice}
-                discount={discount}
-                discountedPrice={discountedPrice}
-              />
-            </Box>
-
-            <BtnCasual variant="contained" onClick={handleDelete} sx={sxStyles.deleteBasket}>
-              <DeleteForeverIcon />
-            </BtnCasual>
-            <Promocode handlePromocode={handlePromocode} sx={sxStyles.promocode} />
+    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }} sx={sxStyles.stackContainer}>
+      <CartShowIfProducts
+        Fallback={
+          <AppError src={cartImg} alt="Cart image" message="Your Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />
+        }
+      >
+        <Box sx={sxStyles.header}>
+          <Box>
+            <Title>Cart</Title>
+            <CartProductsFinalQuantity />
+            <CartProductsFinalPrice />
           </Box>
 
-          <Stack sx={sxStyles.stackContainer}>
-            {basketKeys.map((productKey) => (
-              <ProductBasket key={productKey} productData={cartProducts[productKey]} />
-            ))}
-          </Stack>
-        </>
-      ) : (
-        <ErrorComponent
-          message="Your Cart is empty"
-          src={cartImg}
-          alt="Cart image"
-          goTo={Paths.CATALOG}
-          goToText="Go shopping"
-        />
-      )} */}
-    </Stack>
+          <CartResetBtn />
+          <CartPromocode />
+        </Box>
+
+        <CartProductsList />
+      </CartShowIfProducts>
+    </SuspenseWithError>
   );
 }

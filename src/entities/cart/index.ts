@@ -27,7 +27,7 @@ export const {
 } = cartSlice.selectors;
 
 export const {
-  resetCartAction,
+  clearCartAction,
   setCartDataAction,
   setQuantityAction,
   deleteProductAction,

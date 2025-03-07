@@ -4,14 +4,12 @@ import type { SxStyles } from '@/shared/model/types/types';
 import { round } from 'lodash';
 import { Stack } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Button, Typography, inputClasses } from '@mui/material';
-
-import { Quantity } from '@/pages/CartPage/ui/components/Quantity';
+import { Box, Button, Tooltip, Typography } from '@mui/material';
 
 import { SRCSET_API } from '@/entities/product';
 import { selectLanguage } from '@/entities/user';
-import { selectCartProductById } from '@/entities/cart';
-import { cartSlice } from '@/entities/cart/model/cart.slice';
+import { deleteProductAction, selectCartProductById } from '@/entities/cart';
+import { CartProductQuantity } from '@/entities/cart/ui/CartProductCard/components/CartProductQuantity';
 
 import { ImgLoad } from '@/shared/ui/components/img/ImgLoad';
 import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
@@ -28,7 +26,6 @@ const MAX_IMG_SIZE = 300;
 const sxStyles: SxStyles = {
   container: (theme) => ({
     position: 'relative',
-    width: 1,
     height: 1,
     p: 2,
     boxShadow: 3,
@@ -51,37 +48,26 @@ const sxStyles: SxStyles = {
   column2: {
     flex: 5
   },
-  discount: {
-    top: '-1rem',
-    left: '-1rem'
-  },
-  deleteProduct: {
-    position: 'absolute',
-    width: 'min-content',
-    top: 0,
-    right: 0,
-    zIndex: 50,
-    borderRadius: (theme) => `0 ${theme.shape.borderRadius}px 0 ${theme.shape.borderRadius}px`
-  },
   title: {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     mb: 1
   },
-  quantityInput: (theme) => ({
-    [theme.breakpoints.down('tablet')]: {
-      width: 1,
-      maxWidth: 'initial',
-
-      [`& ${inputClasses.input}`]: {
-        p: 0.7
-      }
-    }
-  }),
-  quantityContainer: {
-    width: 1,
-    my: 1
+  // * Absolute positioned components
+  discount: {
+    top: '-1rem',
+    left: '-1rem'
+  },
+  deleteProduct: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 50
+  },
+  deleteProductBtn: {
+    width: 'min-content',
+    borderRadius: (theme) => `0 ${theme.shape.borderRadius}px 0 ${theme.shape.borderRadius}px`
   }
 };
 
@@ -112,16 +98,11 @@ export function CartProductCard({
   const totalDiscountedPrice = round(discountedPrice * cartProductData.quantity, fractionDigits);
 
   const handleProductDelete = (): void => {
-    dispatch(cartSlice.actions.deleteProductAction({ productId }));
+    dispatch(deleteProductAction({ productId }));
   };
 
   return (
     <Stack direction={{ zero: 'column', tablet: 'row' }} gap={1.5} sx={sxStyles.container}>
-      <Button variant="contained" onClick={handleProductDelete} sx={sxStyles.deleteProduct}>
-        <CloseIcon />
-      </Button>
-      <DiscountTypography discount={discount} sx={sxStyles.discount} />
-
       <ImgLoad
         height={height}
         src={cartProductData.imageUrl}
@@ -142,15 +123,18 @@ export function CartProductCard({
             <b>Available quantity: </b>
             {cartProductData.maxQuantity}
           </Typography>
-          <Quantity
-            id={cartProductData.productId}
-            quantity={cartProductData.quantity}
-            sxInput={sxStyles.quantityInput}
-            sxContainer={sxStyles.quantityContainer}
-          />
+          <CartProductQuantity id={cartProductData.productId} quantity={cartProductData.quantity} />
           <FullPriceTypography text="Final: " price={totalProductPrice} discount={discount} discountedPrice={totalDiscountedPrice} />
         </Box>
       </Box>
+
+      {/* Absolute positioned components */}
+      <DiscountTypography discount={discount} sx={sxStyles.discount} />
+      <Tooltip title="Delete product" placement="top" sx={sxStyles.deleteProduct}>
+        <Button variant="contained" onClick={handleProductDelete} sx={sxStyles.deleteProductBtn}>
+          <CloseIcon />
+        </Button>
+      </Tooltip>
     </Stack>
   );
 }

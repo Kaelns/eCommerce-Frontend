@@ -30,15 +30,14 @@ const sxStyles: SxStyles = {
 interface AppErrorProps {
   src: string;
   alt: string;
-  goTo?: Paths;
   message?: string;
-  goToText?: string;
+  goTo?: { path: Paths; text: string };
 }
 
-export function AppError({ src, alt, message, goTo = Paths.MAIN, goToText = 'Go main' }: AppErrorProps) {
+export function AppError({ src, alt, message, goTo = { path: Paths.MAIN, text: 'Go main' } }: AppErrorProps) {
   const navigate = useNavigate();
   const navigateBack = () => navigate(-1);
-  const navigateTo = () => navigate(goTo);
+  const navigateTo = () => navigate(goTo.path);
 
   return (
     <Stack minHeight="80vh" justifyContent="center" alignItems="center" gap={3}>
@@ -49,7 +48,7 @@ export function AppError({ src, alt, message, goTo = Paths.MAIN, goToText = 'Go 
           Go back
         </Button>
         <Button onClick={navigateTo} endIcon={<ArrowForwardIosIcon fontSize="small" />} sx={sxStyles.btn}>
-          {goToText}
+          {goTo.text}
         </Button>
       </ButtonGroup>
     </Stack>

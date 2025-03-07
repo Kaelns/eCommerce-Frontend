@@ -1,4 +1,3 @@
-import type { BoxProps } from '@mui/system';
 import type { SxStyles, InputReactEvent } from '@/shared/model/types/types';
 
 import { useState } from 'react';
@@ -23,6 +22,9 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
 
 const sxStyles: SxStyles = {
+  container: {
+    mt: -0.5
+  },
   input: {
     maxWidth: 300,
     '& > input': {
@@ -35,7 +37,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export function Promocode({ ...props }: BoxProps) {
+export function CartPromocode() {
   const dispatch = useAppDispatch();
 
   const isPromocode = useAppSelector(selectCartIsPromocode);
@@ -52,17 +54,17 @@ export function Promocode({ ...props }: BoxProps) {
 
   const handleSubmitPromocode = async (): Promise<void> => {
     const addPromocodeAction = createCartUpdateAction(CartUpdateActionTypes.PROMOCODE, { promocode: inputValue })!;
-    const { error } = await updateCart({ ...cartIdAndVersion, action: addPromocodeAction });
+    const { error } = await updateCart({ ...cartIdAndVersion, actions: [addPromocodeAction] });
+    dispatch(setCartIsPromocodeAction(!error));
     if (error) {
       showAlert(getErrorMessage(error), AlertSeverity.ERROR);
     }
-    dispatch(setCartIsPromocodeAction(Boolean(error)));
   };
 
   // TODO add remove promocode
 
   return (
-    <Box {...props}>
+    <Box sx={sxStyles.container}>
       <BoldTypography variant="subtitle2">{isPromocode ? 'Promo Code activated:' : 'Activate Promo Code:'}</BoldTypography>
 
       <ButtonGroup size="small" variant="outlined">
