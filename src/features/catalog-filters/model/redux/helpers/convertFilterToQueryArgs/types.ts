@@ -1,4 +1,4 @@
-import type { SearchTextQueryArgKey } from '@/shared/model/types/types';
+import type { SearchTextQueryArgKey } from '@/shared/model/types';
 
 export interface ConvertSearchReturn {
   fuzzy?: boolean;

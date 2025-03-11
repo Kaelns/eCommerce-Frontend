@@ -1,13 +1,13 @@
 import type { TypographyProps } from '@mui/material';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Typography } from '@mui/material';
 
 import { selectCurrency } from '@/entities/user';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
-import currenciesObj from '@/shared/model/data/ISO4217/ISO4217-currencies.json';
+import { useAppSelector } from '@/shared/lib/redux';
+import { convertSxToArr } from '@/shared/lib/helpers';
+import { isoCurrencies } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   text: {
@@ -29,7 +29,7 @@ export function PriceTypography({ priceType, price, sx = {} }: PriceTypographyPr
 
   return (
     <Typography variant="subtitle2" sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}>
-      {price} {currenciesObj[currency].symbol}
+      {price} {isoCurrencies[currency].symbol}
     </Typography>
   );
 }

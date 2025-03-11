@@ -1,14 +1,15 @@
 import type { Colors } from '@/entities/product';
-import type { Currencies } from '@/shared/model/types/types';
+import type { Currencies } from '@/shared/model/types';
 import type { FilterColorsState } from '@/features/catalog-filters/model/types';
 import type { ConvertSearchReturn } from '@/features/catalog-filters/model/redux/helpers/convertFilterToQueryArgs/types';
 
 import { ProductConsts } from '@/entities/product';
+import { NO_CATEGORY } from '@/entities/categories';
 import { queryArgsProductProps } from '@/entities/product/lib/helpers/queryArgsProductProps';
 
 import { FiltersSort } from '@/features/catalog-filters';
 
-import currencyData from '@/shared/model/data/ISO4217/ISO4217-currencies.json';
+import { isoCurrencies } from '@/shared/model/data';
 
 export function convertPageQueryArgs(page: number | undefined, limitOnPage: number) {
   return ((page ?? 1) - 1) * limitOnPage;
@@ -66,7 +67,7 @@ export function convertCategoriesQueryArgs(categoryId: string | undefined): stri
   if (!categoryId) {
     return '';
   }
-  const category = categoryId !== ProductConsts.NO_CATEGORY ? categoryId : '';
+  const category = categoryId !== NO_CATEGORY ? categoryId : '';
   return queryArgsProductProps.filterQuery.categoryId(category);
 }
 
@@ -74,6 +75,6 @@ export function convertPriceQueryArgs(price: number[] | undefined, currency: Cur
   if (!price || !price.length || (price[0] <= ProductConsts.MIN_MONEY && price[1] >= ProductConsts.MAX_MONEY)) {
     return '';
   }
-  const fractionDigits = currencyData[currency].fractionDigits;
+  const fractionDigits = isoCurrencies[currency].fractionDigits;
   return queryArgsProductProps.filterQuery.priceRange(price[0] * 10 ** fractionDigits, price[1] * 10 ** fractionDigits);
 }

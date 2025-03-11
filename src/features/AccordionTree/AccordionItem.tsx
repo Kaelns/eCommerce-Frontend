@@ -1,4 +1,4 @@
-import type { SxStyles, TreeNode } from '@/shared/model/types/types';
+import type { SxStyles, TreeNode } from '@/shared/model/types';
 import type { ReduxElemIdData } from '@/features/AccordionTree/types';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -7,8 +7,8 @@ import { Box, Button, Accordion, AccordionDetails, AccordionSummary } from '@mui
 // eslint-disable-next-line import/no-cycle
 import { AccordionTree } from '@/features/AccordionTree/AccordionTree';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
-import { convertKeyToName } from '@/shared/lib/utils/strings/convertKeyToName';
+import { useAppSelector } from '@/shared/lib/redux';
+import { convertKeyToName } from '@/shared/lib/utils';
 
 const sxStyles: SxStyles = {
   accordionActive: {

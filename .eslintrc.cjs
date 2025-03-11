@@ -64,6 +64,7 @@ module.exports = {
 
     'import/no-cycle': [2, { maxDepth: 1 }],
     'import/no-unresolved': 'error',
+    'import/no-unused-modules': [2, { unusedExports: true, ignoreUnusedTypeExports: true }],
     '@typescript-eslint/consistent-type-imports': 'error',
 
     'perfectionist/sort-exports': sortByLineLength,
@@ -86,12 +87,17 @@ module.exports = {
         groups: [
           'type',
           ['builtin', 'external'],
+          'app',
           'router',
+          'api',
           'pages',
           'widgets',
           'entities',
           'internal',
           'ui',
+          { newlinesBetween: 'never' },
+          'lib',
+          { newlinesBetween: 'never' },
           'shared',
           { newlinesBetween: 'never' },
           'assets',
@@ -102,13 +108,17 @@ module.exports = {
         customGroups: {
           type: {},
           value: {
-            router: '^@/router/.+',
-            pages: '^@/pages/.+',
-            widgets: '^@/widgets/.+',
-            entities: '^@/entities/.+',
-            shared: '^@/shared/(?!assets)(?!ui).+',
+            app: '^@/app.*',
+            router: '^@/router.*',
+            pages: '^@/pages.*',
+            widgets: '^@/widgets.*',
+            entities: '^@/entities.*',
+
+            shared: '^@/shared/(?!assets)(?!ui)(?!api)(?!lib).+',
             assets: '^@/shared/assets/.+',
-            ui: '^@/shared/ui/.+'
+            ui: '^@/shared/ui/.+',
+            api: '^@/shared/api/.+',
+            lib: '^@/shared/lib/.+'
           }
         }
       }

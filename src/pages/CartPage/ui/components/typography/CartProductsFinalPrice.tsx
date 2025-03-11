@@ -1,9 +1,8 @@
 import { selectLanguage } from '@/entities/user';
 import { selectCartFinalPriceObj } from '@/entities/cart';
 
-import { FullPriceTypography } from '@/shared/ui/components/typography/FullPriceTypography';
-
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { FullPriceTypography } from '@/shared/ui/components';
+import { useAppSelector } from '@/shared/lib/redux';
 
 export function CartProductsFinalPrice() {
   const language = useAppSelector(selectLanguage);

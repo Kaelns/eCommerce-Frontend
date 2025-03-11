@@ -1,4 +1,4 @@
-import type { SrcsetPxAsc } from '@/shared/model/types/types';
+import type { SrcsetPxAsc } from '@/entities/product';
 
 import { getImgSrcWithPostfix } from '@/shared/lib/utils/strings/getImgSrcWithPostfix';
 

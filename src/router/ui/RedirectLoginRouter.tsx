@@ -1,8 +1,7 @@
-import { selectIsLoggedAuth, selectIsPendingAuth } from '@/entities/auth';
+import { selectIsLoggedAuth, useStartSessionQuery } from '@/entities/auth';
 
-import { PageSkeleton } from '@/shared/ui/components/skeletons/PageSkeleton';
-
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { PageSkeleton } from '@/shared/ui/components';
+import { useAppSelector } from '@/shared/lib/redux';
 
 interface RedirectLoginRouterProps {
   IfLogged: React.ReactNode;
@@ -10,8 +9,9 @@ interface RedirectLoginRouterProps {
 }
 
 export function RedirectLoginRouter({ IfLogged, IfUnLogged }: RedirectLoginRouterProps) {
-  const isPending = useAppSelector(selectIsPendingAuth);
+  const { isLoading } = useStartSessionQuery(undefined, { selectFromResult: ({ isLoading }) => ({ isLoading }) });
+
   const isLogged = useAppSelector(selectIsLoggedAuth);
   const ComponentToShow = isLogged ? IfLogged : IfUnLogged;
-  return isPending ? <PageSkeleton /> : ComponentToShow;
+  return isLoading ? <PageSkeleton /> : ComponentToShow;
 }

@@ -1,8 +1,8 @@
-import type { TreeNode } from '@/shared/model/types/types';
+import type { TreeNode } from '@/shared/model/types';
 import type { Category } from '@commercetools/platform-sdk';
 import type { CategoriesObj } from '@/entities/categories/model/categories.types';
 
-import { convertArrOfIdElemToIdObj } from '@/shared/lib/utils/arrays/convertArrOfIdElemToIdObj';
+import { convertArrOfIdElemToIdObj } from '@/shared/lib/utils';
 
 export const categoriesMock: Category[] = [
   {

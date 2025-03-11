@@ -1,5 +1,5 @@
 import type { BoxProps } from '@mui/system';
-import type { SxStyles, PropsWithChildren } from '@/shared/model/types/types';
+import type { SxStyles, PropsWithChildren } from '@/shared/model/types';
 
 import Slider from 'react-slick';
 import { Box } from '@mui/material';

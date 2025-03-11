@@ -1,11 +1,11 @@
-import type { SxStyles, SxPropsObj } from '@/shared/model/types/types';
+import type { SxStyles, SxPropsObj } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
-import { selectIsColorActiveForm } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { selectIsColorActiveForm } from '@/features/catalog-filters';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   colorBtn: {

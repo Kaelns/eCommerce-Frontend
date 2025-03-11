@@ -1,22 +1,21 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Paper } from '@mui/material';
 import { Grid, Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetProductsQuery } from '@/entities/product';
-import { queryArgsByCategory } from '@/entities/categories';
-import { ProductCard } from '@/entities/product/ui/ProductCard';
-
-import { setCategoryIdAndNameAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
-
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
-
-import { Paths } from '@/shared/model/data/enums';
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+
+import { queryArgsByCategory } from '@/entities/categories';
+import { ProductCard, useGetProductsQuery } from '@/entities/product';
+
+import { setCategoryIdAndNameAction } from '@/features/catalog-filters';
+
+import { BoldTypography } from '@/shared/ui/elements';
+import { SuspenseWithError } from '@/shared/ui/components';
+import { useAppDispatch } from '@/shared/lib/redux';
+import { Paths } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   body: {

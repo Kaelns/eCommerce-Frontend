@@ -1,4 +1,6 @@
-import type { SxPropsObj } from '@/shared/model/types/types';
+import type { SxPropsObj } from '@/shared/model/types';
+
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { MainSection } from '@/pages/MainPage/ui/MainSection';
 
@@ -8,10 +10,8 @@ import { ProductShowcaseSection } from '@/widgets/ProductShowcaseSection';
 import { selectLanguage } from '@/entities/user';
 import { useGetCategoriesQuery } from '@/entities/categories';
 
-import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
-
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { SuspenseWithError } from '@/shared/ui/components';
+import { useAppSelector } from '@/shared/lib/redux';
 
 const sxContainer: SxPropsObj = {
   display: 'flex',

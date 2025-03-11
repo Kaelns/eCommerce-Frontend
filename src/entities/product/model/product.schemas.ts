@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 //  FIXME Delete if not used
-export const queryArgsProductsSchema = z.object({
+const queryArgsProductsSchema = z.object({
   fuzzy: z.boolean().optional(),
   fuzzyLevel: z.number().optional(),
   markMatchingVariants: z.boolean().optional(),
@@ -27,4 +27,4 @@ export const queryArgsProductsSchema = z.object({
 export type QueryArgsProductsKeysZod = keyof QueryArgsProductsZod;
 export type QueryArgsProductsZod = z.infer<typeof queryArgsProductsSchema>;
 
-export const queryArgsProductsSchemaKeys = Object.keys(queryArgsProductsSchema.shape) as QueryArgsProductsKeysZod[];
+// export const queryArgsProductsSchemaKeys = Object.keys(queryArgsProductsSchema.shape) as QueryArgsProductsKeysZod[];

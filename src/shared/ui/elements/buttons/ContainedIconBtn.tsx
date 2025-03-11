@@ -1,9 +1,9 @@
 import type { IconButtonProps } from '@mui/material';
-import type { SxPropsObj, PropsWithChildren } from '@/shared/model/types/types';
+import type { SxPropsObj, PropsWithChildren } from '@/shared/model/types';
 
 import { IconButton } from '@mui/material';
 
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
+import { convertSxToArr } from '@/shared/lib/helpers';
 
 const sxBtnContained: SxPropsObj = {
   backgroundColor: 'primary.main',

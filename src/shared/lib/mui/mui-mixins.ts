@@ -1,4 +1,4 @@
-import type { SxPropsNotArr } from '@/shared/model/types/types';
+import type { SxPropsNotArr } from '@/shared/model/types';
 
 interface Mixins {
   hidden: SxPropsNotArr;

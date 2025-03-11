@@ -1,17 +1,17 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack, Slider, Typography, OutlinedInput } from '@mui/material';
 
 import { ProductConsts } from '@/entities/product';
 
+import { selectPriceForm } from '@/features/catalog-filters';
 import { SLIDER_STEP } from '@/features/catalog-filters/model/constants';
-import { selectPriceForm } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 import {
   changeRangeInput,
   changeRangeSlider
 } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/RangePriceSliderFilter/helpers';
 
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   input: {

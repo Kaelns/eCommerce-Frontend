@@ -1,8 +1,13 @@
-import type { AppStore } from '@/shared/lib/redux/redux.types';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
-import { configureStore } from '@reduxjs/toolkit';
+import { middlewares, extraArgument, actionsReduxExtension } from '@/app/store/config';
 
-import { rootReducer, middlewares, extraArgument, actionsReduxExtension } from '@/app/store/config';
+import { ecommerceApi } from '@/shared/api/ecommerce-api';
+
+export interface LazyLoadedSlices {}
+
+// * Used "slice.injectInto" for encapsulation
+export const rootReducer = combineSlices(ecommerceApi).withLazyLoadedSlices<LazyLoadedSlices>();
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -12,7 +17,7 @@ export const store = configureStore({
   }
 });
 
-export const loadStore = new Promise<AppStore>((res) => {
+export const loadStore = new Promise<typeof store>((res) => {
   setTimeout(async () => {
     res(store);
   }, 0);

@@ -9,60 +9,60 @@ import { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
 
 interface Setting {
   [CartUpdateActionTypes.INCREMENT]: {
-    quantity: number;
     productId: string;
+    quantityToChange?: number;
 
     promocode?: undefined;
-    lineItemId?: undefined;
+    cartProductLineId?: undefined;
   };
 
   [CartUpdateActionTypes.DECREMENT]: {
-    lineItemId: string;
-    quantity: number | undefined;
+    cartProductLineId: string;
+    quantityToChange?: number;
 
     productId?: undefined;
     promocode?: undefined;
   };
 
   [CartUpdateActionTypes.DELETE]: {
-    lineItemId: string;
+    cartProductLineId: string;
 
-    quantity?: undefined;
     productId?: undefined;
     promocode?: undefined;
+    quantityToChange?: undefined;
   };
 
   [CartUpdateActionTypes.PROMOCODE]: {
     promocode: string;
 
-    quantity?: undefined;
     productId?: undefined;
-    lineItemId?: undefined;
+    quantityToChange?: undefined;
+    cartProductLineId?: undefined;
   };
 }
 
 export function createCartUpdateAction<T extends CartUpdateActionTypes>(
   action: T,
-  { lineItemId, productId, quantity, promocode }: Setting[T]
+  { cartProductLineId, productId, quantityToChange, promocode }: Setting[T]
 ): MyCartUpdateAction | undefined {
   switch (action) {
     case CartUpdateActionTypes.INCREMENT:
       return {
         action,
         productId,
-        quantity: quantity ?? 1
+        quantity: quantityToChange ?? 1
       } satisfies MyCartAddLineItemAction;
     case CartUpdateActionTypes.DECREMENT:
       return {
         action,
-        lineItemId,
-        quantity: quantity ?? 1
+        lineItemId: cartProductLineId,
+        quantity: quantityToChange ?? 1
       } satisfies MyCartRemoveLineItemAction;
 
     case CartUpdateActionTypes.DELETE:
       return {
         action: CartUpdateActionTypes.DECREMENT,
-        lineItemId
+        lineItemId: cartProductLineId
       } satisfies MyCartRemoveLineItemAction;
     case CartUpdateActionTypes.PROMOCODE:
       return {

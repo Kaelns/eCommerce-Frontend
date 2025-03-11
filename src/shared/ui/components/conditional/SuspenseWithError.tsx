@@ -1,5 +1,5 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles, PropsWithChildren } from '@/shared/model/types/types';
+import type { SxStyles, PropsWithChildren } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 
@@ -7,8 +7,8 @@ import { AppError } from '@/widgets/AppError';
 
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { PageSkeleton } from '@/shared/ui/components/skeletons/PageSkeleton';
+import { convertSxToArr } from '@/shared/lib/helpers';
 
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
 import imageError from '@/shared/assets/error.png';
 
 const sxStyles: SxStyles = {

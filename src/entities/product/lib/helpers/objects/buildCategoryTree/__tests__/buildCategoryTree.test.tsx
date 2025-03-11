@@ -1,12 +1,9 @@
-import {
-  categoriesMock,
-  categoriesObjMock,
-  categoriesTreeMock
-} from '@/entities/categories/model/categories.mock';
+import { categoriesMock, categoriesObjMock, categoriesTreeMock } from '@/entities/categories/model/categories.mock';
 import { Category } from '@commercetools/platform-sdk';
 import { buildCategoryTree } from '@/entities/product/lib/helpers/objects/buildCategoryTree/buildCategoryTree';
 import { convertArrOfIdElemToIdObj } from '@/shared/lib/utils/arrays/convertArrOfIdElemToIdObj';
-import { CategoriesObj, TreeNode } from '@/shared/model/types/types';
+import { TreeNode } from '@/shared/model/types';
+import { CategoriesObj } from '@/entities/categories';
 
 describe('buildCategoryTree', () => {
   it('must return right tree', () => {
@@ -19,7 +16,9 @@ describe('buildCategoryTree', () => {
     const dinnerwareOfKitchenId = 'ef20021b-1101-45d6-be8d-e312173ea093';
     const platesOfDinnerwareId = 'd1ab0fd1-a2d4-4b10-bdfa-261bd74346d9';
 
-    const categories: Category[] = [kitchenId, servewareOfKitchenId, dinnerwareOfKitchenId, platesOfDinnerwareId].map((id) => categoriesObjMock[id]);
+    const categories: Category[] = [kitchenId, servewareOfKitchenId, dinnerwareOfKitchenId, platesOfDinnerwareId].map(
+      (id) => categoriesObjMock[id]
+    );
     const categoriesObj: CategoriesObj = convertArrOfIdElemToIdObj(categories);
     const categoriesTree: TreeNode[] = [
       {

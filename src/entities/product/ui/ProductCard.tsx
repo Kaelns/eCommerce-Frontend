@@ -1,5 +1,5 @@
+import type { SxStyles } from '@/shared/model/types';
 import type { BoxProps, StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types/types';
 import type { ProductProjection } from '@commercetools/platform-sdk';
 
 import { useMemo } from 'react';
@@ -7,25 +7,17 @@ import { Stack } from '@mui/system';
 import { Box, Typography } from '@mui/material';
 
 import { selectLanguage } from '@/entities/user';
+import { AddProductToCartBtn } from '@/entities/cart';
 import { SRCSET_API } from '@/entities/product/model/product.constants';
-import { ProductToCartBtn } from '@/entities/product/ui/ProductCard/components/ProductToCartBtn';
 import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
 
-import { ImgLoad } from '@/shared/ui/components/img/ImgLoad';
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-import { LinkRouterWrapper } from '@/shared/ui/components/wrappers/LinkRouterWrapper';
-import { DiscountTypography } from '@/shared/ui/elements/typography/DiscountTypography';
-import { FullPriceTypography } from '@/shared/ui/components/typography/FullPriceTypography';
-
-import { Paths } from '@/shared/model/data/enums';
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { BoldTypography, DiscountTypography } from '@/shared/ui/elements';
+import { ImgLoad, LinkRouterWrapper, FullPriceTypography } from '@/shared/ui/components';
+import { sxMixins } from '@/shared/lib/mui';
+import { useAppSelector } from '@/shared/lib/redux';
+import { Paths } from '@/shared/model/data';
 
 const IMG_SELECTOR = 'product-card__img';
-
-const MAX_IMG_SIZE = 400;
-const IMG_HEIGHT: BoxProps['height'] = { zero: 400, laptop: 200 };
-const CONTAINER_MAX_WIDTH: StackProps['maxWidth'] = { zero: 400, laptop: 300 };
 
 const sxStyles: SxStyles = {
   linkWrapper: {
@@ -34,6 +26,7 @@ const sxStyles: SxStyles = {
     height: 1,
     width: 1
   },
+
   cardContainer: {
     position: 'relative',
     height: 1,
@@ -52,16 +45,38 @@ const sxStyles: SxStyles = {
     })
   },
 
+  title: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+
+  // * Position absolute
+
   discount: (theme) => ({
     top: '-1rem',
     right: '-1rem',
     [theme.breakpoints.down('tablet')]: { right: 'auto', left: '-1rem' }
   }),
 
-  title: {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
+  cartBtn: (theme) => ({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 'fit-content',
+    zIndex: 50,
+    borderRadius: `${theme.shape.borderRadius}px 0 1.5rem 0`,
+
+    [theme.breakpoints.down('tablet')]: {
+      p: 1,
+      inset: 'auto 0 0 auto',
+      borderTopLeftRadius: '1.5rem',
+      borderBottomRightRadius: theme.shape.borderRadius
+    }
+  }),
+
+  cartIcon: {
+    fontSize: { zero: '2.8rem', tablet: '2.2rem' }
   }
 };
 
@@ -76,8 +91,8 @@ interface ProductCardProps {
 
 export function ProductCard({
   product,
-  imgHeight = { height: IMG_HEIGHT, maxSize: MAX_IMG_SIZE },
-  containerMaxWidth = CONTAINER_MAX_WIDTH
+  imgHeight = { height: { zero: 400, laptop: 200 }, maxSize: 400 },
+  containerMaxWidth = { zero: 400, laptop: 300 }
 }: ProductCardProps) {
   const language = useAppSelector(selectLanguage);
   const productData = useMemo(() => convertToLightProduct(product), [product]);
@@ -90,10 +105,6 @@ export function ProductCard({
   return (
     <LinkRouterWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper}>
       <Stack spacing={3} maxWidth={containerMaxWidth} sx={sxStyles.cardContainer}>
-        <ProductToCartBtn productId={productData.id} isAvailable={!productData.maxQuantity} />
-
-        <DiscountTypography discount={discount} sx={sxStyles.discount} />
-
         <ImgLoad
           height={height}
           src={productData.imageUrl}
@@ -113,6 +124,17 @@ export function ProductCard({
           <FullPriceTypography price={price} discount={discount} discountedPrice={discountedPrice} />
           {Boolean(shortedDescription) ?? <Typography>{shortedDescription}...</Typography>}
         </Box>
+
+        {/* Position absolute */}
+        <AddProductToCartBtn
+          isIconBtn
+          isAvailable={!productData.maxQuantity}
+          productId={productData.id}
+          sx={sxStyles.cartBtn}
+          iconSx={sxStyles.cartIcon}
+        />
+
+        <DiscountTypography discount={discount} sx={sxStyles.discount} />
       </Stack>
     </LinkRouterWrapper>
   );

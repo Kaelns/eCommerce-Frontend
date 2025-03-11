@@ -1,4 +1,4 @@
-import type { FunctionAny } from '@/shared/model/types/types';
+import type { FunctionAny } from '@/shared/model/types';
 
 export function debounce<T extends FunctionAny>(func: T, delay = 1000) {
   let timer: NodeJS.Timeout;

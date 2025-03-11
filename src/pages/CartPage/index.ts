@@ -1,5 +1,3 @@
-import { cartSlice } from '@/entities/cart/model/cart.slice';
+export { prefetchCartPageLoader } from '@/pages/CartPage/model/prefetchCartPageLoader';
 
 export { CartPage } from '@/pages/CartPage/CartPage';
-
-export const { selectCartProductLineId: selectCartProductId } = cartSlice.selectors;

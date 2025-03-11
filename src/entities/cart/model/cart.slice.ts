@@ -5,11 +5,12 @@ import type { CartData, CartLight, CartLightAllProducts } from '@/entities/cart/
 import { isEqual } from 'lodash';
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
+import { rootReducer } from '@/app/store/store';
+
 import { cartApi } from '@/entities/cart/api/cartApi';
 import { convertCart } from '@/entities/cart/lib/helpers/objects/convertCart';
 import { calculateFinalCartPrice } from '@/entities/cart/lib/helpers/numbers/calculateFinalCartPrice';
-
-import { rootReducer } from '@/app/store/config';
+import { calculateCartProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateCartProductsQuantity';
 
 const INIT_CART: CartLight = {
   id: '',
@@ -33,7 +34,7 @@ const cartSliceLazy = createSlice({
     selectCartProducts: (state) => state.products,
     selectCartProductsIds: (state) => state.productsIds,
     selectCartProductById: (state, productId) => state.products[productId],
-    selectCartProductLineId: (state, productId) => state.products[productId]?.lineId,
+    selectCartProductLineId: (state, productId) => state.products[productId]?.cartProductLineId || undefined,
 
     selectCartProductQuantity: (state) => state.productsQuantity,
     selectCartDiscount: (state) => state.discount,
@@ -58,6 +59,14 @@ const cartSliceLazy = createSlice({
       state.productsIds = INIT_CART.productsIds;
       state.productsQuantity = INIT_CART.productsQuantity;
       state.discount = INIT_CART.discount;
+    },
+
+    revertProductsAction(state, action: PayloadAction<CartLightAllProducts>) {
+      const products = action.payload;
+
+      state.products = products;
+      state.productsIds = Object.keys(products);
+      state.productsQuantity = calculateCartProductsQuantity(products);
     },
 
     // * Cart Products Actions
@@ -103,9 +112,7 @@ const cartSliceLazy = createSlice({
       if (cart) {
         const newLightCart = convertCart(cart);
         const isEqualProducts = isEqual(state.products, newLightCart.products);
-        // eslint-disable-next-line no-param-reassign
-        state = {
-          ...state,
+        return {
           ...newLightCart,
           // * To avoid unnecessary re-renders
           products: isEqualProducts ? state.products : newLightCart.products,
@@ -118,8 +125,9 @@ const cartSliceLazy = createSlice({
 
 export const cartSlice = cartSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/config' {
+declare module '@/app/store/store' {
   export interface LazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
 }
 
-export const { deleteProductAction } = cartSlice.actions;
+export const { selectCartProductLineId, selectCartIdAndVersion, selectCartProductById } = cartSlice.selectors;
+export const { deleteProductAction, decrementQuantityAction, incrementQuantityAction, setQuantityAction } = cartSlice.actions;

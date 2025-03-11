@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Button } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
@@ -6,10 +6,9 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 
 import { selectIsOpenFilterDrawer, setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/model/catalogPage.slice';
 
-import { ElemWithTypography } from '@/shared/ui/elements/typography/ElemWithTypography';
-
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { ElemWithTypography } from '@/shared/ui/elements';
+import { sxMixins } from '@/shared/lib/mui';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   filters: {

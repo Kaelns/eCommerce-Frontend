@@ -1,8 +1,7 @@
-import { applyFormFiltersAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { applyFormFiltersAction } from '@/features/catalog-filters';
 
-import { ContainedBtn } from '@/shared/ui/elements/buttons/ContainedBtn';
-
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+import { ContainedBtn } from '@/shared/ui/elements';
+import { useAppDispatch } from '@/shared/lib/redux';
 
 export function ApplyFiltersBtn() {
   const dispatch = useAppDispatch();

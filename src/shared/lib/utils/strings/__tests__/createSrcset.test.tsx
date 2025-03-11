@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { createSrcset } from '@/shared/lib/utils/strings/createSrcset';
-import { SrcsetPxAsc } from '@/shared/model/types/types';
+import { SrcsetPxAsc } from '@/shared/model/types';
 
 const imgSrc = 'google_images_2015.png';
 const srcsetArr: SrcsetPxAsc = [

@@ -1,6 +1,6 @@
-import { cartApi } from '@/entities/cart';
+import { loadStore } from '@/app/store/store';
 
-import { loadStore } from '@/app';
+import { cartApi } from '@/entities/cart';
 
 export const prefetchCartPageLoader = () => {
   loadStore.then((store) => {

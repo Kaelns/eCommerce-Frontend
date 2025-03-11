@@ -1,9 +1,6 @@
 import type { SrcsetPxAsc } from '@/entities/product/model/product.types';
 
 export const ProductConsts = {
-  NO_CATEGORY: 'no-category',
-  NO_CATEGORY_NAME: 'No category',
-
   MIN_MONEY: 0,
   MAX_MONEY: 5000,
 

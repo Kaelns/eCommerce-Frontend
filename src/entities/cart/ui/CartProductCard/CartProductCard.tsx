@@ -1,5 +1,5 @@
 import type { BoxProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { round } from 'lodash';
 import { Stack } from '@mui/system';
@@ -8,16 +8,13 @@ import { Box, Button, Tooltip, Typography } from '@mui/material';
 
 import { SRCSET_API } from '@/entities/product';
 import { selectLanguage } from '@/entities/user';
-import { deleteProductAction, selectCartProductById } from '@/entities/cart';
+import { deleteProductAction, selectCartProductById } from '@/entities/cart/model/cart.slice';
 import { CartProductQuantity } from '@/entities/cart/ui/CartProductCard/components/CartProductQuantity';
 
-import { ImgLoad } from '@/shared/ui/components/img/ImgLoad';
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-import { DiscountTypography } from '@/shared/ui/elements/typography/DiscountTypography';
-import { FullPriceTypography } from '@/shared/ui/components/typography/FullPriceTypography';
-
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { ImgLoad, FullPriceTypography } from '@/shared/ui/components';
+import { BoldTypography, DiscountTypography } from '@/shared/ui/elements';
+import { sxMixins } from '@/shared/lib/mui';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const IMG_SELECTOR = 'product-basket__img';
 const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };

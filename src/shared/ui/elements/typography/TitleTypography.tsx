@@ -1,5 +1,5 @@
 import type { TypographyProps } from '@mui/material';
-import type { PropsWithChildren } from '@/shared/model/types/types';
+import type { PropsWithChildren } from '@/shared/model/types';
 
 import { Typography } from '@mui/material';
 

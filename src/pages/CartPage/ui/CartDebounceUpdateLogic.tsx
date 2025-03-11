@@ -1,31 +1,21 @@
 import { memo, useEffect } from 'react';
 
-import { selectCartProducts, selectCartProductsIds, useUpdateCartMutation } from '@/entities/cart';
+import { updateCartRevertOnError } from '@/pages/CartPage/lib/thunks/updateCartRevertOnError';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
-import { useDebounceValueCache } from '@/shared/lib/hooks/useDebounceValueCache';
+import { selectCartProducts } from '@/entities/cart';
+
+import { useDebounceValueCache } from '@/shared/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 export const CartDebounceUpdateLogic = memo(function CartDebounceLogic() {
+  const dispatch = useAppDispatch();
+
   const cartProducts = useAppSelector(selectCartProducts);
-  const cartProductsIds = useAppSelector(selectCartProductsIds);
   const [prevCartProducts, newCartProducts] = useDebounceValueCache(cartProducts);
 
-  const [updateCartProducts] = useUpdateCartMutation();
-
   useEffect(() => {
-    // if (prevCartProducts !== newCartProducts) {
-    // }
-  }, [prevCartProducts, newCartProducts]);
+    dispatch(updateCartRevertOnError(prevCartProducts, newCartProducts));
+  }, [prevCartProducts, newCartProducts, dispatch]);
 
   return null;
 });
-
-// useEffect(() => {
-//   const postOrRevertOnError = async (): Promise<void> => {
-//     const errorMessage = await postQuantity(prevBasketProd, cartProductsCopy, isLogged);
-//     if (errorMessage) {
-//       setPrevBasketOnError(showAlert, dispatchCartProducts, errorMessage, prevBasketProd);
-//     }
-//   };
-//   postOrRevertOnError();
-// }, [prevBasketProd, cartProductsCopy, showAlert, isLogged]);

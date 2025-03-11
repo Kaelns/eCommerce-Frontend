@@ -3,12 +3,11 @@ import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 
-import { router } from '@/router/router';
-
-import { store } from '@/app';
-import '@/app/styles/index.scss';
+import { store } from '@/app/store/store';
 import { MuiTheme } from '@/app/config/mui-theme/MuiTheme';
-import '@/app/model/init-scripts.ts';
+
+// * It's important to import router after store
+import { router } from '@/router/router';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

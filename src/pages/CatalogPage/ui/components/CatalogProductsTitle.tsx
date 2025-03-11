@@ -3,9 +3,8 @@ import { Typography } from '@mui/material';
 
 import { selectCategoryName } from '@/features/catalog-filters';
 
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
-
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { TitleTypography } from '@/shared/ui/elements';
+import { useAppSelector } from '@/shared/lib/redux';
 
 export function CatalogProductsTitle({ amount }: { amount: number }) {
   const categoryName = useAppSelector(selectCategoryName);

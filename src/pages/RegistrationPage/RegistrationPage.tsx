@@ -1,15 +1,14 @@
 import { Stack } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 import { Chip, Button, Divider } from '@mui/material';
 
-import { router } from '@/app';
+import { TitleTypography } from '@/shared/ui/elements';
 
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
-
-import { Paths } from '@/shared/model/data/enums';
-// import { RegistrationForm } from '@/features/components/AuthForms/RegistrationForm/RegistrationForm';
+import { Paths } from '@/shared/model/data';
 
 export function RegistrationPage() {
-  const navigateToLogin = () => router.navigate(Paths.LOGIN);
+  const navigate = useNavigate();
+  const navigateToLogin = () => navigate(Paths.LOGIN);
 
   return (
     <Stack gap={2} alignItems="center">

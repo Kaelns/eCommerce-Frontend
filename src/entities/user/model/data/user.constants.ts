@@ -1,4 +1,4 @@
-import type { Currencies } from '@/shared/model/types/types';
+import type { Currencies } from '@/shared/model/types';
 
 export const USER_INIT_COUNTRY = 'US';
 export const USER_INIT_LANGUAGE = 'en-US';

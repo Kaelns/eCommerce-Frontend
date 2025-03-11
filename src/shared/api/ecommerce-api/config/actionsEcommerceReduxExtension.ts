@@ -1,4 +1,4 @@
-import type { BodyUserCredentials } from '@/entities/user/model/types/user.schemas';
+import type { BodyUserCredentials } from '@/entities/user';
 
 import { authApi } from '@/entities/auth/api/authApi';
 

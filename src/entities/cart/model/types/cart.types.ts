@@ -1,4 +1,4 @@
-import type { PriceConverted } from '@/shared/model/types/types';
+import type { PriceConverted } from '@/shared/model/types';
 import type { Image, LocalizedString } from '@commercetools/platform-sdk';
 
 export interface CartData {
@@ -21,11 +21,12 @@ export interface CartLight {
 }
 
 export interface CartLightProduct {
-  lineId: string;
+  productId: string;
+  cartProductLineId: string;
+
   images: Image[];
   imageUrl: string;
   quantity: number;
-  productId: string;
   maxQuantity: number;
   name: LocalizedString;
   pricesObj: Record<string, PriceConverted>;

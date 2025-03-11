@@ -1,8 +1,10 @@
-import type { SxStyles, InputReactEvent } from '@/shared/model/types/types';
+import type { SxStyles, InputReactEvent } from '@/shared/model/types';
 
 import { useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import { Box, Button, ButtonGroup, OutlinedInput } from '@mui/material';
+
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import {
   selectCartIsPromocode,
@@ -15,11 +17,9 @@ import {
 
 import { useAlert } from '@/features/Alert';
 
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-
-import { AlertSeverity } from '@/shared/model/data/enums';
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { BoldTypography } from '@/shared/ui/elements';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
+import { AlertSeverity } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   container: {

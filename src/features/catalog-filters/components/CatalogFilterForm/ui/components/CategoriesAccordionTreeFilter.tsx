@@ -1,16 +1,16 @@
 import { memo, useCallback } from 'react';
 
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
+
 import { selectLanguage } from '@/entities/user';
 import { useGetCategoriesQuery } from '@/entities/categories';
 
 import { AccordionTree } from '@/features/AccordionTree';
 import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryName';
-import { selectIsCurrentCategoryIdForm, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { selectIsCurrentCategoryIdForm, setCategoryIdAndNameFormAction } from '@/features/catalog-filters';
 
-import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
-
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { SuspenseWithError } from '@/shared/ui/components';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 //  TODO accordion tree
 export const CategoriesAccordionTreeFilter = memo(function CategoriesAccordionTreeFilter(): React.ReactNode {

@@ -1,5 +1,5 @@
 import type { SxProps } from '@mui/system';
-import type { PropsWithChildren } from '@/shared/model/types/types';
+import type { PropsWithChildren } from '@/shared/model/types';
 
 import * as React from 'react';
 

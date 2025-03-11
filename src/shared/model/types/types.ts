@@ -1,5 +1,5 @@
+import type { isoCurrencies } from '@/shared/model/data';
 import type { Theme, SystemStyleObject } from '@mui/system';
-import type currencyData from '@/shared/model/data/ISO4217/ISO4217-currencies.json';
 
 // * General types
 
@@ -31,7 +31,7 @@ export type SxPropsArr<T extends object = Theme> = ReadonlyArray<boolean | SxPro
 
 // * Ecommerce types
 
-export type Currencies = keyof typeof currencyData;
+export type Currencies = keyof typeof isoCurrencies;
 
 export interface PriceConverted {
   price: number;

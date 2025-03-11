@@ -9,7 +9,7 @@ import { selectIsLoggedAuth } from '@/entities/auth';
 
 import { Navbar, Navbars } from '@/features/Navbar';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppSelector } from '@/shared/lib/redux';
 
 const BADGE_LOGIN_TEXT = 'Login';
 

@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 
 import { selectCartProductQuantity } from '@/entities/cart';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppSelector } from '@/shared/lib/redux';
 
 export function CartProductsFinalQuantity() {
   const productQuantity = useAppSelector(selectCartProductQuantity);

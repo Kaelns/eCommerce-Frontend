@@ -1,15 +1,14 @@
 import type { JSX } from 'react';
 import type Slider from 'react-slick';
 import type { Settings } from 'react-slick';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Box, IconButton } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-import { LightMuiBox } from '@/shared/ui/elements/boxes/LightMuiBox';
-
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
+import { LightMuiBox } from '@/shared/ui/elements';
+import { sxMixins } from '@/shared/lib/mui';
 
 const sxStyles: SxStyles = {
   nextArrow: {

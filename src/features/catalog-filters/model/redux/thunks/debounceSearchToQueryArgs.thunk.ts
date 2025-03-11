@@ -2,7 +2,7 @@ import type { AppThunk, AppThunkDispatch } from '@/shared/lib/redux/redux.types'
 
 import { selectLanguage } from '@/entities/user';
 
-import { setSearchAction, applyFormFiltersAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { setSearchAction, applyFormFiltersAction } from '@/features/catalog-filters';
 
 import { debounce } from '@/shared/lib/utils/side-effects/debounce';
 

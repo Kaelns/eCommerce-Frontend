@@ -6,9 +6,9 @@ import CategoryIcon from '@mui/icons-material/Category';
 
 import { UserFullNameCard } from '@/entities/user/ui/UserFullNameCard';
 
-import { ElemWithTypography } from '@/shared/ui/elements/typography/ElemWithTypography';
+import { ElemWithTypography } from '@/shared/ui/elements';
 
-import { Paths } from '@/shared/model/data/enums';
+import { Paths } from '@/shared/model/data';
 
 export enum Navbars {
   APP_HEADER,

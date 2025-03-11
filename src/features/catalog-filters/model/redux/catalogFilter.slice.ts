@@ -5,18 +5,20 @@ import type { FilterColorsState } from '@/features/catalog-filters/model/types';
 import { isEqual } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 
+import { rootReducer } from '@/app/store/store';
+
 import { productApi, ProductConsts } from '@/entities/product';
+import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/entities/categories';
 import { setLanguageAction, setCurrencyAction, USER_INIT_LANGUAGE, USER_INIT_CURRENCY } from '@/entities/user';
 
-import { rootReducer } from '@/app/store/config';
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
 import { setCategoryIdAndNameActionHelper } from '@/features/catalog-filters/model/redux/helpers/setCategoryIdAndNameAction';
 import { convertFilterToQueryArgs } from '@/features/catalog-filters/model/redux/helpers/convertFilterToQueryArgs/convertFilterToQueryArgs';
 
-export const INIT_FILTER = {
+const INIT_FILTER = {
   filters: {
-    categoryName: ProductConsts.NO_CATEGORY_NAME as string,
-    categoryId: ProductConsts.NO_CATEGORY as string,
+    categoryName: NO_CATEGORY_NAME as string,
+    categoryId: NO_CATEGORY as string,
     colorObj: {} as FilterColorsState,
     price: [ProductConsts.MIN_MONEY, ProductConsts.MAX_MONEY] as number[],
 
@@ -26,8 +28,8 @@ export const INIT_FILTER = {
   },
 
   form: {
-    categoryName: ProductConsts.NO_CATEGORY_NAME as string,
-    categoryId: ProductConsts.NO_CATEGORY as string,
+    categoryName: NO_CATEGORY_NAME as string,
+    categoryId: NO_CATEGORY as string,
     colorObj: {} as FilterColorsState,
     price: [ProductConsts.MIN_MONEY, ProductConsts.MAX_MONEY] as number[]
   },
@@ -128,31 +130,13 @@ const catalogFilterSliceLazy = createSlice({
   }
 });
 
-export const catalogFilterSliceInjected = catalogFilterSliceLazy.injectInto(rootReducer);
+export const catalogFilterSlice = catalogFilterSliceLazy.injectInto(rootReducer);
 
-export const {
-  selectSort,
-  selectPage,
-  selectSearch,
-  selectPriceForm,
-  selectCategoryId,
-  selectCategoryName,
-  selectIsColorActiveForm,
-  selectIsCurrentCategoryIdForm
-} = catalogFilterSliceInjected.selectors;
+export const { selectSort, selectPage, selectSearch, selectCategoryId } = catalogFilterSlice.selectors;
 
-export const {
-  setSortAction,
-  setPageAction,
-  setSearchAction,
-  resetFormAction,
-  setPriceFormAction,
-  toggleColorFormAction,
-  applyFormFiltersAction,
-  setCategoryIdAndNameAction,
-  setCategoryIdAndNameFormAction
-} = catalogFilterSliceInjected.actions;
+export const { setSortAction, setPageAction, resetFormAction, setCategoryIdAndNameFormAction, toggleColorFormAction } =
+  catalogFilterSlice.actions;
 
-declare module '@/app/store/config' {
+declare module '@/app/store/store' {
   export interface LazyLoadedSlices extends WithSlice<typeof catalogFilterSliceLazy> {}
 }

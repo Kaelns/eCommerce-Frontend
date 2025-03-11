@@ -1,18 +1,19 @@
+import type { CartLightProduct } from '@/entities/cart';
 import type { LineItem } from '@commercetools/platform-sdk';
-import type { CartLightProduct } from '@/entities/cart/model/types/cart.types';
 
 import { getProductPricesObj } from '@/entities/product';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
-export const MOCK_BASKET_PRODUCT: CartLightProduct = {
+const MOCK_BASKET_PRODUCT: CartLightProduct = {
+  productId: '',
+  cartProductLineId: '',
+
   name: {},
-  lineId: '',
   images: [],
   quantity: 0,
   imageUrl: '',
   pricesObj: {},
-  productId: '',
   maxQuantity: 0
 };
 
@@ -30,9 +31,10 @@ export function convertToLightCartProduct(basketProduct: LineItem): CartLightPro
   const pricesObj = getProductPricesObj(prices);
 
   return {
-    name: basketProduct.name,
-    lineId: basketProduct.id,
     productId: basketProduct.productId,
+    cartProductLineId: basketProduct.id,
+
+    name: basketProduct.name,
     quantity: basketProduct.quantity,
     images,
     imageUrl,

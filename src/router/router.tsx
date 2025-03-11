@@ -1,22 +1,21 @@
 import { Route, Navigate, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
+import { App } from '@/app/ui/App';
+import { prefetchStartSessionLoader } from '@/app/model/prefetchStartSession.loader';
+
 import { RedirectLoginRouter } from '@/router/ui/RedirectLoginRouter';
 
-import { MainPage } from '@/pages/MainPage/MainPage';
-import { CartPage } from '@/pages/CartPage/CartPage';
-import { UserPage } from '@/pages/UserPage/UserPage';
-import { ErrorPage } from '@/pages/ErrorPage/ErrorPage';
-import { LoginPage } from '@/pages/LoginPage/LoginPage';
-import { AboutUsPage } from '@/pages/AboutUsPage/AboutUsPage';
-import { CatalogPage } from '@/pages/CatalogPage/CatalogPage';
-import { prefetchCatalogPageLoader } from '@/pages/CatalogPage';
-import { RegistrationPage } from '@/pages/RegistrationPage/RegistrationPage';
-import { DetailedProductPage } from '@/pages/DetailedProductPage/DetailedProductPage';
-import { prefetchCartPageLoader } from '@/pages/CartPage/model/prefetchCartPageLoader';
+import { MainPage } from '@/pages/MainPage';
+import { UserPage } from '@/pages/UserPage';
+import { ErrorPage } from '@/pages/ErrorPage';
+import { LoginPage } from '@/pages/LoginPage';
+import { AboutUsPage } from '@/pages/AboutUsPage';
+import { RegistrationPage } from '@/pages/RegistrationPage';
+import { DetailedProductPage } from '@/pages/DetailedProductPage';
+import { CartPage, prefetchCartPageLoader } from '@/pages/CartPage';
+import { CatalogPage, prefetchCatalogPageLoader } from '@/pages/CatalogPage';
 
-import { App, prefetchStartSessionLoader } from '@/app';
-
-import { Paths } from '@/shared/model/data/enums';
+import { Paths } from '@/shared/model/data';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

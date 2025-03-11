@@ -1,6 +1,6 @@
 import type { Cart } from '@commercetools/platform-sdk';
 
-import { calculateDiscountPercent } from '@/shared/lib/utils/numbers/calculateDiscountPercent';
+import { calculateDiscountPercent } from '@/shared/lib/utils';
 
 export function getCartPromocodeData(cart: Cart) {
   const discountInMoney = cart.discountOnTotalPrice?.discountedAmount?.centAmount ?? 0;

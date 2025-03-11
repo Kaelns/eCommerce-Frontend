@@ -1,11 +1,10 @@
 import type { PaperProps } from '@mui/material';
-import type { SxPropsObj } from '@/shared/model/types/types';
+import type { SxPropsObj } from '@/shared/model/types';
 
 import { Paper } from '@mui/material';
 
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
+import { BoldTypography } from '@/shared/ui/elements';
+import { convertSxToArr } from '@/shared/lib/helpers';
 
 const sxPaper: SxPropsObj = { p: 1.5, cursor: ' pointer' };
 

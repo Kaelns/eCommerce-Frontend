@@ -1,11 +1,11 @@
-import type { Currencies } from '@/shared/model/types/types';
+import type { Currencies } from '@/shared/model/types';
 import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { USER_INIT_COUNTRY, USER_INIT_LANGUAGE, USER_INIT_CURRENCY } from '@/entities/user/model/data/user.constants';
+import { rootReducer } from '@/app/store/store';
 
-import { rootReducer } from '@/app/store/config';
+import { USER_INIT_COUNTRY, USER_INIT_LANGUAGE, USER_INIT_CURRENCY } from '@/entities/user/model/data/user.constants';
 
 const INIT_USER = {
   country: USER_INIT_COUNTRY,
@@ -36,6 +36,6 @@ const userSliceLazy = createSlice({
 
 export const userSlice = userSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/config' {
+declare module '@/app/store/store' {
   export interface LazyLoadedSlices extends WithSlice<typeof userSliceLazy> {}
 }

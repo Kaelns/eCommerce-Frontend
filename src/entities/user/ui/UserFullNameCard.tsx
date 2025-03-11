@@ -2,7 +2,7 @@ import type { SxProps } from '@mui/material';
 
 import { Avatar } from '@mui/material';
 
-import { ElemWithTypography } from '@/shared/ui/elements/typography/ElemWithTypography';
+import { ElemWithTypography } from '@/shared/ui/elements';
 
 const userInitials = 'UI';
 const userName = 'User';

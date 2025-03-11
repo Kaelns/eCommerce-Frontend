@@ -1,5 +1,5 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Skeleton, skeletonClasses } from '@mui/material';

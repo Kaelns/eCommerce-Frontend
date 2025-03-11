@@ -1,10 +1,11 @@
-import type { EcommerceExtendedQuery } from '@/shared/api/ecommerce-api/model/types/types';
+import type { EcommerceExtendedQuery } from '@/shared/api/ecommerce-api';
 
 import { baseQuery } from '@/shared/api/ecommerce-api/config/baseQuery';
-import { HttpStatus, AlertAPIText, AlertSeverity } from '@/shared/model/data/enums';
 import { serializeError } from '@/shared/api/ecommerce-api/lib/helpers/serializeError';
 import { restoreUserAndRequery } from '@/shared/api/ecommerce-api/config/extendedQuery/helpers/restoreUserAndRequery';
 import { setIsLoggedAfterQuery } from '@/shared/api/ecommerce-api/config/extendedQuery/helpers/setIsLoggedAfterQuery';
+
+import { HttpStatus, AlertAPIText, AlertSeverity } from '@/shared/model/data';
 
 // TODO Check functionality
 

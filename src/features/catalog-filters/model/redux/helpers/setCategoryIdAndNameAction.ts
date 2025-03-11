@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { FilterState } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import type { FilterState } from '@/features/catalog-filters';
 
-import { ProductConsts } from '@/entities/product';
+import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/entities/categories';
 
 export const setCategoryIdAndNameActionHelper = (
   state: FilterState,
@@ -11,7 +11,7 @@ export const setCategoryIdAndNameActionHelper = (
     state.form.categoryId = action.payload.categoryId;
     state.form.categoryName = action.payload.categoryName;
   } else {
-    state.form.categoryId = ProductConsts.NO_CATEGORY;
-    state.form.categoryName = ProductConsts.NO_CATEGORY_NAME;
+    state.form.categoryId = NO_CATEGORY;
+    state.form.categoryName = NO_CATEGORY_NAME;
   }
 };

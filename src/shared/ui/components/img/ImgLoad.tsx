@@ -1,7 +1,7 @@
 import type { Theme, StackProps } from '@mui/system';
+import type { SxStyles } from '@/shared/model/types';
 import type { SrcsetPxAsc } from '@/entities/product';
 import type { SxProps, BoxProps } from '@mui/material';
-import type { SxStyles } from '@/shared/model/types/types';
 
 import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
@@ -10,10 +10,9 @@ import { grey } from '@mui/material/colors';
 
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { ImgSkeleton } from '@/shared/ui/components/skeletons/ImgSkeleton';
-
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { createSrcset } from '@/shared/lib/utils/strings/createSrcset';
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
+import { sxMixins } from '@/shared/lib/mui';
+import { createSrcset } from '@/shared/lib/utils';
+import { convertSxToArr } from '@/shared/lib/helpers';
 
 const sxStyles: SxStyles = {
   container: {

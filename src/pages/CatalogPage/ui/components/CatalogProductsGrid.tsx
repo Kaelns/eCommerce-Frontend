@@ -1,9 +1,9 @@
-import type { SxPropsObj } from '@/shared/model/types/types';
+import type { SxPropsObj } from '@/shared/model/types';
 import type { ProductProjection } from '@commercetools/platform-sdk';
 
 import { Grid } from '@mui/system';
 
-import { ProductCard } from '@/entities/product/ui/ProductCard';
+import { ProductCard } from '@/entities/product';
 
 const sxProductWrapper: SxPropsObj = {
   display: 'flex',

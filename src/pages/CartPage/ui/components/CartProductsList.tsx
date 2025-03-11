@@ -1,9 +1,8 @@
 import { Stack } from '@mui/system';
 
-import { selectCartProductsIds } from '@/entities/cart';
-import { CartProductCard } from '@/entities/cart/ui/CartProductCard/CartProductCard';
+import { CartProductCard, selectCartProductsIds } from '@/entities/cart';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppSelector } from '@/shared/lib/redux';
 
 export function CartProductsList() {
   const productsIds = useAppSelector(selectCartProductsIds);

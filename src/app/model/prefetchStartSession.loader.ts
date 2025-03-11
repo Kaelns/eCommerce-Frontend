@@ -1,12 +1,10 @@
-import { authApi } from '@/entities/auth';
-import { categoriesApi } from '@/entities/categories';
-
 import { loadStore } from '@/app/store/store';
+
+import { authApi } from '@/entities/auth';
 
 export const prefetchStartSessionLoader = () => {
   loadStore.then(async (store) => {
-    await store.dispatch(authApi.endpoints.startSession.initiate(undefined, { subscribe: false }));
-    store.dispatch(categoriesApi.util.prefetch('getCategories', undefined, {}));
+    store.dispatch(authApi.util.prefetch('startSession', undefined, {}));
   });
   return null;
 };

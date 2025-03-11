@@ -1,4 +1,4 @@
-import type { TreeNode } from '@/shared/model/types/types';
+import type { TreeNode } from '@/shared/model/types';
 import type { ReduxElemIdData } from '@/features/AccordionTree/types';
 
 import { memo } from 'react';

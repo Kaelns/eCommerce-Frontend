@@ -1,5 +1,5 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
@@ -14,10 +14,8 @@ import { ColorFilter } from '@/features/catalog-filters/components/CatalogFilter
 import { CategoriesAccordionTreeFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/CategoriesAccordionTreeFilter';
 import { RangePriceSliderFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/RangePriceSliderFilter/RangePriceSliderFilter';
 
-import { ContainedBtn } from '@/shared/ui/elements/buttons/ContainedBtn';
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+import { ContainedBtn, BoldTypography } from '@/shared/ui/elements';
+import { useAppDispatch } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   btnApply: {

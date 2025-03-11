@@ -2,7 +2,7 @@ import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/app/store/config';
+import { rootReducer } from '@/app/store/store';
 
 const INIT_CATALOG_PAGE = {
   isOpenFilterDrawer: false,
@@ -26,9 +26,9 @@ const catalogPageSliceLazy = createSlice({
   }
 });
 
-export const catalogPageSlice = catalogPageSliceLazy.injectInto(rootReducer);
+const catalogPageSlice = catalogPageSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/config' {
+declare module '@/app/store/store' {
   export interface LazyLoadedSlices extends WithSlice<typeof catalogPageSliceLazy> {}
 }
 

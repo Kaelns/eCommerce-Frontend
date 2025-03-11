@@ -1,24 +1,26 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 import { Title } from '@mui/icons-material';
+
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import cartImg from '@/pages/CartPage/assets/cart.png';
 import { CartResetBtn } from '@/pages/CartPage/ui/components/buttons/CartResetBtn';
 import { CartProductsList } from '@/pages/CartPage/ui/components/CartProductsList';
 import { CartPromocode } from '@/pages/CartPage/ui/components/inputs/CartPromocode';
-import { CartShowIfProducts } from '@/pages/CartPage/ui/components/conditional/CartShowIfProducts';
+import { CartDebounceUpdateLogic } from '@/pages/CartPage/ui/CartDebounceUpdateLogic';
 import { CartProductsFinalPrice } from '@/pages/CartPage/ui/components/typography/CartProductsFinalPrice';
+import { CartShowIfProductsExist } from '@/pages/CartPage/ui/components/conditional/CartShowIfProductsExist';
 import { CartProductsFinalQuantity } from '@/pages/CartPage/ui/components/typography/CartProductsFinalQuantity';
 
 import { AppError } from '@/widgets/AppError';
 
 import { useGetAllCartsQuery } from '@/entities/cart';
 
-import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
+import { SuspenseWithError } from '@/shared/ui/components';
 
-import { Paths } from '@/shared/model/data/enums';
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
+import { Paths } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   stackContainer: {
@@ -40,7 +42,7 @@ export function CartPage() {
 
   return (
     <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }} sx={sxStyles.stackContainer}>
-      <CartShowIfProducts
+      <CartShowIfProductsExist
         Fallback={
           <AppError src={cartImg} alt="Cart image" message="Your Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />
         }
@@ -57,7 +59,10 @@ export function CartPage() {
         </Box>
 
         <CartProductsList />
-      </CartShowIfProducts>
+      </CartShowIfProductsExist>
+
+      {/* Component for logic without elements */}
+      <CartDebounceUpdateLogic />
     </SuspenseWithError>
   );
 }

@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -6,9 +6,9 @@ import { Box, Button, ButtonGroup } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements';
 
-import { Paths } from '@/shared/model/data/enums';
+import { Paths } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   btn: {

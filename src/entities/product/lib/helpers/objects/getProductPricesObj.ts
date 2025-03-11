@@ -1,5 +1,5 @@
 import type { Price } from '@commercetools/platform-sdk';
-import type { PriceConverted } from '@/shared/model/types/types';
+import type { PriceConverted } from '@/shared/model/types';
 
 import { getProductPrice } from '@/entities/product/lib/helpers/objects/getProductPrice';
 

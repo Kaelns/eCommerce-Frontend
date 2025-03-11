@@ -1,11 +1,10 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Box, List, Card, Link, Stack, Paper, CardMedia, Typography, CardContent } from '@mui/material';
 
 import { ABOUT_US } from '@/pages/AboutUsPage/constants';
 
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
+import { BoldTypography, TitleTypography } from '@/shared/ui/elements';
 
 const sxStyles: SxStyles = {
   pageContainer: {

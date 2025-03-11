@@ -1,37 +1,26 @@
-import { cartApi } from '@/entities/cart/api/cartApi';
+import { cartApi } from '@/entities/cart';
 import { cartSlice } from '@/entities/cart/model/cart.slice';
 
 export * from '@/entities/cart/model/types/cart.types';
 export * from '@/entities/cart/model/types/cart.schemas';
 export * from '@/entities/cart/model/data/cart.constants';
 
-export { cartApi };
+export { cartApi } from '@/entities/cart/api/cartApi';
 export const { useGetAllCartsQuery, useUpdateCartMutation } = cartApi;
 
-export { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
-export { calculateDiscountPercent } from '@/shared/lib/utils/numbers/calculateDiscountPercent';
-export { createCartUpdateAction } from '@/entities/cart/lib/helpers/objects/createCartUpdateAction';
-export { calculateFinalCartPrice as calculatePrice } from '@/entities/cart/lib/helpers/numbers/calculateFinalCartPrice';
-export { calculateCartProductsQuantity as calculateProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateCartProductsQuantity';
+export { createCartUpdateAction } from '@/entities/cart/api/helpers/createCartUpdateAction';
 
 export const {
   selectCartProducts,
-  selectCartDiscount,
-  selectCartProductById,
   selectCartProductsIds,
   selectCartIsPromocode,
   selectCartIdAndVersion,
   selectCartFinalPriceObj,
-  selectCartProductLineId,
   selectCartProductQuantity
 } = cartSlice.selectors;
 
-export const {
-  clearCartAction,
-  setCartDataAction,
-  setQuantityAction,
-  deleteProductAction,
-  decrementQuantityAction,
-  incrementQuantityAction,
-  setCartIsPromocodeAction
-} = cartSlice.actions;
+export const { clearCartAction, revertProductsAction, setCartIsPromocodeAction } = cartSlice.actions;
+
+export { AddProductToCartBtn } from '@/entities/cart/ui/AddProductToCartBtn';
+export { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
+export { CartProductCard } from '@/entities/cart/ui/CartProductCard/CartProductCard';
