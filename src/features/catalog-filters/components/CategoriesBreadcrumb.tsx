@@ -52,11 +52,11 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
           const categoryName = getCategoryName(categoriesCollection?.categoriesObj, categoryId, language);
 
           return index !== categoriesToRender.length - 1 ? (
-            <CasualBtn key={categoryId} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
+            <CasualBtn key={`active - ${categoryId}`} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
               {categoryName}
             </CasualBtn>
           ) : (
-            <CasualBtn disabled key={categoryId} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
+            <CasualBtn disabled key={`disabled - ${categoryId}`} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
               {categoryName}
             </CasualBtn>
           );

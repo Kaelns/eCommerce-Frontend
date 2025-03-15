@@ -84,6 +84,7 @@ module.exports = {
         ignoreCase: false,
         internalPattern: ['^@/.+'],
         newlinesBetween: 'always',
+        partitionByComment: true,
         groups: [
           'type',
           ['builtin', 'external'],

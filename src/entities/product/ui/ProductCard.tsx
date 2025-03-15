@@ -6,8 +6,8 @@ import { useMemo } from 'react';
 import { Stack } from '@mui/system';
 import { Box, Typography } from '@mui/material';
 
-import { selectLanguage } from '@/entities/user';
 import { AddProductToCartBtn } from '@/entities/cart';
+import { selectCountry, selectLanguage } from '@/entities/user';
 import { SRCSET_API } from '@/entities/product/model/product.constants';
 import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
 
@@ -95,12 +95,15 @@ export function ProductCard({
   containerMaxWidth = { zero: 400, laptop: 300 }
 }: ProductCardProps) {
   const language = useAppSelector(selectLanguage);
+  const country = useAppSelector(selectCountry);
   const productData = useMemo(() => convertToLightProduct(product), [product]);
 
-  const shortedDescription = productData.description ? productData.description[language].slice(0, 90) : '';
+  const shortedDescription = productData.description
+    ? productData.description[language].slice(0, productData.description[language].indexOf(' ', 100))
+    : '';
 
   const { height, maxSize } = imgHeight;
-  const { price, discount, discountedPrice } = productData.pricesObj[language];
+  const { price, discount, discountedPrice } = productData.pricesObj[country];
 
   return (
     <LinkRouterWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper}>
@@ -122,7 +125,7 @@ export function ProductCard({
             {productData.maxQuantity}
           </Typography>
           <FullPriceTypography price={price} discount={discount} discountedPrice={discountedPrice} />
-          {Boolean(shortedDescription) ?? <Typography>{shortedDescription}...</Typography>}
+          <Typography>{shortedDescription}...</Typography>
         </Box>
 
         {/* Position absolute */}

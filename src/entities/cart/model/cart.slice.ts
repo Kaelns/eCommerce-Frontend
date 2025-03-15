@@ -5,12 +5,12 @@ import type { CartData, CartLight, CartLightAllProducts } from '@/entities/cart/
 import { isEqual } from 'lodash';
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/app/store/store';
-
 import { cartApi } from '@/entities/cart/api/cartApi';
 import { convertCart } from '@/entities/cart/lib/helpers/objects/convertCart';
 import { calculateFinalCartPrice } from '@/entities/cart/lib/helpers/numbers/calculateFinalCartPrice';
 import { calculateCartProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateCartProductsQuantity';
+
+import { rootReducer } from '@/shared/lib/redux';
 
 const INIT_CART: CartLight = {
   id: '',
@@ -29,7 +29,10 @@ const cartSliceLazy = createSlice({
   initialState: INIT_CART,
   selectors: {
     selectCartId: (state) => state.id,
-    selectCartIdAndVersion: (state): CartData => ({ cartId: state.id, version: state.version }),
+    selectCartIdAndVersion: createSelector(
+      [(state) => state.id, (state) => state.version],
+      (cartId, version) => ({ cartId, version }) as CartData
+    ),
 
     selectCartProducts: (state) => state.products,
     selectCartProductsIds: (state) => state.productsIds,
@@ -41,7 +44,7 @@ const cartSliceLazy = createSlice({
     selectCartIsPromocode: (state) => state.isPromocode,
 
     selectCartFinalPriceObj: createSelector(
-      [(state): CartLightAllProducts => state.cartProducts, (_state, language) => language],
+      [(state): CartLightAllProducts => state.cartProducts, (_state, language) => language, (_state, _language, country) => country],
       calculateFinalCartPrice
     )
   },
@@ -108,16 +111,24 @@ const cartSliceLazy = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(cartApi.endpoints.getAllCarts.matchFulfilled, (state, action) => {
-      const cart = action.payload.results.find((cart) => cart.id === state.id);
-      if (cart) {
-        const newLightCart = convertCart(cart);
-        const isEqualProducts = isEqual(state.products, newLightCart.products);
-        return {
-          ...newLightCart,
-          // * To avoid unnecessary re-renders
-          products: isEqualProducts ? state.products : newLightCart.products,
-          productsIds: isEqualProducts ? state.productsIds : newLightCart.productsIds
-        };
+      if (!state.id) {
+        const cart = action.payload.results[0];
+        if (cart) {
+          return convertCart(cart);
+        }
+      } else {
+        // * Update cart
+        const cart = action.payload.results.find((cart) => cart.id === state.id);
+        if (cart) {
+          const newLightCart = convertCart(cart);
+          const isEqualProducts = isEqual(state.products, newLightCart.products);
+          return {
+            ...newLightCart,
+            // * To avoid unnecessary re-renders
+            products: isEqualProducts ? state.products : newLightCart.products,
+            productsIds: isEqualProducts ? state.productsIds : newLightCart.productsIds
+          };
+        }
       }
     });
   }
@@ -125,7 +136,7 @@ const cartSliceLazy = createSlice({
 
 export const cartSlice = cartSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/store' {
+declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
 }
 

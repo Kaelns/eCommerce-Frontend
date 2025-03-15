@@ -9,4 +9,4 @@ export { CatalogFilterForm } from '@/features/catalog-filters/components/Catalog
 export { FiltersSort } from '@/features/catalog-filters/model/constants';
 
 export const { selectCategoryName, selectQueryArgs } = catalogFilterSlice.selectors;
-export const { setSearchAction, setCategoryIdAndNameAction } = catalogFilterSlice.actions;
+export const { setCategoryIdAndNameAction } = catalogFilterSlice.actions;

@@ -2,7 +2,7 @@ import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/app/store/store';
+import { rootReducer } from '@/shared/lib/redux';
 
 const INIT_AUTH = {
   isPending: true,
@@ -24,6 +24,6 @@ const authSliceLazy = createSlice({
 
 export const authSlice = authSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/store' {
+declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof authSliceLazy> {}
 }

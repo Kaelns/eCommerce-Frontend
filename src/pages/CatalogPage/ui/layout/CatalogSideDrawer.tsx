@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 export function CatalogSideDrawer({ children }: PropsWithChildren) {
   const dispatch = useAppDispatch();
+
   const isOpenFilterDrawer = useAppSelector(selectIsOpenFilterDrawer);
 
   const handleCloseSideDrawer = () => {

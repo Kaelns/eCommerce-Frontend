@@ -3,7 +3,7 @@ import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/app/store/store';
+import { rootReducer } from '@/shared/lib/redux';
 
 import { AlertText, AlertSeverity } from '@/shared/model/data';
 
@@ -46,6 +46,6 @@ const alertSliceLazy = createSlice({
 
 export const alertSlice = alertSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/store' {
+declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof alertSliceLazy> {}
 }

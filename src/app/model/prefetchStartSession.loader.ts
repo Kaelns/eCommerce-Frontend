@@ -1,10 +1,12 @@
-import { loadStore } from '@/app/store/store';
+import { loadStore } from '@/app';
 
 import { authApi } from '@/entities/auth';
+import { cartApi } from '@/entities/cart';
 
 export const prefetchStartSessionLoader = () => {
-  loadStore.then(async (store) => {
+  loadStore.then((store) => {
     store.dispatch(authApi.util.prefetch('startSession', undefined, {}));
+    store.dispatch(cartApi.util.prefetch('getAllCarts', undefined, {}));
   });
   return null;
 };

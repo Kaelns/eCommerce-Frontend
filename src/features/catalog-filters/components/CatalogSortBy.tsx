@@ -3,8 +3,6 @@ import type { SelectChangeEvent } from '@mui/material';
 
 import { Stack, Select, MenuItem } from '@mui/material';
 
-import { selectLanguage } from '@/entities/user';
-
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
 import { selectSort, setSortAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
@@ -29,10 +27,9 @@ export function CatalogSortBy() {
   const dispatch = useAppDispatch();
 
   const sort = useAppSelector(selectSort);
-  const language = useAppSelector(selectLanguage);
 
   const handleChange = (event: SelectChangeEvent): void => {
-    dispatch(setSortAction({ sort: event.target.value as FiltersSort, language }));
+    dispatch(setSortAction({ sort: event.target.value as FiltersSort }));
   };
 
   return (

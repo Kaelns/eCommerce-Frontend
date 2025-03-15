@@ -3,7 +3,7 @@ import type { SxStyles, SxPropsObj } from '@/shared/model/types';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
-import { selectIsColorActiveForm } from '@/features/catalog-filters';
+import { selectIsColorActiveForm } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { useAppSelector } from '@/shared/lib/redux';
 

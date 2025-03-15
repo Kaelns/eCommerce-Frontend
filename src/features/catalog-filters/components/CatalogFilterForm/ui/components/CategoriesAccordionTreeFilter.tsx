@@ -7,12 +7,11 @@ import { useGetCategoriesQuery } from '@/entities/categories';
 
 import { AccordionTree } from '@/features/AccordionTree';
 import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryName';
-import { selectIsCurrentCategoryIdForm, setCategoryIdAndNameFormAction } from '@/features/catalog-filters';
+import { selectIsCurrentCategoryIdForm, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-//  TODO accordion tree
 export const CategoriesAccordionTreeFilter = memo(function CategoriesAccordionTreeFilter(): React.ReactNode {
   const dispatch = useAppDispatch();
   const language = useAppSelector(selectLanguage);

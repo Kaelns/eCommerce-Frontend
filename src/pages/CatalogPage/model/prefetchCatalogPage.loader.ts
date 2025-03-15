@@ -1,4 +1,4 @@
-import { loadStore } from '@/app/store/store';
+import { loadStore } from '@/app';
 
 import { productApi } from '@/entities/product';
 import { selectLanguage } from '@/entities/user';

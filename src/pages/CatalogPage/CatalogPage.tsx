@@ -23,7 +23,8 @@ const sxStyles: SxStyles = {
   },
   drawerContainer: {
     overflowY: 'scroll',
-    p: 3
+    p: 3,
+    pb: 0
   },
   drawerCloseBtn: {
     position: 'fixed',
@@ -34,9 +35,9 @@ const sxStyles: SxStyles = {
 };
 
 export function CatalogPage() {
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
-  const theme = useTheme();
   const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
 
   const handleCloseSideDrawer = () => {

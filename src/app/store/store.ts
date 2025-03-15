@@ -1,24 +1,20 @@
-import { combineSlices, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-import { middlewares, extraArgument, actionsReduxExtension } from '@/app/store/config';
+// eslint-disable-next-line import/no-cycle
+import { router } from '@/app/router/router';
 
-import { ecommerceApi } from '@/shared/api/ecommerce-api';
+import { actionsEcommerceReduxExtension } from '@/shared/api/ecommerce-api';
 
-export interface LazyLoadedSlices {}
+import { rootReducer, dynamicMiddleware } from '@/shared/lib/redux';
 
-// * Used "slice.injectInto" for encapsulation
-export const rootReducer = combineSlices(ecommerceApi).withLazyLoadedSlices<LazyLoadedSlices>();
+export const extraArgument = {
+  router
+};
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ thunk: { extraArgument } }).concat(...middlewares),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ thunk: { extraArgument } }).concat(dynamicMiddleware.middleware),
   devTools: import.meta.env.DEV && {
-    ...actionsReduxExtension
+    actionCreators: { ...actionsEcommerceReduxExtension }
   }
-});
-
-export const loadStore = new Promise<typeof store>((res) => {
-  setTimeout(async () => {
-    res(store);
-  }, 0);
 });

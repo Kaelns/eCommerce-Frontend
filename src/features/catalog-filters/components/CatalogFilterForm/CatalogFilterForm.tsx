@@ -3,8 +3,8 @@ import type { SxStyles } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
-import ClearIcon from '@mui/icons-material/Clear';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 
 import { Filters, FILTERS_ORDER } from '@/features/catalog-filters/model/constants';
@@ -23,6 +23,10 @@ const sxStyles: SxStyles = {
   },
   btnClear: {
     flex: 1
+  },
+  btnContainer: {
+    position: 'sticky',
+    bottom: '1rem'
   }
 };
 
@@ -49,10 +53,10 @@ export const CatalogFilterForm = memo(function CatalogFilterForm({ ...props }: S
           <AccordionDetails>{filters[key]}</AccordionDetails>
         </Accordion>
       ))}
-      <Stack direction="row" gap={1}>
-        <ApplyFiltersBtn />
+      <Stack direction="row" gap={1} sx={sxStyles.btnContainer}>
+        <ApplyFiltersBtn sx={sxStyles.btnApply} />
         <ContainedBtn onClick={handleClear} sx={sxStyles.btnClear}>
-          <ClearIcon />
+          <FilterAltOffIcon />
         </ContainedBtn>
       </Stack>
     </Stack>

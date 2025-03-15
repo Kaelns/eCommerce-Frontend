@@ -4,8 +4,8 @@ import { Stack, Slider, Typography, OutlinedInput } from '@mui/material';
 
 import { ProductConsts } from '@/entities/product';
 
-import { selectPriceForm } from '@/features/catalog-filters';
 import { SLIDER_STEP } from '@/features/catalog-filters/model/constants';
+import { selectPriceForm } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 import {
   changeRangeInput,
   changeRangeSlider

@@ -5,7 +5,7 @@ import type { FilterColorsState } from '@/features/catalog-filters/model/types';
 import { isEqual } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/app/store/store';
+import { rootReducer } from '@/shared/lib/redux';
 
 import { productApi, ProductConsts } from '@/entities/product';
 import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/entities/categories';
@@ -132,11 +132,27 @@ const catalogFilterSliceLazy = createSlice({
 
 export const catalogFilterSlice = catalogFilterSliceLazy.injectInto(rootReducer);
 
-export const { selectSort, selectPage, selectSearch, selectCategoryId } = catalogFilterSlice.selectors;
+export const {
+  selectSort,
+  selectPage,
+  selectSearch,
+  selectPriceForm,
+  selectCategoryId,
+  selectIsColorActiveForm,
+  selectIsCurrentCategoryIdForm
+} = catalogFilterSlice.selectors;
 
-export const { setSortAction, setPageAction, resetFormAction, setCategoryIdAndNameFormAction, toggleColorFormAction } =
-  catalogFilterSlice.actions;
+export const {
+  setSortAction,
+  setPageAction,
+  resetFormAction,
+  setSearchAction,
+  setPriceFormAction,
+  toggleColorFormAction,
+  applyFormFiltersAction,
+  setCategoryIdAndNameFormAction
+} = catalogFilterSlice.actions;
 
-declare module '@/app/store/store' {
+declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof catalogFilterSliceLazy> {}
 }
