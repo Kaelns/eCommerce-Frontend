@@ -2,11 +2,11 @@ import type { Cart } from '@commercetools/platform-sdk';
 import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { CartData, CartLight, CartLightAllProducts } from '@/entities/cart/model/types/cart.types';
 
-import { isEqual } from 'lodash';
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { isAnyOf, createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { cartApi } from '@/entities/cart/api/cartApi';
 import { convertCart } from '@/entities/cart/lib/helpers/objects/convertCart';
+import { updateCartSlice } from '@/entities/cart/lib/helpers/redux/updateCartSlice';
 import { calculateFinalCartPrice } from '@/entities/cart/lib/helpers/numbers/calculateFinalCartPrice';
 import { calculateCartProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateCartProductsQuantity';
 
@@ -43,10 +43,7 @@ const cartSliceLazy = createSlice({
     selectCartDiscount: (state) => state.discount,
     selectCartIsPromocode: (state) => state.isPromocode,
 
-    selectCartFinalPriceObj: createSelector(
-      [(state): CartLightAllProducts => state.cartProducts, (_state, language) => language, (_state, _language, country) => country],
-      calculateFinalCartPrice
-    )
+    selectCartFinalPriceObj: createSelector([(state) => state.products, (_state, country) => country], calculateFinalCartPrice)
   },
   reducers: {
     setCartDataAction(_state, action: PayloadAction<Cart>) {
@@ -110,27 +107,27 @@ const cartSliceLazy = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addMatcher(cartApi.endpoints.getAllCarts.matchFulfilled, (state, action) => {
-      if (!state.id) {
-        const cart = action.payload.results[0];
+    builder
+      .addMatcher(cartApi.endpoints.getAllCarts.matchFulfilled, (state, action) => {
+        const carts = action.payload.results;
+        const isCartInSlice = Boolean(state.id);
+
+        const cart = isCartInSlice ? carts.find((cart) => cart.id === state.id) : carts[0];
+
         if (cart) {
-          return convertCart(cart);
+          return isCartInSlice ? updateCartSlice(cart, state) : convertCart(cart);
         }
-      } else {
-        // * Update cart
-        const cart = action.payload.results.find((cart) => cart.id === state.id);
+      })
+      // * Pessimistic update with util.updateQueryData doesn't evoke matchFulfilled
+      .addMatcher(isAnyOf(cartApi.endpoints.createCart.matchFulfilled, cartApi.endpoints.updateCart.matchFulfilled), (state, action) => {
+        const cart = action.payload;
         if (cart) {
-          const newLightCart = convertCart(cart);
-          const isEqualProducts = isEqual(state.products, newLightCart.products);
-          return {
-            ...newLightCart,
-            // * To avoid unnecessary re-renders
-            products: isEqualProducts ? state.products : newLightCart.products,
-            productsIds: isEqualProducts ? state.productsIds : newLightCart.productsIds
-          };
+          return updateCartSlice(cart, state);
         }
-      }
-    });
+      })
+      .addMatcher(cartApi.endpoints.deleteCart.matchFulfilled, () => {
+        return INIT_CART;
+      });
   }
 });
 

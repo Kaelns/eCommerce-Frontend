@@ -8,10 +8,11 @@ interface FinalPriceObject {
   finalPriceWithDiscount: number;
 }
 
-export function calculateFinalCartPrice(products: CartLightAllProducts, language: string, country: string): FinalPriceObject {
-  const fractionDigits = products[0].pricesObj[language].fractionDigits;
+export function calculateFinalCartPrice(products: CartLightAllProducts, country: string): FinalPriceObject {
+  const productsArr = Object.values(products);
+  const fractionDigits = productsArr[0].pricesObj[country].fractionDigits;
 
-  const finalPriceObject = Object.values(products).reduce<FinalPriceObject>(
+  const finalPriceObject = productsArr.reduce<FinalPriceObject>(
     (acc, productData) => {
       const { price, discountedPrice } = productData.pricesObj[country];
 

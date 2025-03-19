@@ -4,7 +4,6 @@ import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { rootReducer } from '@/shared/lib/redux';
-
 import { AlertText, AlertSeverity } from '@/shared/model/data';
 
 const INIT_MODAL = {

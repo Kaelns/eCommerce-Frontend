@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Tooltip, Typography } from '@mui/material';
 
 import { SRCSET_API } from '@/entities/product';
-import { selectLanguage } from '@/entities/user';
+import { selectCountry, selectLanguage } from '@/entities/user';
 import { deleteProductAction, selectCartProductById } from '@/entities/cart/model/cart.slice';
 import { CartProductQuantity } from '@/entities/cart/ui/CartProductCard/components/CartProductQuantity';
 
@@ -85,11 +85,12 @@ export function CartProductCard({
 }: CartProductCardProps) {
   const dispatch = useAppDispatch();
   const language = useAppSelector(selectLanguage);
+  const country = useAppSelector(selectCountry);
 
   const cartProductData = useAppSelector((state) => selectCartProductById(state, productId));
 
   const { height, maxSize } = imgHeight;
-  const { price, discount, fractionDigits, discountedPrice } = cartProductData.pricesObj[language];
+  const { price, discount, fractionDigits, discountedPrice } = cartProductData.pricesObj[country];
 
   const totalProductPrice = round(price * cartProductData.quantity, fractionDigits);
   const totalDiscountedPrice = round(discountedPrice * cartProductData.quantity, fractionDigits);

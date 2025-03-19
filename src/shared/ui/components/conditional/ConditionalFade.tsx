@@ -1,4 +1,4 @@
-import type { SxProps } from '@mui/system';
+import type { Theme, SxProps } from '@mui/system';
 import type { PropsWithChildren } from '@/shared/model/types';
 
 import * as React from 'react';
@@ -9,8 +9,8 @@ interface ConditionalFadeProps {
   isShow: boolean;
   Fallback: React.ReactElement;
 
-  sxFallback?: SxProps;
-  sxChildren?: SxProps;
+  sxFallback?: SxProps<Theme>;
+  sxChildren?: SxProps<Theme>;
 }
 
 export function ConditionalFade({ isShow, children, Fallback, sxFallback, sxChildren }: PropsWithChildren<ConditionalFadeProps>) {

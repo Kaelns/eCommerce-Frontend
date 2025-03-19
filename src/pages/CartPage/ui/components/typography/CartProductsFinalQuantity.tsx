@@ -1,11 +1,10 @@
-import { Typography } from '@mui/material';
-
 import { selectCartProductQuantity } from '@/entities/cart';
 
+import { BoldTypography } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
 
 export function CartProductsFinalQuantity() {
   const productQuantity = useAppSelector(selectCartProductQuantity);
 
-  return <Typography>{productQuantity} products</Typography>;
+  return <BoldTypography variant="subtitle1">{productQuantity} products</BoldTypography>;
 }

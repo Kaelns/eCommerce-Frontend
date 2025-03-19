@@ -50,12 +50,16 @@ export function SuspenseWithError({
   const isOnlyInitialFetch = isLoading !== undefined && isFetching === undefined;
 
   return (
-    <Box sx={[sxStyles.wrapper, ...convertSxToArr(sx)]} {...props}>
+    <Box sx={sxStyles.wrapper} {...props}>
       <FadeBox isShow={isError}>{Fallback}</FadeBox>
       <FadeBox isShow={!isError && isLoadingOrFetching} sx={sxStyles.overlayingChildren}>
         {Skeleton}
       </FadeBox>
-      <FadeBox isShow={!isError && !isLoadingOrFetching} sx={sxStyles.overlayingChildren} unmountOnExit={isError || isOnlyInitialFetch}>
+      <FadeBox
+        isShow={!isError && !isLoadingOrFetching}
+        sx={[sxStyles.overlayingChildren, ...convertSxToArr(sx)]}
+        unmountOnExit={isError || isOnlyInitialFetch}
+      >
         {children}
       </FadeBox>
     </Box>

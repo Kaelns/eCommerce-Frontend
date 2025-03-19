@@ -1,4 +1,5 @@
 import type { CartData } from '@/entities/cart';
+import type { ResponceOk } from '@/shared/api/ecommerce-api';
 import type { Cart, MyCartUpdateAction, CartPagedQueryResponse } from '@commercetools/platform-sdk';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';
@@ -59,7 +60,9 @@ export const cartApi = ecommerceApi
             dispatch(
               cartApi.util.updateQueryData('getAllCarts', undefined, (cartsArrDraft) => {
                 const cartIndex = cartsArrDraft.results.findIndex((cart) => cart.id === cartId);
-                cartsArrDraft.results[cartIndex] = newCart;
+                if (cartIndex > 0) {
+                  cartsArrDraft.results[cartIndex] = newCart;
+                }
               })
             );
           } catch {
@@ -68,20 +71,22 @@ export const cartApi = ecommerceApi
         }
       }),
 
-      deleteCart: build.mutation<Cart, CartData>({
+      deleteCart: build.mutation<ResponceOk, CartData>({
         query: (queryArgs) => ({
           url: cartPath,
           method: 'DELETE',
           body: queryArgs
         }),
-        onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        onQueryStarted: async ({ cartId }, { dispatch, queryFulfilled }) => {
           try {
-            const { data: deletedCart } = await queryFulfilled;
+            await queryFulfilled;
             // dispatch(cartApi.util.upsertQueryData('getCartById', { cartId }, null));
             dispatch(
               cartApi.util.updateQueryData('getAllCarts', undefined, (cartsArrDraft) => {
-                const cartIndex = cartsArrDraft.results.findIndex((cart) => cart.id === deletedCart.id);
-                cartsArrDraft.results.splice(cartIndex, 1);
+                const cartIndex = cartsArrDraft.results.findIndex((cart) => cart.id === cartId);
+                if (cartIndex > 0) {
+                  cartsArrDraft.results.splice(cartIndex, 1);
+                }
               })
             );
           } catch {

@@ -36,7 +36,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route path={Paths.USER} element={<RedirectLoginRouter IfLogged={<UserPage />} IfUnLogged={<Navigate to={Paths.LOGIN} />} />} />
       <Route path={Paths.LOGIN} element={<RedirectLoginRouter IfLogged={<Navigate to={Paths.MAIN} />} IfUnLogged={<LoginPage />} />} />
-      <Route path={Paths.CART} element={<RedirectLoginRouter IfLogged={<CartPage />} IfUnLogged={<Navigate to={Paths.LOGIN} />} />} />
+      <Route path={Paths.CART} element={<CartPage />} />
       <Route
         path={Paths.REGISTRATION}
         element={<RedirectLoginRouter IfLogged={<Navigate to={Paths.MAIN} />} IfUnLogged={<RegistrationPage />} />}

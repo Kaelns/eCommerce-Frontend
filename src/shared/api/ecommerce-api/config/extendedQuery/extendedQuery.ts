@@ -18,7 +18,10 @@ export const extendedQuery: EcommerceExtendedQuery = async (args, queryApi, extr
 
   switch (result?.error?.status) {
     case HttpStatus.FORBIDDEN:
-      queryApi.dispatch({ type: 'alert/showAlertAction', payload: { message: AlertAPIText.USER_FORBIDDEN_ERROR, severity: AlertSeverity.ERROR } });
+      queryApi.dispatch({
+        type: 'alert/showAlertAction',
+        payload: { message: AlertAPIText.USER_FORBIDDEN_ERROR, severity: AlertSeverity.ERROR }
+      });
       break;
     case HttpStatus.INTERNAL_SERVER_ERROR:
       queryApi.dispatch({ type: 'alert/showAlertAction', payload: { message: AlertAPIText.SERVER_ERROR, severity: AlertSeverity.ERROR } });

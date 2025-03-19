@@ -5,8 +5,6 @@ import type { FilterColorsState } from '@/features/catalog-filters/model/types';
 import { isEqual } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/shared/lib/redux';
-
 import { productApi, ProductConsts } from '@/entities/product';
 import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/entities/categories';
 import { setLanguageAction, setCurrencyAction, USER_INIT_LANGUAGE, USER_INIT_CURRENCY } from '@/entities/user';
@@ -14,6 +12,8 @@ import { setLanguageAction, setCurrencyAction, USER_INIT_LANGUAGE, USER_INIT_CUR
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
 import { setCategoryIdAndNameActionHelper } from '@/features/catalog-filters/model/redux/helpers/setCategoryIdAndNameAction';
 import { convertFilterToQueryArgs } from '@/features/catalog-filters/model/redux/helpers/convertFilterToQueryArgs/convertFilterToQueryArgs';
+
+import { rootReducer } from '@/shared/lib/redux';
 
 const INIT_FILTER = {
   filters: {

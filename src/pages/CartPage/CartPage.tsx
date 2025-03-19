@@ -1,7 +1,6 @@
 import type { SxStyles } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
-import { Title } from '@mui/icons-material';
 
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
@@ -18,14 +17,17 @@ import { AppError } from '@/widgets/AppError';
 
 import { useGetAllCartsQuery } from '@/entities/cart';
 
+import { TitleTypography } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
 
 import { Paths } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
-  stackContainer: {
+  boxContainer: {
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: { zero: 'center', tablet: 'initial' },
-    gap: 2,
+    gap: '2rem',
     mb: 2
   },
   header: {
@@ -41,21 +43,24 @@ export function CartPage() {
   });
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }} sx={sxStyles.stackContainer}>
+    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
       <CartShowIfProductsExist
         Fallback={
           <AppError src={cartImg} alt="Cart image" message="Your Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />
         }
+        sxChildren={sxStyles.boxContainer}
       >
         <Box sx={sxStyles.header}>
           <Box>
-            <Title>Cart</Title>
+            <TitleTypography>Cart</TitleTypography>
             <CartProductsFinalQuantity />
             <CartProductsFinalPrice />
           </Box>
 
-          <CartResetBtn />
           <CartPromocode />
+
+          {/* Absolute positioned button */}
+          <CartResetBtn />
         </Box>
 
         <CartProductsList />

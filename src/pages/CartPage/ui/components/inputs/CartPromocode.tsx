@@ -23,7 +23,7 @@ import { AlertSeverity } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   container: {
-    mt: -0.5
+    mt: -0.3
   },
   input: {
     maxWidth: 300,
