@@ -65,7 +65,7 @@ export function CartPromocode() {
 
   return (
     <Box sx={sxStyles.container}>
-      <BoldTypography variant="subtitle2">{isPromocode ? 'Promo Code activated:' : 'Activate Promo Code:'}</BoldTypography>
+      <BoldTypography>{isPromocode ? 'Promo Code activated:' : 'Activate Promo Code:'}</BoldTypography>
 
       <ButtonGroup size="small" variant="outlined">
         <OutlinedInput disabled={isPromocode || isLoading} value={inputValue} onChange={handleInputChange} sx={sxStyles.input} />

@@ -23,9 +23,6 @@ const sxStyles: SxStyles = {
       textAlign: 'center',
       p: 0.3
     },
-    '& > input::before': {
-      border: 'none'
-    },
     [theme.breakpoints.down('mobile')]: {
       width: 1,
       maxWidth: 'initial'

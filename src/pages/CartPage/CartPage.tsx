@@ -52,7 +52,7 @@ export function CartPage() {
       >
         <Box sx={sxStyles.header}>
           <Box>
-            <TitleTypography>Cart</TitleTypography>
+            <TitleTypography variant="h2">Cart</TitleTypography>
             <CartProductsFinalQuantity />
             <CartProductsFinalPrice />
           </Box>

@@ -64,7 +64,7 @@ export const ProductShowcaseSection = memo(function ShowcaseSection({
   return (
     <Stack component="section" gap={2}>
       <Paper elevation={5} onClick={setCategoryAndRedirect} sx={sxStyles.header}>
-        <BoldTypography>{categoryName}</BoldTypography>
+        <BoldTypography variant="h2">{categoryName}</BoldTypography>
       </Paper>
 
       <Paper sx={sxStyles.body}>

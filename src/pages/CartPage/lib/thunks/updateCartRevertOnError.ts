@@ -58,11 +58,13 @@ export const updateCartRevertOnError =
     if (actions.length) {
       const { error } = await dispatch(cartApi.endpoints.updateCart.initiate({ ...cartData, actions }));
 
-      const message = `Error while updating cart: ${getErrorMessage(error)}`;
+      if (error) {
+        const message = `Error while updating cart: ${getErrorMessage(error)}`;
 
-      dispatch(showAlertAction({ severity: AlertSeverity.ERROR, message }));
-      dispatch(revertProductsAction(prevCartProducts));
+        dispatch(showAlertAction({ severity: AlertSeverity.ERROR, message }));
+        dispatch(revertProductsAction(prevCartProducts));
 
-      return error;
+        return error;
+      }
     }
   };

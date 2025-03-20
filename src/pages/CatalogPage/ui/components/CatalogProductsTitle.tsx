@@ -11,8 +11,8 @@ export function CatalogProductsTitle({ amount }: { amount: number }) {
 
   return (
     <Box>
-      <TitleTypography variant="h4">{categoryName}</TitleTypography>
-      <Typography>{amount} products</Typography>
+      <TitleTypography variant="h2">{categoryName}</TitleTypography>
+      <Typography variant="h3">{amount} products</Typography>
     </Box>
   );
 }

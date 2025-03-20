@@ -1,5 +1,5 @@
-import type { TypographyProps } from '@mui/material';
 import type { SxStyles } from '@/shared/model/types';
+import type { TypographyOwnProps } from '@mui/material';
 
 import { Typography } from '@mui/material';
 
@@ -19,16 +19,16 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface PriceTypographyProps extends TypographyProps {
+interface PriceTypographyProps extends TypographyOwnProps {
   price: number;
   priceType: 'discount' | 'price';
 }
 
-export function PriceTypography({ priceType, price, sx = {} }: PriceTypographyProps) {
+export function PriceTypography({ priceType, price, variant = 'subtitle2', sx = {} }: PriceTypographyProps) {
   const currency = useAppSelector(selectCurrency);
 
   return (
-    <Typography variant="subtitle2" sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}>
+    <Typography variant={variant} sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}>
       {price} {isoCurrencies[currency].symbol}
     </Typography>
   );

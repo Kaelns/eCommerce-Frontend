@@ -18,7 +18,7 @@ const sxStyles: SxStyles = {
     },
 
     '& > div': {
-      p: 0.5
+      p: 0.25
     }
   }
 };

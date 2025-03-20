@@ -11,7 +11,7 @@ export const CartDebounceUpdateLogic = memo(function CartDebounceLogic() {
   const dispatch = useAppDispatch();
 
   const cartProducts = useAppSelector(selectCartProducts);
-  const [prevCartProducts, newCartProducts] = useDebounceValueCache(cartProducts);
+  const [newCartProducts, prevCartProducts] = useDebounceValueCache(cartProducts);
 
   useEffect(() => {
     dispatch(updateCartRevertOnError(prevCartProducts, newCartProducts));

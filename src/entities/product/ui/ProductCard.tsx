@@ -51,6 +51,10 @@ const sxStyles: SxStyles = {
     textOverflow: 'ellipsis'
   },
 
+  fullPriceContainer: {
+    mb: 0.6
+  },
+
   // * Position absolute
 
   discount: (theme) => ({
@@ -91,8 +95,8 @@ interface ProductCardProps {
 
 export function ProductCard({
   product,
-  imgHeight = { height: { zero: 400, laptop: 200 }, maxSize: 400 },
-  containerMaxWidth = { zero: 400, laptop: 300 }
+  imgHeight = { height: { zero: 400, laptop: 250 }, maxSize: 400 },
+  containerMaxWidth = { zero: 400, laptop: 350 }
 }: ProductCardProps) {
   const language = useAppSelector(selectLanguage);
   const country = useAppSelector(selectCountry);
@@ -106,6 +110,7 @@ export function ProductCard({
   const { price, discount, discountedPrice } = productData.pricesObj[country];
 
   return (
+    // TODO change link to absolute positioned to allow copying of text
     <LinkRouterWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper}>
       <Stack spacing={3} maxWidth={containerMaxWidth} sx={sxStyles.cardContainer}>
         <ImgLoad
@@ -124,7 +129,12 @@ export function ProductCard({
             <b>Available quantity: </b>
             {productData.maxQuantity}
           </Typography>
-          <FullPriceTypography price={price} discount={discount} discountedPrice={discountedPrice} />
+          <FullPriceTypography
+            price={price}
+            discount={discount}
+            discountedPrice={discountedPrice}
+            sxContainer={sxStyles.fullPriceContainer}
+          />
           <Typography>{shortedDescription}...</Typography>
         </Box>
 

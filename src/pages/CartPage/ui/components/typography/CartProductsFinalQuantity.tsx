@@ -6,5 +6,5 @@ import { useAppSelector } from '@/shared/lib/redux';
 export function CartProductsFinalQuantity() {
   const productQuantity = useAppSelector(selectCartProductQuantity);
 
-  return <BoldTypography variant="subtitle1">{productQuantity} products</BoldTypography>;
+  return <BoldTypography variant="h3">{productQuantity} products</BoldTypography>;
 }

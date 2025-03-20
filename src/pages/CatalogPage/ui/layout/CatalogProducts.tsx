@@ -22,7 +22,7 @@ const sxProductsHeader: SxPropsObj = {
   width: 1,
   flexDirection: { zero: 'column', tablet: 'row' },
   justifyContent: { tablet: 'space-between' },
-  alignItems: { zero: 'flex-start', tablet: 'center' }
+  alignItems: { zero: 'stretch', tablet: 'flex-end' }
 };
 
 export const CatalogProducts = memo(function CatalogProducts({ ...props }: StackProps) {

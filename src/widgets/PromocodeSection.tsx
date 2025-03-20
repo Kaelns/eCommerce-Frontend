@@ -42,7 +42,7 @@ export function PromocodeSection() {
   return (
     <Stack component="section" gap={2} direction={{ zero: 'column', tablet: 'row' }} alignItems={{ zero: 'stretch', table: 'center' }}>
       <Paper elevation={5} sx={sxStyles.header}>
-        <BoldTypography>Our special offer:</BoldTypography>
+        <BoldTypography variant="h3">Our special offer:</BoldTypography>
       </Paper>
 
       <Stack direction="row" gap={2} flex={2}>
