@@ -10,6 +10,7 @@ import { selectIsLoggedAuth } from '@/entities/auth';
 import { Navbar, Navbars } from '@/features/Navbar';
 
 import { useAppSelector } from '@/shared/lib/redux';
+import { BADGE_FONT_SIZE } from '@/shared/model/data';
 
 const BADGE_LOGIN_TEXT = 'Login';
 
@@ -17,7 +18,7 @@ const sxBadge: SxProps = {
   [`& .${badgeClasses.badge}`]: {
     height: '1.7rem',
     minWidth: '1.7rem',
-    fontSize: '1.1rem'
+    fontSize: BADGE_FONT_SIZE
   }
 };
 

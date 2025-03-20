@@ -2,9 +2,9 @@ import type { Theme } from '@mui/system';
 import type { SxProps } from '@mui/material';
 import type { SxStyles, InputReactEvent } from '@/shared/model/types';
 
+import { Input, Button, ButtonGroup } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Input, Button, ButtonGroup, inputClasses } from '@mui/material';
 
 import { setQuantityAction, decrementQuantityAction, incrementQuantityAction } from '@/entities/cart/model/cart.slice';
 
@@ -23,13 +23,12 @@ const sxStyles: SxStyles = {
       textAlign: 'center',
       p: 0.3
     },
-    [theme.breakpoints.down('tablet')]: {
+    '& > input::before': {
+      border: 'none'
+    },
+    [theme.breakpoints.down('mobile')]: {
       width: 1,
-      maxWidth: 'initial',
-
-      [`& ${inputClasses.input}`]: {
-        p: 0.7
-      }
+      maxWidth: 'initial'
     }
   }),
 

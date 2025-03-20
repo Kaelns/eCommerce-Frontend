@@ -36,7 +36,7 @@ export const theme = responsiveFontSizes(
         lg: 1200,
         xl: 1536,
         zero: 0,
-        mobile: 375,
+        mobile: 435,
         tablet: 768,
         laptop: 1024,
         laptopBig: 1300,

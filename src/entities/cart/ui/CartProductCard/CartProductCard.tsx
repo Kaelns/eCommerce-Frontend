@@ -17,13 +17,11 @@ import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const IMG_SELECTOR = 'product-basket__img';
-const IMG_HEIGHT: BoxProps['height'] = { zero: 300, tablet: 200, laptop: 250 };
-const MAX_IMG_SIZE = 300;
 
 const sxStyles: SxStyles = {
-  container: (theme) => ({
+  container: {
     position: 'relative',
-    height: 1,
+    width: 1,
     p: 2,
     boxShadow: 3,
     borderRadius: 1,
@@ -33,14 +31,11 @@ const sxStyles: SxStyles = {
       [`.${IMG_SELECTOR}`]: {
         transform: 'scale(1.05)'
       }
-    }),
-
-    [theme.breakpoints.down('tablet')]: {
-      maxWidth: 350
-    }
-  }),
+    })
+  },
   column1: {
-    flex: { zero: 'initial', tablet: 4, laptop: 2 }
+    flex: { zero: 'initial', tablet: 4, laptop: 2.5 },
+    width: { zero: 1, mobile: 200, tablet: 'initial' }
   },
   column2: {
     flex: 5
@@ -56,14 +51,13 @@ const sxStyles: SxStyles = {
     top: '-1rem',
     left: '-1rem'
   },
-  deleteProduct: {
+
+  deleteProductBtn: {
+    width: 'min-content',
     position: 'absolute',
     top: 0,
     right: 0,
-    zIndex: 50
-  },
-  deleteProductBtn: {
-    width: 'min-content',
+    zIndex: 50,
     borderRadius: (theme) => `0 ${theme.shape.borderRadius}px 0 ${theme.shape.borderRadius}px`
   }
 };
@@ -79,8 +73,8 @@ interface CartProductCardProps {
 export function CartProductCard({
   productId,
   imgHeight = {
-    height: IMG_HEIGHT,
-    maxSize: MAX_IMG_SIZE
+    height: { zero: 300, mobile: 200, tablet: 250, laptop: 300 },
+    maxSize: 300
   }
 }: CartProductCardProps) {
   const dispatch = useAppDispatch();
@@ -100,7 +94,7 @@ export function CartProductCard({
   };
 
   return (
-    <Stack direction={{ zero: 'column', tablet: 'row' }} gap={1.5} sx={sxStyles.container}>
+    <Stack direction={{ zero: 'column', mobile: 'row' }} gap={1.5} sx={sxStyles.container}>
       <ImgLoad
         height={height}
         src={cartProductData.imageUrl}
@@ -128,9 +122,10 @@ export function CartProductCard({
 
       {/* Absolute positioned components */}
       <DiscountTypography discount={discount} sx={sxStyles.discount} />
+
       <Tooltip title="Delete product" placement="top" sx={sxStyles.deleteProduct}>
         <Button variant="contained" onClick={handleProductDelete} sx={sxStyles.deleteProductBtn}>
-          <CloseIcon />
+          <CloseIcon fontSize="small" />
         </Button>
       </Tooltip>
     </Stack>

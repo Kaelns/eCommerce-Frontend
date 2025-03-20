@@ -1,6 +1,5 @@
+import { App } from '@/app/ui/App';
 import { render } from '@testing-library/react';
-
-import { App } from '@/App';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
