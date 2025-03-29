@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import { memo, useEffect } from 'react';
 
 import { updateCartRevertOnError } from '@/pages/CartPage/lib/thunks/updateCartRevertOnError';
@@ -14,6 +15,9 @@ export const CartDebounceUpdateLogic = memo(function CartDebounceLogic() {
   const [newCartProducts, prevCartProducts] = useDebounceValueCache(cartProducts);
 
   useEffect(() => {
+    if (prevCartProducts === newCartProducts || isEqual(prevCartProducts, newCartProducts)) {
+      return;
+    }
     dispatch(updateCartRevertOnError(prevCartProducts, newCartProducts));
   }, [prevCartProducts, newCartProducts, dispatch]);
 

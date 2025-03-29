@@ -6,20 +6,20 @@ export * from '@/entities/cart/model/types/cart.schemas';
 export * from '@/entities/cart/model/data/cart.constants';
 
 export { cartApi } from '@/entities/cart/api/cartApi';
-export const { useGetAllCartsQuery, useUpdateCartMutation } = cartApi;
+export const { useGetAllCartsQuery } = cartApi;
 
 export { createCartUpdateAction } from '@/entities/cart/api/helpers/createCartUpdateAction';
 
 export const {
   selectCartProducts,
   selectCartProductsIds,
-  selectCartIsPromocode,
   selectCartIdAndVersion,
   selectCartFinalPriceObj,
-  selectCartProductQuantity
+  selectCartProductQuantity,
+  selectCartDiscountCodesRefs
 } = cartSlice.selectors;
 
-export const { clearCartAction, revertProductsAction, setCartIsPromocodeAction } = cartSlice.actions;
+export const { clearCartAction, revertProductsAction } = cartSlice.actions;
 
 export { AddProductToCartBtn } from '@/entities/cart/ui/AddProductToCartBtn';
 export { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';

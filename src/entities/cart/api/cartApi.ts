@@ -17,14 +17,6 @@ export const cartApi = ecommerceApi
         providesTags: ['Carts']
       }),
 
-      // getCartById: build.query<Cart | null, { cartId: string }>({
-      //   query: (queryArgs) => ({
-      //     url: `${cartPath}/id`,
-      //     params: queryArgs
-      //   }),
-      //   providesTags: (_res, _err, { cartId }) => [{ type: 'CartById', id: cartId }]
-      // }),
-
       // * Mutations
 
       createCart: build.mutation<Cart, void>({

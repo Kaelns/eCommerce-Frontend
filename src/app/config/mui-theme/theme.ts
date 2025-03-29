@@ -22,7 +22,7 @@ export const theme = responsiveFontSizes(
       fontSize: 28, // * 1rem = 10px
       fontFamily: ['Hauss', 'Segoe UI', '-apple-system', 'Roboto', 'Arial', 'sans-serif'].join(','),
       // * Same as default + 2px (16px + 2px = 18px = 1.8rem)
-      h1: { fontSize: '3.4rem' },
+      h1: { fontSize: '6rem' },
       h2: { fontSize: '2.6rem' },
       h3: { fontSize: '2.07rem' },
       h4: { fontSize: '1.8rem' },

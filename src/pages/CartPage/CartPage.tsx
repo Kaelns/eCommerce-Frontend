@@ -1,15 +1,16 @@
 import type { SxStyles } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
+import { Paper } from '@mui/material';
 
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import cartImg from '@/pages/CartPage/assets/cart.png';
 import { CartResetBtn } from '@/pages/CartPage/ui/components/buttons/CartResetBtn';
-import { CartProductsList } from '@/pages/CartPage/ui/components/CartProductsList';
-import { CartPromocode } from '@/pages/CartPage/ui/components/inputs/CartPromocode';
+import { CartFinalize } from '@/pages/CartPage/ui/widgets/CartFinalize/CartFinalize';
 import { CartDebounceUpdateLogic } from '@/pages/CartPage/ui/CartDebounceUpdateLogic';
-import { CartProductsFinalPrice } from '@/pages/CartPage/ui/components/typography/CartProductsFinalPrice';
+import { CartPromocode } from '@/pages/CartPage/ui/widgets/CartPromocode/CartPromocode';
+import { CartProductsList } from '@/pages/CartPage/ui/components/lists/CartProductsList';
 import { CartShowIfProductsExist } from '@/pages/CartPage/ui/components/conditional/CartShowIfProductsExist';
 import { CartProductsFinalQuantity } from '@/pages/CartPage/ui/components/typography/CartProductsFinalQuantity';
 
@@ -25,15 +26,25 @@ import { Paths } from '@/shared/model/data';
 const sxStyles: SxStyles = {
   boxContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: { zero: 'center', tablet: 'initial' },
+    flexDirection: { zero: 'column', laptop: 'row' },
+    justifyContent: { zero: 'initial', laptop: 'space-between' },
     gap: '2rem',
     mb: 2
   },
-  header: {
+  paper: {
+    p: '0.5rem',
+    gap: 4
+  },
+  mainContainer: {
+    flex: 7
+  },
+  mainHeader: {
     position: 'relative',
     gap: 4,
     alignSelf: 'stretch'
+  },
+  asideContainer: {
+    flex: 3
   }
 };
 
@@ -45,25 +56,25 @@ export function CartPage() {
   return (
     <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
       <CartShowIfProductsExist
-        Fallback={
-          <AppError src={cartImg} alt="Cart image" message="Your Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />
-        }
+        Fallback={<AppError src={cartImg} alt="Cart" message="Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />}
         sxChildren={sxStyles.boxContainer}
       >
-        <Box sx={sxStyles.header}>
-          <Box>
+        <Paper sx={[sxStyles.mainContainer, sxStyles.paper]}>
+          <Box sx={sxStyles.mainHeader}>
             <TitleTypography variant="h2">Cart</TitleTypography>
             <CartProductsFinalQuantity />
-            <CartProductsFinalPrice />
+
+            {/* Absolute positioned button */}
+            <CartResetBtn />
           </Box>
 
-          <CartPromocode />
+          <CartProductsList />
+        </Paper>
 
-          {/* Absolute positioned button */}
-          <CartResetBtn />
+        <Box component="aside" sx={sxStyles.asideContainer}>
+          <CartFinalize sx={sxStyles.paper} />
+          <CartPromocode sx={sxStyles.paper} />
         </Box>
-
-        <CartProductsList />
       </CartShowIfProductsExist>
 
       {/* Component for logic without elements */}

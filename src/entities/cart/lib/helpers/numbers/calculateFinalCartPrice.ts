@@ -10,6 +10,11 @@ interface FinalPriceObject {
 
 export function calculateFinalCartPrice(products: CartLightAllProducts, country: string): FinalPriceObject {
   const productsArr = Object.values(products);
+
+  if (!productsArr.length) {
+    return { finalPrice: 0, finalPriceWithDiscount: 0, percentageDiscount: 0 };
+  }
+
   const fractionDigits = productsArr[0].pricesObj[country].fractionDigits;
 
   const finalPriceObject = productsArr.reduce<FinalPriceObject>(

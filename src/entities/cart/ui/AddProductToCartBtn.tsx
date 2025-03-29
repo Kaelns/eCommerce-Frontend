@@ -1,23 +1,17 @@
 import type { Theme, SxProps, ButtonProps } from '@mui/material';
 import type { SxStyles, SxPropsArr } from '@/shared/model/types';
 
+import { useTransition } from 'react';
 import { IconButton } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
-
-import { cartApi } from '@/entities/cart/api/cartApi';
-import { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
-import { createCartUpdateAction } from '@/entities/cart/api/helpers/createCartUpdateAction';
-import { selectCartIdAndVersion, selectCartProductLineId } from '@/entities/cart/model/cart.slice';
-
-import { useAlert } from '@/features/Alert';
+import { selectCartProductLineId } from '@/entities/cart/model/cart.slice';
+import { addOrRemoveProductCart } from '@/entities/cart/lib/helpers/thunks/addOrRemoveProductCart';
 
 import { CasualBtn } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
-import { useAppSelector } from '@/shared/lib/redux';
 import { convertSxToArr } from '@/shared/lib/helpers';
-import { AlertSeverity } from '@/shared/model/data';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   btn: {
@@ -58,32 +52,25 @@ interface AddProductToCartBtnProps extends ButtonProps {
 }
 
 export function AddProductToCartBtn({ productId, isIconBtn = false, isAvailable, sx = {}, iconSx = {} }: AddProductToCartBtnProps) {
-  const { showAlert } = useAlert();
+  const dispatch = useAppDispatch();
 
-  const cartData = useAppSelector(selectCartIdAndVersion);
+  const [isLoading, startTransition] = useTransition();
+
   const cartProductLineId = useAppSelector((state) => selectCartProductLineId(state, productId));
 
-  const [updateCart, { isLoading }] = cartApi.useUpdateCartMutation();
-
   const isInCart = !!cartProductLineId;
-
   const sxBtn: SxPropsArr = [sxStyles.btn, isInCart && sxStyles.btnActive, ...convertSxToArr(sx)];
   const sxIcon: SxPropsArr = [sxStyles.icon, isLoading && sxMixins.invisible, ...convertSxToArr(iconSx)];
 
-  const addToBasket = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+  const addToBasket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    // TODO remove and creater better links
     // * To prevent link wrapper to trigger
     event.stopPropagation();
 
-    const action = isInCart
-      ? createCartUpdateAction(CartUpdateActionTypes.DECREMENT, { cartProductLineId })!
-      : createCartUpdateAction(CartUpdateActionTypes.INCREMENT, { productId })!;
-
-    const { error } = await updateCart({ ...cartData, actions: [action] });
-
-    if (error) {
-      showAlert(`Error while adding to the cart: ${getErrorMessage(error)}`, AlertSeverity.ERROR);
-    }
+    startTransition(() => {
+      dispatch(addOrRemoveProductCart(productId, cartProductLineId));
+    });
   };
 
   return isIconBtn ? (

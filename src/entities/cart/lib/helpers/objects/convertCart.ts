@@ -6,7 +6,7 @@ import { convertToLightCartProduct } from '@/entities/cart/lib/helpers/objects/c
 import { calculateCartProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateCartProductsQuantity';
 
 export function convertCart(cart: Cart): CartLight {
-  const { isPromocode, discount } = getCartPromocodeData(cart);
+  const { isPromocode, discountCodesRefs } = getCartPromocodeData(cart);
 
   const productsQuantity = calculateCartProductsQuantity(cart.lineItems);
 
@@ -22,7 +22,7 @@ export function convertCart(cart: Cart): CartLight {
     products,
     productsIds: Object.keys(products),
     productsQuantity,
-    discount,
-    isPromocode
+    isPromocode,
+    discountCodesRefs
   };
 }
