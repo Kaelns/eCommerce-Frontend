@@ -9,7 +9,6 @@ import cartImg from '@/pages/CartPage/assets/cart.png';
 import { CartResetBtn } from '@/pages/CartPage/ui/components/buttons/CartResetBtn';
 import { CartFinalize } from '@/pages/CartPage/ui/widgets/CartFinalize/CartFinalize';
 import { CartDebounceUpdateLogic } from '@/pages/CartPage/ui/CartDebounceUpdateLogic';
-import { CartPromocode } from '@/pages/CartPage/ui/widgets/CartPromocode/CartPromocode';
 import { CartProductsList } from '@/pages/CartPage/ui/components/lists/CartProductsList';
 import { CartShowIfProductsExist } from '@/pages/CartPage/ui/components/conditional/CartShowIfProductsExist';
 import { CartProductsFinalQuantity } from '@/pages/CartPage/ui/components/typography/CartProductsFinalQuantity';
@@ -73,7 +72,6 @@ export function CartPage() {
 
         <Box component="aside" sx={sxStyles.asideContainer}>
           <CartFinalize sx={sxStyles.paper} />
-          <CartPromocode sx={sxStyles.paper} />
         </Box>
       </CartShowIfProductsExist>
 

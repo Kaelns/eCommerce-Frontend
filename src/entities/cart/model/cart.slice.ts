@@ -18,10 +18,7 @@ const INIT_CART: CartLight = {
 
   products: {},
   productsIds: [],
-  productsQuantity: 0,
-
-  discountCodesRefs: [],
-  isPromocode: false
+  productsQuantity: 0
 };
 
 const cartSliceLazy = createSlice({
@@ -40,18 +37,11 @@ const cartSliceLazy = createSlice({
     selectCartProductLineId: (state, productId) => state.products[productId]?.cartProductLineId || undefined,
     selectCartProductQuantity: (state) => state.productsQuantity,
 
-    selectCartDiscountCodesRefs: (state) => state.discountCodesRefs,
-    selectCartIsPromocode: (state) => state.isPromocode,
-
     selectCartFinalPriceObj: createSelector([(state) => state.products, (_state, country) => country], calculateFinalCartPrice)
   },
   reducers: {
     setCartDataAction(_state, action: PayloadAction<Cart>) {
       return convertCart(action.payload);
-    },
-
-    setCartIsPromocodeAction(state, action: PayloadAction<boolean>) {
-      state.isPromocode = action.payload;
     },
 
     clearCartAction(state) {

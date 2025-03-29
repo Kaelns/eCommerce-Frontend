@@ -10,14 +10,8 @@ export const { useGetAllCartsQuery } = cartApi;
 
 export { createCartUpdateAction } from '@/entities/cart/api/helpers/createCartUpdateAction';
 
-export const {
-  selectCartProducts,
-  selectCartProductsIds,
-  selectCartIdAndVersion,
-  selectCartFinalPriceObj,
-  selectCartProductQuantity,
-  selectCartDiscountCodesRefs
-} = cartSlice.selectors;
+export const { selectCartProducts, selectCartProductsIds, selectCartIdAndVersion, selectCartFinalPriceObj, selectCartProductQuantity } =
+  cartSlice.selectors;
 
 export const { clearCartAction, revertProductsAction } = cartSlice.actions;
 

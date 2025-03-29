@@ -1,5 +1,5 @@
 import type { PriceConverted } from '@/shared/model/types';
-import type { Image, LocalizedString, DiscountCodeReference } from '@commercetools/platform-sdk';
+import type { Image, LocalizedString } from '@commercetools/platform-sdk';
 
 export interface CartData {
   cartId: string;
@@ -17,9 +17,6 @@ export interface CartLight {
   productsIds: string[];
   productsQuantity: number;
   products: CartLightAllProducts;
-
-  isPromocode: boolean;
-  discountCodesRefs: DiscountCodeReference[];
 }
 
 export interface CartLightProduct {
