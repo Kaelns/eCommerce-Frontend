@@ -6,16 +6,19 @@ import { isEqual } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { productApi, ProductConsts } from '@/entities/product';
+import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/entities/categories';
+import { setLanguageAction, setCurrencyAction, USER_INIT_LANGUAGE, USER_INIT_CURRENCY } from '@/entities/user';
 
-import { rootReducer } from '@/app/store/config';
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
 import { setCategoryIdAndNameActionHelper } from '@/features/catalog-filters/model/redux/helpers/setCategoryIdAndNameAction';
 import { convertFilterToQueryArgs } from '@/features/catalog-filters/model/redux/helpers/convertFilterToQueryArgs/convertFilterToQueryArgs';
 
-export const INIT_FILTER = {
+import { rootReducer } from '@/shared/lib/redux';
+
+const INIT_FILTER = {
   filters: {
-    categoryName: ProductConsts.NO_CATEGORY_NAME as string,
-    categoryId: ProductConsts.NO_CATEGORY as string,
+    categoryName: NO_CATEGORY_NAME as string,
+    categoryId: NO_CATEGORY as string,
     colorObj: {} as FilterColorsState,
     price: [ProductConsts.MIN_MONEY, ProductConsts.MAX_MONEY] as number[],
 
@@ -25,8 +28,8 @@ export const INIT_FILTER = {
   },
 
   form: {
-    categoryName: ProductConsts.NO_CATEGORY_NAME as string,
-    categoryId: ProductConsts.NO_CATEGORY as string,
+    categoryName: NO_CATEGORY_NAME as string,
+    categoryId: NO_CATEGORY as string,
     colorObj: {} as FilterColorsState,
     price: [ProductConsts.MIN_MONEY, ProductConsts.MAX_MONEY] as number[]
   },
@@ -35,13 +38,16 @@ export const INIT_FILTER = {
 
   queryArgs: {
     limit: ProductConsts.LIMIT_ON_PAGE
-  } as QueryProductsArgs
+  } as QueryProductsArgs,
+
+  language: USER_INIT_LANGUAGE,
+  currency: USER_INIT_CURRENCY
 };
 
 export type FilterState = typeof INIT_FILTER;
 
-const sharedApplyFiltersAction = (state: FilterState, language: string) => {
-  const queryArgs = convertFilterToQueryArgs(state, { language });
+const sharedApplyFiltersAction = (state: FilterState) => {
+  const queryArgs = convertFilterToQueryArgs(state);
   if (!isEqual(queryArgs, state.queryArgs)) {
     state.queryArgs = queryArgs;
   }
@@ -81,23 +87,23 @@ const catalogFilterSliceLazy = createSlice({
       state.form = INIT_FILTER.form;
     },
 
-    applyFormFiltersAction: (state, action: PayloadAction<{ language: string }>) => {
+    applyFormFiltersAction: (state) => {
       state.filters = { ...state.filters, ...state.form };
-      sharedApplyFiltersAction(state, action.payload.language);
+      sharedApplyFiltersAction(state);
     },
 
     // * Filters outside form
-    setCategoryIdAndNameAction: (state, action: PayloadAction<{ language: string; categoryId: string; categoryName: string }>) => {
+    setCategoryIdAndNameAction: (state, action: PayloadAction<{ categoryId: string; categoryName: string }>) => {
       setCategoryIdAndNameActionHelper(state, action);
-      sharedApplyFiltersAction(state, action.payload.language);
+      sharedApplyFiltersAction(state);
     },
-    setPageAction: (state, action: PayloadAction<{ page: number; language: string }>) => {
+    setPageAction: (state, action: PayloadAction<{ page: number }>) => {
       state.filters.page = action.payload.page;
-      sharedApplyFiltersAction(state, action.payload.language);
+      sharedApplyFiltersAction(state);
     },
-    setSortAction: (state, action: PayloadAction<{ language: string; sort: FiltersSort }>) => {
+    setSortAction: (state, action: PayloadAction<{ sort: FiltersSort }>) => {
       state.filters.sort = action.payload.sort;
-      sharedApplyFiltersAction(state, action.payload.language);
+      sharedApplyFiltersAction(state);
     },
     setSearchAction: (state, action: PayloadAction<string>) => {
       // * There is debounced thunk search
@@ -106,18 +112,25 @@ const catalogFilterSliceLazy = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addMatcher(productApi.endpoints.getProductColors.matchFulfilled, (state, action) => {
-      if (action.payload) {
-        const newColorObjState = Object.fromEntries(Object.keys(action.payload).map((key) => [key, false]));
-        state.form.colorObj = newColorObjState;
-        state.filters.colorObj = newColorObjState;
-        state.colors = action.payload;
-      }
-    });
+    builder
+      .addCase(setLanguageAction, (state, action) => {
+        state.language = action.payload;
+      })
+      .addCase(setCurrencyAction, (state, action) => {
+        state.currency = action.payload;
+      })
+      .addMatcher(productApi.endpoints.getProductColors.matchFulfilled, (state, action) => {
+        if (action.payload) {
+          const newColorObjState = Object.fromEntries(Object.keys(action.payload).map((key) => [key, false]));
+          state.form.colorObj = newColorObjState;
+          state.filters.colorObj = newColorObjState;
+          state.colors = action.payload;
+        }
+      });
   }
 });
 
-export const catalogFilterSliceInjected = catalogFilterSliceLazy.injectInto(rootReducer);
+export const catalogFilterSlice = catalogFilterSliceLazy.injectInto(rootReducer);
 
 export const {
   selectSort,
@@ -125,23 +138,21 @@ export const {
   selectSearch,
   selectPriceForm,
   selectCategoryId,
-  selectCategoryName,
   selectIsColorActiveForm,
   selectIsCurrentCategoryIdForm
-} = catalogFilterSliceInjected.selectors;
+} = catalogFilterSlice.selectors;
 
 export const {
   setSortAction,
   setPageAction,
-  setSearchAction,
   resetFormAction,
+  setSearchAction,
   setPriceFormAction,
   toggleColorFormAction,
   applyFormFiltersAction,
-  setCategoryIdAndNameAction,
   setCategoryIdAndNameFormAction
-} = catalogFilterSliceInjected.actions;
+} = catalogFilterSlice.actions;
 
-declare module '@/app/store/config' {
+declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof catalogFilterSliceLazy> {}
 }

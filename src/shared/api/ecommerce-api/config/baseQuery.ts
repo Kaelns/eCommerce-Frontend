@@ -1,4 +1,4 @@
-import type { EcommerceBaseQuery } from '@/shared/api/ecommerce-api/model/types/types';
+import type { EcommerceBaseQuery } from '@/shared/api/ecommerce-api';
 
 import { stringify } from 'qs';
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';

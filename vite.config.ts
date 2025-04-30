@@ -4,12 +4,6 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import type { ViteUserConfig } from 'vitest/config';
 
-declare module 'vite' {
-  export interface UserConfig {
-    test: ViteUserConfig['test'];
-  }
-}
-
 export default defineConfig({
   plugins: [react(), svgr()],
   server: {

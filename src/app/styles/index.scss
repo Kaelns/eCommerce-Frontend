@@ -12,7 +12,7 @@
   &_medium {
     width: 65%;
 
-    @media (max-width: ($width-tablet)) {
+    @media (max-width: (constants.$width-tablet)) {
       width: 100%;
     }
   }

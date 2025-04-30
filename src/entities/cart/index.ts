@@ -1,15 +1,20 @@
-import { cartApi } from '@/entities/cart/api/cartApi';
+import { cartApi } from '@/entities/cart';
+import { cartSlice } from '@/entities/cart/model/cart.slice';
 
 export * from '@/entities/cart/model/types/cart.types';
 export * from '@/entities/cart/model/types/cart.schemas';
 export * from '@/entities/cart/model/data/cart.constants';
 
-export { cartApi };
-// export const { useCheckIsUserExistByEmailMutation } = cartApi;
+export { cartApi } from '@/entities/cart/api/cartApi';
+export const { useGetAllCartsQuery } = cartApi;
 
-export { MOCK_CART } from '@/entities/cart/model/data/cart.mocks';
+export { createCartUpdateAction } from '@/entities/cart/api/helpers/createCartUpdateAction';
 
-export { calculatePrice } from '@/entities/cart/lib/helpers/numbers/calculatePrice';
-export { calculateDiscountPercent } from '@/entities/cart/lib/helpers/numbers/calculateDiscountPercent';
-export { calculateProductsQuantity } from '@/entities/cart/lib/helpers/numbers/calculateProductsQuantity';
-export { convertToLightCartAllProducts } from '@/entities/cart/lib/helpers/objects/convertToLightCartAllProducts';
+export const { selectCartProducts, selectCartProductsIds, selectCartIdAndVersion, selectCartFinalPriceObj, selectCartProductQuantity } =
+  cartSlice.selectors;
+
+export const { clearCartAction, revertProductsAction } = cartSlice.actions;
+
+export { AddProductToCartBtn } from '@/entities/cart/ui/AddProductToCartBtn';
+export { CartUpdateActionTypes } from '@/entities/cart/model/data/cart.enums';
+export { CartProductCard } from '@/entities/cart/ui/CartProductCard/CartProductCard';

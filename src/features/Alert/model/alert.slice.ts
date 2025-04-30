@@ -1,11 +1,10 @@
-import type { AlertAPIText } from '@/shared/model/data/enums';
+import type { AlertAPIText } from '@/shared/model/data';
 import type { WithSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { rootReducer } from '@/app/store/config';
-
-import { AlertText, AlertSeverity } from '@/shared/model/data/enums';
+import { rootReducer } from '@/shared/lib/redux';
+import { AlertText, AlertSeverity } from '@/shared/model/data';
 
 const INIT_MODAL = {
   isOpen: false,
@@ -14,7 +13,7 @@ const INIT_MODAL = {
   isLoading: false
 };
 
-export const alertSliceLazy = createSlice({
+const alertSliceLazy = createSlice({
   name: 'alert',
   initialState: INIT_MODAL,
   selectors: {
@@ -44,8 +43,8 @@ export const alertSliceLazy = createSlice({
   }
 });
 
-export const alertSliceInjected = alertSliceLazy.injectInto(rootReducer);
+export const alertSlice = alertSliceLazy.injectInto(rootReducer);
 
-declare module '@/app/store/config' {
+declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof alertSliceLazy> {}
 }

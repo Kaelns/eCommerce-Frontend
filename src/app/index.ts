@@ -1,6 +1,5 @@
-export { extraArgument } from '@/app/store/config';
-export { store, loadStore } from '@/app/store/store';
+export { store, extraArgument } from '@/app/store/store';
+// * export router after store to avoid circular dependency Cannot access 'router' before initialization
+export { router, loadStore } from '@/app/router/router';
 
-export { prefetchStartSessionLoader } from '@/app/model/prefetchStartSession.loader';
-
-export { App } from '@/app/ui/App';
+export { MuiTheme } from '@/app/config/mui-theme/MuiTheme';

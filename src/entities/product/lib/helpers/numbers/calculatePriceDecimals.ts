@@ -1,3 +1,5 @@
+import { round } from 'lodash';
+
 export function calculatePriceDecimals(integerPrice: number, fractionDigits: number): number {
-  return +(integerPrice / 10 ** fractionDigits).toFixed(fractionDigits);
+  return round(integerPrice / 10 ** fractionDigits, fractionDigits);
 }

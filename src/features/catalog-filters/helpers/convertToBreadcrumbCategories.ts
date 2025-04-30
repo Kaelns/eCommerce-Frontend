@@ -1,4 +1,4 @@
-import type { CategoriesObj } from '@/shared/model/types/types';
+import type { CategoriesObj } from '@/shared/model/types';
 
 import { ProductConsts } from '@/entities/product';
 

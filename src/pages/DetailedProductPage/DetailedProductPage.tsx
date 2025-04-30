@@ -1,3 +1,5 @@
+import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead';
+
 // import { Stack } from '@mui/system';
 // import { Paths } from '@/shared/constants';
 // import type { SxStyles } from '@/shared/types';
@@ -5,7 +7,8 @@
 // import CloseIcon from '@mui/icons-material/Close';
 // import { useFetch } from '@/hooks/useFetch/useFetch';
 // import { sxMixins } from '@/features/mui-theme/mixins';
-// import { ImgCarousel } from '@/components/ImgCarousel';
+import { ImgCarousel } from '@/features/ImgCarousel/index.ts';
+
 // import { LoadingFetch } from '@/components/LoadingFetch';
 // import { useNavigate, useParams } from 'react-router-dom';
 // import { LANGUAGE, SRCSET_API } from '@/services/constants';
@@ -19,7 +22,7 @@
 // import { getProductByKeyApi } from '@/services/model/products/getProductByKeyApi';
 // import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
 // import { Box, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements';
 
 // const sxStyles: SxStyles = {
 //   modal: {

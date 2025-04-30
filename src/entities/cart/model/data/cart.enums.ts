@@ -1,6 +1,8 @@
 export enum CartUpdateActionTypes {
   DECREMENT = 'removeLineItem',
   DELETE = 'delete',
-  DISCOUNT = 'addDiscountCode',
-  INCREMENT = 'addLineItem'
+  INCREMENT = 'addLineItem',
+
+  ADD_PROMOCODE = 'addDiscountCode',
+  REMOVE_PROMOCODE = 'removeDiscountCode'
 }

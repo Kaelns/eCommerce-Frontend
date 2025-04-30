@@ -1,20 +1,27 @@
-import { Badge, IconButton } from '@mui/material';
+import type { SxProps } from '@mui/material';
+
+import { Badge, IconButton, badgeClasses } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-import { selectProductQuantityCart } from '@/pages/CartPage';
+import { selectCartProductQuantity } from '@/entities/cart';
 
-import { LinkRouterWrapper } from '@/shared/ui/components/wrappers/LinkRouterWrapper';
+import { LinkRouterWrapper } from '@/shared/ui/components';
+import { useAppSelector } from '@/shared/lib/redux';
+import { Paths, BADGE_FONT_SIZE } from '@/shared/model/data';
 
-import { Paths } from '@/shared/model/data/enums';
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+const sxBadge: SxProps = {
+  [`& .${badgeClasses.badge}`]: {
+    fontSize: BADGE_FONT_SIZE
+  }
+};
 
 export function CartLinkIconBtn() {
-  const productQuantity = useAppSelector(selectProductQuantityCart);
+  const productQuantity = useAppSelector(selectCartProductQuantity);
 
   return (
-    <LinkRouterWrapper to={Paths.BASKET}>
+    <LinkRouterWrapper to={Paths.CART}>
       <IconButton>
-        <Badge badgeContent={productQuantity} color="primary">
+        <Badge badgeContent={productQuantity} color="primary" sx={sxBadge}>
           <ShoppingCartOutlinedIcon />
         </Badge>
       </IconButton>

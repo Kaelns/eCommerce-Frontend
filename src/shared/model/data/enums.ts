@@ -21,7 +21,7 @@ export enum Paths {
   MAIN = '/',
 
   ABOUT_US = '/about-us',
-  BASKET = '/basket',
+  CART = '/cart',
   CATALOG = '/catalog',
   CATALOG_CATEGORY = ':category',
   DETAILED_PRODUCT = '/detailed-product',

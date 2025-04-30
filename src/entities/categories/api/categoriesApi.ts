@@ -1,9 +1,9 @@
 import type { CategoriesCollection } from '@/entities/categories';
 import type { CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
 
-import { convertCategories } from '@/entities/product/lib/helpers/objects/convertCategories';
+import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
-import { ecommerceApi } from '@/shared/api/ecommerce-api/ecommerceApi.slice';
+import { convertCategories } from '@/entities/product/lib/helpers/objects/convertCategories';
 
 const productsPath = '/products';
 

@@ -1,8 +1,8 @@
-import { ecommerceApi } from '@/shared/api/ecommerce-api/ecommerceApi.slice';
+import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
 const usersPath = '/users';
 
-export const usersApi = ecommerceApi.injectEndpoints({
+/* const usersApi =  */ ecommerceApi.injectEndpoints({
   endpoints: (build) => ({
     checkIsUserExistByEmail: build.mutation<void, { email: string }>({
       query: (body) => ({

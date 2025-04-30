@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 import type { Navbars } from '@/features/Navbar/model/constants';
 
 import { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useNavbar } from '@/features/Navbar/model/useNavbar';
 
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
+import { sxMixins } from '@/shared/lib/mui';
 
 const sxStyles: SxStyles = {
   btns: {

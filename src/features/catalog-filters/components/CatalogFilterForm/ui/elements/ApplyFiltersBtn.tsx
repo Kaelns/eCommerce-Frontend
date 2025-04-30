@@ -1,18 +1,20 @@
-import { selectLanguage } from '@/entities/user';
+import type { ButtonProps } from '@mui/material';
 
 import { applyFormFiltersAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
-import { ContainedBtn } from '@/shared/ui/elements/buttons/ContainedBtn';
+import { ContainedBtn } from '@/shared/ui/elements';
+import { useAppDispatch } from '@/shared/lib/redux';
 
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
-
-export function ApplyFiltersBtn() {
+export function ApplyFiltersBtn({ sx = {} }: ButtonProps) {
   const dispatch = useAppDispatch();
-  const language = useAppSelector(selectLanguage);
 
   const handleApplyFilters = (): void => {
-    dispatch(applyFormFiltersAction({ language }));
+    dispatch(applyFormFiltersAction());
   };
 
-  return <ContainedBtn onClick={handleApplyFilters}>Apply</ContainedBtn>;
+  return (
+    <ContainedBtn onClick={handleApplyFilters} sx={sx}>
+      Apply
+    </ContainedBtn>
+  );
 }

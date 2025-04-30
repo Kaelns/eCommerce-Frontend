@@ -1,5 +1,5 @@
-import type { AppExtraArgument } from '@/shared/lib/redux/redux.types';
 import type { FetchArgs, BaseQueryApi } from '@reduxjs/toolkit/query';
+import type { AppExtraArgument } from '@/shared/lib/redux/redux.types';
 
 import { baseQuery } from '@/shared/api/ecommerce-api/config/baseQuery';
 

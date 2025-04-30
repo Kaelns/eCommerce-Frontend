@@ -1,5 +1,5 @@
-import type { Prices } from '@/shared/model/types/types';
-import type { Image, ByProjectKeyProductProjectionsSearchRequestBuilder } from '@commercetools/platform-sdk';
+import type { PriceConverted } from '@/shared/model/types';
+import type { Image, LocalizedString, ByProjectKeyProductProjectionsSearchRequestBuilder } from '@commercetools/platform-sdk';
 
 export type SrcsetPxAsc = [string, `${number}w`][];
 export type SearchTextQueryArgKey = `text.${string}`;
@@ -12,13 +12,14 @@ export type QueryProductsArgs = NonNullable<
   NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']
 >;
 
-export interface Product extends Prices {
+export interface Product {
   id: string;
   key: string;
-  name: string;
   images: Image[];
   imageUrl: string;
-  description: string;
   maxQuantity: number;
+  name: LocalizedString;
   categoriesIdArr: string[];
+  description: LocalizedString | undefined;
+  pricesObj: Record<string, PriceConverted>;
 }

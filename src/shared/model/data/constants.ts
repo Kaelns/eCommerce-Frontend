@@ -2,8 +2,9 @@ import type { AutocompleteOptions } from '@/entities/user/model/types/user.types
 
 import dayjs from 'dayjs';
 
-import getMaxDate from '@/shared/lib/utils/dates/getMaxDate';
-import getMinDate from '@/shared/lib/utils/dates/getMinDate';
+import { getMaxDate, getMinDate } from '@/shared/lib/utils';
+
+export const BADGE_FONT_SIZE = '1.1rem';
 
 // * Day Js
 export const DATE_DASH_FORMAT = 'YYYY-MM-DD';

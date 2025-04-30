@@ -1,8 +1,10 @@
 import type { StackProps } from '@mui/system';
-import type { SxPropsObj } from '@/shared/model/types/types';
+import type { SxPropsObj } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
+
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { CatalogProductsGrid } from '@/pages/CatalogPage/ui/components/CatalogProductsGrid';
 import { CatalogProductsTitle } from '@/pages/CatalogPage/ui/components/CatalogProductsTitle';
@@ -11,18 +13,16 @@ import { useGetProductsQuery } from '@/entities/product';
 
 import { CatalogSortBy, selectQueryArgs, CatalogPagination } from '@/features/catalog-filters';
 
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
-import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
-
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { TitleTypography } from '@/shared/ui/elements';
+import { SuspenseWithError } from '@/shared/ui/components';
+import { useAppSelector } from '@/shared/lib/redux';
 
 const sxProductsHeader: SxPropsObj = {
   mb: 2,
   width: 1,
   flexDirection: { zero: 'column', tablet: 'row' },
   justifyContent: { tablet: 'space-between' },
-  alignItems: { zero: 'flex-start', tablet: 'center' }
+  alignItems: { zero: 'stretch', tablet: 'flex-end' }
 };
 
 export const CatalogProducts = memo(function CatalogProducts({ ...props }: StackProps) {

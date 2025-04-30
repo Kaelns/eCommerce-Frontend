@@ -1,12 +1,11 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack, Snackbar, LinearProgress, Alert as MuiAlert } from '@mui/material';
 
-import { alertSliceInjected } from '@/features/Alert/model/alert.slice';
+import { alertSlice } from '@/features/Alert/model/alert.slice';
 
-import { TimingProgress } from '@/shared/ui/components/animations/TimingProgress';
-
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { TimingProgress } from '@/shared/ui/components';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   alertContainer: {
@@ -29,16 +28,16 @@ interface AlertTextProps {
 
 export function Alert({ autoHideMs = 3000 }: AlertTextProps) {
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector(alertSliceInjected.selectors.selectIsOpenAlert);
-  const message = useAppSelector(alertSliceInjected.selectors.selectMessageAlert);
-  const severity = useAppSelector(alertSliceInjected.selectors.selectSeverityAlert);
-  const isLoading = useAppSelector(alertSliceInjected.selectors.selectIsLoadingAlert);
+  const isOpen = useAppSelector(alertSlice.selectors.selectIsOpenAlert);
+  const message = useAppSelector(alertSlice.selectors.selectMessageAlert);
+  const severity = useAppSelector(alertSlice.selectors.selectSeverityAlert);
+  const isLoading = useAppSelector(alertSlice.selectors.selectIsLoadingAlert);
 
   const autoHideSec = autoHideMs / 1000;
 
   const handleClose = (_?: Event | React.SyntheticEvent, reason?: string): void => {
     if (reason !== 'clickaway') {
-      dispatch(alertSliceInjected.actions.hideAlertAction());
+      dispatch(alertSlice.actions.hideAlertAction());
     }
   };
 

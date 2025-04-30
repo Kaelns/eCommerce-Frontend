@@ -1,6 +1,6 @@
 import type { Theme } from '@mui/system';
 import type { SxProps, InputBaseProps } from '@mui/material';
-import type { SxStyles, InputReactEvent } from '@/shared/model/types/types';
+import type { SxStyles, InputReactEvent } from '@/shared/model/types';
 
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,9 +11,9 @@ import { selectIsSearchInFocus, setIsSearchInFocusAction } from '@/pages/Catalog
 import { selectSearch } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 import { debounceSearchToQueryArgs } from '@/features/catalog-filters/model/redux/thunks/debounceSearchToQueryArgs.thunk';
 
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { sxMixins } from '@/shared/lib/mui';
+import { convertSxToArr } from '@/shared/lib/helpers';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   search: {

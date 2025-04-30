@@ -1,11 +1,13 @@
-import type { TypographyProps } from '@mui/material';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { TypographyOwnProps } from '@mui/material';
+import type { SxStyles, PropsWithChildren } from '@/shared/model/types';
 
 import { Typography } from '@mui/material';
 
-import { ProductConsts } from '@/entities/product';
+import { selectCurrency } from '@/entities/user';
 
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
+import { useAppSelector } from '@/shared/lib/redux';
+import { convertSxToArr } from '@/shared/lib/helpers';
+import { isoCurrencies } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   text: {
@@ -17,15 +19,22 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface PriceTypographyProps extends TypographyProps {
-  price: number;
-  priceType: 'discount' | 'price';
+interface PriceTypographyProps extends TypographyOwnProps {
+  priceType?: 'discount' | 'price';
 }
 
-export function PriceTypography({ priceType, price, sx = {} }: PriceTypographyProps) {
+export function PriceTypography({
+  children,
+  priceType = 'price',
+  variant = 'subtitle2',
+  sx = {},
+  ...props
+}: PropsWithChildren<PriceTypographyProps>) {
+  const currency = useAppSelector(selectCurrency);
+
   return (
-    <Typography variant="subtitle2" sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}>
-      {price} {ProductConsts.MONEY_SYMBOL}
+    <Typography variant={variant} sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]} {...props}>
+      {children} {isoCurrencies[currency].symbol}
     </Typography>
   );
 }

@@ -1,19 +1,20 @@
-import type { AppStore } from '@/shared/lib/redux/redux.types';
-
 import { configureStore } from '@reduxjs/toolkit';
 
-import { rootReducer, middlewares, extraArgument, actionsReduxExtension } from '@/app/store/config';
+// eslint-disable-next-line import/no-cycle
+import { router } from '@/app/router/router';
+
+import { actionsEcommerceReduxExtension } from '@/shared/api/ecommerce-api';
+
+import { rootReducer, dynamicMiddleware } from '@/shared/lib/redux';
+
+export const extraArgument = {
+  router
+};
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ thunk: { extraArgument } }).concat(...middlewares),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ thunk: { extraArgument } }).concat(dynamicMiddleware.middleware),
   devTools: import.meta.env.DEV && {
-    ...actionsReduxExtension
+    actionCreators: { ...actionsEcommerceReduxExtension }
   }
-});
-
-export const loadStore = new Promise<AppStore>((res) => {
-  setTimeout(async () => {
-    res(store);
-  }, 0);
 });

@@ -1,85 +1,91 @@
-import type { Cart, CartPagedQueryResponse } from '@commercetools/platform-sdk';
+import type { CartData } from '@/entities/cart';
+import type { ResponceOk } from '@/shared/api/ecommerce-api';
+import type { Cart, MyCartUpdateAction, CartPagedQueryResponse } from '@commercetools/platform-sdk';
 
-import { ecommerceApi } from '@/shared/api/ecommerce-api/ecommerceApi.slice';
+import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
 const cartPath = '/cart';
 
 export const cartApi = ecommerceApi
   .enhanceEndpoints({
-    addTagTypes: ['Cart', 'CartByKey']
+    addTagTypes: ['Carts', 'CartById']
   })
   .injectEndpoints({
     endpoints: (build) => ({
-      // getCart: build.query<CartPagedQueryResponse, void>({
-      //   query: () => cartPath,
-
-      // }),
-
       getAllCarts: build.query<CartPagedQueryResponse, void>({
-        query: () => cartPath
+        query: () => cartPath,
+        providesTags: ['Carts']
       }),
 
       // * Mutations
+
       createCart: build.mutation<Cart, void>({
         query: () => ({
           url: cartPath,
           method: 'POST'
-        })
-      })
+        }),
+        onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+          // * Pessimistic update
+          try {
+            const { data: newCart } = await queryFulfilled;
+            dispatch(
+              cartApi.util.updateQueryData('getAllCarts', undefined, (cartsArrDraft) => {
+                cartsArrDraft.results.push(newCart);
+              })
+            );
+          } catch {
+            /*  */
+          }
+        }
+      }),
 
-      // startSession: build.query<IAppData, void>({
-      //   query: () => '/',
-      //   async onQueryStarted(_, { dispatch, queryFulfilled }) {
-      //     try {
-      //       await queryFulfilled;
-      //       dispatch(setIsPendingAuthAction({ isPending: false }));
-      //     } catch (error) {
-      //       // * Handled by baseQueryExtended
-      //     }
-      //   }
-      // }),
-      // // * Mutations
-      // signUpUser: build.mutation<void, IBodyUserCredentials>({
-      //   query: (body) => ({
-      //     url: '/session',
-      //     method: 'POST',
-      //     body
-      //   })
-      // }),
-      // loginUser: build.mutation<void, { email: string; password: string }>({
-      //   query: (body) => ({
-      //     url: '/session',
-      //     method: 'PUT',
-      //     body
-      //   })
-      // }),
-      // logoutUser: build.mutation<ResponceOk, void>({
-      //   query: () => ({
-      //     url: '/session',
-      //     method: 'DELETE'
-      //   })
-      // }),
-      // checkLoginStatus: build.mutation<ResponceOk, void>({
-      //   query: () => ({
-      //     url: '/session',
-      //     method: 'GET'
-      //   })
-      // }),
-      // restoreUserWithRefreshToken: build.mutation<ResponceOk, void>({
-      //   query: () => ({
-      //     url: '/session',
-      //     method: 'PATCH'
-      //   })
-      // }),
-      // //  FIXME delete
-      // someStuff: build.mutation<{ data: string }, void>({
-      //   queryFn: (_arg, queryApi, _extraOptions, _baseQuery) => {
-      //     console.log(queryApi);
-      //     return { data: { data: 'some data' } };
-      //   }
-      // })
+      updateCart: build.mutation<Cart, { actions: MyCartUpdateAction[] } & CartData>({
+        query: (body) => ({
+          url: cartPath,
+          method: 'PATCH',
+          body: body
+        }),
+        onQueryStarted: async ({ cartId }, { dispatch, queryFulfilled }) => {
+          try {
+            const { data: newCart } = await queryFulfilled;
+            // dispatch(cartApi.util.upsertQueryData('getCartById', { cartId }, newCart));
+            dispatch(
+              cartApi.util.updateQueryData('getAllCarts', undefined, (cartsArrDraft) => {
+                const cartIndex = cartsArrDraft.results.findIndex((cart) => cart.id === cartId);
+                if (cartIndex > 0) {
+                  cartsArrDraft.results[cartIndex] = newCart;
+                }
+              })
+            );
+          } catch {
+            /*  */
+          }
+        }
+      }),
+
+      deleteCart: build.mutation<ResponceOk, CartData>({
+        query: (queryArgs) => ({
+          url: cartPath,
+          method: 'DELETE',
+          body: queryArgs
+        }),
+        onQueryStarted: async ({ cartId }, { dispatch, queryFulfilled }) => {
+          try {
+            await queryFulfilled;
+            // dispatch(cartApi.util.upsertQueryData('getCartById', { cartId }, null));
+            dispatch(
+              cartApi.util.updateQueryData('getAllCarts', undefined, (cartsArrDraft) => {
+                const cartIndex = cartsArrDraft.results.findIndex((cart) => cart.id === cartId);
+                if (cartIndex > 0) {
+                  cartsArrDraft.results.splice(cartIndex, 1);
+                }
+              })
+            );
+          } catch {
+            /*  */
+          }
+        }
+      })
     }),
     overrideExisting: 'throw'
   });
-
-// export const { useSomeStuffMutation } = cartApi;

@@ -1,9 +1,9 @@
-import isoCountry from '@/shared/consts/ISO3166/ISO3166-countries.json';
-import isoPostalRegex from '@/shared/consts/ISO3166/ISO3166-postal-regex.json';
-import isoCountryNoPostal from '@/shared/consts/ISO3166/ISO3166-countries-no-postal.json';
+import isoCountries from '@/shared/model/data/ISO3166/ISO3166-countries.json';
+import isoPostalRegex from '@/shared/model/data/ISO3166/ISO3166-postal-regex.json';
+import isoCountryNoPostal from '@/shared/model/data/ISO3166/ISO3166-countries-no-postal.json';
 
 describe('ISO3166 json lists', () => {
-  const isoCountryKeys = Object.keys(isoCountry) as (keyof typeof isoCountry)[];
+  const isoCountryKeys = Object.keys(isoCountries) as (keyof typeof isoCountries)[];
   const isoPostalRegexKeys = Object.keys(isoPostalRegex) as (keyof typeof isoPostalRegex)[];
   const isoCountryNoPostalKeys = Object.keys(isoCountryNoPostal) as (keyof typeof isoCountryNoPostal)[];
 
@@ -14,7 +14,7 @@ describe('ISO3166 json lists', () => {
 
   it('countries names match each other', () => {
     const isCountriesMatch = isoCountryKeys.every((key) => {
-      return isoCountry[key] === isoPostalRegex[key].country;
+      return isoCountries[key] === isoPostalRegex[key].country;
     });
     expect(isCountriesMatch).toBeTruthy();
   });

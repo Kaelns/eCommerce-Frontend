@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -6,9 +6,9 @@ import { Box, Button, ButtonGroup } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
+import { TitleTypography } from '@/shared/ui/elements';
 
-import { Paths } from '@/shared/model/data/enums';
+import { Paths } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   btn: {
@@ -30,26 +30,25 @@ const sxStyles: SxStyles = {
 interface AppErrorProps {
   src: string;
   alt: string;
-  goTo?: Paths;
   message?: string;
-  goToText?: string;
+  goTo?: { path: Paths; text: string };
 }
 
-export function AppError({ src, alt, message, goTo = Paths.MAIN, goToText = 'Go main' }: AppErrorProps) {
+export function AppError({ src, alt, message, goTo = { path: Paths.MAIN, text: 'Go main' } }: AppErrorProps) {
   const navigate = useNavigate();
   const navigateBack = () => navigate(-1);
-  const navigateTo = () => navigate(goTo);
+  const navigateTo = () => navigate(goTo.path);
 
   return (
     <Stack minHeight="80vh" justifyContent="center" alignItems="center" gap={3}>
       <Box component="img" src={src} alt={alt} sx={sxStyles.img} />
-      {message && <TitleTypography>{message}</TitleTypography>}
+      {message && <TitleTypography variant="h2">{message}</TitleTypography>}
       <ButtonGroup variant="contained" sx={sxStyles.btnGroup}>
         <Button onClick={navigateBack} startIcon={<ArrowBackIosIcon fontSize="small" />} sx={sxStyles.btn}>
           Go back
         </Button>
         <Button onClick={navigateTo} endIcon={<ArrowForwardIosIcon fontSize="small" />} sx={sxStyles.btn}>
-          {goToText}
+          {goTo.text}
         </Button>
       </ButtonGroup>
     </Stack>

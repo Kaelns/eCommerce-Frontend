@@ -1,15 +1,14 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Button } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-import { selectIsOpenFilterDrawer, setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/model/catalogPage.slice';
+import { selectIsSearchInFocus, setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/model/catalogPage.slice';
 
-import { ElemWithTypography } from '@/shared/ui/elements/typography/ElemWithTypography';
-
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { ElemWithTypography } from '@/shared/ui/elements';
+import { sxMixins } from '@/shared/lib/mui';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   filters: {
@@ -27,7 +26,8 @@ export function OpenCatalogSideDrawerBtn() {
   const theme = useTheme();
   const dispatch = useAppDispatch();
 
-  const isOpenFilterDrawer = useAppSelector(selectIsOpenFilterDrawer);
+  const isSearchInFocus = useAppSelector(selectIsSearchInFocus);
+
   const isMatchesTablet = useMediaQuery(theme.breakpoints.down('tablet'));
   const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
 
@@ -43,8 +43,8 @@ export function OpenCatalogSideDrawerBtn() {
         ) : (
           <ElemWithTypography
             elem={<FilterListIcon fontSize="small" />}
-            sx={[isOpenFilterDrawer && sxMixins.hidden]}
-            sxContainer={[isOpenFilterDrawer && sxStyles.textContainer]}
+            sx={[isSearchInFocus && sxMixins.hidden]}
+            sxContainer={[isSearchInFocus && sxStyles.textContainer]}
           >
             Filters
           </ElemWithTypography>

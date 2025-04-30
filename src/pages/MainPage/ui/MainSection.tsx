@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -6,12 +6,9 @@ import { Box, Typography } from '@mui/material';
 
 import furnitureImg from '@/pages/MainPage/assets/furniture.webp';
 
-import { ContainedBtn } from '@/shared/ui/elements/buttons/ContainedBtn';
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
-
-import { Paths } from '@/shared/model/data/enums';
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { hideAnimation, revealAnimation } from '@/shared/lib/mui/mui-animations';
+import { ContainedBtn, TitleTypography } from '@/shared/ui/elements';
+import { sxMixins, hideAnimation, revealAnimation } from '@/shared/lib/mui';
+import { Paths } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   btn: {

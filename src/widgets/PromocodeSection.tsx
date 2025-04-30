@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Paper } from '@mui/material';
@@ -7,12 +7,10 @@ import { PROMOCODES } from '@/entities/cart';
 
 import { useAlert } from '@/features/Alert';
 
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-import { ClickToClipboardPaper } from '@/shared/ui/components/typography/ClickToClipboardPaper';
-
-import { AlertText } from '@/shared/model/data/enums';
-import { sxMixins } from '@/shared/lib/mui/mui-mixins';
-import { pulseAnimation } from '@/shared/lib/mui/mui-animations';
+import { BoldTypography } from '@/shared/ui/elements';
+import { ClickToClipboardPaper } from '@/shared/ui/components';
+import { sxMixins, pulseAnimation } from '@/shared/lib/mui';
+import { AlertText } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   header: {
@@ -44,7 +42,7 @@ export function PromocodeSection() {
   return (
     <Stack component="section" gap={2} direction={{ zero: 'column', tablet: 'row' }} alignItems={{ zero: 'stretch', table: 'center' }}>
       <Paper elevation={5} sx={sxStyles.header}>
-        <BoldTypography>Our special offer:</BoldTypography>
+        <BoldTypography variant="h3">Our special offer:</BoldTypography>
       </Paper>
 
       <Stack direction="row" gap={2} flex={2}>

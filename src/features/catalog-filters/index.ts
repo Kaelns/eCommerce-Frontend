@@ -1,4 +1,4 @@
-import { catalogFilterSliceInjected } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { catalogFilterSlice } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 export { CatalogSearch } from '@/features/catalog-filters/components/CatalogSearch';
 export { CatalogSortBy } from '@/features/catalog-filters/components/CatalogSortBy';
@@ -8,5 +8,5 @@ export { CatalogFilterForm } from '@/features/catalog-filters/components/Catalog
 
 export { FiltersSort } from '@/features/catalog-filters/model/constants';
 
-export const { selectCategoryId, selectCategoryName, selectSearch, selectPage, selectQueryArgs } = catalogFilterSliceInjected.selectors;
-export const { setPageAction, setSearchAction } = catalogFilterSliceInjected.actions;
+export const { selectCategoryName, selectQueryArgs } = catalogFilterSlice.selectors;
+export const { setCategoryIdAndNameAction } = catalogFilterSlice.actions;

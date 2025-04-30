@@ -1,26 +1,15 @@
-import type { AppData } from '@/entities/auth/model/auth.types';
-import type { ResponceOk } from '@/shared/api/ecommerce-api/model/types/types';
-import type { BodyUserCredentials } from '@/entities/user/model/types/user.schemas';
+import type { AppData } from '@/entities/auth';
+import type { BodyUserCredentials } from '@/entities/user';
+import type { ResponceOk } from '@/shared/api/ecommerce-api';
 
-import { authSliceInjected } from '@/entities/auth/model/auth.slice';
-
-import { ecommerceApi } from '@/shared/api/ecommerce-api/ecommerceApi.slice';
+import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
 const authPath = '/session';
 
 export const authApi = ecommerceApi.injectEndpoints({
   endpoints: (build) => ({
     startSession: build.query<AppData, void>({
-      query: () => '/',
-
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          dispatch(authSliceInjected.actions.setIsPendingAuthAction({ isPending: false }));
-        } catch (error) {
-          // * Handled by baseQueryExtended
-        }
-      }
+      query: () => '/'
     }),
     // * Mutations
     //  TODO Set Cart

@@ -1,11 +1,11 @@
-import type { AlertText, AlertAPIText } from '@/shared/model/data/enums';
+import type { AlertText, AlertAPIText } from '@/shared/model/data';
 
 import { useCallback } from 'react';
 
-import { alertSliceInjected } from '@/features/Alert/model/alert.slice';
+import { alertSlice } from '@/features/Alert/model/alert.slice';
 
-import { AlertSeverity } from '@/shared/model/data/enums';
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+import { useAppDispatch } from '@/shared/lib/redux';
+import { AlertSeverity } from '@/shared/model/data';
 
 export type ShowAlertText = (message: string, severity: AlertSeverity) => void;
 
@@ -22,17 +22,17 @@ export function useAlert(): IUseAlertTextReturn {
 
   const showAlert = useCallback(
     (message: AlertAPIText | AlertText | string, severity: AlertSeverity = AlertSeverity.SUCCESS): void => {
-      dispatch(alertSliceInjected.actions.showAlertAction({ message, severity }));
+      dispatch(alertSlice.actions.showAlertAction({ message, severity }));
     },
     [dispatch]
   );
 
   const showLoadingAlert = useCallback((): void => {
-    dispatch(alertSliceInjected.actions.showLoadingAlertAction());
+    dispatch(alertSlice.actions.showLoadingAlertAction());
   }, [dispatch]);
 
   const hideAlert = useCallback((): void => {
-    dispatch(alertSliceInjected.actions.hideAlertAction());
+    dispatch(alertSlice.actions.hideAlertAction());
   }, [dispatch]);
 
   return { showAlert, showLoadingAlert, hideAlert };

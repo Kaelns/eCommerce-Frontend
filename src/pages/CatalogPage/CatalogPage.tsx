@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Box } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -11,9 +11,8 @@ import { OpenCatalogSideDrawerBtn } from '@/pages/CatalogPage/ui/components/Open
 
 import { CatalogSearch, CatalogFilterForm, CategoriesBreadcrumb } from '@/features/catalog-filters';
 
-import { ContainedIconBtn } from '@/shared/ui/elements/buttons/ContainedIconBtn';
-
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+import { ContainedIconBtn } from '@/shared/ui/elements';
+import { useAppDispatch } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   container: {
@@ -24,7 +23,8 @@ const sxStyles: SxStyles = {
   },
   drawerContainer: {
     overflowY: 'scroll',
-    p: 3
+    p: 3,
+    pb: 0
   },
   drawerCloseBtn: {
     position: 'fixed',
@@ -35,9 +35,9 @@ const sxStyles: SxStyles = {
 };
 
 export function CatalogPage() {
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
-  const theme = useTheme();
   const isMatchesLaptopBig = useMediaQuery(theme.breakpoints.up('laptopBig'));
 
   const handleCloseSideDrawer = () => {

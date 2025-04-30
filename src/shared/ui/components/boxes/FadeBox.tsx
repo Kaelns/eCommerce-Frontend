@@ -1,5 +1,5 @@
 import type { BoxProps } from '@mui/system';
-import type { PropsWithChildren } from '@/shared/model/types/types';
+import type { PropsWithChildren } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 import { Fade } from '@mui/material';

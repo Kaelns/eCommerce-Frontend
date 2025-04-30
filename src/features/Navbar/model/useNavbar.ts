@@ -4,7 +4,7 @@ import { selectIsLoggedAuth } from '@/entities/auth';
 
 import { Navbars, headerPaths, headerBurgerPaths, authorizedUserPaths, nonAuthorizedUserPaths } from '@/features/Navbar/model/constants';
 
-import { useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { useAppSelector } from '@/shared/lib/redux';
 
 interface IUseNavbarReturn {
   navPaths: NavbarPaths;

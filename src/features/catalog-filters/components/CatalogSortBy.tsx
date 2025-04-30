@@ -1,16 +1,13 @@
+import type { SxStyles } from '@/shared/model/types';
 import type { SelectChangeEvent } from '@mui/material';
-import type { SxStyles } from '@/shared/model/types/types';
 
 import { Stack, Select, MenuItem } from '@mui/material';
-
-import { selectLanguage } from '@/entities/user';
 
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
 import { selectSort, setSortAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
-import { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
-
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { TitleTypography } from '@/shared/ui/elements';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   select: {
@@ -21,7 +18,7 @@ const sxStyles: SxStyles = {
     },
 
     '& > div': {
-      p: 0.5
+      p: 0.25
     }
   }
 };
@@ -30,10 +27,9 @@ export function CatalogSortBy() {
   const dispatch = useAppDispatch();
 
   const sort = useAppSelector(selectSort);
-  const language = useAppSelector(selectLanguage);
 
   const handleChange = (event: SelectChangeEvent): void => {
-    dispatch(setSortAction({ sort: event.target.value as FiltersSort, language }));
+    dispatch(setSortAction({ sort: event.target.value as FiltersSort }));
   };
 
   return (

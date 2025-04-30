@@ -1,9 +1,11 @@
 import type { Theme } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 import type { SxProps, BreadcrumbsProps } from '@mui/material';
 
 import { memo, useMemo } from 'react';
 import { Skeleton, Breadcrumbs } from '@mui/material';
+
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { selectLanguage } from '@/entities/user';
 import { useGetCategoriesQuery } from '@/entities/categories';
@@ -12,12 +14,10 @@ import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryN
 import { convertToBreadcrumbCategories } from '@/features/catalog-filters/helpers/convertToBreadcrumbCategories';
 import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
-import { CasualBtn } from '@/shared/ui/elements/buttons/CasualBtn';
-import { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
-
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
-import { useAppSelector, useAppDispatch } from '@/shared/lib/redux/redux.hooks';
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
+import { CasualBtn } from '@/shared/ui/elements';
+import { SuspenseWithError } from '@/shared/ui/components';
+import { convertSxToArr } from '@/shared/lib/helpers';
+import { useAppSelector, useAppDispatch } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   btn: (theme) => ({
@@ -52,11 +52,11 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
           const categoryName = getCategoryName(categoriesCollection?.categoriesObj, categoryId, language);
 
           return index !== categoriesToRender.length - 1 ? (
-            <CasualBtn key={categoryId} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
+            <CasualBtn key={`active - ${categoryId}`} onClick={setCategoryId(categoryId, categoryName)} sx={btnSx}>
               {categoryName}
             </CasualBtn>
           ) : (
-            <CasualBtn disabled key={categoryId} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
+            <CasualBtn disabled key={`disabled - ${categoryId}`} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
               {categoryName}
             </CasualBtn>
           );

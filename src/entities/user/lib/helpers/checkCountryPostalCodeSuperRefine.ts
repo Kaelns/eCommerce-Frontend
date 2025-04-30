@@ -1,13 +1,12 @@
 import { z } from 'zod';
 
-import isoCountryList from '@/shared/model/data/ISO3166/ISO3166-countries.json';
-import isoPostalRegex from '@/shared/model/data/ISO3166/ISO3166-postal-regex.json';
+import { isoCountries, isoPostalRegex } from '@/shared/model/data';
 
 export const checkCountryPostalCodeSuperRefine = (
   { country, postalCode }: { country: string; postalCode: string },
   ctx: z.RefinementCtx
 ) => {
-  if (!(country in isoCountryList) && !(country in isoPostalRegex)) {
+  if (!(country in isoCountries) && !(country in isoPostalRegex)) {
     return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: `There is no such country like "${country}" in our database`

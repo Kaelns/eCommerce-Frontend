@@ -1,40 +1,44 @@
-import type { UserLocation } from '@/entities/user';
+import type { CartLightProduct } from '@/entities/cart';
 import type { LineItem } from '@commercetools/platform-sdk';
-import type { CartProduct } from '@/entities/cart/model/types/cart.types';
 
-import { getProductPrices } from '@/entities/product/lib/helpers/objects/getProductPrices';
+import { getProductPricesObj } from '@/entities/product';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
-export const MOCK_BASKET_PRODUCT: CartProduct = {
-  id: '',
-  lineId: '',
-  key: '',
-  name: '',
+const MOCK_BASKET_PRODUCT: CartLightProduct = {
+  productId: '',
+  cartProductLineId: '',
+
+  name: {},
   images: [],
-  imageUrl: '',
   quantity: 0,
-  maxQuantity: 0,
-  price: 0,
-  discount: 0,
-  discountedPrice: 0
+  imageUrl: '',
+  pricesObj: {},
+  maxQuantity: 0
 };
 
-export function convertToLightCartProduct(basketProduct: LineItem, { language, country }: UserLocation): CartProduct {
+export function convertToLightCartProduct(basketProduct: LineItem): CartLightProduct {
   if (!basketProduct) {
     return MOCK_BASKET_PRODUCT;
   }
 
-  const [id, lineId, key, name] = [basketProduct.productId, basketProduct.id, basketProduct.key!, basketProduct.name[language]];
-  const [image, prices] = [basketProduct.variant?.images?.[0], basketProduct.variant.prices];
+  const prices = basketProduct.variant.prices ?? [];
+  const images = basketProduct.variant?.images ?? [];
 
-  const { quantity } = basketProduct;
-  const images = basketProduct.variant?.images ? basketProduct.variant?.images : [];
-  const imageUrl = image ? image.url : imageNotAvailable;
-  const pricesObjUSD = prices ? prices.find((obj) => obj.country === country) : null;
-  const maxQuantity = basketProduct.variant?.availability?.availableQuantity ? basketProduct.variant.availability.availableQuantity : 0;
+  const imageUrl = images[0] ? images[0].url : imageNotAvailable;
+  const maxQuantity = basketProduct.variant?.availability?.availableQuantity ?? 0;
 
-  const { price, discountedPrice, discount } = getProductPrices(pricesObjUSD);
+  const pricesObj = getProductPricesObj(prices);
 
-  return { id, lineId, key, name, quantity, maxQuantity, price, discountedPrice, discount, imageUrl, images };
+  return {
+    productId: basketProduct.productId,
+    cartProductLineId: basketProduct.id,
+
+    name: basketProduct.name,
+    quantity: basketProduct.quantity,
+    images,
+    imageUrl,
+    pricesObj,
+    maxQuantity
+  };
 }

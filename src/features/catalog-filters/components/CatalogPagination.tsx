@@ -1,18 +1,17 @@
 import type { PaginationProps } from '@mui/material';
-import type { SxPropsNotArr } from '@/shared/model/types/types';
+import type { SxPropsNotArr } from '@/shared/model/types';
 
 import { useMemo } from 'react';
 import { Pagination } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
 
-import { selectLanguage } from '@/entities/user';
 import { ProductConsts } from '@/entities/product';
 import { calculateMaxPages } from '@/entities/product/lib/helpers/numbers/calculateMaxPages';
 
 import { selectPage, setPageAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
-import { convertSxToArr } from '@/shared/lib/helpers/arrays/convertSxToArr';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/redux.hooks';
+import { convertSxToArr } from '@/shared/lib/helpers';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxPagination: SxPropsNotArr = {
   display: 'flex',
@@ -30,14 +29,13 @@ export function CatalogPagination({ amount, sx = {}, ...props }: ProductPaginati
   const dispatch = useAppDispatch();
 
   const page = useAppSelector(selectPage);
-  const language = useAppSelector(selectLanguage);
 
   const maxPages = useMemo(() => calculateMaxPages(amount, ProductConsts.LIMIT_ON_PAGE), [amount]);
   const isDisabled = !(maxPages - 1);
   const isMatchTablet = useMediaQuery(theme.breakpoints.down('tablet'));
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number): void => {
-    dispatch(setPageAction({ page: value, language }));
+    dispatch(setPageAction({ page: value }));
     window.scrollTo({ top: 0 });
   };
 

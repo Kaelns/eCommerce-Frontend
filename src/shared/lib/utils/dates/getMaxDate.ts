@@ -1,6 +1,6 @@
-import { USER_MIN_AGE } from '@/shared/api/ecommerce-api/model/data/constants';
+import { USER_MIN_AGE } from '@/entities/user';
 
-export default function getMaxDate(): Date {
+export function getMaxDate(): Date {
   const today = new Date();
   today.setFullYear(today.getFullYear() - USER_MIN_AGE);
   return today;

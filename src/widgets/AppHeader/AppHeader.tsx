@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import TollIcon from '@mui/icons-material/Toll';
@@ -10,7 +10,7 @@ import { CartLinkIconBtn } from '@/widgets/AppHeader/ui/CartLinkIconBtn';
 
 import { Navbar, Navbars } from '@/features/Navbar';
 
-import { SectionContainer } from '@/shared/ui/components/containers/SectionContainer';
+import { SectionContainer } from '@/shared/ui/components';
 
 const sxStyles: SxStyles = {
   headerContainer: {

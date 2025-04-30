@@ -1,10 +1,10 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types/types';
+import type { SxStyles } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
-import ClearIcon from '@mui/icons-material/Clear';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 
 import { Filters, FILTERS_ORDER } from '@/features/catalog-filters/model/constants';
@@ -14,10 +14,8 @@ import { ColorFilter } from '@/features/catalog-filters/components/CatalogFilter
 import { CategoriesAccordionTreeFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/CategoriesAccordionTreeFilter';
 import { RangePriceSliderFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/RangePriceSliderFilter/RangePriceSliderFilter';
 
-import { ContainedBtn } from '@/shared/ui/elements/buttons/ContainedBtn';
-import { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
-
-import { useAppDispatch } from '@/shared/lib/redux/redux.hooks';
+import { ContainedBtn, BoldTypography } from '@/shared/ui/elements';
+import { useAppDispatch } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
   btnApply: {
@@ -25,6 +23,10 @@ const sxStyles: SxStyles = {
   },
   btnClear: {
     flex: 1
+  },
+  btnContainer: {
+    position: 'sticky',
+    bottom: '1rem'
   }
 };
 
@@ -51,10 +53,10 @@ export const CatalogFilterForm = memo(function CatalogFilterForm({ ...props }: S
           <AccordionDetails>{filters[key]}</AccordionDetails>
         </Accordion>
       ))}
-      <Stack direction="row" gap={1}>
-        <ApplyFiltersBtn />
+      <Stack direction="row" gap={1} sx={sxStyles.btnContainer}>
+        <ApplyFiltersBtn sx={sxStyles.btnApply} />
         <ContainedBtn onClick={handleClear} sx={sxStyles.btnClear}>
-          <ClearIcon />
+          <FilterAltOffIcon />
         </ContainedBtn>
       </Stack>
     </Stack>
