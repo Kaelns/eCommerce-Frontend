@@ -73,7 +73,7 @@ interface CartProductCardProps {
 export function CartProductCard({
   productId,
   imgHeight = {
-    height: { zero: 300, mobile: 200, tablet: 250, laptop: 300 },
+    height: { zero: 300, mobile: 200 },
     maxSize: 300
   }
 }: CartProductCardProps) {
@@ -116,7 +116,9 @@ export function CartProductCard({
             {cartProductData.maxQuantity}
           </Typography>
           <CartProductQuantity id={cartProductData.productId} quantity={cartProductData.quantity} />
-          <FullPriceTypography text="Final: " price={totalProductPrice} discount={discount} discountedPrice={totalDiscountedPrice} />
+          {cartProductData.quantity > 1 && (
+            <FullPriceTypography text="Final: " price={totalProductPrice} discount={discount} discountedPrice={totalDiscountedPrice} />
+          )}
         </Box>
       </Box>
 

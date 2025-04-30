@@ -129,4 +129,4 @@ declare module '@/shared/lib/redux/redux.config' {
 }
 
 export const { selectCartProductLineId, selectCartIdAndVersion, selectCartProductById } = cartSlice.selectors;
-export const { deleteProductAction, decrementQuantityAction, incrementQuantityAction } = cartSlice.actions;
+export const { deleteProductAction, decrementQuantityAction, incrementQuantityAction, setQuantityAction } = cartSlice.actions;

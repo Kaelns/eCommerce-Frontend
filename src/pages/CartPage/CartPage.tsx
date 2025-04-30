@@ -31,13 +31,15 @@ const sxStyles: SxStyles = {
     mb: 2
   },
   paper: {
-    p: '0.5rem',
-    gap: 4
+    display: 'flex',
+    flexDirection: 'column',
+    p: '1.5rem'
   },
-  mainContainer: {
-    flex: 7
+  sectionContainer: {
+    flex: 7,
+    gap: 3
   },
-  mainHeader: {
+  sectionHeader: {
     position: 'relative',
     gap: 4,
     alignSelf: 'stretch'
@@ -58,8 +60,8 @@ export function CartPage() {
         Fallback={<AppError src={cartImg} alt="Cart" message="Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />}
         sxChildren={sxStyles.boxContainer}
       >
-        <Paper sx={[sxStyles.mainContainer, sxStyles.paper]}>
-          <Box sx={sxStyles.mainHeader}>
+        <Paper component="section" sx={[sxStyles.sectionContainer, sxStyles.paper]}>
+          <Box sx={sxStyles.sectionHeader}>
             <TitleTypography variant="h2">Cart</TitleTypography>
             <CartProductsFinalQuantity />
 
