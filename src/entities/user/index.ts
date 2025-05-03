@@ -1,5 +1,7 @@
 import { userSlice } from '@/entities/user/model/user.slice';
 
+export { UserPopoverMenu } from '@/entities/user/ui/UserPopoverMenu';
+
 export * from '@/entities/user/model/types/user.types';
 export * from '@/entities/user/model/types/user.schemas';
 export * from '@/entities/user/model/data/user.constants';

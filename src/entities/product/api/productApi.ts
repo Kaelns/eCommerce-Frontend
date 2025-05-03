@@ -1,5 +1,4 @@
-import type { Colors } from '@/entities/product/model/product.types';
-import type { QueryArgsProductsZod } from '@/entities/product/model/product.schemas';
+import type { Colors, QueryProductsArgs } from '@/entities/product/model/product.types';
 import type { TermFacetResult, ProductProjection, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';
@@ -15,8 +14,7 @@ export const productApi = ecommerceApi
   })
   .injectEndpoints({
     endpoints: (build) => ({
-      // TODO Prefetch
-      getProducts: build.query<ProductProjectionPagedSearchResponse, QueryArgsProductsZod | void>({
+      getProducts: build.query<ProductProjectionPagedSearchResponse, QueryProductsArgs | void>({
         providesTags: ['Products'],
         query: (queryArgs) => ({
           url: productsPath,

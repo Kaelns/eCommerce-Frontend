@@ -23,7 +23,6 @@ const alertSliceLazy = createSlice({
     selectIsLoadingAlert: (state) => state.isLoading
   },
   reducers: {
-    // TODO Change string to enums below
     showAlertAction(state, action: PayloadAction<{ severity?: AlertSeverity; message: AlertAPIText | AlertText | string }>) {
       state.isOpen = true;
       state.isLoading = false;

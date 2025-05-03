@@ -2,13 +2,15 @@ import type { SxProps } from '@mui/system';
 
 import { useState } from 'react';
 import { Stack } from '@mui/system';
-import { Badge, Button, Popover, IconButton, badgeClasses } from '@mui/material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { Badge, Popover, Tooltip, IconButton, badgeClasses } from '@mui/material';
 
 import { selectIsLoggedAuth } from '@/entities/auth';
+import { authorizedUserPaths, nonAuthorizedUserPaths } from '@/entities/user/model/data/user.constants';
 
-import { Navbar, Navbars } from '@/features/Navbar';
+import { Navbar } from '@/features/Navbar';
 
+import { ContainedBtn } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
 import { BADGE_FONT_SIZE } from '@/shared/model/data';
 
@@ -25,10 +27,11 @@ const sxBadge: SxProps = {
 export function UserPopoverMenu() {
   // const dispatch = useAppDispatch();
   const isLogged = useAppSelector(selectIsLoggedAuth);
+
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const isOpenPopover = Boolean(anchorEl);
-  const showBadgeIfNonAuthorized = isLogged ? 0 : BADGE_LOGIN_TEXT;
+  const loginBadge = isLogged ? 0 : BADGE_LOGIN_TEXT;
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -38,18 +41,21 @@ export function UserPopoverMenu() {
     setAnchorEl(null);
   };
 
-  const logOut = async (): Promise<void> => {
-    // TODO: Add logout logic
+  const handleLogOut = async (): Promise<void> => {
+    // TODO Add logout logic
     // dispatch(logoutUserApi());
   };
 
   return (
     <>
-      <IconButton onClick={handleOpen}>
-        <Badge badgeContent={showBadgeIfNonAuthorized} color="primary" sx={sxBadge}>
-          <AccountCircleOutlinedIcon />
-        </Badge>
-      </IconButton>
+      <Tooltip title="User menu">
+        <IconButton onClick={handleOpen}>
+          <Badge badgeContent={loginBadge} color="primary" sx={sxBadge}>
+            <AccountCircleOutlinedIcon />
+          </Badge>
+        </IconButton>
+      </Tooltip>
+
       <Popover
         open={isOpenPopover}
         anchorEl={anchorEl}
@@ -64,11 +70,11 @@ export function UserPopoverMenu() {
         }}
       >
         <Stack gap={1} padding={2}>
-          <Navbar navbarType={Navbars.USER_POPOVER} />
+          <Navbar navPaths={isLogged ? authorizedUserPaths : nonAuthorizedUserPaths} orientation="vertical" />
           {isLogged && (
-            <Button variant="contained" size="small" onClick={logOut}>
+            <ContainedBtn size="small" onClick={handleLogOut}>
               Log out
-            </Button>
+            </ContainedBtn>
           )}
         </Stack>
       </Popover>

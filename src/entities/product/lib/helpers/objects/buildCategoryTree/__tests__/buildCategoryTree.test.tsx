@@ -50,6 +50,4 @@ describe('buildCategoryTree', () => {
   it('must return empty array', () => {
     expect(buildCategoryTree([], {}).length).toEqual(0);
   });
-
-  // TODO add check on categories amount
 });

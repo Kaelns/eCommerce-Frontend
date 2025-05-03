@@ -36,8 +36,8 @@ interface AppErrorProps {
 
 export function AppError({ src, alt, message, goTo = { path: Paths.MAIN, text: 'Go main' } }: AppErrorProps) {
   const navigate = useNavigate();
-  const navigateBack = () => navigate(-1);
   const navigateTo = () => navigate(goTo.path);
+  const navigateBack = () => navigate(-1);
 
   return (
     <Stack minHeight="80vh" justifyContent="center" alignItems="center" gap={3}>

@@ -7,23 +7,22 @@ import { Typography } from '@mui/material';
 
 interface ElemWithTypographyProps extends TypographyProps {
   isAfter?: boolean;
-  // TODO elem to Component
-  elem: React.ReactNode;
+  Node: React.ReactNode;
   sxContainer?: SxProps<Theme>;
 }
 
 export function ElemWithTypography({
-  elem,
   children,
+  Node,
   isAfter = false,
   sxContainer = {},
   ...props
 }: PropsWithChildren<ElemWithTypographyProps>) {
   return (
     <Stack direction="row" alignItems="center" gap={{ zero: 0.75, tablet: 1 }} sx={sxContainer}>
-      {!isAfter && elem}
+      {!isAfter && Node}
       <Typography {...props}>{children}</Typography>
-      {isAfter && elem}
+      {isAfter && Node}
     </Stack>
   );
 }

@@ -1,6 +1,6 @@
 import type { SxStyles } from '@/shared/model/types';
 
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
@@ -39,10 +39,12 @@ export function OpenCatalogSideDrawerBtn() {
     !isMatchesLaptopBig && (
       <Button onClick={handleOpenSideDrawer} sx={sxStyles.filters}>
         {isMatchesTablet ? (
-          <FilterListIcon fontSize="small" />
+          <Tooltip title="Filters" placement="top">
+            <FilterListIcon fontSize="small" />
+          </Tooltip>
         ) : (
           <ElemWithTypography
-            elem={<FilterListIcon fontSize="small" />}
+            Node={<FilterListIcon fontSize="small" />}
             sx={[isSearchInFocus && sxMixins.hidden]}
             sxContainer={[isSearchInFocus && sxStyles.textContainer]}
           >

@@ -11,7 +11,6 @@ import { UserPage } from '@/pages/UserPage';
 import { CartPage } from '@/pages/CartPage';
 import { ErrorPage } from '@/pages/ErrorPage';
 import { LoginPage } from '@/pages/LoginPage';
-import { AboutUsPage } from '@/pages/AboutUsPage';
 import { RegistrationPage } from '@/pages/RegistrationPage';
 import { DetailedProductPage } from '@/pages/DetailedProductPage';
 import { CatalogPage, prefetchCatalogPageLoader } from '@/pages/CatalogPage';
@@ -30,7 +29,6 @@ export const router = createBrowserRouter(
     <Route element={<App />} loader={prefetchStartSessionLoader}>
       <Route path={Paths.MAIN} element={<MainPage />} />
       <Route path={Paths.CATALOG} element={<CatalogPage />} loader={prefetchCatalogPageLoader} />
-      <Route path={Paths.ABOUT_US} element={<AboutUsPage />} />
       <Route path={Paths.DETAILED_PRODUCT}>
         <Route path={Paths.DETAILED_PRODUCT_ID} element={<DetailedProductPage />} />
       </Route>

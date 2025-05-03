@@ -62,9 +62,9 @@ export function AddProductToCartBtn({ productId, isIconBtn = false, isAvailable,
   const sxBtn: SxPropsArr = [sxStyles.btn, isInCart && sxStyles.btnActive, ...convertSxToArr(sx)];
   const sxIcon: SxPropsArr = [sxStyles.icon, isLoading && sxMixins.invisible, ...convertSxToArr(iconSx)];
 
-  const addToBasket = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddToBasket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    // TODO remove and creater better links
+    // TODO remove and create better links through position. Add position and z-index
     // * To prevent link wrapper to trigger
     event.stopPropagation();
 
@@ -74,7 +74,7 @@ export function AddProductToCartBtn({ productId, isIconBtn = false, isAvailable,
   };
 
   return isIconBtn ? (
-    <IconButton loading={isLoading} disabled={isAvailable} onClick={addToBasket} sx={sxBtn}>
+    <IconButton loading={isLoading} disabled={isAvailable} onClick={handleAddToBasket} sx={sxBtn}>
       <AddShoppingCartIcon sx={sxIcon} />
     </IconButton>
   ) : (
@@ -82,7 +82,7 @@ export function AddProductToCartBtn({ productId, isIconBtn = false, isAvailable,
       variant="outlined"
       loading={isLoading}
       disabled={isAvailable}
-      onClick={addToBasket}
+      onClick={handleAddToBasket}
       endIcon={<AddShoppingCartIcon fontSize="small" sx={sxIcon} />}
       loadingPosition="end"
       sx={[sxStyles.btnCasual, ...sxBtn]}

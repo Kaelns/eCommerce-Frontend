@@ -2,9 +2,10 @@ import type { SxStyles } from '@/shared/model/types';
 
 import { Drawer } from '@mui/material';
 import { useState, useCallback } from 'react';
-import { Box, useTheme, useMediaQuery } from '@mui/system';
 
-import { Navbar, Navbars } from '@/features/Navbar';
+import { headerBurgerPaths } from '@/widgets/AppHeader/model/constants';
+
+import { Navbar } from '@/features/Navbar';
 
 import { BurgerBtn } from '@/shared/ui/elements';
 
@@ -15,9 +16,6 @@ const sxStyles: SxStyles = {
 };
 
 export function Burger() {
-  const theme = useTheme();
-  const isMatchesMedia = useMediaQuery(theme.breakpoints.down('tablet'));
-
   const [isOpen, setIsOpen] = useState(false);
 
   const openDrawer = (): void => {
@@ -30,12 +28,10 @@ export function Burger() {
 
   return (
     <>
-      {isMatchesMedia && <BurgerBtn onClick={openDrawer} />}
+      <BurgerBtn onClick={openDrawer} />
 
       <Drawer anchor="right" open={isOpen} onClose={closeDrawer}>
-        <Box sx={sxStyles.burgerMenu}>
-          <Navbar customOrientation="vertical" navbarType={Navbars.HEADER_BURGER} onLinkClick={closeDrawer} />
-        </Box>
+        <Navbar navPaths={headerBurgerPaths} orientation="vertical" onLinkClick={closeDrawer} sxContainer={sxStyles.burgerMenu} />
       </Drawer>
     </>
   );

@@ -17,5 +17,5 @@ const sxAvatar: SxProps = {
 export function UserFullNameCard() {
   // TODO Get user data
 
-  return <ElemWithTypography elem={<Avatar sx={sxAvatar}>{userInitials}</Avatar>}>{userName}</ElemWithTypography>;
+  return <ElemWithTypography Node={<Avatar sx={sxAvatar}>{userInitials}</Avatar>}>{userName}</ElemWithTypography>;
 }

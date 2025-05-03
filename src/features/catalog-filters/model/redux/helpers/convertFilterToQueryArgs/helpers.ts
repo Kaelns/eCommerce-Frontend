@@ -14,6 +14,22 @@ import { isoCurrencies } from '@/shared/model/data';
 export function convertPageQueryArgs(page: number | undefined, limitOnPage: number) {
   return ((page ?? 1) - 1) * limitOnPage;
 }
+export function convertCategoriesQueryArgs(categoryId: string | undefined): string {
+  if (!categoryId) {
+    return '';
+  }
+  const category = categoryId !== NO_CATEGORY ? categoryId : '';
+  return queryArgsProductProps.filterQuery.categoryId(category);
+}
+
+export function convertPriceQueryArgs(price: number[] | undefined, currency: Currencies): string {
+  if (!price || !price.length || (price[0] <= ProductConsts.MIN_MONEY && price[1] >= ProductConsts.MAX_MONEY)) {
+    return '';
+  }
+  const fractionDigits = isoCurrencies[currency].fractionDigits;
+  return queryArgsProductProps.filterQuery.priceRange(price[0] * 10 ** fractionDigits, price[1] * 10 ** fractionDigits);
+}
+
 export function convertColorsQueryArgs(colorsState: FilterColorsState | undefined, colors: Colors, language: string): string {
   if (!colorsState) {
     return '';
@@ -60,21 +76,4 @@ export function convertSearchQueryArgs(searchString: string | undefined, languag
     fuzzy: true,
     fuzzyLevel
   } as ConvertSearchReturn;
-}
-
-// TODO add tuple type
-export function convertCategoriesQueryArgs(categoryId: string | undefined): string {
-  if (!categoryId) {
-    return '';
-  }
-  const category = categoryId !== NO_CATEGORY ? categoryId : '';
-  return queryArgsProductProps.filterQuery.categoryId(category);
-}
-
-export function convertPriceQueryArgs(price: number[] | undefined, currency: Currencies): string {
-  if (!price || !price.length || (price[0] <= ProductConsts.MIN_MONEY && price[1] >= ProductConsts.MAX_MONEY)) {
-    return '';
-  }
-  const fractionDigits = isoCurrencies[currency].fractionDigits;
-  return queryArgsProductProps.filterQuery.priceRange(price[0] * 10 ** fractionDigits, price[1] * 10 ** fractionDigits);
 }

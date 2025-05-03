@@ -36,9 +36,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.3.0",
     "react-slick": "^0.30.3",
-    "sass": "^1.85.1",
-    "slick-carousel": "^1.8.1",
-    "zod": "^3.24.2"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@commercetools/platform-sdk": "^8.5.0",

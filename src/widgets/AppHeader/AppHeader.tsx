@@ -5,10 +5,12 @@ import TollIcon from '@mui/icons-material/Toll';
 import { Box, AppBar, useTheme, useMediaQuery } from '@mui/material';
 
 import { Burger } from '@/widgets/AppHeader/ui/Burger';
-import { UserPopoverMenu } from '@/widgets/AppHeader/ui/UserPopoverMenu';
+import { headerPaths } from '@/widgets/AppHeader/model/constants';
 import { CartLinkIconBtn } from '@/widgets/AppHeader/ui/CartLinkIconBtn';
 
-import { Navbar, Navbars } from '@/features/Navbar';
+import { UserPopoverMenu } from '@/entities/user';
+
+import { Navbar } from '@/features/Navbar';
 
 import { SectionContainer } from '@/shared/ui/components';
 
@@ -29,13 +31,13 @@ export function AppHeader() {
       <SectionContainer sx={sxStyles.headerContainer}>
         <Stack direction="row" gap={4}>
           <TollIcon color="primary" fontSize="large" />
-          {!isMatchesMedia && <Navbar navbarType={Navbars.APP_HEADER} />}
+          {!isMatchesMedia && <Navbar navPaths={headerPaths} />}
         </Stack>
 
         <Box>
           <CartLinkIconBtn />
           <UserPopoverMenu />
-          <Burger />
+          {isMatchesMedia && <Burger />}
         </Box>
       </SectionContainer>
     </AppBar>
