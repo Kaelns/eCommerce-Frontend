@@ -7,3 +7,5 @@ export { authApi };
 export const { useStartSessionQuery } = authApi;
 
 export const { selectIsLoggedAuth } = authSlice.selectors;
+
+export { authApiActions } from '@/entities/auth/api/authApiActions';

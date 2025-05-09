@@ -1,5 +1,5 @@
 import type { AppData } from '@/entities/auth';
-import type { BodyUserCredentials } from '@/entities/user';
+import type { UserCredentials } from '@/entities/user';
 import type { ResponceOk } from '@/shared/api/ecommerce-api';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';
@@ -13,7 +13,7 @@ export const authApi = ecommerceApi.injectEndpoints({
     }),
     // * Mutations
     //  TODO Set Cart
-    signUpUser: build.mutation<void, BodyUserCredentials>({
+    signUpUser: build.mutation<void, UserCredentials>({
       query: (body) => ({
         url: authPath,
         method: 'POST',

@@ -1,10 +1,10 @@
-import type { BodyUserCredentials } from '@/entities/user';
+import type { UserCredentials } from '@/entities/user';
 
 import { authApi } from '@/entities/auth/api/authApi';
 
-export const actionsEcommerceReduxExtension = {
+export const authApiActions = {
   startSession: () => authApi.endpoints.startSession.initiate(undefined, { subscribe: false }),
-  signUpUser: (arg: BodyUserCredentials) => authApi.endpoints.signUpUser.initiate(arg),
+  signUpUser: (arg: UserCredentials) => authApi.endpoints.signUpUser.initiate(arg),
   loginUser: (email: string, password: string) => authApi.endpoints.loginUser.initiate({ email, password }),
   logoutUser: () => authApi.endpoints.logoutUser.initiate(),
   restoreUserWithRefreshToken: () => authApi.endpoints.restoreUserWithRefreshToken.initiate(),

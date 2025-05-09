@@ -1,7 +1,5 @@
-import { USER_MIN_AGE } from '@/entities/user';
-
-export function getMaxDate(): Date {
+export function getMaxDate(minAge: number): Date {
   const today = new Date();
-  today.setFullYear(today.getFullYear() - USER_MIN_AGE);
+  today.setFullYear(today.getFullYear() - minAge);
   return today;
 }

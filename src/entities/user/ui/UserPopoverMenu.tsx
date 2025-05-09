@@ -6,7 +6,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import { Badge, Popover, Tooltip, IconButton, badgeClasses } from '@mui/material';
 
 import { selectIsLoggedAuth } from '@/entities/auth';
-import { authorizedUserPaths, nonAuthorizedUserPaths } from '@/entities/user/model/data/user.constants';
+import { authorizedUserPaths, nonAuthorizedUserPaths } from '@/entities/user/model/data/user.navbars';
 
 import { Navbar } from '@/features/Navbar';
 
