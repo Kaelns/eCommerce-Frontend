@@ -4,15 +4,15 @@ import type { ProductProjection } from '@commercetools/platform-sdk';
 
 import { useMemo } from 'react';
 import { Stack } from '@mui/system';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { AddProductToCartBtn } from '@/entities/cart';
-import { selectCountry, selectLanguage } from '@/entities/user';
 import { SRCSET_API } from '@/entities/product/model/product.constants';
+import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/user';
 import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
 
-import { BoldTypography, DiscountTypography } from '@/shared/ui/elements';
-import { ImgLoad, LinkRouterWrapper, FullPriceTypography } from '@/shared/ui/components';
+import { Text, BoldText, DiscountText } from '@/shared/ui/elements';
+import { ImgLoad, LinkAbsoluteWrapper } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppSelector } from '@/shared/lib/redux';
 import { Paths } from '@/shared/model/data';
@@ -20,15 +20,7 @@ import { Paths } from '@/shared/model/data';
 const IMG_SELECTOR = 'product-card__img';
 
 const sxStyles: SxStyles = {
-  linkWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: 1,
-    width: 1
-  },
-
   cardContainer: {
-    position: 'relative',
     height: 1,
     width: 1,
     py: 2,
@@ -65,8 +57,7 @@ const sxStyles: SxStyles = {
 
   cartBtn: (theme) => ({
     position: 'absolute',
-    top: 0,
-    left: 0,
+    inset: '0 auto auto 0',
     width: 'fit-content',
     zIndex: 50,
     borderRadius: `${theme.shape.borderRadius}px 0 1.5rem 0`,
@@ -102,53 +93,53 @@ export function ProductCard({
   const country = useAppSelector(selectCountry);
   const productData = useMemo(() => convertToLightProduct(product), [product]);
 
-  const shortedDescription = productData.description
-    ? productData.description[language].slice(0, productData.description[language].indexOf(' ', 100))
-    : '';
-
   const { height, maxSize } = imgHeight;
   const { price, discount, discountedPrice } = productData.pricesObj[country];
 
+  const shortedDescription = useMemo(
+    () => (productData.description ? productData.description[language].slice(0, productData.description[language].indexOf(' ', 100)) : ''),
+    [productData.description, language]
+  );
+
   return (
-    // TODO change link to absolute positioned to allow copying of text
-    <LinkRouterWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper}>
-      <Stack spacing={3} maxWidth={containerMaxWidth} sx={sxStyles.cardContainer}>
-        <ImgLoad
-          height={height}
-          src={productData.imageUrl}
-          alt={productData.name[language]}
-          className={IMG_SELECTOR}
-          srcset={{ srcSetArr: SRCSET_API, maxSize }}
+    <Stack spacing={3} maxWidth={containerMaxWidth} sx={[{ position: 'relative' }, sxStyles.cardContainer]}>
+      <LinkAbsoluteWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper} />
+      <ImgLoad
+        height={height}
+        src={productData.imageUrl}
+        alt={productData.name[language]}
+        srcset={{ srcSetArr: SRCSET_API, maxSize }}
+        className={IMG_SELECTOR}
+      />
+
+      <Box>
+        <BoldText isPositioned variant="subtitle1" sx={sxStyles.title}>
+          {productData.name[language]}
+        </BoldText>
+        <Text isPositioned variant="subtitle2">
+          <b>Available quantity: </b>
+          {productData.maxQuantity}
+        </Text>
+        <UserFullPriceText
+          isPositioned
+          price={price}
+          discount={discount}
+          discountedPrice={discountedPrice}
+          sxContainer={sxStyles.fullPriceContainer}
         />
+        <Text isPositioned>{shortedDescription}...</Text>
+      </Box>
 
-        <Box>
-          <BoldTypography variant="subtitle1" sx={sxStyles.title}>
-            {productData.name[language]}
-          </BoldTypography>
-          <Typography variant="subtitle2">
-            <b>Available quantity: </b>
-            {productData.maxQuantity}
-          </Typography>
-          <FullPriceTypography
-            price={price}
-            discount={discount}
-            discountedPrice={discountedPrice}
-            sxContainer={sxStyles.fullPriceContainer}
-          />
-          <Typography>{shortedDescription}...</Typography>
-        </Box>
+      {/* Position absolute */}
+      <AddProductToCartBtn
+        isIconBtn
+        isAvailable={!productData.maxQuantity}
+        productId={productData.id}
+        sx={sxStyles.cartBtn}
+        sxIcon={sxStyles.cartIcon}
+      />
 
-        {/* Position absolute */}
-        <AddProductToCartBtn
-          isIconBtn
-          isAvailable={!productData.maxQuantity}
-          productId={productData.id}
-          sx={sxStyles.cartBtn}
-          iconSx={sxStyles.cartIcon}
-        />
-
-        <DiscountTypography discount={discount} sx={sxStyles.discount} />
-      </Stack>
-    </LinkRouterWrapper>
+      <DiscountText isPositioned discount={discount} sx={sxStyles.discount} />
+    </Stack>
   );
 }

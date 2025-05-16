@@ -21,13 +21,13 @@ export type InputReactEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaE
 // * MUI types
 export type Sizes = 'large' | 'medium' | 'small';
 
-export type SxPropsObj<T extends object = Theme> = SystemStyleObject<T>;
-export type SxStyles<T extends object = Theme> = Record<string, SxPropsNotArr<T>>;
+export type SxStylesObj<T extends object = Theme> = SystemStyleObject<T>;
+export type SxStyles<T extends object = Theme> = Record<string, SxStylesNotArr<T>>;
 
-export type SxPropsNotArr<T extends object = Theme> = SxPropsCallback<T> | SxPropsObj<T>;
-export type SxPropsCallback<T extends object = Theme> = (theme: Theme) => SystemStyleObject<T>;
+export type SxStylesNotArr<T extends object = Theme> = SxStylesCallback<T> | SxStylesObj<T>;
+export type SxStylesCallback<T extends object = Theme> = (theme: Theme) => SystemStyleObject<T>;
 
-export type SxPropsArr<T extends object = Theme> = ReadonlyArray<boolean | SxPropsCallback<T> | SxPropsObj<T>>;
+export type SxStylesArr<T extends object = Theme> = ReadonlyArray<boolean | SxStylesCallback<T> | SxStylesObj<T>>;
 
 // * Ecommerce types
 

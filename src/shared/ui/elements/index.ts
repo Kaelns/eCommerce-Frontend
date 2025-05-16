@@ -1,10 +1,11 @@
+export { Text } from '@/shared/ui/elements/typography/Text';
 export { BurgerBtn } from '@/shared/ui/elements/buttons/BurgerBtn';
 export { CasualBtn } from '@/shared/ui/elements/buttons/CasualBtn';
+export { BoldText } from '@/shared/ui/elements/typography/BoldText';
 export { LightMuiBox } from '@/shared/ui/elements/boxes/LightMuiBox';
+export { TitleText } from '@/shared/ui/elements/typography/TitleText';
+export { PriceText } from '@/shared/ui/elements/typography/PriceText';
 export { ContainedBtn } from '@/shared/ui/elements/buttons/ContainedBtn';
-export { BoldTypography } from '@/shared/ui/elements/typography/BoldTypography';
+export { NodeWithText } from '@/shared/ui/elements/typography/NodeWithText';
+export { DiscountText } from '@/shared/ui/elements/typography/DiscountText';
 export { ContainedIconBtn } from '@/shared/ui/elements/buttons/ContainedIconBtn';
-export { PriceTypography } from '@/shared/ui/elements/typography/PriceTypography';
-export { TitleTypography } from '@/shared/ui/elements/typography/TitleTypography';
-export { DiscountTypography } from '@/shared/ui/elements/typography/DiscountTypography';
-export { ElemWithTypography } from '@/shared/ui/elements/typography/ElemWithTypography';

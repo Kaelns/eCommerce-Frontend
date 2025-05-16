@@ -11,8 +11,9 @@ import { authorizedUserPaths, nonAuthorizedUserPaths } from '@/entities/user/mod
 import { Navbar } from '@/features/Navbar';
 
 import { ContainedBtn } from '@/shared/ui/elements';
+import { LinkAbsoluteWrapper } from '@/shared/ui/components';
 import { useAppSelector } from '@/shared/lib/redux';
-import { BADGE_FONT_SIZE } from '@/shared/model/data';
+import { Paths, BADGE_FONT_SIZE } from '@/shared/model/data';
 
 const BADGE_LOGIN_TEXT = 'Login';
 
@@ -49,7 +50,9 @@ export function UserPopoverMenu() {
   return (
     <>
       <Tooltip title="User menu">
-        <IconButton onClick={handleOpen}>
+        <IconButton onClick={handleOpen} sx={{ position: 'relative' }}>
+          <LinkAbsoluteWrapper to={isLogged ? Paths.USER : Paths.LOGIN} />
+
           <Badge badgeContent={loginBadge} color="primary" sx={sxBadge}>
             <AccountCircleOutlinedIcon />
           </Badge>

@@ -7,7 +7,7 @@ import { PROMOCODES } from '@/entities/cart';
 
 import { useAlert } from '@/features/Alert';
 
-import { BoldTypography } from '@/shared/ui/elements';
+import { BoldText } from '@/shared/ui/elements';
 import { ClickToClipboardPaper } from '@/shared/ui/components';
 import { sxMixins, pulseAnimation } from '@/shared/lib/mui';
 import { AlertText } from '@/shared/model/data';
@@ -42,7 +42,7 @@ export function PromocodeSection() {
   return (
     <Stack component="section" gap={2} direction={{ zero: 'column', tablet: 'row' }} alignItems={{ zero: 'stretch', table: 'center' }}>
       <Paper elevation={5} sx={sxStyles.header}>
-        <BoldTypography variant="h3">Our special offer:</BoldTypography>
+        <BoldText variant="h3">Our special offer:</BoldText>
       </Paper>
 
       <Stack direction="row" gap={2} flex={2}>

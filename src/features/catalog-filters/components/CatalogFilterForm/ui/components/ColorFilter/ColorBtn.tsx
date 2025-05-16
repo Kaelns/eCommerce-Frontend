@@ -1,4 +1,4 @@
-import type { SxStyles, SxPropsObj } from '@/shared/model/types';
+import type { SxStyles, SxStylesObj } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
@@ -22,7 +22,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-const colorBtnBgcolor = (colorHex: string): SxPropsObj => ({
+const colorBtnBgcolor = (colorHex: string): SxStylesObj => ({
   bgcolor: colorHex,
   color: colorHex,
   '&:hover': {

@@ -14,7 +14,7 @@ import { ColorFilter } from '@/features/catalog-filters/components/CatalogFilter
 import { CategoriesAccordionTreeFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/CategoriesAccordionTreeFilter';
 import { RangePriceSliderFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/RangePriceSliderFilter/RangePriceSliderFilter';
 
-import { ContainedBtn, BoldTypography } from '@/shared/ui/elements';
+import { BoldText, ContainedBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
@@ -48,7 +48,7 @@ export const CatalogFilterForm = memo(function CatalogFilterForm({ ...props }: S
       {FILTERS_ORDER.map((key) => (
         <Accordion key={key} defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <BoldTypography>{key}</BoldTypography>
+            <BoldText>{key}</BoldText>
           </AccordionSummary>
           <AccordionDetails>{filters[key]}</AccordionDetails>
         </Accordion>

@@ -3,7 +3,7 @@ import type { SxStyles } from '@/shared/model/types';
 import { Drawer } from '@mui/material';
 import { useState, useCallback } from 'react';
 
-import { headerBurgerPaths } from '@/widgets/AppHeader/model/constants';
+import { headerBurgerPaths } from '@/widgets/AppHeader/model/navbars';
 
 import { Navbar } from '@/features/Navbar';
 

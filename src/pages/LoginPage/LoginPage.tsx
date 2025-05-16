@@ -1,11 +1,11 @@
 import { Stack } from '@mui/system';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 
 export function LoginPage() {
   return (
     <Stack justifyContent="center" alignItems="center" gap={2}>
-      <TitleTypography>Login page</TitleTypography>
+      <TitleText>Login page</TitleText>
       {/* <LoginForm /> */}
     </Stack>
   );

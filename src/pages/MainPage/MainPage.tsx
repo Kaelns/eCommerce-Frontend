@@ -1,4 +1,4 @@
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
@@ -13,7 +13,7 @@ import { useGetCategoriesQuery } from '@/entities/categories';
 import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppSelector } from '@/shared/lib/redux';
 
-const sxContainer: SxPropsObj = {
+const sxContainer: SxStylesObj = {
   display: 'flex',
   flexDirection: 'column',
   gap: 5

@@ -1,11 +1,11 @@
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 import type { ProductProjection } from '@commercetools/platform-sdk';
 
 import { Grid } from '@mui/system';
 
 import { ProductCard } from '@/entities/product';
 
-const sxProductWrapper: SxPropsObj = {
+const sxProductWrapper: SxStylesObj = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'stretch'

@@ -1,5 +1,5 @@
 import type { StackProps } from '@mui/system';
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
@@ -13,11 +13,11 @@ import { useGetProductsQuery } from '@/entities/product';
 
 import { CatalogSortBy, selectQueryArgs, CatalogPagination } from '@/features/catalog-filters';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppSelector } from '@/shared/lib/redux';
 
-const sxProductsHeader: SxPropsObj = {
+const sxProductsHeader: SxStylesObj = {
   mb: 2,
   width: 1,
   flexDirection: { zero: 'column', tablet: 'row' },
@@ -45,7 +45,7 @@ export const CatalogProducts = memo(function CatalogProducts({ ...props }: Stack
         </>
       ) : (
         // TODO add better message
-        <TitleTypography>There is no products</TitleTypography>
+        <TitleText>There is no products</TitleText>
       )}
     </SuspenseWithError>
   );

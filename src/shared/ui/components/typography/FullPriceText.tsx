@@ -4,7 +4,7 @@ import type { SxProps, TypographyOwnProps } from '@mui/material';
 
 import { Stack } from '@mui/system';
 
-import { BoldTypography, PriceTypography } from '@/shared/ui/elements';
+import { BoldText, PriceText } from '@/shared/ui/elements';
 
 const sxStyles: SxStyles = {
   price: {
@@ -21,34 +21,40 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface FullPriceTypographyProps extends TypographyOwnProps {
+export interface FullPriceTextProps extends TypographyOwnProps {
   text?: string;
   price: number;
   discount: number;
+  currency: string;
+  isPositioned?: boolean;
   discountedPrice: number;
   sxContainer?: SxProps<Theme>;
 }
 
-export function FullPriceTypography({
+export function FullPriceText({
+  isPositioned = false,
   text = 'Price: ',
   variant = 'body1',
   price,
   discount,
+  currency,
   discountedPrice,
   sxContainer
-}: FullPriceTypographyProps) {
+}: FullPriceTextProps) {
   const isDiscounted = discount > 0;
 
   return (
     <Stack direction="row" alignItems="center" gap={1} sx={sxContainer}>
-      <BoldTypography variant={variant}>{text}</BoldTypography>
-      <PriceTypography variant={variant} sx={[isDiscounted && sxStyles.price]}>
+      <BoldText isPositioned={isPositioned} variant={variant}>
+        {text}
+      </BoldText>
+      <PriceText isPositioned={isPositioned} currency={currency} variant={variant} sx={[isDiscounted && sxStyles.price]}>
         {price}
-      </PriceTypography>
+      </PriceText>
       {isDiscounted && (
-        <PriceTypography variant={variant} priceType="discount">
+        <PriceText isPositioned={isPositioned} currency={currency} variant={variant} priceType="discount">
           {discountedPrice}
-        </PriceTypography>
+        </PriceText>
       )}
     </Stack>
   );

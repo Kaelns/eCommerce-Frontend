@@ -1,12 +1,12 @@
 import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
+import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
 
 import furnitureImg from '@/pages/MainPage/assets/furniture.webp';
 
-import { ContainedBtn, TitleTypography } from '@/shared/ui/elements';
+import { Text, TitleText, ContainedBtn } from '@/shared/ui/elements';
 import { sxMixins, hideAnimation, revealAnimation } from '@/shared/lib/mui';
 import { Paths } from '@/shared/model/data';
 
@@ -60,15 +60,15 @@ export function MainSection() {
       <Box sx={[sxStyles.imgBackdrop, sxMixins.opacity1, sxStyles.imgShared]} />
       <Box alt="furniture" component="img" src={furnitureImg} sx={[sxStyles.img, sxMixins.opacity0, sxStyles.imgShared]} />
       <Stack alignSelf="center" gap={1.5} justifySelf="flex-start" sx={sxStyles.textContainer}>
-        <TitleTypography color="white" variant="h1">
+        <TitleText color="white" variant="h1">
           Radiocommerce
-        </TitleTypography>
-        <TitleTypography color="white" variant="h2">
+        </TitleText>
+        <TitleText color="white" variant="h2">
           All sort of high-quality furniture available here
-        </TitleTypography>
-        <Typography color="white" variant="body2">
+        </TitleText>
+        <Text color="white" variant="body2">
           Take a look around and choose what you like.Trust me, you won&apos;t regret it. Besides, we have a lot of discounts!
-        </Typography>
+        </Text>
         <ContainedBtn color="primary" onClick={navigateCatalog} sx={sxStyles.btn}>
           Go to catalog
         </ContainedBtn>

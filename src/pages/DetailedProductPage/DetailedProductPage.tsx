@@ -22,7 +22,7 @@ import { ImgCarousel } from '@/features/ImgCarousel/index.ts';
 // import { getProductByKeyApi } from '@/services/model/products/getProductByKeyApi';
 // import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
 // import { Box, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 
 // const sxStyles: SxStyles = {
 //   modal: {
@@ -118,7 +118,7 @@ export function DetailedProductPage() {
   // );
 
   return (
-    <TitleTypography>Something</TitleTypography>
+    <TitleText>Something</TitleText>
     // <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
     //   <Stack gap={1.5} flexDirection={{ zero: 'column-reverse', tablet: 'column' }}>
     //     <Stack direction="row" justifyContent="space-between" gap={1.5}>

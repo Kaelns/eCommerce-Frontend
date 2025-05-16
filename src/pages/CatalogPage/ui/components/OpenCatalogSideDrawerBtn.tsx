@@ -6,7 +6,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 
 import { selectIsSearchInFocus, setIsOpenFilterDrawerAction } from '@/pages/CatalogPage/model/catalogPage.slice';
 
-import { ElemWithTypography } from '@/shared/ui/elements';
+import { NodeWithText } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
@@ -43,13 +43,13 @@ export function OpenCatalogSideDrawerBtn() {
             <FilterListIcon fontSize="small" />
           </Tooltip>
         ) : (
-          <ElemWithTypography
+          <NodeWithText
             Node={<FilterListIcon fontSize="small" />}
             sx={[isSearchInFocus && sxMixins.hidden]}
             sxContainer={[isSearchInFocus && sxStyles.textContainer]}
           >
             Filters
-          </ElemWithTypography>
+          </NodeWithText>
         )}
       </Button>
     )

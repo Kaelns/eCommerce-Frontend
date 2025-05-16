@@ -5,10 +5,10 @@ import TollIcon from '@mui/icons-material/Toll';
 import { Box, AppBar, useTheme, useMediaQuery } from '@mui/material';
 
 import { Burger } from '@/widgets/AppHeader/ui/Burger';
-import { headerPaths } from '@/widgets/AppHeader/model/constants';
-import { CartLinkIconBtn } from '@/widgets/AppHeader/ui/CartLinkIconBtn';
+import { headerPaths } from '@/widgets/AppHeader/model/navbars';
 
 import { UserPopoverMenu } from '@/entities/user';
+import { CartLinkIconBtn } from '@/entities/cart';
 
 import { Navbar } from '@/features/Navbar';
 

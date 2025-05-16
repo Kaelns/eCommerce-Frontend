@@ -1,9 +1,9 @@
 export { ImgLoad } from '@/shared/ui/components/img/ImgLoad';
 export { PageSkeleton } from '@/shared/ui/components/skeletons/PageSkeleton';
+export { FullPriceText } from '@/shared/ui/components/typography/FullPriceText';
 export { TimingProgress } from '@/shared/ui/components/animations/TimingProgress';
 export { ConditionalFade } from '@/shared/ui/components/conditional/ConditionalFade';
 export { SectionContainer } from '@/shared/ui/components/containers/SectionContainer';
-export { LinkRouterWrapper } from '@/shared/ui/components/wrappers/LinkRouterWrapper';
 export { SuspenseWithError } from '@/shared/ui/components/conditional/SuspenseWithError';
-export { FullPriceTypography } from '@/shared/ui/components/typography/FullPriceTypography';
+export { LinkAbsoluteWrapper } from '@/shared/ui/components/wrappers/LinkAbsoluteWrapper';
 export { ClickToClipboardPaper } from '@/shared/ui/components/typography/ClickToClipboardPaper';

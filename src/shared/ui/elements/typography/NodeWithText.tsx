@@ -3,25 +3,31 @@ import type { TypographyProps } from '@mui/material';
 import type { PropsWithChildren } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
-import { Typography } from '@mui/material';
 
-interface ElemWithTypographyProps extends TypographyProps {
+import { Text } from '@/shared/ui/elements/typography/Text';
+
+interface NodeWithTextProps extends TypographyProps {
   isAfter?: boolean;
+  isPositioned?: boolean;
+
   Node: React.ReactNode;
   sxContainer?: SxProps<Theme>;
 }
 
-export function ElemWithTypography({
+export function NodeWithText({
   children,
-  Node,
   isAfter = false,
+  isPositioned = false,
+  Node,
   sxContainer = {},
   ...props
-}: PropsWithChildren<ElemWithTypographyProps>) {
+}: PropsWithChildren<NodeWithTextProps>) {
   return (
     <Stack direction="row" alignItems="center" gap={{ zero: 0.75, tablet: 1 }} sx={sxContainer}>
       {!isAfter && Node}
-      <Typography {...props}>{children}</Typography>
+      <Text isPositioned={isPositioned} {...props}>
+        {children}
+      </Text>
       {isAfter && Node}
     </Stack>
   );

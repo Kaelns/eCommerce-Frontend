@@ -6,7 +6,7 @@ import { Box, Button, ButtonGroup } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 
 import { Paths } from '@/shared/model/data';
 
@@ -42,7 +42,7 @@ export function AppError({ src, alt, message, goTo = { path: Paths.MAIN, text: '
   return (
     <Stack minHeight="80vh" justifyContent="center" alignItems="center" gap={3}>
       <Box component="img" src={src} alt={alt} sx={sxStyles.img} />
-      {message && <TitleTypography variant="h2">{message}</TitleTypography>}
+      {message && <TitleText variant="h2">{message}</TitleText>}
       <ButtonGroup variant="contained" sx={sxStyles.btnGroup}>
         <Button onClick={navigateBack} startIcon={<ArrowBackIosIcon fontSize="small" />} sx={sxStyles.btn}>
           Go back

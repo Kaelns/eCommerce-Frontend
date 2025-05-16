@@ -1,4 +1,4 @@
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Grid } from '@mui/system';
@@ -15,7 +15,7 @@ import { CasualBtn } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxGridItem: SxPropsObj = {
+const sxGridItem: SxStylesObj = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',

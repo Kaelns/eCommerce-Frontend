@@ -128,5 +128,5 @@ declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
 }
 
-export const { selectCartProductLineId, selectCartIdAndVersion, selectCartProductById } = cartSlice.selectors;
+export const { selectCartProductLineId, selectCartIdAndVersion, selectCartProductById, selectCartProductQuantity } = cartSlice.selectors;
 export const { deleteProductAction, decrementQuantityAction, incrementQuantityAction, setQuantityAction } = cartSlice.actions;

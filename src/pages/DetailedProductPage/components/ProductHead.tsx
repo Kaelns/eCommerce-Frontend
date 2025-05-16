@@ -7,7 +7,7 @@ import { CreateImages } from '@/pages/DetailedProductPage/components/CreateImage
 
 import { selectLanguage } from '@/entities/user';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStyles = {
@@ -53,8 +53,8 @@ export function ProductHead({ productData, categoriesNames }: ProductHeaderProps
     <Stack spacing={0.7} sx={sxStyles.container}>
       {/* <DiscountTypography discount={productData.discount} sx={sxStyles.discountIcon} /> */}
 
-      <TitleTypography>{productData.name[language]}</TitleTypography>
-      {/* <FullPriceTypography price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
+      <TitleText>{productData.name[language]}</TitleText>
+      {/* <FullPriceText price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
       <Stack direction="row" gap={0.7} flexWrap="wrap">
         {categoriesNames.map((category) => (
           <Chip key={category} label={category} />

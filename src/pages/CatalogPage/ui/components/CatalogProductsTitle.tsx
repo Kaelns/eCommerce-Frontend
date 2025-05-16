@@ -1,18 +1,26 @@
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
 
 import { selectCategoryName } from '@/features/catalog-filters';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { Text, TitleText } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
 
-export function CatalogProductsTitle({ amount }: { amount: number }) {
+interface CatalogProductsTitleProps {
+  amount: number;
+  isPositioned?: boolean;
+}
+
+export function CatalogProductsTitle({ isPositioned = false, amount }: CatalogProductsTitleProps) {
   const categoryName = useAppSelector(selectCategoryName);
 
   return (
     <Box>
-      <TitleTypography variant="h2">{categoryName}</TitleTypography>
-      <Typography variant="h3">{amount} products</Typography>
+      <TitleText isPositioned={isPositioned} variant="h2">
+        {categoryName}
+      </TitleText>
+      <Text isPositioned={isPositioned} variant="h3">
+        {amount} products
+      </Text>
     </Box>
   );
 }

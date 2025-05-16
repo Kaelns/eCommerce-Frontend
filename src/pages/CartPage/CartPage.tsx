@@ -17,7 +17,7 @@ import { AppError } from '@/widgets/AppError';
 
 import { useGetAllCartsQuery } from '@/entities/cart';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
 
 import { Paths } from '@/shared/model/data';
@@ -62,7 +62,7 @@ export function CartPage() {
       >
         <Paper component="section" sx={[sxStyles.sectionContainer, sxStyles.paper]}>
           <Box sx={sxStyles.sectionHeader}>
-            <TitleTypography variant="h2">Cart</TitleTypography>
+            <TitleText variant="h2">Cart</TitleText>
             <CartProductsFinalQuantity />
 
             {/* Absolute positioned button */}

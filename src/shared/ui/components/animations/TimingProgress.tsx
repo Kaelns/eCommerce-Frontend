@@ -1,4 +1,4 @@
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 import type { LinearProgressProps } from '@mui/material';
 
 import { keyframes, LinearProgress, linearProgressClasses } from '@mui/material';
@@ -16,7 +16,7 @@ const progressKeyframes = keyframes({
   }
 });
 
-const sxProgress = (time: number): SxPropsObj => ({
+const sxProgress = (time: number): SxStylesObj => ({
   borderRadius: 1,
   [`& .${linearProgressClasses.bar1Indeterminate}`]: {
     width: 'auto',

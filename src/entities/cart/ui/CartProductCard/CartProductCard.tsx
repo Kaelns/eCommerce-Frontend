@@ -4,15 +4,15 @@ import type { SxStyles } from '@/shared/model/types';
 import { round } from 'lodash';
 import { Stack } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Button, Tooltip, Typography } from '@mui/material';
+import { Box, Button, Tooltip } from '@mui/material';
 
 import { SRCSET_API } from '@/entities/product';
-import { selectCountry, selectLanguage } from '@/entities/user';
+import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/user';
 import { deleteProductAction, selectCartProductById } from '@/entities/cart/model/cart.slice';
 import { CartProductQuantity } from '@/entities/cart/ui/CartProductCard/components/CartProductQuantity';
 
-import { ImgLoad, FullPriceTypography } from '@/shared/ui/components';
-import { BoldTypography, DiscountTypography } from '@/shared/ui/elements';
+import { ImgLoad } from '@/shared/ui/components';
+import { Text, BoldText, DiscountText } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
@@ -105,25 +105,25 @@ export function CartProductCard({
       />
 
       <Box sx={sxStyles.column2}>
-        <BoldTypography variant="subtitle1" sx={sxStyles.title}>
+        <BoldText variant="subtitle1" sx={sxStyles.title}>
           {cartProductData.name[language]}
-        </BoldTypography>
+        </BoldText>
 
         <Box>
-          <FullPriceTypography price={price} discount={discount} discountedPrice={discountedPrice} />
-          <Typography variant="subtitle2">
+          <UserFullPriceText price={price} discount={discount} discountedPrice={discountedPrice} />
+          <Text variant="subtitle2">
             <b>Available quantity: </b>
             {cartProductData.maxQuantity}
-          </Typography>
+          </Text>
           <CartProductQuantity id={cartProductData.productId} quantity={cartProductData.quantity} />
           {cartProductData.quantity > 1 && (
-            <FullPriceTypography text="Final: " price={totalProductPrice} discount={discount} discountedPrice={totalDiscountedPrice} />
+            <UserFullPriceText text="Final: " price={totalProductPrice} discount={discount} discountedPrice={totalDiscountedPrice} />
           )}
         </Box>
       </Box>
 
       {/* Absolute positioned components */}
-      <DiscountTypography discount={discount} sx={sxStyles.discount} />
+      <DiscountText discount={discount} sx={sxStyles.discount} />
 
       <Tooltip title="Delete product" placement="top" sx={sxStyles.deleteProduct}>
         <Button variant="contained" onClick={handleProductDelete} sx={sxStyles.deleteProductBtn}>

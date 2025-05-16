@@ -1,13 +1,13 @@
-import type { SxPropsNotArr } from '@/shared/model/types';
+import type { SxStylesNotArr } from '@/shared/model/types';
 
 interface Mixins {
-  hidden: SxPropsNotArr;
-  visible: SxPropsNotArr;
-  opacity0: SxPropsNotArr;
-  opacity1: SxPropsNotArr;
-  invisible: SxPropsNotArr;
-  animation: (duration?: number) => SxPropsNotArr;
-  mediaHover: (styles: SxPropsNotArr, selector?: string) => SxPropsNotArr;
+  hidden: SxStylesNotArr;
+  visible: SxStylesNotArr;
+  opacity0: SxStylesNotArr;
+  opacity1: SxStylesNotArr;
+  invisible: SxStylesNotArr;
+  animation: (duration?: number) => SxStylesNotArr;
+  mediaHover: (styles: SxStylesNotArr, selector?: string) => SxStylesNotArr;
 }
 
 export const sxMixins: Mixins = {

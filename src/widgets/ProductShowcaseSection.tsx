@@ -12,7 +12,7 @@ import { ProductCard, useGetProductsQuery } from '@/entities/product';
 
 import { setCategoryIdAndNameAction } from '@/features/catalog-filters';
 
-import { BoldTypography } from '@/shared/ui/elements';
+import { BoldText } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch } from '@/shared/lib/redux';
 import { Paths } from '@/shared/model/data';
@@ -64,7 +64,7 @@ export const ProductShowcaseSection = memo(function ShowcaseSection({
   return (
     <Stack component="section" gap={2}>
       <Paper elevation={5} onClick={setCategoryAndRedirect} sx={sxStyles.header}>
-        <BoldTypography variant="h2">{categoryName}</BoldTypography>
+        <BoldText variant="h2">{categoryName}</BoldText>
       </Paper>
 
       <Paper sx={sxStyles.body}>

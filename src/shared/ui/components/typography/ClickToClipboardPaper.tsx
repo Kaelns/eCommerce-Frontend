@@ -1,12 +1,12 @@
 import type { PaperProps } from '@mui/material';
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 
 import { Paper } from '@mui/material';
 
-import { BoldTypography } from '@/shared/ui/elements';
+import { BoldText } from '@/shared/ui/elements';
 import { convertSxToArr } from '@/shared/lib/helpers';
 
-const sxPaper: SxPropsObj = { p: 1.5, cursor: ' pointer' };
+const sxPaper: SxStylesObj = { p: 1.5, cursor: ' pointer' };
 
 interface ClickToClipboardProps extends PaperProps {
   text: string;
@@ -21,7 +21,7 @@ export function ClickToClipboardPaper({ text, sx = {}, handleOnCopy }: ClickToCl
 
   return (
     <Paper sx={[sxPaper, ...convertSxToArr(sx)]} elevation={5} onClick={handleClick}>
-      <BoldTypography>{text}</BoldTypography>
+      <BoldText>{text}</BoldText>
     </Paper>
   );
 }

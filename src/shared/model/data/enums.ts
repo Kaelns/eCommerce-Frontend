@@ -3,6 +3,12 @@ export enum Cookies {
   USER_IS_LOGGED = 'IsLogged'
 }
 
+export enum ZIndex {
+  LINK = 100,
+  BUTTON = 101,
+  TEXT = 102
+}
+
 export enum HttpStatus {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,

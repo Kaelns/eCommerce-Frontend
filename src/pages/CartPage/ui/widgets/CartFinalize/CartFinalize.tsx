@@ -1,17 +1,17 @@
 import type { PaperProps } from '@mui/material';
-import type { SxPropsNotArr } from '@/shared/model/types';
+import type { SxStylesNotArr } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
-import { Paper, Button, Tooltip, Typography } from '@mui/material';
+import { Paper, Button, Tooltip } from '@mui/material';
 
-import { selectCountry } from '@/entities/user';
+import { selectCountry, UserPriceText } from '@/entities/user';
 import { selectCartFinalPriceObj, selectCartProductQuantity } from '@/entities/cart';
 
-import { BoldTypography, PriceTypography, TitleTypography } from '@/shared/ui/elements';
+import { Text, BoldText, TitleText } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
 import { convertSxToArr } from '@/shared/lib/helpers';
 
-const sxContainer: SxPropsNotArr = {
+const sxContainer: SxStylesNotArr = {
   gap: '0.75rem'
 };
 
@@ -23,22 +23,22 @@ export function CartFinalize({ sx = {}, ...props }: PaperProps) {
 
   return (
     <Paper sx={[sxContainer, ...convertSxToArr(sx)]} {...props}>
-      <TitleTypography color="primary">Summary:</TitleTypography>
+      <TitleText color="primary">Summary:</TitleText>
       <Stack direction="row" justifyContent="space-between">
-        <Typography variant="h4">Price, {productQuantity} products:</Typography>
-        <PriceTypography variant="h4">{finalPrice}</PriceTypography>
+        <Text variant="h4">Price, {productQuantity} products:</Text>
+        <UserPriceText variant="h4">{finalPrice}</UserPriceText>
       </Stack>
       {!!percentageDiscount && (
         <Stack direction="row" justifyContent="space-between">
-          <Typography variant="h4">Discount:</Typography>
-          <Typography variant="h4">{percentageDiscount} %</Typography>
+          <Text variant="h4">Discount:</Text>
+          <Text variant="h4">{percentageDiscount} %</Text>
         </Stack>
       )}
       <Stack direction="row" justifyContent="space-between">
-        <BoldTypography variant="h3">Total:</BoldTypography>
-        <PriceTypography variant="h3" fontWeight="bold">
+        <BoldText variant="h3">Total:</BoldText>
+        <UserPriceText variant="h3" fontWeight="bold">
           {finalPriceWithDiscount}
-        </PriceTypography>
+        </UserPriceText>
       </Stack>
 
       <Tooltip placement="top" title="Unavailable now">

@@ -2,7 +2,7 @@ import { Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import { Chip, Button, Divider } from '@mui/material';
 
-import { TitleTypography } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 
 import { Paths } from '@/shared/model/data';
 
@@ -13,7 +13,7 @@ export function RegistrationPage() {
   return (
     <Stack gap={2} alignItems="center">
       <Stack gap={1.5} width={{ zero: 1, tablet: 400 }}>
-        <TitleTypography textAlign="center">Registration Page</TitleTypography>
+        <TitleText textAlign="center">Registration Page</TitleText>
         <Divider>
           <Chip label="Or if you are already registered:" />
         </Divider>

@@ -1,4 +1,4 @@
-import type { SxPropsObj } from '@/shared/model/types';
+import type { SxStylesObj } from '@/shared/model/types';
 
 import { Tooltip } from '@mui/material';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
@@ -8,7 +8,7 @@ import { clearCartAction } from '@/entities/cart';
 import { CasualBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';
 
-const clearCart: SxPropsObj = {
+const clearCart: SxStylesObj = {
   position: 'absolute',
   width: 'min-content',
   top: 0,

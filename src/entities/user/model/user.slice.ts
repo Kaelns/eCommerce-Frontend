@@ -39,3 +39,5 @@ export const userSlice = userSliceLazy.injectInto(rootReducer);
 declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof userSliceLazy> {}
 }
+
+export const { selectCurrency } = userSlice.selectors;

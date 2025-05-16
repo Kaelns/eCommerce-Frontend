@@ -1,5 +1,5 @@
 import type { PaginationProps } from '@mui/material';
-import type { SxPropsNotArr } from '@/shared/model/types';
+import type { SxStylesNotArr } from '@/shared/model/types';
 
 import { useMemo } from 'react';
 import { Pagination } from '@mui/material';
@@ -13,7 +13,7 @@ import { selectPage, setPageAction } from '@/features/catalog-filters/model/redu
 import { convertSxToArr } from '@/shared/lib/helpers';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxPagination: SxPropsNotArr = {
+const sxPagination: SxStylesNotArr = {
   display: 'flex',
   justifyContent: 'center',
   p: 1.5,
