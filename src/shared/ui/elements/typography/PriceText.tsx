@@ -15,7 +15,7 @@ const sxStyles: SxStyles = {
 };
 
 export interface PriceTextProps extends TypographyOwnProps {
-  currency: string;
+  currencySymbol: string;
   isPositioned?: boolean;
   priceType?: 'discount' | 'price';
 }
@@ -23,7 +23,7 @@ export interface PriceTextProps extends TypographyOwnProps {
 export function PriceText({
   children,
   isPositioned = false,
-  currency,
+  currencySymbol,
   priceType = 'price',
   variant = 'subtitle2',
   sx = {},
@@ -36,7 +36,7 @@ export function PriceText({
       sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}
       {...props}
     >
-      {children} {currency}
+      {children} {currencySymbol}
     </Text>
   );
 }

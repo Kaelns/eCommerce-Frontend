@@ -89,3 +89,5 @@ export const cartApi = ecommerceApi
     }),
     overrideExisting: 'throw'
   });
+
+export const { useGetAllCartsQuery } = cartApi;

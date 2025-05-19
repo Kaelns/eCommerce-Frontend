@@ -1,7 +1,6 @@
 import type { PriceConverted } from '@/shared/model/types';
 import type { Image, LocalizedString, ByProjectKeyProductProjectionsSearchRequestBuilder } from '@commercetools/platform-sdk';
 
-export type SrcsetPxAsc = [string, `${number}w`][];
 export type SearchTextQueryArgKey = `text.${string}`;
 
 // * Colors

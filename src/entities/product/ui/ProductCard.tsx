@@ -7,7 +7,6 @@ import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
 
 import { AddProductToCartBtn } from '@/entities/cart';
-import { SRCSET_API } from '@/entities/product/model/product.constants';
 import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/user';
 import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
 
@@ -15,7 +14,7 @@ import { Text, BoldText, DiscountText } from '@/shared/ui/elements';
 import { ImgLoad, LinkAbsoluteWrapper } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppSelector } from '@/shared/lib/redux';
-import { Paths } from '@/shared/model/data';
+import { Paths, SRCSET } from '@/shared/model/data';
 
 const IMG_SELECTOR = 'product-card__img';
 
@@ -59,7 +58,6 @@ const sxStyles: SxStyles = {
     position: 'absolute',
     inset: '0 auto auto 0',
     width: 'fit-content',
-    zIndex: 50,
     borderRadius: `${theme.shape.borderRadius}px 0 1.5rem 0`,
 
     [theme.breakpoints.down('tablet')]: {
@@ -108,7 +106,7 @@ export function ProductCard({
         height={height}
         src={productData.imageUrl}
         alt={productData.name[language]}
-        srcset={{ srcSetArr: SRCSET_API, maxSize }}
+        srcset={{ srcSetArr: SRCSET, maxSize }}
         className={IMG_SELECTOR}
       />
 
@@ -116,7 +114,7 @@ export function ProductCard({
         <BoldText isPositioned variant="subtitle1" sx={sxStyles.title}>
           {productData.name[language]}
         </BoldText>
-        <Text isPositioned variant="subtitle2">
+        <Text isPositioned>
           <b>Available quantity: </b>
           {productData.maxQuantity}
         </Text>

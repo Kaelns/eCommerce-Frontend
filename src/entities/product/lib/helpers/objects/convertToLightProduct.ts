@@ -1,7 +1,7 @@
 import type { ProductProjection } from '@commercetools/platform-sdk';
 import type { Product } from '@/entities/product/model/product.types';
 
-import { getProductPricesObj } from '@/entities/product/lib/helpers/objects/getProductPricesObj';
+import { getProductPricesObj } from '@/shared/lib/helpers';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 

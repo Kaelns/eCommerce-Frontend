@@ -53,3 +53,5 @@ export const productApi = ecommerceApi
     }),
     overrideExisting: 'throw'
   });
+
+export const { useGetProductsQuery, useGetProductColorsQuery } = productApi;

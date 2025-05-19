@@ -122,11 +122,27 @@ const cartSliceLazy = createSlice({
   }
 });
 
-export const cartSlice = cartSliceLazy.injectInto(rootReducer);
+const cartSlice = cartSliceLazy.injectInto(rootReducer);
 
 declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof cartSliceLazy> {}
 }
 
-export const { selectCartProductLineId, selectCartIdAndVersion, selectCartProductById, selectCartProductQuantity } = cartSlice.selectors;
-export const { deleteProductAction, decrementQuantityAction, incrementQuantityAction, setQuantityAction } = cartSlice.actions;
+export const {
+  selectCartProducts,
+  selectCartProductsIds,
+  selectCartFinalPriceObj,
+  selectCartProductLineId,
+  selectCartIdAndVersion,
+  selectCartProductById,
+  selectCartProductQuantity
+} = cartSlice.selectors;
+
+export const {
+  deleteProductAction,
+  decrementQuantityAction,
+  incrementQuantityAction,
+  setQuantityAction,
+  clearCartAction,
+  revertProductsAction
+} = cartSlice.actions;

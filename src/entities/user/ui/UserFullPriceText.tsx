@@ -5,12 +5,14 @@ import { selectCurrency } from '@/entities/user/model/user.slice';
 
 import { FullPriceText } from '@/shared/ui/components';
 import { useAppSelector } from '@/shared/lib/redux';
+import { isoCurrencies } from '@/shared/model/data';
 
-export function UserFullPriceText({ children, ...props }: PropsWithChildren<Omit<FullPriceTextProps, 'currency'>>) {
+export function UserFullPriceText({ children, ...props }: PropsWithChildren<Omit<FullPriceTextProps, 'currencySymbol'>>) {
   const currency = useAppSelector(selectCurrency);
+  const currencySymbol = isoCurrencies[currency].symbol;
 
   return (
-    <FullPriceText currency={currency} {...props}>
+    <FullPriceText currencySymbol={currencySymbol} {...props}>
       {children}
     </FullPriceText>
   );

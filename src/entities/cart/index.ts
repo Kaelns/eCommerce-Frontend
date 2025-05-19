@@ -1,16 +1,8 @@
-import { cartApi } from '@/entities/cart';
-import { cartSlice } from '@/entities/cart/model/cart.slice';
-
 export * from '@/entities/cart/model/types/cart.types';
 export * from '@/entities/cart/model/data/cart.constants';
 
-export { cartApi } from '@/entities/cart/api/cartApi';
-export const { useGetAllCartsQuery } = cartApi;
-
-export const { selectCartProducts, selectCartProductsIds, selectCartIdAndVersion, selectCartFinalPriceObj, selectCartProductQuantity } =
-  cartSlice.selectors;
-
-export const { clearCartAction, revertProductsAction } = cartSlice.actions;
+export * from '@/entities/cart/api/cartApi';
+export * from '@/entities/cart/model/cart.slice';
 
 export { createCartUpdateAction } from '@/entities/cart/api/helpers/createCartUpdateAction';
 

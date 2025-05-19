@@ -16,7 +16,6 @@ import { ZIndex } from '@/shared/model/data';
 
 const sxStyles: SxStyles = {
   btn: {
-    position: 'relative',
     zIndex: ZIndex.BUTTON,
     cursor: 'copy',
     backdropFilter: 'blur(5px)',
@@ -77,8 +76,8 @@ export function AddProductToCartBtn({
   const handleAddToBasket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    startTransition(() => {
-      dispatch(addOrRemoveProductCart(productId, cartProductLineId));
+    startTransition(async () => {
+      await dispatch(addOrRemoveProductCart(productId, cartProductLineId));
     });
   };
 

@@ -7,7 +7,7 @@ import { ProductConsts } from '@/entities/product';
 import { NO_CATEGORY } from '@/entities/categories';
 import { queryArgsProductProps } from '@/entities/product/lib/helpers/queryArgsProductProps';
 
-import { FiltersSort } from '@/features/catalog-filters';
+import { FiltersSort } from '@/features/catalog-filters/model/constants';
 
 import { isoCurrencies } from '@/shared/model/data';
 

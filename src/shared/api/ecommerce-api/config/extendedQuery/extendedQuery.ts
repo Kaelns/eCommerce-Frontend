@@ -1,4 +1,4 @@
-import type { EcommerceExtendedQuery } from '@/shared/api/ecommerce-api';
+import type { EcommerceExtendedQuery } from '@/shared/api/ecommerce-api/model/types/types';
 
 import { baseQuery } from '@/shared/api/ecommerce-api/config/baseQuery';
 import { serializeError } from '@/shared/api/ecommerce-api/lib/helpers/serializeError';

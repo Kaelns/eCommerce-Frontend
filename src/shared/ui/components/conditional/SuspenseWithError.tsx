@@ -46,19 +46,19 @@ export function SuspenseWithError({
   sx = {},
   ...props
 }: PropsWithChildren<SuspenseWithErrorProps>) {
-  const isLoadingOrFetching = typeof isLoading === 'boolean' ? isLoading : isFetching;
-  const isOnlyInitialFetch = isLoading !== undefined && isFetching === undefined;
+  const isPending = isLoading ?? isFetching;
+  const isPendingOnce = isLoading !== undefined && isFetching === undefined;
 
   return (
     <Box sx={sxStyles.wrapper} {...props}>
       <FadeBox isShow={isError}>{Fallback}</FadeBox>
-      <FadeBox isShow={!isError && isLoadingOrFetching} sx={sxStyles.overlayingChildren}>
+      <FadeBox isShow={!isError && isPending} sx={sxStyles.overlayingChildren}>
         {Skeleton}
       </FadeBox>
       <FadeBox
-        isShow={!isError && !isLoadingOrFetching}
+        isShow={!isError && !isPending}
+        unmountOnExit={isError || isPendingOnce}
         sx={[sxStyles.overlayingChildren, ...convertSxToArr(sx)]}
-        unmountOnExit={isError || isOnlyInitialFetch}
       >
         {children}
       </FadeBox>

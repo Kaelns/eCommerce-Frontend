@@ -54,10 +54,10 @@ export const CatalogFilterForm = memo(function CatalogFilterForm({ ...props }: S
         </Accordion>
       ))}
       <Stack direction="row" gap={1} sx={sxStyles.btnContainer}>
-        <ApplyFiltersBtn sx={sxStyles.btnApply} />
+        <ApplyFiltersBtn size="small" sx={sxStyles.btnApply} />
 
         <Tooltip placement="top" title="Clear filters">
-          <ContainedBtn onClick={handleClear} sx={sxStyles.btnClear}>
+          <ContainedBtn size="small" onClick={handleClear} sx={sxStyles.btnClear}>
             <FilterAltOffIcon />
           </ContainedBtn>
         </Tooltip>

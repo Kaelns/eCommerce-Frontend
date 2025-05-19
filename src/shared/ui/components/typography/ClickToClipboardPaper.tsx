@@ -1,7 +1,7 @@
 import type { PaperProps } from '@mui/material';
 import type { SxStylesObj } from '@/shared/model/types';
 
-import { Paper } from '@mui/material';
+import { Paper, Tooltip } from '@mui/material';
 
 import { BoldText } from '@/shared/ui/elements';
 import { convertSxToArr } from '@/shared/lib/helpers';
@@ -13,15 +13,17 @@ interface ClickToClipboardProps extends PaperProps {
   handleOnCopy?: () => void;
 }
 
-export function ClickToClipboardPaper({ text, sx = {}, handleOnCopy }: ClickToClipboardProps) {
+export function ClickToClipboardPaper({ text, handleOnCopy, sx = {}, ...props }: ClickToClipboardProps) {
   const handleClick = async (): Promise<void> => {
     await navigator.clipboard.writeText(text);
     handleOnCopy?.();
   };
 
   return (
-    <Paper sx={[sxPaper, ...convertSxToArr(sx)]} elevation={5} onClick={handleClick}>
-      <BoldText>{text}</BoldText>
-    </Paper>
+    <Tooltip placement="top" title="Click to copy">
+      <Paper elevation={5} onClick={handleClick} sx={[sxPaper, ...convertSxToArr(sx)]} {...props}>
+        <BoldText variant="h4">{text}</BoldText>
+      </Paper>
+    </Tooltip>
   );
 }

@@ -6,7 +6,6 @@ import { Stack } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Tooltip } from '@mui/material';
 
-import { SRCSET_API } from '@/entities/product';
 import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/user';
 import { deleteProductAction, selectCartProductById } from '@/entities/cart/model/cart.slice';
 import { CartProductQuantity } from '@/entities/cart/ui/CartProductCard/components/CartProductQuantity';
@@ -15,6 +14,7 @@ import { ImgLoad } from '@/shared/ui/components';
 import { Text, BoldText, DiscountText } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
+import { SRCSET } from '@/shared/model/data';
 
 const IMG_SELECTOR = 'product-basket__img';
 
@@ -100,7 +100,7 @@ export function CartProductCard({
         src={cartProductData.imageUrl}
         alt={cartProductData.name[language]}
         containerStyles={sxStyles.column1}
-        srcset={{ srcSetArr: SRCSET_API, maxSize }}
+        srcset={{ srcSetArr: SRCSET, maxSize }}
         className={IMG_SELECTOR}
       />
 

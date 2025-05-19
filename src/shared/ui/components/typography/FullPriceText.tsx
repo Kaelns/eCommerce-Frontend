@@ -25,7 +25,7 @@ export interface FullPriceTextProps extends TypographyOwnProps {
   text?: string;
   price: number;
   discount: number;
-  currency: string;
+  currencySymbol: string;
   isPositioned?: boolean;
   discountedPrice: number;
   sxContainer?: SxProps<Theme>;
@@ -37,7 +37,7 @@ export function FullPriceText({
   variant = 'body1',
   price,
   discount,
-  currency,
+  currencySymbol,
   discountedPrice,
   sxContainer
 }: FullPriceTextProps) {
@@ -48,11 +48,11 @@ export function FullPriceText({
       <BoldText isPositioned={isPositioned} variant={variant}>
         {text}
       </BoldText>
-      <PriceText isPositioned={isPositioned} currency={currency} variant={variant} sx={[isDiscounted && sxStyles.price]}>
+      <PriceText isPositioned={isPositioned} currencySymbol={currencySymbol} variant={variant} sx={[isDiscounted && sxStyles.price]}>
         {price}
       </PriceText>
       {isDiscounted && (
-        <PriceText isPositioned={isPositioned} currency={currency} variant={variant} priceType="discount">
+        <PriceText isPositioned={isPositioned} currencySymbol={currencySymbol} variant={variant} priceType="discount">
           {discountedPrice}
         </PriceText>
       )}

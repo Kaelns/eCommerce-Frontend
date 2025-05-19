@@ -31,6 +31,8 @@ export type SxStylesArr<T extends object = Theme> = ReadonlyArray<boolean | SxSt
 
 // * Ecommerce types
 
+export type SrcsetInPx = [string, `${number}w`][];
+
 export type Currencies = keyof typeof isoCurrencies;
 
 export interface PriceConverted {

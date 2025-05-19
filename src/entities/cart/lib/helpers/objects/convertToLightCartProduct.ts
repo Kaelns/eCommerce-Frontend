@@ -1,7 +1,7 @@
 import type { CartLightProduct } from '@/entities/cart';
 import type { LineItem } from '@commercetools/platform-sdk';
 
-import { getProductPricesObj } from '@/entities/product';
+import { getProductPricesObj } from '@/shared/lib/helpers';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 

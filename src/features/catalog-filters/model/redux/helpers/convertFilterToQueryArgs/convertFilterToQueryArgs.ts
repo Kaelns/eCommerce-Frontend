@@ -1,5 +1,5 @@
 import type { QueryProductsArgs } from '@/entities/product';
-import type { FilterState } from '@/features/catalog-filters';
+import type { FilterState } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { ProductConsts } from '@/entities/product';
 

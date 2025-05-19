@@ -5,7 +5,7 @@ import { applyFormFiltersAction } from '@/features/catalog-filters/model/redux/c
 import { ContainedBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';
 
-export function ApplyFiltersBtn({ sx = {} }: ButtonProps) {
+export function ApplyFiltersBtn({ ...props }: ButtonProps) {
   const dispatch = useAppDispatch();
 
   const handleApplyFilters = (): void => {
@@ -13,7 +13,7 @@ export function ApplyFiltersBtn({ sx = {} }: ButtonProps) {
   };
 
   return (
-    <ContainedBtn onClick={handleApplyFilters} sx={sx}>
+    <ContainedBtn onClick={handleApplyFilters} {...props}>
       Apply
     </ContainedBtn>
   );
