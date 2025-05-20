@@ -1,4 +1,4 @@
-export function getImgSrcWithPostfix(imgSrc: string, postfix: null | string): string {
+export function createImgSrcWithPostfix(imgSrc: string, postfix: null | string): string {
   if (!postfix || !imgSrc) {
     return imgSrc;
   }

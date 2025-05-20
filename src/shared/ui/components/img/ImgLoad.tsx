@@ -1,7 +1,6 @@
 import type { Theme, StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
-import type { SrcsetPxAsc } from '@/entities/product';
 import type { SxProps, BoxProps } from '@mui/material';
+import type { SxStyles, SrcsetInPx } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
@@ -11,8 +10,8 @@ import { grey } from '@mui/material/colors';
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { ImgSkeleton } from '@/shared/ui/components/skeletons/ImgSkeleton';
 import { sxMixins } from '@/shared/lib/mui';
-import { createSrcset } from '@/shared/lib/utils';
 import { convertSxToArr } from '@/shared/lib/helpers';
+import { createSrcSet, getMaxMuiHeight } from '@/shared/lib/utils';
 
 const sxStyles: SxStyles = {
   container: {
@@ -41,48 +40,44 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface ImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
-  height?: T;
+interface ImgLoadProps extends BoxProps<'img'> {
   src: string;
   alt: string;
-  containerStyles?: SxProps<Theme>;
-  srcset?: T extends number
-    ? { srcSetArr: SrcsetPxAsc }
-    : {
-        srcSetArr: SrcsetPxAsc;
-        maxSize: 'unlimited' | number;
-      };
+
+  srcSetArr?: SrcsetInPx;
+  height?: StackProps['height'];
+  maxSize?: 'unlimited' | number;
+
+  sxContainer?: SxProps<Theme>;
 }
 
-export function ImgLoad<T extends StackProps['height']>({
+export function ImgLoad({
   src,
   height,
-  srcset,
+  maxSize,
+  srcSetArr,
   onClick,
+
   sx = {},
-  containerStyles = {},
+  sxContainer = {},
   ...props
-}: ImgLoadProps<T>) {
+}: ImgLoadProps) {
   const [isImgLoading, setIsImgLoading] = useState(true);
 
   const handleOnImgLoad = (): void => {
     setIsImgLoading(false);
   };
 
-  // TODO slice srcSetArr for max height and add isCreateSrcSet.
   const srcSetOfImg = useMemo(() => {
-    if (!srcset) {
+    if (!srcSetArr) {
       return;
     }
-    if (typeof height === 'number') {
-      return createSrcset(src, srcset.srcSetArr, height);
-    } else if ('maxSize' in srcset) {
-      return createSrcset(src, srcset.srcSetArr, srcset.maxSize);
-    }
-  }, [height, src, srcset]);
+
+    return createSrcSet(src, srcSetArr, maxSize ?? getMaxMuiHeight(height));
+  }, [height, maxSize, src, srcSetArr]);
 
   return (
-    <Stack height={height} onClick={onClick} sx={[sxStyles.container, ...convertSxToArr(containerStyles)]}>
+    <Stack height={height} onClick={onClick} sx={[sxStyles.container, ...convertSxToArr(sxContainer)]}>
       <FadeBox isShow={isImgLoading} sx={[sxStyles.skeletonWrapper, sxStyles.sizes100]}>
         <ImgSkeleton sx={sxStyles.skeleton} />
       </FadeBox>

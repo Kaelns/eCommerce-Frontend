@@ -75,23 +75,19 @@ const sxStyles: SxStyles = {
 
 interface ProductCardProps {
   product: ProductProjection;
+  imgHeight?: BoxProps['height'];
   containerMaxWidth?: StackProps['maxWidth'];
-  imgHeight?: {
-    maxSize: number;
-    height: BoxProps['height'];
-  };
 }
 
 export function ProductCard({
   product,
-  imgHeight = { height: { zero: 400, laptop: 250 }, maxSize: 400 },
+  imgHeight = { zero: 400, laptop: 250 },
   containerMaxWidth = { zero: 400, laptop: 350 }
 }: ProductCardProps) {
   const language = useAppSelector(selectLanguage);
   const country = useAppSelector(selectCountry);
   const productData = useMemo(() => convertToLightProduct(product), [product]);
 
-  const { height, maxSize } = imgHeight;
   const { price, discount, discountedPrice } = productData.pricesObj[country];
 
   const shortedDescription = useMemo(
@@ -102,13 +98,7 @@ export function ProductCard({
   return (
     <Stack spacing={3} maxWidth={containerMaxWidth} sx={[{ position: 'relative' }, sxStyles.cardContainer]}>
       <LinkAbsoluteWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper} />
-      <ImgLoad
-        height={height}
-        src={productData.imageUrl}
-        alt={productData.name[language]}
-        srcset={{ srcSetArr: SRCSET, maxSize }}
-        className={IMG_SELECTOR}
-      />
+      <ImgLoad src={productData.imageUrl} alt={productData.name[language]} height={imgHeight} srcSetArr={SRCSET} className={IMG_SELECTOR} />
 
       <Box>
         <BoldText isPositioned variant="subtitle1" sx={sxStyles.title}>

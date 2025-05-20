@@ -64,26 +64,16 @@ const sxStyles: SxStyles = {
 
 interface CartProductCardProps {
   productId: string;
-  imgHeight?: {
-    maxSize: number;
-    height: BoxProps['height'];
-  };
+  imgHeight?: BoxProps['height'];
 }
 
-export function CartProductCard({
-  productId,
-  imgHeight = {
-    height: { zero: 300, mobile: 200 },
-    maxSize: 300
-  }
-}: CartProductCardProps) {
+export function CartProductCard({ productId, imgHeight = { zero: 300, mobile: 200 } }: CartProductCardProps) {
   const dispatch = useAppDispatch();
   const language = useAppSelector(selectLanguage);
   const country = useAppSelector(selectCountry);
 
   const cartProductData = useAppSelector((state) => selectCartProductById(state, productId));
 
-  const { height, maxSize } = imgHeight;
   const { price, discount, fractionDigits, discountedPrice } = cartProductData.pricesObj[country];
 
   const totalProductPrice = round(price * cartProductData.quantity, fractionDigits);
@@ -96,11 +86,11 @@ export function CartProductCard({
   return (
     <Stack direction={{ zero: 'column', mobile: 'row' }} gap={1.5} sx={sxStyles.container}>
       <ImgLoad
-        height={height}
         src={cartProductData.imageUrl}
         alt={cartProductData.name[language]}
-        containerStyles={sxStyles.column1}
-        srcset={{ srcSetArr: SRCSET, maxSize }}
+        height={imgHeight}
+        srcSetArr={SRCSET}
+        sxContainer={sxStyles.column1}
         className={IMG_SELECTOR}
       />
 
