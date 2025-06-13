@@ -40,7 +40,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface ImgLoadProps extends BoxProps<'img'> {
+export interface ImgLoadProps extends BoxProps<'img'> {
   src: string;
   alt: string;
 
@@ -73,8 +73,18 @@ export function ImgLoad({
       return;
     }
 
-    return createSrcSet(src, srcSetArr, maxSize ?? getMaxMuiHeight(height));
-  }, [height, maxSize, src, srcSetArr]);
+    let maxHeight;
+
+    if (maxSize) {
+      maxHeight = maxSize;
+    } else if (height) {
+      maxHeight = getMaxMuiHeight(height);
+    } else if (sx && 'height' in sx) {
+      maxHeight = getMaxMuiHeight(sx.height as StackProps['height']);
+    }
+
+    return createSrcSet(src, srcSetArr, maxHeight);
+  }, [height, maxSize, src, srcSetArr, sx]);
 
   return (
     <Stack height={height} onClick={onClick} sx={[sxStyles.container, ...convertSxToArr(sxContainer)]}>

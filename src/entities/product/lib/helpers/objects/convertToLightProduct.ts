@@ -1,11 +1,11 @@
 import type { ProductProjection } from '@commercetools/platform-sdk';
-import type { Product } from '@/entities/product/model/product.types';
+import type { ProductLight } from '@/entities/product/model/product.types';
 
 import { getProductPricesObj } from '@/shared/lib/helpers';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
-const MOCK_PRODUCT: Product = {
+export const MOCK_PRODUCT: ProductLight = {
   id: '',
   key: '',
   name: {},
@@ -17,7 +17,7 @@ const MOCK_PRODUCT: Product = {
   categoriesIdArr: []
 };
 
-export function convertToLightProduct(product: ProductProjection | undefined): Product {
+export function convertToLightProduct(product: ProductProjection | undefined): ProductLight {
   if (!product) {
     return MOCK_PRODUCT;
   }

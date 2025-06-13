@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { FilterState } from '@/features/catalog-filters';
+import type { FilterState } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
 import { NO_CATEGORY, NO_CATEGORY_NAME } from '@/entities/categories';
 

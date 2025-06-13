@@ -46,7 +46,7 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
   };
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }} Fallback={<Skeleton />} Skeleton={<Skeleton />}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} Fallback={<Skeleton />} Skeleton={<Skeleton />}>
       <Breadcrumbs {...props}>
         {categoriesToRender.map((categoryId, index) => {
           const categoryName = getCategoryName(categoriesCollection?.categoriesObj, categoryId, language);

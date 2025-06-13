@@ -10,8 +10,8 @@ import { CartPage } from '@/pages/CartPage';
 import { ErrorPage } from '@/pages/ErrorPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { RegistrationPage } from '@/pages/RegistrationPage';
-import { DetailedProductPage } from '@/pages/DetailedProductPage';
 import { CatalogPage, prefetchCatalogPageLoader } from '@/pages/CatalogPage';
+import { DetailedProductPage, prefetchDetailedProductPage } from '@/pages/DetailedProductPage';
 
 import { Paths } from '@/shared/model/data';
 
@@ -21,7 +21,7 @@ export const router = createBrowserRouter(
       <Route path={Paths.MAIN} element={<MainPage />} />
       <Route path={Paths.CATALOG} element={<CatalogPage />} loader={prefetchCatalogPageLoader} />
       <Route path={Paths.DETAILED_PRODUCT}>
-        <Route path={Paths.DETAILED_PRODUCT_ID} element={<DetailedProductPage />} />
+        <Route path={Paths.DETAILED_PRODUCT_ID} element={<DetailedProductPage />} loader={prefetchDetailedProductPage} />
       </Route>
       <Route path={Paths.USER} element={<RedirectLoginRouter IfLogged={<UserPage />} IfUnLogged={<Navigate to={Paths.LOGIN} />} />} />
       <Route path={Paths.LOGIN} element={<RedirectLoginRouter IfLogged={<Navigate to={Paths.MAIN} />} IfUnLogged={<LoginPage />} />} />

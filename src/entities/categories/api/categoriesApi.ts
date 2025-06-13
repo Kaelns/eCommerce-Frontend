@@ -3,7 +3,7 @@ import type { CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
-import { convertCategories } from '@/entities/product/lib/helpers/objects/convertCategories';
+import { convertCategories } from '@/entities/categories/lib/helpers/convertCategories';
 
 const productsPath = '/products';
 

@@ -16,6 +16,7 @@ interface ConvertFilterToQueryArgsSettings {
   limitOnPage?: number;
 }
 
+// Todo: create builder for query args and put to shared api
 export function convertFilterToQueryArgs(
   filterState: FilterState,
   { limitOnPage = ProductConsts.LIMIT_ON_PAGE }: ConvertFilterToQueryArgsSettings | undefined = {}

@@ -5,8 +5,7 @@ import { useMemo } from 'react';
 import { Pagination } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
 
-import { ProductConsts } from '@/entities/product';
-import { calculateMaxPages } from '@/entities/product/lib/helpers/numbers/calculateMaxPages';
+import { ProductConsts, calculateMaxPages } from '@/entities/product';
 
 import { selectPage, setPageAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 

@@ -1,10 +1,9 @@
 import type { Colors, QueryProductsArgs } from '@/entities/product/model/product.types';
 import type { TermFacetResult, ProductProjection, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
 
-import { ecommerceApi } from '@/shared/api/ecommerce-api';
+import { ecommerceApi, queryArgsProductProps } from '@/shared/api/ecommerce-api';
 
 import { ProductConsts } from '@/entities/product/model/product.constants';
-import { queryArgsProductProps } from '@/entities/product/lib/helpers/queryArgsProductProps';
 
 const productsPath = '/products';
 
@@ -54,4 +53,4 @@ export const productApi = ecommerceApi
     overrideExisting: 'throw'
   });
 
-export const { useGetProductsQuery, useGetProductColorsQuery } = productApi;
+export const { useGetProductsQuery, useGetProductColorsQuery, useGetProductByKeyQuery } = productApi;

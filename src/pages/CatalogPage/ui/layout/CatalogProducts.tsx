@@ -32,7 +32,7 @@ export const CatalogProducts = memo(function CatalogProducts({ ...props }: Stack
   const amount = productsData?.total ?? 0;
 
   return (
-    <SuspenseWithError settings={{ isError, isFetching, error: getErrorMessage(error) }} {...props}>
+    <SuspenseWithError isFetching={isFetching} isError={isError} error={getErrorMessage(error)} {...props}>
       {amount ? (
         <>
           <Stack sx={sxProductsHeader}>

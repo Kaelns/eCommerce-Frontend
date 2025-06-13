@@ -1,7 +1,7 @@
 import type { Price } from '@commercetools/platform-sdk';
 import type { PriceConverted } from '@/shared/model/types';
 
-import { calculatePriceDecimals } from '@/entities/product/lib/helpers/numbers/calculatePriceDecimals';
+import { calculatePriceDecimals } from '@/shared/lib/helpers/entities/product/number/calculatePriceDecimals';
 
 export function getProductPrice(priceObj: null | Price | undefined): PriceConverted {
   if (!priceObj) {

@@ -50,7 +50,7 @@ export function App() {
 
       <Stack component="main" gap={1.5} sx={sxStyles.container}>
         <SectionContainer sx={sxStyles.sectionContainer}>
-          <SuspenseWithError settings={{ isLoading, isError, error: getErrorMessage(error) }}>
+          <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
             <Outlet />
           </SuspenseWithError>
         </SectionContainer>

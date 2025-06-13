@@ -1,4 +1,4 @@
-import type { Product } from '@/entities/product';
+import type { ProductLight } from '@/entities/product';
 import type { SxStyles } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
@@ -37,12 +37,12 @@ const sxStyles: SxStyles = {
   }
 };
 
-interface ProductHeaderProps {
-  productData: Product;
+interface DetailedProductHeadProps {
+  productData: ProductLight;
   categoriesNames: string[];
 }
 
-export function ProductHead({ productData, categoriesNames }: ProductHeaderProps) {
+export function DetailedProductHead({ productData, categoriesNames }: DetailedProductHeadProps) {
   const language = useAppSelector(selectLanguage);
 
   // const { data: cartData = INIT_BASKET } = useFetch(fetchBasket, token);

@@ -4,3 +4,4 @@ export { createSrcSet } from '@/shared/lib/utils/strings/createSrcSet';
 export { getMaxMuiHeight } from '@/shared/lib/utils/numbers/getMaxMuiHeight';
 export { convertKeyToName } from '@/shared/lib/utils/strings/convertKeyToName';
 export { convertArrOfIdElemToIdObj } from '@/shared/lib/utils/arrays/convertArrOfIdElemToIdObj';
+export { splitIntoTwoByWhitespaceIndex } from '@/shared/lib/utils/strings/splitIntoTwoByWhitespaceIndex';

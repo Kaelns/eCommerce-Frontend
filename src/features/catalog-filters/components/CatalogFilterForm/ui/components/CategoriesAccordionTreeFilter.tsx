@@ -29,7 +29,7 @@ export const CategoriesAccordionTreeFilter = memo(function CategoriesAccordionTr
   );
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
       <AccordionTree
         treeData={categoriesCollection?.categoriesTree ?? []}
         reduxElemIdData={{ isCurrentIdSelector: selectIsCurrentCategoryIdForm, setClickedElemMemoized: setClickedElem }}

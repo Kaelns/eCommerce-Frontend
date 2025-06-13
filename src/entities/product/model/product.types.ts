@@ -11,7 +11,7 @@ export type QueryProductsArgs = NonNullable<
   NonNullable<Parameters<ByProjectKeyProductProjectionsSearchRequestBuilder['get']>[0]>['queryArgs']
 >;
 
-export interface Product {
+export interface ProductLight {
   id: string;
   key: string;
   images: Image[];

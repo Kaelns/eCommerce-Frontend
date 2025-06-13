@@ -1,8 +1,8 @@
 import type { BoxProps } from '@mui/system';
 import type { SxStyles, PropsWithChildren } from '@/shared/model/types';
 
-import Slider from 'react-slick';
 import { Box } from '@mui/material';
+import SlickSlider from 'react-slick';
 import { useRef, useMemo } from 'react';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -18,7 +18,7 @@ const sxStyles: SxStyles = {
 interface ImgCarouselProps extends BoxProps {
   isShowArrows?: boolean;
   numToOpenModalImg?: number;
-  customDots?: React.ReactNode[];
+  customDots?: React.ReactElement[];
 }
 
 export function ImgCarousel({
@@ -29,22 +29,22 @@ export function ImgCarousel({
   width = 1,
   ...props
 }: PropsWithChildren<ImgCarouselProps>) {
-  const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<SlickSlider>(null);
 
   const addCustomDotsSettings = useMemo(() => (customDots.length ? customDotsSettings(customDots, sliderRef) : {}), [customDots]);
 
   return (
     <Box
-      component={Slider}
+      component={SlickSlider}
       ref={sliderRef}
       dots={!isShowArrows}
       arrows={isShowArrows}
       draggable={!isShowArrows}
       initialSlide={numToOpenModalImg}
+      width={width}
+      sx={sxStyles.slider}
       {...settings}
       {...addCustomDotsSettings}
-      sx={sxStyles.slider}
-      width={width}
       {...props}
     >
       {children}

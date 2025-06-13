@@ -55,7 +55,7 @@ export function CartPage() {
   });
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
       <CartShowIfProductsExist
         Fallback={<AppError src={cartImg} alt="Cart" message="Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />}
         sxChildren={sxStyles.boxContainer}

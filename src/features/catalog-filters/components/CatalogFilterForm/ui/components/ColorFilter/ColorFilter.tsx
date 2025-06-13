@@ -35,7 +35,7 @@ export const ColorFilter = memo(function ColorFilter() {
   };
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
       <Grid container spacing={2} columns={3}>
         {!!colors &&
           Object.keys(colors).map((colorKey) => (

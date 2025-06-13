@@ -22,3 +22,4 @@ The application is powered by CommerceTools 🌐, a leading provider of commerce
 - **Component Lib**: Material UI
 - **Linter**: ESlint
 - **Formatter**: Prettier
+- **Architecture**: FSD

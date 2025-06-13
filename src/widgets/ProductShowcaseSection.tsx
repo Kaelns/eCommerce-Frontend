@@ -68,7 +68,7 @@ export const ProductShowcaseSection = memo(function ShowcaseSection({
       </Paper>
 
       <Paper sx={sxStyles.body}>
-        <SuspenseWithError settings={{ error: getErrorMessage(error), isError, isLoading }}>
+        <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
           <Grid container columns={9} spacing={2}>
             {products?.results.map((product) => (
               <Grid key={product.id} size={{ laptop: 3, mobile: 'grow', tablet: 4.5 }} sx={sxStyles.productCardContainer}>

@@ -23,41 +23,49 @@ const sxStyles: SxStyles = {
   }
 };
 
+type LoadingProps =
+  | {
+      isFetching: boolean;
+      isLoading?: undefined;
+    }
+  | {
+      isLoading: boolean;
+      isFetching?: undefined;
+    };
+
 interface SuspenseWithErrorProps extends StackProps {
+  error?: string;
+  isError?: boolean;
+
   Fallback?: React.ReactElement;
   Skeleton?: React.ReactElement;
-  settings: { error?: string; isError: boolean } & (
-    | {
-        isFetching: boolean;
-        isLoading?: undefined;
-      }
-    | {
-        isLoading: boolean;
-        isFetching?: undefined;
-      }
-  );
 }
 
 export function SuspenseWithError({
   children,
-  settings: { isLoading, isFetching, isError, error },
+
+  error,
+  isError,
+  isLoading,
+  isFetching,
+
   Skeleton = <PageSkeleton />,
   Fallback = <AppError message={error} src={imageError} alt="error" />,
   sx = {},
   ...props
-}: PropsWithChildren<SuspenseWithErrorProps>) {
+}: PropsWithChildren<LoadingProps & SuspenseWithErrorProps>) {
   const isPending = isLoading ?? isFetching;
   const isPendingOnce = isLoading !== undefined && isFetching === undefined;
 
   return (
     <Box sx={sxStyles.wrapper} {...props}>
-      <FadeBox isShow={isError}>{Fallback}</FadeBox>
+      <FadeBox isShow={!!isError}>{Fallback}</FadeBox>
       <FadeBox isShow={!isError && isPending} sx={sxStyles.overlayingChildren}>
         {Skeleton}
       </FadeBox>
       <FadeBox
         isShow={!isError && !isPending}
-        unmountOnExit={isError || isPendingOnce}
+        unmountOnExit={!!isError || isPendingOnce}
         sx={[sxStyles.overlayingChildren, ...convertSxToArr(sx)]}
       >
         {children}

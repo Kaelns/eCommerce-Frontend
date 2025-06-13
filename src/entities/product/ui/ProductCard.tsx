@@ -14,6 +14,7 @@ import { Text, BoldText, DiscountText } from '@/shared/ui/elements';
 import { ImgLoad, LinkAbsoluteWrapper } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppSelector } from '@/shared/lib/redux';
+import { splitIntoTwoByWhitespaceIndex } from '@/shared/lib/utils';
 import { Paths, SRCSET } from '@/shared/model/data';
 
 const IMG_SELECTOR = 'product-card__img';
@@ -86,18 +87,20 @@ export function ProductCard({
 }: ProductCardProps) {
   const language = useAppSelector(selectLanguage);
   const country = useAppSelector(selectCountry);
+
   const productData = useMemo(() => convertToLightProduct(product), [product]);
 
   const { price, discount, discountedPrice } = productData.pricesObj[country];
 
   const shortedDescription = useMemo(
-    () => (productData.description ? productData.description[language].slice(0, productData.description[language].indexOf(' ', 100)) : ''),
+    () => splitIntoTwoByWhitespaceIndex(productData?.description?.[language] ?? '', 100)[0],
     [productData.description, language]
   );
 
   return (
     <Stack spacing={3} maxWidth={containerMaxWidth} sx={[{ position: 'relative' }, sxStyles.cardContainer]}>
       <LinkAbsoluteWrapper to={`${Paths.DETAILED_PRODUCT}/${productData.key}`} maxWidth={containerMaxWidth} sx={sxStyles.linkWrapper} />
+
       <ImgLoad src={productData.imageUrl} alt={productData.name[language]} height={imgHeight} srcSetArr={SRCSET} className={IMG_SELECTOR} />
 
       <Box>

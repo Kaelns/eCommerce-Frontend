@@ -1,91 +1,99 @@
-import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead';
+import type { SxStyles } from '@/shared/model/types';
 
-// import { Stack } from '@mui/system';
-// import { Paths } from '@/shared/constants';
-// import type { SxStyles } from '@/shared/types';
-// import CloseIcon from '@mui/icons-material/Close';
-// import { useFetch } from '@/hooks/useFetch/useFetch';
-// import { sxMixins } from '@/features/mui-theme/mixins';
+import { useCallback } from 'react';
+import { IconButton } from '@mui/material';
+import { useLoaderData } from 'react-router-dom';
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Stack, useTheme, useMediaQuery } from '@mui/system';
+
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
+
+import { createImagesArr } from '@/pages/DetailedProductPage/lib/createImages';
+import { ScaledImageModal } from '@/pages/DetailedProductPage/ui/ScaledImageModal';
+import { DetailedProductHead } from '@/pages/DetailedProductPage/ui/DetailedProductHead';
+import { setIsOpenScaledImageModalAction } from '@/pages/DetailedProductPage/model/detailedProductPage.slice';
+
+import { selectLanguage } from '@/entities/user';
+import { useGetProductByKeyQuery } from '@/entities/product';
+import { useGetCategoriesQuery } from '@/entities/categories';
+import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
+
 import { ImgCarousel } from '@/features/ImgCarousel/index.ts';
 
-// import { LoadingFetch } from '@/components/LoadingFetch';
-// import { useNavigate, useParams } from 'react-router-dom';
-// import { LANGUAGE, SRCSET_API } from '@/services/constants';
-// import type { StackProps, SxProps, Theme } from '@mui/system';
-// import { convertSxToArr } from '@/utils/convert/convertSxToArr';
-// import { PageSkeleton } from '@/components/skeleton/PageSkeleton';
-// import { useCallback, useContext, useMemo, useState } from 'react';
-// import { findInCategories } from '@/services/ecommerce/helpers/products/findInCategories';
-// import { ProductHead } from '@/pages/DetailedProductPage/components/ProductHead';
-// import { getProductByKeyApi } from '@/services/model/products/getProductByKeyApi';
-// import { convertToLightProduct } from '@/services/ecommerce/helpers/products/convertToLightProduct';
-// import { Box, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useParams, useNavigate } from 'react-router-dom';
+import { BoldText } from '@/shared/ui/elements';
+import { ImgList, ExpandableText, SuspenseWithError } from '@/shared/ui/components';
+import { sxMixins } from '@/shared/lib/mui';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-import { TitleText } from '@/shared/ui/elements';
-
-import { Paths } from '@/shared/model/data';
-
-// const sxStyles: SxStyles = {
-//   modal: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'center'
-//   },
-//   modalBody: {
-//     position: 'relative',
-//     width: '93%',
-//     height: { zero: '54%', tablet: '80%', laptop: '93%' },
-//     padding: 1,
-//     borderRadius: 1,
-//     bgcolor: 'common.background'
-//   },
-//   imgContainer: {
-//     position: 'relative',
-//     borderRadius: 1,
-//     cursor: 'pointer',
-//     overflow: 'hidden',
-//     ...sxMixins.mediaHover(
-//       {
-//         transform: 'scale(1.05)'
-//       },
-//       '> img'
-//     )
-//   },
-//   closeIcon: {
-//     position: 'absolute',
-//     width: 50,
-//     height: 50,
-//     top: 0,
-//     right: 0,
-//     zIndex: 100,
-//     transform: { zero: 'translate(25%, -25%)', tablet: 'translate(50%, -50%)' },
-//     bgcolor: 'primary.main',
-//     ...sxMixins.mediaHover({
-//       bgcolor: 'primary.light'
-//     })
-//   }
-// };
+const sxStyles: SxStyles = {
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modalBody: {
+    position: 'relative',
+    width: '93%',
+    height: { zero: '54%', tablet: '80%', laptop: '93%' },
+    padding: 1,
+    borderRadius: 1,
+    bgcolor: 'common.background'
+  },
+  imgContainer: {
+    position: 'relative',
+    borderRadius: 1,
+    cursor: 'pointer',
+    overflow: 'hidden',
+    ...sxMixins.mediaHover(
+      {
+        transform: 'scale(1.05)'
+      },
+      '> img'
+    )
+  },
+  closeIcon: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    top: 0,
+    right: 0,
+    zIndex: 100,
+    transform: { zero: 'translate(25%, -25%)', tablet: 'translate(50%, -50%)' },
+    bgcolor: 'primary.main',
+    ...sxMixins.mediaHover({
+      bgcolor: 'primary.light'
+    })
+  }
+};
 
 export function DetailedProductPage() {
-  const { id: key } = useParams();
-  const navigate = useNavigate();
+  const { productKey } = useLoaderData<{ productKey: string }>();
 
-  if (!key) {
-    navigate(Paths.ERROR);
-  }
+  const theme = useTheme();
+  const dispatch = useAppDispatch();
 
-  // const { data, isLoading, error } = useFetch(getProductByKeyApi, key!);
-  // const { categories } = useContext(ECommerceContext);
-  // const productData = useMemo(() => convertToLightProduct(data), [data]);
-  // // TODO swap categories on categoriesObj
-  // const categoriesNames = useMemo(
-  //   () => findInCategories(categories, productData.categoriesIdArr, true).map((obj) => obj.name[LANGUAGE]),
-  //   [categories, productData.categoriesIdArr]
-  // );
+  const language = useAppSelector(selectLanguage);
+  const isMatchesDownTablet = useMediaQuery(theme.breakpoints.down('tablet'));
 
-  // const theme = useTheme();
-  // const isMatchesMedia = useMediaQuery(theme.breakpoints.down('tablet'));
+  const { data, isLoading, isError, error } = useGetProductByKeyQuery(productKey);
+  const {
+    data: categoriesData,
+    error: categoriesError,
+    isError: isCategoriesError,
+    isLoading: isCategoriesLoading
+  } = useGetCategoriesQuery();
+
+  const productData = convertToLightProduct(data);
+  const productName = productData.name[language];
+  const productSrcArr = productData.images.map((img) => img.url);
+
+  const categoriesObj = categoriesData?.categoriesObj;
+  const categoriesNames = categoriesObj ? productData.categoriesIdArr.map((id) => categoriesObj[id].name[language]) : [];
+
+  const handleCloseModal = () => dispatch(setIsOpenScaledImageModalAction(false));
+  const handleOpenWithImgNumModal = useCallback(() => {
+    dispatch(setIsOpenScaledImageModalAction(true));
+  }, [dispatch]);
 
   // const [open, setOpen] = useState(false);
   // const [imgNum, setImgNum] = useState(0);
@@ -121,40 +129,77 @@ export function DetailedProductPage() {
   // );
 
   return (
-    <TitleText>Something</TitleText>
-    // <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
-    //   <Stack gap={1.5} flexDirection={{ zero: 'column-reverse', tablet: 'column' }}>
-    //     <Stack direction="row" justifyContent="space-between" gap={1.5}>
-    //       <ImgCarousel
-    //         width={{ zero: 1, tablet: '65%' }}
-    //         customDots={createImages({ imgHeight: { height: 100 }, containerStyles: { width: 130 } })}
-    //       >
-    //         {createImages({ imgHeight: { height: 300 } }, handleOpen)}
-    //       </ImgCarousel>
-    //       {!isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
-    //     </Stack>
+    <SuspenseWithError
+      isLoading={isLoading || isCategoriesLoading}
+      isError={isError || isCategoriesError}
+      error={getErrorMessage(error ?? categoriesError)}
+    >
+      <Stack flexDirection={{ zero: 'column-reverse', tablet: 'column' }} gap={1.5}>
+        <Stack direction="row" justifyContent="space-between" gap={1.5}>
+          <ImgCarousel
+            width={{ zero: 1, tablet: '65%' }}
+            customDots={createImagesArr({
+              srcArr: productSrcArr,
+              height: 100,
+              alt: productName,
+              sxContainer: { width: 130, ...sxStyles.imgContainer }
+            })}
+          >
+            <ImgList height={300} srcArr={productSrcArr} alt={productName} sx={sxStyles.imgContainer} />
+          </ImgCarousel>
+          {!isMatchesDownTablet && <DetailedProductHead productData={productData} categoriesNames={categoriesNames} />}
+        </Stack>
 
-    //     <Box>
-    //       {isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
-    //       <Typography>
-    //         <b> &emsp;Description: </b>
-    //         {productData.description}
-    //       </Typography>
-    //     </Box>
+        <Box>
+          {isMatchesDownTablet && <DetailedProductHead productData={productData} categoriesNames={categoriesNames} />}
+          {/* Big whitespace */}
+          <BoldText>&emsp;Description:</BoldText>
+          <ExpandableText description={productData?.description?.[language] ?? ''} />
+        </Box>
 
-    //     <Modal open={open} onClose={handleClose} sx={sxStyles.modal}>
-    //       <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
-    //         <IconButton onClick={handleClose} sx={sxStyles.closeIcon}>
-    //           <CloseIcon />
-    //         </IconButton>
-    //         <ImgCarousel arrows openModalImg={imgNum}>
-    //           {createImages({
-    //             imgHeight: { height: { zero: '40vh', tablet: '65vh', laptop: '85vh' }, maxSize: 'unlimited' }
-    //           })}
-    //         </ImgCarousel>
-    //       </Stack>
-    //     </Modal>
-    //   </Stack>
-    // </LoadingFetch>
+        <ScaledImageModal>
+          <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
+            <IconButton onClick={handleCloseModal} sx={sxStyles.closeIcon}>
+              <CloseIcon />
+            </IconButton>
+          </Stack>
+        </ScaledImageModal>
+      </Stack>
+    </SuspenseWithError>
   );
 }
+
+// <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
+//   <Stack gap={1.5} flexDirection={{ zero: 'column-reverse', tablet: 'column' }}>
+//     <Stack direction="row" justifyContent="space-between" gap={1.5}>
+//       <ImgCarousel
+//         width={{ zero: 1, tablet: '65%' }}
+//         customDots={createImages({ imgHeight: { height: 100 }, containerStyles: { width: 130 } })}
+//       >
+//         {createImages({ imgHeight: { height: 300 } }, handleOpen)}
+//       </ImgCarousel>
+//       {!isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
+//     </Stack>
+
+//     <Box>
+//       {isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
+//       <Typography>
+//         <b> &emsp;Description: </b>
+//         {productData.description}
+//       </Typography>
+//     </Box>
+
+//     <Modal open={open} onClose={handleClose} sx={sxStyles.modal}>
+//       <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
+//         <IconButton onClick={handleClose} sx={sxStyles.closeIcon}>
+//           <CloseIcon />
+//         </IconButton>
+//         <ImgCarousel arrows openModalImg={imgNum}>
+//           {createImages({
+//             imgHeight: { height: { zero: '40vh', tablet: '65vh', laptop: '85vh' }, maxSize: 'unlimited' }
+//           })}
+//         </ImgCarousel>
+//       </Stack>
+//     </Modal>
+//   </Stack>
+// </LoadingFetch>

@@ -28,7 +28,7 @@ export function MainPage() {
   const secondCategory = categoriesCollection?.categories[1];
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }} sx={sxContainer}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} sx={sxContainer}>
       <>
         <MainSection />
         <ProductShowcaseSection categoryId={firstCategory?.id ?? ''} categoryName={firstCategory?.name[language] ?? ''} />

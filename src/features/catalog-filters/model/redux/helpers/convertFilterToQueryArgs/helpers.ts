@@ -3,9 +3,10 @@ import type { Currencies } from '@/shared/model/types';
 import type { FilterColorsState } from '@/features/catalog-filters/model/types';
 import type { ConvertSearchReturn } from '@/features/catalog-filters/model/redux/helpers/convertFilterToQueryArgs/types';
 
+import { queryArgsProductProps } from '@/shared/api/ecommerce-api';
+
 import { ProductConsts } from '@/entities/product';
 import { NO_CATEGORY } from '@/entities/categories';
-import { queryArgsProductProps } from '@/entities/product/lib/helpers/queryArgsProductProps';
 
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
 
@@ -14,6 +15,7 @@ import { isoCurrencies } from '@/shared/model/data';
 export function convertPageQueryArgs(page: number | undefined, limitOnPage: number) {
   return ((page ?? 1) - 1) * limitOnPage;
 }
+
 export function convertCategoriesQueryArgs(categoryId: string | undefined): string {
   if (!categoryId) {
     return '';
