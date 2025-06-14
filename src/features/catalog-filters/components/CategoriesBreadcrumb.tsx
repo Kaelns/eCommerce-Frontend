@@ -1,5 +1,5 @@
 import type { Theme } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 import type { SxProps, BreadcrumbsProps } from '@mui/material';
 
 import { memo, useMemo } from 'react';
@@ -16,10 +16,10 @@ import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/cat
 
 import { CasualBtn } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppSelector, useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btn: (theme) => ({
     color: `${theme.palette.text.secondary} !important`
   })
@@ -46,7 +46,13 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
   };
 
   return (
-    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} Fallback={<Skeleton />} Skeleton={<Skeleton />}>
+    <SuspenseWithError
+      isLoading={isLoading}
+      isError={isError}
+      error={getErrorMessage(error)}
+      Fallback={<Skeleton />}
+      Skeleton={<Skeleton />}
+    >
       <Breadcrumbs {...props}>
         {categoriesToRender.map((categoryId, index) => {
           const categoryName = getCategoryName(categoriesCollection?.categoriesObj, categoryId, language);
@@ -56,7 +62,7 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
               {categoryName}
             </CasualBtn>
           ) : (
-            <CasualBtn disabled key={`disabled - ${categoryId}`} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
+            <CasualBtn disabled key={`disabled - ${categoryId}`} sx={concatSx(sxStyles.btn, btnSx)}>
               {categoryName}
             </CasualBtn>
           );

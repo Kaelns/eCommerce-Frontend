@@ -1,5 +1,5 @@
 import type { Theme, SxProps, ButtonProps } from '@mui/material';
-import type { SxStyles, SxStylesArr } from '@/shared/model/types';
+import type { SxStylesMap, SxStylesArr } from '@/shared/model/types';
 
 import { useTransition } from 'react';
 import { IconButton } from '@mui/material';
@@ -10,11 +10,11 @@ import { addOrRemoveProductCart } from '@/entities/cart/lib/helpers/thunks/addOr
 
 import { CasualBtn } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 import { ZIndex } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btn: {
     zIndex: ZIndex.BUTTON,
     cursor: 'copy',
@@ -70,8 +70,8 @@ export function AddProductToCartBtn({
   const cartProductLineId = useAppSelector((state) => selectCartProductLineId(state, productId));
 
   const isInCart = !!cartProductLineId;
-  const sxBtn: SxStylesArr = [sxStyles.btn, isInCart && sxStyles.btnActive, ...convertSxToArr(sx)];
-  const sxIcon: SxStylesArr = [sxStyles.icon, isLoading && sxMixins.invisible, ...convertSxToArr(sxIconProp)];
+  const sxBtn: SxStylesArr = concatSx(sxStyles.btn, isInCart && sxStyles.btnActive, sx);
+  const sxIcon: SxStylesArr = concatSx(sxStyles.icon, isLoading && sxMixins.invisible, sxIconProp);
 
   const handleAddToBasket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

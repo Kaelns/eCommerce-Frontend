@@ -9,7 +9,7 @@ import { selectCartFinalPriceObj, selectCartProductQuantity } from '@/entities/c
 
 import { Text, BoldText, TitleText } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 
 const sxContainer: SxStylesNotArr = {
   gap: '0.75rem'
@@ -22,7 +22,7 @@ export function CartFinalize({ sx = {}, ...props }: PaperProps) {
   const { finalPrice, finalPriceWithDiscount, percentageDiscount } = useAppSelector((state) => selectCartFinalPriceObj(state, country));
 
   return (
-    <Paper sx={[sxContainer, ...convertSxToArr(sx)]} {...props}>
+    <Paper sx={concatSx(sxContainer, sx)} {...props}>
       <TitleText color="primary">Summary:</TitleText>
       <Stack direction="row" justifyContent="space-between">
         <Text variant="h4">Price, {productQuantity} products:</Text>

@@ -1,12 +1,12 @@
 import type { Theme } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 import type { SxProps, TypographyOwnProps } from '@mui/material';
 
 import { Stack } from '@mui/system';
 
 import { BoldText, PriceText } from '@/shared/ui/elements';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   price: {
     position: 'relative',
     textDecoration: 'line-through'

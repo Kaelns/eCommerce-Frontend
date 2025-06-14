@@ -1,5 +1,5 @@
 import type { BoxProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { round } from 'lodash';
 import { Stack } from '@mui/system';
@@ -18,7 +18,7 @@ import { SRCSET } from '@/shared/model/data';
 
 const IMG_SELECTOR = 'product-basket__img';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   container: {
     position: 'relative',
     width: 1,

@@ -1,4 +1,4 @@
-import type { SxStyles, TreeNode } from '@/shared/model/types';
+import type { SxStylesMap, TreeNode } from '@/shared/model/types';
 import type { ReduxElemIdData } from '@/features/AccordionTree/types';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -10,7 +10,7 @@ import { AccordionTree } from '@/features/AccordionTree/AccordionTree';
 import { useAppSelector } from '@/shared/lib/redux';
 import { convertKeyToName } from '@/shared/lib/utils';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   accordionActive: {
     bgcolor: 'var(--color-primary-transparent)'
   },

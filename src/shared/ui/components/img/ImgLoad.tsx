@@ -1,6 +1,6 @@
 import type { Theme, StackProps } from '@mui/system';
 import type { SxProps, BoxProps } from '@mui/material';
-import type { SxStyles, SrcsetInPx } from '@/shared/model/types';
+import type { SrcsetInPx, SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
@@ -10,10 +10,10 @@ import { grey } from '@mui/material/colors';
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { ImgSkeleton } from '@/shared/ui/components/skeletons/ImgSkeleton';
 import { sxMixins } from '@/shared/lib/mui';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { createSrcSet, getMaxMuiHeight } from '@/shared/lib/utils';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   container: {
     position: 'relative',
     alignItems: 'center',
@@ -79,15 +79,15 @@ export function ImgLoad({
       maxHeight = maxSize;
     } else if (height) {
       maxHeight = getMaxMuiHeight(height);
-    } else if (sx && 'height' in sx) {
-      maxHeight = getMaxMuiHeight(sx.height as StackProps['height']);
+    } else if (sxContainer && 'height' in sxContainer) {
+      maxHeight = getMaxMuiHeight(sxContainer.height as StackProps['height']);
     }
 
     return createSrcSet(src, srcSetArr, maxHeight);
-  }, [height, maxSize, src, srcSetArr, sx]);
+  }, [height, maxSize, src, srcSetArr, sxContainer]);
 
   return (
-    <Stack height={height} onClick={onClick} sx={[sxStyles.container, ...convertSxToArr(sxContainer)]}>
+    <Stack height={height} onClick={onClick} sx={concatSx(sxStyles.container, sxContainer)}>
       <FadeBox isShow={isImgLoading} sx={[sxStyles.skeletonWrapper, sxStyles.sizes100]}>
         <ImgSkeleton sx={sxStyles.skeleton} />
       </FadeBox>
@@ -98,7 +98,7 @@ export function ImgLoad({
           srcSet={srcSetOfImg}
           loading="lazy"
           onLoad={handleOnImgLoad}
-          sx={[sxStyles.img, sxStyles.sizes100, ...convertSxToArr(sx)]}
+          sx={concatSx(sxStyles.img, sxStyles.sizes100, sx)}
           {...props}
         />
       </FadeBox>

@@ -1,6 +1,6 @@
 import type { Theme } from '@mui/system';
 import type { SxProps } from '@mui/material';
-import type { SxStyles, InputReactEvent } from '@/shared/model/types';
+import type { SxStylesMap, InputReactEvent } from '@/shared/model/types';
 
 import { Input, Button, ButtonGroup } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -10,7 +10,7 @@ import { setQuantityAction, decrementQuantityAction, incrementQuantityAction } f
 
 import { useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   container: {
     width: 1,
     my: 1

@@ -1,6 +1,6 @@
 import type { Theme } from '@mui/system';
 import type { SxProps, InputBaseProps } from '@mui/material';
-import type { SxStyles, InputReactEvent } from '@/shared/model/types';
+import type { SxStylesMap, InputReactEvent } from '@/shared/model/types';
 
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,10 +12,10 @@ import { selectSearch } from '@/features/catalog-filters/model/redux/catalogFilt
 import { debounceSearchToQueryArgs } from '@/features/catalog-filters/model/redux/thunks/debounceSearchToQueryArgs.thunk';
 
 import { sxMixins } from '@/shared/lib/mui';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   search: {
     position: 'relative',
     ml: 0,
@@ -70,7 +70,7 @@ export function CatalogSearch({ sx = {}, sxContainer = {}, ...props }: SearchPro
   };
 
   return (
-    <Box sx={[sxStyles.search, isSearchInFocus && sxStyles.searchActive, ...convertSxToArr(sxContainer)]}>
+    <Box sx={concatSx(sxStyles.search, isSearchInFocus && sxStyles.searchActive, sxContainer)}>
       <Stack alignItems="center" justifyContent="center" sx={sxStyles.iconWrapper}>
         <SearchIcon fontSize="small" />
       </Stack>
@@ -86,7 +86,7 @@ export function CatalogSearch({ sx = {}, sxContainer = {}, ...props }: SearchPro
             <CloseIcon fontSize="small" />
           </InputAdornment>
         }
-        sx={[sxStyles.input, ...convertSxToArr(sx)]}
+        sx={concatSx(sxStyles.input, sx)}
         {...props}
       />
     </Box>

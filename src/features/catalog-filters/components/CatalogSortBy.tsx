@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 import type { SelectChangeEvent } from '@mui/material';
 
 import { Stack, Select, MenuItem } from '@mui/material';
@@ -9,7 +9,7 @@ import { selectSort, setSortAction } from '@/features/catalog-filters/model/redu
 import { TitleText } from '@/shared/ui/elements';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   select: {
     minWidth: { zero: 180, tablet: 250 },
 

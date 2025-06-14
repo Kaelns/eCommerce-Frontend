@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { useEffect } from 'react';
 import { Stack } from '@mui/system';
@@ -19,7 +19,7 @@ import '@/app/model/init-scripts.ts';
 import { SectionContainer, SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   container: {
     flex: 1
   },

@@ -33,8 +33,8 @@ const cartSliceLazy = createSlice({
 
     selectCartProducts: (state) => state.products,
     selectCartProductsIds: (state) => state.productsIds,
-    selectCartProductById: (state, productId) => state.products[productId],
-    selectCartProductLineId: (state, productId) => state.products[productId]?.cartProductLineId || undefined,
+    selectCartProductById: (state, productId: string) => state.products[productId],
+    selectCartProductLineId: (state, productId: string) => state.products[productId]?.cartProductLineId || undefined,
     selectCartProductQuantity: (state) => state.productsQuantity,
 
     selectCartFinalPriceObj: createSelector([(state) => state.products, (_state, country) => country], calculateFinalCartPrice)

@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack, Snackbar, LinearProgress, Alert as MuiAlert } from '@mui/material';
 
@@ -7,7 +7,7 @@ import { alertSlice } from '@/features/Alert/model/alert.slice';
 import { TimingProgress } from '@/shared/ui/components';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   alertContainer: {
     position: 'relative'
   },

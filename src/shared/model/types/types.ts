@@ -22,11 +22,10 @@ export type InputReactEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaE
 export type Sizes = 'large' | 'medium' | 'small';
 
 export type SxStylesObj<T extends object = Theme> = SystemStyleObject<T>;
-export type SxStyles<T extends object = Theme> = Record<string, SxStylesNotArr<T>>;
-
 export type SxStylesNotArr<T extends object = Theme> = SxStylesCallback<T> | SxStylesObj<T>;
 export type SxStylesCallback<T extends object = Theme> = (theme: Theme) => SystemStyleObject<T>;
 
+export type SxStylesMap<T extends object = Theme> = Record<string, SxStylesNotArr<T>>;
 export type SxStylesArr<T extends object = Theme> = ReadonlyArray<boolean | SxStylesCallback<T> | SxStylesObj<T>>;
 
 // * Ecommerce types

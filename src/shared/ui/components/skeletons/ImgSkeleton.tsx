@@ -4,7 +4,7 @@ import type { SxStylesNotArr } from '@/shared/model/types';
 import { Skeleton, skeletonClasses } from '@mui/material';
 
 import { revealAnimation } from '@/shared/lib/mui';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 
 const sxSkeleton: SxStylesNotArr = {
   width: 1,
@@ -14,5 +14,5 @@ const sxSkeleton: SxStylesNotArr = {
 };
 
 export function ImgSkeleton({ sx = {}, ...props }: SkeletonProps) {
-  return <Skeleton animation="wave" sx={[sxSkeleton, ...convertSxToArr(sx)]} {...props} />;
+  return <Skeleton animation="wave" sx={concatSx(sxSkeleton, sx)} {...props} />;
 }

@@ -1,5 +1,5 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
@@ -17,7 +17,7 @@ import { RangePriceSliderFilter } from '@/features/catalog-filters/components/Ca
 import { BoldText, ContainedBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btnApply: {
     flex: 8
   },

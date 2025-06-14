@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import type Slider from 'react-slick';
 import type { Settings } from 'react-slick';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Box, IconButton } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -10,15 +10,17 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { LightMuiBox } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   nextArrow: {
     right: '0',
     transform: 'translate(15%, -50%)'
   },
+
   prevArrow: {
     left: '0',
     transform: 'translate(-15%, -50%)'
   },
+
   arrowShared: (theme) => ({
     position: 'absolute',
     top: '50%',
@@ -29,6 +31,7 @@ const sxStyles: SxStyles = {
       bottom: '-90px'
     }
   }),
+
   dotsContainer: {
     display: 'flex',
     gap: 1,
@@ -47,11 +50,7 @@ const sxStyles: SxStyles = {
   }
 };
 
-export const settings: Settings = {
-  infinite: false,
-  speed: 1000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
+export const arrowSettings: Settings = {
   nextArrow: (
     <LightMuiBox>
       <IconButton sx={[sxStyles.nextArrow, sxStyles.arrowShared]}>

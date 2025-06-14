@@ -9,7 +9,7 @@ import { ProductConsts, calculateMaxPages } from '@/entities/product';
 
 import { selectPage, setPageAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
 
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxPagination: SxStylesNotArr = {
@@ -46,7 +46,7 @@ export function CatalogPagination({ amount, sx = {}, ...props }: ProductPaginati
       onChange={handlePageChange}
       size={isMatchTablet ? 'medium' : 'large'}
       color="primary"
-      sx={[sxPagination, ...convertSxToArr(sx)]}
+      sx={concatSx(sxPagination, sx)}
       {...props}
     />
   );

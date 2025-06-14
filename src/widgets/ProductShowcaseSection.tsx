@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Paper } from '@mui/material';
@@ -17,7 +17,7 @@ import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch } from '@/shared/lib/redux';
 import { Paths } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   body: {
     px: 1.5,
     py: 3

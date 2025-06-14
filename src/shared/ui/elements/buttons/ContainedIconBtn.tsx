@@ -3,7 +3,7 @@ import type { SxStylesObj, PropsWithChildren } from '@/shared/model/types';
 
 import { IconButton } from '@mui/material';
 
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 
 const sxBtnContained: SxStylesObj = {
   backgroundColor: 'primary.main',
@@ -15,7 +15,7 @@ const sxBtnContained: SxStylesObj = {
 
 export function ContainedIconBtn({ children, sx = {}, ...props }: PropsWithChildren<IconButtonProps>) {
   return (
-    <IconButton sx={[sxBtnContained, ...convertSxToArr(sx)]} {...props}>
+    <IconButton sx={concatSx(sxBtnContained, sx)} {...props}>
       {children}
     </IconButton>
   );

@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Button, Tooltip } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
@@ -10,7 +10,7 @@ import { NodeWithText } from '@/shared/ui/elements';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   filters: {
     flex: { zero: 0.2, tablet: 1 },
     color: 'text.primary',

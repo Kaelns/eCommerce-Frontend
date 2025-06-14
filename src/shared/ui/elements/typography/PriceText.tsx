@@ -1,10 +1,10 @@
 import type { TypographyOwnProps } from '@mui/material';
-import type { SxStyles, PropsWithChildren } from '@/shared/model/types';
+import type { SxStylesMap, PropsWithChildren } from '@/shared/model/types';
 
 import { Text } from '@/shared/ui/elements/typography/Text';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   text: {
     px: 0.3
   },
@@ -33,7 +33,7 @@ export function PriceText({
     <Text
       isPositioned={isPositioned}
       variant={variant}
-      sx={[sxStyles.text, priceType === 'discount' && sxStyles.discountText, ...convertSxToArr(sx)]}
+      sx={concatSx(sxStyles.text, priceType === 'discount' && sxStyles.discountText, sx)}
       {...props}
     >
       {children} {currencySymbol}

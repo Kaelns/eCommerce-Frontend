@@ -1,10 +1,10 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Skeleton, skeletonClasses } from '@mui/material';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   increasedSkeleton: {
     [`&.${skeletonClasses.root}`]: {
       transform: 'scaleY(0.9)'

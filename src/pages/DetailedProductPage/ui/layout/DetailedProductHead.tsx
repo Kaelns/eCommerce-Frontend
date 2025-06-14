@@ -1,72 +1,80 @@
 import type { ProductLight } from '@/entities/product';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
+import { Chip } from '@mui/material';
 
-import { CreateImages } from '@/pages/DetailedProductPage/components/CreateImages';
+import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
-import { selectLanguage } from '@/entities/user';
+import { AddProductToCartBtn } from '@/entities/cart';
+import { useGetCategoriesQuery } from '@/entities/categories';
+import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/user';
 
-import { TitleText } from '@/shared/ui/elements';
+import { SuspenseWithError } from '@/shared/ui/components';
+import { TitleText, DiscountText } from '@/shared/ui/elements';
 import { useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles = {
   container: (theme) => ({
     position: 'relative',
     width: '32.5%',
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: 0.5,
 
     [theme.breakpoints.down('tablet')]: {
-      pb: 1.5,
-      pr: 1.5,
+      width: '45%',
       float: 'left',
-      width: '45%'
+      p: '1.5rem 1.5rem 0 0'
     },
 
     [theme.breakpoints.down(500)]: {
-      pr: 0,
+      width: 1,
       float: 'none',
-      width: 1
+      pr: 0
     }
   }),
+
   discountIcon: {
     top: -1,
     right: -1
   },
+
   basketBtn: {
     mt: 1
   }
-};
+} satisfies SxStylesMap;
 
 interface DetailedProductHeadProps {
   productData: ProductLight;
-  categoriesNames: string[];
 }
 
-export function DetailedProductHead({ productData, categoriesNames }: DetailedProductHeadProps) {
+export function DetailedProductHead({ productData }: DetailedProductHeadProps) {
   const language = useAppSelector(selectLanguage);
+  const country = useAppSelector(selectCountry);
 
-  // const { data: cartData = INIT_BASKET } = useFetch(fetchBasket, token);
+  const { data: categoriesData, error, isError, isLoading } = useGetCategoriesQuery();
 
-  // useEffect(() => setLineItemId(findBasketProductId(cartData.basket, productData.id)), [cartData.basket, productData.id]);
+  const { price, discount, discountedPrice } = productData.pricesObj[country];
+
+  const categoriesNames = productData.categoriesIdArr
+    .map((id) => categoriesData?.categoriesObj?.[id]?.name?.[language] ?? '')
+    .filter(Boolean);
 
   return (
-    <Stack spacing={0.7} sx={sxStyles.container}>
-      {/* <DiscountTypography discount={productData.discount} sx={sxStyles.discountIcon} /> */}
-
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} sx={sxStyles.container}>
       <TitleText>{productData.name[language]}</TitleText>
-      {/* <FullPriceText price={productData.price} discount={productData.discount} discountedPrice={productData.discountedPrice} />
+      <UserFullPriceText price={price} discount={discount} discountedPrice={discountedPrice} />
+
       <Stack direction="row" gap={0.7} flexWrap="wrap">
         {categoriesNames.map((category) => (
-          <Chip key={category} label={category} />
+          <Chip key={category} label={category} size="small" />
         ))}
       </Stack>
 
-      <AddProductToCartBtn
-        isAvailable={!productData.maxQuantity}
-        cartProductId={lineItemId}
-        productId={productData.id}
-        sx={sxStyles.basketBtn}
-      /> */}
-    </Stack>
+      <DiscountText discount={discount} sx={sxStyles.discountIcon} />
+
+      <AddProductToCartBtn isAvailable={!productData.maxQuantity} productId={productData.id} sx={sxStyles.basketBtn} />
+    </SuspenseWithError>
   );
 }

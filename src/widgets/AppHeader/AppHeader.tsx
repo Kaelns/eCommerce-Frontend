@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import TollIcon from '@mui/icons-material/Toll';
@@ -14,7 +14,7 @@ import { Navbar } from '@/features/Navbar';
 
 import { SectionContainer } from '@/shared/ui/components';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   headerContainer: {
     display: 'flex',
     justifyContent: 'space-between',

@@ -1,4 +1,4 @@
-import type { SxStyles, SxStylesObj } from '@/shared/model/types';
+import type { SxStylesMap, SxStylesObj } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
@@ -7,7 +7,7 @@ import { selectIsColorActiveForm } from '@/features/catalog-filters/model/redux/
 
 import { useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   colorBtn: {
     borderRadius: '100%',
     p: 1.8,

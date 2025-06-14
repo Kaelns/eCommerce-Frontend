@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack, Slider, Typography, OutlinedInput } from '@mui/material';
 
@@ -13,7 +13,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   input: {
     flex: 1,
     '& > input': {

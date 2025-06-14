@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 import type { BoxProps, StackProps } from '@mui/system';
 import type { ProductProjection } from '@commercetools/platform-sdk';
 
@@ -19,7 +19,7 @@ import { Paths, SRCSET } from '@/shared/model/data';
 
 const IMG_SELECTOR = 'product-card__img';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   cardContainer: {
     height: 1,
     width: 1,
