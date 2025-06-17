@@ -6,11 +6,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 import { Text } from '@/shared/ui/elements/typography/Text';
+import { sxMixins } from '@/shared/lib/mui';
 import { splitIntoTwoByWhitespaceIndex } from '@/shared/lib/utils';
 
 const sxStyles: SxStylesMap = {
   text: {
-    position: 'relative'
+    position: 'relative',
+    mb: 2
   },
 
   hiddenDescription: {
@@ -19,20 +21,20 @@ const sxStyles: SxStylesMap = {
   },
 
   expandBtn: {
-    position: 'absolute',
-    bottom: 0,
-    right: '50%',
-    transform: 'translateY(100%)',
-    borderTopRightRadius: '3px',
+    display: 'inline-block',
+    fontSize: 1,
     borderTopLeftRadius: '3px',
-    pt: 0.2,
+    borderTopRightRadius: '3px',
+    ml: 1,
+    paddingBlock: 0,
 
     color: 'common.background',
     bgcolor: 'primary.main',
 
-    '&:hover': {
+    ...sxMixins.mediaHover({
+      // paddingBlock: '2px',
       bgcolor: 'primary.dark'
-    }
+    })
   }
 } satisfies SxStylesMap;
 
@@ -57,9 +59,7 @@ export function ExpandableText({ description, maxLength = 100 }: ExpandableTextP
       <Text component="span" sx={[!isExpanded && sxStyles.hiddenDescription]}>
         {secondPart}
       </Text>
-
-      {/* Position absolute */}
-      <IconButton size="small" onClick={handleExpand} sx={sxStyles.expandBtn}>
+      <IconButton size="small" onClick={handleExpand} sx={[sxStyles.expandBtn, sxMixins.animation()]}>
         {isExpanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
       </IconButton>
     </Text>

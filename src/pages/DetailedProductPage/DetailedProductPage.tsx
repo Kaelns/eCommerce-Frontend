@@ -19,7 +19,7 @@ import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/co
 
 import { Slider, setInitSlideAction } from '@/features/Slider';
 
-import { BoldText, TitleText } from '@/shared/ui/elements';
+import { TitleText } from '@/shared/ui/elements';
 import { ExpandableText, SuspenseWithError } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
@@ -54,13 +54,14 @@ const sxStyles = {
     [theme.breakpoints.down('tablet')]: {
       width: '45%',
       float: 'left',
-      p: '1.5rem 1.5rem 0 0'
+      pr: 2
     },
 
     [theme.breakpoints.down(500)]: {
       width: 1,
       float: 'none',
-      pr: 0
+      pr: 0,
+      pb: 2
     }
   }),
 
@@ -145,7 +146,7 @@ export function DetailedProductPage() {
         <Box>
           {isMatchesDownTablet && <DetailedProductInfo productData={productData} sx={sxStyles.productInfoContainer} />}
           {/* Big whitespace */}
-          <TitleText variant="h4">&emsp;Description:</TitleText>
+          <TitleText variant="h4">Description:</TitleText>
           <ExpandableText description={productData?.description?.[language] ?? ''} maxLength={300} />
         </Box>
 
@@ -153,8 +154,10 @@ export function DetailedProductPage() {
           <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
             <Slider sliderId={SCALED_IMAGE_MODAL_SLIDER_ID} isShowArrows>
               {createImagesArr({
+                height: { zero: '40vh', tablet: '65vh', laptop: '85vh' },
                 srcArr: productSrcArr,
                 alt: productName,
+                srcSetArr: SRCSET,
                 sxContainer: sxStyles.modalScaledImageContainer
               })}
             </Slider>
@@ -169,71 +172,3 @@ export function DetailedProductPage() {
     </SuspenseWithError>
   );
 }
-
-// <LoadingFetch error={error} isLoading={isLoading} Skeleton={PageSkeleton}>
-//   <Stack gap={1.5} flexDirection={{ zero: 'column-reverse', tablet: 'column' }}>
-//     <Stack direction="row" justifyContent="space-between" gap={1.5}>
-//       <ImgCarousel
-//         width={{ zero: 1, tablet: '65%' }}
-//         customDots={createImages({ imgHeight: { height: 100 }, containerStyles: { width: 130 } })}
-//       >
-//         {createImages({ imgHeight: { height: 300 } }, handleOpen)}
-//       </ImgCarousel>
-//       {!isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
-//     </Stack>
-
-//     <Box>
-//       {isMatchesMedia && <ProductHead productData={productData} categoriesNames={categoriesNames} />}
-//       <Typography>
-//         <b> &emsp;Description: </b>
-//         {productData.description}
-//       </Typography>
-//     </Box>
-
-//     <Modal open={open} onClose={handleClose} sx={sxStyles.modal}>
-//       <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
-//         <IconButton onClick={handleClose} sx={sxStyles.closeIcon}>
-//           <CloseIcon />
-//         </IconButton>
-//         <ImgCarousel arrows openModalImg={imgNum}>
-//           {createImages({
-//             imgHeight: { height: { zero: '40vh', tablet: '65vh', laptop: '85vh' }, maxSize: 'unlimited' }
-//           })}
-//         </ImgCarousel>
-//       </Stack>
-//     </Modal>
-//   </Stack>
-// </LoadingFetch>
-
-// const [open, setOpen] = useState(false);
-// const [imgNum, setImgNum] = useState(0);
-// const handleClose = (): void => setOpen(false);
-// const handleOpen = useCallback(
-//   (num: number) => (): void => {
-//     setImgNum(num);
-//     setOpen(true);
-//   },
-//   []
-// );
-
-// const createImages = useCallback(
-//   <T extends StackProps['height']>(
-//     { imgHeight, imgStyles = {}, containerStyles = {} }: ICreateImagesStyles<T>,
-//     onClick?: (num: number) => () => void
-//   ) => {
-//     const maxSize = imgHeight && 'maxSize' in imgHeight ? imgHeight.maxSize : undefined;
-//     return productData.images.map((imageData, index) => (
-//       <ImgLoad
-//         key={imageData.url}
-//         src={imageData.url}
-//         alt={productData.name}
-//         height={imgHeight?.height}
-//         sx={imgStyles}
-//         containerStyles={concatSx(sxStyles.imgContainer, containerStyles)}
-//         srcset={{ srcSetArr: SRCSET_API, maxSize }}
-//         onClick={onClick ? onClick(index) : undefined}
-//       />
-//     ));
-//   },
-//   [productData]
-// );

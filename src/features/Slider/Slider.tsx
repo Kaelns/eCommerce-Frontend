@@ -15,7 +15,8 @@ import { useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles: SxStylesMap = {
   slider: {
-    position: 'relative'
+    position: 'relative',
+    width: 1
   }
 };
 

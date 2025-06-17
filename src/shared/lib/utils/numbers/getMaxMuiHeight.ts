@@ -6,8 +6,10 @@ export function getMaxMuiHeight(height: StackProps['height']): number | undefine
       return height as number;
     case 'string':
       return parseInt(height as string, 10);
-    case 'object':
-      return Math.max(...Object.values(height as Record<string, number>));
+    case 'object': {
+      const numValues = Object.values(height).filter((value) => typeof value === 'number');
+      return numValues.length ? Math.max(...numValues) : undefined;
+    }
     default:
       return undefined;
   }
