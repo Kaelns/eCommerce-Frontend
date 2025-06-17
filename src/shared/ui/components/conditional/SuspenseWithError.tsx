@@ -54,8 +54,8 @@ export function SuspenseWithError({
 
   Skeleton,
   Fallback,
-  sx = {},
-  sxWrapper = {},
+  sx,
+  sxWrapper,
   ...props
 }: PropsWithChildren<LoadingProps & MainProps>) {
   const isPending = isLoading ?? isFetching;

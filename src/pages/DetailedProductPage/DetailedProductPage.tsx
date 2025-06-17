@@ -19,7 +19,7 @@ import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/co
 
 import { Slider, setInitSlideAction } from '@/features/Slider';
 
-import { BoldText } from '@/shared/ui/elements';
+import { BoldText, TitleText } from '@/shared/ui/elements';
 import { ExpandableText, SuspenseWithError } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
@@ -138,14 +138,6 @@ export function DetailedProductPage() {
               onClick: handleOpenWithStartSlideModal,
               sxContainer: sxStyles.sliderImgContainer
             })}
-            {/* <ImgList
-              imgHeight={300}
-              srcArr={productSrcArr}
-              alt={productName}
-              srcSetArr={SRCSET}
-              onClick={handleOpenWithStartSlideModal}
-              sxImgContainer={sxStyles.sliderImgContainer}
-            /> */}
           </Slider>
           {!isMatchesDownTablet && <DetailedProductInfo productData={productData} sx={sxStyles.productInfoContainer} />}
         </Box>
@@ -153,8 +145,8 @@ export function DetailedProductPage() {
         <Box>
           {isMatchesDownTablet && <DetailedProductInfo productData={productData} sx={sxStyles.productInfoContainer} />}
           {/* Big whitespace */}
-          <BoldText>&emsp;Description:</BoldText>
-          <ExpandableText description={productData?.description?.[language] ?? ''} />
+          <TitleText variant="h4">&emsp;Description:</TitleText>
+          <ExpandableText description={productData?.description?.[language] ?? ''} maxLength={300} />
         </Box>
 
         <ScaledImageModal>

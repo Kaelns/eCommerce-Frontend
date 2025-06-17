@@ -13,7 +13,6 @@ import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/use
 
 import { SuspenseWithError } from '@/shared/ui/components';
 import { TitleText, DiscountText } from '@/shared/ui/elements';
-import { concatSx } from '@/shared/lib/helpers';
 import { useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles = {
@@ -21,7 +20,7 @@ const sxStyles = {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    rowGap: 0.5
+    gap: 1
   },
 
   discountIcon: {
@@ -51,7 +50,7 @@ export function DetailedProductInfo({ productData, sx }: DetailedProductInfoProp
     .filter(Boolean);
 
   return (
-    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} sxWrapper={concatSx(sxStyles.container, sx)}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} sx={sxStyles.container} sxWrapper={sx}>
       <TitleText>{productData.name[language]}</TitleText>
       <UserFullPriceText price={price} discount={discount} discountedPrice={discountedPrice} />
 

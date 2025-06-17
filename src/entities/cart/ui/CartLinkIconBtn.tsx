@@ -1,4 +1,4 @@
-import type { SxProps } from '@mui/material';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Badge, IconButton, badgeClasses } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -9,19 +9,24 @@ import { LinkAbsoluteWrapper } from '@/shared/ui/components';
 import { useAppSelector } from '@/shared/lib/redux';
 import { Paths, BADGE_FONT_SIZE } from '@/shared/model/data';
 
-const sxBadge: SxProps = {
-  [`& .${badgeClasses.badge}`]: {
-    fontSize: BADGE_FONT_SIZE
+const sxStyles = {
+  btn: {
+    position: 'relative'
+  },
+  sxBadge: {
+    [`& .${badgeClasses.badge}`]: {
+      fontSize: BADGE_FONT_SIZE
+    }
   }
-};
+} satisfies SxStylesMap;
 
 export function CartLinkIconBtn() {
   const productQuantity = useAppSelector(selectCartProductQuantity);
 
   return (
-    <IconButton sx={{ position: 'relative' }}>
+    <IconButton sx={sxStyles.btn}>
       <LinkAbsoluteWrapper to={Paths.CART} />
-      <Badge badgeContent={productQuantity} color="primary" sx={sxBadge}>
+      <Badge badgeContent={productQuantity} color="primary" sx={sxStyles.sxBadge}>
         <ShoppingCartOutlinedIcon />
       </Badge>
     </IconButton>
