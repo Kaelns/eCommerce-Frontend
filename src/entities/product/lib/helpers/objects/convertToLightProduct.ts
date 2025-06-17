@@ -5,7 +5,7 @@ import { getProductPricesObj } from '@/shared/lib/helpers';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
-export const MOCK_PRODUCT: ProductLight = {
+const MOCK_PRODUCT: ProductLight = {
   id: '',
   key: '',
   name: {},

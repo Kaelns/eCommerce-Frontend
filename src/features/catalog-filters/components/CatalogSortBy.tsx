@@ -1,5 +1,5 @@
-import type { SxStylesMap } from '@/shared/model/types';
 import type { SelectChangeEvent } from '@mui/material';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack, Select, MenuItem } from '@mui/material';
 

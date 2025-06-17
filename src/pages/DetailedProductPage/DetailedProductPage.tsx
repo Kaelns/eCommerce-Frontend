@@ -10,7 +10,7 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { createImagesArr } from '@/pages/DetailedProductPage/lib/createImages';
 import { ScaledImageModal } from '@/pages/DetailedProductPage/ui/layout/ScaledImageModal';
-import { DetailedProductHead } from '@/pages/DetailedProductPage/ui/layout/DetailedProductHead';
+import { DetailedProductInfo } from '@/pages/DetailedProductPage/ui/layout/DetailedProductInfo';
 import { setIsOpenScaledImageModalAction } from '@/pages/DetailedProductPage/model/detailedProductPage.slice';
 
 import { selectLanguage } from '@/entities/user';
@@ -20,7 +20,7 @@ import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/co
 import { Slider, setInitSlideAction } from '@/features/Slider';
 
 import { BoldText } from '@/shared/ui/elements';
-import { ImgList, ExpandableText, SuspenseWithError } from '@/shared/ui/components';
+import { ExpandableText, SuspenseWithError } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 import { SRCSET, ZIndex } from '@/shared/model/data';
@@ -36,6 +36,33 @@ const sxStyles = {
     borderRadius: 1,
     bgcolor: 'common.background'
   },
+
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: 1.5,
+    width: 1
+  },
+
+  headerSliderContainer: {
+    width: { zero: 1, tablet: '65%' }
+  },
+
+  productInfoContainer: (theme) => ({
+    position: 'relative',
+
+    [theme.breakpoints.down('tablet')]: {
+      width: '45%',
+      float: 'left',
+      p: '1.5rem 1.5rem 0 0'
+    },
+
+    [theme.breakpoints.down(500)]: {
+      width: 1,
+      float: 'none',
+      pr: 0
+    }
+  }),
 
   sliderImgContainer: {
     position: 'relative',
@@ -92,31 +119,39 @@ export function DetailedProductPage() {
   return (
     <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
       <Stack flexDirection={{ zero: 'column-reverse', tablet: 'column' }} gap={1.5}>
-        <Stack direction="row" justifyContent="space-between" gap={1.5}>
+        <Box sx={sxStyles.headerContainer}>
           <Slider
-            width={{ zero: 1, tablet: '65%' }}
             customDots={createImagesArr({
-              srcArr: productSrcArr,
               height: 100,
+              srcArr: productSrcArr,
               alt: productName,
               srcSetArr: SRCSET,
               sxContainer: [{ width: 130 }, sxStyles.sliderImgContainer]
             })}
+            sx={sxStyles.headerSliderContainer}
           >
-            <ImgList
+            {createImagesArr({
+              height: 300,
+              srcArr: productSrcArr,
+              alt: productName,
+              srcSetArr: SRCSET,
+              onClick: handleOpenWithStartSlideModal,
+              sxContainer: sxStyles.sliderImgContainer
+            })}
+            {/* <ImgList
               imgHeight={300}
               srcArr={productSrcArr}
               alt={productName}
               srcSetArr={SRCSET}
               onClick={handleOpenWithStartSlideModal}
               sxImgContainer={sxStyles.sliderImgContainer}
-            />
+            /> */}
           </Slider>
-          {!isMatchesDownTablet && <DetailedProductHead productData={productData} />}
-        </Stack>
+          {!isMatchesDownTablet && <DetailedProductInfo productData={productData} sx={sxStyles.productInfoContainer} />}
+        </Box>
 
         <Box>
-          {isMatchesDownTablet && <DetailedProductHead productData={productData} />}
+          {isMatchesDownTablet && <DetailedProductInfo productData={productData} sx={sxStyles.productInfoContainer} />}
           {/* Big whitespace */}
           <BoldText>&emsp;Description:</BoldText>
           <ExpandableText description={productData?.description?.[language] ?? ''} />
@@ -125,7 +160,11 @@ export function DetailedProductPage() {
         <ScaledImageModal>
           <Stack direction="row" alignItems="center" justifyContent="center" sx={sxStyles.modalBody}>
             <Slider sliderId={SCALED_IMAGE_MODAL_SLIDER_ID} isShowArrows>
-              <ImgList srcArr={productSrcArr} alt={productName} sxImgContainer={sxStyles.modalScaledImageContainer} />
+              {createImagesArr({
+                srcArr: productSrcArr,
+                alt: productName,
+                sxContainer: sxStyles.modalScaledImageContainer
+              })}
             </Slider>
 
             {/* Position absolute */}

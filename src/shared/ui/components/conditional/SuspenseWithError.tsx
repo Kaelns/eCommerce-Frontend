@@ -14,9 +14,10 @@ import imageError from '@/shared/assets/error.png';
 const sxStyles = {
   // * Trick to put children at the same place (overlaying them) without position absolute
   wrapper: {
-    width: 1,
     display: 'grid',
-    gridTemplateColumns: '1fr'
+    // * To say grid not to take content width like "max-content" when set to 1fr. Prevents stretching more than parent size
+    // * with 1fr - minmax(auto, 1fr) = minmax(max-content, 1fr), now - (0, 1fr)
+    gridTemplateColumns: 'minmax(0, 1fr)'
   },
   overlayingChildren: {
     gridRowStart: 1,

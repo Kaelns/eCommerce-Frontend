@@ -15,7 +15,7 @@ const sliderLazy = createSlice({
     selectInitSlide: (state, sliderId: string) => state.initSlide[sliderId] ?? 0
   },
   reducers: {
-    setInitSlideAction(state, action: PayloadAction<{ slide: number; sliderId: string; }>) {
+    setInitSlideAction(state, action: PayloadAction<{ slide: number; sliderId: string }>) {
       state.initSlide[action.payload.sliderId] = action.payload.slide;
     }
   }

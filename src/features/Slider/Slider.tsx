@@ -2,11 +2,11 @@ import type { BoxProps } from '@mui/system';
 import type { Settings } from 'react-slick';
 import type { SxStylesMap, PropsWithChildren } from '@/shared/model/types';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { Box } from '@mui/material';
 import SlickSlider from 'react-slick';
 import { useRef, useMemo } from 'react';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
 
 import { selectInitSlide } from '@/features/Slider/model/slider.slice';
 import { arrowSettings, customDotsSettings } from '@/features/Slider/model/config';

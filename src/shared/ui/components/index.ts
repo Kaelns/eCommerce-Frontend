@@ -1,4 +1,3 @@
-export { ImgList } from '@/shared/ui/components/img/ImgList';
 export { PageSkeleton } from '@/shared/ui/components/skeletons/PageSkeleton';
 export { ImgLoad, type ImgLoadProps } from '@/shared/ui/components/img/ImgLoad';
 export { FullPriceText } from '@/shared/ui/components/typography/FullPriceText';

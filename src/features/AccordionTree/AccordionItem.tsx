@@ -1,4 +1,4 @@
-import type { SxStylesMap, TreeNode } from '@/shared/model/types';
+import type { TreeNode, SxStylesMap } from '@/shared/model/types';
 import type { ReduxElemIdData } from '@/features/AccordionTree/types';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

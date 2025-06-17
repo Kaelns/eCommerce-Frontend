@@ -3,8 +3,8 @@ import type { SxStylesNotArr } from '@/shared/model/types';
 
 import { Skeleton, skeletonClasses } from '@mui/material';
 
-import { revealAnimation } from '@/shared/lib/mui';
 import { concatSx } from '@/shared/lib/helpers';
+import { revealAnimation } from '@/shared/lib/mui';
 
 const sxSkeleton: SxStylesNotArr = {
   width: 1,

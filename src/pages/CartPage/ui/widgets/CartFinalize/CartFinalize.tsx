@@ -8,8 +8,8 @@ import { selectCountry, UserPriceText } from '@/entities/user';
 import { selectCartFinalPriceObj, selectCartProductQuantity } from '@/entities/cart';
 
 import { Text, BoldText, TitleText } from '@/shared/ui/elements';
-import { useAppSelector } from '@/shared/lib/redux';
 import { concatSx } from '@/shared/lib/helpers';
+import { useAppSelector } from '@/shared/lib/redux';
 
 const sxContainer: SxStylesNotArr = {
   gap: '0.75rem'

@@ -9,12 +9,11 @@ import { splitIntoTwoByWhitespaceIndex } from '@/shared/lib/utils';
 
 const sxStyles: SxStylesMap = {
   hiddenDescription: {
-    height: 0,
     opacity: 0,
     fontSize: 0
   },
   expandBtn: {
-    display: 'inline'
+    display: 'display-inline'
   }
 };
 

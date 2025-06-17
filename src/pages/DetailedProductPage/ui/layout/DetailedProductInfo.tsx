@@ -1,3 +1,4 @@
+import type { BoxProps } from '@mui/system';
 import type { ProductLight } from '@/entities/product';
 import type { SxStylesMap } from '@/shared/model/types';
 
@@ -12,28 +13,16 @@ import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/use
 
 import { SuspenseWithError } from '@/shared/ui/components';
 import { TitleText, DiscountText } from '@/shared/ui/elements';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppSelector } from '@/shared/lib/redux';
 
 const sxStyles = {
-  container: (theme) => ({
+  container: {
     position: 'relative',
-    width: '32.5%',
     display: 'flex',
     flexDirection: 'column',
-    rowGap: 0.5,
-
-    [theme.breakpoints.down('tablet')]: {
-      width: '45%',
-      float: 'left',
-      p: '1.5rem 1.5rem 0 0'
-    },
-
-    [theme.breakpoints.down(500)]: {
-      width: 1,
-      float: 'none',
-      pr: 0
-    }
-  }),
+    rowGap: 0.5
+  },
 
   discountIcon: {
     top: -1,
@@ -45,11 +34,11 @@ const sxStyles = {
   }
 } satisfies SxStylesMap;
 
-interface DetailedProductHeadProps {
+interface DetailedProductInfoProps extends BoxProps {
   productData: ProductLight;
 }
 
-export function DetailedProductHead({ productData }: DetailedProductHeadProps) {
+export function DetailedProductInfo({ productData, sx }: DetailedProductInfoProps) {
   const language = useAppSelector(selectLanguage);
   const country = useAppSelector(selectCountry);
 
@@ -62,7 +51,7 @@ export function DetailedProductHead({ productData }: DetailedProductHeadProps) {
     .filter(Boolean);
 
   return (
-    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} sx={sxStyles.container}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)} sxWrapper={concatSx(sxStyles.container, sx)}>
       <TitleText>{productData.name[language]}</TitleText>
       <UserFullPriceText price={price} discount={discount} discountedPrice={discountedPrice} />
 
