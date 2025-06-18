@@ -1,4 +1,4 @@
-import type { BackendError } from '@/shared/api/ecommerce-api';
+import type { BackendError } from '@/shared/api/ecommerce-api/model/types/types';
 
 import { isObject } from '@/shared/model/types/guards';
 

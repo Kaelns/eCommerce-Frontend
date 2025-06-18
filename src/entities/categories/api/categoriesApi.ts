@@ -1,5 +1,5 @@
-import type { CategoriesCollection } from '@/entities/categories';
 import type { CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
+import type { CategoriesCollection } from '@/entities/categories/model/categories.types';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
@@ -19,3 +19,5 @@ export const categoriesApi = ecommerceApi.injectEndpoints({
   }),
   overrideExisting: 'throw'
 });
+
+export const { useGetCategoriesQuery } = categoriesApi;

@@ -1,19 +1,21 @@
 import type { Theme, StackProps } from '@mui/system';
 import type { SxProps, BoxProps } from '@mui/material';
-import type { SrcsetInPx, SxStylesMap } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { grey } from '@mui/material/colors';
 
+import { createSrcSet, type SrcsetInPx } from '@/shared/api/ecommerce-api';
+
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { ImgSkeleton } from '@/shared/ui/components/skeletons/ImgSkeleton';
 import { sxMixins } from '@/shared/lib/mui';
 import { concatSx } from '@/shared/lib/helpers';
-import { createSrcSet, getMaxMuiHeight } from '@/shared/lib/utils';
+import { getMaxMuiHeight } from '@/shared/lib/utils';
 
-const sxStyles: SxStylesMap = {
+const sxStyles = {
   container: {
     position: 'relative',
     alignItems: 'center',
@@ -25,9 +27,11 @@ const sxStyles: SxStylesMap = {
   skeleton: {
     bgcolor: grey[200]
   },
+
   skeletonWrapper: {
     position: 'absolute'
   },
+
   img: {
     borderRadius: 1,
     objectFit: 'contain',
@@ -38,7 +42,7 @@ const sxStyles: SxStylesMap = {
     width: 1,
     height: 1
   }
-};
+} satisfies SxStylesMap;
 
 export interface ImgLoadProps extends BoxProps<'img'> {
   src: string;
@@ -58,8 +62,8 @@ export function ImgLoad({
   srcSetArr,
   onClick,
 
-  sx = {},
-  sxContainer = {},
+  sx,
+  sxContainer,
   ...props
 }: ImgLoadProps) {
   const [isImgLoading, setIsImgLoading] = useState(true);

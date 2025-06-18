@@ -31,6 +31,6 @@ export interface TimingProgressProps extends LinearProgressProps {
   maxTimeSec: number;
 }
 
-export function TimingProgress({ maxTimeSec, sx = {}, ...props }: TimingProgressProps) {
+export function TimingProgress({ maxTimeSec, sx, ...props }: TimingProgressProps) {
   return <LinearProgress variant="indeterminate" sx={concatSx(sxProgress(maxTimeSec), sx)} {...props} />;
 }

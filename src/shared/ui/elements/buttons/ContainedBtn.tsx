@@ -8,7 +8,7 @@ import { ButtonVariant } from '@/shared/model/data';
 
 const sxBtn: SxStylesObj = { textTransform: 'none' };
 
-export function ContainedBtn({ children, variant = ButtonVariant.CONTAINED, sx = {}, ...props }: PropsWithChildren<ButtonProps>) {
+export function ContainedBtn({ children, variant = ButtonVariant.CONTAINED, sx, ...props }: PropsWithChildren<ButtonProps>) {
   return (
     <Button variant={variant} sx={concatSx(sxBtn, sx)} {...props}>
       {children}

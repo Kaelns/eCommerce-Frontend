@@ -35,7 +35,7 @@ interface NavbarProps {
   sxContainer?: SxProps<Theme>;
 }
 
-export function Navbar({ navPaths, orientation = 'horizontal', onLinkClick, sxContainer = {} }: NavbarProps) {
+export function Navbar({ navPaths, orientation = 'horizontal', onLinkClick, sxContainer }: NavbarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

@@ -20,6 +20,6 @@ interface LinkAbsoluteWrapperProps extends LinkProps, RouterLinkProps {
   color?: LinkProps['color'];
 }
 
-export function LinkAbsoluteWrapper({ to, sx = {}, ...props }: LinkAbsoluteWrapperProps) {
+export function LinkAbsoluteWrapper({ to, sx, ...props }: LinkAbsoluteWrapperProps) {
   return <Link to={to} component={RouterLink} sx={concatSx(sxLink, sx)} {...props} />;
 }

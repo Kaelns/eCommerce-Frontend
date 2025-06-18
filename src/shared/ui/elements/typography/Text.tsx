@@ -17,7 +17,7 @@ interface TextProps extends TypographyProps {
   isPositioned?: boolean;
 }
 
-export function Text({ children, isPositioned = false, sx = {}, ...props }: PropsWithChildren<TextProps>) {
+export function Text({ children, isPositioned = false, sx, ...props }: PropsWithChildren<TextProps>) {
   return (
     <Typography sx={concatSx(isPositioned && sxText, sx)} {...props}>
       {children}

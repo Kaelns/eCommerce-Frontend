@@ -1,6 +1,6 @@
 import type { ButtonProps } from '@mui/material';
 
-import { applyFormFiltersAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { applyFormFiltersAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 import { ContainedBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';

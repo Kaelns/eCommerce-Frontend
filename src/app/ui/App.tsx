@@ -1,6 +1,5 @@
 import type { SxStylesMap } from '@/shared/model/types';
 
-import { useEffect } from 'react';
 import { Stack } from '@mui/system';
 import { Outlet } from 'react-router-dom';
 
@@ -8,16 +7,14 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { AppHeader } from '@/widgets/AppHeader';
 
-import { categoriesApi } from '@/entities/categories';
 import { useStartSessionQuery } from '@/entities/auth';
-
-import { Alert } from '@/features/Alert';
 
 import '@/app/styles/index.scss';
 import '@/app/model/init-scripts.ts';
 
+import { Alert } from '@/features/Alert';
+
 import { SectionContainer, SuspenseWithError } from '@/shared/ui/components';
-import { useAppDispatch } from '@/shared/lib/redux';
 
 const sxStyles: SxStylesMap = {
   container: {
@@ -32,17 +29,9 @@ const sxStyles: SxStylesMap = {
 };
 
 export function App() {
-  const dispatch = useAppDispatch();
-
   const { isLoading, isError, error } = useStartSessionQuery(undefined, {
     selectFromResult: ({ isLoading, isError, error }) => ({ isLoading, isError, error })
   });
-
-  useEffect(() => {
-    if (!isLoading) {
-      dispatch(categoriesApi.util.prefetch('getCategories', undefined, {}));
-    }
-  }, [dispatch, isLoading]);
 
   return (
     <>

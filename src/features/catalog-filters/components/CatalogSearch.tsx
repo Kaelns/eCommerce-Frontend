@@ -8,8 +8,8 @@ import { Box, Stack, InputBase, IconButton, InputAdornment } from '@mui/material
 
 import { selectIsSearchInFocus, setIsSearchInFocusAction } from '@/pages/CatalogPage/model/catalogPage.slice';
 
-import { selectSearch } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
-import { debounceSearchToQueryArgs } from '@/features/catalog-filters/model/redux/thunks/debounceSearchToQueryArgs.thunk';
+import { selectSearch } from '@/features/catalog-filters/model/catalogFilter.slice';
+import { debounceSearchToQueryArgs } from '@/features/catalog-filters/lib/redux/thunks/debounceSearchToQueryArgs.thunk';
 
 import { sxMixins } from '@/shared/lib/mui';
 import { concatSx } from '@/shared/lib/helpers';
@@ -47,7 +47,7 @@ interface SearchProps extends InputBaseProps {
   sxContainer?: SxProps<Theme>;
 }
 
-export function CatalogSearch({ sx = {}, sxContainer = {}, ...props }: SearchProps) {
+export function CatalogSearch({ sx, sxContainer, ...props }: SearchProps) {
   const dispatch = useAppDispatch();
 
   const search = useAppSelector(selectSearch);

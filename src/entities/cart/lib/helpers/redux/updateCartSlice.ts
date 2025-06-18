@@ -8,13 +8,11 @@ import { convertCart } from '@/entities/cart/lib/helpers/objects/convertCart';
 export function updateCartSlice(cart: Cart, cartLight: CartLight) {
   const newLightCart = convertCart(cart);
   const isEqualProducts = isEqual(cartLight.products, newLightCart.products);
-  const isEqualDiscountCodes = isEqual(cartLight.discountCodesRefs, newLightCart.discountCodesRefs);
 
   return {
     ...newLightCart,
     // * To avoid unnecessary re-renders
     products: (isEqualProducts ? cartLight : newLightCart).products,
-    productsIds: (isEqualProducts ? cartLight : newLightCart).productsIds,
-    discountCodesRefs: (isEqualDiscountCodes ? cartLight : newLightCart).discountCodesRefs
+    productsIds: (isEqualProducts ? cartLight : newLightCart).productsIds
   };
 }

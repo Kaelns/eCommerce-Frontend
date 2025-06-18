@@ -5,6 +5,7 @@ import type { Theme, SystemStyleObject } from '@mui/system';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type FunctionAny = (...args: any[]) => any;
+export type Currencies = keyof typeof isoCurrencies;
 
 export interface TreeNode {
   id: string;
@@ -27,17 +28,3 @@ export type SxStylesCallback<T extends object = Theme> = (theme: Theme) => Syste
 
 export type SxStylesMap<T extends object = Theme> = Record<string, SxStylesNotArr<T>>;
 export type SxStylesArr<T extends object = Theme> = ReadonlyArray<boolean | SxStylesCallback<T> | SxStylesObj<T>>;
-
-// * Ecommerce types
-
-export type SrcsetInPx = [string, `${number}w`][];
-
-export type Currencies = keyof typeof isoCurrencies;
-
-export interface PriceConverted {
-  price: number;
-  discount: number;
-  currencyCode: string;
-  fractionDigits: number;
-  discountedPrice: number;
-}

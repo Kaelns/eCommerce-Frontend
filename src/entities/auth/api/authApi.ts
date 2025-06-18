@@ -1,6 +1,6 @@
-import type { AppData } from '@/entities/auth';
 import type { UserCredentials } from '@/entities/user';
 import type { ResponceOk } from '@/shared/api/ecommerce-api';
+import type { AppData } from '@/entities/auth/model/auth.types';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';
 
@@ -45,3 +45,5 @@ export const authApi = ecommerceApi.injectEndpoints({
   }),
   overrideExisting: 'throw'
 });
+
+export const { useStartSessionQuery } = authApi;

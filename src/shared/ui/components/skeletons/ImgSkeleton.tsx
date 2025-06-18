@@ -13,6 +13,6 @@ const sxSkeleton: SxStylesNotArr = {
   [`&.${skeletonClasses.root}`]: { transform: 'scale(1)' }
 };
 
-export function ImgSkeleton({ sx = {}, ...props }: SkeletonProps) {
+export function ImgSkeleton({ sx, ...props }: SkeletonProps) {
   return <Skeleton animation="wave" sx={concatSx(sxSkeleton, sx)} {...props} />;
 }

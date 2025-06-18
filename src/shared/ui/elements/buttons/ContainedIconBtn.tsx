@@ -13,7 +13,7 @@ const sxBtnContained: SxStylesObj = {
   }
 };
 
-export function ContainedIconBtn({ children, sx = {}, ...props }: PropsWithChildren<IconButtonProps>) {
+export function ContainedIconBtn({ children, sx, ...props }: PropsWithChildren<IconButtonProps>) {
   return (
     <IconButton sx={concatSx(sxBtnContained, sx)} {...props}>
       {children}

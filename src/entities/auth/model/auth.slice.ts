@@ -22,8 +22,10 @@ const authSliceLazy = createSlice({
   }
 });
 
-export const authSlice = authSliceLazy.injectInto(rootReducer);
+const authSlice = authSliceLazy.injectInto(rootReducer);
 
 declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof authSliceLazy> {}
 }
+
+export const { selectIsLoggedAuth } = authSlice.selectors;

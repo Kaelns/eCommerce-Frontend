@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Box } from '@mui/material';
 import SlickSlider from 'react-slick';
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, Children } from 'react';
 
 import { selectInitSlide } from '@/features/Slider/model/slider.slice';
 import { arrowSettings, customDotsSettings } from '@/features/Slider/model/config';
@@ -39,6 +39,8 @@ export function Slider({
 
   const initialSlide = useAppSelector((state) => selectInitSlide(state, sliderId));
 
+  const isInfinite = Children.count(children) > 3;
+
   const addCustomDotsSettings = useMemo(() => !!customDots.length && customDotsSettings(customDots, sliderRef), [customDots]);
 
   return (
@@ -46,6 +48,7 @@ export function Slider({
       component={SlickSlider}
       ref={sliderRef}
       //
+      infinite={isInfinite}
       speed={1000}
       //
       dots={!isShowArrows}

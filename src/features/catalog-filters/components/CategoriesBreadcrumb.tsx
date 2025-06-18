@@ -10,9 +10,9 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 import { selectLanguage } from '@/entities/user';
 import { useGetCategoriesQuery } from '@/entities/categories';
 
-import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryName';
-import { convertToBreadcrumbCategories } from '@/features/catalog-filters/helpers/convertToBreadcrumbCategories';
-import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { getCategoryName } from '@/features/catalog-filters/lib/helpers/getCategoryName';
+import { convertToBreadcrumbCategories } from '@/features/catalog-filters/lib/helpers/convertToBreadcrumbCategories';
+import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 import { CasualBtn } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
@@ -29,7 +29,7 @@ interface CategoriesBreadcrumbProps extends BreadcrumbsProps {
   btnSx?: SxProps<Theme>;
 }
 
-export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx = {}, ...props }: CategoriesBreadcrumbProps) {
+export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx, ...props }: CategoriesBreadcrumbProps) {
   const dispatch = useAppDispatch();
   const categoryId = useAppSelector(selectCategoryId);
   const language = useAppSelector(selectLanguage);

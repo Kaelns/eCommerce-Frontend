@@ -28,12 +28,10 @@ const sxStyles: SxStylesMap = {
     ml: 1,
     paddingBlock: 0,
 
-    color: 'common.background',
-    bgcolor: 'primary.main',
+    bgcolor: 'var(--IconButton-hoverBg)',
 
     ...sxMixins.mediaHover({
-      // paddingBlock: '2px',
-      bgcolor: 'primary.dark'
+      bgcolor: 'var(--mui-palette-Chip-defaultBorder)'
     })
   }
 } satisfies SxStylesMap;

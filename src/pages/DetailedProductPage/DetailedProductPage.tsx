@@ -6,7 +6,7 @@ import { useLoaderData } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Stack, useTheme, useMediaQuery } from '@mui/system';
 
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
+import { SRCSET, getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { createImagesArr } from '@/pages/DetailedProductPage/lib/createImages';
 import { ScaledImageModal } from '@/pages/DetailedProductPage/ui/layout/ScaledImageModal';
@@ -15,7 +15,7 @@ import { setIsOpenScaledImageModalAction } from '@/pages/DetailedProductPage/mod
 
 import { selectLanguage } from '@/entities/user';
 import { useGetProductByKeyQuery } from '@/entities/product';
-import { convertToLightProduct } from '@/entities/product/lib/helpers/objects/convertToLightProduct';
+import { convertToLightProduct } from '@/entities/product/lib/helpers/convertToLightProduct';
 
 import { Slider, setInitSlideAction } from '@/features/Slider';
 
@@ -23,7 +23,7 @@ import { TitleText } from '@/shared/ui/elements';
 import { ExpandableText, SuspenseWithError } from '@/shared/ui/components';
 import { sxMixins } from '@/shared/lib/mui';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
-import { SRCSET, ZIndex } from '@/shared/model/data';
+import { ZIndex } from '@/shared/model/data';
 
 const SCALED_IMAGE_MODAL_SLIDER_ID = 'scaledImageModal';
 

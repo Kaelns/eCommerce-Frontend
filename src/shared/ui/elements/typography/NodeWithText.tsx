@@ -19,7 +19,7 @@ export function NodeWithText({
   isAfter = false,
   isPositioned = false,
   Node,
-  sxContainer = {},
+  sxContainer,
   ...props
 }: PropsWithChildren<NodeWithTextProps>) {
   return (

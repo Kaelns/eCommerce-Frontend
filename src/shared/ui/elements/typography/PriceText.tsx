@@ -26,7 +26,7 @@ export function PriceText({
   currencySymbol,
   priceType = 'price',
   variant = 'subtitle2',
-  sx = {},
+  sx,
   ...props
 }: PropsWithChildren<PriceTextProps>) {
   return (

@@ -1,7 +1,5 @@
-import type { PriceConverted } from '@/shared/model/types';
+import type { PriceTransformed } from '@/shared/api/ecommerce-api';
 import type { Image, LocalizedString, ByProjectKeyProductProjectionsSearchRequestBuilder } from '@commercetools/platform-sdk';
-
-export type SearchTextQueryArgKey = `text.${string}`;
 
 // * Colors
 export type ColorsValues = Colors[keyof Colors];
@@ -20,5 +18,5 @@ export interface ProductLight {
   name: LocalizedString;
   categoriesIdArr: string[];
   description: LocalizedString | undefined;
-  pricesObj: Record<string, PriceConverted>;
+  pricesObj: Record<string, PriceTransformed>;
 }

@@ -25,7 +25,7 @@ interface DiscountTextProps extends TypographyProps {
   isPositioned?: boolean;
 }
 
-export function DiscountText({ isPositioned = false, discount, sx = {} }: DiscountTextProps) {
+export function DiscountText({ isPositioned = false, discount, sx }: DiscountTextProps) {
   return (
     !!discount && (
       <Text isPositioned={isPositioned} variant="subtitle2" sx={concatSx(sxText, sx)}>

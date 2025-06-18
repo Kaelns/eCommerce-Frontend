@@ -1,7 +1,7 @@
 import type { Category } from '@commercetools/platform-sdk';
 import type { CategoriesObj, CategoriesCollection } from '@/entities/categories/model/categories.types';
 
-import { buildCategoryTree } from '@/entities/product/lib/helpers/objects/buildCategoryTree/buildCategoryTree';
+import { buildCategoryTree } from '@/entities/categories/lib/helpers/buildCategoryTree/buildCategoryTree';
 
 export function convertCategories(categories: Category[]): CategoriesCollection {
   const categoriesObj = categories.reduce<CategoriesObj>((acc, category) => {

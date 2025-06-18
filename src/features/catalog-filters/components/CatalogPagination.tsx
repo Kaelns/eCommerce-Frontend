@@ -7,7 +7,7 @@ import { useTheme, useMediaQuery } from '@mui/system';
 
 import { ProductConsts, calculateMaxPages } from '@/entities/product';
 
-import { selectPage, setPageAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { selectPage, setPageAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 import { concatSx } from '@/shared/lib/helpers';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
@@ -23,7 +23,7 @@ interface ProductPagination extends PaginationProps {
   amount: number;
 }
 
-export function CatalogPagination({ amount, sx = {}, ...props }: ProductPagination) {
+export function CatalogPagination({ amount, sx, ...props }: ProductPagination) {
   const theme = useTheme();
   const dispatch = useAppDispatch();
 

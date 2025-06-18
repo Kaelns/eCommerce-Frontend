@@ -1,5 +1,5 @@
-import type { CartData } from '@/entities/cart';
 import type { ResponceOk } from '@/shared/api/ecommerce-api';
+import type { CartData } from '@/entities/cart/model/types/cart.types';
 import type { Cart, MyCartUpdateAction, CartPagedQueryResponse } from '@commercetools/platform-sdk';
 
 import { ecommerceApi } from '@/shared/api/ecommerce-api';

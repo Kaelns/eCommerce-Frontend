@@ -8,7 +8,7 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 import { selectLanguage } from '@/entities/user';
 import { useGetProductColorsQuery } from '@/entities/product';
 
-import { toggleColorFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { toggleColorFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 import { ColorBtn } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/ColorFilter/ColorBtn';
 
 import { CasualBtn } from '@/shared/ui/elements';

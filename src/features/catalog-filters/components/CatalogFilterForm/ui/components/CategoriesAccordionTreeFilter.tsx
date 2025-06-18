@@ -6,8 +6,8 @@ import { selectLanguage } from '@/entities/user';
 import { useGetCategoriesQuery } from '@/entities/categories';
 
 import { AccordionTree } from '@/features/AccordionTree';
-import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryName';
-import { selectIsCurrentCategoryIdForm, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { getCategoryName } from '@/features/catalog-filters/lib/helpers/getCategoryName';
+import { selectIsCurrentCategoryIdForm, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';

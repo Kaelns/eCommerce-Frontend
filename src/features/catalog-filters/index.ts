@@ -1,4 +1,4 @@
-import { catalogFilterSlice } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { catalogFilterSlice } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 export { CatalogSearch } from '@/features/catalog-filters/components/CatalogSearch';
 export { CatalogSortBy } from '@/features/catalog-filters/components/CatalogSortBy';

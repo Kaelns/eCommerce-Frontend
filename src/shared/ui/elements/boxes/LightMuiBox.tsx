@@ -10,7 +10,7 @@ interface LightMuiBoxProps extends BoxProps {
 /**
  * Box to pass only specific props
  */
-export function LightMuiBox({ children, sx = {}, onClick, classes = '' }: PropsWithChildren<LightMuiBoxProps>): React.ReactElement {
+export function LightMuiBox({ children, sx, onClick, classes = '' }: PropsWithChildren<LightMuiBoxProps>): React.ReactElement {
   return (
     <Box sx={sx} className={classes} onClick={onClick}>
       {children}

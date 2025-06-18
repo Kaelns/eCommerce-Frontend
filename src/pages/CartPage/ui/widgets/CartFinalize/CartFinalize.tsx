@@ -15,7 +15,7 @@ const sxContainer: SxStylesNotArr = {
   gap: '0.75rem'
 };
 
-export function CartFinalize({ sx = {}, ...props }: PaperProps) {
+export function CartFinalize({ sx, ...props }: PaperProps) {
   const country = useAppSelector(selectCountry);
 
   const productQuantity = useAppSelector(selectCartProductQuantity);

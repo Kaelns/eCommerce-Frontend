@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
+import { ProductCard } from '@/widgets/product/ProductCard';
+
+import { useGetProductsQuery } from '@/entities/product';
 import { queryArgsByCategory } from '@/entities/categories';
-import { ProductCard, useGetProductsQuery } from '@/entities/product';
 
 import { setCategoryIdAndNameAction } from '@/features/catalog-filters';
 

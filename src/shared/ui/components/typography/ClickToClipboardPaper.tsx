@@ -13,7 +13,7 @@ interface ClickToClipboardProps extends PaperProps {
   handleOnCopy?: () => void;
 }
 
-export function ClickToClipboardPaper({ text, handleOnCopy, sx = {}, ...props }: ClickToClipboardProps) {
+export function ClickToClipboardPaper({ text, handleOnCopy, sx, ...props }: ClickToClipboardProps) {
   const handleClick = async (): Promise<void> => {
     await navigator.clipboard.writeText(text);
     handleOnCopy?.();

@@ -5,11 +5,12 @@ import type { SxStylesMap } from '@/shared/model/types';
 import { Stack } from '@mui/system';
 import { Chip } from '@mui/material';
 
-import { getErrorMessage } from '@/shared/api/ecommerce-api';
+import { MOCK_PRICE, getErrorMessage } from '@/shared/api/ecommerce-api';
 
-import { AddProductToCartBtn } from '@/entities/cart';
 import { useGetCategoriesQuery } from '@/entities/categories';
 import { selectCountry, selectLanguage, UserFullPriceText } from '@/entities/user';
+
+import { AddProductToCartBtn } from '@/features/AddProductToCartBtn';
 
 import { SuspenseWithError } from '@/shared/ui/components';
 import { TitleText, DiscountText } from '@/shared/ui/elements';
@@ -20,7 +21,7 @@ const sxStyles = {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    gap: 1
+    gap: 0.5
   },
 
   discountIcon: {
@@ -43,7 +44,7 @@ export function DetailedProductInfo({ productData, sx }: DetailedProductInfoProp
 
   const { data: categoriesData, error, isError, isLoading } = useGetCategoriesQuery();
 
-  const { price, discount, discountedPrice } = productData.pricesObj[country];
+  const { price, discount, discountedPrice } = productData.pricesObj[country] ?? MOCK_PRICE;
 
   const categoriesNames = productData.categoriesIdArr
     .map((id) => categoriesData?.categoriesObj?.[id]?.name?.[language] ?? '')
