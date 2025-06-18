@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Paper } from '@mui/material';
@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
+import { ProductCard } from '@/widgets/product/ProductCard';
+
+import { useGetProductsQuery } from '@/entities/product';
 import { queryArgsByCategory } from '@/entities/categories';
-import { ProductCard, useGetProductsQuery } from '@/entities/product';
 
 import { setCategoryIdAndNameAction } from '@/features/catalog-filters';
 
@@ -17,7 +19,7 @@ import { SuspenseWithError } from '@/shared/ui/components';
 import { useAppDispatch } from '@/shared/lib/redux';
 import { Paths } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   body: {
     px: 1.5,
     py: 3
@@ -68,7 +70,7 @@ export const ProductShowcaseSection = memo(function ShowcaseSection({
       </Paper>
 
       <Paper sx={sxStyles.body}>
-        <SuspenseWithError settings={{ error: getErrorMessage(error), isError, isLoading }}>
+        <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
           <Grid container columns={9} spacing={2}>
             {products?.results.map((product) => (
               <Grid key={product.id} size={{ laptop: 3, mobile: 'grow', tablet: 4.5 }} sx={sxStyles.productCardContainer}>

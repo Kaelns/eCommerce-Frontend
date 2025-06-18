@@ -3,7 +3,7 @@ import type { LinearProgressProps } from '@mui/material';
 
 import { keyframes, LinearProgress, linearProgressClasses } from '@mui/material';
 
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 
 const progressKeyframes = keyframes({
   '0%': {
@@ -31,6 +31,6 @@ export interface TimingProgressProps extends LinearProgressProps {
   maxTimeSec: number;
 }
 
-export function TimingProgress({ maxTimeSec, sx = {}, ...props }: TimingProgressProps) {
-  return <LinearProgress variant="indeterminate" sx={[sxProgress(maxTimeSec), ...convertSxToArr(sx)]} {...props} />;
+export function TimingProgress({ maxTimeSec, sx, ...props }: TimingProgressProps) {
+  return <LinearProgress variant="indeterminate" sx={concatSx(sxProgress(maxTimeSec), sx)} {...props} />;
 }

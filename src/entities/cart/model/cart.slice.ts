@@ -33,9 +33,11 @@ const cartSliceLazy = createSlice({
 
     selectCartProducts: (state) => state.products,
     selectCartProductsIds: (state) => state.productsIds,
-    selectCartProductById: (state, productId) => state.products[productId],
-    selectCartProductLineId: (state, productId) => state.products[productId]?.cartProductLineId || undefined,
+    selectCartProductById: (state, productId: string) => state.products[productId],
+    selectCartProductLineId: (state, productId: string) => state.products[productId]?.cartProductLineId || undefined,
     selectCartProductQuantity: (state) => state.productsQuantity,
+
+    selectCartIsEmpty: (state) => state.productsQuantity === 0,
 
     selectCartFinalPriceObj: createSelector([(state) => state.products, (_state, country) => country], calculateFinalCartPrice)
   },
@@ -129,20 +131,21 @@ declare module '@/shared/lib/redux/redux.config' {
 }
 
 export const {
+  selectCartIsEmpty,
   selectCartProducts,
   selectCartProductsIds,
+  selectCartProductById,
+  selectCartIdAndVersion,
   selectCartFinalPriceObj,
   selectCartProductLineId,
-  selectCartIdAndVersion,
-  selectCartProductById,
   selectCartProductQuantity
 } = cartSlice.selectors;
 
 export const {
-  deleteProductAction,
-  decrementQuantityAction,
-  incrementQuantityAction,
-  setQuantityAction,
   clearCartAction,
-  revertProductsAction
+  setQuantityAction,
+  deleteProductAction,
+  revertProductsAction,
+  decrementQuantityAction,
+  incrementQuantityAction
 } = cartSlice.actions;

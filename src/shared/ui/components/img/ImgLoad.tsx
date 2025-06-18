@@ -1,20 +1,21 @@
 import type { Theme, StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
-import type { SrcsetPxAsc } from '@/entities/product';
 import type { SxProps, BoxProps } from '@mui/material';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { grey } from '@mui/material/colors';
 
+import { createSrcSet, type SrcsetInPx } from '@/shared/api/ecommerce-api';
+
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { ImgSkeleton } from '@/shared/ui/components/skeletons/ImgSkeleton';
 import { sxMixins } from '@/shared/lib/mui';
-import { createSrcset } from '@/shared/lib/utils';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
+import { getMaxMuiHeight } from '@/shared/lib/utils';
 
-const sxStyles: SxStyles = {
+const sxStyles = {
   container: {
     position: 'relative',
     alignItems: 'center',
@@ -26,9 +27,11 @@ const sxStyles: SxStyles = {
   skeleton: {
     bgcolor: grey[200]
   },
+
   skeletonWrapper: {
     position: 'absolute'
   },
+
   img: {
     borderRadius: 1,
     objectFit: 'contain',
@@ -39,50 +42,56 @@ const sxStyles: SxStyles = {
     width: 1,
     height: 1
   }
-};
+} satisfies SxStylesMap;
 
-interface ImgLoadProps<T extends StackProps['height']> extends BoxProps<'img'> {
-  height?: T;
+export interface ImgLoadProps extends BoxProps<'img'> {
   src: string;
   alt: string;
-  containerStyles?: SxProps<Theme>;
-  srcset?: T extends number
-    ? { srcSetArr: SrcsetPxAsc }
-    : {
-        srcSetArr: SrcsetPxAsc;
-        maxSize: 'unlimited' | number;
-      };
+
+  srcSetArr?: SrcsetInPx;
+  height?: StackProps['height'];
+  maxSize?: 'unlimited' | number;
+
+  sxContainer?: SxProps<Theme>;
 }
 
-export function ImgLoad<T extends StackProps['height']>({
+export function ImgLoad({
   src,
   height,
-  srcset,
+  maxSize,
+  srcSetArr,
   onClick,
-  sx = {},
-  containerStyles = {},
+
+  sx,
+  sxContainer,
   ...props
-}: ImgLoadProps<T>) {
+}: ImgLoadProps) {
   const [isImgLoading, setIsImgLoading] = useState(true);
 
   const handleOnImgLoad = (): void => {
     setIsImgLoading(false);
   };
 
-  // TODO slice srcSetArr for max height and add isCreateSrcSet.
   const srcSetOfImg = useMemo(() => {
-    if (!srcset) {
+    if (!srcSetArr) {
       return;
     }
-    if (typeof height === 'number') {
-      return createSrcset(src, srcset.srcSetArr, height);
-    } else if ('maxSize' in srcset) {
-      return createSrcset(src, srcset.srcSetArr, srcset.maxSize);
+
+    let maxHeight;
+
+    if (maxSize) {
+      maxHeight = maxSize;
+    } else if (height) {
+      maxHeight = getMaxMuiHeight(height);
+    } else if (sxContainer && 'height' in sxContainer) {
+      maxHeight = getMaxMuiHeight(sxContainer.height as StackProps['height']);
     }
-  }, [height, src, srcset]);
+
+    return createSrcSet(src, srcSetArr, maxHeight);
+  }, [height, maxSize, src, srcSetArr, sxContainer]);
 
   return (
-    <Stack height={height} onClick={onClick} sx={[sxStyles.container, ...convertSxToArr(containerStyles)]}>
+    <Stack height={height} onClick={onClick} sx={concatSx(sxStyles.container, sxContainer)}>
       <FadeBox isShow={isImgLoading} sx={[sxStyles.skeletonWrapper, sxStyles.sizes100]}>
         <ImgSkeleton sx={sxStyles.skeleton} />
       </FadeBox>
@@ -93,7 +102,7 @@ export function ImgLoad<T extends StackProps['height']>({
           srcSet={srcSetOfImg}
           loading="lazy"
           onLoad={handleOnImgLoad}
-          sx={[sxStyles.img, sxStyles.sizes100, ...convertSxToArr(sx)]}
+          sx={concatSx(sxStyles.img, sxStyles.sizes100, sx)}
           {...props}
         />
       </FadeBox>

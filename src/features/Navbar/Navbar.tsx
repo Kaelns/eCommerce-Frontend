@@ -1,5 +1,5 @@
 import type { Theme, SxProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { useState, useEffect } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { sxMixins } from '@/shared/lib/mui';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btns: {
     borderRadius: 1,
     textTransform: 'none',
@@ -35,7 +35,7 @@ interface NavbarProps {
   sxContainer?: SxProps<Theme>;
 }
 
-export function Navbar({ navPaths, orientation = 'horizontal', onLinkClick, sxContainer = {} }: NavbarProps) {
+export function Navbar({ navPaths, orientation = 'horizontal', onLinkClick, sxContainer }: NavbarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

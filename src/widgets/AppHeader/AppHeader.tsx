@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import TollIcon from '@mui/icons-material/Toll';
@@ -6,15 +6,15 @@ import { Box, AppBar, useTheme, useMediaQuery } from '@mui/material';
 
 import { Burger } from '@/widgets/AppHeader/ui/Burger';
 import { headerPaths } from '@/widgets/AppHeader/model/navbars';
+import { UserPopoverMenu } from '@/widgets/AppHeader/ui/UserPopoverMenu';
 
-import { UserPopoverMenu } from '@/entities/user';
 import { CartLinkIconBtn } from '@/entities/cart';
 
 import { Navbar } from '@/features/Navbar';
 
 import { SectionContainer } from '@/shared/ui/components';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   headerContainer: {
     display: 'flex',
     justifyContent: 'space-between',

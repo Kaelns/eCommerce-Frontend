@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 import { Paper } from '@mui/material';
@@ -22,7 +22,7 @@ import { SuspenseWithError } from '@/shared/ui/components';
 
 import { Paths } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   boxContainer: {
     display: 'flex',
     flexDirection: { zero: 'column', laptop: 'row' },
@@ -55,7 +55,7 @@ export function CartPage() {
   });
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
       <CartShowIfProductsExist
         Fallback={<AppError src={cartImg} alt="Cart" message="Cart is empty" goTo={{ path: Paths.CATALOG, text: 'Go shopping' }} />}
         sxChildren={sxStyles.boxContainer}

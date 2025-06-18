@@ -1,5 +1,5 @@
-import type { StackProps } from '@mui/system';
-import type { SxStyles, PropsWithChildren } from '@/shared/model/types';
+import type { BoxProps } from '@mui/system';
+import type { SxStylesMap, PropsWithChildren } from '@/shared/model/types';
 
 import { Box } from '@mui/system';
 
@@ -7,59 +7,70 @@ import { AppError } from '@/widgets/AppError';
 
 import { FadeBox } from '@/shared/ui/components/boxes/FadeBox';
 import { PageSkeleton } from '@/shared/ui/components/skeletons/PageSkeleton';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 
 import imageError from '@/shared/assets/error.png';
 
-const sxStyles: SxStyles = {
+const sxStyles = {
+  // * Trick to put children at the same place (overlaying them) without position absolute
   wrapper: {
-    width: 1,
     display: 'grid',
-    gridTemplateColumns: '1fr'
+    // * To say grid not to take content width like "max-content" when set to 1fr. Prevents stretching more than parent size
+    // * with 1fr - minmax(auto, 1fr) = minmax(max-content, 1fr), now - (0, 1fr)
+    gridTemplateColumns: 'minmax(0, 1fr)'
   },
   overlayingChildren: {
     gridRowStart: 1,
     gridColumnStart: 1
   }
-};
+} satisfies SxStylesMap;
 
-interface SuspenseWithErrorProps extends StackProps {
+type LoadingProps =
+  | {
+      isFetching: boolean;
+      isLoading?: undefined;
+    }
+  | {
+      isLoading: boolean;
+      isFetching?: undefined;
+    };
+
+interface MainProps extends BoxProps {
+  error?: string;
+  isError?: boolean;
+  sxWrapper?: BoxProps['sx'];
+
   Fallback?: React.ReactElement;
   Skeleton?: React.ReactElement;
-  settings: { error?: string; isError: boolean } & (
-    | {
-        isFetching: boolean;
-        isLoading?: undefined;
-      }
-    | {
-        isLoading: boolean;
-        isFetching?: undefined;
-      }
-  );
 }
 
 export function SuspenseWithError({
   children,
-  settings: { isLoading, isFetching, isError, error },
-  Skeleton = <PageSkeleton />,
-  Fallback = <AppError message={error} src={imageError} alt="error" />,
-  sx = {},
+
+  error,
+  isError = false,
+  isLoading,
+  isFetching,
+
+  Skeleton,
+  Fallback,
+  sx,
+  sxWrapper,
   ...props
-}: PropsWithChildren<SuspenseWithErrorProps>) {
+}: PropsWithChildren<LoadingProps & MainProps>) {
   const isPending = isLoading ?? isFetching;
   const isPendingOnce = isLoading !== undefined && isFetching === undefined;
 
+  const defaultFallback = Fallback ?? <AppError message={error} src={imageError} alt="error" />;
+  const defaultSkeleton = Skeleton ?? <PageSkeleton />;
+
   return (
-    <Box sx={sxStyles.wrapper} {...props}>
-      <FadeBox isShow={isError}>{Fallback}</FadeBox>
+    <Box sx={concatSx(sxStyles.wrapper, sxWrapper)} {...props}>
+      <FadeBox isShow={isError}>{defaultFallback}</FadeBox>
       <FadeBox isShow={!isError && isPending} sx={sxStyles.overlayingChildren}>
-        {Skeleton}
+        {defaultSkeleton}
       </FadeBox>
-      <FadeBox
-        isShow={!isError && !isPending}
-        unmountOnExit={isError || isPendingOnce}
-        sx={[sxStyles.overlayingChildren, ...convertSxToArr(sx)]}
-      >
+      <FadeBox isShow={!isError && !isPending} unmountOnExit={isError || isPendingOnce} sx={concatSx(sxStyles.overlayingChildren, sx)}>
         {children}
       </FadeBox>
     </Box>

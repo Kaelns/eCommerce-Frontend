@@ -3,7 +3,7 @@ import type { PropsWithChildren } from '@/shared/model/types';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 
-import { theme } from '@/app/config/mui-theme/theme';
+import { theme } from '@/app/config/mui-theme/mui.theme';
 
 export function MuiTheme({ children }: PropsWithChildren) {
   return (

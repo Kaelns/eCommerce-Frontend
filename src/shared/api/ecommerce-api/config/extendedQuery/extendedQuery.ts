@@ -1,7 +1,7 @@
 import type { EcommerceExtendedQuery } from '@/shared/api/ecommerce-api/model/types/types';
 
 import { baseQuery } from '@/shared/api/ecommerce-api/config/baseQuery';
-import { serializeError } from '@/shared/api/ecommerce-api/lib/helpers/serializeError';
+import { serializeError } from '@/shared/api/ecommerce-api/lib/helpers/core/serializeError';
 import { restoreUserAndRequery } from '@/shared/api/ecommerce-api/config/extendedQuery/helpers/restoreUserAndRequery';
 import { setIsLoggedAfterQuery } from '@/shared/api/ecommerce-api/config/extendedQuery/helpers/setIsLoggedAfterQuery';
 

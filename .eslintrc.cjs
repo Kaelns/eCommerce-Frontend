@@ -72,7 +72,7 @@ module.exports = {
     'perfectionist/sort-object-types': sortByLineLength,
     'perfectionist/sort-named-exports': sortByLineLength,
     'perfectionist/sort-named-imports': sortByLineLength,
-    'perfectionist/sort-modules': ['error', { type: 'line-length', order: 'asc', partitionByComment: true }],
+    'perfectionist/sort-modules': sortByLineLength,
     'perfectionist/sort-objects': 'off',
     'perfectionist/sort-jsx-props': 'off',
     'perfectionist/sort-switch-case': 'off',

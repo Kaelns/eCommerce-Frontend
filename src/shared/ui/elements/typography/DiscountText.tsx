@@ -2,7 +2,7 @@ import type { TypographyProps } from '@mui/material';
 import type { SxStylesObj } from '@/shared/model/types';
 
 import { Text } from '@/shared/ui/elements/typography/Text';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { ZIndex } from '@/shared/model/data';
 
 const sxText: SxStylesObj = {
@@ -25,10 +25,10 @@ interface DiscountTextProps extends TypographyProps {
   isPositioned?: boolean;
 }
 
-export function DiscountText({ isPositioned = false, discount, sx = {} }: DiscountTextProps) {
+export function DiscountText({ isPositioned = false, discount, sx }: DiscountTextProps) {
   return (
     !!discount && (
-      <Text isPositioned={isPositioned} variant="subtitle2" sx={[sxText, ...convertSxToArr(sx)]}>
+      <Text isPositioned={isPositioned} variant="subtitle2" sx={concatSx(sxText, sx)}>
         {discount}%
       </Text>
     )

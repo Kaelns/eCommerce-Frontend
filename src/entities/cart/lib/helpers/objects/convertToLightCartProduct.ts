@@ -1,7 +1,7 @@
-import type { CartLightProduct } from '@/entities/cart';
 import type { LineItem } from '@commercetools/platform-sdk';
+import type { CartLightProduct } from '@/entities/cart/model/types/cart.types';
 
-import { getProductPricesObj } from '@/shared/lib/helpers';
+import { mapTransformedProductPrices } from '@/shared/api/ecommerce-api';
 
 import imageNotAvailable from '@/shared/assets/image_not_available.png';
 
@@ -28,7 +28,7 @@ export function convertToLightCartProduct(basketProduct: LineItem): CartLightPro
   const imageUrl = images[0] ? images[0].url : imageNotAvailable;
   const maxQuantity = basketProduct.variant?.availability?.availableQuantity ?? 0;
 
-  const pricesObj = getProductPricesObj(prices);
+  const pricesObj = mapTransformedProductPrices(prices);
 
   return {
     productId: basketProduct.productId,

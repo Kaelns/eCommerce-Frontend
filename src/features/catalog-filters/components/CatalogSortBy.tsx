@@ -1,15 +1,15 @@
-import type { SxStyles } from '@/shared/model/types';
 import type { SelectChangeEvent } from '@mui/material';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack, Select, MenuItem } from '@mui/material';
 
 import { FiltersSort } from '@/features/catalog-filters/model/constants';
-import { selectSort, setSortAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { selectSort, setSortAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 import { TitleText } from '@/shared/ui/elements';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   select: {
     minWidth: { zero: 180, tablet: 250 },
 

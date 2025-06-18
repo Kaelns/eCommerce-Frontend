@@ -47,3 +47,5 @@ export const alertSlice = alertSliceLazy.injectInto(rootReducer);
 declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof alertSliceLazy> {}
 }
+
+export const { showAlertAction } = alertSlice.actions;

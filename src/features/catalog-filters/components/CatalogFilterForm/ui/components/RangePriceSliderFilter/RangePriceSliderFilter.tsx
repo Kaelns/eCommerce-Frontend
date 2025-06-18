@@ -1,11 +1,11 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack, Slider, Typography, OutlinedInput } from '@mui/material';
 
 import { ProductConsts } from '@/entities/product';
 
 import { SLIDER_STEP } from '@/features/catalog-filters/model/constants';
-import { selectPriceForm } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { selectPriceForm } from '@/features/catalog-filters/model/catalogFilter.slice';
 import {
   changeRangeInput,
   changeRangeSlider
@@ -13,7 +13,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   input: {
     flex: 1,
     '& > input': {

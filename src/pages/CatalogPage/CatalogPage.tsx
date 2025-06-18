@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Box, Tooltip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -14,7 +14,7 @@ import { CatalogSearch, CatalogFilterForm, CategoriesBreadcrumb } from '@/featur
 import { ContainedIconBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   container: {
     mt: -2
   },

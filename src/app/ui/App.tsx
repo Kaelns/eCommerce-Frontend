@@ -1,6 +1,5 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
-import { useEffect } from 'react';
 import { Stack } from '@mui/system';
 import { Outlet } from 'react-router-dom';
 
@@ -8,18 +7,16 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 
 import { AppHeader } from '@/widgets/AppHeader';
 
-import { categoriesApi } from '@/entities/categories';
 import { useStartSessionQuery } from '@/entities/auth';
-
-import { Alert } from '@/features/Alert';
 
 import '@/app/styles/index.scss';
 import '@/app/model/init-scripts.ts';
 
-import { SectionContainer, SuspenseWithError } from '@/shared/ui/components';
-import { useAppDispatch } from '@/shared/lib/redux';
+import { Alert } from '@/features/Alert';
 
-const sxStyles: SxStyles = {
+import { SectionContainer, SuspenseWithError } from '@/shared/ui/components';
+
+const sxStyles: SxStylesMap = {
   container: {
     flex: 1
   },
@@ -32,17 +29,9 @@ const sxStyles: SxStyles = {
 };
 
 export function App() {
-  const dispatch = useAppDispatch();
-
   const { isLoading, isError, error } = useStartSessionQuery(undefined, {
     selectFromResult: ({ isLoading, isError, error }) => ({ isLoading, isError, error })
   });
-
-  useEffect(() => {
-    if (!isLoading) {
-      dispatch(categoriesApi.util.prefetch('getCategories', undefined, {}));
-    }
-  }, [dispatch, isLoading]);
 
   return (
     <>
@@ -50,7 +39,7 @@ export function App() {
 
       <Stack component="main" gap={1.5} sx={sxStyles.container}>
         <SectionContainer sx={sxStyles.sectionContainer}>
-          <SuspenseWithError settings={{ isLoading, isError, error: getErrorMessage(error) }}>
+          <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
             <Outlet />
           </SuspenseWithError>
         </SectionContainer>

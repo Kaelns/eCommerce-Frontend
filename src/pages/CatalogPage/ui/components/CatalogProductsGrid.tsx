@@ -3,7 +3,7 @@ import type { ProductProjection } from '@commercetools/platform-sdk';
 
 import { Grid } from '@mui/system';
 
-import { ProductCard } from '@/entities/product';
+import { ProductCard } from '@/widgets/product/ProductCard';
 
 const sxProductWrapper: SxStylesObj = {
   display: 'flex',

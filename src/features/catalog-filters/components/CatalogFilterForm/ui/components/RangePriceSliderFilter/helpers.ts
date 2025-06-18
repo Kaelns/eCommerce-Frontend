@@ -4,7 +4,7 @@ import type { AppDispatch } from '@/shared/lib/redux/redux.types';
 import { ProductConsts } from '@/entities/product';
 
 import { SLIDER_MIN_DISTANCE } from '@/features/catalog-filters/model/constants';
-import { setPriceFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { setPriceFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 export function changeRangeInput(isLeftThumb: boolean, priceState: number[], dispatch: AppDispatch) {
   return (event: InputReactEvent): void => {

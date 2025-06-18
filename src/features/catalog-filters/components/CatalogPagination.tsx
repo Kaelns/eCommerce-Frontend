@@ -5,12 +5,11 @@ import { useMemo } from 'react';
 import { Pagination } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/system';
 
-import { ProductConsts } from '@/entities/product';
-import { calculateMaxPages } from '@/entities/product/lib/helpers/numbers/calculateMaxPages';
+import { ProductConsts, calculateMaxPages } from '@/entities/product';
 
-import { selectPage, setPageAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { selectPage, setPageAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux';
 
 const sxPagination: SxStylesNotArr = {
@@ -24,7 +23,7 @@ interface ProductPagination extends PaginationProps {
   amount: number;
 }
 
-export function CatalogPagination({ amount, sx = {}, ...props }: ProductPagination) {
+export function CatalogPagination({ amount, sx, ...props }: ProductPagination) {
   const theme = useTheme();
   const dispatch = useAppDispatch();
 
@@ -47,7 +46,7 @@ export function CatalogPagination({ amount, sx = {}, ...props }: ProductPaginati
       onChange={handlePageChange}
       size={isMatchTablet ? 'medium' : 'large'}
       color="primary"
-      sx={[sxPagination, ...convertSxToArr(sx)]}
+      sx={concatSx(sxPagination, sx)}
       {...props}
     />
   );

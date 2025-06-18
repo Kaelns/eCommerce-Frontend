@@ -1,5 +1,5 @@
 import type { Theme } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 import type { SxProps, BreadcrumbsProps } from '@mui/material';
 
 import { memo, useMemo } from 'react';
@@ -10,16 +10,16 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 import { selectLanguage } from '@/entities/user';
 import { useGetCategoriesQuery } from '@/entities/categories';
 
-import { getCategoryName } from '@/features/catalog-filters/helpers/getCategoryName';
-import { convertToBreadcrumbCategories } from '@/features/catalog-filters/helpers/convertToBreadcrumbCategories';
-import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { getCategoryName } from '@/features/catalog-filters/lib/helpers/getCategoryName';
+import { convertToBreadcrumbCategories } from '@/features/catalog-filters/lib/helpers/convertToBreadcrumbCategories';
+import { selectCategoryId, setCategoryIdAndNameFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 
 import { CasualBtn } from '@/shared/ui/elements';
 import { SuspenseWithError } from '@/shared/ui/components';
-import { convertSxToArr } from '@/shared/lib/helpers';
+import { concatSx } from '@/shared/lib/helpers';
 import { useAppSelector, useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btn: (theme) => ({
     color: `${theme.palette.text.secondary} !important`
   })
@@ -29,7 +29,7 @@ interface CategoriesBreadcrumbProps extends BreadcrumbsProps {
   btnSx?: SxProps<Theme>;
 }
 
-export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx = {}, ...props }: CategoriesBreadcrumbProps) {
+export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx, ...props }: CategoriesBreadcrumbProps) {
   const dispatch = useAppDispatch();
   const categoryId = useAppSelector(selectCategoryId);
   const language = useAppSelector(selectLanguage);
@@ -46,7 +46,13 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
   };
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }} Fallback={<Skeleton />} Skeleton={<Skeleton />}>
+    <SuspenseWithError
+      isLoading={isLoading}
+      isError={isError}
+      error={getErrorMessage(error)}
+      Fallback={<Skeleton />}
+      Skeleton={<Skeleton />}
+    >
       <Breadcrumbs {...props}>
         {categoriesToRender.map((categoryId, index) => {
           const categoryName = getCategoryName(categoriesCollection?.categoriesObj, categoryId, language);
@@ -56,7 +62,7 @@ export const CategoriesBreadcrumb = memo(function CategoriesBreadcrumb({ btnSx =
               {categoryName}
             </CasualBtn>
           ) : (
-            <CasualBtn disabled key={`disabled - ${categoryId}`} sx={[sxStyles.btn, ...convertSxToArr(btnSx)]}>
+            <CasualBtn disabled key={`disabled - ${categoryId}`} sx={concatSx(sxStyles.btn, btnSx)}>
               {categoryName}
             </CasualBtn>
           );

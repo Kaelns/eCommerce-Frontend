@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Paper } from '@mui/material';
@@ -12,7 +12,7 @@ import { ClickToClipboardPaper } from '@/shared/ui/components';
 import { sxMixins, pulseAnimation } from '@/shared/lib/mui';
 import { AlertText } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   header: {
     p: 1.5,
     flex: 2,

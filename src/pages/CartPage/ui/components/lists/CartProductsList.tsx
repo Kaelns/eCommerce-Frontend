@@ -1,6 +1,8 @@
 import { Stack } from '@mui/system';
 
-import { CartProductCard, selectCartProductsIds } from '@/entities/cart';
+import { CartProductCard } from '@/pages/CartPage/ui/widgets/CartProductCard/CartProductCard';
+
+import { selectCartProductsIds } from '@/entities/cart';
 
 import { useAppSelector } from '@/shared/lib/redux';
 

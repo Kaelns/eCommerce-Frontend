@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Drawer } from '@mui/material';
 import { useState, useCallback } from 'react';
@@ -9,7 +9,7 @@ import { Navbar } from '@/features/Navbar';
 
 import { BurgerBtn } from '@/shared/ui/elements';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   burgerMenu: {
     p: 3
   }

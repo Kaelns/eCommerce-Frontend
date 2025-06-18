@@ -1,5 +1,5 @@
 import type { StackProps } from '@mui/system';
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { memo } from 'react';
 import { Stack } from '@mui/system';
@@ -8,7 +8,7 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import { Tooltip, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 
 import { Filters, FILTERS_ORDER } from '@/features/catalog-filters/model/constants';
-import { resetFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { resetFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 import { ApplyFiltersBtn } from '@/features/catalog-filters/components/CatalogFilterForm/ui/elements/ApplyFiltersBtn';
 import { ColorFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/ColorFilter/ColorFilter';
 import { CategoriesAccordionTreeFilter } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/CategoriesAccordionTreeFilter';
@@ -17,7 +17,7 @@ import { RangePriceSliderFilter } from '@/features/catalog-filters/components/Ca
 import { BoldText, ContainedBtn } from '@/shared/ui/elements';
 import { useAppDispatch } from '@/shared/lib/redux';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btnApply: {
     flex: 8
   },

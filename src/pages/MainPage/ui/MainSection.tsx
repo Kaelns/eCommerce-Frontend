@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { Box } from '@mui/material';
@@ -10,7 +10,7 @@ import { Text, TitleText, ContainedBtn } from '@/shared/ui/elements';
 import { sxMixins, hideAnimation, revealAnimation } from '@/shared/lib/mui';
 import { Paths } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btn: {
     alignSelf: 'flex-start',
     bgcolor: 'Alert.infoColor'

@@ -34,10 +34,11 @@ const userSliceLazy = createSlice({
   }
 });
 
-export const userSlice = userSliceLazy.injectInto(rootReducer);
+const userSlice = userSliceLazy.injectInto(rootReducer);
 
 declare module '@/shared/lib/redux/redux.config' {
   export interface LazyLoadedSlices extends WithSlice<typeof userSliceLazy> {}
 }
 
-export const { selectCurrency } = userSlice.selectors;
+export const { selectLanguage, selectCurrency, selectCountry } = userSlice.selectors;
+export const { setLanguageAction, setCurrencyAction } = userSlice.actions;

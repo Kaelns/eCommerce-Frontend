@@ -2,7 +2,7 @@ import type { Theme, SxProps } from '@mui/system';
 
 import * as React from 'react';
 
-import { selectCartProductQuantity } from '@/entities/cart';
+import { selectCartIsEmpty } from '@/entities/cart';
 
 import { ConditionalFade } from '@/shared/ui/components';
 import { useAppSelector } from '@/shared/lib/redux';
@@ -13,9 +13,9 @@ interface Props {
 }
 
 export function CartShowIfProductsExist({ children, Fallback, sxChildren }: React.PropsWithChildren<Props>) {
-  const productQuantity = useAppSelector(selectCartProductQuantity);
+  const isCartEmpty = useAppSelector(selectCartIsEmpty);
   return (
-    <ConditionalFade isShow={!!productQuantity} Fallback={Fallback} sxChildren={sxChildren}>
+    <ConditionalFade isShow={!isCartEmpty} Fallback={Fallback} sxChildren={sxChildren}>
       {children}
     </ConditionalFade>
   );

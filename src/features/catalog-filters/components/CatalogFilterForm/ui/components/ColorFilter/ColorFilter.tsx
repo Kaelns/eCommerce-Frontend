@@ -8,7 +8,7 @@ import { getErrorMessage } from '@/shared/api/ecommerce-api';
 import { selectLanguage } from '@/entities/user';
 import { useGetProductColorsQuery } from '@/entities/product';
 
-import { toggleColorFormAction } from '@/features/catalog-filters/model/redux/catalogFilter.slice';
+import { toggleColorFormAction } from '@/features/catalog-filters/model/catalogFilter.slice';
 import { ColorBtn } from '@/features/catalog-filters/components/CatalogFilterForm/ui/components/ColorFilter/ColorBtn';
 
 import { CasualBtn } from '@/shared/ui/elements';
@@ -35,7 +35,7 @@ export const ColorFilter = memo(function ColorFilter() {
   };
 
   return (
-    <SuspenseWithError settings={{ isError, isLoading, error: getErrorMessage(error) }}>
+    <SuspenseWithError isLoading={isLoading} isError={isError} error={getErrorMessage(error)}>
       <Grid container spacing={2} columns={3}>
         {!!colors &&
           Object.keys(colors).map((colorKey) => (

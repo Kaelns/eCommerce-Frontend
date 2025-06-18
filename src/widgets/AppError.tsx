@@ -1,4 +1,4 @@
-import type { SxStyles } from '@/shared/model/types';
+import type { SxStylesMap } from '@/shared/model/types';
 
 import { Stack } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { TitleText } from '@/shared/ui/elements';
 
 import { Paths } from '@/shared/model/data';
 
-const sxStyles: SxStyles = {
+const sxStyles: SxStylesMap = {
   btn: {
     flex: 1,
     textWrap: 'nowrap',
