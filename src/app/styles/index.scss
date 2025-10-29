@@ -1,0 +1,22 @@
+@use 'abstracts/constants';
+
+@use 'base/base';
+@use 'base/scrollbar';
+
+.global__carousel {
+  position: relative;
+
+  &_large {
+    width: 100%;
+  }
+  &_medium {
+    width: 65%;
+
+    @media (max-width: (constants.$width-tablet)) {
+      width: 100%;
+    }
+  }
+  &_small {
+    width: 130px;
+  }
+}

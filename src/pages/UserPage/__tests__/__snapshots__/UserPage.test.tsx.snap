@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given UserPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <h5
+    class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
+  >
+    User Profile Page
+  </h5>
+</DocumentFragment>
+`;

@@ -1,0 +1,204 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given MainPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiStack-root css-ew8gbl-MuiStack-root"
+  >
+    <section
+      class="MuiStack-root css-1u49h8d-MuiStack-root"
+    >
+      <div
+        class="MuiBox-root css-1gesks6"
+      />
+      <img
+        alt="furniture"
+        class="MuiBox-root css-h473ni"
+        src="/src/assets/furniture.webp"
+      />
+      <div
+        class="MuiStack-root css-14kkdmk-MuiStack-root"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h1 css-1y497ks-MuiTypography-root"
+        >
+          Radiocommerce
+        </h1>
+        <h2
+          class="MuiTypography-root MuiTypography-h2 css-1wk7ua4-MuiTypography-root"
+        >
+          All sort of high-quality furniture available here
+        </h2>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1sr8arn-MuiTypography-root"
+        >
+          Take a look around and choose what you like.Trust me, you won't regret it. Besides, we have a lot of discounts!
+        </p>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-16c6ckb-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Go to catalog
+        </button>
+      </div>
+    </section>
+    <section
+      class="MuiStack-root css-1ucnu3w-MuiStack-root"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 css-aie56f-MuiPaper-root"
+        style="--Paper-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
+        />
+      </div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1b1mdw6-MuiPaper-root"
+        style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+      >
+        <div
+          class="MuiBox-root css-79elbk"
+        >
+          <div
+            class="MuiStack-root css-r78jfo-MuiStack-root"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7bduwa-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+          </div>
+          <div
+            class="MuiStack-root css-x6bnna-MuiStack-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-2 css-1eogyen-MuiGrid-root"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="MuiStack-root css-1ucnu3w-MuiStack-root"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 css-aie56f-MuiPaper-root"
+        style="--Paper-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
+        />
+      </div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1b1mdw6-MuiPaper-root"
+        style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+      >
+        <div
+          class="MuiBox-root css-79elbk"
+        >
+          <div
+            class="MuiStack-root css-r78jfo-MuiStack-root"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7bduwa-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+            />
+          </div>
+          <div
+            class="MuiStack-root css-x6bnna-MuiStack-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-2 css-1eogyen-MuiGrid-root"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="MuiStack-root css-16aaozm-MuiStack-root"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 css-kcot8x-MuiPaper-root"
+        style="--Paper-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
+        >
+          Our special offer:
+        </p>
+      </div>
+      <div
+        class="MuiStack-root css-1ktyeuu-MuiStack-root"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 css-sl6uf3-MuiPaper-root"
+          style="--Paper-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
+          >
+            minus10
+          </p>
+        </div>
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation5 css-sl6uf3-MuiPaper-root"
+          style="--Paper-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1ub6n32-MuiTypography-root"
+          >
+            minus15
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

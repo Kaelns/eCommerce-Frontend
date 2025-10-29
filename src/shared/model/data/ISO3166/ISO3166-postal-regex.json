@@ -1,0 +1,1232 @@
+{
+  "AF": {
+    "ISO": "AF",
+    "country": "Afghanistan",
+    "postalRegex": "^\\d{4}$"
+  },
+  "AX": {
+    "ISO": "AX",
+    "country": "Aland Islands",
+    "postalRegex": "^\\d{5}$"
+  },
+  "AL": {
+    "ISO": "AL",
+    "country": "Albania",
+    "postalRegex": "^\\d{4}$"
+  },
+  "DZ": {
+    "ISO": "DZ",
+    "country": "Algeria",
+    "postalRegex": "^\\d{5}$"
+  },
+  "AS": {
+    "ISO": "AS",
+    "country": "American Samoa",
+    "postalRegex": "^\\d{5}(-{1}\\d{4,6})$"
+  },
+  "AD": {
+    "ISO": "AD",
+    "country": "Andorra",
+    "postalRegex": "^[Aa][Dd]\\d{3}$"
+  },
+  "AO": {
+    "ISO": "AO",
+    "country": "Angola",
+    "postalRegex": ""
+  },
+  "AI": {
+    "ISO": "AI",
+    "country": "Anguilla",
+    "postalRegex": "^[Aa][I][-][2][6][4][0]$"
+  },
+  "AG": {
+    "ISO": "AG",
+    "country": "Antigua And Barbuda",
+    "postalRegex": ""
+  },
+  "AR": {
+    "ISO": "AR",
+    "country": "Argentina",
+    "postalRegex": "^\\d{4}|[A-Za-z]\\d{4}[a-zA-Z]{3}$"
+  },
+  "AM": {
+    "ISO": "AM",
+    "country": "Armenia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "AW": {
+    "ISO": "AW",
+    "country": "Aruba",
+    "postalRegex": ""
+  },
+  "AC": {
+    "ISO": "AC",
+    "country": "Ascension island",
+    "postalRegex": "^[Aa][Ss][Cc][Nn]\\s{0,1}[1][Zz][Zz]$"
+  },
+  "AU": {
+    "ISO": "AU",
+    "country": "Australia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "AT": {
+    "ISO": "AT",
+    "country": "Austria",
+    "postalRegex": "^\\d{4}$"
+  },
+  "AZ": {
+    "ISO": "AZ",
+    "country": "Azerbaijan",
+    "postalRegex": "^[Aa][Zz]\\d{4}$"
+  },
+  "BS": {
+    "ISO": "BS",
+    "country": "Bahamas",
+    "postalRegex": ""
+  },
+  "BH": {
+    "ISO": "BH",
+    "country": "Bahrain",
+    "postalRegex": "^\\d{3,4}$"
+  },
+  "BD": {
+    "ISO": "BD",
+    "country": "Bangladesh",
+    "postalRegex": "^\\d{4}$"
+  },
+  "BB": {
+    "ISO": "BB",
+    "country": "Barbados",
+    "postalRegex": "^[Aa][Zz]\\d{5}$"
+  },
+  "BY": {
+    "ISO": "BY",
+    "country": "Belarus",
+    "postalRegex": "^\\d{6}$"
+  },
+  "BE": {
+    "ISO": "BE",
+    "country": "Belgium",
+    "postalRegex": "^\\d{4}$"
+  },
+  "BZ": {
+    "ISO": "BZ",
+    "country": "Belize",
+    "postalRegex": ""
+  },
+  "BJ": {
+    "ISO": "BJ",
+    "country": "Benin",
+    "postalRegex": ""
+  },
+  "BM": {
+    "ISO": "BM",
+    "country": "Bermuda",
+    "postalRegex": "^[A-Za-z]{2}\\s([A-Za-z]{2}|\\d{2})$"
+  },
+  "BT": {
+    "ISO": "BT",
+    "country": "Bhutan",
+    "postalRegex": "^\\d{5}$"
+  },
+  "BO": {
+    "ISO": "BO",
+    "country": "Bolivia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "BQ": {
+    "ISO": "BQ",
+    "country": "Bonaire, Sint Eustatius and Saba",
+    "postalRegex": ""
+  },
+  "BA": {
+    "ISO": "BA",
+    "country": "Bosnia And Herzegovina",
+    "postalRegex": "^\\d{5}$"
+  },
+  "BW": {
+    "ISO": "BW",
+    "country": "Botswana",
+    "postalRegex": ""
+  },
+  "BR": {
+    "ISO": "BR",
+    "country": "Brazil",
+    "postalRegex": "^\\d{5}-\\d{3}$"
+  },
+  "IO": {
+    "ISO": "IO",
+    "country": "British Indian Ocean Territory",
+    "postalRegex": "^[Bb]{2}[Nn][Dd]\\s{0,1}[1][Zz]{2}$"
+  },
+  "VG": {
+    "ISO": "VG",
+    "country": "Virgin Islands, British",
+    "postalRegex": "^[Vv][Gg]\\d{4}$"
+  },
+  "BN": {
+    "ISO": "BN",
+    "country": "Brunei Darussalam",
+    "postalRegex": "^[A-Za-z]{2}\\d{4}$"
+  },
+  "BG": {
+    "ISO": "BG",
+    "country": "Bulgaria",
+    "postalRegex": "^\\d{4}$"
+  },
+  "BF": {
+    "ISO": "BF",
+    "country": "Burkina Faso",
+    "postalRegex": ""
+  },
+  "BI": {
+    "ISO": "BI",
+    "country": "Burundi",
+    "postalRegex": ""
+  },
+  "KH": {
+    "ISO": "KH",
+    "country": "Cambodia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "CM": {
+    "ISO": "CM",
+    "country": "Cameroon",
+    "postalRegex": ""
+  },
+  "CA": {
+    "ISO": "CA",
+    "country": "Canada",
+    "postalRegex": "^(?=[^DdFfIiOoQqUu\\d\\s])[A-Za-z]\\d(?=[^DdFfIiOoQqUu\\d\\s])[A-Za-z]\\s{0,1}\\d(?=[^DdFfIiOoQqUu\\d\\s])[A-Za-z]\\d$"
+  },
+  "CV": {
+    "ISO": "CV",
+    "country": "Cape Verde",
+    "postalRegex": "^\\d{4}$"
+  },
+  "KY": {
+    "ISO": "KY",
+    "country": "Cayman Islands",
+    "postalRegex": "^[Kk][Yy]\\d[-\\s]{0,1}\\d{4}$"
+  },
+  "CF": {
+    "ISO": "CF",
+    "country": "Central African Republic",
+    "postalRegex": ""
+  },
+  "TD": {
+    "ISO": "TD",
+    "country": "Chad",
+    "postalRegex": "^\\d{5}$"
+  },
+  "CL": {
+    "ISO": "CL",
+    "country": "Chile",
+    "postalRegex": "^\\d{7}\\s\\(\\d{3}-\\d{4}\\)$"
+  },
+  "CN": {
+    "ISO": "CN",
+    "country": "China",
+    "postalRegex": "^\\d{6}$"
+  },
+  "CX": {
+    "ISO": "CX",
+    "country": "Christmas Island",
+    "postalRegex": "^\\d{4}$"
+  },
+  "CC": {
+    "ISO": "CC",
+    "country": "Cocos (Keeling) Islands",
+    "postalRegex": "^\\d{4}$"
+  },
+  "CO": {
+    "ISO": "CO",
+    "country": "Colombia",
+    "postalRegex": "^\\d{6}$"
+  },
+  "KM": {
+    "ISO": "KM",
+    "country": "Comoros",
+    "postalRegex": ""
+  },
+  "CG": {
+    "ISO": "CG",
+    "country": "Congo",
+    "postalRegex": ""
+  },
+  "CD": {
+    "ISO": "CD",
+    "country": "Congo, Democratic Republic",
+    "postalRegex": "^[Cc][Dd]$"
+  },
+  "CK": {
+    "ISO": "CK",
+    "country": "Cook Islands",
+    "postalRegex": ""
+  },
+  "CR": {
+    "ISO": "CR",
+    "country": "Costa Rica",
+    "postalRegex": "^\\d{4,5}$"
+  },
+  "CI": {
+    "ISO": "CI",
+    "country": "Cote D\"Ivoire",
+    "postalRegex": ""
+  },
+  "HR": {
+    "ISO": "HR",
+    "country": "Croatia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "CU": {
+    "ISO": "CU",
+    "country": "Cuba",
+    "postalRegex": "^\\d{5}$"
+  },
+  "CW": {
+    "ISO": "CW",
+    "country": "Curaçao",
+    "postalRegex": ""
+  },
+  "CY": {
+    "ISO": "CY",
+    "country": "Cyprus",
+    "postalRegex": "^\\d{4}$"
+  },
+  "CZ": {
+    "ISO": "CZ",
+    "country": "Czech Republic",
+    "postalRegex": "^\\d{5}\\s\\(\\d{3}\\s\\d{2}\\)$"
+  },
+  "DK": {
+    "ISO": "DK",
+    "country": "Denmark",
+    "postalRegex": "^\\d{4}$"
+  },
+  "DJ": {
+    "ISO": "DJ",
+    "country": "Djibouti",
+    "postalRegex": ""
+  },
+  "DM": {
+    "ISO": "DM",
+    "country": "Dominica",
+    "postalRegex": ""
+  },
+  "DO": {
+    "ISO": "DO",
+    "country": "Dominican Republic",
+    "postalRegex": "^\\d{5}$"
+  },
+  "TL": {
+    "ISO": "TL",
+    "country": "Timor-Leste",
+    "postalRegex": ""
+  },
+  "EC": {
+    "ISO": "EC",
+    "country": "Ecuador",
+    "postalRegex": "^\\d{6}$"
+  },
+  "SV": {
+    "ISO": "SV",
+    "country": "El Salvador",
+    "postalRegex": "^1101$"
+  },
+  "EG": {
+    "ISO": "EG",
+    "country": "Egypt",
+    "postalRegex": "^\\d{5}$"
+  },
+  "GQ": {
+    "ISO": "GQ",
+    "country": "Equatorial Guinea",
+    "postalRegex": ""
+  },
+  "ER": {
+    "ISO": "ER",
+    "country": "Eritrea",
+    "postalRegex": ""
+  },
+  "EE": {
+    "ISO": "EE",
+    "country": "Estonia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "ET": {
+    "ISO": "ET",
+    "country": "Ethiopia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "FK": {
+    "ISO": "FK",
+    "country": "Falkland Islands (Malvinas)",
+    "postalRegex": "^[Ff][Ii][Qq]{2}\\s{0,1}[1][Zz]{2}$"
+  },
+  "FO": {
+    "ISO": "FO",
+    "country": "Faroe Islands",
+    "postalRegex": "^\\d{3}$"
+  },
+  "FJ": {
+    "ISO": "FJ",
+    "country": "Fiji",
+    "postalRegex": ""
+  },
+  "FI": {
+    "ISO": "FI",
+    "country": "Finland",
+    "postalRegex": "^\\d{5}$"
+  },
+  "FR": {
+    "ISO": "FR",
+    "country": "France",
+    "postalRegex": "^(?:0[1-9]|[1-8]\\d|9[0-8])\\d{3}$"
+  },
+  "GF": {
+    "ISO": "GF",
+    "country": "French Guiana",
+    "postalRegex": "^973\\d{2}$"
+  },
+  "PF": {
+    "ISO": "PF",
+    "country": "French Polynesia",
+    "postalRegex": "^987\\d{2}$"
+  },
+  "TF": {
+    "ISO": "TF",
+    "country": "French Southern Territories",
+    "postalRegex": ""
+  },
+  "GA": {
+    "ISO": "GA",
+    "country": "Gabon",
+    "postalRegex": "^\\d{2}\\s[a-zA-Z-_ ]\\s\\d{2}$"
+  },
+  "GM": {
+    "ISO": "GM",
+    "country": "Gambia",
+    "postalRegex": ""
+  },
+  "GE": {
+    "ISO": "GE",
+    "country": "Georgia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "DE": {
+    "ISO": "DE",
+    "country": "Germany",
+    "postalRegex": "^\\d{5}$"
+  },
+  "GH": {
+    "ISO": "GH",
+    "country": "Ghana",
+    "postalRegex": ""
+  },
+  "GI": {
+    "ISO": "GI",
+    "country": "Gibraltar",
+    "postalRegex": "^[Gg][Xx][1]{2}\\s{0,1}[1][Aa]{2}$"
+  },
+  "GR": {
+    "ISO": "GR",
+    "country": "Greece",
+    "postalRegex": "^\\d{3}\\s{0,1}\\d{2}$"
+  },
+  "GL": {
+    "ISO": "GL",
+    "country": "Greenland",
+    "postalRegex": "^\\d{4}$"
+  },
+  "GD": {
+    "ISO": "GD",
+    "country": "Grenada",
+    "postalRegex": ""
+  },
+  "GP": {
+    "ISO": "GP",
+    "country": "Guadeloupe",
+    "postalRegex": "^971\\d{2}$"
+  },
+  "GU": {
+    "ISO": "GU",
+    "country": "Guam",
+    "postalRegex": "^\\d{5}$"
+  },
+  "GT": {
+    "ISO": "GT",
+    "country": "Guatemala",
+    "postalRegex": "^\\d{5}$"
+  },
+  "GG": {
+    "ISO": "GG",
+    "country": "Guernsey",
+    "postalRegex": "^[A-Za-z]{2}\\d\\s{0,1}\\d[A-Za-z]{2}$"
+  },
+  "GN": {
+    "ISO": "GN",
+    "country": "Guinea",
+    "postalRegex": ""
+  },
+  "GW": {
+    "ISO": "GW",
+    "country": "Guinea-Bissau",
+    "postalRegex": "^\\d{4}$"
+  },
+  "GY": {
+    "ISO": "GY",
+    "country": "Guyana",
+    "postalRegex": ""
+  },
+  "HT": {
+    "ISO": "HT",
+    "country": "Haiti",
+    "postalRegex": "^\\d{4}$"
+  },
+  "HM": {
+    "ISO": "HM",
+    "country": "Heard Island & Mcdonald Islands",
+    "postalRegex": "^\\d{4}$"
+  },
+  "HN": {
+    "ISO": "HN",
+    "country": "Honduras",
+    "postalRegex": "^\\d{5}$"
+  },
+  "HK": {
+    "ISO": "HK",
+    "country": "Hong Kong",
+    "postalRegex": ""
+  },
+  "HU": {
+    "ISO": "HU",
+    "country": "Hungary",
+    "postalRegex": "^\\d{4}$"
+  },
+  "IS": {
+    "ISO": "IS",
+    "country": "Iceland",
+    "postalRegex": "^\\d{3}$"
+  },
+  "IN": {
+    "ISO": "IN",
+    "country": "India",
+    "postalRegex": "^\\d{6}$"
+  },
+  "ID": {
+    "ISO": "ID",
+    "country": "Indonesia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "IR": {
+    "ISO": "IR",
+    "country": "Iran, Islamic Republic Of",
+    "postalRegex": "^\\d{5}-\\d{5}$"
+  },
+  "IQ": {
+    "ISO": "IQ",
+    "country": "Iraq",
+    "postalRegex": "^\\d{5}$"
+  },
+  "IE": {
+    "ISO": "IE",
+    "country": "Ireland",
+    "postalRegex": ""
+  },
+  "IM": {
+    "ISO": "IM",
+    "country": "Isle Of Man",
+    "postalRegex": "^[Ii[Mm]\\d{1,2}\\s\\d\\[A-Z]{2}$"
+  },
+  "IL": {
+    "ISO": "IL",
+    "country": "Israel",
+    "postalRegex": "^\\b\\d{5}(\\d{2})?$"
+  },
+  "IT": {
+    "ISO": "IT",
+    "country": "Italy",
+    "postalRegex": "^\\d{5}$"
+  },
+  "JM": {
+    "ISO": "JM",
+    "country": "Jamaica",
+    "postalRegex": "^\\d{2}$"
+  },
+  "JP": {
+    "ISO": "JP",
+    "country": "Japan",
+    "postalRegex": "^\\d{7}\\s\\(\\d{3}-\\d{4}\\)$"
+  },
+  "JE": {
+    "ISO": "JE",
+    "country": "Jersey",
+    "postalRegex": "^[Jj][Ee]\\d\\s{0,1}\\d[A-Za-z]{2}$"
+  },
+  "JO": {
+    "ISO": "JO",
+    "country": "Jordan",
+    "postalRegex": "^\\d{5}$"
+  },
+  "KZ": {
+    "ISO": "KZ",
+    "country": "Kazakhstan",
+    "postalRegex": "^\\d{6}$"
+  },
+  "KE": {
+    "ISO": "KE",
+    "country": "Kenya",
+    "postalRegex": "^\\d{5}$"
+  },
+  "KI": {
+    "ISO": "KI",
+    "country": "Kiribati",
+    "postalRegex": ""
+  },
+  "KP": {
+    "ISO": "KP",
+    "country": "North Korea",
+    "postalRegex": ""
+  },
+  "KR": {
+    "ISO": "KR",
+    "country": "Korea",
+    "postalRegex": "^\\d{6}\\s\\(\\d{3}-\\d{3}\\)$"
+  },
+  "XK": {
+    "ISO": "XK",
+    "country": "Kosovo",
+    "postalRegex": "^\\d{5}$"
+  },
+  "KW": {
+    "ISO": "KW",
+    "country": "Kuwait",
+    "postalRegex": "^\\d{5}$"
+  },
+  "KG": {
+    "ISO": "KG",
+    "country": "Kyrgyzstan",
+    "postalRegex": "^\\d{6}$"
+  },
+  "LV": {
+    "ISO": "LV",
+    "country": "Latvia",
+    "postalRegex": "^[Ll][Vv][- ]{0,1}\\d{4}$"
+  },
+  "LA": {
+    "ISO": "LA",
+    "country": "Lao People\"s Democratic Republic",
+    "postalRegex": "^\\d{5}$"
+  },
+  "LB": {
+    "ISO": "LB",
+    "country": "Lebanon",
+    "postalRegex": "^\\d{4}\\s{0,1}\\d{4}$"
+  },
+  "LS": {
+    "ISO": "LS",
+    "country": "Lesotho",
+    "postalRegex": "^\\d{3}$"
+  },
+  "LR": {
+    "ISO": "LR",
+    "country": "Liberia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "LY": {
+    "ISO": "LY",
+    "country": "Libyan Arab Jamahiriya",
+    "postalRegex": "^\\d{5}$"
+  },
+  "LI": {
+    "ISO": "LI",
+    "country": "Liechtenstein",
+    "postalRegex": "^\\d{4}$"
+  },
+  "LT": {
+    "ISO": "LT",
+    "country": "Lithuania",
+    "postalRegex": "^[Ll][Tt][- ]{0,1}\\d{5}$"
+  },
+  "LU": {
+    "ISO": "LU",
+    "country": "Luxembourg",
+    "postalRegex": "^\\d{4}$"
+  },
+  "MO": {
+    "ISO": "MO",
+    "country": "Macao",
+    "postalRegex": ""
+  },
+  "MK": {
+    "ISO": "MK",
+    "country": "Macedonia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "MG": {
+    "ISO": "MG",
+    "country": "Madagascar",
+    "postalRegex": "^\\d{3}$"
+  },
+  "MW": {
+    "ISO": "MW",
+    "country": "Malawi",
+    "postalRegex": ""
+  },
+  "MV": {
+    "ISO": "MV",
+    "country": "Maldives",
+    "postalRegex": "^\\d{4,5}$"
+  },
+  "MY": {
+    "ISO": "MY",
+    "country": "Malaysia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "ML": {
+    "ISO": "ML",
+    "country": "Mali",
+    "postalRegex": ""
+  },
+  "MT": {
+    "ISO": "MT",
+    "country": "Malta",
+    "postalRegex": "^[A-Za-z]{3}\\s{0,1}\\d{4}$"
+  },
+  "MH": {
+    "ISO": "MH",
+    "country": "Marshall Islands",
+    "postalRegex": "^\\d{5}$"
+  },
+  "MR": {
+    "ISO": "MR",
+    "country": "Mauritania",
+    "postalRegex": ""
+  },
+  "MU": {
+    "ISO": "MU",
+    "country": "Mauritius",
+    "postalRegex": ""
+  },
+  "MQ": {
+    "ISO": "MQ",
+    "country": "Martinique",
+    "postalRegex": "^972\\d{2}$"
+  },
+  "YT": {
+    "ISO": "YT",
+    "country": "Mayotte",
+    "postalRegex": "^976\\d{2}$"
+  },
+  "FM": {
+    "ISO": "FM",
+    "country": "Micronesia, Federated States Of",
+    "postalRegex": "^\\d{5}$"
+  },
+  "MX": {
+    "ISO": "MX",
+    "country": "Mexico",
+    "postalRegex": "^\\d{5}$"
+  },
+  "MD": {
+    "ISO": "MD",
+    "country": "Moldova",
+    "postalRegex": "^[Mm][Dd][- ]{0,1}\\d{4}$"
+  },
+  "MC": {
+    "ISO": "MC",
+    "country": "Monaco",
+    "postalRegex": "^980\\d{2}$"
+  },
+  "MN": {
+    "ISO": "MN",
+    "country": "Mongolia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "ME": {
+    "ISO": "ME",
+    "country": "Montenegro",
+    "postalRegex": "^\\d{5}$"
+  },
+  "MS": {
+    "ISO": "MS",
+    "country": "Montserrat",
+    "postalRegex": "^[Mm][Ss][Rr]\\s{0,1}\\d{4}$"
+  },
+  "MA": {
+    "ISO": "MA",
+    "country": "Morocco",
+    "postalRegex": "^\\d{5}$"
+  },
+  "MZ": {
+    "ISO": "MZ",
+    "country": "Mozambique",
+    "postalRegex": "^\\d{4}$"
+  },
+  "MM": {
+    "ISO": "MM",
+    "country": "Myanmar",
+    "postalRegex": "^\\d{5}$"
+  },
+  "NA": {
+    "ISO": "NA",
+    "country": "Namibia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "NR": {
+    "ISO": "NR",
+    "country": "Nauru",
+    "postalRegex": ""
+  },
+  "NP": {
+    "ISO": "NP",
+    "country": "Nepal",
+    "postalRegex": "^\\d{5}$"
+  },
+  "NL": {
+    "ISO": "NL",
+    "country": "Netherlands",
+    "postalRegex": "^\\d{4}\\s{0,1}[A-Za-z]{2}$"
+  },
+  "NC": {
+    "ISO": "NC",
+    "country": "New Caledonia",
+    "postalRegex": "^988\\d{2}$"
+  },
+  "NZ": {
+    "ISO": "NZ",
+    "country": "New Zealand",
+    "postalRegex": "^\\d{4}$"
+  },
+  "NI": {
+    "ISO": "NI",
+    "country": "Nicaragua",
+    "postalRegex": "^\\d{5}$"
+  },
+  "NE": {
+    "ISO": "NE",
+    "country": "Niger",
+    "postalRegex": "^\\d{4}$"
+  },
+  "NG": {
+    "ISO": "NG",
+    "country": "Nigeria",
+    "postalRegex": "^\\d{6}$"
+  },
+  "NU": {
+    "ISO": "NU",
+    "country": "Niue",
+    "postalRegex": ""
+  },
+  "NF": {
+    "ISO": "NF",
+    "country": "Norfolk Island",
+    "postalRegex": "^\\d{4}$"
+  },
+  "MP": {
+    "ISO": "MP",
+    "country": "Northern Mariana Islands",
+    "postalRegex": "^\\d{5}$"
+  },
+  "NO": {
+    "ISO": "NO",
+    "country": "Norway",
+    "postalRegex": "^\\d{4}$"
+  },
+  "OM": {
+    "ISO": "OM",
+    "country": "Oman",
+    "postalRegex": "^\\d{3}$"
+  },
+  "PK": {
+    "ISO": "PK",
+    "country": "Pakistan",
+    "postalRegex": "^\\d{5}$"
+  },
+  "PW": {
+    "ISO": "PW",
+    "country": "Palau",
+    "postalRegex": "^\\d{5}$"
+  },
+  "PA": {
+    "ISO": "PA",
+    "country": "Panama",
+    "postalRegex": "^\\d{6}$"
+  },
+  "PG": {
+    "ISO": "PG",
+    "country": "Papua New Guinea",
+    "postalRegex": "^\\d{3}$"
+  },
+  "PY": {
+    "ISO": "PY",
+    "country": "Paraguay",
+    "postalRegex": "^\\d{4}$"
+  },
+  "PE": {
+    "ISO": "PE",
+    "country": "Peru",
+    "postalRegex": "^\\d{5}$"
+  },
+  "PH": {
+    "ISO": "PH",
+    "country": "Philippines",
+    "postalRegex": "^\\d{4}$"
+  },
+  "PN": {
+    "ISO": "PN",
+    "country": "Pitcairn",
+    "postalRegex": "^[Pp][Cc][Rr][Nn]\\s{0,1}[1][Zz]{2}$"
+  },
+  "PL": {
+    "ISO": "PL",
+    "country": "Poland",
+    "postalRegex": "^\\d{2}[- ]{0,1}\\d{3}$"
+  },
+  "PT": {
+    "ISO": "PT",
+    "country": "Portugal",
+    "postalRegex": "^\\d{4}[- ]{0,1}\\d{3}$"
+  },
+  "PR": {
+    "ISO": "PR",
+    "country": "Puerto Rico",
+    "postalRegex": "^\\d{5}$"
+  },
+  "QA": {
+    "ISO": "QA",
+    "country": "Qatar",
+    "postalRegex": ""
+  },
+  "RE": {
+    "ISO": "RE",
+    "country": "Reunion",
+    "postalRegex": "^974\\d{2}$"
+  },
+  "RO": {
+    "ISO": "RO",
+    "country": "Romania",
+    "postalRegex": "^\\d{6}$"
+  },
+  "RU": {
+    "ISO": "RU",
+    "country": "Russian Federation",
+    "postalRegex": "^\\d{6}$"
+  },
+  "RW": {
+    "ISO": "RW",
+    "country": "Rwanda",
+    "postalRegex": ""
+  },
+  "BL": {
+    "ISO": "BL",
+    "country": "Saint Barthelemy",
+    "postalRegex": "^97133$"
+  },
+  "SH": {
+    "ISO": "SH",
+    "country": "Saint Helena",
+    "postalRegex": "^[Tt][Dd][Cc][Uu]\\s{0,1}[1][Zz]{2}$"
+  },
+  "KN": {
+    "ISO": "KN",
+    "country": "Saint Kitts And Nevis",
+    "postalRegex": ""
+  },
+  "LC": {
+    "ISO": "LC",
+    "country": "Saint Lucia",
+    "postalRegex": ""
+  },
+  "MF": {
+    "ISO": "MF",
+    "country": "Saint Martin",
+    "postalRegex": "^97150$"
+  },
+  "PM": {
+    "ISO": "PM",
+    "country": "Saint Pierre And Miquelon",
+    "postalRegex": "^97500$"
+  },
+  "VC": {
+    "ISO": "VC",
+    "country": "Saint Vincent And Grenadines",
+    "postalRegex": "^[Vv][Cc]\\d{4}$"
+  },
+  "WS": {
+    "ISO": "WS",
+    "country": "Samoa",
+    "postalRegex": "^WS\\d{4}$"
+  },
+  "SM": {
+    "ISO": "SM",
+    "country": "San Marino",
+    "postalRegex": "^4789\\d$"
+  },
+  "ST": {
+    "ISO": "ST",
+    "country": "Sao Tome And Principe",
+    "postalRegex": ""
+  },
+  "SA": {
+    "ISO": "SA",
+    "country": "Saudi Arabia",
+    "postalRegex": "^\\d{5}(-{1}\\d{4})?$"
+  },
+  "SN": {
+    "ISO": "SN",
+    "country": "Senegal",
+    "postalRegex": "^\\d{5}$"
+  },
+  "RS": {
+    "ISO": "RS",
+    "country": "Serbia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "SC": {
+    "ISO": "SC",
+    "country": "Seychelles",
+    "postalRegex": ""
+  },
+  "SX": {
+    "ISO": "SX",
+    "country": "Sint Maarten",
+    "postalRegex": ""
+  },
+  "SL": {
+    "ISO": "SL",
+    "country": "Sierra Leone",
+    "postalRegex": ""
+  },
+  "SG": {
+    "ISO": "SG",
+    "country": "Singapore",
+    "postalRegex": "^\\d{6}$"
+  },
+  "SK": {
+    "ISO": "SK",
+    "country": "Slovakia",
+    "postalRegex": "^\\d{5}\\s\\(\\d{3}\\s\\d{2}\\)$"
+  },
+  "SI": {
+    "ISO": "SI",
+    "country": "Slovenia",
+    "postalRegex": "^([Ss][Ii][- ]{0,1}){0,1}\\d{4}$"
+  },
+  "SB": {
+    "ISO": "SB",
+    "country": "Solomon Islands",
+    "postalRegex": ""
+  },
+  "SO": {
+    "ISO": "SO",
+    "country": "Somalia",
+    "postalRegex": ""
+  },
+  "ZA": {
+    "ISO": "ZA",
+    "country": "South Africa",
+    "postalRegex": "^\\d{4}$"
+  },
+  "GS": {
+    "ISO": "GS",
+    "country": "South Georgia And Sandwich Isl.",
+    "postalRegex": "^[Ss][Ii][Qq]{2}\\s{0,1}[1][Zz]{2}$"
+  },
+  "ES": {
+    "ISO": "ES",
+    "country": "Spain",
+    "postalRegex": "^(?:0[1-9]|[1-4]\\d|5[0-2])\\d{3}$"
+  },
+  "LK": {
+    "ISO": "LK",
+    "country": "Sri Lanka",
+    "postalRegex": "^\\d{5}$"
+  },
+  "SD": {
+    "ISO": "SD",
+    "country": "Sudan",
+    "postalRegex": "^\\d{5}$"
+  },
+  "SR": {
+    "ISO": "SR",
+    "country": "Suriname",
+    "postalRegex": ""
+  },
+  "SZ": {
+    "ISO": "SZ",
+    "country": "Swaziland",
+    "postalRegex": "^[A-Za-z]\\d{3}$"
+  },
+  "SE": {
+    "ISO": "SE",
+    "country": "Sweden",
+    "postalRegex": "^\\d{3}\\s*\\d{2}$"
+  },
+  "CH": {
+    "ISO": "CH",
+    "country": "Switzerland",
+    "postalRegex": "^\\d{4}$"
+  },
+  "SJ": {
+    "ISO": "SJ",
+    "country": "Svalbard And Jan Mayen",
+    "postalRegex": "^\\d{4}$"
+  },
+  "SY": {
+    "ISO": "SY",
+    "country": "Syrian Arab Republic",
+    "postalRegex": ""
+  },
+  "TW": {
+    "ISO": "TW",
+    "country": "Taiwan",
+    "postalRegex": "^\\d{5}$"
+  },
+  "TJ": {
+    "ISO": "TJ",
+    "country": "Tajikistan",
+    "postalRegex": "^\\d{6}$"
+  },
+  "TZ": {
+    "ISO": "TZ",
+    "country": "Tanzania",
+    "postalRegex": ""
+  },
+  "TH": {
+    "ISO": "TH",
+    "country": "Thailand",
+    "postalRegex": "^\\d{5}$"
+  },
+  "TG": {
+    "ISO": "TG",
+    "country": "Togo",
+    "postalRegex": ""
+  },
+  "TK": {
+    "ISO": "TK",
+    "country": "Tokelau",
+    "postalRegex": ""
+  },
+  "TO": {
+    "ISO": "TO",
+    "country": "Tonga",
+    "postalRegex": ""
+  },
+  "TT": {
+    "ISO": "TT",
+    "country": "Trinidad And Tobago",
+    "postalRegex": "^\\d{6}$"
+  },
+  "TN": {
+    "ISO": "TN",
+    "country": "Tunisia",
+    "postalRegex": "^\\d{4}$"
+  },
+  "TR": {
+    "ISO": "TR",
+    "country": "Turkey",
+    "postalRegex": "^\\d{5}$"
+  },
+  "TM": {
+    "ISO": "TM",
+    "country": "Turkmenistan",
+    "postalRegex": "^\\d{6}$"
+  },
+  "TC": {
+    "ISO": "TC",
+    "country": "Turks And Caicos Islands",
+    "postalRegex": "^[Tt][Kk][Cc][Aa]\\s{0,1}[1][Zz]{2}$"
+  },
+  "TV": {
+    "ISO": "TV",
+    "country": "Tuvalu",
+    "postalRegex": ""
+  },
+  "UG": {
+    "ISO": "UG",
+    "country": "Uganda",
+    "postalRegex": ""
+  },
+  "UA": {
+    "ISO": "UA",
+    "country": "Ukraine",
+    "postalRegex": "^\\d{5}$"
+  },
+  "AE": {
+    "ISO": "AE",
+    "country": "United Arab Emirates",
+    "postalRegex": ""
+  },
+  "GB": {
+    "ISO": "GB",
+    "country": "United Kingdom",
+    "postalRegex": "^[A-Z]{1,2}[0-9R][0-9A-Z]?\\s*[0-9][A-Z-[CIKMOV]]{2}"
+  },
+  "US": {
+    "ISO": "US",
+    "country": "United States",
+    "postalRegex": "^\\b\\d{5}\\b(?:[- ]{1}\\d{4})?$"
+  },
+  "UY": {
+    "ISO": "UY",
+    "country": "Uruguay",
+    "postalRegex": "^\\d{5}$"
+  },
+  "VI": {
+    "ISO": "VI",
+    "country": "Virgin Islands, U.S.",
+    "postalRegex": "^\\d{5}$"
+  },
+  "UZ": {
+    "ISO": "UZ",
+    "country": "Uzbekistan",
+    "postalRegex": "^\\d{3} \\d{3}$"
+  },
+  "VU": {
+    "ISO": "VU",
+    "country": "Vanuatu",
+    "postalRegex": ""
+  },
+  "VA": {
+    "ISO": "VA",
+    "country": "Holy See (Vatican City State)",
+    "postalRegex": "^120$"
+  },
+  "VE": {
+    "ISO": "VE",
+    "country": "Venezuela",
+    "postalRegex": "^\\d{4}(\\s[a-zA-Z]{1})?$"
+  },
+  "VN": {
+    "ISO": "VN",
+    "country": "Vietnam",
+    "postalRegex": "^\\d{6}$"
+  },
+  "WF": {
+    "ISO": "WF",
+    "country": "Wallis And Futuna",
+    "postalRegex": "^986\\d{2}$"
+  },
+  "EH": {
+    "ISO": "EH",
+    "country": "Western Sahara",
+    "postalRegex": "^7\\d{4}$"
+  },
+  "YE": {
+    "ISO": "YE",
+    "country": "Yemen",
+    "postalRegex": ""
+  },
+  "ZM": {
+    "ISO": "ZM",
+    "country": "Zambia",
+    "postalRegex": "^\\d{5}$"
+  },
+  "ZW": {
+    "ISO": "ZW",
+    "country": "Zimbabwe",
+    "postalRegex": ""
+  }
+}

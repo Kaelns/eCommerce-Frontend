@@ -1,0 +1,135 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Given DetailedProductPage component:  > when rendered, should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-79elbk"
+  >
+    <div
+      class="MuiStack-root css-r78jfo-MuiStack-root"
+    >
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-wave css-7bduwa-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1lbmg9-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-13v5yvq-MuiSkeleton-root"
+      />
+    </div>
+    <div
+      class="MuiStack-root css-x6bnna-MuiStack-root"
+    >
+      <div
+        class="MuiStack-root css-1shucjb-MuiStack-root"
+      >
+        <div
+          class="MuiStack-root css-re6u3m-MuiStack-root"
+        >
+          <div
+            class="slick-slider MuiBox-root css-zz3cru slick-initialized"
+            dir="ltr"
+          >
+            <div
+              class="slick-list"
+            >
+              <div
+                class="slick-track"
+                style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              />
+            </div>
+          </div>
+          <div
+            class="MuiStack-root css-9f25q2-MuiStack-root"
+          >
+            <h5
+              class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
+            />
+            <div
+              class="MuiStack-root css-1hgk1tk-MuiStack-root"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-iy6nlt-MuiTypography-root"
+              >
+                Price: 
+              </h6>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-11y6jfv-MuiTypography-root"
+              >
+                0 $
+              </h6>
+            </div>
+            <div
+              class="MuiStack-root css-wjj0nm-MuiStack-root"
+            />
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-13hdmgp-MuiButtonBase-root-MuiButton-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <span
+                class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate css-1415yxo-MuiLinearProgress-root"
+                role="progressbar"
+              >
+                <span
+                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-eg0r9f-MuiLinearProgress-bar1"
+                />
+                <span
+                  class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-1yf7653-MuiLinearProgress-bar2"
+                />
+              </span>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-57pk4j-MuiTypography-root"
+              >
+                Add to
+              </h6>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-p9fvvg-MuiSvgIcon-root"
+                data-testid="AddShoppingCartIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2m-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1edfpdg-MuiTypography-root"
+          >
+            <b>
+                Description: 
+            </b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

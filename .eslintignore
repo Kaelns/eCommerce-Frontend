@@ -1,0 +1,11 @@
+*.test.*
+setup.tsx
+**/*.config.js
+dist
+node_modules
+.config
+*.__test[s]__.*
+**/*.test[s].ts
+**/*.d.ts
+coverage
+_[a-zA-Z]*
